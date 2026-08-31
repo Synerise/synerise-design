@@ -22,6 +22,7 @@ const Gallery = ({
   zoomStep,
   maxZoom,
   initialZoom,
+  downloadable,
   getContainer,
   zIndex,
   texts,
@@ -81,6 +82,7 @@ const Gallery = ({
           zoomStep={zoomStep}
           maxZoom={maxZoom}
           initialZoom={initialZoom}
+          downloadable={downloadable}
           fallback={fallback}
           getContainer={getContainer}
           zIndex={zIndex}

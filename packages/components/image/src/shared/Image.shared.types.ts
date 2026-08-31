@@ -8,6 +8,11 @@ export type ImageSource = {
   alt: string;
   /** Per-image override for the broken-image fallback. */
   fallback?: ReactNode;
+  /**
+   * Per-image override for the preview's download control. Takes precedence
+   * over the preview-level `downloadable` prop.
+   */
+  downloadable?: boolean;
 };
 
 /**

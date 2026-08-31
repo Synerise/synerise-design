@@ -54,6 +54,7 @@ const ImagePreview = ({
   initialZoom = 'fit',
   closable = true,
   maskClosable = true,
+  downloadable = true,
   fallback,
   getContainer,
   destroyOnClose = false,
@@ -265,7 +266,10 @@ const ImagePreview = ({
       ? Math.round((scale / naturalScaleFactor) * 100)
       : 100;
   const hasError = status === 'error' || !currentImage;
-  const showDownload = !hasError && Boolean(currentSrc);
+  const showDownload =
+    (currentImage?.downloadable ?? downloadable) &&
+    !hasError &&
+    Boolean(currentSrc);
 
   const image = (
     <S.Image
@@ -302,6 +306,7 @@ const ImagePreview = ({
       tabIndex={-1}
       $hidden={!open}
       $zIndex={resolvedZIndex}
+      data-popup-container
       onMouseDown={handleOverlayPointerDown}
       onClick={handleMaskClick}
       data-testid="image-preview"

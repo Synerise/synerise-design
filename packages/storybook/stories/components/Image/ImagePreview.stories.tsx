@@ -57,6 +57,7 @@ const meta: Meta<ImagePreviewProps> = {
     zoomable: { control: 'boolean' },
     closable: { control: 'boolean' },
     maskClosable: { control: 'boolean' },
+    downloadable: { control: 'boolean' },
     destroyOnClose: { control: 'boolean' },
     zoomStep: { control: 'number' },
     maxZoom: { control: 'number' },
@@ -81,6 +82,7 @@ const meta: Meta<ImagePreviewProps> = {
     zoomable: true,
     closable: true,
     maskClosable: true,
+    downloadable: true,
     zoomStep: 1.4,
     maxZoom: 3,
     initialZoom: 'fit',
@@ -99,6 +101,22 @@ export const SingleImage: Story = {
 
 export const TriggeredFromList: Story = {
   render: (args) => <FromListDemo {...args} />,
+};
+
+/** No download control at all — none of these images may be saved. */
+export const NotDownloadable: Story = {
+  args: { downloadable: false },
+};
+
+/**
+ * Mixed set — the middle image opts out via `ImageSource.downloadable`, so the
+ * control disappears only while it is shown.
+ */
+export const PartiallyDownloadable: Story = {
+  render: (args) => <FromListDemo {...args} />,
+  args: {
+    images: [IMAGES[0], { ...IMAGES[1], downloadable: false }, IMAGES[2]],
+  },
 };
 
 /** Tooltips/labels overridden with custom (here Polish) translations. */
