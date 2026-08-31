@@ -32,6 +32,11 @@ export type ImagePreviewProps = {
   closable?: boolean;
   /** Whether clicking the dimmed backdrop closes the viewer. Defaults to true. */
   maskClosable?: boolean;
+  /**
+   * Whether to render the download control. Defaults to true. Override it for a
+   * single image with `ImageSource.downloadable`.
+   */
+  downloadable?: boolean;
   /** Fallback rendered when an image fails to load (per-image override via `ImageSource.fallback`). */
   fallback?: ReactNode;
   /** Portal target. Defaults to `document.body`. */

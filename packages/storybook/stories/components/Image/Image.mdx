@@ -63,7 +63,9 @@ image; arrow keys page through the set; Escape, the close button and a backdrop
 click all close it. Zoom in with the toolbar, the mouse wheel or double-click —
 **while zoomed in, drag the image with the mouse to pan** (the cursor turns into
 a grab handle); double-click resets. The toolbar's download control saves the
-current image. The overlay fades in/out on open/close.
+current image — hide it with `downloadable={false}`, or per image with
+`ImageSource.downloadable`, for images that may not be saved. The overlay fades
+in/out on open/close.
 
 <Canvas of={MultipleImages} />
 
@@ -115,14 +117,14 @@ const preview = useImagePreview(images);
     <tr><th>Prop</th><th>Type</th><th>Default</th><th>Description</th></tr>
   </thead>
   <tbody>
-    <tr><td><code>images</code></td><td><code>ImageSource[]</code></td><td>—</td><td><strong>Required.</strong> <code>{'{ src, alt, fallback? }'}</code> per image.</td></tr>
+    <tr><td><code>images</code></td><td><code>ImageSource[]</code></td><td>—</td><td><strong>Required.</strong> <code>{'{ src, alt, fallback?, downloadable? }'}</code> per image.</td></tr>
     <tr><td><code>aspectRatio / size / height / background / objectFit / loading</code></td><td>see Thumbnail</td><td>see Thumbnail</td><td>Applied uniformly to every thumbnail.</td></tr>
     <tr><td><code>fallback</code></td><td><code>ReactNode</code></td><td>—</td><td>Fallback for any broken image (thumbnails and preview).</td></tr>
     <tr><td><code>texts</code></td><td><code>Partial&lt;ImageTexts&gt;</code></td><td>DS defaults</td><td>Override tooltips/labels for thumbnails and the preview.</td></tr>
     <tr><td><code>deletable</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Show delete affordances.</td></tr>
     <tr><td><code>onDelete</code></td><td><code>(index: number) =&gt; void</code></td><td>—</td><td>Called with the deleted thumbnail's index.</td></tr>
     <tr><td><code>openZoom</code></td><td><code>boolean</code></td><td><code>true</code></td><td>Clicking a thumbnail opens the preview.</td></tr>
-    <tr><td><code>zoomStep / maxZoom / initialZoom / zoomable / getContainer / zIndex</code></td><td>see Preview</td><td>see Preview</td><td>Forwarded to the internal preview.</td></tr>
+    <tr><td><code>zoomStep / maxZoom / initialZoom / zoomable / downloadable / getContainer / zIndex</code></td><td>see Preview</td><td>see Preview</td><td>Forwarded to the internal preview.</td></tr>
   </tbody>
 </table>
 
@@ -143,6 +145,7 @@ const preview = useImagePreview(images);
     <tr><td><code>maxZoom</code></td><td><code>number</code></td><td><code>3</code></td><td>Max zoom relative to natural size (300%).</td></tr>
     <tr><td><code>initialZoom</code></td><td><code>'fit' | 'real-size'</code></td><td><code>'fit'</code></td><td>Where zoom starts.</td></tr>
     <tr><td><code>closable / maskClosable</code></td><td><code>boolean</code></td><td><code>true</code></td><td>Close button + Escape / backdrop click.</td></tr>
+    <tr><td><code>downloadable</code></td><td><code>boolean</code></td><td><code>true</code></td><td>Render the download control. Per-image override via <code>ImageSource.downloadable</code>.</td></tr>
     <tr><td><code>fallback</code></td><td><code>ReactNode</code></td><td>—</td><td>Broken-image fallback.</td></tr>
     <tr><td><code>texts</code></td><td><code>Partial&lt;ImageTexts&gt;</code></td><td>DS defaults</td><td>Override the control tooltips/labels.</td></tr>
     <tr><td><code>getContainer</code></td><td><code>() =&gt; HTMLElement</code></td><td><code>document.body</code></td><td>Portal target.</td></tr>

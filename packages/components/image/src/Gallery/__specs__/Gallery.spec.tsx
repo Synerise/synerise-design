@@ -51,6 +51,20 @@ describe('Gallery', () => {
     expect(screen.queryByTestId('image-preview')).not.toBeInTheDocument();
   });
 
+  it('forwards downloadable to the preview it owns', () => {
+    // ARRANGE
+    renderGallery({ downloadable: false });
+
+    // ACT
+    fireEvent.click(screen.getAllByTestId('image-thumbnail')[0]);
+
+    // ASSERT
+    expect(screen.getByTestId('image-preview')).toBeVisible();
+    expect(
+      screen.queryByTestId('image-preview-download'),
+    ).not.toBeInTheDocument();
+  });
+
   it('calls onDelete with the thumbnail index', () => {
     // ARRANGE
     const onDelete = vi.fn();

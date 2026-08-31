@@ -87,6 +87,7 @@ enclosing `Gallery` before the default listed above.
 | onDelete                                          | Called with the index of the thumbnail whose delete fired.    | (index: number) => void     | ---     |
 | openZoom                                          | Whether clicking a thumbnail opens the preview.               | boolean                     | `true`  |
 | zoomable / zoomStep / maxZoom / initialZoom       | Forwarded to the preview it owns.                             | see ImagePreview            | see ImagePreview |
+| downloadable                                      | Forwarded to the preview — render the download control.       | boolean                     | `true`  |
 | getContainer / zIndex                             | Forwarded to the preview it owns.                             | see ImagePreview            | see ImagePreview |
 | texts                                             | Override tooltips / accessible labels for thumbnails and the preview. | Partial&lt;ImageTexts&gt; | DS translations |
 | className                                         | Class applied to the gallery container.                       | string                      | ---     |
@@ -106,6 +107,7 @@ enclosing `Gallery` before the default listed above.
 | initialZoom    | Where zoom starts.                                                                                                             | 'fit' / 'real-size'         | `'fit'`          |
 | closable       | Whether to render the close button and allow Escape to close.                                                                  | boolean                     | `true`           |
 | maskClosable   | Whether clicking the dimmed backdrop closes the viewer.                                                                        | boolean                     | `true`           |
+| downloadable   | Whether to render the download control (per-image override via `ImageSource.downloadable`).                                     | boolean                     | `true`           |
 | zIndex         | z-index of the overlay. Omitted, it stacks one step above the enclosing modal / drawer. Set it to opt out of the DS stack.      | number                      | `zindex-modal`   |
 | fallback       | Rendered when an image fails to load (per-image override via `ImageSource.fallback`).                                          | React.ReactNode             | broken-image box |
 | getContainer   | Portal target.                                                                                                                 | () => HTMLElement           | `document.body`  |

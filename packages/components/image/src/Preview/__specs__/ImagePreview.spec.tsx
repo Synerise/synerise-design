@@ -256,6 +256,77 @@ describe('ImagePreview', () => {
     ).not.toBeInTheDocument();
   });
 
+  it('hides the download link when downloadable is false', () => {
+    // ARRANGE
+    renderPreview({ downloadable: false });
+
+    // ASSERT
+    expect(
+      screen.queryByTestId('image-preview-download'),
+    ).not.toBeInTheDocument();
+  });
+
+  it('keeps the rest of the toolbar when the download link is hidden', () => {
+    // ARRANGE
+    renderPreview({ downloadable: false });
+
+    // ASSERT
+    expect(screen.getByTestId('image-preview-prev')).toBeInTheDocument();
+    expect(screen.getByTestId('image-preview-next')).toBeInTheDocument();
+  });
+
+  it('hides the download link for an image marked as not downloadable', () => {
+    // ARRANGE
+    renderPreview({
+      images: [IMAGES[0], { ...IMAGES[1], downloadable: false }],
+      index: 1,
+    });
+
+    // ASSERT
+    expect(
+      screen.queryByTestId('image-preview-download'),
+    ).not.toBeInTheDocument();
+  });
+
+  it('lets a per-image flag opt back in when downloadable is false', () => {
+    // ARRANGE
+    renderPreview({
+      images: [{ ...IMAGES[0], downloadable: true }, IMAGES[1]],
+      downloadable: false,
+    });
+
+    // ASSERT
+    expect(screen.getByTestId('image-preview-download')).toHaveAttribute(
+      'href',
+      IMAGES[0].src,
+    );
+  });
+
+  it('re-evaluates the download link when the index changes', () => {
+    // ARRANGE
+    const images = [IMAGES[0], { ...IMAGES[1], downloadable: false }];
+    const { rerender } = renderPreview({ images, index: 0 });
+
+    // ASSERT — downloadable image
+    expect(screen.getByTestId('image-preview-download')).toBeInTheDocument();
+
+    // ACT
+    rerender(
+      <ImagePreview
+        open
+        images={images}
+        index={1}
+        onIndexChange={vi.fn()}
+        onClose={vi.fn()}
+      />,
+    );
+
+    // ASSERT — non-downloadable image
+    expect(
+      screen.queryByTestId('image-preview-download'),
+    ).not.toBeInTheDocument();
+  });
+
   it('renders a custom fallback when the image fails to load', () => {
     // ARRANGE
     renderPreview({
@@ -349,6 +420,19 @@ describe('ImagePreview', () => {
 
       // ASSERT
       expect(overlayZIndex()).toBe(1000000);
+    });
+
+    it('keeps the control tooltips inside the overlay', async () => {
+      // ARRANGE — raised above `zindex-tooltip`, so a tooltip portalled to
+      // `document.body` would render under the backdrop
+      renderPreview({ zIndex: 1000000 });
+
+      // ACT
+      fireEvent.mouseEnter(screen.getByTestId('image-preview-close'));
+
+      // ASSERT
+      const tooltip = await screen.findByTestId('popover-tooltip-content');
+      expect(screen.getByTestId('image-preview')).toContainElement(tooltip);
     });
   });
 });
