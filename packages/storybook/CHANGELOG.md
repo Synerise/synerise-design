@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.57.1](https://github.com/Synerise/synerise-design/compare/storybook@1.57.0...storybook@1.57.1) (2026-09-01)
+
+### Bug Fixes
+
+- **image:** keep the preview tooltips above a raised overlay ([9440cba](https://github.com/Synerise/synerise-design/commit/9440cba7d71bc9cf2d003aa179d69d67804e4e9b))
+- **table:** deprecate @synerise/ds-table in favour of ds-table-new ([bdbe9e8](https://github.com/Synerise/synerise-design/commit/bdbe9e8e909221926bcf9936a92482ff0a72c975))
+
+### Performance Improvements
+
+- **select:** virtualize the dropdown option list ([f95de4e](https://github.com/Synerise/synerise-design/commit/f95de4e6bbe392def14e010c0556e2c56c90ddc7))
+
 # [1.57.0](https://github.com/Synerise/synerise-design/compare/storybook@1.56.0...storybook@1.57.0) (2026-08-25)
 
 ### Features

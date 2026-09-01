@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@2.0.0...@synerise/ds-select@2.0.1) (2026-09-01)
+
+### Performance Improvements
+
+- **select:** virtualize the dropdown option list ([f95de4e](https://github.com/synerise/synerise-design/commit/f95de4e6bbe392def14e010c0556e2c56c90ddc7))
+
 # [2.0.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@1.5.3...@synerise/ds-select@2.0.0) (2026-08-26)
 
 **Note:** Version bump only for package @synerise/ds-select

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-table-new@2.0.0...@synerise/ds-table-new@2.0.1) (2026-09-01)
+
+### Bug Fixes
+
+- **table-new:** stop duplicate page requests from virtualiser re-notifications ([be82cff](https://github.com/Synerise/synerise-design/commit/be82cffd15cc11c1ba1a11e6fc25669a61989c51))
+
 # [2.0.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-table-new@1.7.0...@synerise/ds-table-new@2.0.0) (2026-08-26)
 
 ### Bug Fixes
