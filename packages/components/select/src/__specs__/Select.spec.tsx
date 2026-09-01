@@ -107,7 +107,11 @@ describe('Select (DS-native, single-select)', () => {
 
   it('renders an in-selector search input when showSearch is set', () => {
     renderWithProvider(
-      <Select showSearch placeholder="Pick" options={[{ value: 'a', label: 'A' }]} />,
+      <Select
+        showSearch
+        placeholder="Pick"
+        options={[{ value: 'a', label: 'A' }]}
+      />,
     );
 
     expect(document.querySelector('.ds-select-search')).toBeTruthy();
@@ -127,8 +131,12 @@ describe('Select (DS-native, single-select)', () => {
     );
 
     // The selected label and the (overlaid) search input coexist.
-    expect(document.querySelector('.ds-select-selection-item')?.textContent).toBe('Apple');
-    const input = document.querySelector('.ds-select-search') as HTMLInputElement;
+    expect(
+      document.querySelector('.ds-select-selection-item')?.textContent,
+    ).toBe('Apple');
+    const input = document.querySelector(
+      '.ds-select-search',
+    ) as HTMLInputElement;
     expect(input).toBeTruthy();
     expect(input.readOnly).toBe(false);
 
@@ -150,7 +158,9 @@ describe('Select (DS-native, single-select)', () => {
       />,
     );
 
-    const input = document.querySelector('.ds-select-search') as HTMLInputElement;
+    const input = document.querySelector(
+      '.ds-select-search',
+    ) as HTMLInputElement;
     input.focus();
     expect(document.activeElement).toBe(input);
 
@@ -358,7 +368,9 @@ describe('Select (focus / blur)', () => {
   ];
 
   it('autoFocuses the selector in select-only mode', () => {
-    renderWithProvider(<Select autoFocus options={OPTIONS} placeholder="Pick" />);
+    renderWithProvider(
+      <Select autoFocus options={OPTIONS} placeholder="Pick" />,
+    );
 
     expect(document.activeElement).toBe(document.querySelector('.ds-select'));
   });
@@ -378,7 +390,12 @@ describe('Select (focus / blur)', () => {
   it('does not fire onBlur when focus moves within the select', () => {
     const onBlur = vi.fn();
     renderWithProvider(
-      <Select showSearch options={OPTIONS} onBlur={onBlur} placeholder="Pick" />,
+      <Select
+        showSearch
+        options={OPTIONS}
+        onBlur={onBlur}
+        placeholder="Pick"
+      />,
     );
 
     const wrapper = document.querySelector('.ds-select-wrapper') as Element;
@@ -418,9 +435,9 @@ describe('Select (tag display limits)', () => {
       />,
     );
 
-    expect(
-      document.querySelectorAll('.ds-select-selection-item'),
-    ).toHaveLength(1);
+    expect(document.querySelectorAll('.ds-select-selection-item')).toHaveLength(
+      1,
+    );
     expect(screen.getByTestId('select-tag-overflow').textContent).toBe('+ 2');
   });
 
@@ -434,9 +451,9 @@ describe('Select (tag display limits)', () => {
       />,
     );
 
-    expect(
-      document.querySelectorAll('.ds-select-selection-item'),
-    ).toHaveLength(1);
+    expect(document.querySelectorAll('.ds-select-selection-item')).toHaveLength(
+      1,
+    );
     expect(screen.queryByTestId('select-tag-overflow')).toBeNull();
   });
 
@@ -558,9 +575,7 @@ describe('Select (maxTagCount="responsive")', () => {
       if (!this.hasAttribute('data-measure-chip')) {
         return 0;
       }
-      return this.textContent === NARROW_LABEL
-        ? NARROW_CHIP_WIDTH
-        : CHIP_WIDTH;
+      return this.textContent === NARROW_LABEL ? NARROW_CHIP_WIDTH : CHIP_WIDTH;
     });
 
     vi.stubGlobal(
@@ -804,5 +819,426 @@ describe('Select (onPopupScroll)', () => {
 
     fireEvent.scroll(scrollContainer);
     expect(onPopupScroll).toHaveBeenCalled();
+  });
+});
+
+describe('Select (virtualised option list)', () => {
+  const manyOptions = (
+    count: number,
+    prefix = 'Option',
+  ): { value: string; label: string }[] =>
+    Array.from({ length: count }, (_, index) => ({
+      value: `v${index}`,
+      label: `${prefix} ${index}`,
+    }));
+
+  const rows = (): HTMLElement[] => screen.queryAllByTestId('select-option');
+
+  const searchInput = (): HTMLInputElement =>
+    document.querySelector('input') as HTMLInputElement;
+
+  const scrollList = (offset: number): void => {
+    const container = document.querySelector(
+      '.perfect-scrollbar-wrapper',
+    ) as HTMLElement;
+    Object.defineProperty(container, 'scrollTop', {
+      value: offset,
+      writable: true,
+      configurable: true,
+    });
+    fireEvent.scroll(container);
+  };
+
+  it('mounts only the visible window (plus overscan) for 500 options', () => {
+    renderWithProvider(
+      <Select defaultOpen showSearch options={manyOptions(500)} />,
+    );
+
+    // listHeight 256 / listItemHeight 32 = 8 visible rows; the rest is overscan.
+    expect(rows().length).toBeGreaterThan(0);
+    expect(rows().length).toBeLessThan(40);
+    expect(screen.getByText('Option 0')).toBeTruthy();
+    expect(screen.queryByText('Option 499')).toBeNull();
+  });
+
+  it('keeps the listbox / option roles on the windowed rows', () => {
+    renderWithProvider(<Select defaultOpen options={manyOptions(500)} />);
+
+    const listbox = document.querySelector('[role="listbox"]');
+    expect(listbox).toBeTruthy();
+    rows().forEach((row) => {
+      expect(row.getAttribute('role')).toBe('option');
+      expect(listbox?.contains(row)).toBe(true);
+    });
+  });
+
+  it('states set size and position, which the mounted window no longer implies', () => {
+    renderWithProvider(<Select defaultOpen options={manyOptions(500)} />);
+
+    // Only a slice of the 500 is in the DOM, so AT can no longer count the set.
+    expect(rows().length).toBeLessThan(500);
+    expect(rows()[0].getAttribute('aria-setsize')).toBe('500');
+    expect(rows()[0].getAttribute('aria-posinset')).toBe('1');
+    expect(rows()[1].getAttribute('aria-posinset')).toBe('2');
+  });
+
+  it('narrows the stated set size to the filtered options', () => {
+    renderWithProvider(
+      <Select defaultOpen showSearch options={manyOptions(500)} />,
+    );
+
+    fireEvent.change(searchInput(), { target: { value: 'Option 487' } });
+
+    expect(rows()).toHaveLength(1);
+    expect(rows()[0].getAttribute('aria-setsize')).toBe('1');
+    expect(rows()[0].getAttribute('aria-posinset')).toBe('1');
+  });
+
+  it('renders every option when there are fewer than one window', () => {
+    renderWithProvider(<Select defaultOpen options={manyOptions(3)} />);
+
+    expect(rows()).toHaveLength(3);
+  });
+
+  it('renders and selects the single match of a narrowing query', () => {
+    const onChange = vi.fn();
+    renderWithProvider(
+      <Select
+        defaultOpen
+        showSearch
+        onChange={onChange}
+        options={manyOptions(500)}
+      />,
+    );
+
+    fireEvent.change(searchInput(), { target: { value: 'Option 487' } });
+
+    expect(rows()).toHaveLength(1);
+    fireEvent.click(screen.getByText('Option 487'));
+    expect(onChange).toHaveBeenCalledWith(
+      'v487',
+      expect.objectContaining({ value: 'v487' }),
+    );
+  });
+
+  it('drives row height and viewport height from listItemHeight / listHeight', () => {
+    renderWithProvider(
+      <Select
+        defaultOpen
+        listHeight={100}
+        listItemHeight={50}
+        options={manyOptions(100)}
+      />,
+    );
+
+    // 100px of viewport at 50px a row = 2 visible rows (+ overscan).
+    expect(rows().length).toBeLessThan(15);
+    expect((rows()[0].parentElement as HTMLElement).style.minHeight).toBe(
+      '50px',
+    );
+
+    // …and scrolling to the end reaches the final option.
+    scrollList(100 * 50);
+    expect(screen.getByText('Option 99')).toBeTruthy();
+  });
+
+  it('scrolls the window during keyboard navigation and keeps aria-activedescendant', () => {
+    renderWithProvider(<Select defaultOpen options={manyOptions(200)} />);
+
+    const combobox = document.querySelector('.ds-select') as Element;
+    for (let step = 0; step < 30; step += 1) {
+      fireEvent.keyDown(combobox, { key: 'ArrowDown' });
+    }
+
+    const activeId = combobox.getAttribute('aria-activedescendant');
+    expect(activeId).toBeTruthy();
+    const active = document.getElementById(activeId as string);
+    expect(active).toBeTruthy();
+    expect(active?.getAttribute('role')).toBe('option');
+    expect(active?.textContent).toBe('Option 30');
+    expect(active?.className).toContain('ds-select-item-option-active');
+  });
+
+  it('resets the window to the top when remote search swaps the options', () => {
+    const { rerender } = renderWithProvider(
+      <Select
+        defaultOpen
+        showSearch
+        filterOption={false}
+        onSearch={vi.fn()}
+        options={manyOptions(300)}
+      />,
+    );
+
+    scrollList(300 * 32);
+    expect(screen.getByText('Option 299')).toBeTruthy();
+
+    fireEvent.change(searchInput(), { target: { value: 'remote' } });
+    rerender(
+      <Select
+        defaultOpen
+        showSearch
+        filterOption={false}
+        onSearch={vi.fn()}
+        options={manyOptions(120, 'Remote')}
+      />,
+    );
+
+    expect(screen.getByText('Remote 0')).toBeTruthy();
+    expect(screen.queryByText('Option 299')).toBeNull();
+    expect(screen.queryByText('Remote 119')).toBeNull();
+  });
+
+  it('keeps multiple-mode selection for rows outside the window', () => {
+    const onChange = vi.fn();
+    renderWithProvider(
+      <Select
+        defaultOpen
+        mode="multiple"
+        value={['v250']}
+        onChange={onChange}
+        options={manyOptions(500)}
+      />,
+    );
+
+    // The selected row is far outside the window, but the chip still resolves.
+    expect(
+      document.querySelector('.ds-select-selection-item')?.textContent,
+    ).toContain('Option 250');
+    expect(rows().map((row) => row.textContent)).not.toContain('Option 250');
+
+    scrollList(250 * 32);
+    const rowNamed = (label: string): HTMLElement =>
+      rows().find((row) => row.textContent === label) as HTMLElement;
+    expect(rowNamed('Option 250').getAttribute('aria-selected')).toBe('true');
+
+    fireEvent.click(rowNamed('Option 251'));
+    expect(onChange).toHaveBeenCalledWith(
+      ['v250', 'v251'],
+      expect.arrayContaining([expect.objectContaining({ value: 'v251' })]),
+    );
+  });
+
+  it('does not re-derive options from children on an unrelated parent re-render', () => {
+    const seen: { value: unknown }[] = [];
+    const rowKey = (option: { value: unknown }): string => {
+      seen.push(option);
+      return String(option.value);
+    };
+
+    const Harness = (): React.ReactElement => {
+      const [count, setCount] = React.useState(0);
+      return (
+        <>
+          <button
+            type="button"
+            data-testid="bump"
+            onClick={() => setCount(count + 1)}
+          >
+            bump {count}
+          </button>
+          <Select defaultOpen rowKey={rowKey}>
+            <Option value="a">
+              <span>Alpha</span>
+            </Option>
+            <Option value="b">
+              <span>Beta</span>
+            </Option>
+          </Select>
+        </>
+      );
+    };
+
+    renderWithProvider(<Harness />);
+    const before = seen.find((option) => option.value === 'a');
+    expect(before).toBeTruthy();
+
+    seen.length = 0;
+    fireEvent.click(screen.getByTestId('bump'));
+
+    const after = seen.find((option) => option.value === 'a');
+    expect(after).toBeTruthy();
+    // Same object: the children walk was skipped, so every memo below it holds.
+    expect(after).toBe(before);
+  });
+
+  it('re-derives options when the children actually change', () => {
+    const seen: { value: unknown; label?: unknown }[] = [];
+    const rowKey = (option: { value: unknown }): string => {
+      seen.push(option);
+      return String(option.value);
+    };
+
+    const Harness = (): React.ReactElement => {
+      const [label, setLabel] = React.useState('Alpha');
+      return (
+        <>
+          <button
+            type="button"
+            data-testid="rename"
+            onClick={() => setLabel('Renamed')}
+          >
+            rename
+          </button>
+          <Select defaultOpen rowKey={rowKey}>
+            <Option value="a">
+              <span>{label}</span>
+            </Option>
+          </Select>
+        </>
+      );
+    };
+
+    renderWithProvider(<Harness />);
+    const before = seen.find((option) => option.value === 'a');
+
+    seen.length = 0;
+    fireEvent.click(screen.getByTestId('rename'));
+
+    expect(seen.find((option) => option.value === 'a')).not.toBe(before);
+    expect(screen.getByText('Renamed')).toBeTruthy();
+  });
+});
+
+describe('Select (windowed row measurement)', () => {
+  const ESTIMATE = 32;
+  const TALL_ROW = 64;
+
+  let restoreLayout: (() => void)[] = [];
+  let resizeCallbacks: ((entries: unknown[]) => void)[] = [];
+  /** Rendered height per option label; anything absent is "not laid out" (0). */
+  let heights: Record<string, number>;
+
+  /** Stub a layout property jsdom always reports as 0, and undo it afterwards. */
+  const overrideLayoutProp = (
+    prop: string,
+    getter: (this: HTMLElement) => number,
+  ): void => {
+    const original = Object.getOwnPropertyDescriptor(
+      HTMLElement.prototype,
+      prop,
+    );
+    Object.defineProperty(HTMLElement.prototype, prop, {
+      configurable: true,
+      get: getter,
+    });
+    restoreLayout.push(() => {
+      if (original) {
+        Object.defineProperty(HTMLElement.prototype, prop, original);
+      } else {
+        delete (HTMLElement.prototype as unknown as Record<string, unknown>)[
+          prop
+        ];
+      }
+    });
+  };
+
+  /** The row wrapper carrying react-window's offset for the option `label`. */
+  const rowFor = (label: string): HTMLElement =>
+    screen
+      .getAllByTestId('select-option')
+      .find((option) => option.textContent === label)
+      ?.parentElement as HTMLElement;
+
+  const OPTIONS = [
+    { value: 'a', label: 'Alpha' },
+    { value: 'b', label: 'Beta' },
+    { value: 'c', label: 'Gamma' },
+  ];
+
+  beforeEach(() => {
+    restoreLayout = [];
+    resizeCallbacks = [];
+    heights = { Alpha: TALL_ROW, Beta: ESTIMATE, Gamma: ESTIMATE };
+
+    // Only the row wrappers measure; everything else keeps jsdom's 0, which
+    // `measureRow` reads as "not laid out" and ignores.
+    overrideLayoutProp('offsetHeight', function offsetHeight(this: HTMLElement) {
+      const child = this.firstElementChild;
+      if (child?.getAttribute('data-testid') !== 'select-option') {
+        return 0;
+      }
+      return heights[child.textContent ?? ''] ?? 0;
+    });
+
+    vi.stubGlobal(
+      'ResizeObserver',
+      class {
+        constructor(callback: (entries: unknown[]) => void) {
+          resizeCallbacks.push(callback);
+        }
+
+        observe = vi.fn();
+
+        unobserve = vi.fn();
+
+        disconnect = vi.fn();
+      },
+    );
+  });
+
+  afterEach(() => {
+    restoreLayout.forEach((restore) => restore());
+    vi.unstubAllGlobals();
+  });
+
+  /**
+   * Fire every observer the render registered. The stub is global, so other DS
+   * components observing here get called too — hence a well-formed entry.
+   */
+  const resizeAll = (): void => {
+    act(() => {
+      resizeCallbacks.forEach((callback) =>
+        callback([{ contentRect: { width: 0, height: 0 } }]),
+      );
+    });
+  };
+
+  it('lays a measured row out at its real height, not at listItemHeight', () => {
+    renderWithProvider(
+      <Select defaultOpen listItemHeight={ESTIMATE} options={OPTIONS} />,
+    );
+
+    // Alpha renders taller than the estimate, so it claims its own height…
+    expect(rowFor('Alpha').style.minHeight).toBe(`${TALL_ROW}px`);
+    expect(rowFor('Beta').style.minHeight).toBe(`${ESTIMATE}px`);
+    // …and pushes what follows down instead of being overlapped by it.
+    expect(rowFor('Alpha').style.top).toBe('0px');
+    expect(rowFor('Beta').style.top).toBe(`${TALL_ROW}px`);
+    expect(rowFor('Gamma').style.top).toBe(`${TALL_ROW + ESTIMATE}px`);
+  });
+
+  it('re-measures a row whose content changes size after the first paint', () => {
+    renderWithProvider(
+      <Select defaultOpen listItemHeight={ESTIMATE} options={OPTIONS} />,
+    );
+
+    expect(rowFor('Gamma').style.top).toBe(`${TALL_ROW + ESTIMATE}px`);
+
+    // Beta grows (a font swap, a label wrapping) without re-rendering the row.
+    heights.Beta = TALL_ROW;
+    resizeAll();
+
+    expect(rowFor('Beta').style.minHeight).toBe(`${TALL_ROW}px`);
+    expect(rowFor('Gamma').style.top).toBe(`${TALL_ROW * 2}px`);
+  });
+
+  it('sizes rows it cannot measure from listItemHeight, and re-sizes on change', () => {
+    // Only Alpha reports a height; the other two never lay out.
+    heights = { Alpha: TALL_ROW };
+
+    const { rerender } = renderWithProvider(
+      <Select defaultOpen listItemHeight={ESTIMATE} options={OPTIONS} />,
+    );
+
+    expect(rowFor('Beta').style.minHeight).toBe(`${ESTIMATE}px`);
+    expect(rowFor('Gamma').style.top).toBe(`${TALL_ROW + ESTIMATE}px`);
+
+    rerender(<Select defaultOpen listItemHeight={48} options={OPTIONS} />);
+
+    // The unmeasured rows follow the new estimate; Alpha keeps its real height.
+    expect(rowFor('Beta').style.minHeight).toBe('48px');
+    expect(rowFor('Alpha').style.minHeight).toBe(`${TALL_ROW}px`);
+    expect(rowFor('Gamma').style.top).toBe(`${TALL_ROW + 48}px`);
   });
 });

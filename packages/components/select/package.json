@@ -50,7 +50,8 @@
     "@synerise/ds-scrollbar": "workspace:^",
     "@synerise/ds-tooltip": "workspace:^",
     "@synerise/ds-utils": "workspace:^",
-    "classnames": "^2.5.1"
+    "classnames": "^2.5.1",
+    "react-window": "^1.8.11"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

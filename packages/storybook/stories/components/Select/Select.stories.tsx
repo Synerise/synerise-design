@@ -15,7 +15,7 @@ import {
   fixedWrapper400,
 } from '../../utils';
 import { Label as AddonLabel } from '../Input/Input.styles';
-import { OPTIONS, SelectWithState } from './data';
+import { MANY_OPTIONS, OPTIONS, SelectWithState } from './data';
 
 const { Option } = Select;
 
@@ -273,5 +273,18 @@ export const PopupScroll: Story = {
     listHeight: 120,
     onPopupScroll: fn(),
     placeholder: 'Scroll the dropdown',
+  },
+};
+
+/**
+ * The option list is virtualised: only the rows in view (plus overscan) are in
+ * the DOM, so several hundred options cost the same as a handful. `listHeight`
+ * sizes the viewport and `listItemHeight` the row.
+ */
+export const ManyOptions: Story = {
+  args: {
+    showSearch: true,
+    placeholder: 'Search 500 options',
+    options: MANY_OPTIONS,
   },
 };

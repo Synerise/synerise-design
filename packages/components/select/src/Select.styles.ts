@@ -220,8 +220,38 @@ export const ScrollList = styled(DSListWrapper)`
   }
 `;
 
-export const Inner = styled.div`
+/**
+ * The listbox. Its only child is the windowed list, styled from here (rather than
+ * via `styled(VariableSizeList)`, which would erase react-window's `itemData`
+ * generic): `height` is a react-window *prop* sizing the render window, not the
+ * box, so the CSS height is handed back to the content — the dropdown shrinks to
+ * fit a short list — while `overflow: unset` leaves scrolling to the surrounding
+ * `Scrollbar`.
+ *
+ * `max-height` does not clip (overflow is visible by design); it keeps the *box*
+ * at `listHeight` so nothing downstream measures a list of 500 rows as a
+ * 16000px-tall element. The rows below it overflow into the `Scrollbar`, whose
+ * scrollable region covers them — which holds only as long as no element between
+ * this one and that scroll node introduces its own `overflow: hidden`.
+ */
+export const Inner = styled.div<{ $maxHeight?: number }>`
   padding-right: 8px;
+
+  > .ds-select-option-list {
+    overflow-x: unset;
+    overflow-y: unset;
+    height: auto !important;
+    ${(props) =>
+      props.$maxHeight !== undefined &&
+      css`
+        max-height: ${props.$maxHeight}px;
+      `}
+  }
+`;
+
+/** Row wrapper carrying react-window's absolute offset; height follows content. */
+export const VirtualRow = styled.div`
+  box-sizing: border-box;
 `;
 
 export const NotFound = styled.div`
