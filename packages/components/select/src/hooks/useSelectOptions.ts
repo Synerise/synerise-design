@@ -1,12 +1,34 @@
-import { type ReactNode, useMemo } from 'react';
+import { type ReactNode, useMemo, useRef } from 'react';
 
 import {
   type FilterOptionFn,
   type RawValueType,
   type SelectOption,
 } from '../Select.types';
+import { areOptionChildrenEqual } from '../utils/areOptionChildrenEqual';
 import { getOptionsFromChildren } from '../utils/getOptionsFromChildren';
 import { defaultFilter } from '../utils/helpers';
+
+/**
+ * `getOptionsFromChildren`, cached against a *structural* comparison of the
+ * children. A `useMemo` on `[children]` would be useless: JSX hands us a fresh
+ * array of fresh elements on every parent render, so the options (and every memo
+ * downstream of them) would be rebuilt even when nothing about them changed.
+ */
+const useOptionsFromChildren = (children: ReactNode): SelectOption[] => {
+  const cacheRef = useRef<{
+    children: ReactNode;
+    options: SelectOption[];
+  } | null>(null);
+
+  const cached = cacheRef.current;
+  if (cached && areOptionChildrenEqual(cached.children, children)) {
+    return cached.options;
+  }
+  const options = getOptionsFromChildren(children);
+  cacheRef.current = { children, options };
+  return options;
+};
 
 type UseSelectOptionsParams = {
   /** Options as data; when empty, `<Select.Option>` children are read instead. */
@@ -43,12 +65,14 @@ export const useSelectOptions = ({
   isTags,
   selectedValues,
 }: UseSelectOptionsParams): UseSelectOptionsResult => {
-  const resolvedOptions = useMemo<SelectOption[]>(() => {
-    if (options && options.length > 0) {
-      return options;
-    }
-    return getOptionsFromChildren(children);
-  }, [options, children]);
+  const hasOptionsProp = Boolean(options && options.length > 0);
+  // Skip the children walk entirely when options-as-data are supplied.
+  const childrenOptions = useOptionsFromChildren(
+    hasOptionsProp ? null : children,
+  );
+  const resolvedOptions = hasOptionsProp
+    ? (options as SelectOption[])
+    : childrenOptions;
 
   // Client-side filtering. `filterOption={false}` = remote (consumer feeds
   // `options` from `onSearch`), so never filter locally.

@@ -15,6 +15,15 @@ export const OPTIONS = [
 ];
 
 /**
+ * A list long enough to show the option list is windowed — only the rows in view
+ * (plus overscan) are ever in the DOM.
+ */
+export const MANY_OPTIONS = Array.from({ length: 500 }, (_, index) => ({
+  value: `option-${index}`,
+  label: `Option ${index}`,
+}));
+
+/**
  * Controlled wrapper so the stories are interactive. Handles both single-value
  * and multiple/tags (array) values; forwards the arg `onChange` for the actions
  * panel. `data-popup-container` gives the default `getPopupContainer` an anchor.

@@ -148,7 +148,11 @@ export type SelectProps<VT extends SelectValue = SelectValue> = {
   dropdownRender?: (menu: ReactElement) => ReactNode;
   /** Max dropdown list height (px). */
   listHeight?: number | string;
-  /** antd parity: fixed height per option row (px). Accepted for compatibility (non-virtualised list). */
+  /**
+   * Height (px) of a single option row, used to window the list. Rows that render
+   * taller content are measured and lay out at their real height, so this is the
+   * estimate the window starts from rather than a hard cap. Defaults to 32.
+   */
   listItemHeight?: number;
   notFoundContent?: ReactNode;
   clearIcon?: ReactNode;

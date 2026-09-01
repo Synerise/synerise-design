@@ -104,8 +104,8 @@ select root.
 | dropdownStyle | Inline style on the dropdown overlay. | `CSSProperties` | - |
 | dropdownMatchSelectWidth | Match dropdown width to the selector; a number fixes the width (px). | `boolean \| number` | `true` |
 | dropdownRender | Wrap the rendered option menu (custom footer / scroll container). | `(menu: ReactElement) => ReactNode` | - |
-| listHeight | Max dropdown list height (px). | `number \| string` | `256` |
-| listItemHeight | Fixed height per option row (accepted; list is non-virtualised). | `number` | - |
+| listHeight | Max dropdown list height (px) — also the height of the virtualised viewport. | `number \| string` | `256` |
+| listItemHeight | Height per option row the virtualised window is sized from. Rows with taller content are measured and lay out at their real height. | `number` | `32` |
 
 ### Display & tags
 
@@ -191,7 +191,12 @@ import type {
   `.ds-select`, `.ds-select-wrapper`, `.ds-select-selection-item`, `.ds-select-dropdown`, etc.
 - **Remote search** — set `filterOption={false}` and update `options` from your `onSearch`
   handler; the component won't filter locally in that mode.
+- **Virtualised list** — the dropdown renders only the visible rows (plus overscan) via
+  `react-window`, so a few hundred options cost the same as a few. `listHeight` sizes the viewport
+  and `listItemHeight` the row estimate.
 - **Keyboard & ARIA** — Arrow / Home / End / Enter / Escape / Space (and Backspace to drop the
-  last chip in multiple mode), with combobox / listbox `aria-activedescendant`.
+  last chip in multiple mode), with combobox / listbox `aria-activedescendant`. Because the list
+  is virtualised, each option also carries `aria-setsize` / `aria-posinset` so assistive tech
+  announces its place in the whole list, not in the mounted window.
 - **Not reimplemented from antd** — `OptGroup`, `labelInValue` / `LabeledValue`,
   `autoClearSearchValue`, `firstActiveValue`, `menuItemSelectedIcon`.
