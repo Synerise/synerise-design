@@ -30,7 +30,7 @@ const FileView = ({
   const getFriendlySize = (size?: number): string => filesize(size || 0);
   const theme = useTheme();
 
-  const { disabled, error, file, progress, success } = data;
+  const { disabled, error, file, previewUrl, progress, success } = data;
 
   const finalTexts = {
     size: <FormattedMessage id="DS.FILE-UPLOADER.SIZE" defaultMessage="Size" />,
@@ -103,15 +103,17 @@ const FileView = ({
       removable={removable}
       type="button"
     >
-      {isPreviewableMimeType(file.type) ? (
-        <S.PreviewImage>
-          <Icon component={ICON_MAP[file.type]} size={40} />
-        </S.PreviewImage>
-      ) : (
-        <S.PlaceholderImage>
-          <Icon component={<FileM />} size={24} />
-        </S.PlaceholderImage>
-      )}
+      {previewUrl && <S.PreviewThumbnail src={previewUrl} alt="" />}
+      {!previewUrl &&
+        (isPreviewableMimeType(file.type) ? (
+          <S.PreviewImage>
+            <Icon component={ICON_MAP[file.type]} size={40} />
+          </S.PreviewImage>
+        ) : (
+          <S.PlaceholderImage>
+            <Icon component={<FileM />} size={24} />
+          </S.PlaceholderImage>
+        ))}
 
       <S.Info progress={hasProgress}>
         {hasProgress ? (

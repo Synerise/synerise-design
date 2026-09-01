@@ -21,6 +21,15 @@ export type ExtendedFile = {
   disabled?: boolean;
   progress?: number;
   success?: boolean;
+  /**
+   * Renders this url as the file's thumbnail instead of the mime-type glyph.
+   *
+   * For a file already stored elsewhere the consumer usually has its url but not its bytes —
+   * remote storage commonly answers without CORS headers, so the browser cannot fetch them back
+   * into a `File`. An `<img>` needs no CORS, so passing the url shows the real thumbnail while
+   * `file` stays a placeholder carrying just the name (pair it with `hideSize`).
+   */
+  previewUrl?: string;
 };
 
 export type FileWithContent = File & {

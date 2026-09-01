@@ -194,4 +194,53 @@ describe('FileUploader', () => {
     // ASSERT
     expect(getByText(ERROR_TEXT)).toBeTruthy();
   });
+
+  it('should render the preview url as the file thumbnail', () => {
+    // ARRANGE
+    const PREVIEW_URL = 'https://storage.example.com/origin/stored-icon.png';
+
+    const { container } = renderWithProvider(
+      <FileUploader
+        mode="single"
+        files={[{ file, previewUrl: PREVIEW_URL }]}
+        accept={['image/*']}
+        texts={defaultTexts}
+      />,
+    );
+
+    // ASSERT
+    expect(container.querySelector(`img[src="${PREVIEW_URL}"]`)).toBeTruthy();
+  });
+
+  it('should keep the mime-type glyph when no preview url is given', () => {
+    // ARRANGE
+    const { container } = renderWithProvider(
+      <FileUploader
+        mode="single"
+        files={[{ file }]}
+        accept={['image/*']}
+        texts={defaultTexts}
+      />,
+    );
+
+    // ASSERT
+    expect(container.querySelector('img')).toBeFalsy();
+  });
+
+  it('should still show the file name next to the preview url thumbnail', () => {
+    // ARRANGE
+    const { getByText } = renderWithProvider(
+      <FileUploader
+        mode="single"
+        files={[
+          { file, previewUrl: 'https://storage.example.com/origin/stored-icon.png' },
+        ]}
+        accept={['image/*']}
+        texts={defaultTexts}
+      />,
+    );
+
+    // ASSERT
+    expect(getByText(file.name)).toBeTruthy();
+  });
 });

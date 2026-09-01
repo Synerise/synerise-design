@@ -23,6 +23,14 @@ export const PlaceholderImage = styled.div`
   }
 `;
 
+export const PreviewThumbnail = styled.img`
+  width: 32px;
+  height: 32px;
+  border-radius: 3px;
+  object-fit: contain;
+  background-color: ${(props) => props.theme.palette['grey-200']};
+`;
+
 export const Info = styled.div<{ progress: boolean }>`
   overflow: hidden;
   margin: 0 0 0 10px;

@@ -17,7 +17,8 @@ const FileViewAvatar = ({
   description,
 }: FileViewAvatarProps) => {
   const { disabled, error, file, progress } = data;
-  const fileSource = URL.createObjectURL(data.file);
+  // A stored file arrives as a url with a placeholder `file`; object urls only work for real bytes.
+  const fileSource = data.previewUrl ?? URL.createObjectURL(data.file);
   const finalTexts = {
     retryTooltip: (
       <FormattedMessage

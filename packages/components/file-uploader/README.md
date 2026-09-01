@@ -66,6 +66,7 @@ import FileUploader from '@synerise/ds-file-uploader'
 | error    | file error text                            | string          | -       |
 | progress | upload progress                            | number          | -       |
 | success  | upload success                             | boolean         | -       |
+| previewUrl | url rendered as the file thumbnail instead of the mime-type glyph — for a file already stored elsewhere, whose bytes the browser cannot fetch back (remote storage usually answers without CORS headers). Pair it with `hideSize`, since the placeholder `file` carries no bytes. | string | -       |
 
 ## FileWithContent (extends [File](https://developer.mozilla.org/pl/docs/Web/API/File))
 
