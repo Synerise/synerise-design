@@ -3,7 +3,7 @@ import React from 'react';
 import { renderWithProvider } from '@synerise/ds-core';
 import { fireEvent } from '@testing-library/react';
 
-import FileUploader from '../index';
+import FileUploader, { AvatarUploader, ItemUploader } from '../index';
 
 const defaultTexts = {
   buttonLabel: 'Upload a new file or drag one here',
@@ -225,6 +225,29 @@ describe('FileUploader', () => {
 
     // ASSERT
     expect(container.querySelector('img')).toBeFalsy();
+  });
+
+  // AvatarUploader paints the avatar from the url and renders a file row beside it; the row has
+  // its own thumbnail branch, so covering the avatar alone left it showing the glyph.
+  it.each([
+    ['ItemUploader', ItemUploader],
+    ['AvatarUploader', AvatarUploader],
+  ])('should render the preview url as the thumbnail in %s', (_name, Uploader) => {
+    // ARRANGE
+    const PREVIEW_URL = 'https://storage.example.com/origin/stored-icon.png';
+
+    const { container } = renderWithProvider(
+      <Uploader
+        mode="single"
+        files={[{ file, previewUrl: PREVIEW_URL }]}
+        accept={['image/*']}
+        texts={defaultTexts}
+      />,
+    );
+
+    // ASSERT
+    expect(container.querySelector(`img[src="${PREVIEW_URL}"]`)).toBeTruthy();
+    expect(container.querySelector('[class*="PlaceholderImage"]')).toBeFalsy();
   });
 
   it('should still show the file name next to the preview url thumbnail', () => {

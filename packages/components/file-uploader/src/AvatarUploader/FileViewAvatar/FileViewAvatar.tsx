@@ -76,15 +76,19 @@ const FileViewAvatar = ({
             removable={removable}
             type="button"
           >
-            {isPreviewableMimeType(file.type) ? (
-              <S.PreviewImage>
-                <Icon component={ICON_MAP[file.type]} size={24} />
-              </S.PreviewImage>
-            ) : (
-              <S.PlaceholderImage>
-                <Icon component={<FileM />} size={24} />
-              </S.PlaceholderImage>
+            {data.previewUrl && (
+              <S.PreviewThumbnail src={data.previewUrl} alt="" />
             )}
+            {!data.previewUrl &&
+              (isPreviewableMimeType(file.type) ? (
+                <S.PreviewImage>
+                  <Icon component={ICON_MAP[file.type]} size={24} />
+                </S.PreviewImage>
+              ) : (
+                <S.PlaceholderImage>
+                  <Icon component={<FileM />} size={24} />
+                </S.PlaceholderImage>
+              ))}
             <S.Info>
               <>
                 <S.Name>{file.name}</S.Name>
