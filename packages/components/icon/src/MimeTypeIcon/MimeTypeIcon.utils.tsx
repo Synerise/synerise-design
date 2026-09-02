@@ -1,4 +1,27 @@
+import type { ComponentType, SVGProps } from 'react';
+
+import FileActionM from '../icons/M/FileActionM';
+import FileArchiveM from '../icons/M/FileArchiveM';
+import FileCodeM from '../icons/M/FileCodeM';
+import FileM from '../icons/M/FileM';
+import FileTypeImageM from '../icons/M/FileTypeImageM';
+import FileTypePlainM from '../icons/M/FileTypePlainM';
+import FileTypeTableM from '../icons/M/FileTypeTableM';
+import FileTypeTextM from '../icons/M/FileTypeTextM';
 import type { IconName } from '../useIconComponent';
+
+// Per-icon imports rather than the './icons/M' barrel: this is a closed set of eight, and importing
+// them directly keeps MimeTypeIcon synchronous while retaining only those eight in a consumer bundle.
+const MIME_TYPE_ICONS = {
+  FileActionM,
+  FileArchiveM,
+  FileCodeM,
+  FileM,
+  FileTypeImageM,
+  FileTypePlainM,
+  FileTypeTableM,
+  FileTypeTextM,
+} satisfies Record<string, ComponentType<SVGProps<SVGSVGElement>>>;
 
 export const mapMimeTypeToIconName = (mimeType: string): IconName => {
   switch (mimeType) {
@@ -39,3 +62,10 @@ export const mapMimeTypeToIconName = (mimeType: string): IconName => {
       return 'FileM';
   }
 };
+
+export const mapMimeTypeToIconComponent = (
+  mimeType: string,
+): ComponentType<SVGProps<SVGSVGElement>> =>
+  MIME_TYPE_ICONS[
+    mapMimeTypeToIconName(mimeType) as keyof typeof MIME_TYPE_ICONS
+  ] ?? FileM;

@@ -1,47 +1,22 @@
-import { type ComponentType, type SVGProps } from 'react';
+import type * as large from '../icons/L';
+import type * as medium from '../icons/M';
+import type * as xlarge from '../icons/XL';
+import type * as additional from '../icons/additional';
+import type * as color from '../icons/colorIcons';
 
-import * as large from '../icons/L';
-import * as medium from '../icons/M';
-import * as xlarge from '../icons/XL';
-import * as additional from '../icons/additional';
-import * as color from '../icons/colorIcons';
-
-type IconComponent = ComponentType<SVGProps<SVGSVGElement>>;
-type IconModule = Record<string, IconComponent>;
-
-// Extract icon names from all modules as literal types
-type MediumIconNames = keyof typeof medium;
-type LargeIconNames = keyof typeof large;
-type XLargeIconNames = keyof typeof xlarge;
-type AdditionalIconNames = keyof typeof additional;
-type ColorIconNames = keyof typeof color;
-
-// Combine all icon names into a single union type
+/**
+ * Union of every icon name across all sets.
+ *
+ * These are `import type * as` on purpose: the union has to be derived from the generated barrels,
+ * but a value import of them is what used to pull all 1195 icons into every consumer bundle. Type
+ * imports are erased, so this module emits no runtime imports at all.
+ *
+ * The module deliberately stays at this path — `@synerise/ds-icon/dist/DynamicIcon/iconManifest` is
+ * deep-imported for `AllIconNames` by consumers. Prefer `import type { IconName } from '@synerise/ds-icon'`.
+ */
 export type AllIconNames =
-  | MediumIconNames
-  | LargeIconNames
-  | XLargeIconNames
-  | AdditionalIconNames
-  | ColorIconNames;
-
-type IconEntry = {
-  module: IconModule;
-};
-
-const iconSources: IconEntry[] = [
-  { module: medium as IconModule },
-  { module: large as IconModule },
-  { module: xlarge as IconModule },
-  { module: additional as IconModule },
-  { module: color as IconModule },
-];
-
-export const iconManifest: Record<string, IconModule> = {};
-
-iconSources.forEach(({ module }) => {
-  Object.keys(module)
-    .filter((key) => !key.startsWith('__') && key !== 'default')
-    .forEach((iconName) => {
-      iconManifest[iconName] = module;
-    });
-});
+  | keyof typeof medium
+  | keyof typeof large
+  | keyof typeof xlarge
+  | keyof typeof additional
+  | keyof typeof color;
