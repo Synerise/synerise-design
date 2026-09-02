@@ -41,7 +41,9 @@
   },
   "sideEffects": [
     "dist/style/*",
-    "*.less"
+    "*.less",
+    "dist/registerAllIcons.js",
+    "src/registerAllIcons.ts"
   ],
   "types": "dist/index.d.ts",
   "dependencies": {

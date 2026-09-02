@@ -13,7 +13,23 @@ export {
   type DynamicIconProps,
   type DynamicIconName,
 } from './DynamicIcon/DynamicIcon';
-export { useIconComponent, getIconComponent } from './useIconComponent';
+export {
+  useIconComponent,
+  useIconComponentState,
+  getIconComponent,
+  loadIconComponent,
+  peekIcon,
+  type IconComponent,
+  type IconComponentState,
+  type IconStatus,
+} from './useIconComponent';
+export {
+  preloadIcons,
+  preloadIconSet,
+  registerIcons,
+  type CachedIcon,
+} from './iconLoader';
+export type { IconSet } from './icons/iconSets';
 
 export type { MimeTypeIconsProps } from './MimeTypeIcon/MimeTypeIcon.types';
 export type { IconProps, IconName } from './Icon.types';

@@ -24,6 +24,11 @@ const GENERATED_SOURCES: GeneratedSource[] = [
     command: 'pnpm --filter @synerise/ds-icon run build:svgr',
   },
   {
+    path: 'packages/components/icon/src/icons/iconSets.ts',
+    label: '@synerise/ds-icon name -> icon set index',
+    command: 'pnpm --filter @synerise/ds-icon run build:svgr',
+  },
+  {
     path: 'packages/components/flag/src/icons',
     label: '@synerise/ds-flag flag components',
     command: 'pnpm --filter @synerise/ds-flag run build:svgr',
