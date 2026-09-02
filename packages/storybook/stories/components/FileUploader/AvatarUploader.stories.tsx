@@ -74,3 +74,24 @@ export default {
 export const AvatarUploaderStory: Story = {
   name: 'AvatarUploader',
 };
+
+// A file already stored elsewhere: the consumer has its url but not its bytes, so `file` is just a
+// named placeholder and `previewUrl` supplies the avatar image, which would otherwise come from an
+// object url over those missing bytes.
+export const StoredFile: Story = {
+  args: {
+    label: 'Integration icon',
+  },
+  render: (args) => (
+    <AvatarUploader
+      {...args}
+      mode="single"
+      files={[
+        {
+          file: new File([], 'stored-icon.png', { type: 'image/png' }),
+          previewUrl: 'https://placehold.co/64x64/png',
+        },
+      ]}
+    />
+  ),
+};

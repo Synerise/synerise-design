@@ -80,3 +80,24 @@ export const ItemUploaderMultiple: Story = {
     mode: 'multi',
   },
 };
+
+// A file already stored elsewhere: the consumer has its url but not its bytes, so `file` is just a
+// named placeholder and `previewUrl` supplies the thumbnail. This variant shows no size, so it
+// needs no `hideSize`.
+export const StoredFile: Story = {
+  args: {
+    label: 'Integration icon',
+  },
+  render: (args) => (
+    <ItemUploader
+      {...args}
+      mode="single"
+      files={[
+        {
+          file: new File([], 'stored-icon.png', { type: 'image/png' }),
+          previewUrl: 'https://placehold.co/64x64/png',
+        },
+      ]}
+    />
+  ),
+};
