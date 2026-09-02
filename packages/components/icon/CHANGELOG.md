@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@2.0.0...@synerise/ds-icon@2.1.0) (2026-09-02)
+
+### Features
+
+- **icon:** load icon sets on demand instead of bundling all of them ([1bab7ed](https://github.com/Synerise/synerise-design/commit/1bab7ed8d0636ddb75041f4d8a840d066eb7fa2d))
+
 # [2.0.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@1.18.5...@synerise/ds-icon@2.0.0) (2026-08-26)
 
 **Note:** Version bump only for package @synerise/ds-icon
