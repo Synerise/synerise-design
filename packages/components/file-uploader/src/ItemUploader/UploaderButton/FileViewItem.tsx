@@ -50,14 +50,20 @@ const FileViewItem = ({
           removable={removable}
           type="button"
         >
-          {previewUrl && <S.PreviewThumbnail src={previewUrl} alt="" />}
+          {previewUrl && (
+            <S.PreviewThumbnail
+              src={previewUrl}
+              alt=""
+              data-testid="file-preview-thumbnail"
+            />
+          )}
           {!previewUrl &&
             (isPreviewableMimeType(file.type) ? (
-              <S.PreviewImage>
+              <S.PreviewImage data-testid="file-mime-glyph">
                 <Icon component={ICON_MAP[file.type]} size={20} />
               </S.PreviewImage>
             ) : (
-              <S.PlaceholderImage>
+              <S.PlaceholderImage data-testid="file-mime-glyph">
                 <Icon component={<FileM />} size={24} />
               </S.PlaceholderImage>
             ))}

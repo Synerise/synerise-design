@@ -38,8 +38,9 @@ export const SmallLoader = styled(Loader)`
 `;
 
 export const PreviewThumbnail = styled.img`
-  width: 32px;
-  height: 32px;
+  /* Matches this variant's 20px glyph — the compact row is a fixed 32px tall. */
+  width: 20px;
+  height: 20px;
   border-radius: 3px;
   object-fit: contain;
   background-color: ${(props) => props.theme.palette['grey-200']};

@@ -7,7 +7,7 @@ import Tooltip from '@synerise/ds-tooltip';
 import { ICON_MAP } from './FileViewAvatar.const';
 import * as S from './FileViewAvatar.styles';
 import { type FileViewAvatarProps } from './FileViewAvatar.types';
-import { isPreviewableMimeType } from './FileViewAvatar.util';
+import { isPreviewableMimeType, toCssUrl } from './FileViewAvatar.util';
 
 const FileViewAvatar = ({
   data,
@@ -16,9 +16,10 @@ const FileViewAvatar = ({
   removable,
   description,
 }: FileViewAvatarProps) => {
-  const { disabled, error, file, progress } = data;
+  const { disabled, error, file, previewUrl, progress } = data;
   // A stored file arrives as a url with a placeholder `file`; object urls only work for real bytes.
-  const fileSource = data.previewUrl ?? URL.createObjectURL(data.file);
+  // Reaches a CSS url(), so it is escaped rather than interpolated raw — see toCssUrl.
+  const fileSource = toCssUrl(previewUrl ?? URL.createObjectURL(file));
   const finalTexts = {
     retryTooltip: (
       <FormattedMessage
@@ -76,16 +77,20 @@ const FileViewAvatar = ({
             removable={removable}
             type="button"
           >
-            {data.previewUrl && (
-              <S.PreviewThumbnail src={data.previewUrl} alt="" />
+            {previewUrl && (
+              <S.PreviewThumbnail
+                src={previewUrl}
+                alt=""
+                data-testid="file-preview-thumbnail"
+              />
             )}
-            {!data.previewUrl &&
+            {!previewUrl &&
               (isPreviewableMimeType(file.type) ? (
-                <S.PreviewImage>
+                <S.PreviewImage data-testid="file-mime-glyph">
                   <Icon component={ICON_MAP[file.type]} size={24} />
                 </S.PreviewImage>
               ) : (
-                <S.PlaceholderImage>
+                <S.PlaceholderImage data-testid="file-mime-glyph">
                   <Icon component={<FileM />} size={24} />
                 </S.PlaceholderImage>
               ))}
