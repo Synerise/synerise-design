@@ -132,3 +132,53 @@ export const MultipleLarge: Story = {
     mode: 'multi-large',
   },
 };
+// Inline so the Chromatic baseline does not depend on a third-party host.
+const STORED_ICON_URL =
+  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E" +
+  "%3Crect width='64' height='64' fill='%234a90d9'/%3E" +
+  "%3Ccircle cx='32' cy='24' r='10' fill='%23fff'/%3E" +
+  "%3Cpath d='M12 60c4-12 12-18 20-18s16 6 20 18z' fill='%23fff'/%3E%3C/svg%3E";
+
+// A file already stored elsewhere: the consumer has its url but not its bytes, so `file` is just a
+// named placeholder and `previewUrl` supplies the thumbnail. `hideSize` keeps the row from
+// reporting 0 B.
+export const StoredFile: Story = {
+  args: {
+    label: 'Integration icon',
+    hideSize: true,
+  },
+  render: (args) => (
+    <FileUploader
+      {...args}
+      mode="single"
+      files={[
+        {
+          file: new File([], 'stored-icon.png', { type: 'image/png' }),
+          previewUrl: STORED_ICON_URL,
+        },
+      ]}
+    />
+  ),
+};
+
+// The mixed case: one stored file and one the user just picked. The thumbnail is sized to the
+// glyph footprint of each variant, so both rows should read as one list rather than two shapes.
+export const StoredAndLocalFile: Story = {
+  args: {
+    label: 'Integration icons',
+    hideSize: true,
+  },
+  render: (args) => (
+    <FileUploader
+      {...args}
+      mode="multi-medium"
+      files={[
+        {
+          file: new File([], 'stored-icon.png', { type: 'image/png' }),
+          previewUrl: STORED_ICON_URL,
+        },
+        { file: new File(['local'], 'picked-icon.png', { type: 'image/png' }) },
+      ]}
+    />
+  ),
+};

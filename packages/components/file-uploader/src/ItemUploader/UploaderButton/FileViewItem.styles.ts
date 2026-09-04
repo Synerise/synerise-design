@@ -37,6 +37,15 @@ export const SmallLoader = styled(Loader)`
   animation: ${spinnerAnimation} 2s linear infinite;
 `;
 
+export const PreviewThumbnail = styled.img`
+  /* Matches this variant's 20px glyph — the compact row is a fixed 32px tall. */
+  width: 20px;
+  height: 20px;
+  border-radius: 3px;
+  object-fit: contain;
+  background-color: ${(props) => props.theme.palette['grey-200']};
+`;
+
 export const PlaceholderImage = styled.div`
   background-color: ${(props) => props.theme.palette['grey-200']};
   width: 32px;

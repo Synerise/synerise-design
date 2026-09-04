@@ -14,7 +14,7 @@ const FileViewItem = ({
   onRemove,
   removable,
 }: FileViewAvatarProps) => {
-  const { disabled, error, file, progress } = data;
+  const { disabled, error, file, previewUrl, progress } = data;
 
   const finalTexts = {
     retryTooltip: (
@@ -50,15 +50,23 @@ const FileViewItem = ({
           removable={removable}
           type="button"
         >
-          {isPreviewableMimeType(file.type) ? (
-            <S.PreviewImage>
-              <Icon component={ICON_MAP[file.type]} size={20} />
-            </S.PreviewImage>
-          ) : (
-            <S.PlaceholderImage>
-              <Icon component={<FileM />} size={24} />
-            </S.PlaceholderImage>
+          {previewUrl && (
+            <S.PreviewThumbnail
+              src={previewUrl}
+              alt=""
+              data-testid="file-preview-thumbnail"
+            />
           )}
+          {!previewUrl &&
+            (isPreviewableMimeType(file.type) ? (
+              <S.PreviewImage data-testid="file-mime-glyph">
+                <Icon component={ICON_MAP[file.type]} size={20} />
+              </S.PreviewImage>
+            ) : (
+              <S.PlaceholderImage data-testid="file-mime-glyph">
+                <Icon component={<FileM />} size={24} />
+              </S.PlaceholderImage>
+            ))}
           <S.Info>
             <>
               <S.Name>{file.name}</S.Name>

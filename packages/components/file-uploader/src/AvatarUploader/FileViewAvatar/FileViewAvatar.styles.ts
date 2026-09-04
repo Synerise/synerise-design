@@ -36,6 +36,16 @@ export const SmallLoader = styled(Loader)`
   animation: ${spinnerAnimation} 2s linear infinite;
 `;
 
+export const PreviewThumbnail = styled.img`
+  /* Matches this variant's 24px glyph: the row is a fixed 32px with 7px padding, so a 32px
+     thumbnail would overflow it. */
+  width: 24px;
+  height: 24px;
+  border-radius: 3px;
+  object-fit: contain;
+  background-color: ${(props) => props.theme.palette['grey-200']};
+`;
+
 export const PlaceholderImage = styled.div`
   background-color: ${(props) => props.theme.palette['grey-200']};
   width: 32px;
