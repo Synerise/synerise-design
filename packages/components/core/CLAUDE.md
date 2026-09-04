@@ -43,6 +43,9 @@ src/js/
  DropdownContext.tsx — DropdownContextProps { isOpen, activeIndex, setIsOpen, hideOnItemClick }
  DropdownContextProvider.tsx — thin Provider wrapper
  useDropdown.ts — reads DropdownContext
+ overlays/
+ overlayRegistry.ts — force every open DS overlay closed through its own close path
+ overlayZIndex.tsx — OverlayZIndexContext: nested overlays stack above their parent
  mediaQuery/
  mediaQuery.ts — MEDIA_FROM, MEDIA_TO, MEDIA_ONLY tagged-template helpers
  testing/
@@ -229,6 +232,129 @@ Shared open-state context for `@synerise/ds-dropdown` and custom dropdowns.
 ### `useDropdown`
 
 `() => DropdownContextProps | undefined` — returns `undefined` if no `DropdownContextProvider` is in the tree.
+
+---
+
+## Overlay registry
+
+Lets an app force every open DS overlay closed in reaction to an app-level event — e.g. the active workspace changed in another tab, so any modal or dropdown is now holding state bound to the previous workspace.
+
+Overlays close through their own close paths, so consumer handlers fire, exit transitions run and focus is restored. Nothing is removed from the DOM behind React's back.
+
+### `closeAllOverlays(options?): Promise<void>`
+
+| Option | Type | Description |
+|--------|------|-------------|
+| `kinds` | `OverlayKind[]` | Restrict the sweep to these kinds. Omit to close every registered overlay. |
+
+`OverlayKind` is `'modal' | 'drawer' | 'popover' | 'dropdown' | 'tooltip' | 'popconfirm'`.
+
+```ts
+import { closeAllOverlays } from '@synerise/ds-core';
+
+await closeAllOverlays();                                  // everything
+await closeAllOverlays({ kinds: ['modal', 'drawer'] });     // leave tooltips alone
+```
+
+Registered by `@synerise/ds-modal`, `@synerise/ds-drawer` and `@synerise/ds-popover`. Popover-level registration also covers `@synerise/ds-dropdown`, `@synerise/ds-tooltip`, `@synerise/ds-popconfirm`, and everything built on them (`ds-select`, `ds-table-new`, …).
+
+Per kind, closing runs:
+
+| Kind | Close path |
+|------|-----------|
+| `modal` | `onCancel` (awaited when it returns a promise), then the modal's internal close + `afterClose` |
+| `drawer` | `onClose` |
+| popover kinds | `context.onOpenChange(false, undefined, 'escape-key')` — the same funnel as pressing Escape, so `onDismiss` fires too |
+
+### `registerOverlay(entry): () => void`
+
+For components that render their own overlays and want to join the sweep. Call while open, use the returned function as the effect cleanup:
+
+```ts
+useEffect(() => {
+  if (!isOpen) return undefined;
+  return registerOverlay({ kind: 'modal', close: () => onClose() });
+}, [isOpen]);
+```
+
+### `createOverlayCloseEvent<T>(target)`
+
+Builds the stand-in event handed to `onCancel` / `onClose`, since a programmatic close has no real event. `target` and `currentTarget` are the overlay root; `preventDefault` and `stopPropagation` are no-ops.
+
+### Behaviour worth knowing
+
+- **Closing order is newest-registered first**, so a dropdown opened inside a modal closes before the modal.
+- **Controlled overlays follow their owner.** The sweep fires `onCancel` / `onOpenChange` / `onClose`; if the owner ignores it and keeps `open` at `true`, that overlay stays open. Forcing it shut would desync the owner's state.
+- **Each registration closes at most once**, so repeated calls cannot fire the same `onCancel` twice — even before React has flushed the first close. An overlay re-registers when it re-opens.
+- **Tooltips are included by default** (they are popovers). Pass `kinds` to leave them alone.
+- **A throwing or rejecting handler is contained** and does not stop the remaining overlays from closing.
+- **`ds-select` skips its `clearQuery()`.** Escape clears a Select's search query; a registry close only closes the dropdown.
+- **The registry is a module-scoped singleton**, so it relies on there being one copy of `@synerise/ds-core` at runtime. That is what the universal `peerDependencies: { "@synerise/ds-core": "*" }` guarantees — do not convert it to a hard dependency.
+
+---
+
+## Overlay z-index
+
+Stacks nested overlays automatically. Before this existed, every `ds-modal` / `ds-drawer`
+took the flat `zindex-modal` token (991000) and relied on DOM order — which breaks the
+moment an ancestor raises itself with an explicit `zIndex`, and breaks anyway for nested
+modals because React commits the **innermost** portal first, putting a child *before* its
+parent in the document.
+
+`ds-modal` and `ds-drawer` publish their own resolved z-index to their subtree; an overlay
+rendered inside them derives one step above it. Read through the **React** tree, not the DOM
+tree — every overlay portals to `document.body`, so a nested modal is a DOM sibling of its
+parent while still being a React descendant. That is what makes this work.
+
+### `useResolvedOverlayZIndex(zIndex?): number`
+
+Resolves the z-index an overlay should render at:
+
+1. an explicit `zIndex` prop always wins — the escape hatch for consumers positioning
+   themselves against something outside the DS stack;
+2. otherwise `OVERLAY_Z_INDEX_STEP` above the enclosing overlay;
+3. otherwise the `zindex-modal` token.
+
+### `useOverlayZIndex(): number | undefined`
+
+The enclosing overlay's z-index, or `undefined` at the top level.
+
+### `OverlayZIndexProvider`
+
+| Prop | Type | Description |
+|------|------|-------------|
+| `value` | `number` | The resolved z-index of the overlay owning this subtree |
+
+### `OVERLAY_Z_INDEX_STEP`
+
+`2`. Deliberately small, and derived values are **clamped at `zindex-dropdown - STEP`
+(991048)**.
+
+The reason is that the popover family uses **flat** tokens, entirely above the modal scale:
+every `PopoverContent` (popover, dropdown, select, cascader, date picker) sits at
+`zindex-dropdown` **991050**, `Popconfirm` at **991055**, `Tooltip` / `HoverTooltip` /
+`Tray` / menu-item tooltips at **991060**. A modal that climbed past 991050 would paint over
+its own dropdowns and selects. `zindex-popover` (991030), `zindex-picker`,
+`zindex-notification`, `zindex-message` and `zindex-popper` are declared in the theme but
+unused in DS — 991050 is the real floor. The clamp allows 24 levels of nesting.
+
+### Behaviour worth knowing
+
+- **The popover family does not consume this context**, by design. Its flat tokens are
+  already above the clamped modal ceiling, so an overlay opened inside a modal is always
+  above it. What is *not* solved: an overlay left open in modal N floats above modal N+1.
+  That predates this mechanism. Closing it means adopting antd v5's `useZIndex` model —
+  raise the step to 100 and have the popover family derive `enclosingOverlayZ + itsOffset`
+  from this same context (the tokens are already antd-shaped: `+0` modal, `+30` popover,
+  `+50` dropdown, `+55` popconfirm, `+60` tooltip off a 991000 base). **Until then the step
+  must stay small** — a step of 100 puts a two-deep modal above `zindex-dropdown`.
+- **`showModal()` has no enclosing overlay.** It renders through `setPortalContent` into the
+  `DSProvider`-level `PortalRenderer`, outside any modal's React subtree, so it always gets
+  the flat token. Pass `zIndex` explicitly if such a modal must stack.
+- **Hidden modals still provide context.** With `destroyOnClose: false` a closed modal stays
+  mounted (`display: none`); nothing is counted, values are derived, so this is harmless.
+- Reaching the ceiling logs one dev-only warning and ties with the parent, so deep overlays
+  fall back to DOM order rather than silently inverting.
 
 ---
 

@@ -111,7 +111,7 @@ Styles in `StepCard.styles.ts`. Key states:
 
 - `@synerise/ds-logic` — `Matching` toggle component
 - `@synerise/ds-cruds` — move up/down, delete, duplicate icons with tooltips
-- `@synerise/ds-alert` — `InlineAlert` for "Moved" success feedback
+- `@synerise/ds-inline-alert` — `InlineAlert` for "Moved" success feedback
 - `@synerise/ds-icon` — `DragHandleM`
 - `@synerise/ds-typography` — `Title` for condition type label
 - `@synerise/ds-sortable` — `DragHandlePropType` (dev dependency only)

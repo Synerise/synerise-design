@@ -1,7 +1,6 @@
 import React from 'react';
 
 import Icon, { FileDownloadM, FileTypeTableM } from '@synerise/ds-icon';
-import { type MenuItemProps } from '@synerise/ds-menu';
 
 import { type ItemRollElement, type ItemsRollProps } from '../ItemsRoll.types';
 
@@ -43,7 +42,7 @@ export const propsFactory = (
   ...options,
 });
 
-export const ACTIONS: ItemRollElement<MenuItemProps>[] = [
+export const ACTIONS: ItemRollElement[] = [
   {
     id: '1',
     onClick: () => {},

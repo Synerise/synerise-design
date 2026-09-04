@@ -17,13 +17,17 @@ const getDataIndex = (
 
 /**
  * Factory function for Table mock.
- * Use directly with vi.mock() to avoid hoisting issues.
+ *
+ * @deprecated `@synerise/ds-table` is deprecated in favour of
+ * `@synerise/ds-table-new` — use `tableNewMockFactory` instead. Retained for
+ * backward compatibility; it will not receive further updates.
  *
  * @example
  * ```typescript
- * import { tableMockFactory } from '@synerise/ds-mocks/Table/vi';
- *
- * vi.mock('@synerise/ds-table', tableMockFactory);
+ * vi.mock('@synerise/ds-table', async () => {
+ *   const { tableMockFactory } = await import('@synerise/ds-mocks');
+ *   return { ...tableMockFactory() };
+ * });
  * ```
  */
 export const tableMockFactory = () => ({
@@ -166,9 +170,16 @@ export const tableMockFactory = () => ({
 /**
  * Factory function for minimal Table mock.
  *
+ * @deprecated `@synerise/ds-table` is deprecated in favour of
+ * `@synerise/ds-table-new` — use `tableNewMinimalMockFactory` instead. Retained
+ * for backward compatibility; it will not receive further updates.
+ *
  * @example
  * ```typescript
- * vi.mock('@synerise/ds-table', tableMinimalMockFactory);
+ * vi.mock('@synerise/ds-table', async () => {
+ *   const { tableMinimalMockFactory } = await import('@synerise/ds-mocks');
+ *   return { ...tableMinimalMockFactory() };
+ * });
  * ```
  */
 export const tableMinimalMockFactory = () => ({

@@ -2,7 +2,7 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import Dropdown from '@synerise/ds-dropdown';
-import Menu from '@synerise/ds-menu';
+import ListItem, { ListWrapper } from '@synerise/ds-list-item';
 import Scrollbar from '@synerise/ds-scrollbar';
 
 import * as S from '../InformationCard.styles';
@@ -14,7 +14,6 @@ export const InformationCardActions = ({
   onHeaderClick,
   navigationLabel,
   items,
-  menuProps,
   maxHeight,
 }: InformationCardActionsProps) => {
   return (
@@ -32,7 +31,11 @@ export const InformationCardActions = ({
       />
       <S.InformationCardActionsWrapper>
         <Scrollbar maxHeight={maxHeight ? maxHeight - NAV_HEIGHT : undefined}>
-          <Menu {...menuProps} dataSource={items} />
+          <ListWrapper>
+            {items.map((item, index) => (
+              <ListItem key={item.itemKey ?? item.key ?? index} {...item} />
+            ))}
+          </ListWrapper>
         </Scrollbar>
       </S.InformationCardActionsWrapper>
     </>

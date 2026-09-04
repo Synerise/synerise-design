@@ -88,7 +88,7 @@ export const WithDropdown: StoryObj<InformationCardProps> = {
         overlay={
           <Dropdown.Wrapper
             data-popup-container
-            onKeyDown={(e) => focusWithArrowKeys(e, 'ds-menu-item', () => {})}
+            onKeyDown={(e) => focusWithArrowKeys(e, 'ds-list-item', () => {})}
             ref={ref}
           >
             <ListWrapper>

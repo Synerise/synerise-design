@@ -92,8 +92,33 @@ export const renderWithIconInHeaders = <RowType extends any>(
   }));
 };
 const STORY_ARG_TYPE = { table: { category: 'Story options' } };
+
+/**
+ * Deprecation notice for the legacy table stories. `@synerise/ds-table` stays
+ * published while portal-ui-bridge and universal-list migrate, so these stories are
+ * kept for visual-regression coverage rather than deleted.
+ */
+export const DEPRECATED_TABLE_NOTICE =
+  '\u26a0\ufe0f **Deprecated.** `@synerise/ds-table` stays on antd 4 and will not be migrated off it. ' +
+  'Use `@synerise/ds-table-new` instead (`Table` / `VirtualTable` / `TreeTable`). ' +
+  'See **Components/TableNew/Migration from Table** for the full prop mapping and the list of ' +
+  'features that have no equivalent (grouping, row starring, `filters`, the `components` override).';
+
+// NOTE: the `deprecated` tag is declared literally in every Components/Table/*
+// story file rather than here. Storybook's static indexer reads `tags` from the
+// AST and cannot resolve them through a `...TableMeta` spread, so a tag set here
+// would never reach the sidebar badge — which is the signal readers actually see.
+// The docs description below is merged at runtime, but these stories carry no
+// `autodocs` tag and therefore have no docs page today, so it stays latent: it
+// will surface automatically if autodocs is ever enabled for them. The full
+// migration guidance lives in Components/TableNew/Migration from Table.
 export const TableMeta = {
   parameters: {
+    docs: {
+      description: {
+        component: DEPRECATED_TABLE_NOTICE,
+      },
+    },
     chromatic: {
       diffThreshold: 0.25,
       delay: 400,

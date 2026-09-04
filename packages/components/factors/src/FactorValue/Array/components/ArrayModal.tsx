@@ -6,10 +6,10 @@ import React, {
   useState,
 } from 'react';
 
-import { IconAlert } from '@synerise/ds-alert';
 import Button, { ButtonToggle } from '@synerise/ds-button';
 import ButtonGroup from '@synerise/ds-button-group';
 import Icon, { CodeM, EditM, TrashM } from '@synerise/ds-icon';
+import InlineAlert from '@synerise/ds-inline-alert';
 import { SearchInput } from '@synerise/ds-search';
 import { useIsMounted } from '@synerise/ds-utils';
 
@@ -160,7 +160,7 @@ export const ArrayModal = <ItemType extends 'string' | 'number'>({
           </S.LeftSide>
           <S.RightSide>
             {rawEditorError ? (
-              <IconAlert iconAlert type="alert" message={rawEditorError} />
+              <InlineAlert type="alert" message={rawEditorError} />
             ) : (
               <>
                 {limit && (

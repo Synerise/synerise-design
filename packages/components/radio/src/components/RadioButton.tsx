@@ -4,6 +4,7 @@ import * as S from '../Radio.styles';
 import {
   type RadioButtonProps,
   type RadioChangeEvent,
+  type RadioChangeEventTarget,
   type RadioValueType,
 } from '../Radio.types';
 import { RadioGroupContext } from '../RadioContext';
@@ -42,18 +43,28 @@ export const RadioButton = ({
     if (isDisabled) {
       return;
     }
-    if (group) {
-      group.onChange(value as RadioValueType, event.nativeEvent);
-    }
+    // antd's rc-checkbox exposed the radio's own props on `target`, so consumers can read more than
+    // the value — `...rest` carries the data-*/aria-* it was given.
+    const target: RadioChangeEventTarget = {
+      ...rest,
+      value,
+      checked: event.target.checked,
+      name: group?.name,
+      disabled: isDisabled,
+      type: 'radio',
+    };
+    // antd order: the consumer's own handler runs before the group's, so when both write the same
+    // state the group wins. Reversing it silently flips last-writer-wins for such consumers.
     if (onChange) {
       const changeEvent: RadioChangeEvent = {
-        target: { value, checked: true, name: group?.name },
+        target,
         stopPropagation: () => event.stopPropagation(),
         preventDefault: () => event.preventDefault(),
         nativeEvent: event.nativeEvent,
       };
       onChange(changeEvent);
     }
+    group?.onChange(value as RadioValueType, event.nativeEvent, target);
   };
 
   return (

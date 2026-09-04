@@ -1,7 +1,13 @@
 import React from 'react';
 
-import { renderWithProvider } from '@synerise/ds-core';
-import { fireEvent, screen } from '@testing-library/react';
+import {
+  OVERLAY_Z_INDEX_STEP,
+  OverlayZIndexProvider,
+  closeAllOverlays,
+  renderWithProvider,
+  theme,
+} from '@synerise/ds-core';
+import { act, fireEvent, screen } from '@testing-library/react';
 
 import Drawer from '../Drawer';
 import { type DrawerProps } from '../Drawer.types';
@@ -118,5 +124,125 @@ describe('Drawer component', () => {
     const dialog = screen.getByRole('dialog');
     expect(dialog).toHaveAttribute('aria-labelledby', 'heading-id');
     expect(dialog).not.toHaveAttribute('aria-label');
+  });
+
+  describe('closeAllOverlays', () => {
+    it('calls onClose with a usable event', async () => {
+      const onClose = vi.fn();
+      renderWithProvider(DRAWER({ open: true, onClose }));
+
+      await act(async () => {
+        await closeAllOverlays();
+      });
+
+      expect(onClose).toHaveBeenCalledTimes(1);
+      const [event] = onClose.mock.calls[0];
+      expect(event.target).toBeInstanceOf(HTMLElement);
+      expect(() => event.preventDefault()).not.toThrow();
+    });
+
+    it('does not call onClose when the drawer is closed', async () => {
+      const onClose = vi.fn();
+      renderWithProvider(DRAWER({ open: false, onClose }));
+
+      await act(async () => {
+        await closeAllOverlays();
+      });
+
+      expect(onClose).not.toHaveBeenCalled();
+    });
+
+    it('leaves the drawer alone when another kind is targeted', async () => {
+      const onClose = vi.fn();
+      renderWithProvider(DRAWER({ open: true, onClose }));
+
+      await act(async () => {
+        await closeAllOverlays({ kinds: ['modal'] });
+      });
+
+      expect(onClose).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('z-index stacking', () => {
+    const MODAL_TOKEN = Number.parseInt(theme.variables['zindex-modal'], 10);
+    const DROPDOWN_TOKEN = Number.parseInt(
+      theme.variables['zindex-dropdown'],
+      10,
+    );
+
+    // DrawerRoot carries the z-index; the drawer's own test id sits on the
+    // header, so walk up to the root by its stable class instead.
+    const drawerRootZIndex = (): number => {
+      const root = document.querySelector<HTMLElement>('.ds-drawer');
+      if (!root) {
+        throw new Error('No .ds-drawer root rendered');
+      }
+      return Number(window.getComputedStyle(root).zIndex);
+    };
+
+    it('uses the zindex-modal token when nothing encloses it', () => {
+      renderWithProvider(DRAWER({ open: true }));
+
+      expect(drawerRootZIndex()).toBe(MODAL_TOKEN);
+    });
+
+    it('stacks above the overlay that contains it', () => {
+      renderWithProvider(
+        <OverlayZIndexProvider value={MODAL_TOKEN}>
+          {DRAWER({ open: true })}
+        </OverlayZIndexProvider>,
+      );
+
+      expect(drawerRootZIndex()).toBe(MODAL_TOKEN + OVERLAY_Z_INDEX_STEP);
+    });
+
+    it('derives from a parent that raised itself with an explicit zIndex', () => {
+      renderWithProvider(
+        <OverlayZIndexProvider value={991004}>
+          {DRAWER({ open: true })}
+        </OverlayZIndexProvider>,
+      );
+
+      expect(drawerRootZIndex()).toBe(991006);
+    });
+
+    it('lets an explicit zIndex win', () => {
+      renderWithProvider(
+        <OverlayZIndexProvider value={MODAL_TOKEN}>
+          {DRAWER({ open: true, zIndex: 42 })}
+        </OverlayZIndexProvider>,
+      );
+
+      expect(drawerRootZIndex()).toBe(42);
+    });
+
+    it('stays below zindex-dropdown so it cannot cover its own popovers', () => {
+      renderWithProvider(
+        <OverlayZIndexProvider value={DROPDOWN_TOKEN}>
+          {DRAWER({ open: true })}
+        </OverlayZIndexProvider>,
+      );
+
+      expect(drawerRootZIndex()).toBe(DROPDOWN_TOKEN - OVERLAY_Z_INDEX_STEP);
+      expect(drawerRootZIndex()).toBeLessThan(DROPDOWN_TOKEN);
+    });
+
+    it('publishes its own z-index to an inline drawer nested inside it', () => {
+      renderWithProvider(
+        <Drawer open width={400} placement="right" getContainer={false}>
+          <Drawer open width={300} placement="left" getContainer={false}>
+            <p>nested</p>
+          </Drawer>
+        </Drawer>,
+      );
+
+      const zIndexes = Array.from(
+        document.querySelectorAll<HTMLElement>('.ds-drawer'),
+      ).map((root) => Number(window.getComputedStyle(root).zIndex));
+
+      expect(zIndexes).toContain(MODAL_TOKEN);
+      expect(zIndexes).toContain(MODAL_TOKEN + OVERLAY_Z_INDEX_STEP);
+    });
   });
 });

@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@2.0.0...@synerise/ds-manageable-list@2.0.1) (2026-09-02)
+
+**Note:** Version bump only for package @synerise/ds-manageable-list
+
+# [2.0.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@1.8.17...@synerise/ds-manageable-list@2.0.0) (2026-08-26)
+
+**Note:** Version bump only for package @synerise/ds-manageable-list
+
+## [1.8.17](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@1.8.16...@synerise/ds-manageable-list@1.8.17) (2026-08-20)
+
+**Note:** Version bump only for package @synerise/ds-manageable-list
+
+## [1.8.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@1.8.15...@synerise/ds-manageable-list@1.8.16) (2026-08-18)
+
+**Note:** Version bump only for package @synerise/ds-manageable-list
+
+## [1.8.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@1.8.14...@synerise/ds-manageable-list@1.8.15) (2026-08-14)
+
+**Note:** Version bump only for package @synerise/ds-manageable-list
+
 ## [1.8.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@1.8.13...@synerise/ds-manageable-list@1.8.14) (2026-08-13)
 
 **Note:** Version bump only for package @synerise/ds-manageable-list

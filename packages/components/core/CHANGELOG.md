@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@1.15.0...@synerise/ds-core@2.0.0) (2026-08-26)
+
+**Note:** Version bump only for package @synerise/ds-core
+
+# [1.15.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@1.14.1...@synerise/ds-core@1.15.0) (2026-08-21)
+
+### Features
+
+- **table-new:** cap select-all at the selection limit, not hide it ([9b4c0a9](https://github.com/synerise/synerise-design/commit/9b4c0a97bf43dc186e230d7e06116d42e5cabb93))
+
+## [1.14.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@1.14.0...@synerise/ds-core@1.14.1) (2026-08-20)
+
+### Bug Fixes
+
+- stack nested modals above their enclosing overlay ([c7f75c0](https://github.com/synerise/synerise-design/commit/c7f75c0fb39dc29e23997364640a2733811e4b51))
+
+# [1.14.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@1.13.2...@synerise/ds-core@1.14.0) (2026-08-18)
+
+### Features
+
+- **core:** add closeAllOverlays overlay registry ([81a1412](https://github.com/synerise/synerise-design/commit/81a1412f82e1e2ad087ef44503020736db5e12df))
+
+## [1.13.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@1.13.1...@synerise/ds-core@1.13.2) (2026-08-14)
+
+### Bug Fixes
+
+- **core:** read timezone offsets at the right moment ([72ed6b9](https://github.com/synerise/synerise-design/commit/72ed6b958808215572b55aad0a94a0e05bf2ce25))
+
 ## [1.13.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@1.13.0...@synerise/ds-core@1.13.1) (2026-07-23)
 
 **Note:** Version bump only for package @synerise/ds-core

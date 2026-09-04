@@ -3,6 +3,7 @@ import React, { type ChangeEvent, useContext, useState } from 'react';
 import * as S from '../Radio.styles';
 import {
   type RadioChangeEvent,
+  type RadioChangeEventTarget,
   type RadioProps,
   type RadioValueType,
 } from '../Radio.types';
@@ -47,20 +48,33 @@ export const RadioBase = ({
     if (isDisabled) {
       return;
     }
-    if (group) {
-      group.onChange(value as RadioValueType, event.nativeEvent);
-      return;
-    }
-    if (!isControlled) {
+    // Inside a group the group's value drives `checked`, so there is no internal state to advance.
+    if (!group && !isControlled) {
       setInternalChecked(true);
     }
+    // antd's rc-checkbox exposed the radio's own props on `target`, so consumers can read more than
+    // the value — `...rest` carries the data-*/aria-* it was given.
+    const target: RadioChangeEventTarget = {
+      ...rest,
+      value,
+      checked: event.target.checked,
+      name: name ?? group?.name,
+      id,
+      disabled: isDisabled,
+      type: 'radio',
+      autoFocus,
+      tabIndex,
+    };
     const changeEvent: RadioChangeEvent = {
-      target: { value, checked: true, name },
+      target,
       stopPropagation: () => event.stopPropagation(),
       preventDefault: () => event.preventDefault(),
       nativeEvent: event.nativeEvent,
     };
+    // antd order: the consumer's own handler runs before the group's, so when both write the same
+    // state the group wins. Reversing it silently flips last-writer-wins for such consumers.
     onChange?.(changeEvent);
+    group?.onChange(value as RadioValueType, event.nativeEvent, target);
   };
 
   return (

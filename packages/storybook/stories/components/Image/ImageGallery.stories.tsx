@@ -31,6 +31,7 @@ const meta: Meta<GalleryProps> = {
     openZoom: { control: 'boolean' },
     deletable: { control: 'boolean' },
     initialZoom: { control: 'inline-radio', options: ['fit', 'real-size'] },
+    zIndex: { control: 'number' },
     onDelete: { action: 'delete' },
     images: { table: { disable: true } },
     fallback: { table: { disable: true } },

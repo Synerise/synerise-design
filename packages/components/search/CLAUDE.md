@@ -155,7 +155,6 @@ Both names are the same default export from `SearchItems.tsx`.
 | `onItemClick` | `(e: T) => void` | — | Item click callback |
 | `listProps` | `Partial<ListProps> & { scrollTop?: number }` | — | Extra react-window props; `scrollTop` is synced via `listRef.scrollTo` |
 | `visibleRows` | `number` | — | Caps height to `visibleRows * rowHeight` |
-| `renderInMenu` | `boolean` | `true` | Wraps list in `ds-menu`; **deprecated** — set to `false` and avoid `Menu.Item` in `itemRender` |
 
 #### `renderSearchList`
 
@@ -258,8 +257,7 @@ import { SearchInput } from '@synerise/ds-search';
 - `@synerise/ds-scrollbar` — custom scrollbar wrapping the dropdown
 - `@synerise/ds-utils` (`focusWithArrowKeys`, `useOnClickOutside`, `usePrevious`) — keyboard navigation and outside-click handling
 - `@synerise/ds-tooltip` — wraps the search input and provides section header tooltips
-- `@synerise/ds-menu` — wraps items when `renderInMenu=true` (deprecated path)
-- `@synerise/ds-list-item` (`ListContextProvider`) — wraps items when `renderInMenu=false`
+- `@synerise/ds-list-item` (`ListContextProvider`) — wraps the rendered item list
 No antd — `SearchInput` renders a DS-native styled `input` (`S.SearchNativeInput`), which owns its own border/radius/background/focus chrome.
 
 ## Implementation notes

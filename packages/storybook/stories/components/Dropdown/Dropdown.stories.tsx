@@ -10,7 +10,6 @@ import Dropdown, {
 import Icon, { SearchM } from '@synerise/ds-icon';
 import { Input } from '@synerise/ds-input';
 import ListItem, { ListWrapper } from '@synerise/ds-list-item';
-import Menu from '@synerise/ds-menu';
 import Result from '@synerise/ds-result';
 import Scrollbar from '@synerise/ds-scrollbar';
 import SearchBar from '@synerise/ds-search-bar';
@@ -191,6 +190,39 @@ import Input from '@synerise/ds-input';
 };
 
 export const withTabs: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `import React, { useState } from 'react';
+import Dropdown from '@synerise/ds-dropdown';
+import Button from '@synerise/ds-button';
+import SearchBar from '@synerise/ds-search-bar';
+import Tabs from '@synerise/ds-tabs';
+import ListItem, { ListWrapper } from '@synerise/ds-list-item';
+
+const data = [{ text: 'Preview' }, { text: 'Edit' }, { text: 'Duplicate' }];
+
+<Dropdown
+  open={open}
+  placement="bottomLeft"
+  size="medium"
+  overlay={
+    <Dropdown.Wrapper>
+      <SearchBar value={value} onSearchChange={filter} placeholder="Search" />
+      <Tabs block tabs={tabs} activeTab={activeTab} handleTabClick={setActiveTab} />
+      <ListWrapper>
+        {data.map((item, index) => (
+          <ListItem key={index} {...item} highlight={value} />
+        ))}
+      </ListWrapper>
+    </Dropdown.Wrapper>
+  }
+>
+  <Button type="primary">Dropdown</Button>
+</Dropdown>;`,
+      },
+    },
+  },
   render: (args) => {
     const data = [{ text: 'Preview' }, { text: 'Edit' }, { text: 'Duplicate' }];
     const [filteredData, setFilteredData] = useState(data);
@@ -224,7 +256,7 @@ export const withTabs: Story = {
           overlay={
             <Dropdown.Wrapper
               onKeyDown={(e) =>
-                focusWithArrowKeys(e, 'ds-menu-item', () => {
+                focusWithArrowKeys(e, 'ds-list-item', () => {
                   searchRef.current?.focus();
                 })
               }
@@ -259,11 +291,11 @@ export const withTabs: Story = {
                   description={'No results'}
                 />
               ) : (
-                <Menu
-                  dataSource={filteredData}
-                  highlight={value}
-                  asDropdownMenu={true}
-                />
+                <ListWrapper>
+                  {filteredData.map((item, index) => (
+                    <ListItem key={index} {...item} highlight={value} />
+                  ))}
+                </ListWrapper>
               )}
             </Dropdown.Wrapper>
           }
@@ -320,47 +352,6 @@ import { DropdownSkeleton } from '@synerise/ds-skeleton';
 
 <Dropdown overlay={<Dropdown.Wrapper><DropdownSkeleton /></Dropdown.Wrapper>}>
   <button>Click</button>
-</Dropdown>;`,
-      },
-    },
-  },
-};
-
-export const resizableContent: Story = {
-  ...Default,
-  args: {
-    ...Default.args,
-    overlay: (
-      <Dropdown.Wrapper
-        onKeyDown={(e) => focusWithArrowKeys(e, 'ds-menu-item', () => {})}
-      >
-        <Scrollbar absolute maxHeight={300}>
-          <Menu
-            dataSource={dataItems}
-            asDropdownMenu={true}
-            style={{ width: '100%' }}
-          />
-        </Scrollbar>
-      </Dropdown.Wrapper>
-    ),
-  },
-  parameters: {
-    docs: {
-      source: {
-        code: `import React from 'react';
-import Dropdown from '@synerise/ds-dropdown';
-import Scrollbar from '@synerise/ds-scrollbar';
-import Menu from '@synerise/ds-menu';
-import { dataItems } from './Dropdown.data';
-
-<Dropdown overlay={
-  <Dropdown.Wrapper onKeyDown={(e) => {/* arrow nav helper */}}>
-    <Scrollbar absolute maxHeight={300}>
-      <Menu dataSource={dataItems} asDropdownMenu style={{width: '100%'}} />
-    </Scrollbar>
-  </Dropdown.Wrapper>
-}>
-  <button>Open</button>
 </Dropdown>;`,
       },
     },

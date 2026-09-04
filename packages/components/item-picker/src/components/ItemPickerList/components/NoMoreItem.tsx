@@ -1,7 +1,7 @@
 import React, { type ReactNode } from 'react';
 
-import Alert from '@synerise/ds-alert';
+import InlineAlert from '@synerise/ds-inline-alert';
 
 export const NoMoreItem = ({ label }: { label: ReactNode }) => {
-  return <Alert.InlineAlert type="info" message={label} />;
+  return <InlineAlert type="info" message={label} />;
 };

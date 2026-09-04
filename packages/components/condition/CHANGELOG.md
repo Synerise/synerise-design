@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@2.0.1...@synerise/ds-condition@2.0.2) (2026-09-02)
+
+**Note:** Version bump only for package @synerise/ds-condition
+
+## [2.0.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@2.0.0...@synerise/ds-condition@2.0.1) (2026-09-01)
+
+**Note:** Version bump only for package @synerise/ds-condition
+
+# [2.0.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@1.6.50...@synerise/ds-condition@2.0.0) (2026-08-26)
+
+**Note:** Version bump only for package @synerise/ds-condition
+
+## [1.6.50](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@1.6.49...@synerise/ds-condition@1.6.50) (2026-08-20)
+
+**Note:** Version bump only for package @synerise/ds-condition
+
+## [1.6.49](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@1.6.48...@synerise/ds-condition@1.6.49) (2026-08-18)
+
+**Note:** Version bump only for package @synerise/ds-condition
+
+## [1.6.48](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@1.6.47...@synerise/ds-condition@1.6.48) (2026-08-14)
+
+**Note:** Version bump only for package @synerise/ds-condition
+
 ## [1.6.47](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@1.6.46...@synerise/ds-condition@1.6.47) (2026-08-13)
 
 **Note:** Version bump only for package @synerise/ds-condition

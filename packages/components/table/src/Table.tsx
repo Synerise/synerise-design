@@ -26,6 +26,12 @@ import {
   useTableLocale,
 } from './utils';
 
+/**
+ * @deprecated `@synerise/ds-table` is deprecated and will not be migrated off antd.
+ * Use `@synerise/ds-table-new` instead (`Table` / `VirtualTable` / `TreeTable`).
+ * See the "Migrating to @synerise/ds-table-new" section in this package's README
+ * for the prop mapping and the list of features that have no equivalent.
+ */
 const DSTable = <T extends object>(props: DSTableProps<T>) => {
   const intl = useIntl();
   const {

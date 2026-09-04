@@ -2,43 +2,135 @@
 import { globSync } from 'glob';
 import { dirname, resolve } from 'path';
 import { fileURLToPath } from 'url';
-import { type Plugin, type UserConfig, defineConfig } from 'vite';
+import {
+  type ConfigEnv,
+  type Plugin,
+  type UserConfig,
+  defineConfig,
+} from 'vite';
 import dts from 'vite-plugin-dts';
 
 import react from '@vitejs/plugin-react';
 
+import { getDsWorkspacePackages } from './scripts/vite/ds-workspace-map';
+import { ensureGeneratedSources } from './scripts/vite/ensure-generated-sources';
 import { stubLessImportsPlugin } from './scripts/vite/stub-less-plugin';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
+const isTestRun = (_config: UserConfig, env: ConfigEnv): boolean =>
+  env.mode === 'test' || !!process.env.VITEST;
+
 /**
- * Vite plugin that redirects @synerise/ds-<name>/dist/... imports
- * to packages/components/<name>/src/... during tests.
- * This allows deep /dist/ style imports to resolve from source
- * where the tsconfig paths mapping would otherwise fail.
+ * Opts a run back out of resolving *bare* @synerise/* imports from source. Deep /dist/ subpaths
+ * keep redirecting either way — the exports map sends `./dist/icons/M` to `dist/icons/M.js`, which
+ * does not exist (the built file is `M/index.js`), so those imports resolve only through the
+ * redirect. Turning that off as well would not restore any state this repo ever ran in.
+ */
+const bareImportsFromSource = (): boolean =>
+  process.env.DS_TEST_FROM_SOURCE !== '0';
+
+/**
+ * Resolves workspace @synerise/* imports to the sibling package's src/ during tests, rather
+ * than following the pnpm symlink into its built dist/. Without this a cross-package change
+ * stays invisible to the consumer's specs until the dependency is rebuilt, and a package
+ * imported both bare and through a deep /dist/ path is loaded twice — two module instances,
+ * so two React contexts and two styled-components registries.
+ *
+ * A bare specifier resolves to the src entry derived from the package's own manifest; a
+ * /dist/ subpath swaps that one leading segment for src, which is exact because dist mirrors
+ * src 1:1 (rollup preserveModulesRoot: 'src'). Any other subpath is left to the exports map.
+ *
+ * Depends on the generated sources checked by ensureGeneratedSources (`pnpm run generate`).
+ * Set DS_TEST_RESOLVE_DEBUG=1 to log every redirect.
  */
 function dsTestSourceRedirectPlugin(): Plugin {
-  const DS_DIST_PATTERN = /^@synerise\/ds-([a-z0-9-]+)\/dist(\/.*)?$/;
-  const componentsDir = resolve(__dirname, 'packages/components');
+  const SCOPED_PACKAGE_PATTERN = /^(@[^/]+\/[^/]+)(\/.*)?$/;
+  const JS_EXTENSION_PATTERN = /\.(js|jsx|mjs|cjs)$/;
+  const debug = !!process.env.DS_TEST_RESOLVE_DEBUG;
+  const warned = new Set<string>();
 
   return {
     name: 'ds-test-source-redirect',
     enforce: 'pre',
-    apply: (_config, env) => env.mode === 'test' || !!process.env.VITEST,
-    async resolveId(source, importer) {
-      const match = DS_DIST_PATTERN.exec(source);
+    apply: isTestRun,
+    async resolveId(source, importer, options) {
+      if (
+        !source.startsWith('@') ||
+        source.includes('\0') ||
+        source.includes('?')
+      ) {
+        return null;
+      }
+
+      const match = SCOPED_PACKAGE_PATTERN.exec(source);
       if (!match) {
         return null;
       }
-      const [, pkgName, rest = ''] = match;
-      const pkgDir = resolve(componentsDir, pkgName);
-      const srcEntry = pkgName === 'core' ? 'src/js' : 'src';
-      const resolved = await this.resolve(
-        resolve(pkgDir, srcEntry + rest),
-        importer,
-        { skipSelf: true },
-      );
-      return resolved;
+
+      const [, packageName, subpath = ''] = match;
+      const pkg = getDsWorkspacePackages(__dirname).get(packageName);
+      if (!pkg) {
+        return null;
+      }
+
+      let target: string;
+      if (!subpath) {
+        if (!bareImportsFromSource()) {
+          return null;
+        }
+        target = pkg.bareEntry;
+      } else if (subpath === '/dist' || subpath.startsWith('/dist/')) {
+        target = resolve(pkg.dir, `src${subpath.slice('/dist'.length)}`);
+      } else {
+        return null;
+      }
+
+      const resolveOptions = { ...options, skipSelf: true };
+      let resolved = await this.resolve(target, importer, resolveOptions);
+      // dist keeps a .js extension where the source is .ts/.tsx.
+      if (!resolved && JS_EXTENSION_PATTERN.test(target)) {
+        resolved = await this.resolve(
+          target.replace(JS_EXTENSION_PATTERN, ''),
+          importer,
+          resolveOptions,
+        );
+      }
+
+      if (resolved) {
+        if (debug) {
+          console.info(`[ds-test-source-redirect] ${source} -> ${resolved.id}`);
+        }
+        return resolved;
+      }
+
+      // Subpaths that exist only as build output stay on dist; say so once so the staleness
+      // is visible rather than silent.
+      if (!warned.has(source)) {
+        warned.add(source);
+        console.warn(
+          `[ds-test-source-redirect] no source for "${source}" (looked for ${target}); ` +
+            'using the built dist copy, which may be stale.',
+        );
+      }
+      return null;
+    },
+  };
+}
+
+/**
+ * Stops a test run whose checkout lacks the generated sources, before the resolver turns it
+ * into an opaque "Failed to resolve import" trace. configResolved is the earliest awaited
+ * hook and runs once per process in the main thread; buildStart never fires under Vitest,
+ * which is why the per-package preBuildPlugin does not cover this.
+ */
+function dsEnsureGeneratedSourcesPlugin(): Plugin {
+  return {
+    name: 'ds-ensure-generated-sources',
+    enforce: 'pre',
+    apply: isTestRun,
+    configResolved() {
+      ensureGeneratedSources(__dirname);
     },
   };
 }
@@ -206,7 +298,9 @@ export const createViteConfig = (
 
   return defineConfig({
     plugins: [
-      // Redirect @synerise/ds-*/dist/* → src/* during tests
+      // Fail early when a checkout has no generated sources to resolve against
+      dsEnsureGeneratedSourcesPlugin(),
+      // Resolve @synerise/* (bare and /dist/*) from the sibling's src during tests
       dsTestSourceRedirectPlugin(),
       // Mark bare imports as external before Vite resolves them to absolute paths
       externalizeDepPlugin(),

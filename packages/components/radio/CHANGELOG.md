@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-radio@2.0.0...@synerise/ds-radio@2.0.1) (2026-09-02)
+
+**Note:** Version bump only for package @synerise/ds-radio
+
+# [2.0.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-radio@1.1.20...@synerise/ds-radio@2.0.0) (2026-08-26)
+
+**Note:** Version bump only for package @synerise/ds-radio
+
+## [1.1.20](https://github.com/synerise/synerise-design/compare/@synerise/ds-radio@1.1.19...@synerise/ds-radio@1.1.20) (2026-08-18)
+
+### Bug Fixes
+
+- **radio:** restore antd parity for onChange order, event target and Radio.Group props ([faf5d6a](https://github.com/synerise/synerise-design/commit/faf5d6a969c06cabc80a4e778caeef0da9c5f4a7))
+
 ## [1.1.19](https://github.com/synerise/synerise-design/compare/@synerise/ds-radio@1.1.18...@synerise/ds-radio@1.1.19) (2026-08-11)
 
 **Note:** Version bump only for package @synerise/ds-radio

@@ -15,6 +15,11 @@ const getDataIndex = (
   return String(dataIndex ?? '');
 };
 
+/**
+ * @deprecated `@synerise/ds-table` is deprecated in favour of `@synerise/ds-table-new`.
+ * Use the TableNew mock (`tableNewMockFactory` / `mockTableNew`) instead. This mock is
+ * retained only for backward compatibility and will not receive further updates.
+ */
 export const mockTable = () => {
   jest.mock('@synerise/ds-table', () => ({
     __esModule: true,
@@ -156,6 +161,11 @@ export const mockTable = () => {
   }));
 };
 
+/**
+ * @deprecated `@synerise/ds-table` is deprecated in favour of `@synerise/ds-table-new`.
+ * Use the TableNew mock (`tableNewMockFactory` / `mockTableNew`) instead. This mock is
+ * retained only for backward compatibility and will not receive further updates.
+ */
 export const mockTableMinimal = () => {
   jest.mock('@synerise/ds-table', () => ({
     __esModule: true,

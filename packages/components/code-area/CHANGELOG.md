@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-area@2.0.0...@synerise/ds-code-area@2.0.1) (2026-09-02)
+
+**Note:** Version bump only for package @synerise/ds-code-area
+
+# [2.0.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-area@1.3.36...@synerise/ds-code-area@2.0.0) (2026-08-26)
+
+**Note:** Version bump only for package @synerise/ds-code-area
+
+## [1.3.36](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-area@1.3.35...@synerise/ds-code-area@1.3.36) (2026-08-21)
+
+**Note:** Version bump only for package @synerise/ds-code-area
+
+## [1.3.35](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-area@1.3.34...@synerise/ds-code-area@1.3.35) (2026-08-20)
+
+**Note:** Version bump only for package @synerise/ds-code-area
+
+## [1.3.34](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-area@1.3.33...@synerise/ds-code-area@1.3.34) (2026-08-18)
+
+**Note:** Version bump only for package @synerise/ds-code-area
+
+## [1.3.33](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-area@1.3.32...@synerise/ds-code-area@1.3.33) (2026-08-14)
+
+**Note:** Version bump only for package @synerise/ds-code-area
+
 ## [1.3.32](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-area@1.3.31...@synerise/ds-code-area@1.3.32) (2026-08-13)
 
 **Note:** Version bump only for package @synerise/ds-code-area

@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-search",
-  "version": "1.5.36",
+  "version": "2.0.1",
   "description": "Search UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -45,7 +45,6 @@
     "@synerise/ds-button": "workspace:^",
     "@synerise/ds-icon": "workspace:^",
     "@synerise/ds-list-item": "workspace:^",
-    "@synerise/ds-menu": "workspace:^",
     "@synerise/ds-scrollbar": "workspace:^",
     "@synerise/ds-tooltip": "workspace:^",
     "@synerise/ds-utils": "workspace:^",

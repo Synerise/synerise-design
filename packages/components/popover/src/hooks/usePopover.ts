@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
 import {
   type FloatingElement,
@@ -16,6 +16,7 @@ import {
   useRole,
   useTransitionStyles,
 } from '@floating-ui/react';
+import { registerOverlay } from '@synerise/ds-core';
 
 import { HOVER_CLOSE_DELAY, HOVER_OPEN_DELAY } from '../Popover.const';
 import { type PopoverOptions, type UsePopoverReturn } from '../Popover.types';
@@ -45,6 +46,7 @@ export const usePopover = ({
   closeOnFocusOut,
   listNavigationConfig,
   getTransitionConfig = getDefaultTransitionConfig,
+  overlayKind = 'popover',
   zIndex,
 }: PopoverOptions = {}): UsePopoverReturn => {
   const [uncontrolledOpen, setUncontrolledOpen] = useState(initialOpen);
@@ -107,6 +109,26 @@ export const usePopover = ({
   });
 
   const context = data.context;
+
+  // Join the overlay registry while open so `closeAllOverlays()` can dismiss
+  // this popover through the same funnel Escape uses — `context.onOpenChange`
+  // notifies controlled owners and, with an `escape-key` reason, fires
+  // `onDismiss` too. Keyed on `context.open`, not the returned `open`, which is
+  // `isMounted` and stays true for the length of the exit transition.
+  const closeRef = useRef<() => void>();
+  useEffect(() => {
+    closeRef.current = () =>
+      context.onOpenChange(false, undefined, 'escape-key');
+  });
+  useEffect(() => {
+    if (!context.open) {
+      return undefined;
+    }
+    return registerOverlay({
+      kind: overlayKind,
+      close: () => closeRef.current?.(),
+    });
+  }, [context.open, overlayKind]);
 
   const isClickEnabled = triggerArray.includes('click');
   const isHoverEnabled = triggerArray.includes('hover');

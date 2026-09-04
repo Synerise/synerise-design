@@ -3,6 +3,52 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.58.0](https://github.com/Synerise/synerise-design/compare/storybook@1.57.1...storybook@1.58.0) (2026-09-02)
+
+### Features
+
+- **icon:** load icon sets on demand instead of bundling all of them ([1bab7ed](https://github.com/Synerise/synerise-design/commit/1bab7ed8d0636ddb75041f4d8a840d066eb7fa2d))
+
+## [1.57.1](https://github.com/Synerise/synerise-design/compare/storybook@1.57.0...storybook@1.57.1) (2026-09-01)
+
+### Bug Fixes
+
+- **image:** keep the preview tooltips above a raised overlay ([9440cba](https://github.com/Synerise/synerise-design/commit/9440cba7d71bc9cf2d003aa179d69d67804e4e9b))
+- **table:** deprecate @synerise/ds-table in favour of ds-table-new ([bdbe9e8](https://github.com/Synerise/synerise-design/commit/bdbe9e8e909221926bcf9936a92482ff0a72c975))
+
+### Performance Improvements
+
+- **select:** virtualize the dropdown option list ([f95de4e](https://github.com/Synerise/synerise-design/commit/f95de4e6bbe392def14e010c0556e2c56c90ddc7))
+
+# [1.57.0](https://github.com/Synerise/synerise-design/compare/storybook@1.56.0...storybook@1.57.0) (2026-08-25)
+
+### Features
+
+- **image:** stack the preview through the DS overlay z-index ([573932c](https://github.com/Synerise/synerise-design/commit/573932c6197c4e9613265cb17f117326f5fb6a71))
+
+# [1.56.0](https://github.com/Synerise/synerise-design/compare/storybook@1.55.3...storybook@1.56.0) (2026-08-21)
+
+### Features
+
+- **table-new:** cap select-all at the selection limit, not hide it ([9b4c0a9](https://github.com/Synerise/synerise-design/commit/9b4c0a97bf43dc186e230d7e06116d42e5cabb93))
+
+## [1.55.3](https://github.com/Synerise/synerise-design/compare/storybook@1.55.2...storybook@1.55.3) (2026-08-20)
+
+### Bug Fixes
+
+- stack nested modals above their enclosing overlay ([c7f75c0](https://github.com/Synerise/synerise-design/commit/c7f75c0fb39dc29e23997364640a2733811e4b51))
+
+## [1.55.2](https://github.com/Synerise/synerise-design/compare/storybook@1.55.1...storybook@1.55.2) (2026-08-18)
+
+**Note:** Version bump only for package storybook
+
+## [1.55.1](https://github.com/Synerise/synerise-design/compare/storybook@1.55.0...storybook@1.55.1) (2026-08-14)
+
+### Bug Fixes
+
+- **autocomplete:** show suggestions that arrive after the request empties the list ([dbffe88](https://github.com/Synerise/synerise-design/commit/dbffe886b12ac5c00270302171c0e06320b6d64a))
+- **list-item:** stop clipping long sub-menus at a fixed height ([7e4510e](https://github.com/Synerise/synerise-design/commit/7e4510e8915536ae38b4dc199fbd81c24cf15330))
+
 # [1.55.0](https://github.com/Synerise/synerise-design/compare/storybook@1.54.0...storybook@1.55.0) (2026-08-13)
 
 ### Bug Fixes

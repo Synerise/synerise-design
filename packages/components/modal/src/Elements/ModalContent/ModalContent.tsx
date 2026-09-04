@@ -3,13 +3,20 @@ import React, {
   type MouseEvent,
   forwardRef,
   useCallback,
+  useEffect,
   useId,
   useImperativeHandle,
   useMemo,
   useRef,
 } from 'react';
 
-import { useFocusTrap } from '@synerise/ds-utils';
+import {
+  OverlayZIndexProvider,
+  createOverlayCloseEvent,
+  registerOverlay,
+  useResolvedOverlayZIndex,
+} from '@synerise/ds-core';
+import { useFocusTrap, useLatestRef } from '@synerise/ds-utils';
 
 import { SIZE_MAP } from '../../Modal.const';
 import { type ModalContentProps, type ModalRef } from '../../Modal.types';
@@ -58,11 +65,15 @@ export const ModalContent = forwardRef<ModalRef, ModalContentProps>(
       ariaLabel,
       closeButtonAriaLabel,
       initialFocusRef,
+      zIndex,
       ...rest
     },
     modalRef,
   ) => {
     const scrollRef = useRef<HTMLDivElement>(null);
+    // One step above the enclosing overlay when the consumer gave no explicit
+    // `zIndex`, so a modal opened from inside another modal stacks above it.
+    const resolvedZIndex = useResolvedOverlayZIndex(zIndex);
     const titleId = useId();
     const descriptionId = useId();
     const DEFAULT_VIEWPORT_HEIGHT = 80;
@@ -132,6 +143,26 @@ export const ModalContent = forwardRef<ModalRef, ModalContentProps>(
 
     const containerRef = useRef<HTMLDivElement>(null);
     const dialogRef = useRef<HTMLDivElement>(null);
+
+    // Join the overlay registry while visible, so `closeAllOverlays()` runs the
+    // same path as the close button: `onCancel` (awaited when async), then
+    // `closeModal`. Focus restore comes from the focus trap's cleanup below.
+    const handleCancelRef = useLatestRef(handleCancel);
+    useEffect(() => {
+      if (hidden) {
+        return undefined;
+      }
+      return registerOverlay({
+        kind: 'modal',
+        close: () =>
+          handleCancelRef.current(
+            createOverlayCloseEvent<MouseEvent<HTMLElement>>(
+              containerRef.current,
+            ),
+          ),
+      });
+    }, [hidden, handleCancelRef]);
+
     // By default focus the dialog container itself (announced by screen readers
     // via its accessible name) instead of the first focusable field. Consumers
     // can opt into focusing a specific control via `initialFocusRef`.
@@ -140,86 +171,89 @@ export const ModalContent = forwardRef<ModalRef, ModalContentProps>(
     });
 
     return (
-      <S.ModalRoot
-        data-testid="ds-modal"
-        {...rest}
-        $hidden={hidden}
-        data-visible={!hidden}
-        onKeyDown={handleKeyDown}
-        tabIndex={-1}
-        ref={containerRef}
-      >
-        <S.ModalMask />
-        <S.ModalScrollWrap ref={scrollRef} onClick={handleMaskClick}>
-          <S.ModalContainer
-            ref={dialogRef}
-            tabIndex={-1}
-            onClick={cancelClick}
-            role="dialog"
-            aria-modal
-            aria-labelledby={title ? titleId : undefined}
-            aria-label={!title ? ariaLabel : undefined}
-            aria-describedby={description ? descriptionId : undefined}
-            isFullscreen={isFullscreen}
-            $width={size && SIZE_MAP[size]}
-            maxHeight={maxHeight}
-            centered={centered}
-          >
-            <ModalTitle
-              headerActions={headerActions}
-              blank={blank}
-              titleContainerStyle={titleContainerStyle}
-              onCancel={closable && onCancel ? handleCancel : undefined}
-              title={title}
-              titleId={titleId}
-              description={description}
-              descriptionId={descriptionId}
-              headerTabProps={headerTabProps}
-              headerBottomBar={headerBottomBar}
-              closeButtonAriaLabel={closeButtonAriaLabel}
-            />
-            <S.ModalBody
-              ref={useScrollbar ? undefined : bodyScrollRef}
-              greyBackground={bodyBackground === 'grey'}
-              bodyFullWidth={bodyFullWidth}
-              style={bodyStyle}
+      <OverlayZIndexProvider value={resolvedZIndex}>
+        <S.ModalRoot
+          data-testid="ds-modal"
+          {...rest}
+          zIndex={resolvedZIndex}
+          $hidden={hidden}
+          data-visible={!hidden}
+          onKeyDown={handleKeyDown}
+          tabIndex={-1}
+          ref={containerRef}
+        >
+          <S.ModalMask />
+          <S.ModalScrollWrap ref={scrollRef} onClick={handleMaskClick}>
+            <S.ModalContainer
+              ref={dialogRef}
+              tabIndex={-1}
+              onClick={cancelClick}
+              role="dialog"
+              aria-modal
+              aria-labelledby={title ? titleId : undefined}
+              aria-label={!title ? ariaLabel : undefined}
+              aria-describedby={description ? descriptionId : undefined}
+              isFullscreen={isFullscreen}
+              $width={size && SIZE_MAP[size]}
+              maxHeight={maxHeight}
+              centered={centered}
             >
-              {useScrollbar ? (
-                <S.ModalWrapper>
-                  <S.Scrollbar
-                    scrollbarOptions={{ suppressScrollX: true }}
-                    absolute
-                    classes="ds-modal-body-scrollbar"
-                    ref={bodyScrollRef}
-                  >
-                    {children}
-                  </S.Scrollbar>
-                </S.ModalWrapper>
-              ) : (
-                children
-              )}
-            </S.ModalBody>
+              <ModalTitle
+                headerActions={headerActions}
+                blank={blank}
+                titleContainerStyle={titleContainerStyle}
+                onCancel={closable && onCancel ? handleCancel : undefined}
+                title={title}
+                titleId={titleId}
+                description={description}
+                descriptionId={descriptionId}
+                headerTabProps={headerTabProps}
+                headerBottomBar={headerBottomBar}
+                closeButtonAriaLabel={closeButtonAriaLabel}
+              />
+              <S.ModalBody
+                ref={useScrollbar ? undefined : bodyScrollRef}
+                greyBackground={bodyBackground === 'grey'}
+                bodyFullWidth={bodyFullWidth}
+                style={bodyStyle}
+              >
+                {useScrollbar ? (
+                  <S.ModalWrapper>
+                    <S.Scrollbar
+                      scrollbarOptions={{ suppressScrollX: true }}
+                      absolute
+                      classes="ds-modal-body-scrollbar"
+                      ref={bodyScrollRef}
+                    >
+                      {children}
+                    </S.Scrollbar>
+                  </S.ModalWrapper>
+                ) : (
+                  children
+                )}
+              </S.ModalBody>
 
-            <ModalFooter
-              CustomFooterButton={CustomFooterButton}
-              prefix={prefix}
-              infix={infix}
-              suffix={suffix}
-              onOk={onOk ? handleOk : undefined}
-              onCancel={onCancel ? handleCancel : undefined}
-              texts={texts}
-              okButton={okButton}
-              okButtonProps={okButtonProps}
-              cancelButton={cancelButton}
-              cancelButtonProps={cancelButtonProps}
-              cancelText={cancelText}
-              okText={okText}
-              okType={okType}
-              footer={footer}
-            />
-          </S.ModalContainer>
-        </S.ModalScrollWrap>
-      </S.ModalRoot>
+              <ModalFooter
+                CustomFooterButton={CustomFooterButton}
+                prefix={prefix}
+                infix={infix}
+                suffix={suffix}
+                onOk={onOk ? handleOk : undefined}
+                onCancel={onCancel ? handleCancel : undefined}
+                texts={texts}
+                okButton={okButton}
+                okButtonProps={okButtonProps}
+                cancelButton={cancelButton}
+                cancelButtonProps={cancelButtonProps}
+                cancelText={cancelText}
+                okText={okText}
+                okType={okType}
+                footer={footer}
+              />
+            </S.ModalContainer>
+          </S.ModalScrollWrap>
+        </S.ModalRoot>
+      </OverlayZIndexProvider>
     );
   },
 );

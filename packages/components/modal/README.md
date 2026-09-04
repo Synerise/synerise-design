@@ -205,3 +205,14 @@ The following prop is **deprecated** and will be removed in a future major versi
 | Prop | Replacement |
 | ---- | ----------- |
 | `description` | `headerBottomBar` |
+
+## Closing programmatically
+
+`closeAllOverlays()` from `@synerise/ds-core` force-closes every open DS overlay in one call — useful when an app-level event (e.g. the active workspace changed in another tab) invalidates whatever the user is doing. This component closes through its own close path, so its handlers fire and focus is restored.
+
+```ts
+import { closeAllOverlays } from '@synerise/ds-core';
+
+await closeAllOverlays();
+await closeAllOverlays({ kinds: ['modal', 'drawer'] }); // leave tooltips alone
+```

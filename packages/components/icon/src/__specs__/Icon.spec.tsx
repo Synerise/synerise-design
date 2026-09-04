@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { renderWithProvider } from '@synerise/ds-core';
-import { screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 
 import Icon from '../index';
 
@@ -13,17 +13,19 @@ describe('Icon', () => {
     expect(screen.getByTitle(TEST_TEXT)).toBeTruthy();
   });
 
-  it('Should render with className', () => {
-    const { container } = renderWithProvider(
-      <Icon iconName="VarTypeStringM" />,
-    );
+  it('Should render with className', async () => {
+    const { container } = renderWithProvider(<Icon iconName="VarTypeStringM" />);
 
-    expect(container.querySelector('.var-type-string-m')).toBeTruthy();
+    await waitFor(() =>
+      expect(container.querySelector('.var-type-string-m')).toBeTruthy(),
+    );
   });
 
-  it('Should render with testid', () => {
+  it('Should render with testid', async () => {
     renderWithProvider(<Icon iconName="VarTypeStringM" />);
 
-    expect(screen.getByTestId('ds-icon-var-type-string-m')).toBeTruthy();
+    expect(
+      await screen.findByTestId('ds-icon-var-type-string-m'),
+    ).toBeTruthy();
   });
 });

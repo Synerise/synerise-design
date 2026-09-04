@@ -8,7 +8,13 @@ import React, {
 } from 'react';
 import { createPortal } from 'react-dom';
 
-import { useFocusTrap } from '@synerise/ds-utils';
+import {
+  OverlayZIndexProvider,
+  createOverlayCloseEvent,
+  registerOverlay,
+  useResolvedOverlayZIndex,
+} from '@synerise/ds-core';
+import { useFocusTrap, useLatestRef } from '@synerise/ds-utils';
 
 import {
   DrawerBody,
@@ -22,7 +28,7 @@ import {
   DrawerMask,
   DrawerRoot,
 } from './Drawer.styles';
-import { type DrawerProps } from './Drawer.types';
+import { type DrawerCloseTrigger, type DrawerProps } from './Drawer.types';
 
 const DEFAULT_WIDTH = 256;
 
@@ -101,6 +107,28 @@ const Drawer = ({
   // (mask={false}) are non-modal panels and must not trap focus.
   useFocusTrap(containerRef, isOpen && mask, { initialFocus: panelRef });
 
+  // One step above the enclosing overlay when the consumer gave no explicit
+  // `zIndex`, so a drawer opened from inside a modal stacks above it (and a
+  // modal opened from inside this drawer stacks above the drawer).
+  const resolvedZIndex = useResolvedOverlayZIndex(zIndex);
+
+  // Join the overlay registry while open, so `closeAllOverlays()` calls the same
+  // `onClose` that Escape does. Drawer is fully controlled: it closes when its
+  // owner reacts to `onClose` by flipping `open`.
+  const onCloseRef = useLatestRef(onClose);
+  useEffect(() => {
+    if (!isOpen) {
+      return undefined;
+    }
+    return registerOverlay({
+      kind: 'drawer',
+      close: () =>
+        onCloseRef.current?.(
+          createOverlayCloseEvent<DrawerCloseTrigger>(containerRef.current),
+        ),
+    });
+  }, [isOpen, onCloseRef]);
+
   const handleTransitionEnd = (
     event: TransitionEvent<HTMLDivElement>,
   ): void => {
@@ -144,43 +172,45 @@ const Drawer = ({
   const dialogLabel = ariaLabelledby ? undefined : (ariaLabel ?? title);
 
   const content = (
-    <DrawerRoot
-      {...rest}
-      ref={containerRef}
-      className={buildRootClassName(placement, entered, className)}
-      style={style}
-      $inline={inline}
-      $zIndex={zIndex}
-      data-visible={entered}
-      tabIndex={-1}
-      onKeyDown={handleKeyDown}
-    >
-      {mask && (
-        <DrawerMask
-          className="ant-drawer-mask ds-drawer-mask"
-          $open={entered}
-          onClick={handleMaskClick}
-        />
-      )}
-      <DrawerContentWrapper
-        ref={panelRef}
-        className="ant-drawer-content-wrapper ds-drawer-content-wrapper"
-        $placement={placement}
-        $open={entered}
-        $width={width}
-        $height={height}
-        role="dialog"
-        aria-modal={mask ? true : undefined}
-        aria-label={dialogLabel}
-        aria-labelledby={ariaLabelledby}
+    <OverlayZIndexProvider value={resolvedZIndex}>
+      <DrawerRoot
+        {...rest}
+        ref={containerRef}
+        className={buildRootClassName(placement, entered, className)}
+        style={style}
+        $inline={inline}
+        $zIndex={resolvedZIndex}
+        data-visible={entered}
         tabIndex={-1}
-        onTransitionEnd={handleTransitionEnd}
+        onKeyDown={handleKeyDown}
       >
-        <DrawerBodyBox className="ant-drawer-body ds-drawer-body">
-          {children}
-        </DrawerBodyBox>
-      </DrawerContentWrapper>
-    </DrawerRoot>
+        {mask && (
+          <DrawerMask
+            className="ant-drawer-mask ds-drawer-mask"
+            $open={entered}
+            onClick={handleMaskClick}
+          />
+        )}
+        <DrawerContentWrapper
+          ref={panelRef}
+          className="ant-drawer-content-wrapper ds-drawer-content-wrapper"
+          $placement={placement}
+          $open={entered}
+          $width={width}
+          $height={height}
+          role="dialog"
+          aria-modal={mask ? true : undefined}
+          aria-label={dialogLabel}
+          aria-labelledby={ariaLabelledby}
+          tabIndex={-1}
+          onTransitionEnd={handleTransitionEnd}
+        >
+          <DrawerBodyBox className="ant-drawer-body ds-drawer-body">
+            {children}
+          </DrawerBodyBox>
+        </DrawerContentWrapper>
+      </DrawerRoot>
+    </OverlayZIndexProvider>
   );
 
   if (inline) {

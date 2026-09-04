@@ -1,16 +1,31 @@
 import React from 'react';
 
-import Avatar, { type AvatarProps } from '@synerise/ds-avatar';
+import Avatar from '@synerise/ds-avatar';
 import Badge from '@synerise/ds-badge';
 import Button from '@synerise/ds-button';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { OptionHorizontalM } from '@synerise/ds-icon';
 import ModalProxy from '@synerise/ds-modal';
-import { TableCell, VirtualTable } from '@synerise/ds-table';
+import {
+  ActionCell,
+  AvatarLabelCell,
+  type ColumnDef,
+  VirtualTable,
+} from '@synerise/ds-table-new';
 
 import { type DataSource } from '../AvatarGroup.types';
 import * as S from './GroupModal.styles';
 import { type GroupModalProps } from './GroupModal.types';
+
+const TABLE_MAX_HEIGHT = 430;
+const CELL_HEIGHT = 64;
+/**
+ * 32px single-icon button plus the cell's 24px horizontal padding on each side.
+ * Rows are `table-layout: fixed` with `overflow: hidden` on the cell, so the
+ * legacy declared width of 72 (which grew to fit under antd's auto layout)
+ * would clip the button.
+ */
+const ACTIONS_COLUMN_WIDTH = 80;
 
 const GroupModal = ({
   renderRowMenu,
@@ -26,42 +41,39 @@ const GroupModal = ({
   cancelText,
   inviteText,
 }: GroupModalProps) => {
-  const getColums = React.useMemo(() => {
-    return [
+  const columns = React.useMemo<ColumnDef<DataSource, unknown>[]>(
+    () => [
       {
-        key: 'avatarProps',
-        dataIndex: 'avatarProps',
-        render: (avatar: AvatarProps, record: DataSource): React.ReactNode => {
-          return (
-            <TableCell.AvatarLabelCell
-              avatar={
-                <Badge key={record.id} status={record.status}>
-                  <Avatar
-                    {...avatar}
-                    hasStatus={showStatus}
-                    size="medium"
-                    shape="circle"
-                  >
-                    {record.initials}
-                  </Avatar>
-                </Badge>
-              }
-              textSize="small"
-              title={`${record.firstname} ${record.lastname}`}
-              labels={[record.email]}
-            />
-          );
-        },
+        id: 'avatarProps',
+        header: '',
+        cell: ({ row }): React.ReactNode => (
+          <AvatarLabelCell
+            avatar={
+              <Badge status={row.original.status}>
+                <Avatar
+                  {...row.original.avatarProps}
+                  hasStatus={showStatus}
+                  size="medium"
+                  shape="circle"
+                >
+                  {row.original.initials}
+                </Avatar>
+              </Badge>
+            }
+            title={`${row.original.firstname} ${row.original.lastname}`}
+            labels={[row.original.email]}
+          />
+        ),
       },
       {
-        key: 'actions',
-        dataIndex: 'id',
-        width: 72,
-        render: (id: React.ReactText, record: DataSource): React.ReactNode => (
-          <TableCell.ActionCell contentAlign="right">
+        id: 'actions',
+        header: '',
+        size: ACTIONS_COLUMN_WIDTH,
+        cell: ({ row }): React.ReactNode => (
+          <ActionCell contentAlign="right">
             <Dropdown
               asChild
-              overlay={renderRowMenu(record)}
+              overlay={renderRowMenu(row.original)}
               trigger={['click']}
               placement="bottomRight"
               popoverProps={{
@@ -72,11 +84,13 @@ const GroupModal = ({
                 <Icon component={<OptionHorizontalM />} />
               </Button>
             </Dropdown>
-          </TableCell.ActionCell>
+          </ActionCell>
         ),
       },
-    ];
-  }, [renderRowMenu, showStatus]);
+    ],
+    [renderRowMenu, showStatus],
+  );
+
   return (
     <ModalProxy
       bodyFullWidth
@@ -105,14 +119,13 @@ const GroupModal = ({
         </S.ModalFooter>
       }
     >
-      <VirtualTable
+      <VirtualTable<DataSource, unknown>
         hideColumnNames
         title={listTitle}
-        columns={getColums}
-        scroll={{ y: 430 }}
-        cellHeight={64}
-        initialWidth={520}
-        dataSource={dataSource}
+        columns={columns}
+        maxHeight={TABLE_MAX_HEIGHT}
+        cellHeight={CELL_HEIGHT}
+        data={dataSource}
         rowKey="id"
       />
     </ModalProxy>

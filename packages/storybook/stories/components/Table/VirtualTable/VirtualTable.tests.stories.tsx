@@ -4,6 +4,7 @@ import { Meta, StoryObj } from '@storybook/react-vite';
 import { VirtualTableProps } from '@synerise/ds-table';
 
 import { centeredPaddedWrapper, sleep } from '../../../utils';
+import { DEPRECATED_TABLE_NOTICE } from '../Table.utils';
 import { DATA_SOURCE } from './VirtualTable.data';
 import StoriesMeta from './VirtualTable.stories';
 
@@ -14,11 +15,16 @@ type Story = StoryObj<VirtualTableType>;
 export default {
   ...StoriesMeta,
   parameters: {
+    docs: {
+      description: {
+        component: DEPRECATED_TABLE_NOTICE,
+      },
+    },
     layout: 'fullscreen',
   },
   decorators: [centeredPaddedWrapper],
   title: 'Components/Table/VirtualTable/Tests',
-  tags: ['visualtests'],
+  tags: ['visualtests', 'deprecated'],
 } as Meta<VirtualTableType>;
 
 export const ShowSortOptions: Story = {

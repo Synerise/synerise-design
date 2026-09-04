@@ -1,10 +1,9 @@
 import { type ReactNode } from 'react';
 
-import { type AntdMenuProps, type MenuItemProps } from '@synerise/ds-menu';
+import { type ListItemProps } from '@synerise/ds-list-item';
 
 export type InformationCardActionsProps = {
-  items: MenuItemProps[];
-  menuProps?: Partial<AntdMenuProps>;
+  items: ListItemProps[];
   buttonLabel?: ReactNode;
   navigationLabel?: ReactNode;
   onHeaderClick: () => void;

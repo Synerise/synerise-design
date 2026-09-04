@@ -4,6 +4,8 @@ import { fn } from 'storybook/test';
 import { Meta, StoryObj } from '@storybook/react-vite';
 import { ObjectAvatar } from '@synerise/ds-avatar';
 import Button from '@synerise/ds-button';
+import { closeAllOverlays } from '@synerise/ds-core';
+import Dropdown from '@synerise/ds-dropdown';
 import Icon, { MailM, UserM } from '@synerise/ds-icon';
 import Layout, { LayoutProps } from '@synerise/ds-layout';
 import Modal, { showModal } from '@synerise/ds-modal';
@@ -443,6 +445,140 @@ export const ShowModalPromise: Story = {
     docs: {
       source: {
         code: "// onOk / onCancel can return a Promise — the modal stays open until it resolves\nconst ref = showModal({\n  title: 'title',\n  size: 'small',\n  onOk: async () => { await doWork(); },\n  onCancel: async () => { await doCleanup(); },\n});",
+      },
+    },
+  },
+};
+
+export const CloseAllOverlays: Story = {
+  render: () => {
+    const [open, setOpen] = useState(false);
+    const [log, setLog] = useState<string[]>([]);
+    const append = (entry: string) => setLog((entries) => [...entries, entry]);
+
+    return (
+      <>
+        <Button
+          type="primary"
+          onClick={() => {
+            setLog([]);
+            setOpen(true);
+          }}
+        >
+          Open modal
+        </Button>
+
+        <Modal
+          open={open}
+          title="Edit record"
+          footer={null}
+          onCancel={() => {
+            append('modal onCancel');
+            setOpen(false);
+          }}
+        >
+          <p>Open the dropdown, then trigger the app-level event.</p>
+          <Dropdown
+            overlay={
+              <Dropdown.Wrapper style={{ padding: 8 }}>
+                Dropdown content
+              </Dropdown.Wrapper>
+            }
+            onOpenChange={(isOpen) => {
+              if (!isOpen) {
+                append('dropdown onOpenChange(false)');
+              }
+            }}
+          >
+            <Button>Open dropdown</Button>
+          </Dropdown>
+          <p style={{ marginTop: 24 }}>
+            <Button type="primary" onClick={() => closeAllOverlays()}>
+              Simulate workspace change in another tab
+            </Button>
+          </p>
+        </Modal>
+
+        {log.length > 0 && (
+          <pre data-testid="close-all-overlays-log">{log.join('\n')}</pre>
+        )}
+      </>
+    );
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: "// One call closes the modal and the dropdown inside it, newest first.\n// Each overlay runs its own close path, so onCancel / onOpenChange fire\n// and focus is restored.\nimport { closeAllOverlays } from '@synerise/ds-core';\n\nawait closeAllOverlays();",
+      },
+    },
+  },
+};
+
+export const NestedModals: Story = {
+  render: () => {
+    const [hostOpen, setHostOpen] = useState(true);
+    const [childOpen, setChildOpen] = useState(true);
+    const [grandchildOpen, setGrandchildOpen] = useState(true);
+
+    return (
+      <>
+        <Button type="primary" onClick={() => setHostOpen(true)}>
+          Open host modal
+        </Button>
+
+        {/* The host hardcodes a raised z-index, the way the analytics
+            "Profile filter" modal does. Its descendants must still land above
+            it — they derive from it instead of from the flat theme token. */}
+        <Modal
+          open={hostOpen}
+          zIndex={991002}
+          title="Host modal (zIndex 991002)"
+          footer={null}
+          onCancel={() => setHostOpen(false)}
+        >
+          <p>Opened from a page. Raised itself explicitly.</p>
+          <Button onClick={() => setChildOpen(true)}>Open child modal</Button>
+
+          <Modal
+            open={childOpen}
+            title="Child modal (derived 991004)"
+            footer={null}
+            onCancel={() => setChildOpen(false)}
+          >
+            <p>Rendered inside the host, so it stacks one step above it.</p>
+            <Button onClick={() => setGrandchildOpen(true)}>
+              Open grandchild modal
+            </Button>
+
+            <Modal
+              open={grandchildOpen}
+              title="Grandchild modal (derived 991006)"
+              footer={null}
+              onCancel={() => setGrandchildOpen(false)}
+            >
+              <p>
+                Three deep. Its own dropdown still opens above it — derived
+                z-indexes stay below the popover tokens.
+              </p>
+              <Dropdown
+                overlay={
+                  <Dropdown.Wrapper style={{ padding: 8 }}>
+                    Dropdown inside the deepest modal
+                  </Dropdown.Wrapper>
+                }
+              >
+                <Button>Open dropdown</Button>
+              </Dropdown>
+            </Modal>
+          </Modal>
+        </Modal>
+      </>
+    );
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: '// A modal rendered inside another modal\'s subtree stacks above it\n// automatically — no zIndex prop needed on either side. Pass zIndex only\n// to opt a modal out of the stack.\n<Modal open zIndex={991002} title="Host">\n  <Modal open title="Child">\n    <Modal open title="Grandchild" />\n  </Modal>\n</Modal>',
       },
     },
   },

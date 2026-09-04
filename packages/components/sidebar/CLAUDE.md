@@ -69,7 +69,7 @@ A non-collapsible sidebar header variant with a title label and a ghost button t
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `dataSource` | `MenuItemProps[]` | — | **Required.** Menu items in the dropdown |
+| `dataSource` | `ListItemProps[]` | — | **Required.** List items in the dropdown |
 | `buttonLabel` | `string` | — | Button text |
 | `title` | `string` | — | Title text on the left |
 
@@ -108,7 +108,7 @@ import Sidebar from '@synerise/ds-sidebar';
 - DS-native `Collapse` / `CollapsePanel` (`src/Collapse/`) — the accordion engine (no antd)
 - `@synerise/ds-sortable` — `SortableContainer`, `DragOverlay`, `useSortable`, `CSS`
 - `@synerise/ds-icon` — expand icons (`AngleDownS`, `AngleUpS`) and drag handle (`DragHandleM`)
-- `@synerise/ds-dropdown`, `@synerise/ds-menu`, `@synerise/ds-button` — used by `SidebarWithButton`
+- `@synerise/ds-dropdown`, `@synerise/ds-list-item`, `@synerise/ds-button` — used by `SidebarWithButton`
 
 ## Implementation notes
 

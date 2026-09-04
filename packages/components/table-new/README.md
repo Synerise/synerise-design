@@ -83,8 +83,8 @@ import { VirtualTable } from '@synerise/ds-table-new';
 | `onSort` | Sort change handler | `OnSortFn` | - |
 | `isLoading` | Show loading skeleton | `boolean` | - |
 | `cellHeight` | Estimated row height in px | `number` | - |
+| `maxHeight` | Max height (px) of the built-in scroll container. Ignored when `scrollElementRef` is set. Replaces the legacy `scroll={{ y }}`. | `number` | `800` |
 | `className` | CSS class for styled-components composition | `string` | - |
-| `showHeader` | Show or hide the table header bar | `boolean` | - |
 | `itemsMenu` | Rendered next to title when rows are selected (batch actions) | `ReactNode` | - |
 | `matchesSearchQuery` | Pure predicate for built-in search — table manages query state and renders SearchInput | `(query: string, row: TData) => boolean` | - |
 | `searchProps` | Override SearchInput defaults when using built-in search (placeholder, clearTooltip, etc.) | `Partial<SearchInputProps>` | - |
@@ -117,10 +117,8 @@ import { VirtualTable } from '@synerise/ds-table-new';
 
 | Property | Description | Type | Default |
 | --- | --- | --- | --- |
-| `scroll` | Scroll container dimensions `{ x?, y }` | `{ x?: number; y: number }` | - |
 | `infiniteScroll` | Infinite scroll configuration | `InfiniteScrollProps` | - |
 | `stickyHeader` | Stick header to top on scroll | `boolean` | - |
-| `sticky` | Advanced sticky configuration with scroll container | `{ scrollThreshold?; offsetHeader?; getContainer }` | - |
 | `tableRef` | Ref exposing `scrollToTop`, `scrollTo`, `scrollToIndex`, `getDimensions` | `RefObject<VirtualTableRef>` | - |
 | `scrollElementRef` | External scroll container ref | `MutableRefObject<HTMLDivElement \| null>` | - |
 | `onItemsRendered` | Callback with `{ visibleStartIndex }` as rows are virtualized | `(props: OnItemsRenderedProps) => void` | - |

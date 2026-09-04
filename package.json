@@ -27,6 +27,7 @@
     "tgz-package-json": "node ./scripts/tgz/index.cjs",
     "types": "lerna run types --stream  --concurrency 5",
     "check:circular-dependencies": "lerna run check:circular-dependencies",
+    "check:no-package-test-config": "node scripts/check-no-package-test-config.mjs",
     "figma:connect": "figma connect",
     "figma:publish": "figma connect publish --batch-size 200",
     "postinstall": "pnpm run generate",

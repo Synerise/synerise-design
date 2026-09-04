@@ -3,14 +3,12 @@ import type { IntlShape } from 'react-intl';
 
 import type { DropdownProps } from '@synerise/ds-dropdown';
 import type { ListItemProps } from '@synerise/ds-list-item';
-import type { MenuItemProps } from '@synerise/ds-menu';
 
-export type ItemRollElement<
-  BaseType extends ListItemProps | MenuItemProps = ListItemProps,
-> = BaseType & {
-  id: string;
-  group?: string;
-};
+export type ItemRollElement<BaseType extends ListItemProps = ListItemProps> =
+  BaseType & {
+    id: string;
+    group?: string;
+  };
 
 export type Texts =
   | 'changeSelectionLabel'
@@ -29,7 +27,7 @@ export type Texts =
 export type ItemsRollGroup = string;
 
 export type ItemsRollProps<
-  ActionItemType extends ListItemProps | MenuItemProps = ListItemProps,
+  ActionItemType extends ListItemProps = ListItemProps,
 > = {
   // @deprecated
   intl?: IntlShape;

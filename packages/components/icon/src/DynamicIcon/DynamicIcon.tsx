@@ -2,7 +2,7 @@ import React, { type ReactNode } from 'react';
 
 import Icon from '../Icon';
 import type { IconProps } from '../Icon.types';
-import { type IconName, useIconComponent } from '../useIconComponent';
+import { type IconName, useIconComponentState } from '../useIconComponent';
 
 export type DynamicIconProps = Omit<IconProps, 'component' | 'iconName'> & {
   name: IconName;
@@ -24,9 +24,12 @@ export const DynamicIcon = ({
   fallback = null,
   ...props
 }: DynamicIconProps) => {
-  const IconComponent = useIconComponent(name);
+  const { status } = useIconComponentState(name);
 
-  if (!IconComponent) {
+  // `fallback` means "this icon does not exist", as it always has. While the set is still loading we
+  // render the sized, empty Icon box instead — same as `<Icon iconName>` — so a valid name never
+  // flashes the fallback.
+  if (status === 'missing') {
     return fallback;
   }
 

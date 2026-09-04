@@ -1,6 +1,6 @@
 {
   "name": "storybook",
-  "version": "1.55.0",
+  "version": "1.58.0",
   "private": true,
   "repository": {
     "type": "git",
@@ -24,7 +24,6 @@
     "@fortawesome/free-solid-svg-icons": "^6.0.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@synerise/ds-action-area": "workspace:^",
-    "@synerise/ds-alert": "workspace:^",
     "@synerise/ds-app-menu": "workspace:^",
     "@synerise/ds-autocomplete": "workspace:^",
     "@synerise/ds-avatar": "workspace:^",
@@ -94,7 +93,6 @@
     "@synerise/ds-logic": "workspace:^",
     "@synerise/ds-manageable-list": "workspace:^",
     "@synerise/ds-mapping": "workspace:^",
-    "@synerise/ds-menu": "workspace:^",
     "@synerise/ds-metric-card": "workspace:^",
     "@synerise/ds-modal": "workspace:^",
     "@synerise/ds-navbar": "workspace:^",

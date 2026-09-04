@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-modal",
-  "version": "1.6.8",
+  "version": "2.0.1",
   "description": "Modal UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "synerise/synerise-design",
@@ -47,6 +47,8 @@
     "@synerise/ds-utils": "workspace:^"
   },
   "devDependencies": {
+    "@synerise/ds-dropdown": "workspace:^",
+    "@synerise/ds-popconfirm": "workspace:^",
     "vitest": "4"
   },
   "peerDependencies": {

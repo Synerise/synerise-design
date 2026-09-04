@@ -24,12 +24,6 @@
     "importHelpers": true,
     "esModuleInterop": false,
     "skipLibCheck": true,
-    "resolveJsonModule": true,
-    "baseUrl": ".",
-    "paths": {
-      "@synerise/ds-*": [
-        "packages/*/src"
-      ]
-    }
+    "resolveJsonModule": true
   }
 }

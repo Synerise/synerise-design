@@ -5,8 +5,10 @@ import React, {
   type ReactElement,
   type ReactNode,
   forwardRef,
+  useCallback,
   useEffect,
   useId,
+  useMemo,
   useRef,
   useState,
 } from 'react';
@@ -87,6 +89,7 @@ const SelectInner = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
     dropdownMatchSelectWidth = true,
     dropdownRender,
     listHeight = DEFAULT_LIST_HEIGHT,
+    listItemHeight,
     notFoundContent = 'No data',
     clearIcon,
     clearTooltip,
@@ -123,7 +126,9 @@ const SelectInner = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
 
   const [internalValue, setInternalValue] = useState<SelectValue>(defaultValue);
   const currentValue = value !== undefined ? value : internalValue;
-  const selectedValues = toArray(currentValue);
+  // Stable across renders that don't change the value, so the option memos below
+  // (and the windowed rows) aren't invalidated by a fresh array every render.
+  const selectedValues = useMemo(() => toArray(currentValue), [currentValue]);
 
   const [internalOpen, setInternalOpen] = useState<boolean>(!!defaultOpen);
   const isControlledOpen = openProp !== undefined;
@@ -140,7 +145,10 @@ const SelectInner = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
   const [activeIndex, setActiveIndex] = useState(-1);
   const baseId = useId();
   const listboxId = `${baseId}-listbox`;
-  const optionDomId = (index: number): string => `${baseId}-option-${index}`;
+  const optionDomId = useCallback(
+    (index: number): string => `${baseId}-option-${index}`,
+    [baseId],
+  );
 
   const { resolvedOptions, displayedOptions } = useSelectOptions({
     options,
@@ -212,16 +220,8 @@ const SelectInner = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [effectiveQuery]);
 
-  // Keep the active option scrolled into view during keyboard navigation.
-  useEffect(() => {
-    if (!isOpen || activeIndex < 0) {
-      return;
-    }
-    const activeEl = document.getElementById(optionDomId(activeIndex));
-    // `scrollIntoView` is absent in jsdom; optional-call keeps tests happy.
-    activeEl?.scrollIntoView?.({ block: 'nearest' });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeIndex, isOpen]);
+  // Keeping the active option in view is `OptionList`'s job now: the list is
+  // windowed, so the highlighted row may not be mounted to scroll into view.
 
   // Select-only mode has no search input, so honour `autoFocus` on the selector
   // itself — this also gives the selector focus so `onBlur` can fire on blur.
@@ -470,10 +470,12 @@ const SelectInner = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
       options={displayedOptions}
       notFoundContent={notFoundContent}
       listHeight={listHeight}
+      listItemHeight={listItemHeight}
       isMultiple={isMultiple}
       listboxId={listboxId}
       selectedValues={selectedValues}
       activeIndex={activeIndex}
+      searchQuery={effectiveQuery}
       rowKey={rowKey}
       optionDomId={optionDomId}
       onOptionActivate={setActiveIndex}

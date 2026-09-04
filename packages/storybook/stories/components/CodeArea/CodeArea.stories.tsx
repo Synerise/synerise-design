@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { fn } from 'storybook/test';
 
 import { Meta, StoryObj } from '@storybook/react-vite';
-import Alert from '@synerise/ds-alert';
 import Button from '@synerise/ds-button';
 import CodeArea, {
   CodeAreaProps,
   CodeAreaSyntax,
 } from '@synerise/ds-code-area';
 import Icon, { Add3M } from '@synerise/ds-icon';
+import InlineAlert from '@synerise/ds-inline-alert';
 import Modal from '@synerise/ds-modal';
 import Switch from '@synerise/ds-switch';
 
@@ -164,9 +164,9 @@ export const WithSyntaxValidation: Story = {
   args: {
     renderAdditionalDescription: ({ isValid }) =>
       isValid ? (
-        <Alert.InlineAlert type="success" message="Valid Syntax" />
+        <InlineAlert type="success" message="Valid Syntax" />
       ) : (
-        <Alert.InlineAlert type="alert" message="Invalid Syntax" />
+        <InlineAlert type="alert" message="Invalid Syntax" />
       ),
   },
 };

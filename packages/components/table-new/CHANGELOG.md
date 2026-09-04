@@ -3,6 +3,40 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-table-new@2.0.1...@synerise/ds-table-new@2.0.2) (2026-09-02)
+
+**Note:** Version bump only for package @synerise/ds-table-new
+
+## [2.0.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-table-new@2.0.0...@synerise/ds-table-new@2.0.1) (2026-09-01)
+
+### Bug Fixes
+
+- **table-new:** stop duplicate page requests from virtualiser re-notifications ([be82cff](https://github.com/Synerise/synerise-design/commit/be82cffd15cc11c1ba1a11e6fc25669a61989c51))
+
+# [2.0.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-table-new@1.7.0...@synerise/ds-table-new@2.0.0) (2026-08-26)
+
+### Bug Fixes
+
+- **table:** deprecate @synerise/ds-table in favour of ds-table-new ([bdbe9e8](https://github.com/Synerise/synerise-design/commit/bdbe9e8e909221926bcf9936a92482ff0a72c975))
+
+# [1.7.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-table-new@1.6.4...@synerise/ds-table-new@1.7.0) (2026-08-21)
+
+### Features
+
+- **table-new:** cap select-all at the selection limit, not hide it ([9b4c0a9](https://github.com/Synerise/synerise-design/commit/9b4c0a97bf43dc186e230d7e06116d42e5cabb93))
+
+## [1.6.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-table-new@1.6.3...@synerise/ds-table-new@1.6.4) (2026-08-20)
+
+**Note:** Version bump only for package @synerise/ds-table-new
+
+## [1.6.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-table-new@1.6.2...@synerise/ds-table-new@1.6.3) (2026-08-18)
+
+**Note:** Version bump only for package @synerise/ds-table-new
+
+## [1.6.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-table-new@1.6.1...@synerise/ds-table-new@1.6.2) (2026-08-14)
+
+**Note:** Version bump only for package @synerise/ds-table-new
+
 ## [1.6.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-table-new@1.6.0...@synerise/ds-table-new@1.6.1) (2026-08-13)
 
 **Note:** Version bump only for package @synerise/ds-table-new

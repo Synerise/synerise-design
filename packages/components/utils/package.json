@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-utils",
-  "version": "1.10.2",
+  "version": "2.0.0",
   "description": "Utils UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "synerise/synerise-design",
@@ -50,7 +50,7 @@
     "vitest": "^4"
   },
   "peerDependencies": {
-    "@synerise/ds-core": "^1",
+    "@synerise/ds-core": "*",
     "react": ">=16.9.0 <= 18.3.1",
     "styled-components": "^5.3.3"
   }

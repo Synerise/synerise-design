@@ -50,7 +50,6 @@ const SelectDropdown = <ItemType extends ListItemProps>({
             visibleRows={rowCount}
             listProps={{ scrollTop }}
             width="100%"
-            renderInMenu={false}
           />
         </S.StyledScrollbar>
       </S.ListWrapper>

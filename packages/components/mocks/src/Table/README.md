@@ -1,5 +1,9 @@
 # Table Mock
 
+> **⚠ DEPRECATED.** `@synerise/ds-table` is deprecated in favour of `@synerise/ds-table-new`.
+> Use the [TableNew mock](../TableNew/README.md) instead. This mock is retained only for
+> backward compatibility and will not receive further updates.
+
 Mock for `@synerise/ds-table` component.
 
 ## Vitest

@@ -3,6 +3,21 @@ export { type ThemeMode } from './DSProvider/ThemeProvider/ThemeProvider';
 export { default as mediaQuery } from './mediaQuery/mediaQuery';
 export { setPortalContent } from './portal/portalStore';
 export {
+  closeAllOverlays,
+  registerOverlay,
+  createOverlayCloseEvent,
+  type OverlayKind,
+  type OverlayEntry,
+  type CloseAllOverlaysOptions,
+} from './overlays/overlayRegistry';
+export {
+  OVERLAY_Z_INDEX_STEP,
+  OverlayZIndexProvider,
+  useOverlayZIndex,
+  useResolvedOverlayZIndex,
+  type OverlayZIndexProviderProps,
+} from './overlays/overlayZIndex';
+export {
   theme,
   useTheme,
   defaultColorsOrder,

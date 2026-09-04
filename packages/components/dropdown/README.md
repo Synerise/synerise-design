@@ -54,3 +54,14 @@ Dropdown UI Component
 | label        | Label of the button            | ReactNode                | -       |
 | tooltip      | Tooltip content                | ReactNode                | -       |
 | tooltipProps | Props passed to ds-tooltip     | Partial\<TooltipProps\>  | -       |
+
+## Closing programmatically
+
+`closeAllOverlays()` from `@synerise/ds-core` force-closes every open DS overlay in one call — useful when an app-level event (e.g. the active workspace changed in another tab) invalidates whatever the user is doing. This component closes through its own close path, so its handlers fire and focus is restored.
+
+```ts
+import { closeAllOverlays } from '@synerise/ds-core';
+
+await closeAllOverlays();
+await closeAllOverlays({ kinds: ['modal', 'drawer'] }); // leave tooltips alone
+```

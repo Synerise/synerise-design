@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-step-card",
-  "version": "1.2.58",
+  "version": "2.0.1",
   "description": "StepCard UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -42,9 +42,9 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-alert": "workspace:^",
     "@synerise/ds-cruds": "workspace:^",
     "@synerise/ds-icon": "workspace:^",
+    "@synerise/ds-inline-alert": "workspace:^",
     "@synerise/ds-logic": "workspace:^",
     "@synerise/ds-typography": "workspace:^"
   },

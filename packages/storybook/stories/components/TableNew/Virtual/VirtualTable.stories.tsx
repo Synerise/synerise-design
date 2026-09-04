@@ -423,6 +423,51 @@ const columns = [
   },
 };
 
+export const WithLimitedSelection: StoryObj<VirtualTableProps> = {
+  args: {
+    data: DATA_SOURCE,
+    columns: RESPONSIVE_COLUMNS,
+    title: 'Users',
+    matchesSearchQuery: (query, row) =>
+      row.name.toLowerCase().includes(query.toLowerCase()),
+    selectionConfig: {
+      limit: 5,
+      onChange: (...rest) => {
+        console.log('sel', rest);
+      },
+      selections: [SELECTION_ALL, SELECTION_INVERT],
+    },
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'The shape most consumers use: a capped selection over a virtualized, searchable list. ' +
+          'Select-all fills up to `limit`; at the cap the checkbox reads checked, the remaining row ' +
+          'checkboxes disable and the warning appears. Unchecking it clears the whole selection, ' +
+          'including rows the search is currently hiding. `SELECTION_INVERT` is passed here but is ' +
+          'never offered while a limit is set.',
+      },
+      source: {
+        code: `<VirtualTable
+  data={data}
+  columns={columns}
+  title="Users"
+  matchesSearchQuery={(query, row) =>
+    row.name.toLowerCase().includes(query.toLowerCase())
+  }
+  selectionConfig={{
+    limit: 5,
+    onChange: (selectedRowKeys, selectedRows) =>
+      console.log('sel', selectedRowKeys, selectedRows),
+    selections: [SELECTION_ALL, SELECTION_INVERT],
+  }}
+/>`,
+      },
+    },
+  },
+};
+
 export const WithBuiltInSearch: StoryObj<VirtualTableProps> = {
   args: {
     data: DATA_SOURCE,

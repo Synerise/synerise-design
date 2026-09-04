@@ -1,6 +1,10 @@
 import React from 'react';
 import { fireEvent, screen } from '@testing-library/react';
-import { renderWithProvider } from '@synerise/ds-core';
+import {
+  OverlayZIndexProvider,
+  renderWithProvider,
+  theme,
+} from '@synerise/ds-core';
 
 import { type ImageSource } from '../../shared/Image.shared.types';
 import ImagePreview from '../ImagePreview';
@@ -252,6 +256,77 @@ describe('ImagePreview', () => {
     ).not.toBeInTheDocument();
   });
 
+  it('hides the download link when downloadable is false', () => {
+    // ARRANGE
+    renderPreview({ downloadable: false });
+
+    // ASSERT
+    expect(
+      screen.queryByTestId('image-preview-download'),
+    ).not.toBeInTheDocument();
+  });
+
+  it('keeps the rest of the toolbar when the download link is hidden', () => {
+    // ARRANGE
+    renderPreview({ downloadable: false });
+
+    // ASSERT
+    expect(screen.getByTestId('image-preview-prev')).toBeInTheDocument();
+    expect(screen.getByTestId('image-preview-next')).toBeInTheDocument();
+  });
+
+  it('hides the download link for an image marked as not downloadable', () => {
+    // ARRANGE
+    renderPreview({
+      images: [IMAGES[0], { ...IMAGES[1], downloadable: false }],
+      index: 1,
+    });
+
+    // ASSERT
+    expect(
+      screen.queryByTestId('image-preview-download'),
+    ).not.toBeInTheDocument();
+  });
+
+  it('lets a per-image flag opt back in when downloadable is false', () => {
+    // ARRANGE
+    renderPreview({
+      images: [{ ...IMAGES[0], downloadable: true }, IMAGES[1]],
+      downloadable: false,
+    });
+
+    // ASSERT
+    expect(screen.getByTestId('image-preview-download')).toHaveAttribute(
+      'href',
+      IMAGES[0].src,
+    );
+  });
+
+  it('re-evaluates the download link when the index changes', () => {
+    // ARRANGE
+    const images = [IMAGES[0], { ...IMAGES[1], downloadable: false }];
+    const { rerender } = renderPreview({ images, index: 0 });
+
+    // ASSERT — downloadable image
+    expect(screen.getByTestId('image-preview-download')).toBeInTheDocument();
+
+    // ACT
+    rerender(
+      <ImagePreview
+        open
+        images={images}
+        index={1}
+        onIndexChange={vi.fn()}
+        onClose={vi.fn()}
+      />,
+    );
+
+    // ASSERT — non-downloadable image
+    expect(
+      screen.queryByTestId('image-preview-download'),
+    ).not.toBeInTheDocument();
+  });
+
   it('renders a custom fallback when the image fails to load', () => {
     // ARRANGE
     renderPreview({
@@ -304,5 +379,60 @@ describe('ImagePreview', () => {
       'aria-label',
       'Zamknij',
     );
+  });
+
+  describe('z-index stacking', () => {
+    const MODAL_TOKEN = Number.parseInt(theme.variables['zindex-modal'], 10);
+    const OVERLAY_STEP = 2;
+
+    const overlayZIndex = (): number =>
+      Number(window.getComputedStyle(screen.getByRole('dialog')).zIndex);
+
+    it('uses the zindex-modal token when nothing encloses it', () => {
+      // ARRANGE
+      renderPreview();
+
+      // ASSERT
+      expect(overlayZIndex()).toBe(MODAL_TOKEN);
+    });
+
+    it('stacks one step above the enclosing overlay', () => {
+      // ARRANGE
+      renderWithProvider(
+        <OverlayZIndexProvider value={MODAL_TOKEN}>
+          <ImagePreview
+            open
+            images={IMAGES}
+            index={0}
+            onIndexChange={vi.fn()}
+            onClose={vi.fn()}
+          />
+        </OverlayZIndexProvider>,
+      );
+
+      // ASSERT
+      expect(overlayZIndex()).toBe(MODAL_TOKEN + OVERLAY_STEP);
+    });
+
+    it('lets an explicit zIndex opt out of the DS stack', () => {
+      // ARRANGE — a trigger living above the DS scale (e.g. an app-level overlay)
+      renderPreview({ zIndex: 1000000 });
+
+      // ASSERT
+      expect(overlayZIndex()).toBe(1000000);
+    });
+
+    it('keeps the control tooltips inside the overlay', async () => {
+      // ARRANGE — raised above `zindex-tooltip`, so a tooltip portalled to
+      // `document.body` would render under the backdrop
+      renderPreview({ zIndex: 1000000 });
+
+      // ACT
+      fireEvent.mouseEnter(screen.getByTestId('image-preview-close'));
+
+      // ASSERT
+      const tooltip = await screen.findByTestId('popover-tooltip-content');
+      expect(screen.getByTestId('image-preview')).toContainElement(tooltip);
+    });
   });
 });

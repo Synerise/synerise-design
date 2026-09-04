@@ -20,11 +20,12 @@ src/
   useSelectOptions.ts — resolve options (prop → children), client filtering, tags create-row
   useResponsiveTagCount.ts — maxTagCount="responsive": fit-to-width chip count (ResizeObserver)
  components/
-  OptionList.tsx — dropdown overlay: loading / empty / scrollable listbox of options
+  OptionList.tsx — dropdown overlay: loading / empty / windowed (react-window) listbox of options
   SelectorContent.tsx — selector inner content: chips / selected label / placeholder + search input
  utils/
   getOptionsFromChildren.ts — read <Select.Option> children into SelectOption[]; findOption()
-  helpers.ts — cx(), toArray(), defaultFilter(), DEFAULT_LIST_HEIGHT
+  areOptionChildrenEqual.ts — structural compare of <Select.Option> children (memo guard)
+  helpers.ts — cx(), toArray(), defaultFilter(), DEFAULT_LIST_HEIGHT, DEFAULT_LIST_ITEM_HEIGHT, OVERSCAN_COUNT, MAX_MEASURED_ROWS
  __specs__/
   Select.spec.tsx — Vitest + React Testing Library tests
 ```
@@ -69,7 +70,8 @@ sub-component: **`Select.Option`** (the DS `Option` marker). `Select.OptGroup` i
 | `readOnly` | `boolean` | `undefined` | Non-interactive with readable styling (white bg, `default` cursor, `grey-600` text). |
 | `disabled` | `boolean` | `undefined` | Standard disabled state; ORed with `readOnly` to block interaction. |
 | `selectorStyle` | `CSSObject` | `undefined` | Inline style object applied to the `Selector` box. |
-| `listHeight` | `number \| string` | `256` | Max dropdown list height (px). |
+| `listHeight` | `number \| string` | `256` | Max dropdown list height (px); also the windowed viewport height. |
+| `listItemHeight` | `number` | `32` | Height per option row the window is sized from; taller rows are measured. |
 | `style` | `CSSProperties` | `undefined` | Applied to `SelectWrapper` (the flex row: selector + addons). |
 | `className` | `string` | `undefined` | Added to the outer `SelectContainer`. |
 | `getPopupContainer` | `(node) => HTMLElement \| ParentNode \| null` | `defaultGetPopupContainer` (`@synerise/ds-utils`) | Container the dropdown mounts into. |
@@ -88,9 +90,9 @@ Kept so antd-era consumers need no change: `searchValue`, `onClear`, `onClick`, 
 `SelectHandler` type and the `SelectStyles.Selector` styled export are re-exported for parity.
 
 `maxTagCount` (`number | 'responsive'` — collapse extra chips into a `+N` overflow chip, or fit them
-to the selector width on one line), `maxTagTextLength` (truncate chip labels) and `onPopupScroll` are
-fully implemented. `listItemHeight`, `dropdownAlign` and `defaultActiveFirstOption` are accepted for
-compatibility but have **no runtime effect**.
+to the selector width on one line), `maxTagTextLength`, `onPopupScroll` and `listItemHeight` (the row
+height the windowed list is sized from) are fully implemented. `dropdownAlign` and
+`defaultActiveFirstOption` are accepted for compatibility but have **no runtime effect**.
 
 ## Usage patterns
 
@@ -145,6 +147,8 @@ Class hooks are `ds-select-*` (`.ds-select`, `.ds-select-selection-item`, `.ds-s
 - `@synerise/ds-icon` — `AngleDownS` (arrow), `Close3M` (clear), `CloseS` (chip remove).
 - `@synerise/ds-tooltip` — wraps the clear control for `clearTooltip`.
 - `@synerise/ds-utils` — default `getPopupContainer`.
+- `react-window` — `VariableSizeList`, the windowing engine behind `OptionList` (already a DS-wide
+  dependency: `dropdown`, `context-selector`, `item-picker`, `table`, …).
 - `@synerise/ds-core` — theme tokens (peerDep). **No `antd` peerDep** — the component imports zero
   antd; the LESS that pulled `~antd/lib/select/style` was relocated to `ds-table` (see below).
 
@@ -153,6 +157,25 @@ Class hooks are `ds-select-*` (`.ds-select`, `.ds-select-selection-item`, `.ds-s
 - **Option resolution** — `useSelectOptions` returns `resolvedOptions` (from `options` prop, else
   `getOptionsFromChildren(children)`) and `displayedOptions` (after client filtering and, in `tags`
   mode, a create-row prepended for the typed text). `filterOption={false}` disables local filtering.
+  The children path is cached against `areOptionChildrenEqual` rather than `useMemo([children])`:
+  JSX hands over a fresh array of fresh elements on every parent render, so a reference-keyed memo
+  would rebuild the options — and invalidate every memo below them — on renders that changed nothing.
+- **Windowed option list** — `OptionList` renders `displayedOptions` through react-window's
+  `VariableSizeList`, so only the visible rows plus `OVERSCAN_COUNT` are in the DOM. Following the
+  DS idiom (`item-picker`, `context-selector`): the surrounding `Scrollbar` owns the scrolling
+  (`overflow: unset` on the list, `onScroll` → `list.scrollTo`), which keeps `onPopupScroll` firing
+  from the same element as before. `listItemHeight` (default 32) is the size estimate; each mounted
+  row reports its real `offsetHeight` so rows with taller JSX (a flag + a wrapping label) lay out
+  correctly. Keyboard navigation can target a row that is not mounted, so `OptionList` scrolls by
+  computed offset instead of `scrollIntoView`, and a changed query resets the window to the top.
+  Because only a slice of the options is ever in the DOM, each row states `aria-setsize` /
+  `aria-posinset` — AT can no longer count the set for itself.
+- **Row measurement invalidates through `resetAfterIndex`** — react-window memoises row offsets, so a
+  measured height only takes effect once the list is told to drop that memo. Two consequences worth
+  keeping in mind when touching `OptionList`: a row's own layout effect cannot reach `listRef` on the
+  mount commit (rows are descendants of the list, so their effects run first), and a change to
+  `listItemHeight` must invalidate *and* force a render — a passive `resetAfterIndex(index, false)`
+  leaves the stale layout on screen until something else happens to re-render the list.
 - **Row vs selector display (antd parity)** — the dropdown row renders `option.children ?? label ??
   value`, the selector renders the field named by `optionLabelProp` (`label`, `children`, `value`,
   `title`, …) and falls back to `label`. So `<Option label={compact}>{rich}</Option>` shows `rich` in

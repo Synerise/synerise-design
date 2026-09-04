@@ -1,5 +1,11 @@
 # Table (`@synerise/ds-table`)
 
+> **⚠ DEPRECATED — do not use in new code.** This package stays on antd 4 and will not be
+> migrated off it. Use `@synerise/ds-table-new` instead. The prop mapping and the list of
+> features with no equivalent live in the "Migrating to @synerise/ds-table-new" section of
+> this package's `README.md`. The package stays published while `portal-ui-bridge` and
+> `universal-list` migrate; deleting it is gated on them.
+
 > Feature-rich Ant Design 4.x table wrapper that adds a DS-styled title bar, row selection, row starring, multi-column sorting, grouped rows, tree rows, virtualized rendering, and infinite scroll.
 
 ## Package structure

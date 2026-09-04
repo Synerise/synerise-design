@@ -3,7 +3,7 @@ import React from 'react';
 import Avatar from '@synerise/ds-avatar';
 import Flag from '@synerise/ds-flag';
 import Icon, { Add3M, FileM, LaptopM, MobileM, UserM } from '@synerise/ds-icon';
-import { MenuItemProps } from '@synerise/ds-menu';
+import { type ListItemProps } from '@synerise/ds-list-item';
 
 import { AVATAR_IMAGE } from '../../constants/images';
 
@@ -14,7 +14,7 @@ export const ICONS = {
   file: <Icon component={<FileM />} />,
 };
 
-export const FLAT_DATA_SOURCE: MenuItemProps[] = [
+export const FLAT_DATA_SOURCE: ListItemProps[] = [
   {
     text: 'iPhone R',
     prefixel: (

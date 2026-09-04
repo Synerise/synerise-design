@@ -38,7 +38,7 @@ or `Escape`) — there is no built-in close button.
 | `keyboard` | `boolean` | `true` | Close on `Escape`. |
 | `destroyOnClose` | `boolean` | `false` | Unmount children once the close transition ends (else kept hidden in the DOM). |
 | `getContainer` | `(() => HTMLElement) \| false` | `document.body` | Portal target, or `false` to render inline in place (no portal). |
-| `zIndex` | `number` | `zindex-modal` token | z-index of the root overlay. |
+| `zIndex` | `number` | derived, see below | z-index of the root overlay. Omit it and the drawer stacks `OVERLAY_Z_INDEX_STEP` (2) above the nearest enclosing modal/drawer, falling back to the `zindex-modal` token when nothing encloses it. Set it to opt out of the stack entirely. |
 | `onClose` | `(e: MouseEvent \| KeyboardEvent) => void` | — | Called on mask click / `Escape`. |
 | `afterVisibleChange` | `(open: boolean) => void` | — | Fires after the open/close slide transition (`transform` `transitionend`). |
 | `className` | `string` | — | Appended to the root overlay class hooks. |

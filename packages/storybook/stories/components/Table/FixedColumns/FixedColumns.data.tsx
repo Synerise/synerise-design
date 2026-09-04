@@ -14,7 +14,10 @@ import Icon, {
   VarTypeNumberM,
   VarTypeStringM,
 } from '@synerise/ds-icon';
-import Menu from '@synerise/ds-menu';
+import ListItem, {
+  type ListItemProps,
+  ListWrapper,
+} from '@synerise/ds-list-item';
 import { DSColumnType, TableCell } from '@synerise/ds-table';
 import { focusWithArrowKeys } from '@synerise/ds-utils';
 
@@ -22,7 +25,7 @@ import { AVATAR_IMAGE } from '../../../constants';
 import { RELATIONS } from '../AllCellTypes/AllCellTypes.data';
 import { AdditionalColumnData } from '../Table.types';
 
-const menuData = [
+const menuData: ListItemProps[] = [
   { text: 'Preview' },
   { text: 'Edit' },
   { text: 'Duplicate' },
@@ -1541,14 +1544,14 @@ export const COLUMNS_WITH_FIXED_ACTION: ColumnType[] = [
           overlay={
             <Dropdown.Wrapper
               onKeyDown={(event) =>
-                focusWithArrowKeys(event, 'ds-menu-item', () => {})
+                focusWithArrowKeys(event, 'ds-list-item', () => {})
               }
             >
-              <Menu
-                dataSource={menuData}
-                asDropdownMenu={true}
-                style={{ width: '100%' }}
-              />
+              <ListWrapper style={{ width: '100%' }}>
+                {menuData.map((item, index) => (
+                  <ListItem key={index} {...item} />
+                ))}
+              </ListWrapper>
             </Dropdown.Wrapper>
           }
         >

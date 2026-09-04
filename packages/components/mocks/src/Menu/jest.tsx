@@ -1,3 +1,8 @@
+/**
+ * @deprecated `@synerise/ds-menu` is deprecated in favour of `@synerise/ds-list-item`
+ * (ListItem / ListWrapper). This mock is retained only for backward compatibility and
+ * will not receive further updates.
+ */
 import React from 'react';
 
 type MockMenuProps = {

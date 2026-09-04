@@ -323,3 +323,41 @@ export const SearchToZeroHidesPagination: Story = {
     });
   },
 };
+
+// --- Capped batch selection under a limit -----------------------------------
+
+export const LimitedSelectionCapsAtLimit: Story = {
+  args: {
+    data: ROWS,
+    columns: COLUMNS,
+    selectionConfig: { limit: 3, onChange: fn() },
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const selectAll = canvas.getByTestId('ds-table-batch-selection-button');
+
+    // Six rows, cap of three — select-all fills only up to the cap.
+    await userEvent.click(selectAll);
+    await waitFor(() => {
+      expect(selectAll).toHaveAttribute('aria-checked', 'true');
+      expect(
+        canvas.getByText('You have reached max limit'),
+      ).toBeInTheDocument();
+    });
+
+    // The rows past the cap can no longer be picked.
+    const rowCheckboxes = canvas.getAllByTestId('ds-table-selection-button');
+    rowCheckboxes.slice(3).forEach((checkbox) => {
+      expect(checkbox).toBeDisabled();
+    });
+
+    // Clicking the header checkbox again releases the selection.
+    await userEvent.click(selectAll);
+    await waitFor(() => {
+      expect(selectAll).toHaveAttribute('aria-checked', 'false');
+      expect(
+        canvas.queryByText('You have reached max limit'),
+      ).not.toBeInTheDocument();
+    });
+  },
+};

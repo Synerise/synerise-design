@@ -6,9 +6,9 @@ import React, {
   useState,
 } from 'react';
 
-import { InlineAlert } from '@synerise/ds-alert';
 import Cruds from '@synerise/ds-cruds';
 import { DragHandleM } from '@synerise/ds-icon';
+import InlineAlert from '@synerise/ds-inline-alert';
 import { Matching } from '@synerise/ds-logic';
 import { Title } from '@synerise/ds-typography';
 

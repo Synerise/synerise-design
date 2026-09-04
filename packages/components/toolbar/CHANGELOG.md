@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-toolbar@2.0.0...@synerise/ds-toolbar@2.0.1) (2026-09-02)
+
+**Note:** Version bump only for package @synerise/ds-toolbar
+
+# [2.0.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-toolbar@1.1.67...@synerise/ds-toolbar@2.0.0) (2026-08-26)
+
+**Note:** Version bump only for package @synerise/ds-toolbar
+
+## [1.1.67](https://github.com/Synerise/synerise-design/compare/@synerise/ds-toolbar@1.1.66...@synerise/ds-toolbar@1.1.67) (2026-08-18)
+
+**Note:** Version bump only for package @synerise/ds-toolbar
+
+## [1.1.66](https://github.com/Synerise/synerise-design/compare/@synerise/ds-toolbar@1.1.65...@synerise/ds-toolbar@1.1.66) (2026-08-14)
+
+**Note:** Version bump only for package @synerise/ds-toolbar
+
 ## [1.1.65](https://github.com/Synerise/synerise-design/compare/@synerise/ds-toolbar@1.1.64...@synerise/ds-toolbar@1.1.65) (2026-08-11)
 
 **Note:** Version bump only for package @synerise/ds-toolbar

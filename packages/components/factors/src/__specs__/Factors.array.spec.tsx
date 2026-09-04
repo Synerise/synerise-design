@@ -3,7 +3,13 @@ import userEvent from '@testing-library/user-event';
 import { screen, waitFor, within } from '@testing-library/react';
 
 import { VarTypeStringM } from '@synerise/ds-icon';
-import { renderWithProvider, sleep } from '@synerise/ds-core';
+import {
+    OVERLAY_Z_INDEX_STEP,
+    renderWithProvider,
+    sleep,
+    theme,
+} from '@synerise/ds-core';
+import Modal from '@synerise/ds-modal';
 
 import Factors from './../Factors';
 import { type FactorsProps } from '../Factors.types';
@@ -129,4 +135,70 @@ describe('Factors array component', () => {
     });
 
 
+
+    describe('z-index when opened from inside another modal', () => {
+        const MODAL_TOKEN = Number.parseInt(theme.variables['zindex-modal'], 10);
+        const DROPDOWN_TOKEN = Number.parseInt(theme.variables['zindex-dropdown'], 10);
+
+        const modalRootZIndexes = () =>
+            Array.from(document.querySelectorAll<HTMLElement>('[data-testid="ds-modal"]')).map(
+                root => Number(window.getComputedStyle(root).zIndex),
+            );
+
+        const openArrayModal = async () => {
+            userEvent.click(screen.getByTestId('ds-factors-array'));
+            await waitFor(() => {
+                expect(modalRootZIndexes()).toHaveLength(2);
+            });
+        };
+
+        test('should render above a plain host modal', async () => {
+            renderWithProvider(
+                <Modal open title="host">
+                    {RENDER_FACTORS({ value: VALUE })}
+                </Modal>,
+            );
+
+            await openArrayModal();
+
+            const zIndexes = modalRootZIndexes();
+            expect(zIndexes).toContain(MODAL_TOKEN);
+            expect(zIndexes).toContain(MODAL_TOKEN + OVERLAY_Z_INDEX_STEP);
+        });
+
+        test('should render above a host modal that raised itself, reproducing the analytics chain', async () => {
+            // new metric → "Profile filter" (991002) → "local aggregate" (991004)
+            // → condition with the "In array" operator → this modal.
+            renderWithProvider(
+                <Modal open title="profile filter" zIndex={991002}>
+                    <Modal open title="local aggregate" zIndex={991004}>
+                        {RENDER_FACTORS({ value: VALUE })}
+                    </Modal>
+                </Modal>,
+            );
+
+            userEvent.click(screen.getByTestId('ds-factors-array'));
+            await waitFor(() => {
+                expect(modalRootZIndexes()).toHaveLength(3);
+            });
+
+            const zIndexes = modalRootZIndexes();
+            expect(Math.max(...zIndexes)).toBe(991006);
+            expect(zIndexes.filter(value => value === 991006)).toHaveLength(1);
+        });
+
+        test('should stay below zindex-dropdown so its own search and collector overlays stay usable', async () => {
+            renderWithProvider(
+                <Modal open title="host" zIndex={DROPDOWN_TOKEN - 4}>
+                    {RENDER_FACTORS({ value: VALUE })}
+                </Modal>,
+            );
+
+            await openArrayModal();
+
+            modalRootZIndexes().forEach(value => {
+                expect(value).toBeLessThan(DROPDOWN_TOKEN);
+            });
+        });
+    });
 });

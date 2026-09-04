@@ -65,6 +65,10 @@ export const useDefaultTexts = (
         id: 'DS.TABLE.SELECT_ALL_BUTTON_TOOLTIP',
         defaultMessage: 'Select all',
       }),
+      unselectAllTooltip: intl.formatMessage({
+        id: 'DS.TABLE.UNSELECT_ALL_BUTTON_TOOLTIP',
+        defaultMessage: 'Unselect all',
+      }),
       selectGlobalAll: intl.formatMessage({
         id: 'DS.TABLE.SELECT_GLOBAL_ALL',
         defaultMessage: 'Select all',

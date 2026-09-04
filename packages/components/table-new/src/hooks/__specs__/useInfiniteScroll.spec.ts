@@ -166,6 +166,97 @@ describe('useInfiniteScroll', () => {
       expect(onScrollTopReach).not.toHaveBeenCalled();
     });
 
+    // The virtualiser reports through a single `onChange`, which it also fires synchronously from
+    // inside getVirtualItems() during render when the row count grows — carrying whatever
+    // `isScrolling` was true at the time. Those notifications repeat the previous scroll offset,
+    // and every guard downstream is React state that has not committed yet, so without the
+    // offset check they request the page that is already in flight.
+    describe('repeat notifications that did not move the scroll', () => {
+      const nearBottomVirtualizer = (scrollOffset: number) =>
+        ({
+          scrollElement: createMockContainer({
+            scrollHeight: 2000,
+            scrollTop: 1400,
+            clientHeight: 500,
+          }),
+          scrollDirection: 'forward' as const,
+          scrollOffset,
+          getVirtualItemForOffset: () => ({ index: 3, size: 73 }),
+          getVirtualItems: () => [{ index: 3, size: 73 }],
+        }) as unknown as Parameters<
+          ReturnType<typeof useInfiniteScroll>['handleScrollDirection']
+        >[0];
+
+      const renderWithEndReach = (onScrollEndReach: () => void) =>
+        renderHook(() =>
+          useInfiniteScroll({
+            infiniteScroll: {
+              hasMore: true,
+              hasError: false,
+              isLoading: false,
+              nextPage: { hasMore: true, hasError: false, isLoading: false },
+              onScrollEndReach,
+            },
+          }),
+        );
+
+      it('should NOT call onScrollEndReach again for the same scroll offset', () => {
+        const onScrollEndReach = vi.fn();
+        const { result } = renderWithEndReach(onScrollEndReach);
+
+        act(() => {
+          result.current.handleScrollDirection(nearBottomVirtualizer(1400), true);
+        });
+        act(() => {
+          result.current.handleScrollDirection(nearBottomVirtualizer(1400), true);
+        });
+
+        expect(onScrollEndReach).toHaveBeenCalledTimes(1);
+      });
+
+      it('should call onScrollEndReach again once the scroll offset moves', () => {
+        const onScrollEndReach = vi.fn();
+        const { result } = renderWithEndReach(onScrollEndReach);
+
+        act(() => {
+          result.current.handleScrollDirection(nearBottomVirtualizer(1400), true);
+        });
+        act(() => {
+          result.current.handleScrollDirection(nearBottomVirtualizer(1460), true);
+        });
+
+        expect(onScrollEndReach).toHaveBeenCalledTimes(2);
+      });
+
+      it('should still report the first visible row for a repeat notification', () => {
+        const onItemsRendered = vi.fn();
+        const { result } = renderHook(() =>
+          useInfiniteScroll({
+            infiniteScroll: {
+              hasMore: true,
+              hasError: false,
+              isLoading: false,
+              nextPage: { hasMore: true, hasError: false, isLoading: false },
+              onScrollEndReach: vi.fn(),
+            },
+            onItemsRendered,
+          }),
+        );
+
+        act(() => {
+          result.current.handleScrollDirection(nearBottomVirtualizer(1400), true);
+        });
+        act(() => {
+          result.current.handleScrollDirection(nearBottomVirtualizer(1400), true);
+        });
+
+        // Only the page request is suppressed — scroll-position reporting must keep working, or
+        // back-navigation loses its anchor row.
+        expect(onItemsRendered).toHaveBeenCalledTimes(2);
+        expect(onItemsRendered).toHaveBeenLastCalledWith({ visibleStartIndex: 3 });
+      });
+    });
+
     it('should set scrollDirection to null when scrollOffset is 0', () => {
       const { result } = renderHook(() =>
         useInfiniteScroll({

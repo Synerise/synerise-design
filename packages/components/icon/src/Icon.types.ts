@@ -17,9 +17,12 @@ export type BaseIconProps = {
    * Render an icon by its **string name** (e.g. 'InfoM', 'AddM').
    *
    * Use this **only when the icon is not known at build time** — e.g. the name comes from an API,
-   * a database, or user configuration. For icons you know at build time, prefer `component`:
-   * icons requested by name are resolved from the whole icon set and cannot be tree-shaken out of
-   * the app bundle.
+   * a database, or user configuration. For icons you know at build time, prefer `component`.
+   *
+   * The name is resolved asynchronously: the icon's set is fetched on first use, so the container
+   * renders empty (at its correct size — no layout shift) for one frame. Every later render of any
+   * icon from that set paints immediately. Import `@synerise/ds-icon/dist/registerAllIcons` in an
+   * app entry file to make resolution synchronous again, at the cost of bundling every icon.
    * @example
    * ```tsx
    * // name only known at runtime (e.g. returned by the backend)

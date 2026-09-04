@@ -18,14 +18,7 @@ export const SearchResults = styled.div<{ visible?: boolean }>`
 export const CascaderScrollbar = styled(Scrollbar)<{ searching?: boolean }>`
   padding-right: ${(props) => (props.searching ? `0` : '8px')};
 `;
-export const Wrapper = styled.div`
-  && {
-    .ant-menu-inline,
-    .-inline {
-      border-right: none;
-    }
-  }
-`;
+export const Wrapper = styled.div``;
 export const BreadcrumbPrefix = styled.div``;
 export const DividerContainer = styled.div`
   padding: 8px;

@@ -87,6 +87,13 @@ tables.
   `translate(50%,-50%)`), revealed on hover/focus-within. Its click stops propagation (so it never opens the preview)
   and blurs the button so the control doesn't linger via `:focus-within` after a
   click. *Empty* (no `src`): the grey placeholder.
+- **Overlay z-index** — resolved through `useResolvedOverlayZIndex` from `ds-core`,
+  the same path `ds-modal` / `ds-drawer` take: an explicit `zIndex` prop wins,
+  otherwise one step above the enclosing overlay (read from React context, since
+  every overlay portals to `body`), otherwise the `zindex-modal` token. The prop
+  is the escape hatch for a trigger that sits outside the DS scale — an app-level
+  surface pinned above `zindex-tooltip` needs it, because no DS token reaches
+  that high. `Gallery` forwards it to the preview it owns.
 - **Preview is controlled** — `open` / `images` / `index` / `onIndexChange` /
   `onClose`. Navigation (`‹ N of M ›`) shows only when `images.length > 1`; arrow
   keys page (with wrap-around). `useImagePreview` owns this state for non-gallery
@@ -117,7 +124,10 @@ tables.
   top-right (`CloseWrapper`). The download control is a `ToolbarButton` rendered
   as an anchor (`href`/`download`/`target="_blank"` forwarded to `<a>` by
   `ds-button`) so it downloads same-origin images and opens cross-origin ones in
-  a new tab; it shows whenever a valid image is loaded (independent of zoom).
+  a new tab; it shows whenever a valid image is loaded (independent of zoom) and
+  the image is downloadable — per-image `ImageSource.downloadable` → preview
+  `downloadable` (default `true`). Hiding it leaves the rest of the zoom group
+  intact, and the whole group drops out only when nothing in it renders.
 - **Error/Empty fallback** — broken `src` → `fallback` (per-image `ImageSource.fallback`
   → component `fallback` → default `ImageM` placeholder). No `src` on a Thumbnail →
   the Empty placeholder.
@@ -142,4 +152,5 @@ tables.
 - `@synerise/ds-tooltip` — wraps the thumbnail delete button.
 - `@synerise/ds-utils` — `useFocusTrap`.
 - `react-intl` (peer) — control labels/tooltips via `useImageTexts`.
-- `@synerise/ds-core` (peer) — theme palette + `box-shadow-*` variables.
+- `@synerise/ds-core` (peer) — theme palette, `box-shadow-*` variables and
+  `useResolvedOverlayZIndex` (overlay stacking).

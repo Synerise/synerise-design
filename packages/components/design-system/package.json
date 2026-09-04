@@ -1,6 +1,6 @@
 {
   "name": "@synerise/design-system",
-  "version": "1.14.3",
+  "version": "2.0.2",
   "description": "DesignSystem UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -27,6 +27,7 @@
   "scripts": {
     "build": "vite build",
     "build:watch": "vite build --watch",
+    "pack:ci": "pnpm pack --pack-destination ../../storybook/storybook-static/static",
     "prepublish": "pnpm run build",
     "types": "tsc --noEmit",
     "check:circular-dependencies": "madge --circular --extensions ts,tsx,js,jsx --ts-config tsconfig.json src/ --exclude '/dist/'",
@@ -39,7 +40,6 @@
   "types": "dist/index.d.ts",
   "dependencies": {
     "@synerise/ds-action-area": "workspace:^",
-    "@synerise/ds-alert": "workspace:^",
     "@synerise/ds-app-menu": "workspace:^",
     "@synerise/ds-autocomplete": "workspace:^",
     "@synerise/ds-avatar": "workspace:^",
@@ -53,6 +53,7 @@
     "@synerise/ds-card": "workspace:^",
     "@synerise/ds-card-select": "workspace:^",
     "@synerise/ds-card-tabs": "workspace:^",
+    "@synerise/ds-carousel": "workspace:^",
     "@synerise/ds-cascader": "workspace:^",
     "@synerise/ds-checkbox": "workspace:^",
     "@synerise/ds-checkbox-tristate": "workspace:^",
@@ -109,7 +110,6 @@
     "@synerise/ds-logic": "workspace:^",
     "@synerise/ds-manageable-list": "workspace:^",
     "@synerise/ds-mapping": "workspace:^",
-    "@synerise/ds-menu": "workspace:^",
     "@synerise/ds-metric-card": "workspace:^",
     "@synerise/ds-modal": "workspace:^",
     "@synerise/ds-navbar": "workspace:^",
@@ -143,7 +143,6 @@
     "@synerise/ds-subject": "workspace:^",
     "@synerise/ds-subtle-form": "workspace:^",
     "@synerise/ds-switch": "workspace:^",
-    "@synerise/ds-table": "workspace:^",
     "@synerise/ds-table-new": "workspace:^",
     "@synerise/ds-tabs": "workspace:^",
     "@synerise/ds-tag": "workspace:^",
@@ -159,7 +158,6 @@
     "@synerise/ds-wizard": "workspace:^"
   },
   "peerDependencies": {
-    "antd": "4.24.16",
     "react": ">=16.9.0 <= 18.3.1",
     "react-intl": ">=3.12.0 <= 6.8",
     "styled-components": "^5.3.3"

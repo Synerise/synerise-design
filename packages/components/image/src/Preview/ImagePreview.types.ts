@@ -32,10 +32,21 @@ export type ImagePreviewProps = {
   closable?: boolean;
   /** Whether clicking the dimmed backdrop closes the viewer. Defaults to true. */
   maskClosable?: boolean;
+  /**
+   * Whether to render the download control. Defaults to true. Override it for a
+   * single image with `ImageSource.downloadable`.
+   */
+  downloadable?: boolean;
   /** Fallback rendered when an image fails to load (per-image override via `ImageSource.fallback`). */
   fallback?: ReactNode;
   /** Portal target. Defaults to `document.body`. */
   getContainer?: () => HTMLElement;
+  /**
+   * z-index of the overlay. Omit it and the preview stacks one step above the
+   * nearest enclosing modal/drawer, falling back to the `zindex-modal` token
+   * when nothing encloses it. Set it to opt out of that stack.
+   */
+  zIndex?: number;
   /** Unmount the viewer (and reset zoom state) when closed. Defaults to false. */
   destroyOnClose?: boolean;
   /** Called with the current scale whenever the zoom transform changes. */

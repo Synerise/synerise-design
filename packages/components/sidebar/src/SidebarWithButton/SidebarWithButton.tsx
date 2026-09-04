@@ -3,7 +3,7 @@ import React, { useRef, useState } from 'react';
 import Button from '@synerise/ds-button';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { AngleDownS } from '@synerise/ds-icon';
-import Menu from '@synerise/ds-menu';
+import ListItem, { ListWrapper } from '@synerise/ds-list-item';
 import { useOnClickOutside } from '@synerise/ds-utils';
 
 import * as S from './SidebarWithButton.styles';
@@ -35,11 +35,11 @@ const SidebarWithButton = ({
         asChild
         overlay={
           <Dropdown.Wrapper ref={ref}>
-            <Menu
-              dataSource={dataSource}
-              asDropdownMenu
-              style={{ width: '100%' }}
-            />
+            <ListWrapper style={{ width: '100%' }}>
+              {dataSource.map((item, index) => (
+                <ListItem key={item.itemKey ?? item.key ?? index} {...item} />
+              ))}
+            </ListWrapper>
           </Dropdown.Wrapper>
         }
       >

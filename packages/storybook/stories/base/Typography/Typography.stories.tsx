@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Meta, StoryObj } from '@storybook/react-vite';
-import Table from '@synerise/ds-table';
+import { Table, legacyColumnConfigAdapter } from '@synerise/ds-table-new';
 
 import { COLUMNS, DATA } from './Typography.data';
 
@@ -11,10 +11,12 @@ export default {
     <div style={{ padding: 10 }}>
       <Table
         title={'Typography tokens'}
-        columns={COLUMNS}
-        dataSource={DATA}
+        columns={legacyColumnConfigAdapter(COLUMNS)}
+        data={DATA}
         hideTitleBar
-      ></Table>
+        // legacy ds-table defaulted pagination to off; ds-table-new defaults it on
+        pagination={false}
+      />
     </div>
   ),
 } as Meta;

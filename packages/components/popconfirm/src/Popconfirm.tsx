@@ -109,6 +109,7 @@ const Popconfirm = forwardRef<HTMLElement, PopconfirmProps>(
         zIndex={zIndex ?? parseInt(theme.variables['zindex-popconfirm'])}
         offsetConfig={POPOVER_OFFSET_CONFIG}
         getTransitionConfig={getTransitionConfig}
+        overlayKind="popconfirm"
         testId="popconfirm"
         {...rest}
       >

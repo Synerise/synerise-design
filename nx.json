@@ -24,8 +24,10 @@
                 "^test"
             ],
             "inputs": [
-                "default",
-                "{workspaceRoot}/config/jest/**"
+                "testSelf",
+                "^testDeps",
+                "{workspaceRoot}/config/vitest/**",
+                "{workspaceRoot}/scripts/vite/**"
             ]
         },
         "types": {
@@ -56,6 +58,19 @@
         "production": [
             "default",
             "!{projectRoot}/jest.config.ts"
+        ],
+        "testSelf": [
+            "default",
+            "!{projectRoot}/dist/**"
+        ],
+        "testDeps": [
+            "testSelf",
+            "!{projectRoot}/**/*.{spec,test}.{ts,tsx}",
+            "!{projectRoot}/**/__specs__/**",
+            "!{projectRoot}/**/__spec__/**",
+            "!{projectRoot}/**/*.stories.tsx",
+            "!{projectRoot}/**/*.figma.{ts,tsx}",
+            "!{projectRoot}/CHANGELOG.md"
         ],
         "sharedGlobals": [
             "{workspaceRoot}/package.json",

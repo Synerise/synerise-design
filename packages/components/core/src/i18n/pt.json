@@ -255,6 +255,7 @@
       "SELECT_INVERT": "Inverter seleção",
       "ITEMS": "Registros",
       "SELECT_ALL_BUTTON_TOOLTIP": "Selecionar tudo",
+      "UNSELECT_ALL_BUTTON_TOOLTIP": "Deselecionar tudo",
       "SELECTION_LIMIT": "Você atingiu o limite máximo",
       "SELECTIONS_MENU_TOOLTIP": "Opções de seleção em massa",
       "NO_DATA": "Sem dados",

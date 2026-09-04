@@ -92,8 +92,7 @@ Quick actions menu
 
 | Property        | Description                         | Type                 | Default         |
 | --------------- | ----------------------------------- | -------------------- | --------------- |
-| items           | Array of menu items. See ds-menu    | `MenuItemProps[]`    | -               |
-| menuProps       | Menu props. See ds-menu             | `Partial<MenuProps>` | -               |
+| items           | Array of list items. See ds-list-item | `ListItemProps[]`  | -               |
 | buttonLabel     | footer button label that shows menu | `ReactNode`          | 'Quick actions' |
 | navigationLabel | Back to content navigation label    | `ReactNode`          | 'Quick actions' |
 

@@ -46,30 +46,32 @@ src/
 
 Full-width drop-zone uploader. `forwardRef<FileUploaderRef, FileUploaderProps>`.
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `mode` | `'single' \| 'multi-medium' \| 'multi-large'` | `'single'` | Layout/behaviour mode. `multi-large` shows a large 160px drop area |
-| `files` | `ExtendedFile[]` | `[]` | Controlled list of uploaded files to display |
-| `onUpload` | `(files: FileWithContent[]) => void` | `undefined` | Called after drop/select with files enriched with `.content` |
-| `onRemove` | `(file: FileWithContent, index: number) => void` | `undefined` | Called when user removes a file row |
-| `accept` | `string[]` | `undefined` | Accepted MIME types (e.g. `['image/png', 'application/pdf']`) |
-| `filesAmount` | `number` | `undefined` | Maximum number of files. Throws if set to `< 1`. Drop zone hides once limit is reached |
-| `removable` | `boolean` | `true` | Show remove button on file rows |
-| `disabled` | `boolean` | `undefined` | Disables the drop zone and file rows |
-| `error` | `string` | `undefined` | Displays a global error message below the drop zone |
-| `retry` | `boolean` | `undefined` | When `true` and a file has an error, shows a Retry button that re-opens the file dialog |
-| `hideSize` | `boolean` | `undefined` | Hides the file size row on file items (per-file errors still render). Useful for backend placeholders with `size: 0` |
-| `label` | `string` | `undefined` | Label above the drop zone |
-| `tooltip` | `string` | `undefined` | Tooltip (ℹ icon) shown next to the label (requires `label`) |
-| `description` | `string` | `undefined` | Hint text below the error area |
-| `texts` | `FileUploaderTexts` | `undefined` | i18n overrides (see below). Falls back to `react-intl` message IDs |
-| `className` | `string` | `undefined` | Extra CSS class; merged with `'ds-file-uploader'` |
-| + HTML div attrs | — | — | Spread onto the outer `<div>` container |
+| Prop             | Type                                             | Default     | Description                                                                                                          |
+| ---------------- | ------------------------------------------------ | ----------- | -------------------------------------------------------------------------------------------------------------------- |
+| `mode`           | `'single' \| 'multi-medium' \| 'multi-large'`    | `'single'`  | Layout/behaviour mode. `multi-large` shows a large 160px drop area                                                   |
+| `files`          | `ExtendedFile[]`                                 | `[]`        | Controlled list of uploaded files to display                                                                         |
+| `onUpload`       | `(files: FileWithContent[]) => void`             | `undefined` | Called after drop/select with files enriched with `.content`                                                         |
+| `onRemove`       | `(file: FileWithContent, index: number) => void` | `undefined` | Called when user removes a file row                                                                                  |
+| `accept`         | `string[]`                                       | `undefined` | Accepted MIME types (e.g. `['image/png', 'application/pdf']`)                                                        |
+| `filesAmount`    | `number`                                         | `undefined` | Maximum number of files. Throws if set to `< 1`. Drop zone hides once limit is reached                               |
+| `removable`      | `boolean`                                        | `true`      | Show remove button on file rows                                                                                      |
+| `disabled`       | `boolean`                                        | `undefined` | Disables the drop zone and file rows                                                                                 |
+| `error`          | `string`                                         | `undefined` | Displays a global error message below the drop zone                                                                  |
+| `retry`          | `boolean`                                        | `undefined` | When `true` and a file has an error, shows a Retry button that re-opens the file dialog                              |
+| `hideSize`       | `boolean`                                        | `undefined` | Hides the file size row on file items (per-file errors still render). Useful for backend placeholders with `size: 0` |
+| `label`          | `string`                                         | `undefined` | Label above the drop zone                                                                                            |
+| `tooltip`        | `string`                                         | `undefined` | Tooltip (ℹ icon) shown next to the label (requires `label`)                                                          |
+| `description`    | `string`                                         | `undefined` | Hint text below the error area                                                                                       |
+| `texts`          | `FileUploaderTexts`                              | `undefined` | i18n overrides (see below). Falls back to `react-intl` message IDs                                                   |
+| `className`      | `string`                                         | `undefined` | Extra CSS class; merged with `'ds-file-uploader'`                                                                    |
+| + HTML div attrs | —                                                | —           | Spread onto the outer `<div>` container                                                                              |
 
 **Imperative ref** (`FileUploaderRef`):
+
 ```ts
 { open: () => void; inputRef: RefObject<HTMLInputElement>; rootRef: RefObject<HTMLElement> }
 ```
+
 Call `ref.current.open()` to programmatically open the file picker.
 
 ### `AvatarUploader`
@@ -79,6 +81,7 @@ Call `ref.current.open()` to programmatically open the file picker.
 ### `ItemUploader`
 
 `forwardRef<FileUploaderRef, ItemUploaderProps>`. Same as `FileUploader` except:
+
 - `mode` type: `'single' | 'multi'` (not `'multi-medium' | 'multi-large'`)
 - Shows a ghost-primary "Add file" button instead of a drop-zone area. Button label is **hardcoded** — not driven by `texts`.
 - Does not render a `description` below error messages (it's passed to `FileViewItem` but `FileViewItem` doesn't render it).
@@ -86,6 +89,7 @@ Call `ref.current.open()` to programmatically open the file picker.
 ### `FileUploaderStyles`
 
 Aggregated style object exported for consumers who need to extend or override styled-components:
+
 ```ts
 {
  FileUploader: FileUploaderStyles,
@@ -97,30 +101,30 @@ Aggregated style object exported for consumers who need to extend or override st
 
 ### Types exported
 
-| Type | Description |
-|------|-------------|
-| `FileUploaderProps` | Main props interface (extends `WithHTMLAttributes<HTMLDivElement, ..>`) |
-| `ItemUploaderProps` | Same as `FileUploaderProps` with narrower `mode` |
-| `ExtendedFile` | `{ file: FileWithContent; error?: string; disabled?: boolean; progress?: number; success?: boolean }` |
-| `FileWithContent` | `File & { content?: FileContent }` |
-| `FileContent` | `string \| ArrayBuffer \| null` |
-| `FileUploaderRef` | `{ open; inputRef; rootRef }` |
+| Type                | Description                                                                                                                |
+| ------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| `FileUploaderProps` | Main props interface (extends `WithHTMLAttributes<HTMLDivElement, ..>`)                                                    |
+| `ItemUploaderProps` | Same as `FileUploaderProps` with narrower `mode`                                                                           |
+| `ExtendedFile`      | `{ file: FileWithContent; error?: string; disabled?: boolean; progress?: number; success?: boolean; previewUrl?: string }` |
+| `FileWithContent`   | `File & { content?: FileContent }`                                                                                         |
+| `FileContent`       | `string \| ArrayBuffer \| null`                                                                                            |
+| `FileUploaderRef`   | `{ open; inputRef; rootRef }`                                                                                              |
 
 ### `FileUploaderTexts` shape
 
-| Key | Default (react-intl) | Description |
-|-----|----------------------|-------------|
-| `buttonLabel` | `"Upload file"` | Drop-zone button label (compact mode) |
-| `buttonLabelLarge` | `"Upload file"` | Drop-zone label (multi-large, no files) |
-| `buttonDescription` | `"Description"` | Drop-zone sub-label (multi-large) |
-| `size` | `"Size"` | Prefix before file size in file row |
-| `removeTooltip` | `"Remove"` | Tooltip on remove icon |
-| `cancelText` | `"Cancel"` | Popconfirm cancel button |
-| `okText` | `"OK"` | Popconfirm confirm button |
-| `removeConfirmTitle` | `"Remove"` | Popconfirm title |
-| `fileWeight` | `"File weight"` | Label for file weight during upload |
-| `retryLabel` | `"Retry"` | Label on retry button |
-| `percent` | — | Current upload percentage (number) — passed to `ProgressBar` |
+| Key                  | Default (react-intl) | Description                                                  |
+| -------------------- | -------------------- | ------------------------------------------------------------ |
+| `buttonLabel`        | `"Upload file"`      | Drop-zone button label (compact mode)                        |
+| `buttonLabelLarge`   | `"Upload file"`      | Drop-zone label (multi-large, no files)                      |
+| `buttonDescription`  | `"Description"`      | Drop-zone sub-label (multi-large)                            |
+| `size`               | `"Size"`             | Prefix before file size in file row                          |
+| `removeTooltip`      | `"Remove"`           | Tooltip on remove icon                                       |
+| `cancelText`         | `"Cancel"`           | Popconfirm cancel button                                     |
+| `okText`             | `"OK"`               | Popconfirm confirm button                                    |
+| `removeConfirmTitle` | `"Remove"`           | Popconfirm title                                             |
+| `fileWeight`         | `"File weight"`      | Label for file weight during upload                          |
+| `retryLabel`         | `"Retry"`            | Label on retry button                                        |
+| `percent`            | —                    | Current upload percentage (number) — passed to `ProgressBar` |
 
 ## Usage patterns
 
@@ -190,4 +194,27 @@ Styles in `FileUploader.styles.ts` (and per-variant siblings). Uses `props.theme
 - **`retry` in `FileView`:** When `retry=true` and a file row has `error`, the retry button spreads `getRootProps()` (from `useDropzone`) to open the file picker — it first calls `onRemove` to clear the errored entry, then re-opens the dialog.
 - **`texts.percent`** is typed `number` (not `ReactNode`) because it's passed directly to `ProgressBar`'s `percent` prop.
 - **`FileViewAvatarTexts`** is not exported from `index.ts` — accessible only as a deep import.
+- **`previewUrl` renders a file the browser cannot read.** A file already in remote storage is
+  usually reachable only as a url: storage buckets commonly answer without CORS headers, so
+  `fetch` fails on preflight and the url cannot be turned back into a `File`. Consumers therefore
+  pass a zero-byte placeholder `File` for the name and `previewUrl` for the picture — an `<img>`
+  needs no CORS. All three variants honour it, and `FileViewAvatar` honours it twice: once for the
+  avatar background and once for the file row beside it, each of which has its own thumbnail
+  branch. Pair it with `hideSize` in `FileUploader` only — `AvatarUploader` and `ItemUploader`
+  render no size. It also sidesteps the `URL.createObjectURL` leak noted above for that file, since
+  no object url is created when `previewUrl` is set.
+- **Thumbnail size is per variant, deliberately.** `PreviewThumbnail` matches the footprint of the
+  glyph branch it replaces in that variant — 40px with `PreviewImage`'s negative margins in
+  `FileView`, 24px in `FileViewAvatar`, 20px in `FileViewItem`, whose row is a fixed 32px tall.
+  Using one size everywhere makes a list that mixes a stored file with a picked one render two
+  different shapes. Note the component is already uneven here: the image-mime branch is 40px in
+  `FileView` while `PlaceholderImage` is 32px in all three.
+- **`toCssUrl` guards the avatar background.** `FileViewAvatar` interpolates the source into a CSS
+  `url('…')`. That was safe while it was always a locally created `blob:` url; `previewUrl` is
+  consumer input, and a value containing `')` would close the `url()` and inject declarations.
+  `encodeURI` alone does not help — it leaves `'`, `"`, `(` and `)` intact — so those four are
+  percent-encoded on top of it.
+- **`data-testid` on both thumbnail and glyph.** `file-preview-thumbnail` and `file-mime-glyph`
+  exist so specs need not match generated styled-components class names, which only carry readable
+  names because `babel-plugin-styled-components` runs with `displayName: true`.
 - **Uses Vitest** for testing.

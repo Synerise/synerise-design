@@ -127,6 +127,7 @@ const defaultRender: Meta<VirtualTableType>['render'] = (args) => {
 
 export default {
   ...TableMeta,
+  tags: ['deprecated'],
   parameters: {
     ...TableMeta.parameters,
     controls: {

@@ -67,7 +67,7 @@ export default defineConfig([
             {
               group: ['@synerise/ds-*/dist/*'],
               message:
-                'Import from the package root instead of deep /dist/ paths. Deep /dist/ imports break test resolution via tsconfig paths.',
+                'Import from the package root instead of deep /dist/ paths. Deep /dist/ imports bypass the package exports map and couple you to its build layout.',
             },
             {
               group: ['antd/lib/*', 'antd/es/*'],

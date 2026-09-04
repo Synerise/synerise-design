@@ -23,6 +23,18 @@ export const PlaceholderImage = styled.div`
   }
 `;
 
+export const PreviewThumbnail = styled.img`
+  /* Matches PreviewImage exactly — the branch a stored image actually replaces — box and negative
+     margins alike, so a list mixing a stored file with a freshly picked one keeps one shape.
+     Measured: that box is 40x40 here, not the 32x32 of the PlaceholderImage branch. */
+  width: 40px;
+  height: 40px;
+  margin: -4px -8px -4px -4px;
+  border-radius: 3px;
+  object-fit: contain;
+  background-color: ${(props) => props.theme.palette['grey-200']};
+`;
+
 export const Info = styled.div<{ progress: boolean }>`
   overflow: hidden;
   margin: 0 0 0 10px;

@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-icon",
-  "version": "1.18.5",
+  "version": "2.1.0",
   "description": "Icon UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -41,7 +41,9 @@
   },
   "sideEffects": [
     "dist/style/*",
-    "*.less"
+    "*.less",
+    "dist/registerAllIcons.js",
+    "src/registerAllIcons.ts"
   ],
   "types": "dist/index.d.ts",
   "dependencies": {

@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-filter@2.0.0...@synerise/ds-item-filter@2.0.1) (2026-09-02)
+
+**Note:** Version bump only for package @synerise/ds-item-filter
+
+# [2.0.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-filter@1.0.102...@synerise/ds-item-filter@2.0.0) (2026-08-26)
+
+**Note:** Version bump only for package @synerise/ds-item-filter
+
+## [1.0.102](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-filter@1.0.101...@synerise/ds-item-filter@1.0.102) (2026-08-20)
+
+**Note:** Version bump only for package @synerise/ds-item-filter
+
+## [1.0.101](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-filter@1.0.100...@synerise/ds-item-filter@1.0.101) (2026-08-18)
+
+**Note:** Version bump only for package @synerise/ds-item-filter
+
+## [1.0.100](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-filter@1.0.99...@synerise/ds-item-filter@1.0.100) (2026-08-14)
+
+**Note:** Version bump only for package @synerise/ds-item-filter
+
 ## [1.0.99](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-filter@1.0.98...@synerise/ds-item-filter@1.0.99) (2026-08-13)
 
 **Note:** Version bump only for package @synerise/ds-item-filter

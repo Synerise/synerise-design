@@ -4,7 +4,6 @@ import { type ThemeProps } from '@synerise/ds-core';
 
 import { PREVIEW_PADDING } from './ImagePreview.const';
 
-const OVERLAY_Z_INDEX = 1050;
 const imageFadeIn = keyframes`
   from { opacity: 0; }
   to { opacity: 1; }
@@ -12,10 +11,12 @@ const imageFadeIn = keyframes`
 const CONTROLS_INSET = 16; // gap between the toolbars/close and the viewport edge
 const IMAGE_BORDER_RADIUS = 8;
 
-export const Overlay = styled.div<ThemeProps & { $hidden?: boolean }>`
+export const Overlay = styled.div<
+  ThemeProps & { $hidden?: boolean; $zIndex: number }
+>`
   position: fixed;
   inset: 0;
-  z-index: ${OVERLAY_Z_INDEX};
+  z-index: ${(props): number => props.$zIndex};
   display: flex;
   align-items: center;
   justify-content: center;
