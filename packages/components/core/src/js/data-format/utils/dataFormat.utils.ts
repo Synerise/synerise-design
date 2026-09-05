@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import relativeTimePlugin from 'dayjs/plugin/relativeTime';
+import relativeTimePlugin from 'dayjs/plugin/relativeTime.js';
 import { type IntlShape } from 'react-intl';
 
 import {

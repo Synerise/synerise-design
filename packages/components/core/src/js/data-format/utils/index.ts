@@ -37,8 +37,15 @@ export { getConstantDatesAndFormattingOptions } from './date.utils';
 export {
   applyTimezoneOffset,
   currentTimeInTimezone,
-  getValueAsLocalDate,
-  getTimeZone,
   dateStringTimeZoneParts,
+  dateTimeStringToLocalDate,
+  extractTimeZoneOffset,
+  // The encoder/decoder pair for the wall-clock convention. Previously reachable only through
+  // `@synerise/ds-core/dist/js/data-format/utils/timeZone.utils`, which pins an internal path as
+  // the contract and defeats tree-shaking — the pickers and their docs still point there.
+  getLocalDateInTimeZone,
+  getTimeZone,
+  getValueAsLocalDate,
   removeTimeZoneOffset,
+  toIsoString,
 } from './timeZone.utils';
