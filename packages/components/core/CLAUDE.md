@@ -364,7 +364,8 @@ RTL `render()` wrapped in `DSProvider` with sensible test defaults. Use in compo
 - `react-intl` — i18n; `LocaleProvider` wraps `IntlProvider`
 - `styled-components` — theming via `ThemeProvider`
 - `react-hot-toast` — toast notifications (`Toaster` is a thin wrapper)
-- `dayjs`, `moment`, `date-fns-tz` — date value detection and formatting in `useDataFormat`
+- `dayjs`, `moment` — date value detection in `useDataFormat`
+- `@date-fns/tz` — `TZDate` + `tzOffset` for the timezone utilities. Standalone: no `date-fns` dependency and no peers, so ds-core takes no position on the consumer's `date-fns` major
 
 ## Implementation notes
 
@@ -375,7 +376,12 @@ RTL `render()` wrapped in `DSProvider` with sensible test defaults. Use in compo
 - **`useDataFormat` uses `eslint-disable @typescript-eslint/no-explicit-any`** in `formatValue` and `formatMultipleValues` to handle the overload dispatch pattern.
 - **Data format contexts are split**: `DataFormatConfigContext` holds the raw config; `DataFormatIntlsContext` holds three `IntlShape` instances (number/date/time) derived from that config. Splitting them avoids re-creating all intl instances when only one notation changes.
 - **`timeZone.utils.ts` — wall clock vs instant.** A "wall clock" is a `Date` whose *local* fields carry a reading in some other timezone; an "instant" is a real point in time. `toIsoString` encodes a wall clock into an offset-carrying ISO string, `getLocalDateInTimeZone` decodes such a string back into a wall clock, and the two are inverses. Mixing the two representations shifts a value by the browser-to-target timezone delta.
-  - `date-fns-tz@1`'s `getTimezoneOffset(tz, date)` reads `date`'s **UTC** fields as the wall clock to look the offset up at — *not* as an instant. A date holding a wall clock in its local fields must therefore be re-based (`asUtcFields`) first; asking for the offset at an instant needs `utcToZonedTime` instead, which is the only one of the two that can tell the sides of a DST transition apart. Both are wrapped locally (`getOffsetAtWallClock`, `getWallClockAtInstant`) — go through them rather than calling `getTimezoneOffset` directly, and see `utils/__specs__/timeZone.utils.spec.ts` for the transition-day coverage.
+  - Both directions go through local wrappers — `getOffsetAtWallClock` and `getWallClockAtInstant`. Use them rather than reaching for `@date-fns/tz` directly, and see `utils/__specs__/timeZone.utils.spec.ts` for the transition-day coverage.
+    - `asInstantInTimeZone` builds a `TZDate` from a wall clock's components, which `TZDate` reads as a reading *in* the zone — so it resolves which side of a DST transition the wall clock falls on by itself. This replaced the `asUtcFields` re-basing that `date-fns-tz@1` needed, whose `getTimezoneOffset(tz, date)` read `date`'s **UTC** fields as the wall clock to look up.
+    - `tzOffset` returns **minutes** ahead of UTC, where `date-fns-tz@1`'s `getTimezoneOffset` returned **milliseconds**. Everything in the module is minutes now.
+    - `tzOffset` cannot parse the `'Z'` designator and returns `NaN` for it, where `getTimezoneOffset` read it as zero. `extractTimeZoneOffset` reports a UTC-terminated string as `'Z'`, and `value.toISOString()` is the most common input to `getLocalDateInTimeZone` — so that case is normalised explicitly (`UTC_DESIGNATOR`) and pinned by a spec.
+    - `dateToIsoWithOffset` delegates to `toIsoString`. It must keep the date's own fields and only stamp the zone's offset, which is what `date-fns-tz@1`'s `format({ timeZone })` did; wrapping the value in a `TZDate` instead re-reads it as an instant and shifts it by the browser-to-zone delta.
+  - **A `TZDate` is not interchangeable with a wall-clock carrier.** Its getters report the same reading, but `toISOString()` emits an offset-carrying string rather than a `Z` one, and its instant is the real one rather than the re-based value callers observe today. `getLocalDateInTimeZone` therefore still returns a plain `Date`; switching that return type is a deliberate follow-up, not a drop-in.
   - `toIsoString(date, timeZone)` defaults `timeZone` to `'UTC'`, so passing `undefined` does **not** mean "leave this date alone" — it stamps `+00:00` onto the local fields. Callers that mean that must skip the call.
 - **`applyTimeZoneOffset` is opt-in** (`DataFormatConfig`, default `false`) and gates the projection of an instant into the provider timezone inside `getFormattedDate`. A component that deliberately hands `formatValue` an instant should request the flag per call (`options.applyTimeZoneOffset`, which takes precedence over the config) rather than inheriting it — otherwise its output silently depends on how the consuming app is configured.
 - **Uses Vitest** for testing.

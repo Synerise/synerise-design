@@ -26,8 +26,13 @@ export {
 } from './hocs/withDataFormat';
 
 export {
+  currentTimeInTimezone,
   getDataFormatConfigFromNotation,
   getDefaultDataTimeOptions,
+  // The wall-clock encoder/decoder pair. Re-exported here so consumers stop reaching into
+  // `dist/js/data-format/utils/timeZone.utils` for them.
+  getLocalDateInTimeZone,
+  toIsoString,
 } from './utils';
 
 export * from './constants';

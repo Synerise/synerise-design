@@ -38,6 +38,16 @@ const wallClock = (isoDateTime: string): Date => {
   return new Date(year, month - 1, day, hours, minutes, seconds);
 };
 
+// The reading a wall-clock date carries in its local fields, in the same shape as `wallClock`'s
+// input — the representation `getLocalDateInTimeZone` returns.
+const localFieldsOf = (date: Date): string => {
+  const pad = (value: number) => String(value).padStart(2, '0');
+
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}T${pad(date.getHours())}:${pad(
+    date.getMinutes(),
+  )}:${pad(date.getSeconds())}`;
+};
+
 // A wall clock the *process* timezone skips (its own spring-forward) cannot be held in a Date's
 // local fields at all, so such a sample says nothing about the code under test.
 const isRepresentableLocally = (isoDateTime: string): boolean => {
@@ -115,15 +125,23 @@ describe('getLocalDateInTimeZone', () => {
     ['2024-03-10T07:00:00+00:00', 'America/New_York', '2024-03-10T03:00:00'],
     ['2024-03-31T00:30:00+02:00', 'Asia/Tokyo', '2024-03-31T07:30:00'],
   ])('decodes %s in %s', (isoString, timeZone, expectedWallClock) => {
-    const decoded = getLocalDateInTimeZone(isoString, timeZone);
-    const localFields = `${decoded.getFullYear()}-${String(decoded.getMonth() + 1).padStart(2, '0')}-${String(
-      decoded.getDate(),
-    ).padStart(2, '0')}T${String(decoded.getHours()).padStart(2, '0')}:${String(decoded.getMinutes()).padStart(
-      2,
-      '0',
-    )}:${String(decoded.getSeconds()).padStart(2, '0')}`;
+    expect(localFieldsOf(getLocalDateInTimeZone(isoString, timeZone))).toBe(expectedWallClock);
+  });
 
-    expect(localFields).toBe(expectedWallClock);
+  // `Date.prototype.toISOString()` terminates in 'Z', not '+00:00', and it is the most common way
+  // a caller reaches this function (`getValueAsLocalDate`, `getFormattedDate`). The offset parser
+  // has to read that designator as zero — one that returns NaN for it invalidates every such
+  // call, and the offset-carrying cases above would not notice.
+  it.each([
+    ['2024-03-31T00:59:59.000Z', 'Europe/Warsaw', '2024-03-31T01:59:59'],
+    ['2024-03-31T01:00:00.000Z', 'Europe/Warsaw', '2024-03-31T03:00:00'],
+    ['2023-06-25T16:40:00.000Z', 'Australia/Darwin', '2023-06-26T02:10:00'],
+    ['2023-06-25T16:40:00.000Z', 'UTC', '2023-06-25T16:40:00'],
+  ])('decodes the Z designator in %s as UTC', (isoString, timeZone, expectedWallClock) => {
+    const decoded = getLocalDateInTimeZone(isoString, timeZone);
+
+    expect(Number.isNaN(decoded.getTime())).toBe(false);
+    expect(localFieldsOf(decoded)).toBe(expectedWallClock);
   });
 
   it.each(['Europe/Warsaw', 'America/New_York', 'Asia/Tokyo'])(
