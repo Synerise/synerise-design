@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@2.0.0...@synerise/ds-core@2.1.0) (2026-09-05)
+
+### Features
+
+- **core:** move the timezone utilities onto @date-fns/tz and export them ([3d0d43b](https://github.com/synerise/synerise-design/commit/3d0d43b9dcc6ce2d07fdf45d329f82afcb4105fd))
+
 # [2.0.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@1.15.0...@synerise/ds-core@2.0.0) (2026-08-26)
 
 **Note:** Version bump only for package @synerise/ds-core

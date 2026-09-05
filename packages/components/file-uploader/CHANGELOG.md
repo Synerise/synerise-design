@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-file-uploader@2.0.1...@synerise/ds-file-uploader@2.1.0) (2026-09-05)
+
+### Bug Fixes
+
+- address review on the stored-file thumbnail ([2856afa](https://github.com/Synerise/synerise-design/commit/2856afa081bf2edf7887c1102494adf497da3253))
+- render previewUrl in the avatar uploader's file row ([414f004](https://github.com/Synerise/synerise-design/commit/414f0043a067b4beb34f464296d9f8eacb418a8e))
+
+### Features
+
+- render a stored file's url as the uploader thumbnail ([bd1a6eb](https://github.com/Synerise/synerise-design/commit/bd1a6eb4094f0ca380585dc98168f76dfae4b61e))
+
 ## [2.0.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-file-uploader@2.0.0...@synerise/ds-file-uploader@2.0.1) (2026-09-02)
 
 **Note:** Version bump only for package @synerise/ds-file-uploader

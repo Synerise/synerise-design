@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.59.0](https://github.com/Synerise/synerise-design/compare/storybook@1.58.0...storybook@1.59.0) (2026-09-05)
+
+### Bug Fixes
+
+- address review on the stored-file thumbnail ([2856afa](https://github.com/Synerise/synerise-design/commit/2856afa081bf2edf7887c1102494adf497da3253))
+
+### Features
+
+- render a stored file's url as the uploader thumbnail ([bd1a6eb](https://github.com/Synerise/synerise-design/commit/bd1a6eb4094f0ca380585dc98168f76dfae4b61e))
+
 # [1.58.0](https://github.com/Synerise/synerise-design/compare/storybook@1.57.1...storybook@1.58.0) (2026-09-02)
 
 ### Features
