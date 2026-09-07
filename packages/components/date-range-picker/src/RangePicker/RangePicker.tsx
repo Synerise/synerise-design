@@ -7,7 +7,7 @@ import React, {
   type ReactNode,
   type UIEvent,
 } from 'react';
-import { DateUtils, type DayModifiers } from 'react-day-picker';
+import { type Matcher, type Modifiers } from 'react-day-picker';
 
 import { legacyParse } from '@date-fns/upgrade/v2';
 import {
@@ -34,11 +34,7 @@ import Tooltip from '@synerise/ds-tooltip';
 
 import { Range } from '../RelativeRangePicker/RelativeRangePicker.styles';
 import { ABSOLUTE, COLUMNS, MODES } from '../constants';
-import {
-  type AbsoluteDateRange,
-  type DateFilter,
-  type RelativeDateRange,
-} from '../date.types';
+import { type AbsoluteDateRange, type RelativeDateRange } from '../date.types';
 import ADD from '../dateUtils/add';
 import getDateFromString from '../dateUtils/getDateFromString';
 import {
@@ -46,6 +42,7 @@ import {
   fnsAddMinutes,
   fnsEndOfDay,
   fnsIsAfter,
+  fnsIsBefore,
   fnsIsSameMonth,
   fnsStartOfDay,
 } from '../fns';
@@ -56,6 +53,10 @@ import {
   type State,
 } from './RangePicker.types';
 import { getDisabledTimeOptions, getModifiers, getSidesState } from './utils';
+
+/** Day-granularity comparison, replacing react-day-picker v7's `DateUtils.isDayBefore`. */
+const isDayBefore = (day: Date, reference: Date): boolean =>
+  fnsIsBefore(fnsStartOfDay(day), fnsStartOfDay(reference));
 
 const NOOP = (): void => {};
 const TOOLTIP_FORMAT = 'MMM d, yyyy, HH:mm';
@@ -76,12 +77,12 @@ function replaceRange(
   } else if (
     from &&
     to &&
-    DateUtils.isSameDay(from as Date, to as Date) &&
-    DateUtils.isSameDay(day, from as Date)
+    fnsIsSameDay(from as Date, to as Date) &&
+    fnsIsSameDay(day, from as Date)
   ) {
     from = null;
     to = null;
-  } else if (to && DateUtils.isSameDay(day, to as Date)) {
+  } else if (to && fnsIsSameDay(day, to as Date)) {
     from = day;
     to = day;
   } else if (from && to) {
@@ -89,7 +90,7 @@ function replaceRange(
     to = null;
   } else {
     to = day;
-    if (DateUtils.isDayBefore(to, from as Date)) {
+    if (isDayBefore(to, from as Date)) {
       to = from;
       from = day;
     }
@@ -165,8 +166,8 @@ class RangePicker extends PureComponent<Props & WithDataFormatProps, State> {
 
   handleDayClick = (
     day: Date,
-    modifiers: DayModifiers,
-    e: MouseEvent<HTMLDivElement>,
+    modifiers: Modifiers,
+    e: MouseEvent<Element>,
   ): void => {
     e.preventDefault();
     const { value, onChange } = this.props;
@@ -275,8 +276,8 @@ class RangePicker extends PureComponent<Props & WithDataFormatProps, State> {
       !!rangeTo &&
       fnsIsValid(rangeFrom) &&
       fnsIsValid(rangeTo) &&
-      !DateUtils.isDayBefore(day, rangeFrom) &&
-      !DateUtils.isDayBefore(rangeTo, day);
+      !isDayBefore(day, rangeFrom) &&
+      !isDayBefore(rangeTo, day);
 
     const dayForeground = <DayForeground className="DayPicker-Day-FG" />;
 
@@ -344,10 +345,12 @@ class RangePicker extends PureComponent<Props & WithDataFormatProps, State> {
       fnsIsValid(to) ? to : null,
       enteredTo,
     );
-    const selectedDays =
+    // v10's `Matcher` accepts a `Date` and a `{ from, to }` range, which is what v7 was being
+    // handed all along — only untyped. Bounds are coerced because they may still be strings.
+    const selectedDays: Matcher[] =
       fnsIsValid(from) && fnsIsValid(to)
-        ? [from, { from, to } as DateFilter]
-        : [undefined, { from: undefined, to: undefined }];
+        ? [legacyParse(from), { from: legacyParse(from), to: legacyParse(to) }]
+        : [];
     const parsedLeft = legacyParse(left.month);
     const parsedRight = legacyParse(right.month);
     const adjacentMonths =
@@ -378,11 +381,9 @@ class RangePicker extends PureComponent<Props & WithDataFormatProps, State> {
           this.handleSideMonthChange(side, month, 'date')
         }
         fixedWeeks
-        showOutsideDay
+        showOutsideDays
         modifiers={modifiers}
-        // @ts-ignore
         onDayClick={this.handleDayClick}
-        // @ts-ignore
         selectedDays={selectedDays}
       />
     );

@@ -196,7 +196,7 @@ Addons (relative picker, filter) appear below the calendar and are toggled via `
 
 ## Key dependencies
 
-- `react-day-picker ^7` — calendar grid rendering inside `RangePicker`
+- `react-day-picker ^10` — calendar grid rendering inside `RangePicker` (see the v10 notes in `ds-date-picker`'s CLAUDE.md; day cells now contain a `<button class="DayPicker-Day-Button">`)
 - `@synerise/ds-popover` — floating popover (floating-ui underneath)
 - `date-fns ^2` + `date-fns-tz 1.1.4` — date arithmetic and timezone support
 - `dayjs ^1.8` — used in parts of `RangeFilter`
@@ -210,6 +210,7 @@ Addons (relative picker, filter) appear below the calendar and are toggled via `
 - `valueTransformer` is applied inside `RawDateRangePicker` before calling `onApply` — default transformer strips `ALL_TIME`-specific props.
 - `forceAbsolute` converts relative `DateRange` values to absolute bounds before emitting — useful when downstream systems don't understand relative types.
 - `RangePicker` (absolute calendar) is a class-based `PureComponent` — avoid passing new function references on every render to prevent unnecessary re-renders.
+- `getModifiers()` in `RangePicker/utils.ts` returns react-day-picker `Matcher`s keyed by modifier name; each key becomes a `DayPicker-Day--<key>` class. It normalises the `Date | string | null` range bounds to `Date`, which the v7 code did with casts.
 - `RelativeRangePicker` is also a class-based `PureComponent`.
 - The `SINCE` mode is a variant of relative dating anchored to a specific timestamp rather than "now".
 - `normalizeRange()` from `utils` converts relative ranges to absolute `Date` objects — used internally and safe to call from consuming code.

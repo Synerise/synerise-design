@@ -3,7 +3,7 @@ import fnsIsWithinRange from 'date-fns/isWithinInterval';
 import fnsMax from 'date-fns/max';
 import fnsMin from 'date-fns/min';
 import dayjs from 'dayjs';
-import { type Modifiers } from 'react-day-picker';
+import { type Matcher } from 'react-day-picker';
 
 import { legacyParse } from '@date-fns/upgrade/v2';
 import {
@@ -161,11 +161,22 @@ export const getSidesState = (
   };
 };
 
+/**
+ * Range bounds are typed `Date | string | null`, and v7 accepted the string form because every
+ * modifier was force-cast. v10's `Matcher` is precise, so the coercion happens here instead.
+ */
+const toDate = (value: NullableDateLimit | undefined): Date | undefined => {
+  if (value === null || value === undefined) {
+    return undefined;
+  }
+  return value instanceof Date ? value : legacyParse(value);
+};
+
 export const getModifiers = (
   from: NullableDateLimit | undefined,
   to: NullableDateLimit | undefined,
   enteredTo: NullableDateLimit | undefined,
-): Modifiers => {
+): Record<string, Matcher | undefined> => {
   const isSelecting = from && !to && enteredTo;
   const enteredStart = isSelecting
     ? fnsMin([legacyParse(from), legacyParse(enteredTo)])
@@ -185,14 +196,13 @@ export const getModifiers = (
   const endModifier =
     isSelecting && !!enteredTo && !!from && enteredTo < from ? from : to;
   return {
-    start: startModifier as Date,
-    end: endModifier as Date,
-    entered: entered as Date,
-    outside: undefined,
+    start: toDate(startModifier),
+    end: toDate(endModifier),
+    entered: typeof entered === 'function' ? entered : toDate(entered),
     today: NOW,
-    'entered-start': enteredStart as Date,
-    'entered-end': enteredEnd as Date,
-    'initial-entered': !endModifier ? (startModifier as Date) : undefined,
-    initial: !entered && !endModifier ? (startModifier as Date) : undefined,
+    'entered-start': toDate(enteredStart),
+    'entered-end': toDate(enteredEnd),
+    'initial-entered': !endModifier ? toDate(startModifier) : undefined,
+    initial: !entered && !endModifier ? toDate(startModifier) : undefined,
   };
 };

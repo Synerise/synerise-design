@@ -41,7 +41,10 @@ describe('RawDatePicker', () => {
         disabledDates={validator}
       />,
     );
-    expect(validator).toBeCalledTimes(ROWS * WEEKDAYS);
+    // react-day-picker v10 renders twice on mount, so it evaluates the matcher twice per day.
+    // The invariant this test is about is that every visible day gets validated.
+    const validated = new Set(validator.mock.calls.map(([date]) => String(date)));
+    expect(validated.size).toBe(ROWS * WEEKDAYS);
   });
   it('should proceed to MonthPicker when clicked on month', async () => {
     renderWithProvider(

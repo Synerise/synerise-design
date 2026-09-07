@@ -468,7 +468,8 @@ describe('DateRangePicker', () => {
         texts={texts}
       />
     );
-    const getDayButton = () => container.querySelector('.DayPicker-Body .DayPicker-Day:not(.DayPicker-Day--today)');
+    const getDayButton = () =>
+      container.querySelector('.DayPicker-Body .DayPicker-Day:not(.DayPicker-Day--today) .DayPicker-Day-Button');
     const getLastCallParams = () => onApply.mock.calls[onApply.mock.calls.length - 1][0];
     // @ts-ignore
     await userEvent.click(getDayButton());
@@ -831,7 +832,8 @@ describe('DateRangePicker', () => {
         texts={texts}
       />
     );
-    const getDayButton = () => container.querySelector('.DayPicker-Body .DayPicker-Day');
+    const getDayButton = () =>
+      container.querySelector('.DayPicker-Body .DayPicker-Day .DayPicker-Day-Button');
     const applyButton = screen.getByTestId('date-range-picker-apply-button');
     expect(applyButton).toBeInTheDocument();
 

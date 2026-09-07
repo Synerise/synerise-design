@@ -1,5 +1,5 @@
 import React from 'react';
-import { type DayModifiers, type Modifiers } from 'react-day-picker';
+import { type Modifiers } from 'react-day-picker';
 import { type WrappedComponentProps, injectIntl } from 'react-intl';
 
 import { legacyParse } from '@date-fns/upgrade/v2';
@@ -97,7 +97,7 @@ class RawDatePicker extends React.Component<
 
   handleDayMouseLeave = (): void => this.setState({ enteredTo: undefined });
 
-  handleDayClick = (day: Date, modifiers: DayModifiers): void => {
+  handleDayClick = (day: Date, modifiers: Modifiers): void => {
     const { changed: isChanged, value } = this.state;
     const { useStartOfDay, useEndOfDay, showTime } = this.props;
 
@@ -215,7 +215,7 @@ class RawDatePicker extends React.Component<
         onMonthChange={(selectedMonth: Date): void =>
           this.handleMonthChange(selectedMonth, 'date')
         }
-        modifiers={modifiers as unknown as Modifiers}
+        modifiers={modifiers}
       />
     );
   };
@@ -223,10 +223,9 @@ class RawDatePicker extends React.Component<
   handleDaySwitch = (day: Date): void => {
     const { disabledDates } = this.props;
 
-    // @ts-ignore
     this.handleDayClick(day, {
       disabled: disabledDates ? disabledDates(day) : false,
-    });
+    } as Modifiers);
   };
 
   renderTimePicker = (): React.ReactNode => {
