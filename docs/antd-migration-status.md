@@ -6,7 +6,7 @@ for the decision and rationale.
 **Status legend:** ⬜ Not started · 🟦 Branch created · 🟨 In progress · ⏸️ Blocked (waiting on another branch/merge) · 🧪 Code-complete, in QA (branch not yet merged) · ✅ Done (antd-free, merged to master) · 🗑️ Deprecate (no reimplementation) · ⏭️ Out of scope
 
 **Audit date:** 2026-06-08 · scope: `packages/components/*/src` · `ds-table` excluded.
-**Last updated:** 2026-08-26 · ✅ **The initiative is complete.** Every tier is merged to master: Tiers 1, 2, 2.5, Tier 3 (`drawer`, `list`, `select`), `core` (STOR-2341, MR 1 = JS !3901, MR 2 = CSS !3903), Tier 0 and the stale peerDeps (STOR-2342). `menu`, `alert` and `table` are deprecated and keep antd until they are deleted; no DS package imports any of them any more (MRs !3790, !3905, !3920). The `design-system` umbrella no longer ships them and no longer declares an `antd` peerDep, and neither does `ds-core`. `antd` is now declared **only** by those three packages and by the repo root. Consumer-facing notes: `docs/migration-v2.md`.
+**Last updated:** 2026-09-03 · ✅ **The initiative is closed — `antd` is gone from the repo.** Every tier is merged to master: Tiers 1, 2, 2.5, Tier 3 (`drawer`, `list`, `select`), `core` (STOR-2341, MR 1 = JS !3901, MR 2 = CSS !3903), Tier 0 and the stale peerDeps (STOR-2342). The final step — deleting `menu`, `alert` and `table` (step 2 of the retirement plan below) — has landed, and with it the root `antd` dependency, the `rc-trigger`/`rc-util` resolutions, the antd/`rc-*`/`@ant-design/*` Rollup externals, the antd `no-restricted-imports` rule (now a flat ban on `antd`) and the antd warning filter in the Vitest setup. No `package.json` in the repo declares `antd`, and no source file imports it. Consumer-facing notes: `docs/migration-v2.md`.
 
 **Playbook:** use the **`deantd-component`** skill (`.claude/skills/deantd-component/`) for the
 per-component process (API audit → DS-native reimplementation → verify → consumer migration → MR).
@@ -53,7 +53,7 @@ import antd's component LESS. None are thin re-exports.
 > **Released.** All Tier 2 components below are merged and antd-free on `master`.
 > `@synerise/ds-carousel` (MR !3751) shipped as the shared primitive replacing antd `Carousel` for
 > both banner and popconfirm; its API also covers the multi-slide puib `CardWithSlider` usage.
-> **Decisions carried forward:** `alert` stays **excluded** (deprecated — keep antd until the package
+> **Decisions carried forward:** `alert` stayed **excluded** (deprecated — antd kept until the package
 > is deleted); `input-number` was **pulled out of the deferral** and completed in **Tier 2.5** (below);
 > `list` remains **deferred** and is now tracked under **Tier 3** (its `radio` blocker has merged).
 
@@ -61,7 +61,7 @@ import antd's component LESS. None are thin re-exports.
 |---|---|---|---|
 | `ds-carousel` (new) | — (replaces antd `Carousel`) | No | ✅ merged (MR !3751) |
 | `pagination` | `Pagination` + `PaginationProps` | DS-native, emits `ds-pagination-*` only (no `ant-` hooks). `ds-table` (excluded — still renders antd's own `Pagination`) now owns its `.ant-pagination-*` styling via a local `style/pagination.less` instead of borrowing ds-pagination's deleted LESS; `ds-table-new` `PaginationProps` type repointed to ds-pagination (**closes that Tier 0 item**) | ✅ merged (MR !3755) |
-| `alert` | `Alert` + `AlertProps` | No | ⏭️ excluded (deprecated; keep antd until deleted). **No DS package imports it any more** — the nine internal call sites all reached antd-free components (`Alert.InlineAlert`, `IconAlert`, the local `InlineAlert`) through an antd-backed namespace, and now use `@synerise/ds-inline-alert` directly, matching what `ds-table-new` already did. `Alert.stories.tsx` deleted with them; only `ds-mocks`' mock target and the `design-system` umbrella dep still name the package. It can now be deleted without touching a consumer. |
+| `alert` | `Alert` + `AlertProps` | No | 🗑️ retired — source deleted (published `2.0.1` remains installable). **No DS package imports it any more** — the nine internal call sites all reached antd-free components (`Alert.InlineAlert`, `IconAlert`, the local `InlineAlert`) through an antd-backed namespace, and now use `@synerise/ds-inline-alert` directly, matching what `ds-table-new` already did. `Alert.stories.tsx` deleted with them; only `ds-mocks`' mock target and the `design-system` umbrella dep still name the package. It was deleted without touching a consumer: nothing outside the repo imported it. |
 | `banner` | `Carousel` + `CarouselRef` → ds-carousel | No | ✅ merged (MR !3753) |
 | `popconfirm` | `Carousel` (image carousel in body) → ds-carousel | No | ✅ merged (MR !3752) |
 | `sidebar` | `Collapse` + `CollapseProps` | No | ✅ merged (MR !3754) |
@@ -105,7 +105,7 @@ multiple/tags/search + LESS deletion + `.ant-select-*`→`.ds-select-*` consumer
 | `drawer` | `Drawer` | **Ported (pending MR).** DS-native on `createPortal` + `useFocusTrap` (ds-utils) — modeled on ds-modal: `open`/`visible` both accepted, mask + slide animation (transform per placement), focus-trap only in mask mode, `maskClosable`/`keyboard`(Esc)/`destroyOnClose`/`afterVisibleChange`/`getContainer` (incl. `false`=inline no-portal mode), 6 styled statics kept, `.ant-drawer*`+`.ds-drawer*` class hooks retained (consumers target `.ant-drawer` for z-index). Dropped: `push`/non-right-nothing (only `right` used), `title`/`closable` swallowed as before. antd LESS deleted (no consumer `@import`s it). types+8 tests+build green. | 🧪 ported (branch, pending MR) |
 | `list` | `List` + `RadioGroupProps` | **Ported (pending MR).** DS-native list reproducing antd's DOM + `.ant-list*`/`.ds-list*` class hooks (`.ant-list-items` ul, `.ant-list-header`, `.ant-list-empty-text`, `.ant-list-split`, `.ant-list-bordered`) — the ~19 consumer stylesheets targeting those keep working. Kept: `renderItem` (flattened item + index), flat/nested `T[][]`→multi-list+`ListDivider`, `header`/`bordered`/`split`/`locale.emptyText`/`itemLayout`/`size`/`loadMore`/`rowKey`, DS `radio`/`options`/`dashed`, statics `List.Item`/`ItemWrapper`/`Divider`. **Dropped (0 real usage):** `grid`, `pagination`, `List.Item.Meta`. `loading` → ds-loader. Sub-components were already antd-free; only `List.tsx` changed. Deleted antd LESS + stray `.ant-dropdown-menu-items` mixin rule (flag in MR). types+7 tests+build green. | 🧪 ported (branch, pending MR) |
 | `select` | `Select` + `SelectProps`/`SelectValue` + `Select.Option` | **In progress on master (increment 1 done).** DS-native on `ds-dropdown`/floating-ui + `ds-list-item` + `ds-form-field` (`ds-select-*` hooks only; folds in `fix/select-transient-props`). Increment 1 = single-select (types + `Option`/`getOptionsFromChildren` + selector + option-list dropdown + `value`/`onChange`/`allowClear`/`size`/`prefixel`/`suffixel`/`getPopupContainer`/`dropdownMatchSelectWidth`/`loading`/`dropdownRender`); **increment 2 TODO:** multiple chip selector, tags free-text, in-selector `showSearch` + remote `onSearch`, keyboard/ARIA, delete antd LESS, migrate `.ant-select-*` consumers → `.ds-select-*`, drop antd peerDep. **Heaviest Tier 3 item — effectively a from-scratch `rc-select` reimplementation.** Usage audit (2026-07-06): ~217 files in **puib** use the near-complete antd surface — `mode="multiple"` (~10) **and** `mode="tags"` (4, `tokenSeparators`/`maxTagCount`), `showSearch` (22) + custom `filterOption` (14) + remote `onSearch`/`filterOption={false}` (~9), `dropdownRender` (15), `optionLabelProp` (9), `loading` (24), `dropdownMatchSelectWidth` (10), `getPopupContainer` (31), plus **~480 `<Select.Option>` children across 171 files** and 18 files importing `SelectValue` from `antd/lib/select`. DS-internal (~10 sites: pagination, date-range-picker, factors, completed-within, subtle-form) + portal-next (~10) are simple single-selects, but **6 DS packages style Select via `.ant-select-*` internals** (autocomplete + input heaviest — both shed this in Tier 2.5; `table`/`factors`/`subtle-form`/`completed-within` remain) and `table` `@import`s select's LESS. **Droppable (0 real usage):** `OptGroup`, `labelInValue`, `fieldNames`, `virtual`, `notFoundContent` (apps). Everything else must be reproduced. | 🟨 in progress (increment 1) |
-| `menu` | `Menu` + `MenuProps` | **Deprecate only — do NOT reimplement.** Deprecation markers applied (MR !3773): `@deprecated` JSDoc on `Menu` + `AntdMenuProps`, `deprecated` field in `package.json`, `deprecated` Storybook tag + note → all point to `@synerise/ds-list-item` (`ListItem` / `ListWrapper`). **Every DS-internal consumer is now migrated off it (MR !3790)** — `sidebar`/`information-card` render `ListWrapper`+`ListItem`, `search` dropped the deprecated `renderInMenu` branch, three dead `styled(Menu)` exports (`table` `SelectionMenu`, `tabs` `DropdownMenu`, `column-manager` `FixedMenu`) deleted, four stale manifest deps removed, Menu stories deleted, and the leftover dead `.ant-menu-*` CSS in `items-roll`/`cascader`/`list-item` swept. The `ds-mocks` Menu mock is kept (deprecated) for downstream repos. The package stays **published + deprecated**; deleting it is gated on external consumers — portal-ui-bridge (12 files, epic CFM-904) and universal-list (2 story files). | 🧪 internal consumers migrated (MR !3790) |
+| `menu` | `Menu` + `MenuProps` | **Deprecate only — do NOT reimplement.** Deprecation markers applied (MR !3773): `@deprecated` JSDoc on `Menu` + `AntdMenuProps`, `deprecated` field in `package.json`, `deprecated` Storybook tag + note → all point to `@synerise/ds-list-item` (`ListItem` / `ListWrapper`). **Every DS-internal consumer is now migrated off it (MR !3790)** — `sidebar`/`information-card` render `ListWrapper`+`ListItem`, `search` dropped the deprecated `renderInMenu` branch, three dead `styled(Menu)` exports (`table` `SelectionMenu`, `tabs` `DropdownMenu`, `column-manager` `FixedMenu`) deleted, four stale manifest deps removed, Menu stories deleted, and the leftover dead `.ant-menu-*` CSS in `items-roll`/`cascader`/`list-item` swept. The `ds-mocks` Menu mock is kept (deprecated) for downstream repos. The package shipped a final `2.0.1` and its **source has now been deleted**. universal-list has since migrated; portal-ui-bridge (12 files, epic CFM-904) pins `2.0.1` exactly, so it was unaffected and keeps resolving the published tarball. | 🧪 internal consumers migrated (MR !3790) |
 | `core` | `ConfigProvider` + 5 antd `locale/*` imports (JS) · `~antd/lib/style/index.less` + `~antd/lib/empty/style/index.less` (CSS) | ~354 DS consumers; removed **LAST**, split into two MRs so the CSS swap gets its own VR review. **MR 1 (JS, done):** `LocaleProvider` drops antd's `ConfigProvider`, `antLocales.ts` deleted, `getAntMessages` gone — all internal, no public API change (`core/src/js/index.ts` only exports `DSProvider`). **Consequence:** antd's `LocaleReceiver` now falls back to `en_US` for the strings `ds-table` doesn't pass itself — column-filter buttons, `items_per_page`/`jump_to` (with `showSizeChanger`/`showQuickJumper`), pagination prev/next `title`s and the `SELECTION_ALL`/`SELECTION_INVERT` labels lose pl/es/pt/fr. `ds-table` is deliberately left untouched; the mitigation is a portal-side `ConfigProvider` in puib's root `Provider` (see consolidation TODO). **MR 2 (CSS, done):** antd's reboot replaced by a vendored `src/style/reset.less` (same output — global `box-sizing`, body typography, `::selection`, the element normalize block); `.anticon` + `~antd/lib/style/core/motion.less` relocated into `ds-table` (sorter/selection carets, the embedded select's slide animation) and `motion.less` into `ds-menu` (submenu slide-up/zoom-big popups); `~antd/lib/empty/style` dropped (nothing renders antd `Empty` — `ds-table` always passes `locale.emptyText`); `antd` peerDep gone. `core.css` 22,719 → 4,244 bytes. Verified by rule-level CSS diff: **zero new rules**, and the only rules not carried over are `.ant-empty-*`, `.clearfix` (no consumer anywhere), `@-ms-viewport` and the `-ms-clear`/`-ms-reveal` IE-only blocks. | ✅ done |
 
 > **Select — foundation evaluation (2026-07-06):** build DS-native on the **in-house floating-ui base
@@ -141,26 +141,31 @@ Switch these to types defined by the already-migrated owning packages, not ad-ho
 
 | Component | Reason |
 |---|---|
-| `table` | 🗑️ **Deprecate — do NOT reimplement.** Never in scope for an antd-native rewrite: `@synerise/ds-table-new` already replaces it. Deprecation markers applied (`[DEPRECATED]` description + `deprecated` field in `package.json`, README/CLAUDE.md banner, `@deprecated` JSDoc on every `src/index.ts` export, `deprecated` Storybook tag + docs banner via the shared `TableMeta`) → all point to `@synerise/ds-table-new`. **Every DS-internal consumer is now migrated off it** — `avatar-group`'s group modal renders `ds-table-new`'s `VirtualTable`, and the Typography/Layout/Confirmation stories that used the old table as filler moved too. The `Components/Table/*` stories are kept (deprecated, not deleted) as the only VR coverage of a still-published package, and the `ds-mocks` Table mock is kept (deprecated) for downstream suites. A prop-mapping migration guide lives in `table/README.md` and **Components/TableNew/Migration from Table**. The package is **published + deprecated**; it ships once more at `2.0.0` and is then deleted — see "Retiring `menu` / `alert` / `table`" below. External consumers still to migrate: portal-ui-bridge (~50 files) and basemodel-frontend (6). |
+| `table` | 🗑️ **Deprecate — do NOT reimplement.** Never in scope for an antd-native rewrite: `@synerise/ds-table-new` already replaces it. Deprecation markers applied (`[DEPRECATED]` description + `deprecated` field in `package.json`, README/CLAUDE.md banner, `@deprecated` JSDoc on every `src/index.ts` export, `deprecated` Storybook tag + docs banner via the shared `TableMeta`) → all point to `@synerise/ds-table-new`. **Every DS-internal consumer is now migrated off it** — `avatar-group`'s group modal renders `ds-table-new`'s `VirtualTable`, and the Typography/Layout/Confirmation stories that used the old table as filler moved too. The `Components/Table/*` stories and the `ds-mocks` Table mock were kept while the package still shipped, and both went with the source. The prop-mapping migration guide lives on in **Components/TableNew/Migration from Table**. The package shipped a final `2.0.2` and its **source has now been deleted** — see "Retiring `menu` / `alert` / `table`" below. External consumers still to migrate off the published tarball: portal-ui-bridge (42 files, pinned exactly so unaffected) and basemodel-frontend (6). |
 
 ## Retiring `menu` / `alert` / `table` — the 2.0.0 plan
 
-The three antd-backed packages are retired in two steps, deliberately in this order:
+The three antd-backed packages were retired in two steps, deliberately in this order — **both are
+now done**:
 
-1. **Publish them at `2.0.0` with everything else.** They stay in the repo through the version
-   bump, so their internal `workspace:^` deps publish as `^2.0.0` and their `ds-core` peer is `*`.
-   A consumer who still needs one installs `@synerise/ds-table@2.0.0` + `antd@4.24.16` alongside
-   `@synerise/design-system@2.0.0` and gets **one** DS tree.
-2. **Delete the source in a follow-up MR**, once consumers have migrated. The published `2.0.0`
-   stays installable indefinitely, so nothing is stranded.
+1. ✅ **Publish them at `2.0.0` with everything else.** They stayed in the repo through the version
+   bump, so their internal `workspace:^` deps published as `^2.0.0` and their `ds-core` peer is `*`.
+   A consumer who still needs one installs `@synerise/ds-table@2.0.2` + `antd@4.24.16` alongside
+   `@synerise/design-system@2.0.2` and gets **one** DS tree.
+2. ✅ **Delete the source.** Shipped as `ds-menu@2.0.1`, `ds-alert@2.0.1`, `ds-table@2.0.2`; those
+   versions stay installable indefinitely, so nothing is stranded. `portal-ui-bridge` pins all of
+   them **exactly** (no caret), so it was unaffected by the deletion and continues to resolve the
+   published tarballs — its own migration off `ds-menu` (epic CFM-904) and `ds-table` is tracked
+   separately and gets no further DS-side support.
 
 Deleting them *before* the bump would strand consumers on `1.x` versions whose own deps are
 `^1.x`, dragging a whole shadow DS 1.x tree (`ds-icon`, `ds-tooltip`, `ds-list-item`, …) alongside
 the 2.x one. That is why the order matters.
 
-All three carry an npm `deprecated` field, so installs warn. When the source is deleted, `antd`
-also leaves the repo root, and with it the relocated antd stylesheets that `ds-table` owns
-(`table/src/style/{index,pagination}.less`, `select.mixin.less`'s `~antd/lib/select/style`).
+All three carry an npm `deprecated` field, so installs warn. `antd` left the repo root with them, and
+with it the relocated antd stylesheets that `ds-table` owned
+(`table/src/style/{index,pagination}.less`, `select.mixin.less`'s `~antd/lib/select/style`) and the
+`core/motion.less` fragment `ds-menu` owned.
 
 ## Stale peerDeps — config-only cleanup (no source change) — ✅ done (STOR-2342)
 
@@ -224,23 +229,40 @@ the duplicates.
 
 ## Done-check (whole initiative)
 
-- `rg -l "antd" packages/components/*/src` returns only `ds-table`, `ds-menu`, `ds-alert` (plus a
-  provenance comment in `ds-core`'s vendored `style/reset.less`).
-- No DS package **imports** `@synerise/ds-table`. The only remaining references are its own
-  source, the deprecated `ds-mocks` Table mock and the deprecated `Components/Table/*` stories.
-- No `antd` entry remains in any `package.json` except those three and the root — which keeps antd
-  installed so they can build and so the Storybook stories that render antd directly still resolve it.
+- `rg -l "antd" packages/components/*/src packages/storybook` returns only the provenance comment in
+  `ds-core`'s vendored `style/reset.less`.
+- `rg -n '"antd"' package.json packages/*/package.json packages/components/*/package.json` returns
+  nothing — no manifest declares `antd`, and the root no longer installs it.
+- No `rc-*` or `@ant-design/*` package remains in `pnpm-lock.yaml`; the `rc-trigger` / `rc-util`
+  resolutions and the antd / `rc-*` / `@ant-design/*` Rollup externals are gone.
+- `no-restricted-imports` now bans `antd` and `antd/*` outright, so the dependency cannot be
+  reintroduced without a deliberate eslint change.
 - Storybook visual review + unit/interaction tests green per package.
 
-> **Current-state caveat:** `antd` now remains only in `ds-table` (permanently excluded) and in
-> `ds-menu` / `ds-alert` (deprecated — antd stays until those packages are retired). Those three also
-> own the last fragments of antd's base stylesheet: `ds-table` imports `core/iconfont.less` and
-> `core/motion.less`, `ds-menu` imports `core/motion.less`. Everything else — `ds-core` and the
-> `design-system` umbrella included — is antd-free in both source and `package.json`.
+> **Final state:** the DS is antd-free in source, `package.json` and lockfile. The only antd traces
+> left are deliberate and inert:
 >
-> **Umbrella note:** dropping the three from `@synerise/design-system`'s `dependencies` only stops the
-> *umbrella* installing them — packages depending on them directly would still pull them in. Those
-> edges are all cut now: `ds-alert`'s five (`ds-factors`, `ds-item-picker`, `ds-step-card`,
-> `ds-information-card`, `ds-table`) with !3905, `ds-menu`'s nine with !3790, and `ds-avatar-group` →
-> `ds-table` with !3920. Nothing in the DS depends on them; only `ds-mocks` keeps its deliberate mock
-> targets, and those are peers.
+> - `packages/components/core/src/style/reset.less` — the reset vendored from antd 4.24.16, kept
+>   unchanged in output; only its comments name antd.
+> - ~220 "antd parity" prose comments across DS-native source (`ds-select`, `ds-input`,
+>   `ds-input-number`, `ds-radio`, `ds-autocomplete`, …) documenting API-compat decisions.
+> - The `ant-*` **class hooks** that DS-native components still emit on purpose — `ds-button`
+>   (`ant-btn`, `ant-btn-{type}`, `ant-btn-lg/sm/block/loading`), `ds-button-group`, `ds-radio`,
+>   `ds-checkbox`, `ds-avatar`, `ds-switch`, `ds-sidebar`'s Collapse, and `ds-drawer` / `ds-list`
+>   which dual-emit `ant-*` alongside `ds-*`. These are public CSS hooks: ~19 `portal-ui-bridge`
+>   stylesheets target `.ant-list-*`, and the `ui-tests` suites select on them. Renaming them is the
+>   separate open item in *Post-migration consolidation* and needs coordinated puib / ui-tests MRs.
+>
+> Orphaned `.ant-*` **rules** (selectors targeting popup DOM nothing renders any more) were swept
+> with the deletion: `ds-core`'s `core.less` popup block, `ds-information-card`'s two unused
+> arrow-hiding helpers, `ds-file-uploader`'s `.ant-popover-buttons` / `.ant-progress-line`,
+> `ds-manageable-list`'s `.ant-tooltip-inner` / `.ant-dropdown-open`,
+> `ds-date-range-picker`'s `.ant-tooltip-*`, `ds-factors`' `.ant-select-*` and the
+> `.ant-select-selector` entry in `ds-input`'s InputGroup control list.
+>
+> **Remaining candidates, not yet verified** (each needs a per-case check of whether the class is
+> still emitted): `.ant-slider` in `date-range-picker`'s `RangeForm.styles.ts` (plus the unused
+> `getDefaultTooltipPopupContainer` in `ds-slider`, which queries `.ant-slider` and has no callers),
+> `.ant-spin-nested-loading` in `manageable-list`, `.ant-typography` in `sidebar-object`,
+> `.ant-divider-horizontal` in `color-picker`, `.ant-input` in `date-picker`'s `PickerInput`, and
+> `.ant-input-group-compact` in `date-range-picker`'s `RelativeRangePicker`.

@@ -115,11 +115,11 @@ describe('ItemsRoll', () => {
       onClearAll,
     });
 
-    const { container } = renderWithProvider(
-      <ItemsRoll {...props} useFooter />,
-    );
+    renderWithProvider(<ItemsRoll {...props} useFooter />);
 
-    expect(container.querySelectorAll('.ant-dropdown-trigger').length).toBe(0);
+    expect(
+      screen.queryByTestId('popover-items-roll-actions-trigger'),
+    ).not.toBeInTheDocument();
   });
 
   it('renders without footer', () => {

@@ -11,7 +11,7 @@ import { useColumnManager } from './useColumnManager';
 
 export default {
   component: ColumnManager,
-  title: 'Components/Table/ColumnManager',
+  title: 'Components/ColumnManager',
   tags: ['autodocs'],
   decorators: [fixedWrapper300],
   render: ({ onApply, ...args }) => {

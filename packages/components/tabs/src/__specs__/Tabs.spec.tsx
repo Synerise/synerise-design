@@ -3,6 +3,7 @@ import React from 'react';
 import { SearchM } from '@synerise/ds-icon';
 import { renderWithProvider } from '@synerise/ds-core';
 import { screen, within } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import Tabs from '../Tabs';
 
@@ -76,12 +77,12 @@ describe('Tabs component', () => {
         }}
       />
     );
-    const { baseElement } = renderWithProvider(content);
+    renderWithProvider(content);
 
-    expect(baseElement.getElementsByClassName('ant-dropdown')).toBeTruthy();
+    expect(screen.getByTestId('tabs-dropdown-trigger')).toBeInTheDocument();
   });
 
-  it('should render configuration action button ', () => {
+  it('should render configuration action button ', async () => {
     const handleConfigurationAction = vi.fn();
     const LABEL = 'Button label';
     const content = (
@@ -92,10 +93,14 @@ describe('Tabs component', () => {
         configuration={{ label: LABEL, action: handleConfigurationAction }}
       />
     );
-    const { baseElement } = renderWithProvider(content);
-    expect(
-      baseElement.getElementsByClassName('ant-dropdown-trigger'),
-    ).toBeTruthy();
+    renderWithProvider(content);
+
+    await userEvent.click(screen.getByTestId('tabs-dropdown-trigger'));
+
+    const configurationButton = await screen.findByText(LABEL);
+    await userEvent.click(configurationButton);
+
+    expect(handleConfigurationAction).toHaveBeenCalledTimes(1);
   });
 
   it('should render when number of tabs decreases', async function () {

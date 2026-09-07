@@ -5,7 +5,7 @@ import { Meta, StoryObj } from '@storybook/react-vite';
 import AvatarGroup, { type AvatarGroupProps } from '@synerise/ds-avatar-group';
 import { theme } from '@synerise/ds-core';
 import Icon, { LockM, UserRemoveM } from '@synerise/ds-icon';
-import Menu from '@synerise/ds-menu';
+import ListItem, { ListWrapper } from '@synerise/ds-list-item';
 
 import { centeredPaddedWrapper } from '../../utils';
 import { groupAvatars } from './mockData';
@@ -26,18 +26,18 @@ export default {
 type Story = StoryObj<AvatarGroupProps>;
 
 const renderRowMenu = (user: (typeof groupAvatars)[number]) => (
-  <Menu style={{ padding: '8px' }}>
-    <Menu.Item
+  <ListWrapper style={{ padding: '8px' }}>
+    <ListItem
       prefixel={
         <Icon component={<LockM />} color={theme.palette['grey-600']} />
       }
     >
       User permission {user.id}
-    </Menu.Item>
-    <Menu.Item type="danger" prefixel={<Icon component={<UserRemoveM />} />}>
+    </ListItem>
+    <ListItem type="danger" prefixel={<Icon component={<UserRemoveM />} />}>
       Remove user
-    </Menu.Item>
-  </Menu>
+    </ListItem>
+  </ListWrapper>
 );
 
 /**

@@ -69,7 +69,7 @@ avatar/badge/switch import antd's component LESS — so none are trivial re-expo
 - **Tier 0 — type-only imports (LAST):** `table-new`, `mocks`, `completed-within`, `date-picker`,
   `factors`, `form`, `subtle-form`. Migrated after the owning packages so they can adopt
   DS-native types instead of antd ones.
-- **Out of scope:** `ds-table`.
+- **Out of scope:** `ds-table` — resolved by **deletion rather than migration** (see Outcome below).
 - **Stale peerDeps (config-only cleanup, no code):** `block`, `card`, `card-select`, `card-tabs`,
   `checkbox-tristate`, `code-area`, `collector`, `color-picker`, `column-manager`, `design-system`,
   `field-set`, `manageable-list`, `mapping`, `navbar`, `page-header`, `sidebar-object`, `tabs`,
@@ -102,6 +102,22 @@ avatar/badge/switch import antd's component LESS — so none are trivial re-expo
 - During the transition, antd remains a peerDependency for not-yet-migrated packages. The
   `package.json` peerDep is only removed per package as its source becomes antd-free.
 
+## Outcome (2026-09-03)
+
+Achieved in full. The three packages that were never migrated — `ds-table` (out of scope by this
+ADR) plus the deprecated `ds-menu` and `ds-alert` — were **retired by deletion** instead: each
+shipped a final `2.0.x` that stays installable from the registry, then its source was removed. That
+closed the last antd surface, so `antd`, all 76 transitive `rc-*` packages and `@ant-design/*` left
+the repo along with the root dependency, the `rc-trigger` / `rc-util` resolutions and the
+antd-related build, lint and test config. `no-restricted-imports` now bans `antd` outright.
+
+The one consequence carried forward is the `ant-*` **class hooks** several DS-native components
+still emit deliberately for consumer back-compat (`ds-button`, `ds-button-group`, `ds-radio`,
+`ds-checkbox`, `ds-avatar`, `ds-switch`, `ds-sidebar`, and `ds-drawer` / `ds-list` which dual-emit).
+Those are public CSS hooks, not an antd dependency; renaming them to `ds-*` is tracked separately in
+`docs/antd-migration-status.md` and requires coordinated `portal-ui-bridge` and `ui-tests` changes.
+
 ## References
 - `docs/antd-migration-status.md` — living per-package status tracker.
-- Audit date: 2026-06-08.
+- `docs/migration-v2.md` — consumer-facing migration notes.
+- Audit date: 2026-06-08 · closed out 2026-09-03.

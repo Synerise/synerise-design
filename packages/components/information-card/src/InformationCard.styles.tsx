@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle, css } from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { CardStyles } from '@synerise/ds-card';
 import CopyIcon from '@synerise/ds-copy-icon';
@@ -168,24 +168,6 @@ export const NonEditableWrapper = styled.div`
 export const DescriptionWrapper = styled.div`
   padding: 0 16px;
 `;
-
-/**
- * This component can be used to style container with popovers/tooltips to disable arrow.
- */
-export const HidePopoverArrowWrapper = styled.div`
-  .ant-popover-arrow-content,
-  .ant-tooltip-arrow-content {
-    display: none;
-  }
-`;
-
-/**
- * Should be mounted in application where.
- */
-export const GlobalCSSHidePopoverArrow = createGlobalStyle`
-  .ant-popover-arrow-content,.ant-tooltip-arrow-content {
-    display: none;
-}`;
 
 export const ExtraInfo = styled.div`
   margin-bottom: 1px;

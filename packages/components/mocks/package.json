@@ -44,7 +44,6 @@
   },
   "peerDependencies": {
     "@synerise/ds-action-area": "workspace:^",
-    "@synerise/ds-alert": "workspace:^",
     "@synerise/ds-app-menu": "workspace:^",
     "@synerise/ds-autocomplete": "workspace:^",
     "@synerise/ds-avatar": "workspace:^",
@@ -113,7 +112,6 @@
     "@synerise/ds-logic": "workspace:^",
     "@synerise/ds-manageable-list": "workspace:^",
     "@synerise/ds-mapping": "workspace:^",
-    "@synerise/ds-menu": "workspace:^",
     "@synerise/ds-metric-card": "workspace:^",
     "@synerise/ds-modal": "workspace:^",
     "@synerise/ds-navbar": "workspace:^",
@@ -145,7 +143,6 @@
     "@synerise/ds-subject": "workspace:^",
     "@synerise/ds-subtle-form": "workspace:^",
     "@synerise/ds-switch": "workspace:^",
-    "@synerise/ds-table": "workspace:^",
     "@synerise/ds-table-new": "workspace:^",
     "@synerise/ds-tabs": "workspace:^",
     "@synerise/ds-tag": "workspace:^",

@@ -166,8 +166,6 @@ export const createViteConfig = (
     'prop-types',
     /^@synerise\/ds-/, // All design system packages
     'styled-components',
-    'antd',
-    /^antd\//, // Antd sub-imports
     /^lodash/,
     /^ramda/,
     '@floating-ui/react',
@@ -186,7 +184,6 @@ export const createViteConfig = (
     'react-window',
     'nanoid',
     'classnames',
-    /^rc-/, // All rc-* packages
     'react-scrollbars-custom',
     'react-perfect-scrollbar',
     'moment',
@@ -197,7 +194,6 @@ export const createViteConfig = (
     '@testing-library/dom',
     /^@testing-library\//,
     /^@formatjs\//,
-    /^@ant-design\//,
   ];
 
   const allExternal = [...defaultExternal, ...external];

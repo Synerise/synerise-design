@@ -76,7 +76,6 @@ export const ItemHeaderSuffix = styled.div`
     svg {
       transition: all 0.3s ease;
     }
-    &.ant-dropdown-open,
     &:hover {
       svg {
         color: ${(props) => props.theme.palette['blue-600']};
