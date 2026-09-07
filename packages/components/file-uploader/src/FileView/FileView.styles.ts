@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 import { IconContainer } from '@synerise/ds-icon';
-import Popconfirm from '@synerise/ds-popconfirm';
 import { Label, Text } from '@synerise/ds-typography';
 
 export const PreviewImage = styled.div`
@@ -41,15 +40,6 @@ export const Info = styled.div<{ progress: boolean }>`
   width: ${(props) => (props.progress ? '100%' : '80%')};
 `;
 
-export const PopconfirmOnRemove = styled(Popconfirm)`
-  .ant-popover-buttons {
-    .ant-btn-sm {
-      &:first-of-type {
-        padding-left: 6px;
-      }
-    }
-  }
-`;
 export const FileWeight = styled.div`
   color: ${(props) => props.theme.palette['grey-500']};
   padding-right: 30px;
@@ -245,9 +235,4 @@ export const FileViewContainer = styled.button<{
       }
     }
   `};
-
-  .ant-progress-line {
-    margin: 8px 0 0 !important;
-    width: 93%;
-  }
 `;

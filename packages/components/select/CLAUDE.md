@@ -31,8 +31,8 @@ src/
 ```
 
 > No `style/` dir and no `antd` peerDep — the component is styled purely with styled-components. The
-> old antd-era LESS (`select.mixin.less`, `.ant-select-*` overrides) was relocated to `ds-table`
-> (`table/src/style/`), the only consumer that still renders antd selects.
+> old antd-era LESS (`select.mixin.less`, `.ant-select-*` overrides) was relocated to `ds-table`,
+> its only remaining consumer, and was deleted along with that package when it was retired.
 
 ## Public exports
 
@@ -148,9 +148,9 @@ Class hooks are `ds-select-*` (`.ds-select`, `.ds-select-selection-item`, `.ds-s
 - `@synerise/ds-tooltip` — wraps the clear control for `clearTooltip`.
 - `@synerise/ds-utils` — default `getPopupContainer`.
 - `react-window` — `VariableSizeList`, the windowing engine behind `OptionList` (already a DS-wide
-  dependency: `dropdown`, `context-selector`, `item-picker`, `table`, …).
+  dependency: `dropdown`, `context-selector`, `item-picker`, `table-new`, …).
 - `@synerise/ds-core` — theme tokens (peerDep). **No `antd` peerDep** — the component imports zero
-  antd; the LESS that pulled `~antd/lib/select/style` was relocated to `ds-table` (see below).
+  antd; the LESS that pulled `~antd/lib/select/style` went with the retired `ds-table` (see below).
 
 ## Implementation notes
 
@@ -205,9 +205,8 @@ Class hooks are `ds-select-*` (`.ds-select`, `.ds-select-selection-item`, `.ds-s
   by internal state; `onSearch` still fires when `searchValue` is controlled.
 - **antd-free; no LESS** — styling is entirely styled-components. The old antd-era LESS
   (`style/index.less` + `select.mixin.less`, `.ant-select-*` overrides for antd selects) was
-  **relocated to `ds-table`** (`table/src/style/select.mixin.less` + a direct
-  `@import '~antd/lib/select/style'`), since `ds-table` (out of scope, stays on antd) was the only
-  remaining consumer. ds-select ships no `dist/style` and no longer declares an `antd` peerDep.
+  **relocated to `ds-table`**, then deleted outright when that package was retired and `antd` left
+  the repo. ds-select ships no `dist/style` and declares no `antd` peerDep.
 - **Tests** — Vitest + React Testing Library (`src/__specs__/Select.spec.tsx`): render/parity,
   keyboard + ARIA, and focus/blur (autofocus, onBlur on leave / not on internal move, onFocus).
 ```

@@ -26,7 +26,6 @@ const CONTROLS = [
   'button',
   '.ds-input-number',
   '.ds-select', // DS-native select trigger box (post-antd rewrite)
-  '.ant-select-selector', // legacy antd select, still rendered inside ds-table
   '.ds-button',
 ];
 

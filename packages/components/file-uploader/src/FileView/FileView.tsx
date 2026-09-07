@@ -11,6 +11,7 @@ import Icon, {
   RepeatM,
   WarningFillM,
 } from '@synerise/ds-icon';
+import Popconfirm from '@synerise/ds-popconfirm';
 import ProgressBar from '@synerise/ds-progress-bar';
 import Tooltip from '@synerise/ds-tooltip';
 
@@ -183,7 +184,7 @@ const FileView = ({
         </S.CheckButtonWrapper>
       )}
       {removable && !disabled && !error && !hasProgress && (
-        <S.PopconfirmOnRemove
+        <Popconfirm
           onConfirm={handleRemove}
           onCancel={() => setPressed(false)}
           icon={
@@ -208,7 +209,7 @@ const FileView = ({
               <Icon component={<Close3M />} size={20} />
             </Tooltip>
           </S.RemoveButtonWrapper>
-        </S.PopconfirmOnRemove>
+        </Popconfirm>
       )}
     </S.FileViewContainer>
   );

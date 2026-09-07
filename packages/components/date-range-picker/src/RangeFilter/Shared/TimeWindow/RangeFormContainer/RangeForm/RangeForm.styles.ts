@@ -62,18 +62,6 @@ export const Row = styled.div<{
     width: 100%;
     margin: 24px 8px 8px;
   }
-  .ant-tooltip-inner {
-    white-space: nowrap;
-  }
-  && .ant-slider-handle:focus,
-  && .ant-slider-handle:hover {
-    .ant-tooltip-content {
-      background-color: transparent;
-    }
-    .ant-tooltip-inner {
-      color: ${(props): string => props.theme.palette['grey-600']};
-    }
-  }
 `;
 export const Separator = styled.span`
   & {

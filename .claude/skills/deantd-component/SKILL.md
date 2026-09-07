@@ -5,14 +5,19 @@ description: Migrate a design-system component off Ant Design to a DS-native sty
 
 ## Overview
 
+> ⚠️ **Retired — nothing left to de-antd.** The antd-removal initiative closed on 2026-09-03: `antd`
+> is gone from every `package.json` and every source file in this repo, and `no-restricted-imports`
+> now bans the import outright. The last three antd-backed packages (`ds-menu`, `ds-alert`,
+> `ds-table`) were retired by deletion rather than migration. This skill is kept only as a record of
+> the playbook — it has no remaining target here. Delete it once nobody needs the reference.
+
 Remove the `antd` dependency from one `@synerise/ds-*` component, replacing it with a DS-native
 implementation (styled-components + `@synerise/ds-core` tokens) while **preserving the visual look and
 the public API as closely as possible**. This skill is the distilled process from the first migrations
 (Badge, Typography) — follow it to shorten the cycle.
 
 Initiative context: `docs/adr/0001-remove-antd-dependency.md` (decision + tier order) and
-`docs/antd-migration-status.md` (per-component status). Both live on the `docs/antd-removal` branch.
-`ds-table` is out of scope.
+`docs/antd-migration-status.md` (per-component status, now closed out).
 
 ## Arguments
 

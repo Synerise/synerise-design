@@ -93,14 +93,6 @@ Gaps found during `/component-claude-md` runs. Add new entries here as more pack
 
 ---
 
-## alert
-
-- [ ] **Docs** — `AlertSemanticColor` is not exported from `index.ts` but is documented in README as `Alert.AlertSemanticColor`; clarify access path or remove from README
-- [ ] **Docs** — README documents `Alert.SectionMessage`, `Alert.Toast`, `Alert.BroadcastBar`, `Alert.IconAlert` as sub-components of `Alert` but they are standalone exports, not attached to the `Alert` object; correct the section headers
-- [ ] **Deprecation** — `Toast` in this package is a full standalone implementation, not a re-export of `@synerise/ds-toast`; audit for API/behaviour parity before removing
-- [ ] **Deprecation** — `InlineAlert` has its own styled wrapper on top of `@synerise/ds-inline-alert`; styles may have diverged; audit before removing
-
----
 
 ## drawer
 
@@ -377,15 +369,6 @@ No gaps found.
 
 ---
 
-## menu
-
-- [ ] **Class component** — `Menu` is a `React.Component`; `toggleItems` uses `setState`; should be converted to functional component per codebase standards
-- [ ] **Deprecation** — `copyValue`, `copyHint`, `copyTooltip`, `timeToHideTooltip`, `tooltipProps` on `MenuItemProps` are all `@deprecated`; schedule removal
-- [ ] **Docs** — `MenuStyles` namespace export and `MenuItemGroup`, `Menu.SubMenu` sub-components are not documented in README
-- [ ] **Docs** — `showTextTooltip`, `asInfoCardContainer`, `popoverDelay` props on `AntdMenuProps` are missing from README
-- [x] **Migration** — ~~Uses Jest~~ Migrated to Vitest
-
----
 
 ## metric-card
 
@@ -496,19 +479,6 @@ No gaps found.
 
 ---
 
-## table
-
-- [ ] **Bug** — `onListRefChange` in `VirtualTable` fires on every render (no dependency array in `useEffect`); internally documented as deprecated but still in the public type
-- [ ] **Bug** — `VirtualTable` uses `JSON.stringify` for row identity when `rowKey` is undefined — fragile and a performance hazard with large row objects
-- [ ] **Types** — Multiple `@ts-expect-error` suppressions in `DefaultTable.tsx`, `VirtualTable.tsx`, `GroupTable.tsx`, `TreeTable.tsx` indicating genuine type mismatches suppressed rather than fixed
-- [ ] **Deprecation** — Every cell type file exports a `Props` alias marked `@deprecated`; old aliases still exported alongside current names
-- [ ] **Deprecation** — `AvatarLabelCell.textSize` prop is `@deprecated` but still accepted with no replacement documented
-- [ ] **Deprecation** — `StarCell.theme` prop is `@deprecated` but still present in the type
-- [ ] **Export gap** — `FilterTrigger` is used internally in the title bar but not exported; consumers building custom headers cannot reuse it
-- [ ] **Tests** — No test coverage for most cell components, `DefaultTable`, `GroupTable`, `TreeTable`, or `TableHeader`
-- [x] **Migration** — ~~Uses Jest~~ Migrated to Vitest
-
----
 
 ## tooltip
 

@@ -70,9 +70,9 @@ export default defineConfig([
                 'Import from the package root instead of deep /dist/ paths. Deep /dist/ imports bypass the package exports map and couple you to its build layout.',
             },
             {
-              group: ['antd/lib/*', 'antd/es/*'],
+              group: ['antd', 'antd/*'],
               message:
-                "Import from 'antd' at the package root instead of deep antd/lib or antd/es paths. Directory imports break Node ESM resolution and the paths are removed in antd 5.",
+                'antd has been removed from the design system — see docs/adr/0001-remove-antd-dependency.md. Build the component natively with styled-components and ds-core tokens instead.',
             },
           ],
         },
