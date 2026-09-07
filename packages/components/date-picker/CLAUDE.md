@@ -1,6 +1,6 @@
 # DatePicker (`@synerise/ds-date-picker`)
 
-> Single-date picker with a dropdown calendar, optional time picker, quick-pick presets, and a formatted text input trigger — built on `react-day-picker` v7 and `date-fns` 2.
+> Single-date picker with a dropdown calendar, optional time picker, quick-pick presets, and a formatted text input trigger — built on `react-day-picker` v10 and `date-fns` 2.
 
 ## Package structure
 
@@ -29,7 +29,7 @@ src/
     getDefaultTexts.tsx       — merges consumer texts with react-intl defaults
   fns.tsx                     — date-fns v2 wrappers
   format.ts                   — fnsFormat wrapper
-  localeUtils.ts              — locale helpers for react-day-picker
+  localeUtils.ts              — weekday/month name tables; adapted into react-day-picker formatters/labels
   utils.ts                    — changeDayWithHoursPreserved and other helpers
   index.ts                    — public exports
 ```
@@ -127,7 +127,7 @@ import { RawDatePicker } from '@synerise/ds-date-picker';
 
 ## Key dependencies
 
-- `react-day-picker` v7 — calendar grid, day modifiers, locale utilities
+- `react-day-picker` v10 — calendar grid and day modifiers (brings its own `date-fns` 4 + `@date-fns/tz`, isolated from this package's `date-fns` 2)
 - `date-fns` 2.16.1 — all date arithmetic (pinned version)
 - `@date-fns/upgrade` — `legacyParse` compat shim for date-fns v1→v2 migration in `RawDatePicker`
 - `@synerise/ds-dropdown` — wraps `RawDatePicker` as a popover triggered by `PickerInput`
@@ -146,3 +146,25 @@ import { RawDatePicker } from '@synerise/ds-date-picker';
 - **`dropdownProps.open`** — if provided, it OR-s with internal `dropVisible` state: `open={(dropdownProps?.open || dropVisible) && !disabled}`. This means both sources can open the dropdown independently.
 - **`format` is deprecated** — use `valueFormatOptions: DateToFormatOptions` (from `@synerise/ds-core`) for display formatting.
 - **`inputPlaceholder` i18n default is empty** — `getDefaultTexts` calls `intl.formatMessage({ id: 'DS.DATE-PICKER.SELECT-DATE' })` with no `defaultMessage`, so the placeholder is empty if the message is not in the IntlProvider's messages.
+
+## react-day-picker v10 notes
+
+`Elements/DayPicker/DayPicker.tsx` is an adapter: it keeps the v7-era prop shape this package and
+`ds-date-range-picker` were written against (`selectedDays`, `disabledDays`, `renderDay`,
+`modifiers`, `canChangeMonth`, `localeUtils`) and translates it to v10 at that one boundary.
+
+- **Class names are remapped back to v7's.** `CLASS_NAMES` / `MODIFIER_CLASS_NAMES` in
+  `DayPicker.tsx` turn v10's `rdp-*` into `DayPicker-*`, so `DayPicker.styles.ts`, the specs and
+  the Chromatic stories keep working. A modifier that stops being styled means a missing entry
+  there, not a stylesheet bug.
+- **The day cell now contains a real `<button class="DayPicker-Day-Button">`.** v7 put the three
+  day layers straight into the cell. Anything clicking a day must target the button (or a
+  descendant) — a click on the `<td>` no longer reaches the handler.
+- **`localeUtils` is deprecated** and no longer passed to the library; it feeds v10's `formatters`
+  and `labels` instead. Its moment-derived `formatDate` / `parseDate` / `getMonths` are gone, which
+  is what removed the undeclared `moment` dependency.
+- **The weekday header row is `aria-hidden`** — upstream's choice, since each day button's
+  accessible name already carries the full date.
+- **v10 renders twice on mount**, so `disabledDates` is evaluated twice per day. It is a pure
+  predicate, so this is a cost rather than a correctness issue; assert on distinct dates, not on
+  call counts.
