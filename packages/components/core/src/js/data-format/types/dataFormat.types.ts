@@ -1,5 +1,4 @@
 import { type Dayjs, type default as dayjs } from 'dayjs';
-import { type Moment } from 'moment';
 import {
   type FormatDateOptions,
   type FormatNumberOptions,
@@ -41,7 +40,20 @@ export type DateConstantsTargetFormat =
   | 'weekdays-long'
   | 'weekdays-short';
 
-export type DateToFormat = Date | Moment | Dayjs;
+/**
+ * A moment object, described structurally rather than imported.
+ *
+ * `formatValue` has always accepted moment values, and still does — but recognising them no longer
+ * requires moment itself, so the library is not a dependency of this package. moment ships ~2.6 MB
+ * with its locale set and was being inlined into consumer bundles that do not externalise it (see
+ * STOR-2373). A real `Moment` satisfies this shape, so existing callers are unaffected.
+ *
+ * `Dayjs` satisfies it too — the union is deliberately redundant so that each accepted input still
+ * appears by name in the public signature.
+ */
+export type MomentLike = { toDate(): Date };
+
+export type DateToFormat = Date | MomentLike | Dayjs;
 
 export type CommonFormatOptions = {
   prefix?: string;
@@ -65,14 +77,14 @@ export type DateToFormatOptions = FormatDateOptions &
 
 export type OverloadFormatValue = {
   (value: number, options?: NumberToFormatOptions): string;
-  (value: Date | Moment | Dayjs, options?: DateToFormatOptions): string;
+  (value: Date | MomentLike | Dayjs, options?: DateToFormatOptions): string;
   (value: string, options?: CommonFormatOptions): string;
 };
 
 export type OverloadFormatMultipleValues = {
   (values: number[], options?: NumberToFormatOptions): string[];
   (
-    values: Date[] | Moment[] | Dayjs[],
+    values: Date[] | MomentLike[] | Dayjs[],
     options?: DateToFormatOptions,
   ): string[];
   (values: string[], options?: CommonFormatOptions): string[];
