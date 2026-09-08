@@ -38,6 +38,7 @@ export const usePopover = ({
   offsetConfig = {},
   flipConfig = {},
   shiftConfig = {},
+  hideConfig = {},
   arrowConfig = {},
   hoverConfig = {},
   testId = 'noTestId',
@@ -104,6 +105,7 @@ export const usePopover = ({
       offsetConfig,
       flipConfig,
       shiftConfig,
+      hideConfig,
       arrowConfig: { ...arrowConfig, element: arrowRef.current },
     }),
   });
