@@ -1,4 +1,3 @@
-import { getTimezoneOffset } from 'date-fns-tz';
 import fnsMax from 'date-fns/max';
 import fnsMin from 'date-fns/min';
 import omit from 'lodash.omit';
@@ -13,6 +12,17 @@ import START_OF from './dateUtils/startOf';
 
 export { START_OF, END_OF };
 
+/**
+ * Re-exported rather than implemented here. This package used to carry its own copy, which took
+ * `Math.abs(offset) % 60` of an offset in *milliseconds* — so every zone that is not a whole number
+ * of hours ahead of UTC (India, Adelaide, Kathmandu, Chatham, Newfoundland) encoded as `:00`
+ * minutes. It also looked the offset up against the date's UTC fields rather than the wall clock it
+ * carries, which picked the wrong side of a DST transition.
+ *
+ * Kept exported because `utils` is part of this package's public surface (`export * as utils`).
+ */
+export { toIsoString } from '@synerise/ds-core';
+
 const rmvTZOffset = (dateString: string | Date) => {
   const date = dateString.toString();
   const finalDate = date.replace(/[+-]\d\d:\d\d$/, '');
@@ -21,21 +31,6 @@ const rmvTZOffset = (dateString: string | Date) => {
 };
 
 const pad = (num: number) => (num < 10 ? '0' : '') + num;
-
-export function toIsoString(date: Date, timeZone: string | undefined = 'UTC') {
-  if (!timeZone) {
-    return new Date(date).toISOString();
-  }
-
-  const timeZoneOffset = getTimezoneOffset(timeZone, date);
-  const dif = timeZoneOffset >= 0 ? '+' : '-';
-
-  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}T${pad(date.getHours())}:${pad(
-    date.getMinutes(),
-  )}:${pad(date.getSeconds())}${dif}${pad(Math.floor(Math.abs(timeZoneOffset) / 60 / 60 / 1000))}:${pad(
-    Math.abs(timeZoneOffset) % 60,
-  )}`;
-}
 
 export function toIsoStringWithoutZone(date: Date) {
   return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}T${pad(date.getHours())}:${pad(

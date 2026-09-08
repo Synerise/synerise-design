@@ -12,7 +12,7 @@ src/
   RawDateRangePicker.tsx    — core picker logic without popover
   date.types.ts             — DateRange, DateFilter, RelativeUnits, RangeKey
   constants.tsx             — MODES, COLUMNS, presets, POPOVER_*_CONFIG
-  utils.ts                  — normalizeRange, getDefaultTexts, toIsoString, DEFAULT_RANGE
+  utils.ts                  — normalizeRange, getDefaultTexts, DEFAULT_RANGE (toIsoString is re-exported from ds-core)
   fns.ts                    — re-exports / wrappers around date-fns
   RangePicker/              — absolute date picker (dual-month calendar)
   RelativeRangePicker/      — relative preset + custom range picker
@@ -114,7 +114,7 @@ Re-export of `format` from `date-fns` — use for consistent date formatting acr
 
 ### `utils`
 
-Namespace export: `normalizeRange`, `toIsoString`, `toIsoStringWithoutZone`, `getDefaultTexts`, `DEFAULT_RANGE`, `START_OF`, `END_OF`.
+Namespace export: `normalizeRange`, `toIsoString` (re-exported from `@synerise/ds-core`), `toIsoStringWithoutZone`, `getDefaultTexts`, `DEFAULT_RANGE`, `START_OF`, `END_OF`.
 
 ### `CONST`
 
@@ -198,7 +198,7 @@ Addons (relative picker, filter) appear below the calendar and are toggled via `
 
 - `react-day-picker ^10` — calendar grid rendering inside `RangePicker` (see the v10 notes in `ds-date-picker`'s CLAUDE.md; day cells now contain a `<button class="DayPicker-Day-Button">`)
 - `@synerise/ds-popover` — floating popover (floating-ui underneath)
-- `date-fns ^2` + `date-fns-tz 1.1.4` — date arithmetic and timezone support
+- `date-fns ^2` — date arithmetic. Timezone handling is not this package's: `toIsoString` is re-exported from `@synerise/ds-core`, which owns the wall-clock convention and the `@date-fns/tz` dependency behind it
 - `dayjs ^1.8` — used in parts of `RangeFilter`
 - `ramda ^0.27` — functional utilities in `RangeFilter`
 - `react-intl` — i18n (peer dependency via host app)
