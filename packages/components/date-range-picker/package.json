@@ -64,7 +64,6 @@
     "@synerise/ds-tooltip": "workspace:^",
     "@synerise/ds-utils": "workspace:^",
     "date-fns": "^2.16.1",
-    "date-fns-tz": "1.1.4",
     "dayjs": "^1.8.35",
     "lodash.clonedeep": "^4.5.0",
     "lodash.flatten": "^4.4.0",
