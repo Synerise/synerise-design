@@ -340,6 +340,10 @@ export const DynamicLabelMain = styled.div``;
 export const DynamicLabelAlternate = styled.div``;
 
 export const DynamicLabelWrapper = styled.div<{ showAlternative?: boolean }>`
+  /* The shown half inherits rather than declaring visible. Visibility is inherited, so declaring
+     visible here overrides an ancestor that asked to be hidden and leaves the label painted on its
+     own — which is what it did inside a dropdown hidden by the popover's hide middleware. Inherit
+     says what is meant: hidden by this toggle, never against a parent. */
   ${(props) =>
     props.showAlternative
       ? css`
@@ -349,13 +353,13 @@ export const DynamicLabelWrapper = styled.div<{ showAlternative?: boolean }>`
           }
           ${DynamicLabelAlternate} {
             height: auto;
-            visibility: visible;
+            visibility: inherit;
           }
         `
       : css`
           ${DynamicLabelMain} {
             height: auto;
-            visibility: visible;
+            visibility: inherit;
           }
           ${DynamicLabelAlternate} {
             height: 0;
