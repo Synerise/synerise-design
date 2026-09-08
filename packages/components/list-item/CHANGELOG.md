@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-list-item@2.0.1...@synerise/ds-list-item@2.0.2) (2026-09-08)
+
+### Bug Fixes
+
+- **list-item:** inherit visibility on the copyable label ([f2528bc](https://github.com/Synerise/synerise-design/commit/f2528bcc77e6e53221e593d97528f65211774bca))
+
 ## [2.0.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-list-item@2.0.0...@synerise/ds-list-item@2.0.1) (2026-09-02)
 
 **Note:** Version bump only for package @synerise/ds-list-item

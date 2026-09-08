@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@2.1.1...@synerise/ds-core@2.2.0) (2026-09-08)
+
+### Features
+
+- **core:** drop moment from ds-core and manageable-list ([e0dc6a5](https://github.com/synerise/synerise-design/commit/e0dc6a501a713ee80616471fe8e0901d8c133058))
+
 ## [2.1.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@2.1.0...@synerise/ds-core@2.1.1) (2026-09-07)
 
 **Note:** Version bump only for package @synerise/ds-core

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-popover@2.0.0...@synerise/ds-popover@2.0.1) (2026-09-08)
+
+### Bug Fixes
+
+- **popover:** hide the overlay while its anchor is not visible ([f481f00](https://github.com/Synerise/synerise-design/commit/f481f0075aca673e0e3b55b18188ffa56a2d9ee3))
+
 # [2.0.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-popover@1.7.0...@synerise/ds-popover@2.0.0) (2026-08-26)
 
 **Note:** Version bump only for package @synerise/ds-popover

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@2.0.2...@synerise/ds-manageable-list@2.1.0) (2026-09-08)
+
+### Features
+
+- **core:** drop moment from ds-core and manageable-list ([e0dc6a5](https://github.com/Synerise/synerise-design/commit/e0dc6a501a713ee80616471fe8e0901d8c133058))
+
 ## [2.0.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@2.0.1...@synerise/ds-manageable-list@2.0.2) (2026-09-07)
 
 **Note:** Version bump only for package @synerise/ds-manageable-list
