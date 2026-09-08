@@ -58,7 +58,7 @@
     "@synerise/ds-tooltip": "workspace:^",
     "@synerise/ds-typography": "workspace:^",
     "@synerise/ds-utils": "workspace:^",
-    "moment": "^2.30.1",
+    "dayjs": "^1.8.36",
     "react-animate-height": "^2.0.23"
   },
   "peerDependencies": {

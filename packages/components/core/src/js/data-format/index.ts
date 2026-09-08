@@ -26,12 +26,19 @@ export {
 } from './hocs/withDataFormat';
 
 export {
-  currentTimeInTimezone,
   getDataFormatConfigFromNotation,
   getDefaultDataTimeOptions,
-  // The wall-clock encoder/decoder pair. Re-exported here so consumers stop reaching into
-  // `dist/js/data-format/utils/timeZone.utils` for them.
+} from './utils';
+
+// The timezone utilities. Re-exported here — and so from the package root — so that the pickers
+// and their docs stop reaching into `dist/js/data-format/utils/timeZone.utils`, which pins an
+// internal path as the contract and defeats tree-shaking.
+export {
+  applyTimezoneOffset,
+  currentTimeInTimezone,
   getLocalDateInTimeZone,
+  getTimeZone,
+  getValueAsLocalDate,
   toIsoString,
 } from './utils';
 

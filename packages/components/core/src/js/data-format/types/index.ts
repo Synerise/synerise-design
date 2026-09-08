@@ -6,6 +6,7 @@ export type {
   NumberTargetFormat,
   NamingConvention,
   DateToFormat,
+  MomentLike,
   OverloadFormatValue,
   OverloadFormatMultipleValues,
   OverloadGetConstants,

@@ -1,5 +1,4 @@
 import { type Dayjs } from 'dayjs';
-import { type Moment } from 'moment';
 import React from 'react';
 
 import {
@@ -9,10 +8,10 @@ import {
   RELATIVE_TO_WITHOUT_SUFFIX,
 } from '../constants';
 import { useDataFormat, useRelativeDateTimeUpdate } from '../hooks';
-import { type DateToFormatOptions } from '../types';
+import { type DateToFormatOptions, type MomentLike } from '../types';
 
 export type FormattedRelativeDateTimeProps = {
-  value: Date | Moment | Dayjs;
+  value: Date | MomentLike | Dayjs;
   withoutSuffix?: boolean;
   options?: DateToFormatOptions;
 };

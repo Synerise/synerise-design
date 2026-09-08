@@ -1,10 +1,10 @@
 import { isDayjs } from 'dayjs';
-import moment, { type Moment } from 'moment';
 import { useCallback, useMemo } from 'react';
 
 import { DATE_CONSTANTS_TARGET_FORMATS } from '../constants';
 import {
   type Delimiter,
+  type MomentLike,
   type OverloadFormatMultipleValues,
   type OverloadFormatValue,
   type OverloadGetConstants,
@@ -14,6 +14,14 @@ import { isValidDate } from '../utils/date.utils';
 import { useDataFormatConfig } from './useDataFormatConfig';
 import { useDataFormatIntls } from './useDataFormatIntls';
 import { useDataFormatUtils } from './useDataFormatUtils';
+
+/**
+ * A moment value, recognised by shape. A `Date` is excluded explicitly: it has no `toDate`, but the
+ * check is cheap insurance against a future subclass that adds one.
+ */
+const isMomentLike = (value: unknown): value is MomentLike =>
+  typeof (value as MomentLike | undefined)?.toDate === 'function' &&
+  !(value instanceof Date);
 
 export type UseDataFormatProps = {
   firstDayOfWeek: number;
@@ -63,17 +71,19 @@ export const useDataFormat = (): UseDataFormatProps => {
     (value: any, options?: any) => {
       let result = '';
 
-      if (value instanceof moment) {
-        result = getFormattedDateFromMoment(
-          value as Moment,
+      // dayjs is tested first, and the moment branch is `else if`, because both libraries expose
+      // `toDate()`. Recognising a moment structurally is what lets this package drop the moment
+      // dependency, but it means the two branches can no longer be independent `if`s — a dayjs
+      // value matches both shapes, and whichever ran last would win.
+      if (isDayjs(value)) {
+        result = getFormattedDateFromDayjs(
+          value,
           dateFormatIntl,
           timeFormatIntl,
           options,
         );
-      }
-
-      if (isDayjs(value)) {
-        result = getFormattedDateFromDayjs(
+      } else if (isMomentLike(value)) {
+        result = getFormattedDateFromMoment(
           value,
           dateFormatIntl,
           timeFormatIntl,

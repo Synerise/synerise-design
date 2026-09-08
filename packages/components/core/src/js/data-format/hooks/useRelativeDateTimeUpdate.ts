@@ -1,6 +1,7 @@
 import { type Dayjs } from 'dayjs';
-import { type Moment } from 'moment';
 import { useEffect, useState } from 'react';
+
+import { type MomentLike } from '../types';
 
 const getIntervalForTimeDifference = (timeDiffMs: number): number | null => {
   // https://day.js.org/docs/en/display/from-now#list-of-breakdown-range
@@ -16,7 +17,7 @@ const getIntervalForTimeDifference = (timeDiffMs: number): number | null => {
   return null; // no interval
 };
 
-export const useRelativeDateTimeUpdate = (value: Date | Moment | Dayjs) => {
+export const useRelativeDateTimeUpdate = (value: Date | MomentLike | Dayjs) => {
   const [updateTrigger, setUpdateTrigger] = useState(0);
 
   useEffect(() => {
