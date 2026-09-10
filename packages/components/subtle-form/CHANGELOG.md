@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subtle-form@2.0.4...@synerise/ds-subtle-form@2.1.0) (2026-09-10)
+
+### Features
+
+- **global:** move the pickers to date-fns 4 ([f878075](https://github.com/Synerise/synerise-design/commit/f878075940c2cd0d2d8a4a5603eb18d01f837640))
+
 ## [2.0.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subtle-form@2.0.3...@synerise/ds-subtle-form@2.0.4) (2026-09-08)
 
 **Note:** Version bump only for package @synerise/ds-subtle-form
