@@ -16,8 +16,8 @@ src/
   Elements/
     DayPicker/                — calendar grid (react-day-picker wrapper)
     MonthPicker/              — 12-month grid; clicking title switches to YearPicker
-    YearPicker/               — decade grid; clicking title switches to DecadePicker
-    DecadePicker/             — century grid
+    YearPicker/               — the decade's ten years; clicking title switches to DecadePicker
+    DecadePicker/             — century grid, plus a step cell either side
     TimePicker/               — HH:MM:SS column selector with prev/next day navigation
     PickerInput/              — formatted text input trigger (uses ds-input)
     Footer/                   — Apply / Now / Date / Time mode-switch buttons
@@ -168,3 +168,22 @@ import { RawDatePicker } from '@synerise/ds-date-picker';
 - **v10 renders twice on mount**, so `disabledDates` is evaluated twice per day. It is a pure
   predicate, so this is a cost rather than a correctness issue; assert on distinct dates, not on
   call counts.
+
+## Month, year and decade grids
+
+The three grid views share `Elements/GridPicker` and follow the Figma `Date Picker` states
+(`Months`, `Year`, `Years range`):
+
+- **Every reachable cell carries a chip** — `grey-100` at rest, `grey-200` + `blue-600` text on
+  hover, `blue-600` + white when selected, at regular weight. A **disabled** cell drops the chip
+  and keeps only a `grey-400` label, matching the day grid, where the chip likewise marks a day as
+  reachable.
+- **Layout** is three columns on a 24px inset with an 8px column gap and 32px rows spread by
+  `align-content: space-between`, so the same rules give Figma's spacing in `DatePicker`'s 304px
+  panel and fit `DateRangePicker`'s 290px side.
+- **`YearPicker` renders the decade's ten years and nothing more.** The `±1 decade` cells it used
+  to append are gone — the navbar's chevrons already step by ten years. `DecadePicker` keeps its
+  two `cell--outside` cells because they are the only way to leave the century, and the design
+  draws them like any other cell.
+- **`Navbar` takes `singleStep`** for these views: one step per side, drawn as a single angle in
+  the outer slot the day view's double angle occupies, with the inner slot left out.

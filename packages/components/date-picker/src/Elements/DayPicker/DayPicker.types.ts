@@ -30,7 +30,6 @@ export type DayPickerProps = {
   /** Day-of-month predicates or dates keyed by modifier name; each becomes a `DayPicker-Day--*` class. */
   modifiers?: Record<string, Matcher | Matcher[] | undefined>;
   localeUtils?: DateLocaleUtils;
-  title?: string;
   renderDay?: (day: Date) => React.ReactNode;
   renderNavbar?: (props: DayPickerProps) => React.ReactNode;
   onDayClick?: (day: Date, modifiers: Modifiers, e: React.MouseEvent) => void;

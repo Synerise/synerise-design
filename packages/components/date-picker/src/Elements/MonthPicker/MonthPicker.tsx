@@ -92,6 +92,7 @@ class MonthPicker extends React.PureComponent<
     }
     return [
       <Navbar
+        singleStep
         onTitleClick={(): void => this.setState({ yearMode: true })}
         title={fnsFormat(cursor, 'yyyy')}
         onLongPrev={this.handleLongPrev}

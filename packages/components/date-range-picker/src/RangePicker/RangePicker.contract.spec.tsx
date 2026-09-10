@@ -114,6 +114,32 @@ describe('RangePicker DOM contract', () => {
       expect(inMonthCells(right).size).toBe(30);
     });
 
+    // The two side wrappers are the scope E2E suites hang their day and navigation selectors off,
+    // so the testids are part of the contract rather than an implementation detail.
+    it('scopes each side under its own data-testid', () => {
+      const { container } = renderRangePicker({
+        value: asRange(
+          new Date('2018-10-03T00:00:00'),
+          new Date('2018-11-09T23:59:59'),
+        ),
+      });
+
+      const left = container.querySelector<HTMLElement>(
+        '[data-testid="date-range-picker-side-left"]',
+      );
+      const right = container.querySelector<HTMLElement>(
+        '[data-testid="date-range-picker-side-right"]',
+      );
+
+      expect(left).toBeTruthy();
+      expect(right).toBeTruthy();
+      expect(inMonthCells(left as HTMLElement).size).toBe(31);
+      expect(inMonthCells(right as HTMLElement).size).toBe(30);
+      expect(
+        left?.querySelector('[data-testid="datapicker-nav-title-monthpicker-link"]'),
+      ).toBeTruthy();
+    });
+
     it('tags each calendar with the range type as a styling hook', () => {
       const { container } = renderRangePicker();
 

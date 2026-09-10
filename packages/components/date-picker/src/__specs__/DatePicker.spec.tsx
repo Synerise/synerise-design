@@ -78,7 +78,53 @@ describe('RawDatePicker', () => {
     fireEvent.click(await screen.findByText('1996'));
     expect(await screen.findByText('1995')).toBeTruthy();
     expect(await screen.findByText('1997')).toBeTruthy();
-    expect(await screen.findByText('2000')).toBeTruthy();
+    // The grid holds the decade and nothing else — stepping to the neighbouring decade is the
+    // navbar's job, so 1989 and 2000 have no cell of their own.
+    expect(await screen.findByText('1990')).toBeTruthy();
+    expect(await screen.findByText('1999')).toBeTruthy();
+    expect(screen.queryByText('1989')).toBeNull();
+    expect(screen.queryByText('2000')).toBeNull();
+  });
+  it('offers one step per side in the grid views, and both in the day view', async () => {
+    const { container } = renderWithProvider(
+      <RawDatePicker
+        showTime={true}
+        onApply={vi.fn()}
+        texts={{
+          apply: 'Apply',
+          now: 'Now',
+        }}
+        value={new Date('1996-10-27T03:24:00')}
+      />,
+    );
+    const navbar = (): HTMLElement =>
+      container.querySelector('.ds-date-picker-nav') as HTMLElement;
+
+    // The day view steps by a month and by a year, so both arrows stay on each side and the
+    // outer one is drawn as a double angle.
+    expect(navbar().querySelectorAll('button')).toHaveLength(4);
+    expect(
+      screen
+        .getByTestId('datapicker-long-prev')
+        .querySelector('[data-testid="ds-icon-double-angle-left-s"]'),
+    ).toBeTruthy();
+
+    // The month grid steps by a year only: one arrow per side, drawn as a single angle, and the
+    // unused inner slot is left out rather than held open by a placeholder.
+    fireEvent.click(await screen.findByText('Oct'));
+    expect(await screen.findByText('Jan')).toBeTruthy();
+    expect(navbar().querySelectorAll('button')).toHaveLength(2);
+    expect(navbar().querySelectorAll('.arrow-placeholder')).toHaveLength(0);
+    expect(
+      screen
+        .getByTestId('datapicker-long-prev')
+        .querySelector('[data-testid="ds-icon-angle-left-s"]'),
+    ).toBeTruthy();
+    expect(
+      screen
+        .getByTestId('datapicker-long-next')
+        .querySelector('[data-testid="ds-icon-angle-right-s"]'),
+    ).toBeTruthy();
   });
   it('should proceed to DecadePicker when clicked on year range', async () => {
     renderWithProvider(

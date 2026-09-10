@@ -97,6 +97,7 @@ export default class DecadePicker extends React.PureComponent<
     ];
     return [
       <Navbar
+        singleStep
         title={centuryRange.join('-')}
         onTitleClick={onTitleClick}
         onLongPrev={this.handleLongPrev}

@@ -1,58 +1,65 @@
 import styled from 'styled-components';
 
+export const CellContainer = styled.div``;
+
+/**
+ * The month, year and decade grids: three columns of chips, laid out on the same 24px inset and
+ * 8px column gap the day grid uses, with the rows spread over whatever height the host gives the
+ * grid (304px in `DatePicker`, 290px in `DateRangePicker`'s side).
+ *
+ * Every cell carries a resting chip, so an empty trailing slot — the year grid holds ten years in
+ * a twelve-slot grid — is simply an absent cell rather than a blank chip.
+ */
 export const GridContainer = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  font-size: 12px;
-  padding: 0 8px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-auto-rows: 32px;
+  align-content: space-between;
+  column-gap: 8px;
+  padding: 24px;
+  font-size: 13px;
+  line-height: 18px;
+
   .cell {
-    height: 32px;
-    margin: auto 8px;
     cursor: pointer;
-    position: relative;
-    vertical-align: middle;
-    text-align: center;
 
     > div {
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
+      height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 16px;
+      border-radius: 60px;
+      background-color: ${(props): string => props.theme.palette['grey-100']};
+      color: ${(props): string => props.theme.palette['grey-800']};
 
       &:hover {
-        background-color: ${(props): string => props.theme.palette['grey-050']};
+        background-color: ${(props): string => props.theme.palette['grey-200']};
         color: ${(props): string => props.theme.palette['blue-600']};
       }
     }
 
-    &--selected {
-      font-weight: 500;
-    }
-
-    &--outside {
-      color: ${(props): string => props.theme.palette['grey-400']};
-    }
-
+    /**
+     * A disabled cell drops the chip rather than greying its label on one: the chip is what marks
+     * a cell as reachable, which is also why the day grid paints it on every day except the
+     * disabled and outside ones. The decade grid's two out-of-century cells keep theirs — they
+     * still navigate.
+     */
     &--disabled {
       cursor: default;
-      color: ${(props): string => props.theme.palette['grey-400']};
-    }
-  }
 
-  .cell--selected:not(.cell--disabled):not(.cell--outside) {
-    > div {
-      background-color: ${(props): string => props.theme.palette['blue-600']};
-      color: ${(props): string => props.theme.palette.white};
-
-      &:hover {
-        background-color: ${(props): string => props.theme.palette['blue-600']};
+      > div,
+      > div:hover {
+        background-color: transparent;
+        color: ${(props): string => props.theme.palette['grey-400']};
       }
     }
   }
+
+  .cell--selected:not(.cell--disabled) {
+    > div,
+    > div:hover {
+      background-color: ${(props): string => props.theme.palette['blue-600']};
+      color: ${(props): string => props.theme.palette.white};
+    }
+  }
 `;
-export const CellContainer = styled.div``;

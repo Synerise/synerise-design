@@ -367,7 +367,6 @@ class RangePicker extends PureComponent<Props & WithDataFormatProps, State> {
         disabledDays={disabledDate}
         localeUtils={localeUtils}
         month={getDateFromString(sideState.month)}
-        title={sideState.monthTitle}
         hideLongNext={side === COLUMNS.LEFT && adjacentYears}
         hideShortNext={side === COLUMNS.LEFT && adjacentMonths}
         hideLongPrev={side === COLUMNS.RIGHT && adjacentYears}
@@ -514,10 +513,16 @@ class RangePicker extends PureComponent<Props & WithDataFormatProps, State> {
     return (
       <>
         <S.Sides>
-          <S.Side mode={mode}>
+          <S.Side
+            mode={mode}
+            data-testid={`date-range-picker-side-${COLUMNS.LEFT}`}
+          >
             {this.renderSide(COLUMNS.LEFT as SideType)}
           </S.Side>
-          <S.Side mode={mode}>
+          <S.Side
+            mode={mode}
+            data-testid={`date-range-picker-side-${COLUMNS.RIGHT}`}
+          >
             {this.renderSide(COLUMNS.RIGHT as SideType)}
           </S.Side>
         </S.Sides>

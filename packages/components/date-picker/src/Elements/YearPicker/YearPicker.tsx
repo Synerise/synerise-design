@@ -55,15 +55,6 @@ export default class YearPicker extends React.PureComponent<
 
   handleCellClick = (isoDate: React.ReactText): void => {
     const { onChange } = this.props;
-    if (isoDate === -1) {
-      this.handleLongPrev();
-      return;
-    }
-
-    if (isoDate === 1) {
-      this.handleLongNext();
-      return;
-    }
     onChange && onChange(new Date(isoDate));
   };
 
@@ -71,18 +62,13 @@ export default class YearPicker extends React.PureComponent<
     const { cursor, decadeMode } = this.state;
     const { value } = this.props;
     const decadeRange = getDecadeRange(cursor);
-    let cells = getCells(cursor);
+    const cells = getCells(cursor);
     const valueCell = value
       ? cells.find((cell: Cell): boolean =>
           fnsIsSameYear(value, legacyParse(cell.key)),
         )
       : null;
     const selectedKey = valueCell ? valueCell.key : null;
-    cells = [
-      { key: -1, text: decadeRange[0] - 1, outside: true },
-      ...cells,
-      { key: 1, text: decadeRange[1] + 1, outside: true },
-    ];
     if (decadeMode) {
       return (
         <DecadePicker
@@ -96,6 +82,7 @@ export default class YearPicker extends React.PureComponent<
     return (
       <>
         <Navbar
+          singleStep
           onTitleClick={(): void => this.setState({ decadeMode: true })}
           title={decadeRange.join('-')}
           onLongPrev={this.handleLongPrev}
