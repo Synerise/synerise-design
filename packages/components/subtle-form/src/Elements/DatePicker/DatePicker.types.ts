@@ -8,6 +8,5 @@ export type SubtleDatePickerProps = {
   activeProp?: boolean;
   placeholder?: string;
   children?: ReactNode;
-  format?: string;
 } & SubtleFieldProps &
   DsDatePickerProps;

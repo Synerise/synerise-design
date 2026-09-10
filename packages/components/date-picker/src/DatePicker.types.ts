@@ -19,10 +19,6 @@ export type DatePickerProps = {
   disabledMinutes?: number[];
   disabledSeconds?: number[];
   dropdownProps?: Partial<Omit<DropdownSharedProps, 'children' | 'overlay'>>;
-  /**
-   * @deprecated use `valueFormatOptions` instead
-   */
-  format?: string;
   valueFormatOptions?: DateToFormatOptions;
   /**
    * @deprecated - will be dropped in 1.0

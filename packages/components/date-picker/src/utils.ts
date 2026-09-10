@@ -1,8 +1,7 @@
 import { differenceInCalendarDays } from 'date-fns';
 
-import { legacyParse } from '@date-fns/upgrade/v2';
-
 import { fnsAddSeconds, fnsDifferenceInSeconds, fnsGetYear } from './fns';
+import { toDateValue } from './toDateValue';
 
 export const range = (start: number, end: number): number[] => {
   if (end <= start) {
@@ -29,7 +28,7 @@ export function changeDayWithHoursPreserved(
   chosenDate: Date,
 ): Date {
   const dayDifferenceInSeconds =
-    differenceInCalendarDays(legacyParse(oldDate), legacyParse(chosenDate)) *
+    differenceInCalendarDays(toDateValue(oldDate), toDateValue(chosenDate)) *
     24 *
     60 *
     60;

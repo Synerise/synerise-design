@@ -1,4 +1,4 @@
-import fnsIsValid from 'date-fns/isValid';
+import { isValid as fnsIsValid } from 'date-fns';
 import { enGB as en, es, pl } from 'date-fns/locale';
 
 import { fnsFormat } from './fns';

@@ -1,15 +1,21 @@
-import DateRangePicker, { DailyDateFilter, WeeklyDateFilter, RawDateRangePicker } from '@synerise/ds-date-range-picker';
 import { ArgTypes } from 'storybook/internal/types';
+
+import DateRangePicker, {
+  DailyDateFilter,
+  RawDateRangePicker,
+  WeeklyDateFilter,
+} from '@synerise/ds-date-range-picker';
+
 import {
-  STYLE_ARG_CONTROL,
-  CLASSNAME_ARG_CONTROL,
-  stringWithNoControl,
-  PREFIXCLS_ARG_CONTROL,
-  STRING_CONTROL,
   BOOLEAN_CONTROL,
-  REACT_NODE_AS_STRING,
+  CLASSNAME_ARG_CONTROL,
   NUMBER_CONTROL,
+  PREFIXCLS_ARG_CONTROL,
+  REACT_NODE_AS_STRING,
+  STRING_CONTROL,
+  STYLE_ARG_CONTROL,
   controlFromOptionsArray,
+  stringWithNoControl,
   tableConfig,
 } from '../../utils';
 
@@ -56,9 +62,6 @@ export const generalArgTypes: Partial<ArgTypes<typeof DateRangePicker>> = {
     ...callbackControl,
   },
   disabledDate: {
-    ...tableConfig({ category: 'General' }),
-  },
-  format: {
     ...tableConfig({ category: 'General' }),
   },
   readOnly: {
@@ -138,17 +141,20 @@ export const filterArgTypes: Partial<ArgTypes<typeof DateRangePicker>> = {
   },
   filterValueSelectionModes: {
     ...tableConfig({ category: 'Date Filter configuration' }),
-    description: 'Select which filter modes should be available: `Range` or `Hour`',
+    description:
+      'Select which filter modes should be available: `Range` or `Hour`',
   },
   filterRangeDisplayMode: {
     ...tableConfig({ category: 'Date Filter configuration' }),
 
     // ...controlFromOptionsArray('radio', ['slider', 'timepicker']),
-    description: 'Select UI for specifying a filter range: `slider` or `timepicker`',
+    description:
+      'Select UI for specifying a filter range: `slider` or `timepicker`',
   },
   allowedFilterTypes: {
     ...tableConfig({ category: 'Date Filter configuration' }),
-    description: 'Select what filter types should be available: `DAILY`, `WEEKLY`, `MONTHLY`',
+    description:
+      'Select what filter types should be available: `DAILY`, `WEEKLY`, `MONTHLY`',
   },
 };
 
@@ -161,16 +167,19 @@ export const relativeArgTypes: Partial<ArgTypes<typeof DateRangePicker>> = {
   disableAbsoluteTimepickerInRelative: {
     ...tableConfig({ category: 'Relative Picker configuration' }),
     ...BOOLEAN_CONTROL,
-    description: 'Set to true if you wish to disable selecting time when a relative range is selected.',
+    description:
+      'Set to true if you wish to disable selecting time when a relative range is selected.',
   },
   showCustomRange: {
     ...tableConfig({ category: 'Relative Picker configuration' }),
     ...BOOLEAN_CONTROL,
-    description: 'Include "Custom date range" option in relative preset buttons',
+    description:
+      'Include "Custom date range" option in relative preset buttons',
   },
   relativeModes: {
     ...tableConfig({ category: 'Relative Picker configuration' }),
-    description: "Available modes for relative picker. `RelativeMode =  'PAST' | 'FUTURE' | 'SINCE' `",
+    description:
+      "Available modes for relative picker. `RelativeMode =  'PAST' | 'FUTURE' | 'SINCE' `",
   },
   rangeUnits: {
     ...tableConfig({ category: 'Relative Picker configuration' }),
@@ -196,7 +205,9 @@ export const relativeArgTypes: Partial<ArgTypes<typeof DateRangePicker>> = {
   },
 };
 
-export const schedulerCommonArgTypes: Partial<ArgTypes<typeof WeeklyDateFilter | typeof DailyDateFilter>> = {
+export const schedulerCommonArgTypes: Partial<
+  ArgTypes<typeof WeeklyDateFilter | typeof DailyDateFilter>
+> = {
   maxEntries: {
     table: {
       defaultValue: { summary: '4' },
@@ -208,7 +219,8 @@ export const schedulerCommonArgTypes: Partial<ArgTypes<typeof WeeklyDateFilter |
   },
   valueSelectionMode: {
     ...controlFromOptionsArray('check', ['Range', 'Hour']),
-    description: 'Select which filter modes should be available: `Range` or `Hour`',
+    description:
+      'Select which filter modes should be available: `Range` or `Hour`',
   },
   timePickerProps: {
     description: 'See ds-time-picker',

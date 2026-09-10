@@ -1,12 +1,10 @@
-import fnsMax from 'date-fns/max';
-import fnsMin from 'date-fns/min';
-
-import { legacyParse } from '@date-fns/upgrade/v2';
+import { max as fnsMax, min as fnsMin } from 'date-fns';
 
 import { type DateFilter, type RelativeDateRange } from '../date.types';
 import ADD from './add';
 import END_OF from './endOf';
 import START_OF from './startOf';
+import { toDateValue } from './toDateValue';
 
 export type Relative =
   | 'SECONDS'
@@ -24,20 +22,20 @@ const relativeToAbsolute = (range: RelativeDateRange): DateFilter => {
   let right;
 
   if (future) {
-    left = legacyParse(
+    left = toDateValue(
       // @ts-expect-error - requires type refactor
       ADD[offset.type](START_OF[offset.type](now), offset.value),
     );
-    right = legacyParse(
+    right = toDateValue(
       // @ts-expect-error - requires type refactor
       ADD[duration.type](END_OF[duration.type](left), duration.value - 1),
     );
   } else {
-    right = legacyParse(
+    right = toDateValue(
       // @ts-expect-error - requires type refactor
       ADD[offset.type](END_OF[offset.type](now), -offset.value),
     );
-    left = legacyParse(
+    left = toDateValue(
       // @ts-expect-error - requires type refactor
       ADD[duration.type](START_OF[duration.type](right), 1 - duration.value),
     );

@@ -2,8 +2,6 @@ import React from 'react';
 import { type Modifiers } from 'react-day-picker';
 import { type WrappedComponentProps, injectIntl } from 'react-intl';
 
-import { legacyParse } from '@date-fns/upgrade/v2';
-
 import * as S from '../DatePicker.styles';
 import { type State, type Texts } from '../DatePicker.types';
 import DayPicker from '../Elements/DayPicker/DayPicker';
@@ -26,6 +24,7 @@ import {
   fnsStartOfDay,
   fnsStartOfMonth,
 } from '../fns';
+import { toDateValue } from '../toDateValue';
 import { changeDayWithHoursPreserved } from '../utils';
 import { getDefaultTexts } from '../utils/getDefaultTexts';
 import { type RawDatePickerProps } from './RawDatePicker.types';
@@ -230,8 +229,8 @@ class RawDatePicker extends React.Component<
     const { value } = this.state;
     const { disabledHours, disabledMinutes, disabledSeconds, disabledDates } =
       this.props;
-    const prevDay = fnsAddDays(legacyParse(value), -1);
-    const nextDay = fnsAddDays(legacyParse(value), 1);
+    const prevDay = fnsAddDays(toDateValue(value), -1);
+    const nextDay = fnsAddDays(toDateValue(value), 1);
     const inactivePrev = disabledDates ? disabledDates(prevDay) : false;
     const inactiveNext = disabledDates ? disabledDates(nextDay) : false;
     return (

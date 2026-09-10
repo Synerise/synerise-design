@@ -2,8 +2,6 @@ import range from 'lodash.range';
 import React from 'react';
 import { type WrappedComponentProps, injectIntl } from 'react-intl';
 
-import { legacyParse } from '@date-fns/upgrade/v2';
-
 import {
   fnsAddYears,
   fnsEndOfMonth,
@@ -14,6 +12,7 @@ import {
   fnsStartOfMonth,
 } from '../../fns';
 import fnsFormat from '../../format';
+import { toDateValue } from '../../toDateValue';
 import GridPicker from '../GridPicker/GridPicker';
 import { type Cell } from '../GridPicker/GridPicker.types';
 import Navbar from '../Navbar/Navbar';
@@ -77,7 +76,7 @@ class MonthPicker extends React.PureComponent<
     const { min, max, value, intl, onChange } = this.props;
     const cells = getCells(cursor, min, max, intl?.locale);
     const valueCell = value
-      ? cells.find((cell) => fnsIsSameMonth(value, legacyParse(cell.key)))
+      ? cells.find((cell) => fnsIsSameMonth(value, toDateValue(cell.key)))
       : null;
     const selectedKey = valueCell ? valueCell.key : null;
     if (yearMode) {

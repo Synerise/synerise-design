@@ -1,6 +1,8 @@
-import fnsGetHours from 'date-fns/getHours';
-import fnsGetMinutes from 'date-fns/getMinutes';
-import fnsGetSeconds from 'date-fns/getSeconds';
+import {
+  getHours as fnsGetHours,
+  getMinutes as fnsGetMinutes,
+  getSeconds as fnsGetSeconds,
+} from 'date-fns';
 
 export default {
   HOURS: fnsGetHours,

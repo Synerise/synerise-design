@@ -13,10 +13,6 @@ export type Props = {
   onSwitchMode?: () => void;
   message?: React.ReactNode | string;
   texts: Texts;
-  /**
-   * @deprecated use `valueFormatOptions` instead
-   */
-  format?: string;
   valueFormatOptions?: DateToFormatOptions;
   showTime?: boolean;
   displayDateContainerClass?: string;
