@@ -44,6 +44,20 @@ const modifierClasses = (cell: Element): string[] =>
     .filter((name) => name.startsWith('DayPicker-Day--'))
     .sort();
 
+/**
+ * `modifierClasses` without `--today`.
+ *
+ * The tests that pass a null range make the picker fall back to the *current* month, so one cell
+ * carries an extra `--today` — and which cell that is depends on the day the suite happens to run.
+ * Those tests assert exact class lists for days 10 to 15, so without this the suite fails on the
+ * 10th to the 15th of every month and passes the rest of the time. `--today` is ambient state,
+ * not part of the range-preview mapping these tests exist to pin, so it is excluded rather than
+ * asserted. The fixed-range tests use `modifierClasses` and stay strict — they render October
+ * 2018, where `--today` can never appear.
+ */
+const previewClasses = (cell: Element): string[] =>
+  modifierClasses(cell).filter((name) => name !== 'DayPicker-Day--today');
+
 /** Day cells of one calendar that belong to the displayed month, keyed by day of month. */
 const inMonthCells = (calendar: HTMLElement): Map<number, HTMLElement> => {
   const cells = new Map<number, HTMLElement>();
@@ -214,7 +228,7 @@ describe('RangePicker DOM contract', () => {
       // `--focused` is new in v10, which tracks focus as a modifier where v7 only moved
       // `tabindex`. It is unstyled, but it is a real class on the clicked day, so it is pinned
       // here rather than filtered out.
-      expect(modifierClasses(cellFor(left, 10))).toEqual([
+      expect(previewClasses(cellFor(left, 10))).toEqual([
         'DayPicker-Day--entered',
         'DayPicker-Day--entered-start',
         'DayPicker-Day--focused',
@@ -222,11 +236,11 @@ describe('RangePicker DOM contract', () => {
         'DayPicker-Day--start',
       ]);
       [11, 12, 13, 14].forEach((day) => {
-        expect(modifierClasses(cellFor(left, day))).toEqual([
+        expect(previewClasses(cellFor(left, day))).toEqual([
           'DayPicker-Day--entered',
         ]);
       });
-      expect(modifierClasses(cellFor(left, 15))).toEqual([
+      expect(previewClasses(cellFor(left, 15))).toEqual([
         'DayPicker-Day--entered',
         'DayPicker-Day--entered-end',
       ]);
@@ -248,7 +262,7 @@ describe('RangePicker DOM contract', () => {
         'DayPicker-Day--entered-end',
       );
       [11, 12, 13, 14].forEach((day) => {
-        expect(modifierClasses(cellFor(left, day))).toEqual([
+        expect(previewClasses(cellFor(left, day))).toEqual([
           'DayPicker-Day--entered',
         ]);
       });
