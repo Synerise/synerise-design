@@ -1,6 +1,10 @@
 import { describe, expect, it } from 'vitest';
 
-import { getLocalDateInTimeZone, toIsoString } from '../timeZone.utils';
+import {
+  applyTimezoneOffset,
+  getLocalDateInTimeZone,
+  toIsoString,
+} from '../timeZone.utils';
 
 /**
  * `toIsoString` encodes a wall clock of `timeZone` as an offset-carrying ISO string, and
@@ -155,4 +159,54 @@ describe('getLocalDateInTimeZone', () => {
       });
     },
   );
+});
+
+describe('applyTimezoneOffset', () => {
+  /**
+   * The encoder the pickers emit through. It used to return `toIsoString(...)` — an
+   * offset-carrying string — which fixed one wire format on every consumer. It now returns a
+   * `TZDate`: the same instant, plus the zone, so the call site projects to whichever shape its
+   * API wants.
+   *
+   * Nothing on `master` calls this yet; the pickers reach it from `feature/timezones-clean`.
+   * These assertions are therefore the only thing pinning the contract, and they are written to
+   * be browser-independent like the rest of the file.
+   */
+
+  it.each([
+    ['Europe/Warsaw', '2026-09-10T18:00:00'],
+    ['Asia/Tokyo', '2026-09-10T18:00:00'],
+    ['America/New_York', '2026-03-08T12:00:00'], // the DST spring-forward day
+  ])('returns a TZDate carrying %s and the same instant', (timeZone, reading) => {
+    if (!isRepresentableLocally(reading)) {
+      return;
+    }
+    const carrier = wallClock(reading);
+
+    const result = applyTimezoneOffset(carrier, timeZone);
+
+    expect(result).toBeInstanceOf(Date);
+    expect((result as { timeZone?: string }).timeZone).toBe(timeZone);
+    // The carrier's fields are that zone's wall clock, so the result must read back the same
+    // there — and the instant it denotes is the one `toIsoString` encodes.
+    expect(wallClockIn(result as Date, timeZone)).toBe(reading);
+    expect((result as Date).getTime()).toBe(
+      new Date(toIsoString(carrier, timeZone)).getTime(),
+    );
+  });
+
+  it('passes the value through untouched when no timezone is given', () => {
+    const date = wallClock('2026-09-10T18:00:00');
+
+    // The load-bearing half: without an opt-in the pickers must keep emitting the plain `Date`
+    // they were handed. Defaulting to the provider or browser zone here would silently change
+    // what every consumer serializes, with no compiler error.
+    expect(applyTimezoneOffset(date, undefined)).toBe(date);
+    expect(applyTimezoneOffset(date, false)).toBe(date);
+    expect((applyTimezoneOffset(date, undefined) as { timeZone?: string }).timeZone).toBeUndefined();
+  });
+
+  it('returns undefined for a missing value', () => {
+    expect(applyTimezoneOffset(undefined, 'Asia/Tokyo')).toBeUndefined();
+  });
 });

@@ -20,17 +20,39 @@ export const dateToIsoWithOffset = (
   return toIsoString(value, intlObject?.timeZone || defaultTimezone);
 };
 
+/**
+ * Project a wall-clock carrier into the zone it belongs to, as a `TZDate`.
+ *
+ * With no `timezoneOffset` the value is handed back untouched — that passthrough is what keeps
+ * the pickers' default `onApply` emitting a plain `Date`, and it must not start defaulting to the
+ * provider or browser zone.
+ *
+ * When a zone *is* given this used to return `toIsoString(...)`, i.e. an offset-carrying string.
+ * A string is a lossy projection chosen by the component: it fixes one wire format on every
+ * consumer, and some endpoints want `Z` plus a separate timezone field instead. A `TZDate` carries
+ * the instant *and* the zone, so the call site picks the format it needs.
+ */
 export const applyTimezoneOffset = (
   date: Date | undefined,
-  timezoneOffset: true | string | undefined,
+  timezoneOffset: boolean | string | undefined,
   intl?: IntlShape,
-) => {
-  if (!timezoneOffset) {
+): Date | undefined => {
+  if (!timezoneOffset || !date) {
+    // The `date` guard is new. `toIsoString` dereferences its argument, so an absent value used
+    // to throw here behind a `date as Date` cast — reachable from a picker's Apply with nothing
+    // selected. The signature already promised `Date | undefined` both ways; now it holds.
     return date;
   }
 
-  const timezoneString = getTimeZone(timezoneOffset, intl);
-  return toIsoString(date as Date, timezoneString);
+  const timezoneString = getTimeZone(timezoneOffset, intl) as string;
+  // `date` carries the zone's wall clock in its local fields, so its own instant is wrong by the
+  // browser-to-zone delta. `toIsoString` stamps the offset that zone has *at that reading*, which
+  // is the one encoding of the true instant that survives a DST boundary — parse it back to get
+  // the instant, then attach the zone.
+  return new TZDate(
+    new Date(toIsoString(date as Date, timezoneString)),
+    timezoneString,
+  );
 };
 
 export const removeTimeZoneOffset = (dateString: string | Date) => {
