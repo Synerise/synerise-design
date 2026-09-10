@@ -28,12 +28,10 @@ export interface State {
   enteredTo?: Date | null;
   left: {
     month: Date | string;
-    monthTitle: string;
     mode: string;
   };
   right: {
     month: Date | string;
-    monthTitle: string;
     mode: string;
   };
 }

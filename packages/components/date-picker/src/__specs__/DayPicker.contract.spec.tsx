@@ -89,6 +89,16 @@ describe('DayPicker DOM contract', () => {
       ).toBeTruthy();
     });
 
+    // The month/year label lives in the design system's own `Navbar` above the grid, so a `title`
+    // on the root only produced a native browser tooltip that covered the calendar on hover.
+    it('puts no title attribute on the calendar root', () => {
+      const { container } = renderCalendar();
+
+      expect(
+        container.querySelector('.DayPicker-wrapper')?.hasAttribute('title'),
+      ).toBe(false);
+    });
+
     it('exposes the grid and its cells to assistive technology', () => {
       const { container } = renderCalendar();
 

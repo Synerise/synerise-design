@@ -26,7 +26,6 @@ import {
   fnsStartOfDay,
   fnsStartOfMonth,
 } from '../fns';
-import fnsFormat from '../format';
 import { changeDayWithHoursPreserved } from '../utils';
 import { getDefaultTexts } from '../utils/getDefaultTexts';
 import { type RawDatePickerProps } from './RawDatePicker.types';
@@ -205,7 +204,6 @@ class RawDatePicker extends React.Component<
         disabledDays={disabledDates}
         selectedDays={selectedDays}
         month={month}
-        title={fnsFormat(month, 'MMM yyyy')}
         renderDay={this.renderDay}
         onDayClick={this.handleDayClick}
         onDayMouseEnter={this.handleDayMouseEnter}

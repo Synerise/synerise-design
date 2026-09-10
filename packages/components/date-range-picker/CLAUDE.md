@@ -193,6 +193,7 @@ Addons (relative picker, filter) appear below the calendar and are toggled via `
 - All sub-components have co-located `*.styles.ts(x)` files
 - Uses `@synerise/ds-core` tokens — no hardcoded colour values
 - Popover overlay has `data-testid="ds-date-range-picker-overlay"` and class `ds-date-range-popover`
+- Each half of the panel is wrapped in `data-testid="date-range-picker-side-left"` / `-side-right` — the scope E2E suites use to reach the days and navigation of one side. The wrapper hosts whichever picker the side is in (day grid, month/year grid, or time picker), so the testid is stable across modes
 
 ## Key dependencies
 

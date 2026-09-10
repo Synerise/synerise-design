@@ -19,7 +19,6 @@ import {
 import { TIME_OPTIONS } from '../constants';
 import { type DateRange, type NullableDateLimit } from '../date.types';
 import ADD from '../dateUtils/add';
-import format from '../dateUtils/format';
 import GET from '../dateUtils/get';
 import SET from '../dateUtils/set';
 import {
@@ -150,12 +149,10 @@ export const getSidesState = (
   return {
     left: {
       month: from,
-      monthTitle: fnsIsValid(from) ? format(legacyParse(from), 'MMM yyyy') : '',
       mode: 'date',
     },
     right: {
       month: forceAdjacentMonths ? ADD.MONTHS(from, 1) : to,
-      monthTitle: fnsIsValid(to) ? format(legacyParse(to), 'MMM yyyy') : '',
       mode: 'date',
     },
   };

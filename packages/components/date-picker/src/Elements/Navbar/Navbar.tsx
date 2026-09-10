@@ -23,6 +23,7 @@ const Navbar: React.FC<NavbarProps> = (props: NavbarProps) => {
     onShortNext,
     inactivePrev,
     inactiveNext,
+    singleStep,
   } = props;
 
   return (
@@ -39,46 +40,50 @@ const Navbar: React.FC<NavbarProps> = (props: NavbarProps) => {
             type="ghost"
             onClick={onLongPrev}
           >
-            <Icon component={<DoubleAngleLeftS />} />
+            <Icon
+              component={singleStep ? <AngleLeftS /> : <DoubleAngleLeftS />}
+            />
           </S.NavButton>
         ) : (
           <S.ArrowPlaceholder className="arrow-placeholder long-prev" />
         )}
-        {onShortPrev && !hidePrev ? (
-          <S.NavButton
-            data-testid="datapicker-short-prev"
-            disabled={inactivePrev}
-            key={uuid()}
-            mode="single-icon"
-            role="button"
-            type="ghost"
-            onClick={onShortPrev}
-          >
-            <Icon component={<AngleLeftS />} />
-          </S.NavButton>
-        ) : (
-          <S.ArrowPlaceholder className="arrow-placeholder short-prev" />
-        )}
+        {!singleStep &&
+          (onShortPrev && !hidePrev ? (
+            <S.NavButton
+              data-testid="datapicker-short-prev"
+              disabled={inactivePrev}
+              key={uuid()}
+              mode="single-icon"
+              role="button"
+              type="ghost"
+              onClick={onShortPrev}
+            >
+              <Icon component={<AngleLeftS />} />
+            </S.NavButton>
+          ) : (
+            <S.ArrowPlaceholder className="arrow-placeholder short-prev" />
+          ))}
       </S.ArrowContainer>
       <S.Text>
         {onTitleClick ? <S.Link onClick={onTitleClick}>{title}</S.Link> : title}
       </S.Text>
       <S.ArrowContainer>
-        {onShortNext && !hideNext ? (
-          <S.NavButton
-            data-testid="datapicker-short-next"
-            disabled={inactiveNext}
-            key={uuid()}
-            mode="single-icon"
-            role="button"
-            type="ghost"
-            onClick={onShortNext}
-          >
-            <Icon component={<AngleRightS />} />
-          </S.NavButton>
-        ) : (
-          <S.ArrowPlaceholder className="arrow-placeholder short-next" />
-        )}
+        {!singleStep &&
+          (onShortNext && !hideNext ? (
+            <S.NavButton
+              data-testid="datapicker-short-next"
+              disabled={inactiveNext}
+              key={uuid()}
+              mode="single-icon"
+              role="button"
+              type="ghost"
+              onClick={onShortNext}
+            >
+              <Icon component={<AngleRightS />} />
+            </S.NavButton>
+          ) : (
+            <S.ArrowPlaceholder className="arrow-placeholder short-next" />
+          ))}
         {onLongNext && !hideNext ? (
           <S.NavButton
             data-testid="datapicker-long-next"
@@ -89,7 +94,9 @@ const Navbar: React.FC<NavbarProps> = (props: NavbarProps) => {
             type="ghost"
             onClick={onLongNext}
           >
-            <Icon component={<DoubleAngleRightS />} />
+            <Icon
+              component={singleStep ? <AngleRightS /> : <DoubleAngleRightS />}
+            />
           </S.NavButton>
         ) : (
           <S.ArrowPlaceholder className="arrow-placeholder long-next" />
