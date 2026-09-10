@@ -1,9 +1,8 @@
 import range from 'lodash.range';
 import React from 'react';
 
-import { legacyParse } from '@date-fns/upgrade/v2';
-
 import { fnsAddYears, fnsGetYear, fnsSetYear } from '../../fns';
+import { toDateValue } from '../../toDateValue';
 import { getCenturyRange, getDecadeRange } from '../../utils';
 import GridPicker from '../GridPicker/GridPicker';
 import { type Cell } from '../GridPicker/GridPicker.types';
@@ -76,7 +75,7 @@ export default class DecadePicker extends React.PureComponent<
     const valueCell = value
       ? cells.find((cell: Cell) => {
           const valueYear = fnsGetYear(value);
-          const minYear = fnsGetYear(legacyParse(cell.key));
+          const minYear = fnsGetYear(toDateValue(cell.key));
           const maxYear = minYear + 10;
           return valueYear >= minYear && valueYear < maxYear;
         })

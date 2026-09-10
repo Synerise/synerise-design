@@ -1,3 +1,4 @@
+import { isValid as fnsIsValid, parseISO } from 'date-fns';
 import React, {
   type MouseEvent,
   forwardRef,
@@ -6,7 +7,6 @@ import React, {
   useState,
 } from 'react';
 
-import { legacyParse } from '@date-fns/upgrade/v2';
 import {
   getDefaultDataTimeOptions,
   useDataFormat,
@@ -15,7 +15,6 @@ import {
 import Icon, { CalendarM, Close3S } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 
-import format from '../../format';
 import * as S from './PickerInput.styles';
 import { type PickerInputProps } from './PickerInput.types';
 
@@ -25,7 +24,6 @@ const PickerInput = forwardRef<HTMLDivElement, PickerInputProps>(
       disabled,
       readOnly,
       value,
-      format: dateFormat,
       valueFormatOptions,
       onChange,
       showTime,
@@ -50,20 +48,23 @@ const PickerInput = forwardRef<HTMLDivElement, PickerInputProps>(
       if (!value) {
         return '';
       }
-      if (dateFormat) {
-        return format(legacyParse(value), dateFormat);
+      // `value` is `Date | string` and both denote the same thing, so both take the same route.
+      // They used to diverge: only the `Date` reached `formatValue`, while a string was run through
+      // a hardcoded token pattern, so the same instant rendered as `8 Sep 2026, 13:17` or
+      // `Sep 8, 2026, 13:17` depending on which form the caller happened to hold.
+      const date = typeof value === 'string' ? parseISO(value) : value;
+
+      // `parseISO` yields an Invalid Date for anything unparseable; the token formatter this
+      // replaced guarded with the same check and rendered nothing.
+      if (!fnsIsValid(date)) {
+        return '';
       }
-      if (typeof value === 'string') {
-        return format(
-          legacyParse(value),
-          dateFormat || showTime ? 'MMM d, yyyy, HH:mm' : 'MMM d, yyyy',
-        );
-      }
-      return formatValue(value, {
+
+      return formatValue(date, {
         ...getDefaultDataTimeOptions(showTime),
         ...valueFormatOptions,
       });
-    }, [value, dateFormat, showTime, formatValue, valueFormatOptions]);
+    }, [value, showTime, formatValue, valueFormatOptions]);
 
     const handleApply = useCallback(
       (date?: Date | null) => {

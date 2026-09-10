@@ -42,7 +42,6 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@date-fns/upgrade": "^1.0.3",
     "@synerise/ds-button": "workspace:^",
     "@synerise/ds-dropdown": "workspace:^",
     "@synerise/ds-icon": "workspace:^",
@@ -52,7 +51,7 @@
     "@synerise/ds-typography": "workspace:^",
     "@synerise/ds-utils": "workspace:^",
     "classnames": "^2.5.1",
-    "date-fns": "2.16.1",
+    "date-fns": "^4.1.0",
     "lodash.range": "^3.2.0",
     "react-day-picker": "^10.0.1",
     "uuid": "^8.3.2"

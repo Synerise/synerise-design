@@ -21,7 +21,7 @@ src/
  DatePicker/DatePicker.tsx — date picker with formatted value display and mask placeholder
  DatePicker/DatePicker.types.ts — SubtleDatePickerProps
  DatePicker/DatePicker.styles.ts — SelectContainer, MaskedDatePlaceholder
- DatePicker/utils.ts — getFormattingString, replaceLettersWithUnderscore
+ DatePicker/utils.ts — replaceLettersWithUnderscore (builds the input mask from a formatted sample)
  Field/Field.tsx — generic field: renders activeElement() / inactiveElement(); uses useOnClickOutside
  __specs__/
  TextArea.spec.tsx — Vitest tests (TextArea only)
@@ -104,7 +104,7 @@ Extends `SubtleFieldProps` + `@synerise/ds-date-picker` props. Additional:
 | `value` | `Date` | Selected date |
 | `onApply` | `(date: Date) => void` | Called when date is confirmed; also deactivates the field |
 | `onClear` | `() => void` | Called on clear; also deactivates |
-| `format` | `string` | Date format string (default: `'dd-MM-yyyy'`, or `'dd-MM-yyyy, HH:mm'` when `showTime`) |
+| `valueFormatOptions` | `DateToFormatOptions` | Display options, passed through to `ds-date-picker`. The inactive view formats with the same options as the picker's own input, so both read identically. (The old `format` token prop is removed — it disagreed with the picker for every locale.) |
 | `placeholder` | `string` | Shown when no value |
 | `activeProp` | `boolean` | External control of active state |
 

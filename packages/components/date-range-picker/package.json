@@ -42,7 +42,6 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@date-fns/upgrade": "^1.0.3",
     "@synerise/ds-badge": "workspace:^",
     "@synerise/ds-button": "workspace:^",
     "@synerise/ds-button-group": "workspace:^",
@@ -63,7 +62,7 @@
     "@synerise/ds-time-picker": "workspace:^",
     "@synerise/ds-tooltip": "workspace:^",
     "@synerise/ds-utils": "workspace:^",
-    "date-fns": "^2.16.1",
+    "date-fns": "^4.1.0",
     "dayjs": "^1.8.35",
     "lodash.clonedeep": "^4.5.0",
     "lodash.flatten": "^4.4.0",

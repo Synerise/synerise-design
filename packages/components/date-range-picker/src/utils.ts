@@ -1,5 +1,4 @@
-import fnsMax from 'date-fns/max';
-import fnsMin from 'date-fns/min';
+import { max as fnsMax, min as fnsMin } from 'date-fns';
 import omit from 'lodash.omit';
 import { type IntlShape } from 'react-intl';
 

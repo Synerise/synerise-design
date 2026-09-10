@@ -1,6 +1,6 @@
 # DatePicker (`@synerise/ds-date-picker`)
 
-> Single-date picker with a dropdown calendar, optional time picker, quick-pick presets, and a formatted text input trigger — built on `react-day-picker` v10 and `date-fns` 2.
+> Single-date picker with a dropdown calendar, optional time picker, quick-pick presets, and a formatted text input trigger — built on `react-day-picker` v10 and `date-fns` 4.
 
 ## Package structure
 
@@ -27,7 +27,7 @@ src/
     GridPicker/               — shared grid layout used by Month/Year/DecadePicker
   utils/
     getDefaultTexts.tsx       — merges consumer texts with react-intl defaults
-  fns.tsx                     — date-fns v2 wrappers
+  fns.tsx                     — date-fns re-exports (named, from the package root)
   format.ts                   — fnsFormat wrapper
   localeUtils.ts              — weekday/month name tables; adapted into react-day-picker formatters/labels
   utils.ts                    — changeDayWithHoursPreserved and other helpers
@@ -60,7 +60,6 @@ src/
 | `quickPicks` | `QuickPick[]` | `undefined` | Preset date buttons rendered in a left column beside the calendar. |
 | `texts` | `Partial<Texts>` | `undefined` | Override i18n strings. |
 | `valueFormatOptions` | `DateToFormatOptions` | `undefined` | Format options for displaying the selected date in the input. |
-| `format` | `string` | `undefined` | **Deprecated** — use `valueFormatOptions` instead. |
 | `popoverPlacement` | `'topLeft' \| 'topCenter' \| 'topRight' \| 'bottomLeft' \| 'bottomCenter' \| 'bottomRight'` | `undefined` | Dropdown placement. |
 | `prefixel` | `ReactNode` | `undefined` | Content shown before the date value in the input. |
 | `suffixel` | `ReactNode` | `undefined` | Content shown after the date value in the input. |
@@ -127,9 +126,9 @@ import { RawDatePicker } from '@synerise/ds-date-picker';
 
 ## Key dependencies
 
-- `react-day-picker` v10 — calendar grid and day modifiers (brings its own `date-fns` 4 + `@date-fns/tz`, isolated from this package's `date-fns` 2)
-- `date-fns` 2.16.1 — all date arithmetic (pinned version)
-- `@date-fns/upgrade` — `legacyParse` compat shim for date-fns v1→v2 migration in `RawDatePicker`
+- `react-day-picker` v10 — calendar grid and day modifiers (shares this package's `date-fns` 4, plus `@date-fns/tz`)
+- `date-fns` ^4 — all date arithmetic, imported by name from the package root
+- Loosely-typed date inputs are normalised by `src/toDateValue.ts`, which replaced `@date-fns/upgrade`'s `legacyParse`. Use it rather than `new Date` or `toDate`: a naive string must be read as *local* time, which only `parseISO` does
 - `@synerise/ds-dropdown` — wraps `RawDatePicker` as a popover triggered by `PickerInput`
 - `@synerise/ds-input` — base for `PickerInput`
 - `react-intl` (peer dep) — default label strings; `IntlProvider` required in tree
@@ -144,7 +143,7 @@ import { RawDatePicker } from '@synerise/ds-date-picker';
 - **Time preserved on day change** — when changing the day while already having a time selected (`changed=true`), hours/minutes/seconds from the previous value are preserved (`changeDayWithHoursPreserved`).
 - **Apply vs onChange** — `onValueChange` fires on every day/time interaction. `onApply` fires only when the user explicitly clicks Apply (or selects a quick pick), and also closes the dropdown.
 - **`dropdownProps.open`** — if provided, it OR-s with internal `dropVisible` state: `open={(dropdownProps?.open || dropVisible) && !disabled}`. This means both sources can open the dropdown independently.
-- **`format` is deprecated** — use `valueFormatOptions: DateToFormatOptions` (from `@synerise/ds-core`) for display formatting.
+- **`format` has been removed** — use `valueFormatOptions: DateToFormatOptions` (from `@synerise/ds-core`). It took a token pattern, which no consumer passed and which disagreed with `formatValue` for every locale. `PickerInput` now renders a `Date` and an ISO string identically; whether a value is an *instant* is signalled by `isInstantValue`, not inferred from its runtime type.
 - **`inputPlaceholder` i18n default is empty** — `getDefaultTexts` calls `intl.formatMessage({ id: 'DS.DATE-PICKER.SELECT-DATE' })` with no `defaultMessage`, so the placeholder is empty if the message is not in the IntlProvider's messages.
 
 ## react-day-picker v10 notes

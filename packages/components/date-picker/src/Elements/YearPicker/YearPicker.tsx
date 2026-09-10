@@ -1,9 +1,8 @@
 import React from 'react';
 
-import { legacyParse } from '@date-fns/upgrade/v2';
-
 import { fnsAddYears, fnsIsSameYear, fnsSetYear } from '../../fns';
 import fnsFormat from '../../format';
+import { toDateValue } from '../../toDateValue';
 import { getDecadeRange } from '../../utils';
 import DecadePicker from '../DecadePicker/DecadePicker';
 import GridPicker from '../GridPicker/GridPicker';
@@ -65,7 +64,7 @@ export default class YearPicker extends React.PureComponent<
     const cells = getCells(cursor);
     const valueCell = value
       ? cells.find((cell: Cell): boolean =>
-          fnsIsSameYear(value, legacyParse(cell.key)),
+          fnsIsSameYear(value, toDateValue(cell.key)),
         )
       : null;
     const selectedKey = valueCell ? valueCell.key : null;

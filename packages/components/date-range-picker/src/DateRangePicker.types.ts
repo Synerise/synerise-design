@@ -33,10 +33,6 @@ export type DateRangePickerProps = {
   disabled?: boolean;
   disableDefaultTexts?: boolean;
   disabledDate?: (date?: Date) => boolean;
-  /**
-   * @deprecated use `valueFormatOptions` instead
-   */
-  format?: string;
   valueFormatOptions?: DateToFormatOptions;
   forceAdjacentMonths?: boolean;
   forceAbsolute?: boolean;

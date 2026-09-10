@@ -1,11 +1,14 @@
-import fnsIsValid from 'date-fns/isValid';
-import fnsIsWithinRange from 'date-fns/isWithinInterval';
-import fnsMax from 'date-fns/max';
-import fnsMin from 'date-fns/min';
+import {
+  // Stopped being an ambient global in date-fns 3, so it is imported like any other symbol.
+  type Interval,
+  isValid as fnsIsValid,
+  isWithinInterval as fnsIsWithinRange,
+  max as fnsMax,
+  min as fnsMin,
+} from 'date-fns';
 import dayjs from 'dayjs';
 import { type Matcher } from 'react-day-picker';
 
-import { legacyParse } from '@date-fns/upgrade/v2';
 import {
   AM,
   type ClockModes,
@@ -21,6 +24,7 @@ import { type DateRange, type NullableDateLimit } from '../date.types';
 import ADD from '../dateUtils/add';
 import GET from '../dateUtils/get';
 import SET from '../dateUtils/set';
+import { toDateValue } from '../dateUtils/toDateValue';
 import {
   fnsEndOfDay,
   fnsIsBefore,
@@ -85,7 +89,7 @@ export const getDisabledTimeOptions = (
     return [];
   }
   const dayBuilder = dayjs(day);
-  const dayAsDate = typeof day === 'string' ? legacyParse(day) : day;
+  const dayAsDate = typeof day === 'string' ? toDateValue(day) : day;
 
   const dayClockMode = getAmOrPmFromDate(dayAsDate);
 
@@ -106,8 +110,8 @@ export const getDisabledTimeOptions = (
     }
   }
 
-  const intervalStartDate = lowerLimit ? legacyParse(lowerLimit) : undefined;
-  const intervalEndDate = upperLimit ? legacyParse(upperLimit) : undefined;
+  const intervalStartDate = lowerLimit ? toDateValue(lowerLimit) : undefined;
+  const intervalEndDate = upperLimit ? toDateValue(upperLimit) : undefined;
   const interval = getInterval(dayAsDate, intervalStartDate, intervalEndDate);
   const options = TIME_OPTIONS[granularity as keyof typeof TIME_OPTIONS].map(
     (option: number) => SET[granularity as keyof typeof SET](dayAsDate, option),
@@ -140,9 +144,9 @@ export const getSidesState = (
   forceAdjacentMonths?: boolean,
 ): State => {
   const from = fnsStartOfMonth(
-    fnsIsValid(value.from) ? legacyParse(value.from) : new Date(),
+    fnsIsValid(value.from) ? toDateValue(value.from) : new Date(),
   );
-  let to = fnsIsValid(value.to) ? fnsStartOfMonth(legacyParse(value.to)) : from;
+  let to = fnsIsValid(value.to) ? fnsStartOfMonth(toDateValue(value.to)) : from;
   if (fnsIsSameMonth(from, to)) {
     to = ADD.MONTHS(to, 1);
   }
@@ -166,7 +170,7 @@ const toDate = (value: NullableDateLimit | undefined): Date | undefined => {
   if (value === null || value === undefined) {
     return undefined;
   }
-  return value instanceof Date ? value : legacyParse(value);
+  return value instanceof Date ? value : toDateValue(value);
 };
 
 export const getModifiers = (
@@ -176,16 +180,16 @@ export const getModifiers = (
 ): Record<string, Matcher | undefined> => {
   const isSelecting = from && !to && enteredTo;
   const enteredStart = isSelecting
-    ? fnsMin([legacyParse(from), legacyParse(enteredTo)])
+    ? fnsMin([toDateValue(from), toDateValue(enteredTo)])
     : enteredTo;
   const enteredEnd = isSelecting
-    ? fnsMax([legacyParse(from), legacyParse(enteredTo)])
+    ? fnsMax([toDateValue(from), toDateValue(enteredTo)])
     : enteredTo;
   const entered = isSelecting
     ? (day: Date | string | number): boolean =>
-        fnsIsWithinRange(legacyParse(day), {
-          start: legacyParse(enteredStart),
-          end: legacyParse(enteredEnd),
+        fnsIsWithinRange(toDateValue(day), {
+          start: toDateValue(enteredStart),
+          end: toDateValue(enteredEnd),
         })
     : enteredTo;
   const startModifier =

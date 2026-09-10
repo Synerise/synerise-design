@@ -20,7 +20,7 @@ src/
   Footer/                   — apply button + selected range summary
   RangeFilter/              — recurring schedule filters (Daily/Weekly/Monthly)
   AddonCollapse/            — collapsible section used by relative picker and filter
-  dateUtils/                — date utility functions (add, sub, format, startOf, endOf, …)
+  dateUtils/                — date utility functions (add, sub, startOf, endOf, toDateValue, …)
 ```
 
 ## Public exports
@@ -199,7 +199,9 @@ Addons (relative picker, filter) appear below the calendar and are toggled via `
 
 - `react-day-picker ^10` — calendar grid rendering inside `RangePicker` (see the v10 notes in `ds-date-picker`'s CLAUDE.md; day cells now contain a `<button class="DayPicker-Day-Button">`)
 - `@synerise/ds-popover` — floating popover (floating-ui underneath)
-- `date-fns ^2` — date arithmetic. Timezone handling is not this package's: `toIsoString` is re-exported from `@synerise/ds-core`, which owns the wall-clock convention and the `@date-fns/tz` dependency behind it
+- `date-fns ^4` — date arithmetic, imported **by name from the package root** (`import { addDays as fnsAddDays } from 'date-fns'`). v4 submodules are named-export-only, so the old `import fnsAddDays from 'date-fns/addDays'` form yields `undefined`
+- Loosely-typed date values are normalised by `dateUtils/toDateValue.ts`, which replaced `@date-fns/upgrade`'s `legacyParse`. Use it rather than `new Date` or `toDate`: a naive string must be read as *local* time, and only `parseISO` does that. Note `toDateValue(null)` is the **epoch**, which `isValid` accepts — preserved deliberately, since call sites are written around it
+- Timezone handling is not this package's: `toIsoString` is re-exported from `@synerise/ds-core`, which owns the wall-clock convention and the `@date-fns/tz` dependency behind it
 - `dayjs ^1.8` — used in parts of `RangeFilter`
 - `ramda ^0.27` — functional utilities in `RangeFilter`
 - `react-intl` — i18n (peer dependency via host app)

@@ -1,5 +1,7 @@
-import fnsIsValid from 'date-fns/isValid';
-import fnsStartOfSecond from 'date-fns/startOfSecond';
+import {
+  isValid as fnsIsValid,
+  startOfSecond as fnsStartOfSecond,
+} from 'date-fns';
 import isUndefined from 'lodash.isundefined';
 import omitBy from 'lodash.omitby';
 import React, {
@@ -10,8 +12,6 @@ import React, {
   useState,
 } from 'react';
 import { useIntl } from 'react-intl';
-
-import { legacyParse } from '@date-fns/upgrade/v2';
 
 import AddonCollapse from './AddonCollapse/AddonCollapse';
 import {
@@ -46,6 +46,7 @@ import {
 } from './constants';
 import type { DateFilter, DateRange, RelativeDateRange } from './date.types';
 import relativeToAbsolute from './dateUtils/relativeToAbsolute';
+import { toDateValue } from './dateUtils/toDateValue';
 import { getDefaultTexts, normalizeRange, toIsoString } from './utils';
 
 const isRelative = (dateRange: DateRange): dateRange is RelativeDateRange => {
@@ -99,7 +100,6 @@ export const RawDateRangePicker = ({
   showRelativePicker = true,
   showFilter,
   showTime,
-  format,
   valueFormatOptions,
   disabledDate,
   validate = (): { valid: boolean } => ({ valid: true }),
@@ -156,10 +156,10 @@ export const RawDateRangePicker = ({
       const newValue = normalizeRange({ ...range, filter: localValue.filter });
       if (isTruncateMs) {
         if (newValue.from !== undefined) {
-          newValue.from = fnsStartOfSecond(legacyParse(newValue.from));
+          newValue.from = fnsStartOfSecond(toDateValue(newValue.from));
         }
         if (newValue.to !== undefined) {
-          newValue.to = fnsStartOfSecond(legacyParse(newValue.to));
+          newValue.to = fnsStartOfSecond(toDateValue(newValue.to));
         }
       }
       if (
@@ -417,7 +417,6 @@ export const RawDateRangePicker = ({
           texts={allTexts}
           value={fullValue}
           showTime={showTime}
-          format={format}
           valueFormatOptions={valueFormatOptions}
           {...footerProps}
         />
