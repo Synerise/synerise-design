@@ -230,3 +230,30 @@ export const OnModalFooterCustomAndStepButtons: StoryObj<
     },
   },
 };
+
+export const OnModalFooterAction: StoryObj<typeof Wizard.OnModal> = {
+  render: (args) => {
+    const [activeStep, setActiveStep] = useState(1);
+
+    const handlePrevStep = () => setActiveStep(activeStep - 1);
+    const handleNextStep = () => setActiveStep(activeStep + 1);
+
+    return (
+      <Wizard.OnModal
+        {...args}
+        onPrevStep={activeStep === 0 ? undefined : handlePrevStep}
+        onNextStep={activeStep === 3 ? undefined : handleNextStep}
+      />
+    );
+  },
+  args: {
+    footerAction: (
+      <Button type="secondary" onClick={action('footer action')}>
+        Cancel
+      </Button>
+    ),
+    modalProps: {
+      size: 'medium',
+    },
+  },
+};
