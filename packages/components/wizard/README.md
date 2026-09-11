@@ -63,25 +63,25 @@ import Wizard from '@synerise/ds-wizard'
 
 ## API
 
-| Property           | Description                                             | Type                     | Default |
-| ------------------ | ------------------------------------------------------- | ------------------------ | ------- |
-| stepper            | Stepper component                                       | React.ReactNode          | -       |
-| footer             | **Deprecated.** Left-side footer content (use `footerLeft`) | React.ReactNode      | -       |
-| footerLeft         | Left side of the footer bar                             | React.ReactNode          | -       |
-| footerAction       | Right side of the footer bar                            | React.ReactNode          | -       |
-| title              | Title of wizard (ignored when `headerInlineEdit` is set) | React.ReactNode         | -       |
-| headerAction       | Additional button in header                             | React.ReactNode          | -       |
-| onClose            | Function called when user clicks on close wizard button | () => void               | -       |
-| visible            | Whether wizard is visible                               | boolean                  | false   |
-| contentWidth       | Width of content ex: `500px`                            | string                   | `100%`  |
-| onPrevStep         | Function called when user clicks on prev step button    | () => void               | -       |
-| onNextStep         | Function called when user clicks on next step button    | () => void               | -       |
-| stepButtonProps    | Custom props for prev/next buttons                      | WizardStepButtons        | -       |
-| texts              | Translations object for wizard                          | WizardTexts              | -       |
-| navigationInFooter | Move prev/next buttons to the footer instead of below content | boolean            | -       |
-| headerInlineEdit   | Enable inline title editing in the header               | PageHeaderProps['inlineEdit'] | -  |
-| headerAvatar       | Avatar shown alongside inline edit in the header        | PageHeaderProps['avatar'] | -      |
-| className          | CSS class added to the wizard wrapper                   | string                   | -       |
+| Property           | Description                                                   | Type                          | Default |
+| ------------------ | ------------------------------------------------------------- | ----------------------------- | ------- |
+| stepper            | Stepper component                                             | React.ReactNode               | -       |
+| footer             | **Deprecated.** Left-side footer content (use `footerLeft`)   | React.ReactNode               | -       |
+| footerLeft         | Left side of the footer bar                                   | React.ReactNode               | -       |
+| footerAction       | Right side of the footer bar                                  | React.ReactNode               | -       |
+| title              | Title of wizard (ignored when `headerInlineEdit` is set)      | React.ReactNode               | -       |
+| headerAction       | Additional button in header                                   | React.ReactNode               | -       |
+| onClose            | Function called when user clicks on close wizard button       | () => void                    | -       |
+| visible            | Whether wizard is visible                                     | boolean                       | false   |
+| contentWidth       | Width of content ex: `500px`                                  | string                        | `100%`  |
+| onPrevStep         | Function called when user clicks on prev step button          | () => void                    | -       |
+| onNextStep         | Function called when user clicks on next step button          | () => void                    | -       |
+| stepButtonProps    | Custom props for prev/next buttons                            | WizardStepButtons             | -       |
+| texts              | Translations object for wizard                                | WizardTexts                   | -       |
+| navigationInFooter | Move prev/next buttons to the footer instead of below content | boolean                       | -       |
+| headerInlineEdit   | Enable inline title editing in the header                     | PageHeaderProps['inlineEdit'] | -       |
+| headerAvatar       | Avatar shown alongside inline edit in the header              | PageHeaderProps['avatar']     | -       |
+| className          | CSS class added to the wizard wrapper                         | string                        | -       |
 
 ### WizardTexts
 
@@ -96,3 +96,30 @@ import Wizard from '@synerise/ds-wizard'
 | --------------- | -------------------- | ------------------------------------- | ------- |
 | prevButtonProps | Props of prev button | Partial<Omit<ButtonProps, 'onClick'>> | -       |
 | nextButtonProps | Props of next button | Partial<Omit<ButtonProps, 'onClick'>> | -       |
+
+### Wizard.OnModal
+
+Modal variant. Accepts the same props as `Wizard` (except `footer` and `contentWidth`) plus a required `modalProps` passed to `@synerise/ds-modal`.
+
+Footer slots, in render order:
+
+| Slot                | Position                           |
+| ------------------- | ---------------------------------- |
+| `modalProps.prefix` | Left side, before the Back button  |
+| `modalProps.infix`  | Center                             |
+| `footerAction`      | Right side, before the Next button |
+| `modalProps.suffix` | Right side, after the Next button  |
+
+```jsx
+<Wizard.OnModal
+  visible={visible}
+  title="Wizard Title"
+  onClose={handleClose}
+  onPrevStep={handlePrevStep}
+  onNextStep={handleNextStep}
+  footerAction={<Button onClick={handleClose}>Cancel</Button>}
+  modalProps={{ size: 'medium' }}
+>
+  Content
+</Wizard.OnModal>
+```

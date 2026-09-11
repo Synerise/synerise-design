@@ -10,9 +10,16 @@ const TITLE = 'Wizard title';
 const NEXT_STEP = 'Next step';
 const BACK = 'Back';
 const FOOTER = 'Footer';
+const FOOTER_ACTION = 'Footer action';
+const SUFFIX = 'Suffix action';
 const HEADER_ACTION = 'Header action';
 const STEPPER = 'Stepper';
 const CONTENT = 'Content';
+
+const isRenderedBefore = (first: HTMLElement, second: HTMLElement) =>
+  Boolean(
+    first.compareDocumentPosition(second) & Node.DOCUMENT_POSITION_FOLLOWING,
+  );
 
 describe('Wizard component', () => {
   it('should render with title', () => {
@@ -179,5 +186,97 @@ describe('Wizard component', () => {
 
     expect(handlePrevStep).toBeCalled();
     expect(handleNextStep).toBeCalled();
+  });
+});
+
+describe('Wizard.OnModal component', () => {
+  it('should render footerAction in the footer', () => {
+    const handleClose = vi.fn();
+    renderWithProvider(
+      <Wizard.OnModal
+        title={TITLE}
+        visible={true}
+        onClose={handleClose}
+        footerAction={<span>{FOOTER_ACTION}</span>}
+        modalProps={{ size: 'medium' }}
+      />,
+    );
+
+    expect(screen.getByText(FOOTER_ACTION)).toBeTruthy();
+  });
+
+  it('should render footerAction without next step button and suffix', () => {
+    const handleClose = vi.fn();
+    renderWithProvider(
+      <Wizard.OnModal
+        title={TITLE}
+        visible={true}
+        onClose={handleClose}
+        footerAction={<span>{FOOTER_ACTION}</span>}
+        texts={{ prevButtonLabel: BACK, nextButtonLabel: NEXT_STEP }}
+        modalProps={{ size: 'medium' }}
+      />,
+    );
+
+    expect(screen.getByText(FOOTER_ACTION)).toBeTruthy();
+    expect(screen.queryByText(NEXT_STEP)).toBeFalsy();
+  });
+
+  it('should render footerAction before the next step button', () => {
+    const handleClose = vi.fn();
+    const handleNextStep = vi.fn();
+    renderWithProvider(
+      <Wizard.OnModal
+        title={TITLE}
+        visible={true}
+        onClose={handleClose}
+        footerAction={<span>{FOOTER_ACTION}</span>}
+        onNextStep={handleNextStep}
+        texts={{ prevButtonLabel: BACK, nextButtonLabel: NEXT_STEP }}
+        modalProps={{ size: 'medium' }}
+      />,
+    );
+
+    expect(
+      isRenderedBefore(
+        screen.getByText(FOOTER_ACTION),
+        screen.getByText(NEXT_STEP),
+      ),
+    ).toBe(true);
+  });
+
+  it('should render modalProps.suffix after the next step button', () => {
+    const handleClose = vi.fn();
+    const handleNextStep = vi.fn();
+    renderWithProvider(
+      <Wizard.OnModal
+        title={TITLE}
+        visible={true}
+        onClose={handleClose}
+        footerAction={<span>{FOOTER_ACTION}</span>}
+        onNextStep={handleNextStep}
+        texts={{ prevButtonLabel: BACK, nextButtonLabel: NEXT_STEP }}
+        modalProps={{ size: 'medium', suffix: <span>{SUFFIX}</span> }}
+      />,
+    );
+
+    expect(
+      isRenderedBefore(screen.getByText(NEXT_STEP), screen.getByText(SUFFIX)),
+    ).toBe(true);
+  });
+
+  it('should render suffix without footerAction', () => {
+    const handleClose = vi.fn();
+    renderWithProvider(
+      <Wizard.OnModal
+        title={TITLE}
+        visible={true}
+        onClose={handleClose}
+        modalProps={{ size: 'medium', suffix: <span>{SUFFIX}</span> }}
+      />,
+    );
+
+    expect(screen.getByText(SUFFIX)).toBeTruthy();
+    expect(screen.queryByText(FOOTER_ACTION)).toBeFalsy();
   });
 });

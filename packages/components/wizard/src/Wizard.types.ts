@@ -13,6 +13,13 @@ export type WizardProps = {
   children?: ReactNode;
   title: ReactNode;
   headerAction?: ReactNode;
+
+  /**
+   * Right side of the footer bar. In `Wizard` it is rendered before the
+   * prev/next buttons (which reach the footer only with `navigationInFooter`).
+   * In `Wizard.OnModal` it is rendered before the next button and before
+   * `modalProps.suffix`.
+   */
   footerAction?: ReactNode;
   onClose: () => void;
   visible: boolean;
