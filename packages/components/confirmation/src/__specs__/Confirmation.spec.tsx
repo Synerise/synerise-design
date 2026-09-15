@@ -88,6 +88,59 @@ describe('Confirmation component', () => {
     expect(await screen.findByText(RELATED_OBJECTS)).toBeInTheDocument();
   });
 
+  it('Should return to the question when reopened after the related objects panel', async () => {
+    const RELATED_OBJECTS = 'RELATED_OBJECTS';
+    const { rerender } = renderWithProvider(
+      <Confirmation
+        {...PROPS}
+        type="negative"
+        open
+        relatedObjects={RELATED_OBJECTS}
+      />,
+    );
+
+    await userEvent.click(await screen.findByText(RELATED_OBJECTS_LABEL));
+    expect(await screen.findByText(RELATED_OBJECTS)).toBeInTheDocument();
+
+    // dismissed while the panel was showing — no back arrow — then opened again
+    rerender(
+      <Confirmation
+        {...PROPS}
+        type="negative"
+        open={false}
+        relatedObjects={RELATED_OBJECTS}
+      />,
+    );
+    rerender(
+      <Confirmation
+        {...PROPS}
+        type="negative"
+        open
+        relatedObjects={RELATED_OBJECTS}
+      />,
+    );
+
+    expect(await screen.findByText(PROPS.title)).toBeInTheDocument();
+  });
+
+  it('Should still call a consumer afterClose of its own', async () => {
+    const afterClose = vi.fn();
+    const { rerender } = renderWithProvider(
+      <Confirmation {...PROPS} type="negative" open afterClose={afterClose} />,
+    );
+
+    rerender(
+      <Confirmation
+        {...PROPS}
+        type="negative"
+        open={false}
+        afterClose={afterClose}
+      />,
+    );
+
+    expect(afterClose).toHaveBeenCalledTimes(1);
+  });
+
   it('Should trigger onOk on main button click', async () => {
     const onOk = vi.fn();
     renderWithProvider(
