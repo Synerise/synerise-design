@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 
 import Button from '@synerise/ds-button';
 import { useTheme } from '@synerise/ds-core';
@@ -31,11 +31,24 @@ const Confirmation = <ItemType extends ListItemProps>({
   secondaryButtonProps,
   mainButtonProps,
   customFooterComponent,
+  afterClose,
   ...modalProps
 }: ConfirmationProps<ItemType>) => {
   const [mode, setMode] = useState<DisplayMode>('default');
   const theme = useTheme();
   const allTexts = useDefaultTexts(texts);
+
+  // The related-objects panel is a second face of one modal, not a modal of its own, so it must not
+  // outlive the opening that revealed it. Without this, dismissing while it is showing leaves the
+  // mode behind and the next open lands on the related objects instead of the question.
+  //
+  // Hung off `afterClose` rather than watching `open`, because `Modal` also fires it when it closes
+  // itself — from the close button or the mask — where the `open` prop this component sees has not
+  // changed at all.
+  const handleAfterClose = useCallback(() => {
+    setMode('default');
+    afterClose?.();
+  }, [afterClose]);
 
   const buttonColor = BUTTON_COLOR_MAPPING[type];
   const iconColor = getIconColor(type, theme);
@@ -153,6 +166,7 @@ const Confirmation = <ItemType extends ListItemProps>({
       blank={mode === 'default'}
       footer={modalFooter}
       bodyFullWidth
+      afterClose={handleAfterClose}
       title={modalTitle}
     >
       {modalContent}
