@@ -354,6 +354,7 @@ export const VirtualTable = <TData extends object, TValue>({
               hasData={!tableIsEmpty && columns.length > 0}
               threshold={
                 (stickyData.titleBarHeight || 0) +
+                (stickyData.subHeaderHeight || 0) +
                 (Number.isFinite(stickyData.containerPaddingTop)
                   ? stickyData.containerPaddingTop
                   : 0)

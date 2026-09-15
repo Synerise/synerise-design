@@ -124,24 +124,57 @@ export const StyledTable = styled.table<{ $tableLayoutAuto?: boolean }>`
   }
 `;
 
+/**
+ * Full-width band between the title bar and the column header row.
+ *
+ * Sticky, and animated on the same `isRevealed` flag as the title bar: while scrolled down both are
+ * parked above the viewport, and scrolling up brings the pair back together. A sub-header that
+ * scrolled away for good would leave the trigger in the title bar reappearing without the surface it
+ * controls.
+ *
+ * Opaque on purpose — a transparent sticky band would show the rows passing beneath it. Everything
+ * else (width, padding, borders) belongs to the injected content.
+ *
+ * The hidden offset is the band's own measured height, so a `subHeaderHeight` of 0 parks it at
+ * exactly the column header row's pinned offset — where this z-index makes it cover the column
+ * headers. See how BaseTable measures it.
+ */
+export const SubHeader = styled.div<{ stickyData?: StickyData }>`
+  ${({ stickyData, theme }) =>
+    stickyData &&
+    css`
+      position: sticky;
+      transition: top 0.3s ease-in-out;
+      top: ${stickyData.isRevealed
+        ? `${stickyData.titleBarHeight - stickyData.containerPaddingTop}px`
+        : `-${stickyData.subHeaderHeight + stickyData.containerPaddingTop}px`};
+      z-index: 12;
+      background: ${theme.palette['white']};
+    `}
+`;
+
 export const TableColumnsHorizontalScroll = styled(TableHorizontalScroll)<{
   stickyData?: StickyData;
   isScrolled?: number | null;
 }>`
   ${({ stickyData, isScrolled, theme }) => {
+    // Height of everything that reveals above this row. `subHeaderHeight` is 0 without a
+    // subHeaderComponent, so every offset below is unchanged for tables that don't use one.
+    const revealedStackHeight = stickyData
+      ? stickyData.titleBarHeight + stickyData.subHeaderHeight
+      : 0;
     return (
       stickyData &&
       css`
         position: sticky;
         transition: top 0.3s ease-in-out;
         top: ${stickyData.isRevealed
-          ? `${stickyData.titleBarHeight - stickyData.containerPaddingTop}px` // '49px'
+          ? `${revealedStackHeight - stickyData.containerPaddingTop}px` // '49px' with no sub-header
           : `-${stickyData.containerPaddingTop}px`};
         z-index: 11;
         background: ${theme.palette['white']};
         ${((isScrolled &&
-          isScrolled >
-            stickyData.titleBarHeight + stickyData.containerPaddingTop) ||
+          isScrolled > revealedStackHeight + stickyData.containerPaddingTop) ||
           stickyData.isRevealed) &&
         `box-shadow: ${theme.variables['box-shadow-1']};`}
       `
