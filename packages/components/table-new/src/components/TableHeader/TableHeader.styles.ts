@@ -24,7 +24,9 @@ export const Header = styled.div<{
       top: ${stickyData.isRevealed
         ? `-${stickyData.containerPaddingTop}px`
         : `-${stickyData.titleBarHeight + stickyData.containerPaddingTop}px`};
-      z-index: 12;
+      /* Above SubHeader (12), which slides out from under it, which is above
+         the column header row (11). */
+      z-index: 13;
     `}
 `;
 

@@ -20,6 +20,7 @@ import {
 } from '../data/columns';
 import { type DataSourceItem, TOOLTIP_COLUMNS } from '../data/columns.tooltips';
 import { DATA_SOURCE, DATA_SOURCE_FULL } from '../data/tableData';
+import { MockSubHeaderBar } from '../shared/MockSubHeaderBar';
 
 export default {
   component: Table,
@@ -46,6 +47,7 @@ export default {
     headerButton: REACT_NODE_AS_STRING,
     title: REACT_NODE_AS_STRING,
     filterComponent: REACT_NODE_AS_STRING,
+    subHeaderComponent: REACT_NODE_AS_STRING,
     searchComponent: REACT_NODE_AS_STRING,
   },
 } as Meta<typeof Table>;
@@ -59,6 +61,30 @@ export const Default: StoryObj<typeof Table> = {
     docs: {
       source: {
         code: `<Table data={data} columns={columns} />`,
+      },
+    },
+  },
+};
+
+// `subHeaderComponent` on the paginated table: the same BaseTable slot, so the band sits between the
+// title bar and the column header row here too. Nothing is sticky without `stickyHeader`, so the
+// band is a plain block here — which is what keeps the reveal behaviour scoped to the sticky case.
+export const WithSubHeader: StoryObj<typeof Table> = {
+  args: {
+    data: DATA_SOURCE_FULL,
+    columns: COLUMNS_ALL,
+    cardStyles: true,
+    subHeaderComponent: <MockSubHeaderBar />,
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<Table
+  data={data}
+  columns={columns}
+  cardStyles
+  subHeaderComponent={<RsqlFilter variant="toolbar" {...filterProps} />}
+/>`,
       },
     },
   },

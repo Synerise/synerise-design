@@ -24,6 +24,7 @@ import { DATA_SOURCE, DATA_SOURCE_FULL } from '../data/tableData';
 import { EXPANDABLE_DATA_SOURCE } from '../data/tableData.expandable';
 import { useExpandableData } from '../hooks/useExpandableData';
 import { ListLayout } from '../shared/ListLayout';
+import { MockSubHeaderBar } from '../shared/MockSubHeaderBar';
 import { chromaticCellRender } from '../utils';
 
 export default {
@@ -66,6 +67,7 @@ export default {
     headerButton: REACT_NODE_AS_STRING,
     title: REACT_NODE_AS_STRING,
     filterComponent: REACT_NODE_AS_STRING,
+    subHeaderComponent: REACT_NODE_AS_STRING,
     searchComponent: REACT_NODE_AS_STRING,
   },
 } as Meta<VirtualTableProps>;
@@ -180,6 +182,36 @@ export const InfiniteScroll: StoryObj<VirtualTableProps> = {
     onScrollTopReach: () => loadPrevPage(),
     onRetryButtonClick: () => retry(),
   }}
+/>`,
+      },
+    },
+  },
+};
+
+// Exercises `subHeaderComponent` under `stickyHeader` on a long list. What Chromatic captures is the
+// resting stack — title bar, then the band, then the column header row — and that the column headers
+// are offset by the band's measured height rather than by the title bar alone.
+//
+// What it cannot capture is the reveal: `isRevealed` is driven by scroll direction, so hiding and
+// re-showing the band needs a scroll down followed by a scroll up. That is verified by hand.
+//
+// Row positioning must not drift either: the virtualizer has no scrollMargin, so the band's height
+// is absorbed by overscan.
+export const WithSubHeader: StoryObj<VirtualTableProps> = {
+  ...InfiniteScroll,
+  args: {
+    ...InfiniteScroll.args,
+    subHeaderComponent: <MockSubHeaderBar />,
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<VirtualTable
+  data={data}
+  columns={columns}
+  stickyHeader
+  cardStyles
+  subHeaderComponent={<RsqlFilter variant="toolbar" {...filterProps} />}
 />`,
       },
     },

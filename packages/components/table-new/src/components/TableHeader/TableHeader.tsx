@@ -186,20 +186,6 @@ export const TableHeader = <TData extends object, TValue>({
       {renderLeftSide}
       <S.Right>
         {headerButton}
-        {/* {filters?.map((filter: Filter) => (
-          <FilterTrigger
-            key={filter.key}
-            name={filter.key}
-            iconComponent={filter.icon}
-            tooltips={filter.tooltips}
-            openedLabel={filter.openedLabel}
-            handleClear={filter.handleClear}
-            show={filter.show}
-            showList={filter.showList}
-            selected={filter.selected}
-            disabled={filter.disabled}
-          />
-        ))} */}
         {filterComponent && (
           <S.RightSideWrapper data-testid="ds-table-filter-wrapper">
             {filterComponent}

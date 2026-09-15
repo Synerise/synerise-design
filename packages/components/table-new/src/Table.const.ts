@@ -27,6 +27,7 @@ export const INFINITE_LOADER_ITEM_HEIGHT = 64;
 export const DEFAULT_STICKY_VALUE: StickyData = {
   containerPaddingTop: 0,
   titleBarHeight: 0,
+  subHeaderHeight: 0,
   columnHeadersHeight: 0,
   isRevealed: false,
 };

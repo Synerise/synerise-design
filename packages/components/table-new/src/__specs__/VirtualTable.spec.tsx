@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { renderWithProvider } from '@synerise/ds-core';
-import { fireEvent, screen } from '@testing-library/react';
+import { fireEvent, screen, within } from '@testing-library/react';
 
 import { VirtualTable } from '../VirtualTable';
 import { COLUMNS, DATA, SORTABLE_COLUMNS } from './data';
@@ -370,6 +370,218 @@ describe('VirtualTable', () => {
       expect(() =>
         fireEvent.click(screen.getByRole('button', { name: /back to top/i })),
       ).not.toThrow();
+    });
+  });
+
+  describe('subHeaderComponent', () => {
+    const BAR = <div data-testid="test-filter-bar">filter bar</div>;
+
+    it('should not render anything when the prop is omitted', () => {
+      renderWithProvider(<VirtualTable data={DATA} columns={COLUMNS} />);
+
+      expect(screen.queryByTestId('ds-table-subheader')).not.toBeInTheDocument();
+    });
+
+    it('should render between the title bar and the column header row', () => {
+      renderWithProvider(
+        <VirtualTable data={DATA} columns={COLUMNS} subHeaderComponent={BAR} />,
+      );
+
+      const header = screen.getByTestId('ds-table-header');
+      const subHeader = screen.getByTestId('ds-table-subheader');
+      const columns = screen.getByTestId('ds-table-columns');
+
+      expect(within(subHeader).getByTestId('test-filter-bar')).toBeInTheDocument();
+      // Assert position, not mere presence: presence alone still passes when
+      // the node is wrongly nested inside filterComponent.
+      const headerToSub = header.compareDocumentPosition(subHeader);
+      const subToColumns = subHeader.compareDocumentPosition(columns);
+      expect(headerToSub & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+      expect(subToColumns & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    });
+
+    it('should render outside the filter wrapper', () => {
+      renderWithProvider(
+        <VirtualTable
+          data={DATA}
+          columns={COLUMNS}
+          filterComponent={<div data-testid="test-filter-trigger">trigger</div>}
+          subHeaderComponent={BAR}
+        />,
+      );
+
+      const filterWrapper = screen.getByTestId('ds-table-filter-wrapper');
+
+      expect(
+        within(filterWrapper).getByTestId('test-filter-trigger'),
+      ).toBeInTheDocument();
+      expect(
+        within(filterWrapper).queryByTestId('ds-table-subheader'),
+      ).not.toBeInTheDocument();
+    });
+
+    it('should render with hideTitleBar, independently of the title bar', () => {
+      renderWithProvider(
+        <VirtualTable data={DATA} columns={COLUMNS} hideTitleBar subHeaderComponent={BAR} />,
+      );
+
+      expect(screen.queryByTestId('ds-table-header')).not.toBeInTheDocument();
+      expect(screen.getByTestId('ds-table-subheader')).toBeInTheDocument();
+    });
+
+    it('should render alongside stickyHeader', () => {
+      renderWithProvider(
+        <VirtualTable
+          data={DATA}
+          columns={COLUMNS}
+          stickyHeader
+          subHeaderComponent={BAR}
+        />,
+      );
+
+      expect(screen.getByTestId('ds-table-subheader')).toBeInTheDocument();
+      expect(screen.getByTestId('ds-table-columns')).toBeInTheDocument();
+    });
+
+    describe('revealing with the title bar', () => {
+      // jsdom reports every height as 0 and never runs the ResizeObserver callback, so the pixel
+      // offsets cannot be asserted here — the Chromatic stories in packages/storybook carry that.
+      // What is provable is the mechanism: the band is sticky, it animates the same property on the
+      // same timing as the title bar, it is opaque, and it sits in the right layer of the stack.
+
+      it('is sticky and animates `top`, so it moves with the title bar rather than jumping', () => {
+        renderWithProvider(
+          <VirtualTable
+            data={DATA}
+            columns={COLUMNS}
+            stickyHeader
+            subHeaderComponent={BAR}
+          />,
+        );
+
+        const subHeader = getComputedStyle(
+          screen.getByTestId('ds-table-subheader'),
+        );
+
+        expect(subHeader.position).toBe('sticky');
+        // jsdom does not expand the `transition` shorthand into longhands, so read it as written.
+        expect(subHeader.transition).toContain('top');
+      });
+
+      it('is opaque, so rows cannot show through it while it is parked', () => {
+        renderWithProvider(
+          <VirtualTable
+            data={DATA}
+            columns={COLUMNS}
+            stickyHeader
+            subHeaderComponent={BAR}
+          />,
+        );
+
+        const { backgroundColor } = getComputedStyle(
+          screen.getByTestId('ds-table-subheader'),
+        );
+
+        // The transparent-colour comparison is the one that discriminates: jsdom reports an unstyled
+        // element as `rgba(0, 0, 0, 0)`, not as an empty string, so `not.toBe('')` would pass for a
+        // plain div.
+        expect(backgroundColor).not.toBe('rgba(0, 0, 0, 0)');
+      });
+
+      it('layers below the title bar and above the column header row', () => {
+        renderWithProvider(
+          <VirtualTable
+            data={DATA}
+            columns={COLUMNS}
+            stickyHeader
+            subHeaderComponent={BAR}
+          />,
+        );
+
+        const zIndexOf = (testId: string) =>
+          Number(getComputedStyle(screen.getByTestId(testId)).zIndex);
+
+        // The title bar has to cover the band sliding out from under it, and the band has to cover
+        // the column header row sliding up beneath it. Equal values would leave the order to DOM
+        // sequence, which is exactly backwards here.
+        expect(zIndexOf('ds-table-header')).toBeGreaterThan(
+          zIndexOf('ds-table-subheader'),
+        );
+        expect(zIndexOf('ds-table-subheader')).toBeGreaterThan(
+          zIndexOf('ds-table-columns'),
+        );
+      });
+
+      it('is not sticky without stickyHeader', () => {
+        renderWithProvider(
+          <VirtualTable data={DATA} columns={COLUMNS} subHeaderComponent={BAR} />,
+        );
+
+        expect(
+          getComputedStyle(screen.getByTestId('ds-table-subheader')).position,
+        ).not.toBe('sticky');
+      });
+
+      it('observes a band that mounts after the table, which is the normal case', () => {
+        // A filter bar is revealed by a control in the title bar, so `subHeaderComponent` is
+        // usually absent on the table's first render and appears on a click. Measuring only on
+        // mount leaves subHeaderHeight at 0, and a hidden band whose height reads 0 parks at
+        // exactly the column header row's pinned offset — where its higher z-index makes it cover
+        // the column headers instead of the other way round.
+        const observed: Element[] = [];
+        const original = window.ResizeObserver;
+        window.ResizeObserver = class {
+          observe = (element: Element) => observed.push(element);
+          unobserve = vi.fn();
+          disconnect = vi.fn();
+        } as unknown as typeof ResizeObserver;
+
+        try {
+          const { rerender } = renderWithProvider(
+            <VirtualTable data={DATA} columns={COLUMNS} stickyHeader />,
+          );
+
+          rerender(
+            <VirtualTable
+              data={DATA}
+              columns={COLUMNS}
+              stickyHeader
+              subHeaderComponent={BAR}
+            />,
+          );
+
+          expect(observed).toContain(screen.getByTestId('ds-table-subheader'));
+        } finally {
+          window.ResizeObserver = original;
+        }
+      });
+
+      it('observes the band so a wrapping filter bar re-reports its height', () => {
+        const observe = vi.fn();
+        const original = window.ResizeObserver;
+        window.ResizeObserver = class {
+          observe = observe;
+          unobserve = vi.fn();
+          disconnect = vi.fn();
+        } as unknown as typeof ResizeObserver;
+
+        try {
+          renderWithProvider(
+            <VirtualTable
+              data={DATA}
+              columns={COLUMNS}
+              stickyHeader
+              subHeaderComponent={BAR}
+            />,
+          );
+
+          expect(observe).toHaveBeenCalledWith(
+            screen.getByTestId('ds-table-subheader'),
+          );
+        } finally {
+          window.ResizeObserver = original;
+        }
+      });
     });
   });
 });

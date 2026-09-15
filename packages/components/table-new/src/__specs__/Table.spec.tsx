@@ -1346,4 +1346,61 @@ describe('Table', () => {
       expect(onRowClick).not.toHaveBeenCalled();
     });
   });
+
+  describe('subHeaderComponent', () => {
+    const BAR = <div data-testid="test-filter-bar">filter bar</div>;
+
+    it('should not render anything when the prop is omitted', () => {
+      renderWithProvider(<Table data={DATA} columns={COLUMNS} />);
+
+      expect(screen.queryByTestId('ds-table-subheader')).not.toBeInTheDocument();
+    });
+
+    it('should render between the title bar and the column header row', () => {
+      renderWithProvider(
+        <Table data={DATA} columns={COLUMNS} subHeaderComponent={BAR} />,
+      );
+
+      const header = screen.getByTestId('ds-table-header');
+      const subHeader = screen.getByTestId('ds-table-subheader');
+      const columns = screen.getByTestId('ds-table-columns');
+
+      expect(within(subHeader).getByTestId('test-filter-bar')).toBeInTheDocument();
+      // Assert position, not mere presence: presence alone still passes when
+      // the node is wrongly nested inside filterComponent.
+      const headerToSub = header.compareDocumentPosition(subHeader);
+      const subToColumns = subHeader.compareDocumentPosition(columns);
+      expect(headerToSub & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+      expect(subToColumns & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    });
+
+    it('should render outside the filter wrapper', () => {
+      renderWithProvider(
+        <Table
+          data={DATA}
+          columns={COLUMNS}
+          filterComponent={<div data-testid="test-filter-trigger">trigger</div>}
+          subHeaderComponent={BAR}
+        />,
+      );
+
+      const filterWrapper = screen.getByTestId('ds-table-filter-wrapper');
+
+      expect(
+        within(filterWrapper).getByTestId('test-filter-trigger'),
+      ).toBeInTheDocument();
+      expect(
+        within(filterWrapper).queryByTestId('ds-table-subheader'),
+      ).not.toBeInTheDocument();
+    });
+
+    it('should render with hideTitleBar, independently of the title bar', () => {
+      renderWithProvider(
+        <Table data={DATA} columns={COLUMNS} hideTitleBar subHeaderComponent={BAR} />,
+      );
+
+      expect(screen.queryByTestId('ds-table-header')).not.toBeInTheDocument();
+      expect(screen.getByTestId('ds-table-subheader')).toBeInTheDocument();
+    });
+  });
 });

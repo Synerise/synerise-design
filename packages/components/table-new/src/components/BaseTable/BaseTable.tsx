@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 
 import { DEFAULT_CELL_HEIGHT } from '../../Table.const';
 import type { BaseTableProps, TableInternalProps } from '../../Table.types';
@@ -29,6 +29,7 @@ export const BaseTable = <TData extends object, TValue>({
   renderSelectionTitle,
   searchComponent,
   filterComponent,
+  subHeaderComponent,
   headerWithBorderTop,
   emptyDataComponent,
   noResultsComponent,
@@ -76,6 +77,69 @@ export const BaseTable = <TData extends object, TValue>({
       horizontalScrollRefs.current.push(node);
     }
   }, []);
+
+  // --- Sub-header height ---
+  // Every sticky offset below the band is derived from its height, so getting this wrong is not a
+  // cosmetic matter: a band whose height reads 0 parks at exactly the column header row's pinned
+  // offset, where its higher z-index makes it cover the column headers instead of the reverse.
+  //
+  // Measured on a callback ref rather than through useResizeObserver, whose observe effect has
+  // all-stable deps and therefore only ever fires on mount. The band is typically absent on the
+  // table's first render and appears when a title-bar control reveals it, so a mount-only observer
+  // never sees the element at all. A callback ref runs on every attach and detach, which is exactly
+  // the lifecycle here.
+  //
+  // offsetHeight rather than the observer's contentRect: the injected content carries its own
+  // border, and the band has to be measured to its outer edge or the column header row overlaps it
+  // by a pixel. Observed as well as measured on attach because the content reflows — a filter
+  // bar's chips wrap onto a second line as they are added.
+  //
+  // Writing this cannot loop: subHeaderHeight only feeds the `top` of its siblings, never its own
+  // height.
+  const stickyContextRef = useRef(stickyContext);
+  stickyContextRef.current = stickyContext;
+  const subHeaderObserverRef = useRef<ResizeObserver | null>(null);
+
+  const reportSubHeaderHeight = useCallback((height: number) => {
+    const ctx = stickyContextRef.current;
+    if (!ctx || ctx.stickyData.subHeaderHeight === height) {
+      return;
+    }
+    ctx.setStickyData((prevValue) => ({
+      ...prevValue,
+      subHeaderHeight: height,
+    }));
+  }, []);
+
+  const handleSubHeaderRef = useCallback(
+    (element: HTMLDivElement | null) => {
+      subHeaderObserverRef.current?.disconnect();
+      subHeaderObserverRef.current = null;
+
+      if (!element) {
+        // The band going away has to zero the offsets it was contributing to.
+        reportSubHeaderHeight(0);
+        return;
+      }
+
+      reportSubHeaderHeight(element.offsetHeight);
+
+      if (typeof ResizeObserver !== 'undefined') {
+        subHeaderObserverRef.current = new ResizeObserver(() => {
+          reportSubHeaderHeight(element.offsetHeight);
+        });
+        subHeaderObserverRef.current.observe(element);
+      }
+    },
+    [reportSubHeaderHeight],
+  );
+
+  useEffect(
+    () => () => {
+      subHeaderObserverRef.current?.disconnect();
+    },
+    [],
+  );
 
   const size = Object.values(columnSizing).reduce((sum, n) => sum + n, 0);
   const isEmpty = !table.getRowModel().flatRows.length;
@@ -160,6 +224,21 @@ export const BaseTable = <TData extends object, TValue>({
             hasBuiltInSearch={hasBuiltInSearch}
             searchProps={searchProps}
           />
+        )}
+        {/*
+         * Sibling of TableHeader, above the column header row. Sticky in the same
+         * stack as the title bar and revealed with it, so the surface a title-bar
+         * control opens cannot be scrolled away while the control stays. Width,
+         * padding and borders belong to the injected content.
+         */}
+        {subHeaderComponent && (
+          <S.SubHeader
+            ref={handleSubHeaderRef}
+            stickyData={stickyContext?.stickyData}
+            data-testid="ds-table-subheader"
+          >
+            {subHeaderComponent}
+          </S.SubHeader>
         )}
         {useUnifiedScroll ? (
           <UnifiedTableContent<TData, TValue>
