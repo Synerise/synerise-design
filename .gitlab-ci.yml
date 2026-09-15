@@ -8,6 +8,20 @@ variables:
   LIBRARY_PIPELINE: 'NO'
   APP_NAME_OVERRIDE: ds-docs
   NPM_REGISTRY: https://nexus.snrinternal.com/repository/npm-release/
+  # Every job below runs only on `merge_request_event` or on the default branch, so without this
+  # opt-in nothing is tested before merge. `core/gitlab_templates` (included at `ref: master`, so
+  # its changes land here with no commit on our side) gates merge request pipelines behind this
+  # flag in `pipeline/defaults.yml`:
+  #
+  #   - if: $CI_PIPELINE_SOURCE == "merge_request_event" && $USE_MERGE_REQUEST_TESTS != "yes"
+  #     when: never
+  #
+  # The gate exists because `workflow:rules` switches off the implicit `only: [branches, tags]` of
+  # legacy `only:`/`except:` jobs, which gave some consumers a duplicate merge request pipeline.
+  # This repo has none: every job here declares `rules:`, and the last merge request pipeline to
+  # run under `workflow:rules` before the gate landed (1750711, !3955) built the same five jobs as
+  # the ones before it, with nothing extra.
+  USE_MERGE_REQUEST_TESTS: 'yes'
 
 .install_pnpm: &install_pnpm
   - npm install -g pnpm@latest-10
