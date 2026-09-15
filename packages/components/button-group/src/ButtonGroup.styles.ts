@@ -8,6 +8,13 @@ import { type LiteralStringUnion } from '@synerise/ds-utils';
 // span (Tooltip / Dropdown asChild) has no inner .ant-btn, so it is intentionally excluded.
 const BUTTON_UNIT = ':is(.ant-btn, span:has(> .ant-btn))';
 
+// "another button unit follows this one". Deliberately NOT `:has(~ ${BUTTON_UNIT})`: `:has()` may
+// not contain `:has()`, and because `:is()` is forgiving the browser drops the `span:has(> .ant-btn)`
+// branch silently rather than erroring — leaving a test that only sees bare sibling buttons. A
+// wrapped button then goes unnoticed, so the button before it believes it is last and takes the
+// full radius on all four corners. Spelled as a relative selector list, which needs no nesting.
+const FOLLOWED_BY_UNIT = ':has(~ .ant-btn, ~ span > .ant-btn)';
+
 const getButtonsPosition = (position: string) => {
   const mapButtonsPosition = {
     left: 'flex-start',
@@ -186,14 +193,14 @@ export const Container = styled.div<{
         & > span:has(> .ant-btn):not(${BUTTON_UNIT} ~ *) > .ant-btn {
           border-radius: 3px 0 0 3px;
         }
-        & > .ant-btn:not(:has(~ ${BUTTON_UNIT})),
-        & > span:has(> .ant-btn):not(:has(~ ${BUTTON_UNIT})) > .ant-btn {
+        & > .ant-btn:not(${FOLLOWED_BY_UNIT}),
+        & > span:has(> .ant-btn):not(${FOLLOWED_BY_UNIT}) > .ant-btn {
           border-radius: 0 3px 3px 0;
         }
-        & > .ant-btn:not(${BUTTON_UNIT} ~ *):not(:has(~ ${BUTTON_UNIT})),
+        & > .ant-btn:not(${BUTTON_UNIT} ~ *):not(${FOLLOWED_BY_UNIT}),
         &
           > span:has(> .ant-btn):not(${BUTTON_UNIT} ~ *):not(
-            :has(~ ${BUTTON_UNIT})
+            ${FOLLOWED_BY_UNIT}
           )
           > .ant-btn {
           border-radius: 3px;
