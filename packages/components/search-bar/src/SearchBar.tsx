@@ -3,6 +3,7 @@ import React, {
   type FormEvent,
   type MutableRefObject,
   forwardRef,
+  useCallback,
   useEffect,
   useMemo,
   useState,
@@ -50,12 +51,20 @@ const SearchBar = forwardRef<HTMLDivElement, SearchBarProps>(
     const [isFocused, setFocus] = useState(false);
     const [input, setInput] = useState<HTMLInputElement | null>();
     const [valuePrefixWidth, setValuePrefixWidth] = useState<number>(0);
-    const handleRef = (ref: MutableRefObject<HTMLInputElement | null>) => {
-      handleInputRef?.(ref);
-      if (ref.current) {
-        setInput(ref.current);
-      }
-    };
+    // Memoised because `Input` reports the ref from an effect keyed on this callback's identity, so
+    // a fresh closure each render makes that effect re-run on every render. Consumers treat the
+    // report as "here is the input, once" and hang side effects off it — `DropdownMenu` arms a timer
+    // that focuses the search field — so an unstable callback turned a re-render of the surrounding
+    // list into a focus grab, stealing focus from whatever the user was typing in.
+    const handleRef = useCallback(
+      (ref: MutableRefObject<HTMLInputElement | null>) => {
+        handleInputRef?.(ref);
+        if (ref.current) {
+          setInput(ref.current);
+        }
+      },
+      [handleInputRef],
+    );
 
     useEffect(() => {
       if (input) {
