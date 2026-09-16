@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-wizard@2.0.3...@synerise/ds-wizard@2.0.4) (2026-09-16)
+
+### Bug Fixes
+
+- **wizard:** render footerAction in Wizard.OnModal footer ([ef088a7](https://github.com/Synerise/synerise-design/commit/ef088a74f0ab1fd2f3a585338ffbcf697f5a3685))
+
 ## [2.0.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-wizard@2.0.2...@synerise/ds-wizard@2.0.3) (2026-09-08)
 
 **Note:** Version bump only for package @synerise/ds-wizard

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.61.0](https://github.com/Synerise/synerise-design/compare/storybook@1.60.0...storybook@1.61.0) (2026-09-16)
+
+### Bug Fixes
+
+- **wizard:** render footerAction in Wizard.OnModal footer ([ef088a7](https://github.com/Synerise/synerise-design/commit/ef088a74f0ab1fd2f3a585338ffbcf697f5a3685))
+
+### Features
+
+- **list-item:** add content-fitting size="auto" ([e269f0a](https://github.com/Synerise/synerise-design/commit/e269f0a48ca7472f4766a50a957e22d7988c5e13))
+- **table-new:** add subHeaderComponent slot between title bar and columns ([02ad898](https://github.com/Synerise/synerise-design/commit/02ad898afce03402d64708867880f6600886ed86))
+
 # [1.60.0](https://github.com/Synerise/synerise-design/compare/storybook@1.59.2...storybook@1.60.0) (2026-09-10)
 
 ### Features

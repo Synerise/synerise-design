@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-button-group@2.0.2...@synerise/ds-button-group@2.0.3) (2026-09-16)
+
+### Bug Fixes
+
+- **button-group:** see a wrapped button when rounding the last corner ([c93cb98](https://github.com/Synerise/synerise-design/commit/c93cb9828ef225bf38b0a51903a1a54cedd54552))
+
 ## [2.0.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-button-group@2.0.1...@synerise/ds-button-group@2.0.2) (2026-09-08)
 
 **Note:** Version bump only for package @synerise/ds-button-group

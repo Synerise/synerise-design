@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-confirmation@2.0.3...@synerise/ds-confirmation@2.0.4) (2026-09-16)
+
+### Bug Fixes
+
+- **confirmation:** forget the related-objects panel once the modal closes ([78350f2](https://github.com/Synerise/synerise-design/commit/78350f21adde871a8479b9bb0b73dda65c65fe1c))
+
 ## [2.0.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-confirmation@2.0.2...@synerise/ds-confirmation@2.0.3) (2026-09-08)
 
 **Note:** Version bump only for package @synerise/ds-confirmation

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@2.1.0...@synerise/ds-icon@2.1.1) (2026-09-16)
+
+### Bug Fixes
+
+- **icon:** keep Vite's preload helper out of dist ([0351dca](https://github.com/Synerise/synerise-design/commit/0351dca80e32abd0049e4d8188d99b8a13042e91))
+
 # [2.1.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@2.0.0...@synerise/ds-icon@2.1.0) (2026-09-02)
 
 ### Features

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@2.0.0...@synerise/ds-utils@2.1.0) (2026-09-16)
+
+### Features
+
+- **list-item:** add content-fitting size="auto" ([e269f0a](https://github.com/synerise/synerise-design/commit/e269f0a48ca7472f4766a50a957e22d7988c5e13))
+
 # [2.0.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@1.10.2...@synerise/ds-utils@2.0.0) (2026-08-26)
 
 **Note:** Version bump only for package @synerise/ds-utils

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-table-new@2.0.5...@synerise/ds-table-new@2.1.0) (2026-09-16)
+
+### Features
+
+- **table-new:** add subHeaderComponent slot between title bar and columns ([02ad898](https://github.com/Synerise/synerise-design/commit/02ad898afce03402d64708867880f6600886ed86))
+
 ## [2.0.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-table-new@2.0.4...@synerise/ds-table-new@2.0.5) (2026-09-10)
 
 **Note:** Version bump only for package @synerise/ds-table-new

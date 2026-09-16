@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@2.1.0...@synerise/ds-date-picker@2.1.1) (2026-09-16)
+
+### Bug Fixes
+
+- **date-picker:** keep the local clock when a day click crosses a DST boundary ([81fb588](https://github.com/Synerise/synerise-design/commit/81fb5883286faa1a938d3ec5909a1e48a6cb68b7))
+
 # [2.1.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@2.0.3...@synerise/ds-date-picker@2.1.0) (2026-09-10)
 
 ### Features
