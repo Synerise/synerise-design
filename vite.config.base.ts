@@ -14,6 +14,7 @@ import react from '@vitejs/plugin-react';
 
 import { getDsWorkspacePackages } from './scripts/vite/ds-workspace-map';
 import { ensureGeneratedSources } from './scripts/vite/ensure-generated-sources';
+import { stripPreloadHelperPlugin } from './scripts/vite/strip-preload-helper-plugin';
 import { stubLessImportsPlugin } from './scripts/vite/stub-less-plugin';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -302,6 +303,9 @@ export const createViteConfig = (
       externalizeDepPlugin(),
       // Stub LESS imports (we compile them separately)
       stubLessImportsPlugin(),
+      // Keep Vite's __vitePreload helper out of dist - it collides with the one a
+      // consuming app's own Vite injects, and no Vite consumer can bundle us with it
+      stripPreloadHelperPlugin(),
       // React plugin with styled-components support
       react({
         babel: {

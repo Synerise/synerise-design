@@ -19,6 +19,9 @@ export default createViteConfig('@synerise/ds-icon', {
       // ~10 kB gzipped — into iconLoader.js, which then ships to every consumer that renders an
       // Icon at all. The preload links would be meaningless anyway: consumers re-bundle this
       // package, so the dist-relative paths never survive.
+      //
+      // This only empties the deps argument; the __vitePreload wrapper and its helper module are
+      // emitted either way, and stripPreloadHelperPlugin in vite.config.base.ts removes those.
       modulePreload: false,
     },
   },
