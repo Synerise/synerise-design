@@ -30,7 +30,7 @@ src/
   fns.tsx                     — date-fns re-exports (named, from the package root)
   format.ts                   — fnsFormat wrapper
   localeUtils.ts              — weekday/month name tables; adapted into react-day-picker formatters/labels
-  utils.ts                    — changeDayWithHoursPreserved and other helpers
+  utils.ts                    — range / getDecadeRange / getCenturyRange helpers
   index.ts                    — public exports
 ```
 
@@ -140,7 +140,7 @@ import { RawDatePicker } from '@synerise/ds-date-picker';
 - **`readOnly` short-circuits the Dropdown** — when `readOnly={true}`, the component renders only the `PickerInput` (or `renderTrigger` output) with no calendar attached.
 - **Mode switching** — clicking the month name in `DayPicker` switches to `'month'` mode; clicking the year name switches to `'year'` mode. The back navigation in those modes returns to `'date'`. Selecting a day when `showTime=true` switches to `'time'` mode automatically.
 - **`useStartOfDay` / `useEndOfDay`** — applied on day click, before `onValueChange` fires. `useStartOfDay` takes precedence if both are set (implemented as `if/else if` in `handleDayClick`).
-- **Time preserved on day change** — when changing the day while already having a time selected (`changed=true`), hours/minutes/seconds from the previous value are preserved (`changeDayWithHoursPreserved`).
+- **Time preserved on day change** — clicking a day rewrites only the calendar fields of the current `value` (`setYear`/`setMonth`/`setDate`), so its local clock carries over. Local fields are the whole mechanism, and they are what makes this correct across a DST boundary; do not reintroduce a seconds-difference round-trip here. The removed `changeDayWithHoursPreserved` did exactly that and multiplied a calendar-day count by a hard-coded `86400`, so any pair of dates straddling a transition came out an hour wrong — and with `useStartOfDay`/`useEndOfDay` that hour crossed midnight and moved the day.
 - **Apply vs onChange** — `onValueChange` fires on every day/time interaction. `onApply` fires only when the user explicitly clicks Apply (or selects a quick pick), and also closes the dropdown.
 - **`dropdownProps.open`** — if provided, it OR-s with internal `dropVisible` state: `open={(dropdownProps?.open || dropVisible) && !disabled}`. This means both sources can open the dropdown independently.
 - **`format` has been removed** — use `valueFormatOptions: DateToFormatOptions` (from `@synerise/ds-core`). It took a token pattern, which no consumer passed and which disagreed with `formatValue` for every locale. `PickerInput` now renders a `Date` and an ISO string identically; whether a value is an *instant* is signalled by `isInstantValue`, not inferred from its runtime type.
