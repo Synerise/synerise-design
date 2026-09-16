@@ -5,6 +5,7 @@ import React, {
 } from 'react';
 
 import ListItem, { type ListItemProps } from '@synerise/ds-list-item';
+import { useMeasuredRow } from '@synerise/ds-utils';
 
 import type { ItemPickerListTexts } from '../../ItemPickerNew/types/itemPickerListTexts.types';
 import * as S from '../ItemPickerList.styles';
@@ -21,6 +22,7 @@ export type ItemPickerListRowProps = {
     dataSource: Array<ListItemProps | TitleListItemProps>;
     classNames: string;
     getItemSize: (index: number) => number;
+    measureRow: (index: number, height: number) => void;
     texts: ItemPickerListTexts;
     infiniteScroll?: {
       isLoading: boolean;
@@ -33,9 +35,23 @@ export type ItemPickerListRowProps = {
 export const ItemPickerListRow = ({
   index,
   style,
-  data: { dataSource, classNames, getItemSize, infiniteScroll, texts },
+  data: {
+    dataSource,
+    classNames,
+    getItemSize,
+    measureRow,
+    infiniteScroll,
+    texts,
+  },
 }: PropsWithChildren<ItemPickerListRowProps>) => {
   const listItem = dataSource[index];
+  const rowRef = useMeasuredRow<HTMLDivElement>(index, measureRow);
+  /**
+   * react-window's offset moves onto this wrapper so the row inside is free to be taller
+   * than the estimate — `size="auto"` rows are sized by their content. The inline `height`
+   * becomes a floor; without that the absolute height would pin a tall row back.
+   */
+  const rowStyle = { ...style, height: 'auto', minHeight: style.height };
   const lastItemHeight = getItemSize(dataSource.length - 1);
   const infiniteLoaderItem = useCallback(() => {
     if (infiniteScroll) {
@@ -65,11 +81,17 @@ export const ItemPickerListRow = ({
   }, [infiniteScroll, lastItemHeight, style, texts]);
 
   if (isTitle(listItem)) {
-    return <S.Title style={style}>{listItem.text}</S.Title>;
+    return (
+      <div ref={rowRef} style={rowStyle}>
+        <S.Title>{listItem.text}</S.Title>
+      </div>
+    );
   }
   return (
     <>
-      <ListItem {...listItem} style={style} className={classNames} />
+      <div ref={rowRef} style={rowStyle}>
+        <ListItem {...listItem} className={classNames} />
+      </div>
       {index === dataSource.length - 1 && infiniteLoaderItem()}
     </>
   );

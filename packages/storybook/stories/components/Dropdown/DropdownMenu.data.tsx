@@ -51,6 +51,44 @@ export const MENU_ITEMS_PLAIN = MENU_ITEMS.map((item) => ({
   prefixel: undefined,
 }));
 
+/**
+ * Mixed row heights, including `size="auto"` rows whose descriptions wrap. Used to check
+ * that a virtualised menu measures its rows instead of laying them out from the constant
+ * px map, which would overlap the tall ones.
+ */
+export const MENU_ITEMS_MIXED_SIZES: DropdownMenuListItemProps[] = [
+  {
+    text: 'Count as exact values',
+    id: 'exact',
+    size: 'auto',
+    description:
+      "Shows each metric's results grouped by the dimensions you selected.",
+  },
+  {
+    text: 'Count as percentage',
+    id: 'percentage',
+    size: 'auto',
+    description:
+      "Shows each metric's share of the total number of event occurrences, grouped by the selected dimensions.",
+  },
+  { type: 'divider' },
+  { text: 'Default row', id: 'default' },
+  { text: 'Large row', id: 'large', size: 'large', description: 'Description' },
+  {
+    text: 'A single-line auto row is the same height as a default one',
+    id: 'auto-short',
+    size: 'auto',
+  },
+  { text: 'Another default row', id: 'default-2' },
+  {
+    text: 'Auto row with a long unbroken token',
+    id: 'auto-token',
+    size: 'auto',
+    description: 'id-9f4c2b7ae1d84f0396c5be27a1d43e8fbc60597a2e4d1',
+  },
+  { text: 'Last default row', id: 'default-3' },
+];
+
 export const PageWrapper = styled.div`
   position: relative;
 `;

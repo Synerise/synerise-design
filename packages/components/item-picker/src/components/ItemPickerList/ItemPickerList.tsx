@@ -1,5 +1,6 @@
 import debounce from 'lodash.debounce';
 import React, {
+  type Key,
   type KeyboardEvent as ReactKeyboardEvent,
   type Ref,
   type UIEvent,
@@ -23,6 +24,7 @@ import {
   focusWithArrowKeys,
   useCombinedRefs,
   useKeyboardShortcuts,
+  useMeasuredRowHeights,
   useScrollContain,
 } from '@synerise/ds-utils';
 
@@ -89,7 +91,6 @@ const ItemPickerListInner = <
 
   const [searchQuery, setSearchQuery] = useState('');
 
-  const listRef = useRef<VariableSizeList>(null);
   const scrollBarRef = useRef<HTMLDivElement>(null);
 
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -207,7 +208,7 @@ const ItemPickerListInner = <
     }
   };
 
-  const getItemSize = useCallback(
+  const getEstimatedItemSize = useCallback(
     (index: number) => {
       const item = mergedItemsList && mergedItemsList[index];
       if (isTitle(item)) {
@@ -218,11 +219,28 @@ const ItemPickerListInner = <
     [mergedItemsList],
   );
 
+  /** Row identity, so a measured height follows its row through filtering. */
+  const rowKeys = useMemo<Key[]>(
+    () =>
+      mergedItemsList.map((item, index) =>
+        isTitle(item) ? `title-${index}` : (item.itemKey ?? item.key ?? index),
+      ),
+    [mergedItemsList],
+  );
+
+  // `ITEM_SIZE` is only an estimate: a `size="auto"` row is as tall as its content, so the
+  // rows report their real heights and the list re-lays out around them.
+  const { listRef, getItemSize, measureRow } = useMeasuredRowHeights<
+    Key,
+    VariableSizeList
+  >({ keys: rowKeys, estimate: getEstimatedItemSize });
+
   const itemData: ItemPickerListRowProps['data'] = useMemo(
     () => ({
       dataSource: mergedItemsList,
       classNames,
       getItemSize,
+      measureRow,
       texts: allTexts,
       infiniteScroll: {
         isLoading: isLoadingMore,
@@ -234,6 +252,7 @@ const ItemPickerListInner = <
       mergedItemsList,
       classNames,
       getItemSize,
+      measureRow,
       allTexts,
       isLoadingMore,
       isLoadedAll,

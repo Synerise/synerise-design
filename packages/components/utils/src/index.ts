@@ -34,6 +34,7 @@ export * from './useLatestRef';
 export * from './useDelimiterEscape/useDelimiterEscape';
 
 export { useFocusTrap } from './useFocusTrap/useFocusTrap';
+export * from './useMeasuredRowHeights/useMeasuredRowHeights';
 
 export const NOOP = (): void => {};
 

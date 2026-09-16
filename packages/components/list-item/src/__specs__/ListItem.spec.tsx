@@ -4,6 +4,8 @@ import { renderWithProvider } from '@synerise/ds-core';
 import { fireEvent, screen, within } from '@testing-library/react';
 
 import ListItem from '../ListItem';
+import { LIST_ITEM_SIZE_MAPPING } from '../ListItem.const';
+import { itemSizes } from '../ListItem.types';
 
 describe('ListItem', () => {
   it('should render with children', () => {
@@ -366,6 +368,122 @@ describe('ListItem', () => {
         <ListItem description="Hidden Description">Default Item</ListItem>,
       );
       expect(screen.queryByText('Hidden Description')).not.toBeInTheDocument();
+    });
+
+    it('should render description at auto size', () => {
+      renderWithProvider(
+        <ListItem size="auto" description="Description text">
+          Auto Item
+        </ListItem>,
+      );
+      expect(screen.getByText('Description text')).toBeInTheDocument();
+    });
+
+    // jsdom performs no layout, so these assert the *declared* CSS. `baseStyles` and the
+    // gated auto block are both interpolated into Wrapper's `${Inner}` block, so the
+    // element under test is Inner — the wrapper's first child.
+    it('should keep the 32px floor and add vertical padding at auto size', () => {
+      renderWithProvider(<ListItem size="auto">Auto Item</ListItem>);
+      const inner = screen.getByTestId('ds-list-item').firstElementChild;
+      expect(inner).toHaveStyle('min-height: 32px');
+      expect(inner).toHaveStyle('padding-top: 6px');
+      expect(inner).toHaveStyle('padding-bottom: 6px');
+    });
+
+    it('should let content wrap at auto size', () => {
+      renderWithProvider(
+        <ListItem size="auto" description="Long description">
+          Auto Item
+        </ListItem>,
+      );
+      expect(
+        screen.getByTestId('ds-list-item').querySelector('.ds-list-item-content'),
+      ).toHaveStyle('white-space: normal');
+    });
+
+    it('should not pull the prefix up at auto size', () => {
+      renderWithProvider(
+        <ListItem size="auto" prefixel={<span>P</span>}>
+          Auto Item
+        </ListItem>,
+      );
+      expect(screen.getByTestId('list-item-prefix')).toHaveStyle(
+        'margin-top: 0px',
+      );
+    });
+
+    // Regression guards: the auto rules are gated, so they must not reach the fixed sizes.
+    it('should leave default rows at 32px, centred and unpadded', () => {
+      renderWithProvider(<ListItem>Default Item</ListItem>);
+      const inner = screen.getByTestId('ds-list-item').firstElementChild;
+      expect(inner).toHaveStyle('min-height: 32px');
+      expect(inner).toHaveStyle('align-items: center');
+      expect(inner).not.toHaveStyle('padding-top: 6px');
+      expect(
+        screen.getByTestId('ds-list-item').querySelector('.ds-list-item-content'),
+      ).toHaveStyle('white-space: nowrap');
+    });
+
+    it('should leave large rows at 50px, centred and unpadded', () => {
+      renderWithProvider(<ListItem size="large">Large Item</ListItem>);
+      const inner = screen.getByTestId('ds-list-item').firstElementChild;
+      expect(inner).toHaveStyle('min-height: 50px');
+      expect(inner).toHaveStyle('align-items: center');
+      expect(inner).not.toHaveStyle('padding-top: 6px');
+    });
+
+    it('should inherit the parent size into sub-menu items', () => {
+      renderWithProvider(
+        <ListItem
+          size="auto"
+          defaultSubMenuOpen
+          subMenu={[
+            {
+              children: 'Sub Item',
+              itemKey: 'sub-a',
+              description: 'Sub description',
+            },
+          ]}
+        >
+          Parent
+        </ListItem>,
+      );
+      // The description only renders at large/auto, so seeing it proves inheritance.
+      expect(screen.getByText('Sub description')).toBeInTheDocument();
+    });
+
+    it('should let a sub-menu item override the inherited size', () => {
+      renderWithProvider(
+        <ListItem
+          size="auto"
+          defaultSubMenuOpen
+          subMenu={[
+            {
+              children: 'Sub Item',
+              itemKey: 'sub-a',
+              size: 'default',
+              description: 'Sub description',
+            },
+          ]}
+        >
+          Parent
+        </ListItem>,
+      );
+      expect(screen.queryByText('Sub description')).not.toBeInTheDocument();
+    });
+  });
+
+  describe('LIST_ITEM_SIZE_MAPPING', () => {
+    it('should map auto to the 32px CSS floor', () => {
+      expect(LIST_ITEM_SIZE_MAPPING.auto).toBe(32);
+    });
+
+    it('should cover every size', () => {
+      // Fails loudly if a size is added without a height, which would hand every
+      // virtualized consumer an undefined row offset.
+      expect(Object.keys(LIST_ITEM_SIZE_MAPPING)).toHaveLength(
+        Object.keys(itemSizes).length,
+      );
     });
   });
 });

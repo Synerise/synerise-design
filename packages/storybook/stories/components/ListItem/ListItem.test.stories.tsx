@@ -4,6 +4,9 @@ import { Meta, StoryObj } from '@storybook/react-vite';
 import type { ListItemProps } from '@synerise/ds-list-item';
 
 import ListItemMeta, {
+  AllCombinationsAuto,
+  AutoSize,
+  AutoSizeWithAvatarPrefix,
   LabelOnly,
   PrefixAndSuffixOnHover,
   WithHoverTooltip,
@@ -83,4 +86,17 @@ export const WithStarActive: typeof WithStar = {
       pointerEventsCheck: 0,
     });
   },
+};
+
+// Chromatic is the only place the auto size's actual pixel height is asserted — jsdom
+// performs no layout, so a unit test can only check the declared CSS.
+export const AutoSizeWrapping: typeof AutoSize = { ...AutoSize };
+
+export const AutoSizeWithAvatarPrefixWrapping: typeof AutoSizeWithAvatarPrefix =
+  {
+    ...AutoSizeWithAvatarPrefix,
+  };
+
+export const AllCombinationsAutoWrapping: typeof AllCombinationsAuto = {
+  ...AllCombinationsAuto,
 };

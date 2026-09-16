@@ -29,6 +29,7 @@ export const itemTypes = {
 export const itemSizes = {
   DEFAULT: 'default',
   LARGE: 'large',
+  AUTO: 'auto',
 } as const;
 
 export type ItemType = (typeof itemTypes)[keyof typeof itemTypes];
@@ -116,6 +117,10 @@ export type BaseListItemProps = ListItemDividerProps & {
   prefixel?: ReactNode | AddonRenderer;
   prefixVisibilityTrigger?: 'hover' | 'default';
   renderHoverTooltip?: () => JSX.Element;
+  /**
+   * Row height: `'default'` 32px, `'large'` 50px, `'auto'` grows with its content
+   * (32px floor, and `description` wraps over multiple lines).
+   */
   size?: ItemSize;
   suffixel?: ReactNode | AddonRenderer;
   suffixVisibilityTrigger?: 'hover' | 'default';

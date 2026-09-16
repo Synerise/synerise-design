@@ -1,6 +1,6 @@
 import React, { type ComponentType, forwardRef } from 'react';
 
-import { type ListItemProps } from '../../ListItem.types';
+import { type ItemSize, type ListItemProps } from '../../ListItem.types';
 import { ListContextProvider } from '../ListContext/ListContextProvider';
 import * as S from './SubMenu.styles';
 
@@ -9,12 +9,14 @@ type SubMenuProps = {
   onClick?: ListItemProps['onClick'];
   isOpen?: boolean;
   indentLevel: number;
+  /** The parent row's size, inherited by children that do not set their own. */
+  size?: ItemSize;
   ItemComponent: ComponentType<ListItemProps>;
 };
 
 export const SubMenu = forwardRef<HTMLDivElement, SubMenuProps>(
   (
-    { onClick, isOpen, dataSource, indentLevel, ItemComponent },
+    { onClick, isOpen, dataSource, indentLevel, size, ItemComponent },
     forwardedRef,
   ) => {
     return (
@@ -26,6 +28,7 @@ export const SubMenu = forwardRef<HTMLDivElement, SubMenuProps>(
                 {...item}
                 key={item.itemKey}
                 indentLevel={indentLevel}
+                size={item.size ?? size}
               />
             ))}
           </S.SubMenuList>

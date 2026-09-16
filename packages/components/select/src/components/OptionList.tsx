@@ -10,7 +10,6 @@ import React, {
   memo,
   useCallback,
   useEffect,
-  useLayoutEffect,
   useMemo,
   useRef,
 } from 'react';
@@ -18,6 +17,7 @@ import { type ListChildComponentProps, VariableSizeList } from 'react-window';
 
 import Loader from '@synerise/ds-loader';
 import Scrollbar from '@synerise/ds-scrollbar';
+import { useMeasuredRow, useMeasuredRowHeights } from '@synerise/ds-utils';
 
 import * as S from '../Select.styles';
 import { type RawValueType, type SelectOption } from '../Select.types';
@@ -88,29 +88,9 @@ const OptionRow = memo(
       measureRow,
     } = data;
     const option = options[index];
-    const rowRef = useRef<HTMLDivElement>(null);
-
-    // Rows take arbitrary JSX, so the estimated height is only a starting point:
-    // let the content set the real height, report it, and let the list re-lay out.
-    useLayoutEffect(() => {
-      const height = rowRef.current?.offsetHeight ?? 0;
-      measureRow(index, height);
-    });
-
-    // …and content that settles after the first paint (an image, a font swap, a
-    // narrower dropdown wrapping a label) never re-renders the row, so it would
-    // keep its stale height and overlap its neighbour without this.
-    useLayoutEffect(() => {
-      const node = rowRef.current;
-      if (!node || typeof ResizeObserver === 'undefined') {
-        return undefined;
-      }
-      const observer = new ResizeObserver(() =>
-        measureRow(index, node.offsetHeight),
-      );
-      observer.observe(node);
-      return () => observer.disconnect();
-    }, [index, measureRow]);
+    // Rows take arbitrary JSX, so the estimated height is only a starting point: the row
+    // reports what it actually measures and the list re-lays out around it.
+    const rowRef = useMeasuredRow<HTMLDivElement>(index, measureRow);
 
     const isSelected = selectedValues.includes(option.value);
     // antd parity: forward per-option data-*/aria-* onto the row. Spread last so a
@@ -179,12 +159,9 @@ export const OptionList = ({
   onOptionSelect,
   onPopupScroll,
 }: OptionListProps): ReactElement => {
-  const listRef = useRef<VariableSizeList>(null);
   const scrollRef = useRef<HTMLElement | null>(null);
   /** Mirrors the scroll container's offset (jsdom never reports a real one). */
   const scrollOffsetRef = useRef(0);
-  /** Measured row heights, keyed by option so filtering keeps them usable. */
-  const sizeCacheRef = useRef(new Map<Key, number>());
 
   const windowHeight = Number(listHeight) || DEFAULT_LIST_HEIGHT;
   const rowHeight =
@@ -198,85 +175,32 @@ export const OptionList = ({
     [rowKey],
   );
 
-  const getItemSize = useCallback(
-    (index: number): number => {
-      const option = options[index];
-      if (!option) {
-        return rowHeight;
+  /** Option identity per index, so measurements survive filtering. */
+  const rowKeys = useMemo(() => options.map(keyFor), [options, keyFor]);
+  const estimateRowHeight = useCallback(() => rowHeight, [rowHeight]);
+
+  const { listRef, getItemSize, measureRow } = useMeasuredRowHeights<
+    Key,
+    VariableSizeList<RowData>
+  >({
+    keys: rowKeys,
+    estimate: estimateRowHeight,
+    // `listItemHeight` can change under a stable option list; every cached
+    // measurement was taken against the old value, so they all have to go.
+    estimateVersion: rowHeight,
+    maxCachedRows: MAX_MEASURED_ROWS,
+  });
+
+  const scrollTo = useCallback(
+    (offset: number): void => {
+      scrollOffsetRef.current = offset;
+      if (scrollRef.current) {
+        scrollRef.current.scrollTop = offset;
       }
-      return sizeCacheRef.current.get(keyFor(option)) ?? rowHeight;
+      listRef.current?.scrollTo(offset);
     },
-    [options, keyFor, rowHeight],
+    [listRef],
   );
-
-  const measureRow = useCallback(
-    (index: number, height: number): void => {
-      const option = options[index];
-      // A zero height means "not laid out" (jsdom, display:none) — keep the estimate.
-      if (!option || !height) {
-        return;
-      }
-      const key = keyFor(option);
-      if (sizeCacheRef.current.get(key) === height) {
-        return;
-      }
-      sizeCacheRef.current.set(key, height);
-      // Null on the mount commit alone — rows are descendants of the list, so
-      // their layout effects run before its ref is attached. The measurement is
-      // still cached and lands on the list's next render, which opening always
-      // produces (`Select` highlights the selected option as it opens).
-      listRef.current?.resetAfterIndex(index);
-    },
-    [options, keyFor],
-  );
-
-  /**
-   * The row estimate changed, so every cached measurement was taken against the
-   * old one. Skipped on mount, where the cache already holds the first window's
-   * own measurements and clearing would throw them away.
-   *
-   * Forced, and in a layout effect: react-window memoises row offsets, and the
-   * render that brought the new estimate in has already laid out against the old
-   * memo. A passive `resetAfterIndex(0, false)` drops that memo without asking
-   * for another render, so the stale layout stays on screen until something else
-   * happens to re-render the list.
-   */
-  const prevRowHeightRef = useRef(rowHeight);
-  useLayoutEffect(() => {
-    if (prevRowHeightRef.current === rowHeight) {
-      return;
-    }
-    prevRowHeightRef.current = rowHeight;
-    sizeCacheRef.current.clear();
-    listRef.current?.resetAfterIndex(0);
-  }, [rowHeight]);
-
-  // A different option list means different offsets (cached heights still apply,
-  // which is why the cache is keyed by option). Cap it here rather than evicting
-  // per change: pruning on every keystroke would throw away exactly the
-  // measurements a narrowing search is about to need again.
-  useEffect(() => {
-    const cache = sizeCacheRef.current;
-    if (cache.size > MAX_MEASURED_ROWS) {
-      const live = new Set(options.map(keyFor));
-      cache.forEach((_height, key) => {
-        if (!live.has(key)) {
-          cache.delete(key);
-        }
-      });
-    }
-    // Not forced: the rows re-render with the new options anyway, and each one
-    // that measures a different height invalidates from its own index.
-    listRef.current?.resetAfterIndex(0, false);
-  }, [options, keyFor]);
-
-  const scrollTo = useCallback((offset: number): void => {
-    scrollOffsetRef.current = offset;
-    if (scrollRef.current) {
-      scrollRef.current.scrollTop = offset;
-    }
-    listRef.current?.scrollTo(offset);
-  }, []);
 
   // A new query rebuilds the list: go back to the top so no stale rows show through
   // (remote search feeds `options` asynchronously, after the query has changed).
@@ -320,7 +244,7 @@ export const OptionList = ({
       listRef.current?.scrollTo(scrollTop);
       onPopupScroll?.(event as UIEvent<HTMLDivElement>);
     },
-    [onPopupScroll],
+    [listRef, onPopupScroll],
   );
 
   const itemData = useMemo<RowData>(

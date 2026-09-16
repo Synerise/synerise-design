@@ -40,6 +40,7 @@ src/
   useDelimiterEscape/               — join/split/validate delimited strings with escape tags
   useFocusTrap/                     — trap Tab/Shift+Tab focus within a container element
   useTraceUpdate/                   — dev-only: console.log changed props on each render
+  useMeasuredRowHeights/            — content-driven row heights for a react-window VariableSizeList
 ```
 
 ---
@@ -185,6 +186,24 @@ Traps keyboard focus within a container element. When `active` is `true`, saves 
 - `'container'` — focus the container element itself;
 - `'first'` (**default**) — focus the first focusable descendant, falling back to the container when there are none.
 
+#### `useMeasuredRowHeights<RowKey, List>({ keys, estimate, estimateVersion?, listRef?, maxCachedRows? })`
+Lets a `react-window` `VariableSizeList` honour **content-driven** row heights instead of a constant px map. Returns `{ listRef, getItemSize, measureRow, measurementVersion }`. Pair with `useMeasuredRow(index, measureRow)` on each row, which returns a ref and reports `offsetHeight` on every commit and via a `ResizeObserver` (for content that settles after first paint — an image, a font swap, a narrower container wrapping a label).
+
+- `keys` — row identity per index. Measurements are cached against these, not indices, so filtering a list down and back keeps them usable.
+- `estimate(index)` — height for a row that has not reported one yet. Memoise it.
+- `estimateVersion` — a change clears **every** measurement (they were taken against an estimate that no longer applies). Leave it out when only the row set changes; pruning on every keystroke would discard exactly the measurements a narrowing search is about to need.
+- `listRef` — an existing ref to drive instead of the hook's own. Needed when something declared *above* the hook call reads the ref, which happens whenever `keys` depends on late-declared state.
+- `measurementVersion` — bumped once per settled batch. Put it in the deps of anything derived from `getItemSize` **outside** the list (a total content height, say): `resetAfterIndex` re-renders the list, not its parent.
+
+The row must put react-window's offset on a wrapper styled `height: auto; min-height: <the offset height>` — react-window's own inline `height` would otherwise pin a tall row back to the estimate.
+
+Three subtleties it encapsulates, all of them expensive to rediscover:
+1. react-window memoises row offsets, so a measured height only lands once `resetAfterIndex` drops that memo.
+2. A row's layout effect cannot reach the list ref on the **mount commit** (rows are descendants of the list, so their effects run first). The hook queues such measurements and flushes them from its own layout effect, which runs after every row's. Without that, a list that never re-renders again — a dropdown that just opened — keeps its estimated layout.
+3. A zero measured height means "not laid out" (jsdom, `display: none`) and must not overwrite the estimate.
+
+Consumers: `ds-select`, `ds-dropdown`, `ds-item-picker`, `ds-context-selector`. Typed structurally over the list, so this package needs no `react-window` dependency.
+
 #### `useTraceUpdate(props: Record<string, unknown>): void`
 **Development debugging tool.** Logs changed props to `console.log` on each render. Do not use in production code.
 
@@ -216,4 +235,4 @@ Traps keyboard focus within a container element. When `active` is `true`, saves 
 - `useResize` accepts a `RefObject<any>` — typed loosely to accept refs to any DOM element.
 - `focusWithArrowKeys` queries the entire `document`, not a scoped container — all elements with the given class on the page are in scope simultaneously.
 - `useTraceUpdate` calls `console.log` unconditionally — strip from production builds or guard with `process.env.NODE_ENV`.
-- Tests use **Jest** (not Vitest) — `jest.config.js` present, no `vitest.config.ts`.
+- Tests use **Vitest** (`vitest run`), with the config coming from the root `vite.config.base.ts`.

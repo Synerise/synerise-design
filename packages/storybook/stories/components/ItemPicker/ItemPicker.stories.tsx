@@ -16,7 +16,12 @@ import {
   sideBySide,
   sleep,
 } from '../../utils';
-import { FLAT_DATA_SOURCE, ICONS, ITEMS_IN_SECTIONS } from './ItemPicker.data';
+import {
+  FLAT_DATA_SOURCE,
+  ICONS,
+  ITEMS_IN_SECTIONS,
+  MIXED_SIZE_DATA_SOURCE,
+} from './ItemPicker.data';
 import { ItemType, StoryProps } from './ItemPicker.types';
 import { FLAT_DATA_SOURCE as LEGACY_FLAT_DATA_SOURCE } from './ItemPickerLegacy.data';
 
@@ -112,6 +117,19 @@ export const Default: Story = {
         code: `<ItemPicker isNewVersion items={FLAT_DATA_SOURCE} showItemsSectionLabel={false} />`,
       },
     },
+  },
+};
+
+/**
+ * `size="auto"` rows next to `default` and `large` ones. Heights are content-driven, so the
+ * list measures each row instead of sizing it from the constant `ITEM_SIZE` map — that map's
+ * `auto` entry is only the 32px floor, and using it alone would overlap the wrapped rows.
+ */
+export const WithAutoSizeItems: Story = {
+  decorators: [fixedWrapper300, centeredPaddedWrapper],
+  args: {
+    showItemsSectionLabel: false,
+    items: MIXED_SIZE_DATA_SOURCE,
   },
 };
 
