@@ -25,7 +25,6 @@ import {
   fnsStartOfMonth,
 } from '../fns';
 import { toDateValue } from '../toDateValue';
-import { changeDayWithHoursPreserved } from '../utils';
 import { getDefaultTexts } from '../utils/getDefaultTexts';
 import { type RawDatePickerProps } from './RawDatePicker.types';
 
@@ -77,18 +76,8 @@ class RawDatePicker extends React.Component<
 
   handleChange = (value: Date | undefined): void => {
     const { onValueChange } = this.props;
-    const { mode, value: valueFromState } = this.state;
-    if (mode === 'date' && !!valueFromState && !!value) {
-      const dateToBeUpdated = changeDayWithHoursPreserved(
-        valueFromState,
-        value,
-      );
-      this.setState({ value: dateToBeUpdated, changed: true });
-      onValueChange && onValueChange(dateToBeUpdated);
-    } else {
-      this.setState({ value, changed: true });
-      onValueChange && onValueChange(value);
-    }
+    this.setState({ value, changed: true });
+    onValueChange && onValueChange(value);
   };
 
   handleDayMouseEnter = (day: Date): void => this.setState({ enteredTo: day });
@@ -96,14 +85,25 @@ class RawDatePicker extends React.Component<
   handleDayMouseLeave = (): void => this.setState({ enteredTo: undefined });
 
   handleDayClick = (day: Date, modifiers: Modifiers): void => {
-    const { changed: isChanged, value } = this.state;
+    const { value } = this.state;
     const { useStartOfDay, useEndOfDay, showTime } = this.props;
 
     if (modifiers.disabled) {
       return;
     }
 
-    let nextDateWithCurrentTime = isChanged && value ? value : new Date();
+    // Carrying the time of day forward is what the three setters below do: they rewrite the
+    // calendar fields of the existing value and leave its local clock alone, which is correct
+    // across a DST boundary because local fields are what a wall clock means.
+    //
+    // `value` rather than `isChanged && value`: the old guard fell back to `new Date()` on the
+    // first click of a picker that already had a value, throwing that value's time away — and
+    // `handleChange` then put it back by re-deriving it from a seconds difference. That
+    // round-trip is what `changeDayWithHoursPreserved` existed for, and it assumed every
+    // calendar day is 86400s, so any pair of dates straddling a DST transition came out an hour
+    // wrong. Starting from `value` makes the round-trip unnecessary rather than fixing its
+    // arithmetic.
+    let nextDateWithCurrentTime = value || new Date();
     nextDateWithCurrentTime = fnsSetYear(
       nextDateWithCurrentTime,
       day.getFullYear(),
