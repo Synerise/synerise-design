@@ -1,5 +1,6 @@
 import React, {
   type CSSProperties,
+  type Key,
   type MutableRefObject,
   type UIEvent,
   useCallback,
@@ -16,7 +17,11 @@ import { theme } from '@synerise/ds-core';
 import Divider from '@synerise/ds-divider';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { ArrowRightCircleM, SearchM } from '@synerise/ds-icon';
-import { ListContextProvider, itemSizes } from '@synerise/ds-list-item';
+import {
+  type ItemSize,
+  ListContextProvider,
+  itemSizes,
+} from '@synerise/ds-list-item';
 import Result from '@synerise/ds-result';
 import Scrollbar from '@synerise/ds-scrollbar';
 import Tabs from '@synerise/ds-tabs';
@@ -24,6 +29,8 @@ import {
   focusWithArrowKeys,
   getActiveTabGroup,
   getGroupName,
+  useMeasuredRow,
+  useMeasuredRowHeights,
   useSearchResults,
 } from '@synerise/ds-utils';
 
@@ -46,9 +53,18 @@ import {
   isListTitle,
 } from './utils';
 
-const ITEM_SIZE = {
+/**
+ * Row height estimates. Typed exhaustively over `ItemSize` on purpose: a new size must fail
+ * the build here rather than silently yield an undefined row offset. `auto` has no fixed
+ * height — 32 is its `min-height` floor, and the real height is measured.
+ */
+const ITEM_SIZE: Record<ItemSize, number> & {
+  title: number;
+  divider: number;
+} = {
   [itemSizes.LARGE]: 50,
   [itemSizes.DEFAULT]: 32,
+  [itemSizes.AUTO]: 32,
   title: 32,
   divider: 16,
 };
@@ -67,20 +83,35 @@ const VirtualizedRow = ({
 }: {
   index: number;
   style: CSSProperties;
-  data: { items: DropdownItemProps[] };
+  data: {
+    items: DropdownItemProps[];
+    measureRow: (index: number, height: number) => void;
+  };
 }) => {
   const item = data.items[index];
+  const rowRef = useMeasuredRow<HTMLDivElement>(index, data.measureRow);
+  /**
+   * react-window's offset moves onto this wrapper so the row inside is free to be taller
+   * than the estimate — `menuItemHeight="auto"` rows are sized by their content. The
+   * inline `height` becomes a floor; without that the absolute height would pin them back.
+   */
+  const rowStyle = { ...style, height: 'auto', minHeight: style.height };
+
   if (item && isDivider(item)) {
     return (
-      <div style={style}>
+      <div ref={rowRef} style={rowStyle}>
         <Divider marginTop={8} marginBottom={8} />
       </div>
     );
   }
-  return item && isListTitle(item) ? (
-    <S.Title style={style}>{item.title}</S.Title>
-  ) : (
-    <ContextSelectorDropdownItem style={style} {...item} />
+  return (
+    <div ref={rowRef} style={rowStyle}>
+      {item && isListTitle(item) ? (
+        <S.Title>{item.title}</S.Title>
+      ) : (
+        <ContextSelectorDropdownItem {...item} />
+      )}
+    </div>
   );
 };
 
@@ -113,8 +144,8 @@ const ContextSelectorDropdown = ({
     return defaultIndex || 0;
   }, [groups]);
 
-  const listRef = useRef<VariableSizeList>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
+  const listRef = useRef<VariableSizeList>(null);
   const scrollBarRef = useRef<HTMLDivElement>(null);
   const topSectionRef = useRef<HTMLDivElement>(null);
 
@@ -378,7 +409,54 @@ const ContextSelectorDropdown = ({
     listRef.current?.resetAfterIndex(0, false);
   }, [activeItems, listRef]);
 
-  const itemData = useMemo(() => ({ items: activeItems }), [activeItems]);
+  const getEstimatedItemSize = useCallback(
+    (index: number) => {
+      const item = activeItems[index];
+      if (isListTitle(item)) {
+        return ITEM_SIZE.title;
+      }
+      if (isDivider(item)) {
+        return ITEM_SIZE.divider;
+      }
+      return menuItemHeight
+        ? ITEM_SIZE[menuItemHeight]
+        : ITEM_SIZE[itemSizes.DEFAULT];
+    },
+    [activeItems, menuItemHeight],
+  );
+
+  /** Row identity, so a measured height follows its row through filtering. */
+  const rowKeys = useMemo<Key[]>(
+    () =>
+      activeItems.map((item, index) => {
+        if (isListTitle(item)) {
+          return `title-${item.title}`;
+        }
+        if (isDivider(item)) {
+          return `divider-${index}`;
+        }
+        return `${item.item.name}-${item.item.id}`;
+      }),
+    [activeItems],
+  );
+
+  // `ITEM_SIZE` is only an estimate: `menuItemHeight="auto"` rows are as tall as their
+  // content, so the rows report their real heights and the list re-lays out around them.
+  const { getItemSize, measureRow } = useMeasuredRowHeights<
+    Key,
+    VariableSizeList
+  >({
+    listRef,
+    keys: rowKeys,
+    estimate: getEstimatedItemSize,
+    // A changed `menuItemHeight` invalidates every measurement taken against the old one.
+    estimateVersion: menuItemHeight,
+  });
+
+  const itemData = useMemo(
+    () => ({ items: activeItems, measureRow }),
+    [activeItems, measureRow],
+  );
 
   const handleSearch = useCallback(
     (val: string) => {
@@ -411,19 +489,6 @@ const ContextSelectorDropdown = ({
     if (listRef.current !== null) {
       listRef.current.scrollTo(Math.max(0, scrollTop - topSectionHeight));
     }
-  };
-
-  const getItemSize = (index: number) => {
-    const item = activeItems[index];
-    if (isListTitle(item)) {
-      return ITEM_SIZE.title;
-    }
-    if (isDivider(item)) {
-      return ITEM_SIZE.divider;
-    }
-    return menuItemHeight
-      ? ITEM_SIZE[menuItemHeight]
-      : ITEM_SIZE[itemSizes.DEFAULT];
   };
 
   const dropdownContentHeight = useMemo(() => {

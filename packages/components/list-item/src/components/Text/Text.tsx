@@ -291,6 +291,7 @@ const Text = forwardRef<HTMLDivElement, BasicItemProps & NestedItemProps>(
           <SubMenu
             onClick={onClick}
             indentLevel={nextIndentLevel}
+            size={size}
             dataSource={subMenu}
             isOpen={subMenuOpen}
             ItemComponent={ItemComponent}

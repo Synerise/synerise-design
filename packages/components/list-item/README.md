@@ -53,7 +53,7 @@ import ListItem from '@synerise/ds-list-item'
 | prefixel                | prefix element                                                                                    | `ReactNode` &#124; `AddonRenderer`                                 | -         |
 | prefixVisibilityTrigger | drives prefix visibility                                                                          | `'hover'` &#124; `'default'`                                       | -         |
 | renderHoverTooltip      | Tooltip to display on item hover                                                                  | `() => JSX.Element`                                                | -         |
-| size                    | height of the item                                                                                | `'default'` &#124; `'large'`                                       | 'default' |
+| size                    | height of the item (`'auto'` fits its content, with a 32px floor)                                  | `'default'` &#124; `'large'` &#124; `'auto'`                       | 'default' |
 | suffixel                | suffix element. Item with type="select" and checked also displays a check icon                    | `ReactNode` &#124; `AddonRenderer`                                 | -         |
 | suffixVisibilityTrigger | drives suffix visibility                                                                          | `'hover'` &#124; `'default'`                                       | -         |
 | text                    | prop alternative to `children`                                                                    | `ReactNode`                                                        | -         |

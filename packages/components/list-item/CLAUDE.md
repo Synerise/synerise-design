@@ -6,7 +6,7 @@
 src/
  ListItem.tsx — main component; type-switch dispatcher
  ListItem.types.ts — all public types, itemTypes/itemSizes consts
- ListItem.const.ts — LIST_ITEM_SIZE_MAPPING (default=32px, large=50px)
+ ListItem.const.ts — LIST_ITEM_SIZE_MAPPING (default=32px, large=50px, auto=32px floor)
  ListItem.styles.ts — (empty placeholder)
  components/
  Danger/Danger.tsx — renders DangerItem styled variant
@@ -41,7 +41,7 @@ src/
 | `type` | `'default' \| 'danger' \| 'divider' \| 'select' \| 'header'` | `'default'` | Visual/behavioural variant |
 | `text` | `ReactNode` | — | Label alternative to `children` (`text` wins if both provided) |
 | `children` | `ReactNode` | — | Label content |
-| `size` | `'default' \| 'large'` | `'default'` | Row height: 32px or 50px |
+| `size` | `'default' \| 'large' \| 'auto'` | `'default'` | Row height: 32px, 50px, or content height with a 32px floor |
 | `checked` | `boolean` | — | Shows green check icon in suffix slot; adds `ds-list-item-selected` class |
 | `selected` | `boolean` | — | Additional selected state (typed but not rendered by built-in variants) |
 | `disabled` | `boolean` | — | Prevents click/key events; sets `tabIndex=-1` |
@@ -54,7 +54,7 @@ src/
 | `prefixVisibilityTrigger` | `'hover' \| 'default'` | — | When `'hover'`, prefix only visible while item is hovered |
 | `suffixel` | `ReactNode \| AddonRenderer` | — | Right slot |
 | `suffixVisibilityTrigger` | `'hover' \| 'default'` | — | When `'hover'`, suffix only visible while item is hovered |
-| `description` | `ReactNode` | — | Second line; only rendered when `size === 'large'` |
+| `description` | `ReactNode` | — | Second line; only rendered at `size="large"` (one ellipsized line) or `size="auto"` (wraps) |
 | `highlight` | `string` | — | Substring to highlight in string children |
 | `copyable` | `boolean \| Copyable` | — | Enables copy-to-clipboard on mousedown/Enter |
 | `copyValue` | `string` | — | **Deprecated** — use `copyable: { copyValue }` |
@@ -121,7 +121,7 @@ Provides `ListContext` + `FloatingDelayGroup`. Use when building custom list con
 
 ### Const/type exports
 - `itemTypes` — `{ DEFAULT, DANGER, DIVIDER, SELECT, HEADER }`
-- `itemSizes` — `{ DEFAULT, LARGE }`
+- `itemSizes` — `{ DEFAULT, LARGE, AUTO }`
 - `LIST_ITEM_SIZE_MAPPING` — `Record<ItemSize, number>`
 - `type ListItemProps`, `type BasicItemProps`, `type ItemSize`, `type ItemType`, `type ItemData`, `type StyledListItem`, `type ListItemEventHandler`, `type ListWrapperProps`
 
@@ -167,13 +167,22 @@ import ListItem, { ListWrapper, ListContextProvider, useListContext } from '@syn
 <ListItem size="large" description="Secondary text">
  Primary label
 </ListItem>
+
+// Auto size: the row grows with its content and the description wraps
+<ListItem size="auto" description="A description long enough to need more than one line">
+ Primary label
+</ListItem>
 ```
 
 ## Styling / Key dependencies / Implementation notes
 
 - **`@floating-ui/react` `useListItem`** — `Text` registers each item with floating-ui's list context via `useListItem()`. The merged ref (`useMergeRefs`) handles both the forwarded ref and the floating-ui ref. This is required for keyboard navigation in dropdowns.
 - **`useDropdown` integration** — if an item is rendered inside `@synerise/ds-core`'s `DropdownProvider`, clicking an item calls `setIsOpen(false)` when `hideOnItemClick === true`.
-- **`description` only renders at `size="large"`** — setting `description` on a default-size item silently does nothing.
+- **`description` renders at `size="large"` and `size="auto"`** — setting `description` on a default-size item silently does nothing. At `large` it is one ellipsized line; at `auto` it wraps. The allow-list is `rendersDescription` in `components/Text/ItemLabel.const.ts`, deliberately not `size !== 'default'`, so a future size has to opt in explicitly.
+- **`size="auto"` CSS contract** — every auto-only declaration lives in the single `autoSizeStyles` block in `Text.styles.tsx`, gated on `props.size === itemSizes.AUTO`, so `default`/`large` emit byte-identical CSS. It flips `Content` to `white-space: normal` + `overflow-wrap: break-word`, drops `PrefixWrapper`'s -7px vertical bleed, and gives prefix/suffix/arrow `align-self: flex-start` so addons sit beside the first line rather than the middle of a wrapped block. `min-height` needs no rule of its own — `baseStyles` reads `LIST_ITEM_SIZE_MAPPING`, whose `auto` entry *is* the 32px floor. **The 6px vertical padding is load-bearing:** `2 * pad + 18.07px line <= 32` gives `pad <= 6.96`, so 8px would make a single-line auto row 34px and break its pixel-identity with a default row.
+- **`size="auto"` in a virtualized list** — `LIST_ITEM_SIZE_MAPPING.auto` is a *floor*, not the row's height, so a `VariableSizeList` sized from the map alone would overlap auto rows. `ds-dropdown`, `ds-item-picker`, `ds-context-selector` and `ds-select` all measure their rows via `useMeasuredRowHeights` / `useMeasuredRow` from `@synerise/ds-utils`, using the map only as the starting estimate. A hand-rolled virtualized list must do the same — put react-window's offset on a wrapper with `height: auto; min-height: <the offset height>`, or its inline height pins tall rows back.
+- **`size="auto"` + `renderHoverTooltip`** — `S.Wrapper` gets `height: 100%` in a tooltip, so an auto row overflows a *fixed-height* parent rather than growing it. Give it a parent that can grow.
+- **`size="auto"` + `copyable`** — `DynamicLabel` swaps only the label, not the description, so a wrapped title briefly collapses to the one-line "Copied!" and the row shrinks and regrows.
 - **`checked` in `Text` type** — renders a `CheckS` icon in the suffix slot. In `select` type, the styled component handles its own checked appearance independently via `S.SelectItem`.
 - **`Select.tsx` bug** — `uuid()` is called as the `key` prop on every render, generating a new key on each re-render, causing unnecessary unmount/remount cycles. (TODO comment present in source.)
 - **`copyable` boolean legacy** — when `copyable` is a plain `boolean`, it requires `copyValue` (deprecated string prop) to be set separately. Use the object form `copyable: { copyValue: '..' }` instead.

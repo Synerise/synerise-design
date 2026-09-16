@@ -17,6 +17,7 @@ import Icon, {
 import { type WithHTMLAttributes } from '@synerise/ds-utils';
 
 import { type ItemSize } from '../../ListItem.types';
+import { rendersDescription } from './ItemLabel.const';
 import * as S from './Text.styles';
 
 type ItemLabelProps = WithHTMLAttributes<
@@ -131,7 +132,7 @@ export const ItemLabel = forwardRef<HTMLDivElement, ItemLabelProps>(
           )}
           <S.Content className="ds-list-item-content">
             {content}
-            {description && size === 'large' && (
+            {description && rendersDescription(size) && (
               <S.Description>{description}</S.Description>
             )}
           </S.Content>

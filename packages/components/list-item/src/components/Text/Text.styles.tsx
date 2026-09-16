@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components';
 import { IconContainer } from '@synerise/ds-icon';
 
 import { LIST_ITEM_SIZE_MAPPING } from '../../ListItem.const';
-import { type ItemSize } from '../../ListItem.types';
+import { type ItemSize, itemSizes } from '../../ListItem.types';
 import { INDENT_WIDTH } from './ItemLabel.const';
 
 const TRANSITION_FN = '0.2s ease-out';
@@ -147,6 +147,61 @@ export const Content = styled.div`
   text-overflow: ellipsis;
   min-width: 0;
   order: 2;
+`;
+
+/**
+ * 6px is the largest even vertical padding that keeps a single-line `auto` row
+ * pixel-identical to a `default` row: one line is 13px * 1.39 = 18.07px, and
+ * 18.07 + 2 * 6 = 30.07 <= the 32px min-height floor. `2 * pad + 18.07 <= 32`
+ * gives pad <= 6.96 — do not round this up to 8.
+ */
+const AUTO_SIZE_PADDING = 6;
+
+/**
+ * `size="auto"` lets the row grow with its content. Every declaration here is gated
+ * behind that one size, so `default` and `large` keep emitting byte-identical CSS.
+ *
+ * `min-height` needs no rule of its own: `baseStyles` already reads
+ * LIST_ITEM_SIZE_MAPPING, whose `auto` entry is the 32px floor. `Description` needs
+ * none either — it is a child of `Content` and inherits `white-space`, and its own
+ * `text-overflow: ellipsis` can no longer fire once the text wraps and the height is
+ * free to grow.
+ */
+const autoSizeStyles = css`
+  /* No other size has vertical padding — their rhythm is min-height + align-items:
+     center. A wrapped row is taller than the floor, so without padding the text would
+     touch the top and bottom of the hover/active background painted on Inner. */
+  padding-top: ${AUTO_SIZE_PADDING}px;
+  padding-bottom: ${AUTO_SIZE_PADDING}px;
+
+  ${Content} {
+    /* Explicit rather than emergent: Content fills the line and wraps, it does not
+       shrink to fit. */
+    flex: 1 1 auto;
+    white-space: normal;
+    text-overflow: clip;
+    /* A long unbroken token (an id, a URL) breaks instead of being clipped by
+       'overflow: hidden'. 'break-word' rather than 'anywhere', so the intrinsic
+       min-content width — and therefore every existing layout — is unchanged. */
+    overflow-wrap: break-word;
+  }
+
+  ${PrefixWrapper} {
+    /* The -7px pull exists so a 24/32px avatar cannot grow a 32px row. An auto row is
+       allowed to grow, and the pull would drag the avatar above the padding. The
+       horizontal margins are deliberately kept. */
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  /* Addons belong beside the first line, not against the middle of a 3-line paragraph.
+     'align-self' rather than flipping the row's own 'align-items', which would shift a
+     single-line auto row ~1px off a default row. */
+  ${PrefixWrapper},
+  ${SuffixWrapper},
+  ${ArrowRight} {
+    align-self: flex-start;
+  }
 `;
 
 export const Wrapper = styled.div<StyledListItemProps>`
@@ -313,6 +368,8 @@ export const Wrapper = styled.div<StyledListItemProps>`
         }
       `}
     ${baseStyles}
+
+    ${(props) => props.size === itemSizes.AUTO && autoSizeStyles}
  
     ${ArrowRight} {
       transition: all ${TRANSITION_FN};
@@ -349,6 +406,10 @@ export const DynamicLabelWrapper = styled.div<{ showAlternative?: boolean }>`
       ? css`
           ${DynamicLabelMain} {
             height: 0;
+            /* Nothing is painted, but un-clipped overflow still contributes
+               scrollable overflow to the nearest scroll container — a wrapped
+               label would add 40-60px of phantom scroll to a dropdown. */
+            overflow: hidden;
             visibility: hidden;
           }
           ${DynamicLabelAlternate} {
@@ -363,6 +424,7 @@ export const DynamicLabelWrapper = styled.div<{ showAlternative?: boolean }>`
           }
           ${DynamicLabelAlternate} {
             height: 0;
+            overflow: hidden;
             visibility: hidden;
           }
         `}
