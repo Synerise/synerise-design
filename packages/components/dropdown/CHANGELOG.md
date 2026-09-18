@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-dropdown@2.1.0...@synerise/ds-dropdown@2.1.1) (2026-09-18)
+
+
+### Bug Fixes
+
+* **dropdown:** clear the item-click close timer when the list unmounts ([07f32bb](https://github.com/synerise/synerise-design/commit/07f32bb9308955886b57739cfcb84f99f71914bc))
+
+
+
+
+
 # [2.1.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-dropdown@2.0.3...@synerise/ds-dropdown@2.1.0) (2026-09-16)
 
 ### Features
