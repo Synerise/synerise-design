@@ -15,9 +15,9 @@ import Icon, {
 } from '@synerise/ds-icon';
 import Select from '@synerise/ds-select';
 
-import * as S from './Pagination.styles';
-import { type PaginationProps } from './Pagination.types';
 import { getJumpSize, getPages } from './getPages';
+import * as S from './Pagination.styles';
+import type { PaginationProps } from './Pagination.types';
 
 const DEFAULT_PAGE_SIZE_OPTIONS = ['10', '20', '50', '100'];
 

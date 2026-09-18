@@ -1,8 +1,8 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React, { useState } from 'react';
 import { action } from 'storybook/actions';
 import { fn } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import Button from '@synerise/ds-button';
 import { theme } from '@synerise/ds-core';
 import Dropdown from '@synerise/ds-dropdown';
@@ -13,11 +13,11 @@ import { focusWithArrowKeys } from '@synerise/ds-utils';
 
 import {
   BOOLEAN_CONTROL,
-  NUMBER_CONTROL,
-  STRING_CONTROL,
   centeredPaddedWrapper,
   controlFromOptionsArray,
   fixedWrapper800,
+  NUMBER_CONTROL,
+  STRING_CONTROL,
 } from '../../utils';
 import {
   ACTIONS,

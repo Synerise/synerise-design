@@ -17,9 +17,9 @@ import type { OperatorsItem } from '@synerise/ds-operators';
 
 import {
   BOOLEAN_CONTROL,
-  NUMBER_CONTROL,
   controlFromOptionsArray,
   fixedWrapper300,
+  NUMBER_CONTROL,
 } from '../../utils';
 import {
   CONTEXT_CLIENT_GROUPS,

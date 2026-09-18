@@ -1,4 +1,4 @@
-import { type ResizeProperty } from 'csstype';
+import type { ResizeProperty } from 'csstype';
 import type { CSSProperties, ReactNode, TextareaHTMLAttributes } from 'react';
 
 export type AutoSizeType = boolean | { minRows?: number; maxRows?: number };

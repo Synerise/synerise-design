@@ -9,12 +9,12 @@ import DateRangePicker, {
 import {
   BOOLEAN_CONTROL,
   CLASSNAME_ARG_CONTROL,
+  controlFromOptionsArray,
   NUMBER_CONTROL,
   PREFIXCLS_ARG_CONTROL,
   REACT_NODE_AS_STRING,
   STRING_CONTROL,
   STYLE_ARG_CONTROL,
-  controlFromOptionsArray,
   stringWithNoControl,
   tableConfig,
 } from '../../utils';

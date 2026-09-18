@@ -1,7 +1,7 @@
 import {
-  type IntlShape,
   createIntl,
   createIntlCache,
+  type IntlShape,
   useIntl,
 } from 'react-intl';
 

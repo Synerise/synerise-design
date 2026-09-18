@@ -1,5 +1,3 @@
-export { default } from './Tag';
-
-export { TagShape, type TagProps, type TagTexts } from './Tag.types';
-
 export { useDefaultTexts } from './hooks/useDefaultTexts';
+export { default } from './Tag';
+export { type TagProps, TagShape, type TagTexts } from './Tag.types';

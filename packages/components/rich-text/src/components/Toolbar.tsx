@@ -301,7 +301,7 @@ export const Toolbar = ({
         }
       } catch (error) {
         // The consumer's AI handler rejected; leave the content untouched.
-        // eslint-disable-next-line no-console
+        // biome-ignore lint/suspicious/noConsole: deliberate developer-facing log
         console.error('RichText: Edit with AI action failed', error);
       } finally {
         setAiLoading(false);

@@ -3,11 +3,11 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import Button from '@synerise/ds-button';
 import Icon, { HideM, TaskCheckM } from '@synerise/ds-icon';
 
-import * as S from './Mapping.styles';
-import type { BaseItemType, MappingProps } from './Mapping.types';
 import { BatchSelectionHeader, RowSelection, TitleRow } from './components';
 import { useBatchSelection } from './hooks/useBatchSelection';
 import { useTexts } from './hooks/useTexts';
+import * as S from './Mapping.styles';
+import type { BaseItemType, MappingProps } from './Mapping.types';
 import { renderCounter as defaultRenderCounter } from './utils/counter';
 
 const Mapping = <ItemType extends BaseItemType>({

@@ -236,7 +236,7 @@ the duplicates.
 - No `rc-*` or `@ant-design/*` package remains in `pnpm-lock.yaml`; the `rc-trigger` / `rc-util`
   resolutions and the antd / `rc-*` / `@ant-design/*` Rollup externals are gone.
 - `no-restricted-imports` now bans `antd` and `antd/*` outright, so the dependency cannot be
-  reintroduced without a deliberate eslint change.
+  reintroduced without a deliberate biome change.
 - Storybook visual review + unit/interaction tests green per package.
 
 > **Final state:** the DS is antd-free in source, `package.json` and lockfile. The only antd traces

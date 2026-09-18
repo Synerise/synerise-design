@@ -13,24 +13,24 @@ import { v4 as uuid } from 'uuid';
 import { useDataFormat } from '@synerise/ds-core';
 
 import { getDefaultTexts } from '../../../../utils';
-import * as S from '../../../RangeFilter.styles';
-import { AddButton, SelectionCount, SelectionHint } from '../../../Shared';
-import Day from '../../../Shared/TimeWindow/Day/Day';
-import Grid from '../../../Shared/TimeWindow/Grid/Grid';
-import { type GridProps } from '../../../Shared/TimeWindow/Grid/Grid.types';
-import { type DateLimitMode } from '../../../Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
-import RangeFormContainer from '../../../Shared/TimeWindow/RangeFormContainer/RangeFormContainer';
-import type { DateValue } from '../../../Shared/TimeWindow/RangeFormContainer/RangeFormContainer.types';
-import { type DayKey } from '../../../Shared/TimeWindow/TimeWindow.types';
-import { US_NOTATION_WEEK_DAYS_INDEXES } from '../../../Shared/TimeWindow/constants/timeWindow.constants';
 import {
   COUNTED_FROM_ENUM,
   DAYS_OF_PERIOD_ENUM,
+  MONTH_DAYS,
   MONTHLY_SCHEDULER_INTL_KEYS_NTH_WEEK,
   MONTHLY_SCHEDULER_INTL_KEYS_WEEKDAYS_LONG,
   MONTHLY_SCHEDULER_INTL_KEYS_WEEKDAYS_SHORT,
-  MONTH_DAYS,
 } from '../../../constants';
+import * as S from '../../../RangeFilter.styles';
+import { AddButton, SelectionCount, SelectionHint } from '../../../Shared';
+import { US_NOTATION_WEEK_DAYS_INDEXES } from '../../../Shared/TimeWindow/constants/timeWindow.constants';
+import Day from '../../../Shared/TimeWindow/Day/Day';
+import Grid from '../../../Shared/TimeWindow/Grid/Grid';
+import type { GridProps } from '../../../Shared/TimeWindow/Grid/Grid.types';
+import type { DateLimitMode } from '../../../Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
+import RangeFormContainer from '../../../Shared/TimeWindow/RangeFormContainer/RangeFormContainer';
+import type { DateValue } from '../../../Shared/TimeWindow/RangeFormContainer/RangeFormContainer.types';
+import type { DayKey } from '../../../Shared/TimeWindow/TimeWindow.types';
 import {
   DEFAULT_MAX_ENTRIES,
   DEFAULT_RANGE_END,
@@ -41,7 +41,7 @@ import {
   RENDER_EMPTY_NODE_FN,
 } from '../constants';
 import { useShiftAndControlKeys } from '../hooks/useShiftAndControlKeys';
-import { type MonthlyProps, type MonthlySchedule } from './Monthly.types';
+import type { MonthlyProps, MonthlySchedule } from './Monthly.types';
 import { canAddAnotherRange, haveActiveDaysCommonRange, range } from './utils';
 
 const Monthly = ({
@@ -188,7 +188,7 @@ const Monthly = ({
   const getDayValue = useCallback(
     (dayKey: DayKey, guid: string) => {
       // @ts-expect-error - requires type refactor
-      if (typeof dayKey === 'number' && value[guid] && !!value[guid][dayKey]) {
+      if (typeof dayKey === 'number' && value[guid] && value[guid][dayKey]) {
         // @ts-expect-error - requires type refactor
         return value[guid][dayKey];
       }
@@ -469,7 +469,7 @@ const Monthly = ({
               handleDayTimeChange(dates, activeDays, guid)
             }
             dayKeys={activeDays}
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            // biome-ignore lint/suspicious/noExplicitAny: upstream type is not expressible here
             getDayLabel={getDayLabel as any}
             activeDays={activeDays}
             getDayValue={(dayKey: DayKey) => getDayValue(dayKey, guid)}

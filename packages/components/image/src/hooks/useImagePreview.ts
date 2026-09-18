@@ -1,7 +1,7 @@
 import { useCallback, useMemo, useState } from 'react';
 
-import { type ImagePreviewProps } from '../Preview/ImagePreview.types';
-import { type ImageSource } from '../shared/Image.shared.types';
+import type { ImagePreviewProps } from '../Preview/ImagePreview.types';
+import type { ImageSource } from '../shared/Image.shared.types';
 
 export type UseImagePreviewReturn = {
   /** Whether the preview is currently open. */

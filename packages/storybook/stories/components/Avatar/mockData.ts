@@ -12,7 +12,7 @@ export const groupAvatars: DataSource[] = [
     firstname: 'Kamil',
     lastname: 'Kowalski',
     email: 'k.kowalski@gmail.com',
-    id: 0
+    id: 0,
   },
   {
     avatarProps: {
@@ -25,7 +25,7 @@ export const groupAvatars: DataSource[] = [
     firstname: 'Adam',
     lastname: 'Staszewski',
     email: 'adam.staszewski@test.pl',
-    id: 1
+    id: 1,
   },
   {
     avatarProps: {
@@ -38,7 +38,7 @@ export const groupAvatars: DataSource[] = [
     firstname: 'Jan',
     lastname: 'Nowak',
     email: 'jan@nowak.com.pl',
-    id: 2
+    id: 2,
   },
   {
     avatarProps: {
@@ -51,7 +51,7 @@ export const groupAvatars: DataSource[] = [
     firstname: 'Jan',
     lastname: 'Nowak',
     email: 'jan@nowak.com.pl',
-    id: 3
+    id: 3,
   },
   {
     avatarProps: {
@@ -64,7 +64,7 @@ export const groupAvatars: DataSource[] = [
     firstname: 'Jan',
     lastname: 'Nowak',
     email: 'jan@nowak.com.pl',
-    id: 4
+    id: 4,
   },
   {
     avatarProps: {
@@ -77,7 +77,7 @@ export const groupAvatars: DataSource[] = [
     firstname: 'Maciej',
     lastname: 'Piotrowski',
     email: 'mp@test.com.pl',
-    id: 5
+    id: 5,
   },
   {
     avatarProps: {
@@ -90,7 +90,7 @@ export const groupAvatars: DataSource[] = [
     firstname: 'Kamil',
     lastname: 'Kowalski',
     email: 'k.kowalski@gmail.com',
-    id: 6
+    id: 6,
   },
   {
     avatarProps: {
@@ -103,7 +103,7 @@ export const groupAvatars: DataSource[] = [
     firstname: 'Adam',
     lastname: 'Staszewski',
     email: 'adam.staszewski@test.pl',
-    id: 7
+    id: 7,
   },
   {
     avatarProps: {
@@ -116,7 +116,7 @@ export const groupAvatars: DataSource[] = [
     firstname: 'Jan',
     lastname: 'Nowak',
     email: 'jan@nowak.com.pl',
-    id: 8
+    id: 8,
   },
   {
     avatarProps: {
@@ -129,7 +129,7 @@ export const groupAvatars: DataSource[] = [
     firstname: 'Jan',
     lastname: 'Nowak',
     email: 'jan@nowak.com.pl',
-    id: 9
+    id: 9,
   },
   {
     avatarProps: {
@@ -142,7 +142,7 @@ export const groupAvatars: DataSource[] = [
     firstname: 'Jan',
     lastname: 'Nowak',
     email: 'jan@nowak.com.pl',
-    id: 10
+    id: 10,
   },
   {
     avatarProps: {
@@ -155,6 +155,6 @@ export const groupAvatars: DataSource[] = [
     firstname: 'Maciej',
     lastname: 'Piotrowski',
     email: 'mp@test.com.pl',
-    id: 11
-  }
+    id: 11,
+  },
 ];

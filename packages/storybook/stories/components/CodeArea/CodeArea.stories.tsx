@@ -1,7 +1,7 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React, { useState } from 'react';
 import { fn } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import Button from '@synerise/ds-button';
 import CodeArea, {
   CodeAreaProps,
@@ -15,10 +15,10 @@ import Switch from '@synerise/ds-switch';
 import {
   BOOLEAN_CONTROL,
   CLASSNAME_ARG_CONTROL,
+  fixedHeightWrapper,
   REACT_NODE_AS_STRING,
   STRING_CONTROL,
   STYLE_ARG_CONTROL,
-  fixedHeightWrapper,
 } from '../../utils';
 import { AVAILABLE_SYNTAXES, SAMPLE_DATA } from './CodeArea.data';
 

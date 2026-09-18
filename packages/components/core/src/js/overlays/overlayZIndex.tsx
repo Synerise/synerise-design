@@ -68,7 +68,7 @@ export const useResolvedOverlayZIndex = (zIndex?: number): number => {
     if (stacked > ceiling) {
       if (!ceilingWarned) {
         ceilingWarned = true;
-        // eslint-disable-next-line no-console
+        // biome-ignore lint/suspicious/noConsole: deliberate developer-facing log
         console.warn(
           `[ds-core] Overlay nesting reached the z-index ceiling (${ceiling}). ` +
             'Further nested overlays will tie with their parent and stack by DOM ' +

@@ -3,7 +3,7 @@ import React, { forwardRef, useMemo } from 'react';
 import Button from '@synerise/ds-button';
 import Icon, { AngleDownS } from '@synerise/ds-icon';
 
-import { type SubjectTriggerProps } from '../Subject.types';
+import type { SubjectTriggerProps } from '../Subject.types';
 
 const SubjectTrigger = forwardRef<HTMLButtonElement, SubjectTriggerProps>(
   ({ iconPlaceholder, placeholder, selectedItem, color, onClick }, ref) => {

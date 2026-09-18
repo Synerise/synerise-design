@@ -2,10 +2,10 @@ import React, { useCallback } from 'react';
 
 import { useTheme } from '@synerise/ds-core';
 import {
+  getPlacement,
   Popover,
   PopoverContent,
   PopoverTrigger,
-  getPlacement,
 } from '@synerise/ds-popover';
 
 import {
@@ -16,7 +16,7 @@ import {
   TRANSITION_DURATION,
 } from './HoverTooltip.const';
 import { PropagationStopper } from './HoverTooltip.styles';
-import { type HoverTooltipProps } from './HoverTooltip.types';
+import type { HoverTooltipProps } from './HoverTooltip.types';
 
 const HoverTooltip = ({
   popoverProps,

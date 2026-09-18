@@ -1,4 +1,4 @@
-import { type TableProps } from '../../Table.types';
+import type { TableProps } from '../../Table.types';
 
 export type TreeTableProps<TData, TValue> = Omit<
   TableProps<TData, TValue>,

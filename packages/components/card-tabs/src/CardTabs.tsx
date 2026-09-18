@@ -5,9 +5,9 @@ import { defaultColorsOrder } from '@synerise/ds-core';
 import Sortable from '@synerise/ds-sortable';
 
 import CardTab from './CardTab/CardTab';
-import { type CardTabProps } from './CardTab/CardTab.types';
+import type { CardTabProps } from './CardTab/CardTab.types';
 import * as S from './CardTabs.styles';
-import { type CardTabsProps } from './CardTabs.types';
+import type { CardTabsProps } from './CardTabs.types';
 
 const CardTabs = <IdType extends string | number>({
   className,

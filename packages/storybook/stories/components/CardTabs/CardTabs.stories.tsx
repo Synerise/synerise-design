@@ -1,12 +1,12 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React, { useState } from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
+import type { CardTabProps, CardTabsPropsBase } from '@synerise/ds-card-tabs';
 import CardTabs, {
   CardTab,
   CardTabsStyles,
   prefixType,
 } from '@synerise/ds-card-tabs';
-import type { CardTabProps, CardTabsPropsBase } from '@synerise/ds-card-tabs';
 import { theme } from '@synerise/ds-core';
 import Icon, {
   AppleFillM,
@@ -21,12 +21,12 @@ import Icon, {
 import {
   BOOLEAN_CONTROL,
   CLASSNAME_ARG_CONTROL,
-  NUMBER_CONTROL,
-  STRING_CONTROL,
   controlFromOptionsArray,
   fixedWrapper588,
   greyBackgroundDecorator,
+  NUMBER_CONTROL,
   reactNodeAsSelect,
+  STRING_CONTROL,
 } from '../../utils';
 import { CARD_TABS_ITEMS, createItemData } from './CardTabs.data';
 

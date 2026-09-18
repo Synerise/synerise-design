@@ -1,7 +1,7 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React, { useState } from 'react';
 import { fn } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import { WeeklyDateFilter } from '@synerise/ds-date-range-picker';
 import { DailySchedule } from '@synerise/ds-date-range-picker/dist/RangeFilter/Filters/new/Daily/Daily.types';
 

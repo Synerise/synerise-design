@@ -1,16 +1,16 @@
 import React from 'react';
 
-import { type Texts } from '../../../../DateRangePicker.types';
+import type { Texts } from '../../../../DateRangePicker.types';
 import { Header } from '../Header/Header';
 import RangeActions from '../RangeActions/RangeActions';
-import { type ActionsTexts } from '../RangeActions/RangeActions.types';
+import type { ActionsTexts } from '../RangeActions/RangeActions.types';
 import RangeSummary from '../RangeSummary/RangeSummary';
 import { DEFAULT_LIMIT_MODE } from '../TimeWindow';
-import { type DayKey, type DayOptions } from '../TimeWindow.types';
+import type { DayKey, DayOptions } from '../TimeWindow.types';
 import { getDateFromDayValue, getDefaultFilterForLimitMode } from '../utils';
 import RangeForm from './RangeForm/RangeForm';
 import { RANGE_DISPLAY_MODES } from './RangeForm/RangeForm.constants';
-import { type DateLimitMode } from './RangeForm/RangeForm.types';
+import type { DateLimitMode } from './RangeForm/RangeForm.types';
 import * as S from './RangeFormContainer.styles';
 import type {
   DateValue,

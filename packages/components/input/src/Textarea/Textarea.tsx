@@ -1,3 +1,4 @@
+import { useMergeRefs } from '@floating-ui/react';
 import React, {
   type ChangeEvent,
   type FocusEvent,
@@ -6,13 +7,12 @@ import React, {
   useState,
 } from 'react';
 
-import { useMergeRefs } from '@floating-ui/react';
 import Scrollbar from '@synerise/ds-scrollbar';
 
-import * as InputStyles from '../Input.styles';
 import { useTextareaAutosize } from '../hooks/useTextareaAutosize';
+import * as InputStyles from '../Input.styles';
 import * as S from './Textarea.styles';
-import { type AutoSizeType, type RawTextAreaProps } from './Textarea.types';
+import type { AutoSizeType, RawTextAreaProps } from './Textarea.types';
 
 const resolveRows = (autoSize?: AutoSizeType) =>
   typeof autoSize === 'object' ? autoSize : undefined;

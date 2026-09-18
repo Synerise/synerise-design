@@ -1,8 +1,8 @@
-import {
-  type DateRangePickerProps,
-  type Texts,
+import type {
+  DateRangePickerProps,
+  Texts,
 } from '../../../DateRangePicker.types';
-import { type DateRange } from '../../../date.types';
+import type { DateRange } from '../../../date.types';
 
 export type RangeDropdownProps = {
   ranges: DateRange[];

@@ -1,13 +1,13 @@
-import React, { type MouseEvent, forwardRef, useState } from 'react';
+import React, { forwardRef, type MouseEvent, useState } from 'react';
 
 import { useTheme } from '@synerise/ds-core';
 import Icon, { CloseS } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 
+import { useDefaultTexts } from './hooks/useDefaultTexts';
 import * as S from './Tag.styles';
 import { getColorText } from './Tag.styles';
 import { type TagProps, TagShape } from './Tag.types';
-import { useDefaultTexts } from './hooks/useDefaultTexts';
 
 const Tag = forwardRef<HTMLDivElement, TagProps>(
   (

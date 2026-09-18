@@ -1,6 +1,5 @@
-import { type IntlShape } from 'react-intl';
-
 import { TZDate, tzOffset } from '@date-fns/tz';
+import type { IntlShape } from 'react-intl';
 
 export const TIMEZONE_OFFSET_REGEX = /([+-]\d\d:\d\d)|([Z])$/;
 

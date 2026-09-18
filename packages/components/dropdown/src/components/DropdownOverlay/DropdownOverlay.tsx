@@ -1,11 +1,10 @@
+import { useMergeRefs } from '@floating-ui/react';
 import classnames from 'classnames';
 import React, { forwardRef, useEffect, useRef, useState } from 'react';
 
-import { useMergeRefs } from '@floating-ui/react';
-
 import { getDropdownWidth } from '../../utils';
 import { OverlayWrapper } from './DropdownOverlay.styles';
-import { type DropdownOverlayProps } from './DropdownOverlay.types';
+import type { DropdownOverlayProps } from './DropdownOverlay.types';
 
 export const DropdownOverlay = forwardRef<HTMLDivElement, DropdownOverlayProps>(
   (
@@ -27,6 +26,7 @@ export const DropdownOverlay = forwardRef<HTMLDivElement, DropdownOverlayProps>(
       getDropdownWidth(size) ?? 0,
     );
 
+    // biome-ignore lint/correctness/useExhaustiveDependencies: dependencies intentionally omitted
     useEffect(() => {
       if (
         triggerRef.current &&
@@ -36,7 +36,6 @@ export const DropdownOverlay = forwardRef<HTMLDivElement, DropdownOverlayProps>(
       } else {
         setOverlaySize(getDropdownWidth(size) ?? 0);
       }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [size]);
 
     useEffect(() => {

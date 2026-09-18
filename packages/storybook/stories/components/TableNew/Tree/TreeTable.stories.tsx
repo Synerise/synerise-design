@@ -1,8 +1,8 @@
+import { type Meta, type StoryObj } from '@storybook/react-vite';
+import { type ColumnDef } from '@tanstack/react-table';
 import React, { useCallback, useState } from 'react';
 
-import { type Meta, type StoryObj } from '@storybook/react-vite';
 import { TreeTable, type TreeTableProps } from '@synerise/ds-table-new';
-import { type ColumnDef } from '@tanstack/react-table';
 
 import { BOOLEAN_CONTROL } from '../../../utils';
 

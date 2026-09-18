@@ -1,6 +1,6 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import { Label } from '@synerise/ds-input';
 import Radio, {
   RadioChangeEvent,

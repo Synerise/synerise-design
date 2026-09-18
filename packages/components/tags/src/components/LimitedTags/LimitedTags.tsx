@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useTheme } from '@synerise/ds-core';
-import { type TagProps, type TagShape } from '@synerise/ds-tag';
+import type { TagProps, TagShape } from '@synerise/ds-tag';
 
 import * as S from '../../Tags.styles';
 import { TagsDropdown } from '../TagsDropdown/TagsDropdown';

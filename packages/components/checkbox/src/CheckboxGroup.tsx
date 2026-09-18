@@ -1,10 +1,10 @@
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 import styled from 'styled-components';
 
-import {
-  type CheckboxGroupProps,
-  type CheckboxOptionType,
-  type CheckboxValueType,
+import type {
+  CheckboxGroupProps,
+  CheckboxOptionType,
+  CheckboxValueType,
 } from './Checkbox.types';
 import {
   CheckboxGroupContext,

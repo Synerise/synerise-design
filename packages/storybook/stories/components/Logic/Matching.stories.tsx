@@ -1,13 +1,13 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 import { useArgs } from 'storybook/preview-api';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import Logic from '@synerise/ds-logic';
 
 import {
   BOOLEAN_CONTROL,
-  STRING_CONTROL,
   centeredPaddedWrapper,
+  STRING_CONTROL,
 } from '../../utils';
 
 export default {

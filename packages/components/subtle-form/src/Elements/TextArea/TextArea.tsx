@@ -15,7 +15,7 @@ import Tooltip from '@synerise/ds-tooltip';
 
 import * as S from '../../SubtleForm.styles';
 import { getFocusPadding } from '../../SubtleForm.styles';
-import { type SubtleTextAreaProps } from './TextArea.types';
+import type { SubtleTextAreaProps } from './TextArea.types';
 
 const FONT = 'Graphik LCG Web';
 const FONT_SIZE = '13px';
@@ -50,7 +50,7 @@ const SubtleTextArea = ({
   const hasError = error || !!errorText;
   const calculateTextHeight = useCallback(() => {
     let textHeight = 0;
-    if (!!value && !!containerRef.current) {
+    if (value && containerRef.current) {
       const { height } = calculateSize(value, {
         width: `${containerRef.current.offsetWidth - 2 * HORIZONTAL_PADDING_PX}px`,
         font: FONT,
@@ -72,7 +72,7 @@ const SubtleTextArea = ({
       setVisibleRows(minRows);
       return;
     }
-    if (lines && !!maxRows && lines > maxRows) {
+    if (lines && maxRows && lines > maxRows) {
       setVisibleRows(maxRows);
       return;
     }
@@ -164,7 +164,7 @@ const SubtleTextArea = ({
               <S.MainContent breakWord>
                 <S.ValueArea
                   disabled={disabled}
-                  value={value && !!value.trim() ? value : placeholder}
+                  value={value && value.trim() ? value : placeholder}
                   onBlur={!disabled ? handleDeactivate : undefined}
                   isPlaceholder={!value && !!placeholder}
                 />

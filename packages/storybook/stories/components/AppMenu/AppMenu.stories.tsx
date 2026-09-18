@@ -1,6 +1,6 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import AppMenu from '@synerise/ds-app-menu';
 import Icon, {
   Add3M,

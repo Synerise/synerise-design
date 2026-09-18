@@ -1,10 +1,10 @@
 import React from 'react';
-import { type WrappedComponentProps, injectIntl } from 'react-intl';
+import { injectIntl, type WrappedComponentProps } from 'react-intl';
 
-import { type RelativeMode } from '../DateRangePicker.types';
 import * as CONST from '../constants';
 import { CUSTOM_RANGE_KEY, RANGES_MODE } from '../constants';
-import { type DateRange, type RelativeDateRange } from '../date.types';
+import type { RelativeMode } from '../DateRangePicker.types';
+import type { DateRange, RelativeDateRange } from '../date.types';
 import getRelativePresetForRange from '../dateUtils/getRelativePresetForRange';
 import { fnsIsAfter } from '../fns';
 import { DEFAULT_RANGE, normalizeRange } from '../utils';
@@ -12,7 +12,7 @@ import CustomRangeForm from './Elements/CustomRangeForm/CustomRangeForm';
 import RangeButtons from './Elements/RangeButtons/RangeButtons';
 import RangeDropdown from './Elements/RangeDropdown/RangeDropdown';
 import * as S from './RelativeRangePicker.styles';
-import { type Props, type State } from './RelativeRangePicker.types';
+import type { Props, State } from './RelativeRangePicker.types';
 import {
   findMatchingPreset,
   getCurrentGroupFromProps,
@@ -40,7 +40,6 @@ class RelativeRangePicker extends React.PureComponent<
   constructor(props: Props) {
     super(props);
     // @ts-expect-error - types mismatch
-    // eslint-disable-next-line react/state-in-constructor
     this.state = {
       currentGroup: getCurrentGroupFromProps(props),
       future: props.future || false,
@@ -135,7 +134,7 @@ class RelativeRangePicker extends React.PureComponent<
       ...setFuture(currentGroup === RANGES_MODE.FUTURE || isFuture, value),
       type: 'RELATIVE',
     };
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // biome-ignore lint/suspicious/noExplicitAny: upstream type is not expressible here
     const resultRange = normalizeRange(updatePresetKey(changes) as any);
     if (resultRange?.translationKey === CUSTOM_RANGE_KEY) {
       this.setState({ lastCustomRange: resultRange as RelativeDateRange });

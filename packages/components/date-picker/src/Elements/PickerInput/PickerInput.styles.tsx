@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import { type ThemeProps } from '@synerise/ds-core';
+import type { ThemeProps } from '@synerise/ds-core';
 import { Input as DSInput, type StyledInput } from '@synerise/ds-input';
 
 export const Prefixel = styled.div`

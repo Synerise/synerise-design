@@ -5,10 +5,7 @@ import Icon, { SpinnerM } from '@synerise/ds-icon';
 
 import { DnDScrollbar } from './DnDScrollbar';
 import * as S from './Scrollbar.styles';
-import {
-  type ScrollbarProps,
-  type VirtualScrollbarProps,
-} from './Scrollbar.types';
+import type { ScrollbarProps, VirtualScrollbarProps } from './Scrollbar.types';
 import { VirtualScrollbar } from './VirtualScrollbar';
 
 const Scrollbar = forwardRef<

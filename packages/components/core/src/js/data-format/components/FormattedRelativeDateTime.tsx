@@ -1,4 +1,4 @@
-import { type Dayjs } from 'dayjs';
+import type { Dayjs } from 'dayjs';
 import React from 'react';
 
 import {
@@ -8,7 +8,7 @@ import {
   RELATIVE_TO_WITHOUT_SUFFIX,
 } from '../constants';
 import { useDataFormat, useRelativeDateTimeUpdate } from '../hooks';
-import { type DateToFormatOptions, type MomentLike } from '../types';
+import type { DateToFormatOptions, MomentLike } from '../types';
 
 export type FormattedRelativeDateTimeProps = {
   value: Date | MomentLike | Dayjs;

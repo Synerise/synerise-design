@@ -12,7 +12,7 @@ import Tooltip from '@synerise/ds-tooltip';
 import { escapeRegEx } from '@synerise/ds-utils';
 
 import * as S from '../Item.styles';
-import { type ItemLabelProps } from './ItemName.types';
+import type { ItemLabelProps } from './ItemName.types';
 
 const ItemName = ({
   item,
@@ -30,11 +30,11 @@ const ItemName = ({
     setEditedName(event.target.value);
   }, []);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: dependencies intentionally omitted
   useEffect(() => {
     if (item.name !== editedName) {
       setEditedName(item.name);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [editMode]);
 
   const inputProps = useMemo(() => {

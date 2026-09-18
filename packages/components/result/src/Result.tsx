@@ -9,7 +9,7 @@ import Icon, {
 } from '@synerise/ds-icon';
 
 import * as S from './Result.styles';
-import { type ResultProps } from './Result.types';
+import type { ResultProps } from './Result.types';
 
 const mapTypeToStatus = {
   info: {

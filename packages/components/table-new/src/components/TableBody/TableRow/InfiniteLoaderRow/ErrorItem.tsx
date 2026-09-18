@@ -4,7 +4,7 @@ import Button from '@synerise/ds-button';
 import Icon, { RefreshM } from '@synerise/ds-icon';
 import InlineAlert from '@synerise/ds-inline-alert';
 
-import { type InfiniteLoaderRowTexts } from '../../../../Table.types';
+import type { InfiniteLoaderRowTexts } from '../../../../Table.types';
 import * as S from './ErrorItem.styles';
 
 type ErrorItemProps = {

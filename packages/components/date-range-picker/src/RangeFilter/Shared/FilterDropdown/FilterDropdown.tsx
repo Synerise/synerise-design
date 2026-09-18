@@ -7,7 +7,7 @@ import Icon, { AngleDownS, TrashS } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 
 import * as S from './FilterDropdown.styles';
-import { type FilterDropdownProps } from './FilterDropdown.types';
+import type { FilterDropdownProps } from './FilterDropdown.types';
 
 const FilterDropdown: React.FC<FilterDropdownProps> = ({
   removeTooltip,

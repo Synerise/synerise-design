@@ -1,6 +1,6 @@
 import styled, {
-  type FlattenSimpleInterpolation,
   css,
+  type FlattenSimpleInterpolation,
 } from 'styled-components';
 
 import { Container } from '@synerise/ds-date-picker/dist/Elements/PickerInput/PickerInput.styles';

@@ -1,11 +1,11 @@
-import type { ComponentType, ReactElement, ReactNode } from 'react';
-import type { Interpolation } from 'styled-components';
-
 import type {
   DndContextProps,
   DraggableAttributes,
   DraggableSyntheticListeners,
 } from '@dnd-kit/core';
+import type { ComponentType, ReactElement, ReactNode } from 'react';
+import type { Interpolation } from 'styled-components';
+
 import type { ThemeProps } from '@synerise/ds-core';
 import type { WithHTMLAttributes } from '@synerise/ds-utils';
 

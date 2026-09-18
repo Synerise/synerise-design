@@ -1,9 +1,8 @@
 export { default } from './CompletedWithin';
-
 export type {
-  Period,
-  PeriodValue,
-  CustomPeriod,
   CompletedWithinProps,
   CompletedWithinTexts,
+  CustomPeriod,
+  Period,
+  PeriodValue,
 } from './CompletedWithin.types';

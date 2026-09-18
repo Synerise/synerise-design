@@ -2,15 +2,15 @@ import React, { type ReactNode } from 'react';
 
 import Icon, { ArrowRightCircleM, FolderM } from '@synerise/ds-icon';
 import InformationCard from '@synerise/ds-information-card';
-import { type ListItemProps } from '@synerise/ds-list-item';
+import type { ListItemProps } from '@synerise/ds-list-item';
 
-import {
-  type BaseItemType,
-  type BaseSectionType,
-  type BaseSectionTypeWithFolders,
+import type {
+  BaseItemType,
+  BaseSectionType,
+  BaseSectionTypeWithFolders,
 } from '../../ItemPickerNew/types/baseItemSectionType.types';
-import { type ItemPickerListTexts } from '../../ItemPickerNew/types/itemPickerListTexts.types';
-import { type TitleListItemProps } from '../ItemPickerList.types';
+import type { ItemPickerListTexts } from '../../ItemPickerNew/types/itemPickerListTexts.types';
+import type { TitleListItemProps } from '../ItemPickerList.types';
 import { createTitleFromTitlePath } from '../utils';
 
 export const getFolderItem = (

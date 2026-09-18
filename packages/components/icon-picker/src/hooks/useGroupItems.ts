@@ -1,10 +1,10 @@
 import { useMemo } from 'react';
 
-import {
-  type FilterElement,
-  type GroupedFilterElement,
-  type SourceType,
-  type ValueTypeForSource,
+import type {
+  FilterElement,
+  GroupedFilterElement,
+  SourceType,
+  ValueTypeForSource,
 } from '../IconPicker.types';
 
 export const useGroupItems = <Source extends SourceType>(

@@ -1,7 +1,7 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React, { useState } from 'react';
 import { action } from 'storybook/actions';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import MonthlyDateFilter from '@synerise/ds-date-range-picker/dist/RangeFilter/Filters/new/Monthly/Monthly';
 import {
   MonthlyProps,

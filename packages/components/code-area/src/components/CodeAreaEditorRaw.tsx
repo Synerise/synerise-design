@@ -1,3 +1,8 @@
+import Editor, {
+  type EditorProps,
+  loader,
+  type Monaco,
+} from '@monaco-editor/react';
 import type { editor } from 'monaco-editor/esm/vs/editor/editor.api';
 import React, {
   useCallback,
@@ -7,19 +12,14 @@ import React, {
   useState,
 } from 'react';
 
-import Editor, {
-  type EditorProps,
-  type Monaco,
-  loader,
-} from '@monaco-editor/react';
 import { InlineSelect } from '@synerise/ds-inline-edit';
 import Loader from '@synerise/ds-loader';
 import { NOOP, useResizeObserver } from '@synerise/ds-utils';
 
 import * as S from '../CodeArea.styles';
-import {
-  type CodeAreaEditorRawProps,
-  type CodeAreaSyntaxOption,
+import type {
+  CodeAreaEditorRawProps,
+  CodeAreaSyntaxOption,
 } from '../CodeArea.types';
 import {
   DS_MONACO_THEME,

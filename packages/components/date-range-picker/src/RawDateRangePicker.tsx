@@ -15,6 +15,15 @@ import { useIntl } from 'react-intl';
 
 import AddonCollapse from './AddonCollapse/AddonCollapse';
 import {
+  ABSOLUTE,
+  ABSOLUTE_PRESETS,
+  ALL_TIME,
+  CUSTOM_RANGE_KEY,
+  MODES,
+  RELATIVE,
+  RELATIVE_PRESETS,
+} from './constants';
+import {
   Addon,
   Container,
   DateRangePickerWrapper,
@@ -25,28 +34,19 @@ import type {
   DateRangePickerProps,
   Texts,
 } from './DateRangePicker.types';
+import type { DateFilter, DateRange, RelativeDateRange } from './date.types';
+import relativeToAbsolute from './dateUtils/relativeToAbsolute';
+import { toDateValue } from './dateUtils/toDateValue';
 import Footer from './Footer/Footer';
 import RangeFilter from './RangeFilter/RangeFilter';
-import {
-  type FilterDefinition,
-  type FilterValue,
+import type {
+  FilterDefinition,
+  FilterValue,
 } from './RangeFilter/RangeFilter.types';
 import RangeFilterStatus from './RangeFilter/Shared/RangeFilterStatus/RangeFilterStatus';
 import RangePicker from './RangePicker/RangePicker';
 import { isLifetime } from './RelativeRangePicker/Elements/RangeDropdown/RangeDropdown';
 import RelativeRangePicker from './RelativeRangePicker/RelativeRangePicker';
-import {
-  ABSOLUTE,
-  ABSOLUTE_PRESETS,
-  ALL_TIME,
-  CUSTOM_RANGE_KEY,
-  MODES,
-  RELATIVE,
-  RELATIVE_PRESETS,
-} from './constants';
-import type { DateFilter, DateRange, RelativeDateRange } from './date.types';
-import relativeToAbsolute from './dateUtils/relativeToAbsolute';
-import { toDateValue } from './dateUtils/toDateValue';
 import { getDefaultTexts, normalizeRange, toIsoString } from './utils';
 
 const isRelative = (dateRange: DateRange): dateRange is RelativeDateRange => {
@@ -262,7 +262,7 @@ export const RawDateRangePicker = ({
 
   const addons = useMemo(() => {
     const result: AddonType[] = [];
-    if (showRelativePicker && !!relativeModes && relativeModes?.length > 0) {
+    if (showRelativePicker && relativeModes && relativeModes?.length > 0) {
       const addonKey = 'relative-picker';
       const rangeTranslationKey = localValue?.translationKey;
       result.push({

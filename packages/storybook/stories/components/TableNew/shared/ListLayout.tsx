@@ -1,6 +1,6 @@
+import type { Decorator } from '@storybook/react-vite';
 import React, { ReactNode, useRef, useState } from 'react';
 
-import type { Decorator } from '@storybook/react-vite';
 import Layout, { Page } from '@synerise/ds-layout';
 import PageHeader from '@synerise/ds-page-header';
 import { VirtualTable, type VirtualTableProps } from '@synerise/ds-table-new';

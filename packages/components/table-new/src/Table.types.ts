@@ -1,24 +1,24 @@
-import {
-  type CSSProperties,
-  type HTMLAttributes,
-  type MouseEvent,
-  type MutableRefObject,
-  type ReactElement,
-  type ReactNode,
-  type RefObject,
+import type {
+  Column,
+  ColumnDef,
+  ColumnMeta,
+  Row,
+  RowData,
+} from '@tanstack/react-table';
+import type { VirtualItem, Virtualizer } from '@tanstack/react-virtual';
+import type {
+  CSSProperties,
+  HTMLAttributes,
+  MouseEvent,
+  MutableRefObject,
+  ReactElement,
+  ReactNode,
+  RefObject,
 } from 'react';
 
 import type { PaginationProps } from '@synerise/ds-pagination';
 import type { SearchInputProps } from '@synerise/ds-search';
 import type { TooltipProps } from '@synerise/ds-tooltip';
-import {
-  type Column,
-  type ColumnDef,
-  type ColumnMeta,
-  type Row,
-  type RowData,
-} from '@tanstack/react-table';
-import { type VirtualItem, type Virtualizer } from '@tanstack/react-virtual';
 
 export type HighlightOptions = {
   /** Duration in milliseconds. Default: 600 */

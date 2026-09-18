@@ -1,7 +1,7 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 import { fn } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import { Thumbnail, type ThumbnailProps } from '@synerise/ds-image';
 
 import { avatar2, avatar4 } from '../../constants';

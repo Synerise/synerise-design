@@ -3,7 +3,7 @@ import React from 'react';
 import Button from '@synerise/ds-button';
 
 import * as S from './ColumnManagerActions.styles';
-import { type ColumnManagerActionsProps } from './ColumnManagerActions.types';
+import type { ColumnManagerActionsProps } from './ColumnManagerActions.types';
 
 export const ColumnManagerActions = ({
   texts,

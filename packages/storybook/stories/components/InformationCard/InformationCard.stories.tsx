@@ -1,26 +1,26 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 import { fn } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import { SegmentM } from '@synerise/ds-icon';
-import InformationCard, { buildExtraInfo } from '@synerise/ds-information-card';
 import type { InformationCardProps } from '@synerise/ds-information-card';
+import InformationCard, { buildExtraInfo } from '@synerise/ds-information-card';
 
 import {
   BOOLEAN_CONTROL,
   CLASSNAME_ARG_CONTROL,
+  controlFromOptionsArray,
   REACT_NODE_AS_STRING,
   STRING_CONTROL,
   THEME_PALETTE_COLOR_NAMES_CONTROL,
-  controlFromOptionsArray,
 } from '../../utils';
 import {
   ACTIONS_MENU_ITEMS,
   PROPERTIES_LIST,
   PROPERTIES_LIST_LONG,
-  SUMMARY_ITEMS,
   renderExternalLinkButton,
   renderPreviewButton,
+  SUMMARY_ITEMS,
 } from './InformationCard.data';
 
 const InformationCardMeta = {

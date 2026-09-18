@@ -1,3 +1,4 @@
+import { useVirtualizer } from '@tanstack/react-virtual';
 import React, {
   useCallback,
   useEffect,
@@ -7,15 +8,6 @@ import React, {
   useState,
 } from 'react';
 
-import { useVirtualizer } from '@tanstack/react-virtual';
-
-import {
-  DEFAULT_CELL_HEIGHT,
-  DEFAULT_STICKY_VALUE,
-  INFINITE_LOADER_ITEM_HEIGHT,
-  INFINITE_SCROLL_PADDING_START,
-} from './Table.const';
-import { type StickyData, type VirtualTableProps } from './Table.types';
 import { BackToTopButton } from './components/BackToTopButton/BackToTopButton';
 import { BaseTable } from './components/BaseTable/BaseTable';
 import { SelectionContext } from './contexts/SelectionContext';
@@ -25,6 +17,13 @@ import { useDefaultTexts } from './hooks/useDefaultTexts';
 import { useInfiniteScroll } from './hooks/useInfiniteScroll';
 import { useTable } from './hooks/useTable';
 import { useTableHighlight } from './hooks/useTableHighlight';
+import {
+  DEFAULT_CELL_HEIGHT,
+  DEFAULT_STICKY_VALUE,
+  INFINITE_LOADER_ITEM_HEIGHT,
+  INFINITE_SCROLL_PADDING_START,
+} from './Table.const';
+import type { StickyData, VirtualTableProps } from './Table.types';
 import { getDefaultSkeletonColumns } from './utils/getDefaultSkeletonColumns';
 import { getInfiniteScrollPadding } from './utils/getInfiniteScrollPadding';
 import { getIsRevealed } from './utils/getIsRevealed';
@@ -231,7 +230,7 @@ export const VirtualTable = <TData extends object, TValue>({
         }
       }
     } catch (_error) {
-      // eslint-disable-next-line no-console
+      // biome-ignore lint/suspicious/noConsole: deliberate developer-facing log
       console.warn('Cannot find first item');
     }
   }, [data, firstItem, infiniteScroll?.prevPage, rowKey, updateFirstItem]);

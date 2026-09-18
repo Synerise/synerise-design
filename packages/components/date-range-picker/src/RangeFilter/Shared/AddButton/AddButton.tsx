@@ -3,7 +3,7 @@ import React from 'react';
 import Button from '@synerise/ds-button';
 import Icon, { Add3M } from '@synerise/ds-icon';
 
-import { type AddButtonProps } from './AddButton.types';
+import type { AddButtonProps } from './AddButton.types';
 
 const AddButton: React.FC<AddButtonProps> = ({
   label,

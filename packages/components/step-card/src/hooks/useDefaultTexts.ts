@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { useIntl } from 'react-intl';
 
-import { type StepCardTexts } from '../StepCard.types';
+import type { StepCardTexts } from '../StepCard.types';
 
 export const useDefaultTexts = (
   texts?: Partial<StepCardTexts>,

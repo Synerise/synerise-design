@@ -1,6 +1,6 @@
 import type {
-  CSSProperties,
   ChangeEvent,
+  CSSProperties,
   FocusEventHandler,
   InputHTMLAttributes,
   KeyboardEventHandler,

@@ -1,5 +1,6 @@
-import { renderWithProvider } from '@synerise/ds-core';
 import { screen } from '@testing-library/react';
+
+import { renderWithProvider } from '@synerise/ds-core';
 
 import { InformationCardLoading } from './InformationCardLoading';
 

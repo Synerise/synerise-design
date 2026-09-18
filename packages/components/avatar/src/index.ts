@@ -1,20 +1,19 @@
 export { default } from './Avatar';
-export { default as ObjectAvatar } from './ObjectAvatar';
-export { default as UserAvatar } from './UserAvatar';
+export type {
+  AvatarProps,
+  Color as AvatarColor,
+  Color,
+  ObjectAvatar as ObjectAvatarType,
+  ObjectAvatarProps,
+  Size as AvatarSize,
+  Size,
+  TooltipObject,
+  UserAvatar as UserAvatarType,
+  UserAvatarProps,
+} from './Avatar.types';
 export {
   default as DefaultAvatarIcon,
   TOTAL_DEFAULT_AVATARS,
 } from './DefaultAvatarIcon';
-
-export type {
-  AvatarProps,
-  UserAvatar as UserAvatarType,
-  UserAvatarProps,
-  ObjectAvatar as ObjectAvatarType,
-  ObjectAvatarProps,
-  TooltipObject,
-  Size as AvatarSize,
-  Color as AvatarColor,
-  Size,
-  Color,
-} from './Avatar.types';
+export { default as ObjectAvatar } from './ObjectAvatar';
+export { default as UserAvatar } from './UserAvatar';

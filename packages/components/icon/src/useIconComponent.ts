@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 
 import type { AllIconNames } from './DynamicIcon/iconManifest';
 import {
-  type IconComponent,
   getIconComponent,
+  type IconComponent,
   loadIconComponent,
   peekIcon,
 } from './iconLoader';

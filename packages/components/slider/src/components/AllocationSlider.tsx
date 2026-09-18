@@ -1,3 +1,4 @@
+import { type Ranger, useRanger } from '@tanstack/react-ranger';
 import React, {
   type MouseEvent,
   useCallback,
@@ -7,13 +8,10 @@ import React, {
   useState,
 } from 'react';
 
-import { type Ranger, useRanger } from '@tanstack/react-ranger';
-
-import * as S from '../Slider.styles';
-import type { AllocationSliderProps } from '../Slider.types';
 import { SliderProvider } from '../context/SliderContext';
 import { useColorMap } from '../hooks/useColorMap';
-import { getClosestIndex } from '../utils/Slider.utils';
+import * as S from '../Slider.styles';
+import type { AllocationSliderProps } from '../Slider.types';
 import {
   checkIsPercentageInBoundaries,
   countAllocation,
@@ -26,6 +24,7 @@ import {
   checkIsBlockedVariantsChange,
   getBlockedHandlersKeys,
 } from '../utils/allocationHandlers.utils';
+import { getClosestIndex } from '../utils/Slider.utils';
 import { AllocationMarks } from './AllocationMarks';
 import { SliderAbove } from './SliderAbove';
 import { SliderLine } from './SliderLine';

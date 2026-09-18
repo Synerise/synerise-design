@@ -5,11 +5,8 @@ import Dropdown from '@synerise/ds-dropdown';
 import Icon, { ClockM, Close3S } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 
+import type { CompletedWithinProps, Period } from './CompletedWithin.types';
 import * as S from './CompleteWithin.styles';
-import {
-  type CompletedWithinProps,
-  type Period,
-} from './CompletedWithin.types';
 import Settings from './Settings/Settings';
 
 export const DEFAULT_PERIODS = [

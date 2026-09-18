@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import { type AutoResizeProp } from '@synerise/ds-input';
+import type { AutoResizeProp } from '@synerise/ds-input';
 
 import { ICON_GAP, ICON_OFFSET } from './Autocomplete.const';
 import { getIconsWidth } from './utils/getIconsWidth';

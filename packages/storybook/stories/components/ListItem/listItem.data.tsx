@@ -1,6 +1,6 @@
+import { faker } from '@faker-js/faker';
 import React, { ChangeEvent, useRef, useState } from 'react';
 
-import { faker } from '@faker-js/faker';
 import Avatar from '@synerise/ds-avatar';
 import Badge from '@synerise/ds-badge';
 import Checkbox, {

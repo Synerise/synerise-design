@@ -1,9 +1,6 @@
-import { type HTMLAttributes, type ReactText } from 'react';
+import type { HTMLAttributes, ReactText } from 'react';
 
-import {
-  type ConditionProps,
-  type ConditionTexts,
-} from '../../Condition.types';
+import type { ConditionProps, ConditionTexts } from '../../Condition.types';
 
 export type StepHeaderProps = {
   index: number;

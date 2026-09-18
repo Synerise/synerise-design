@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-import { type ParameterGroup, type ParameterItem } from '../../Factors.types';
+import type { ParameterGroup, ParameterItem } from '../../Factors.types';
 
 const itemIsParameterGroup = (
   item: ParameterGroup | undefined,
@@ -25,8 +25,7 @@ export const useGroups = (
       return groups;
     }
     const groupIds = groups
-      ?.map((group) => group.subGroups || group)
-      .flat()
+      ?.flatMap((group) => group.subGroups || group)
       .filter((group, index) => !(group.allowEmpty || index === 0))
       .map((group) => group.id);
 

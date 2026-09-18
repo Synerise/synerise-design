@@ -1,6 +1,6 @@
 import React, { type CSSProperties, type ReactNode } from 'react';
 
-import { type BadgeProps } from './Badge.types';
+import type { BadgeProps } from './Badge.types';
 import BadgeCore from './BadgeCore';
 import * as S from './BadgeWithLabel.styles';
 

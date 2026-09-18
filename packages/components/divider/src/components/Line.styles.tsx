@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { type DividerType } from '../Divider.types';
+import type { DividerType } from '../Divider.types';
 
 export const Line = styled.div<{
   marginTop?: number;

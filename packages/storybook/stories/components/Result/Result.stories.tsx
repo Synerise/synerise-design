@@ -1,6 +1,6 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import Button from '@synerise/ds-button';
 import Icon, {
   AngleDownS,
@@ -14,9 +14,9 @@ import Result, { ResultProps } from '@synerise/ds-result';
 
 import {
   CLASSNAME_ARG_CONTROL,
-  REACT_NODE_AS_STRING,
   controlFromOptionsArray,
   fixedWrapper588,
+  REACT_NODE_AS_STRING,
   reactNodeAsSelect,
 } from '../../utils';
 import { dataSingle } from '../List/List.data';

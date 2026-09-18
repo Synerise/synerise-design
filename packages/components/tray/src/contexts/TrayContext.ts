@@ -1,6 +1,6 @@
 import { createContext } from 'react';
 
-import { type TrayData } from '../components/TrayProvider';
+import type { TrayData } from '../components/TrayProvider';
 
 export type TrayContextType = {
   openTray: (id: string, data: TrayData) => void;

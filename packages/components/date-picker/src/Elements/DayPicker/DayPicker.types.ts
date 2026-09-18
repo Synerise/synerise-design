@@ -1,5 +1,5 @@
 import type React from 'react';
-import { type Matcher, type Modifiers } from 'react-day-picker';
+import type { Matcher, Modifiers } from 'react-day-picker';
 import type { IntlShape } from 'react-intl';
 
 import type { DateLocaleUtils } from '../../localeUtils';

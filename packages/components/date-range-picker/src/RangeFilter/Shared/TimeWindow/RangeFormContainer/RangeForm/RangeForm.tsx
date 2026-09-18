@@ -9,7 +9,7 @@ import Slider from '@synerise/ds-slider';
 import TimePicker from '@synerise/ds-time-picker';
 
 import { getDisabledTimeOptions } from '../../../../../RangePicker/utils';
-import { type TimeWindowTexts } from '../../TimeWindow.types';
+import type { TimeWindowTexts } from '../../TimeWindow.types';
 import {
   FORM_MODES,
   RANGE_DISPLAY_MODES,
@@ -19,7 +19,7 @@ import {
   SLIDER_STEP,
 } from './RangeForm.constants';
 import * as S from './RangeForm.styles';
-import { type DateLimitMode, type RangeFormProps } from './RangeForm.types';
+import type { DateLimitMode, RangeFormProps } from './RangeForm.types';
 import { dateToNumber, numberToDate } from './RangeForm.utils';
 
 // @deprecated, moved to ./RangeForm.constants

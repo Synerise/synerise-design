@@ -1,19 +1,19 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React, { ChangeEvent } from 'react';
 import { useArgs } from 'storybook/preview-api';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
-import { PasswordInput } from '@synerise/ds-input';
 import type { InputProps } from '@synerise/ds-input';
+import { PasswordInput } from '@synerise/ds-input';
 
 import {
   BOOLEAN_CONTROL,
   CLASSNAME_ARG_CONTROL,
+  centeredPaddedWrapper,
+  fixedWrapper300,
   NUMBER_CONTROL,
   PREFIXCLS_ARG_CONTROL,
   REACT_NODE_AS_STRING,
   STRING_CONTROL,
-  centeredPaddedWrapper,
-  fixedWrapper300,
 } from '../../utils';
 
 const defaultRender = (args: InputProps) => {

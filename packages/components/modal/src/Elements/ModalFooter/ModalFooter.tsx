@@ -2,7 +2,7 @@ import React from 'react';
 
 import Button from '@synerise/ds-button';
 
-import { type ModalFooterProps } from '../../Modal.types';
+import type { ModalFooterProps } from '../../Modal.types';
 import * as S from './ModalFooter.styles';
 
 export const ModalFooter = ({

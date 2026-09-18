@@ -1,6 +1,5 @@
-import { type CSSProperties, type ReactNode, type UIEvent } from 'react';
-
-import { type ScrollBarProps } from '@ofsajd/react-perfect-scrollbar';
+import type { ScrollBarProps } from '@ofsajd/react-perfect-scrollbar';
+import type { CSSProperties, ReactNode, UIEvent } from 'react';
 
 export type OverscrollBehavior = 'contain' | 'auto' | 'none';
 export type ScrollbarAdditionalProps = {

@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import { type ThemeProps, type ThemePropsVars } from '@synerise/ds-core';
+import type { ThemeProps, ThemePropsVars } from '@synerise/ds-core';
 
 import { TagShape } from './Tag.types';
 
@@ -161,8 +161,9 @@ const insertShapeStyles = (props: InsertShapeStyles) => {
           padding-right: ${props.removable && props.suffixel && '4px'};
         }
 
-        ${props.isActionable &&
-        css`
+        ${
+          props.isActionable &&
+          css`
           &:hover {
             padding: ${props.removable && props.suffixel && '0 15px 0 0px'};
 
@@ -185,7 +186,8 @@ const insertShapeStyles = (props: InsertShapeStyles) => {
               }
             }
           }
-        `}
+        `
+        }
       `;
 
     case TagShape.DEFAULT_SQUARE:
@@ -203,8 +205,9 @@ const insertShapeStyles = (props: InsertShapeStyles) => {
           padding-right: ${props.removable && props.suffixel && '4px'};
         }
 
-        ${props.isActionable &&
-        css`
+        ${
+          props.isActionable &&
+          css`
           &:hover {
             padding-right: ${props.removable && props.suffixel && '15px'};
 
@@ -227,7 +230,8 @@ const insertShapeStyles = (props: InsertShapeStyles) => {
               }
             }
           }
-        `}
+        `
+        }
       `;
 
     case TagShape.SINGLE_CHARACTER_ROUND:
@@ -255,9 +259,9 @@ const insertShapeStyles = (props: InsertShapeStyles) => {
     case TagShape.STATUS_NEUTRAL:
       return css`
         border: 1px solid ${props.color || props.theme.palette['grey-500']};
-        color: ${props.textColor ||
-        props.color ||
-        props.theme.palette['grey-500']};
+        color: ${
+          props.textColor || props.color || props.theme.palette['grey-500']
+        };
         ${defaultStatusStyles}
       `;
 
@@ -392,12 +396,14 @@ export const Tag = styled.div<TagProps>`
         background-color: ${props.color || props.theme.palette['grey-500']};
       }
 
-      ${props.isActionable &&
-      css`
+      ${
+        props.isActionable &&
+        css`
         &:hover:before {
           filter: ${getFilterColor};
         }
-      `};
+      `
+      };
     `}
 
 

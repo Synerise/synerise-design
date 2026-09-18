@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { type ThemeProps } from '@synerise/ds-core';
+import type { ThemeProps } from '@synerise/ds-core';
 
 export const TextTrigger = styled.div<{
   inactiveColor: string;

@@ -1,11 +1,11 @@
-import {
-  type ChangeEvent,
-  type FocusEventHandler,
-  type KeyboardEventHandler,
-  type ReactNode,
+import type {
+  ChangeEvent,
+  FocusEventHandler,
+  KeyboardEventHandler,
+  ReactNode,
 } from 'react';
 
-import { type TooltipProps } from '@synerise/ds-tooltip';
+import type { TooltipProps } from '@synerise/ds-tooltip';
 
 export type PageHeaderProps = {
   className?: string;

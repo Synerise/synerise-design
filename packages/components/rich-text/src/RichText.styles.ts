@@ -1,6 +1,6 @@
 import styled, { css, keyframes } from 'styled-components';
 
-import { type ThemeProps } from '@synerise/ds-core';
+import type { ThemeProps } from '@synerise/ds-core';
 import { hexToRgba } from '@synerise/ds-utils';
 
 // Height of the toolbar row that unmounts when subtle mode deactivates.
@@ -92,8 +92,9 @@ export const EditorWrapper = styled.div<{
         }
       }
 
-      ${props.$animations
-        ? css`
+      ${
+        props.$animations
+          ? css`
             /* Match SubtleForm hover timing (0.1s ease-in, 0.2s delay). */
             transition:
               border-color 0.2s ease,
@@ -121,7 +122,7 @@ export const EditorWrapper = styled.div<{
               }
             }
           `
-        : css`
+          : css`
             /* Animations disabled: hovering only tints the background,
                instantly — content and placeholder stay put. */
             transition: border-color 0.2s ease;
@@ -129,7 +130,8 @@ export const EditorWrapper = styled.div<{
             ${SubtleSuffix} {
               transition: none;
             }
-          `};
+          `
+      };
     `};
 
   ${(props) =>
@@ -149,11 +151,13 @@ export const EditorWrapper = styled.div<{
     props.$hasError &&
     css`
       background: ${props.theme.palette['red-050']};
-      ${!props.$noBorder &&
-      css`
+      ${
+        !props.$noBorder &&
+        css`
         outline: 1px solid ${props.theme.palette['red-600']};
         outline-offset: -1px;
-      `};
+      `
+      };
     `};
 
   ${(props) =>

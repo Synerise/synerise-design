@@ -1,9 +1,9 @@
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 import { fn, userEvent, within } from 'storybook/test';
 
-import type { Meta, StoryObj } from '@storybook/react-vite';
-import Autocomplete from '@synerise/ds-autocomplete';
 import type { AutocompleteProps } from '@synerise/ds-autocomplete';
+import Autocomplete from '@synerise/ds-autocomplete';
 import { theme } from '@synerise/ds-core';
 import Icon, { EmoticonsM, SnippetM } from '@synerise/ds-icon';
 import Loader from '@synerise/ds-loader';
@@ -11,11 +11,11 @@ import Loader from '@synerise/ds-loader';
 import {
   BOOLEAN_CONTROL,
   CLASSNAME_ARG_CONTROL,
+  fixedWrapper400,
   NUMBER_CONTROL,
   PREFIXCLS_ARG_CONTROL,
   REACT_NODE_AS_STRING,
   STRING_CONTROL,
-  fixedWrapper400,
 } from '../../utils';
 import { AutocompleteWithState } from './Autocomplete.data';
 

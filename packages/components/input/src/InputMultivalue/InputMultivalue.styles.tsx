@@ -1,9 +1,9 @@
 import styled, {
-  type FlattenSimpleInterpolation,
   css,
+  type FlattenSimpleInterpolation,
 } from 'styled-components';
 
-import { type ThemeProps } from '@synerise/ds-core';
+import type { ThemeProps } from '@synerise/ds-core';
 
 export type InputWrapperProps = {
   error?: boolean;

@@ -5,7 +5,7 @@ export const IconWrapper = styled.div<{ noBorder?: boolean }>`
     padding: 10px;
     min-width: 145px;
     text-align: center;
-    ${props => props.noBorder ? `` : `border: 1px solid #e0e0e0;`}
+    ${(props) => (props.noBorder ? `` : `border: 1px solid #e0e0e0;`)}
     display: flex;
     flex-direction: column;
     align-items: center;

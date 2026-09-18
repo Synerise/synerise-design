@@ -1,6 +1,6 @@
 import { max as fnsMax, min as fnsMin } from 'date-fns';
 
-import { type DateFilter, type RelativeDateRange } from '../date.types';
+import type { DateFilter, RelativeDateRange } from '../date.types';
 import ADD from './add';
 import END_OF from './endOf';
 import START_OF from './startOf';

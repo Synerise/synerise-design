@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-import { Container, SelectedTags } from '@synerise/ds-tags/dist/Tags.styles';
 import { AddTagButton } from '@synerise/ds-tags/dist/components/AddTags/AddTags.styles';
+import { Container, SelectedTags } from '@synerise/ds-tags/dist/Tags.styles';
 
 export const TagsGroupWrapper = styled.div<{
   isDisabled?: boolean;

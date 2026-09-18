@@ -1,18 +1,18 @@
 import {
   type ArrowOptions,
-  type Middleware,
   arrow,
   flip,
   hide,
+  type Middleware,
   offset,
   shift,
 } from '@floating-ui/react';
 
-import {
-  type FlipConfig,
-  type HideConfig,
-  type OffsetConfig,
-  type ShiftConfig,
+import type {
+  FlipConfig,
+  HideConfig,
+  OffsetConfig,
+  ShiftConfig,
 } from '../Popover.types';
 
 type GetMiddleware = {

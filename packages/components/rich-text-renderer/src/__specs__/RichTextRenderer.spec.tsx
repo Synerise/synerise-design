@@ -100,7 +100,7 @@ describe('RichTextRenderer', () => {
             {
               type: 'text',
               text: 'evil',
-              // eslint-disable-next-line no-script-url
+              // biome-ignore lint/suspicious/noJavascriptUrl: placeholder href
               marks: [{ type: 'link', href: 'javascript:alert(1)' }],
             },
           ],

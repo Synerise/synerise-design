@@ -1,11 +1,11 @@
 import type { MouseEventHandler, ReactNode } from 'react';
 import styled, { css } from 'styled-components';
 
-import { type ThemePropsVars } from '@synerise/ds-core';
+import type { ThemePropsVars } from '@synerise/ds-core';
 import { Title as DSTitle } from '@synerise/ds-typography';
 
 import { CardSummaryWrapper } from '../CardSummary/CardSummary.styles';
-import { type Backgrounds } from './Card.types';
+import type { Backgrounds } from './Card.types';
 
 const whiteBg = ['white', 'white-shadow'];
 const greyBg = ['grey', 'grey-shadow'];

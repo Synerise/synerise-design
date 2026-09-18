@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import InputNumber from '@synerise/ds-input-number';
 
-import { type FactorValueComponentProps } from '../../Factors.types';
+import type { FactorValueComponentProps } from '../../Factors.types';
 
 const NumberInput = ({
   error,
@@ -24,11 +24,11 @@ const NumberInput = ({
     }
   }, [value, uncontrolledComponent]);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: dependencies intentionally omitted
   useEffect(() => {
     if (uncontrolledComponent && !value && localValue !== value) {
       setLocalValue(value);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value, uncontrolledComponent]);
 
   const handleChange = (val: string | number | null | undefined) => {

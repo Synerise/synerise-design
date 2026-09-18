@@ -347,18 +347,18 @@ export const CardTabContainer = styled.div<{
       background-image: linear-gradient(
         to right,
         ${({ theme, active }) => {
-            if (active) {
-              return theme.palette.white;
-            }
-            return theme.palette['grey-800'];
-          }}
+          if (active) {
+            return theme.palette.white;
+          }
+          return theme.palette['grey-800'];
+        }}
           0%,
         ${({ theme, active }) => {
-            if (active) {
-              return theme.palette.white;
-            }
-            return theme.palette['grey-800'];
-          }}
+          if (active) {
+            return theme.palette.white;
+          }
+          return theme.palette['grey-800'];
+        }}
           33%,
         rgba(255, 255, 255, 0) 34%,
         rgba(255, 255, 255, 0) 100%

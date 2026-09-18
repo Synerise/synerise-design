@@ -6,21 +6,21 @@ import React, {
   type ReactNode,
   type UIEvent,
 } from 'react';
-import { type Matcher, type Modifiers } from 'react-day-picker';
+import type { Matcher, Modifiers } from 'react-day-picker';
 
 import {
-  type WithDataFormatProps,
   getDefaultDataTimeOptions,
+  type WithDataFormatProps,
   withDataFormat,
 } from '@synerise/ds-core';
 import {
   DayPicker,
-  MonthPicker,
-  TimePicker,
-  YearPicker,
   fnsDifferenceInYears,
   datePickerFormat as fnsFormat,
   localeUtils,
+  MonthPicker,
+  TimePicker,
+  YearPicker,
 } from '@synerise/ds-date-picker';
 import {
   DayBackground,
@@ -30,9 +30,8 @@ import {
 import Icon, { CalendarM, ClockM } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 
-import { Range } from '../RelativeRangePicker/RelativeRangePicker.styles';
 import { ABSOLUTE, COLUMNS, MODES } from '../constants';
-import { type AbsoluteDateRange, type RelativeDateRange } from '../date.types';
+import type { AbsoluteDateRange, RelativeDateRange } from '../date.types';
 import ADD from '../dateUtils/add';
 import getDateFromString from '../dateUtils/getDateFromString';
 import { toDateValue } from '../dateUtils/toDateValue';
@@ -45,11 +44,12 @@ import {
   fnsIsSameMonth,
   fnsStartOfDay,
 } from '../fns';
+import { Range } from '../RelativeRangePicker/RelativeRangePicker.styles';
 import * as S from './RangePicker.styles';
-import {
-  type RangePickerProps as Props,
-  type Side as SideType,
-  type State,
+import type {
+  RangePickerProps as Props,
+  Side as SideType,
+  State,
 } from './RangePicker.types';
 import { getDisabledTimeOptions, getModifiers, getSidesState } from './utils';
 
@@ -99,7 +99,6 @@ function replaceRange(
 class RangePicker extends PureComponent<Props & WithDataFormatProps, State> {
   constructor(props: Props & WithDataFormatProps) {
     super(props);
-    // eslint-disable-next-line react/state-in-constructor
     this.state = {
       enteredTo: null,
       ...getSidesState(props.value),

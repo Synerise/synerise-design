@@ -2,7 +2,7 @@ import React from 'react';
 
 import { FileTypeImageM } from '@synerise/ds-icon';
 
-import { type PreviewableMimeType } from './FileViewAvatar.types';
+import type { PreviewableMimeType } from './FileViewAvatar.types';
 
 export const previewableMimeTypes: PreviewableMimeType[] = [
   'image/png',

@@ -3,10 +3,7 @@ import type { CSSProperties, ReactNode, ReactText } from 'react';
 import type { DropdownSharedProps } from '@synerise/ds-dropdown';
 import type { InformationCardProps } from '@synerise/ds-information-card';
 import type { ItemSize, ListItemProps } from '@synerise/ds-list-item';
-import {
-  type DelayConfig,
-  type PopoverTriggerType,
-} from '@synerise/ds-popover';
+import type { DelayConfig, PopoverTriggerType } from '@synerise/ds-popover';
 import type { HandledEventsType } from '@synerise/ds-utils';
 
 export type ContextTexts = {

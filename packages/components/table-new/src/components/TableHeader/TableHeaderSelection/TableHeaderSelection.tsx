@@ -6,14 +6,14 @@ import {
 } from '@synerise/ds-dropdown';
 import Icon, { OptionVerticalM } from '@synerise/ds-icon';
 
-import { SELECTION_ALL, SELECTION_INVERT } from '../../../Table.const';
-import {
-  type Selection,
-  type SelectionItem,
-  type TableHeaderSelectionProps,
-} from '../../../Table.types';
 import { useSelectionContext } from '../../../contexts/SelectionContext';
 import { useTableContext } from '../../../contexts/TableContext';
+import { SELECTION_ALL, SELECTION_INVERT } from '../../../Table.const';
+import type {
+  Selection,
+  SelectionItem,
+  TableHeaderSelectionProps,
+} from '../../../Table.types';
 import * as S from './TableHeaderSelection.styles';
 
 export const TableHeaderSelection = <TData extends object>({

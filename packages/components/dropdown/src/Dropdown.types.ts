@@ -1,12 +1,12 @@
-import { type CSSProperties, type HTMLAttributes, type ReactNode } from 'react';
+import type { OpenChangeReason } from '@floating-ui/react';
+import type { CSSProperties, HTMLAttributes, ReactNode } from 'react';
 
-import { type OpenChangeReason } from '@floating-ui/react';
-import {
-  type LegacyDropdownPlacement,
-  type PopoverOptions,
-  type PopoverTriggerType,
+import type {
+  LegacyDropdownPlacement,
+  PopoverOptions,
+  PopoverTriggerType,
 } from '@synerise/ds-popover';
-import { type WithHTMLAttributes } from '@synerise/ds-utils';
+import type { WithHTMLAttributes } from '@synerise/ds-utils';
 
 export type DropdownProps = Omit<
   WithHTMLAttributes<
@@ -70,7 +70,7 @@ export type DropdownSharedProps = {
   /**
    * @deprecated this should not be needed anymore
    */
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // biome-ignore lint/suspicious/noExplicitAny: upstream type is not expressible here
   align?: any;
   popoverProps?: Partial<PopoverOptions>;
   popoverTriggerProps?: Omit<HTMLAttributes<HTMLSpanElement>, 'onClick'>;

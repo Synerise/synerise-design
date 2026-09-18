@@ -1,15 +1,19 @@
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import isChromatic from 'chromatic/isChromatic';
 import React from 'react';
 import { action } from 'storybook/actions';
 import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
 
-import type { Meta, StoryObj } from '@storybook/react-vite';
 import { UserAvatar } from '@synerise/ds-avatar';
 import Button from '@synerise/ds-button';
 import { theme } from '@synerise/ds-core';
 import FileUploader from '@synerise/ds-file-uploader';
-import Icon, { InfoFillS, InfoM, SegmentM } from '@synerise/ds-icon';
-import { KeyboardEnterM } from '@synerise/ds-icon';
+import Icon, {
+  InfoFillS,
+  InfoM,
+  KeyboardEnterM,
+  SegmentM,
+} from '@synerise/ds-icon';
 import InformationCard from '@synerise/ds-information-card';
 import ShortCuts from '@synerise/ds-short-cuts';
 import Tag, { TagShape } from '@synerise/ds-tag';
@@ -19,13 +23,13 @@ import { tooltipImage } from '../../constants/images';
 import {
   BOOLEAN_CONTROL,
   CLASSNAME_ARG_CONTROL,
+  centeredPaddedWrapper,
+  controlFromOptionsArray,
+  fixedWrapper400,
   NUMBER_CONTROL,
   PREFIXCLS_ARG_CONTROL,
   REACT_NODE_AS_STRING,
   STYLE_ARG_CONTROL,
-  centeredPaddedWrapper,
-  controlFromOptionsArray,
-  fixedWrapper400,
 } from '../../utils';
 import { TOOLTIP_TITLE } from './Tooltip.data';
 

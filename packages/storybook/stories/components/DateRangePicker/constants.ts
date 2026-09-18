@@ -1,13 +1,16 @@
-import { TimePickerProps } from '@synerise/ds-time-picker';
-
+import type {
+  AbsoluteDateRange,
+  DateRangePickerProps,
+  RelativeDateRange,
+} from '@synerise/ds-date-range-picker';
 import {
   DEFAULT_RANGE_END,
   DEFAULT_RANGE_START,
 } from '@synerise/ds-date-range-picker';
+import { TimePickerProps } from '@synerise/ds-time-picker';
 
-import type { DateRangePickerProps, AbsoluteDateRange, RelativeDateRange } from '@synerise/ds-date-range-picker';
-
-type DateLimitMode = Required<DateRangePickerProps>['filterValueSelectionModes'][number];
+type DateLimitMode =
+  Required<DateRangePickerProps>['filterValueSelectionModes'][number];
 
 export { DEFAULT_RANGE_END, DEFAULT_RANGE_START };
 

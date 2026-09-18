@@ -1,11 +1,11 @@
 import styled, {
+  css,
   type FlattenSimpleInterpolation,
   type Keyframes,
-  css,
   keyframes,
 } from 'styled-components';
 
-import { type ThemeProps } from '@synerise/ds-core';
+import type { ThemeProps } from '@synerise/ds-core';
 import { IconContainer } from '@synerise/ds-icon';
 
 import BaseButton from '../BaseButton';

@@ -6,11 +6,11 @@ import { getDefaultDataTimeOptions, useDataFormat } from '@synerise/ds-core';
 import Icon, { ArrowRightS } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 
-import { type Texts } from '../DateRangePicker.types';
-import { isLifetime } from '../RelativeRangePicker/Elements/RangeDropdown/RangeDropdown';
 import * as CONST from '../constants';
+import type { Texts } from '../DateRangePicker.types';
+import { isLifetime } from '../RelativeRangePicker/Elements/RangeDropdown/RangeDropdown';
 import * as S from './Footer.styles';
-import { type Props } from './Footer.types';
+import type { Props } from './Footer.types';
 
 const Footer = ({
   canApply,
@@ -62,12 +62,12 @@ const Footer = ({
     }
     return (
       <S.ChosenRange className={displayDateContainerClass}>
-        {!!value && !!value.from
+        {value && value.from
           ? footerDateToString(value?.from)
           : texts.startDatePlaceholder}
         <S.InvisibleTextContent>{' – '}</S.InvisibleTextContent>
         <Icon component={<ArrowRightS />} />
-        {!!value && !!value.to
+        {value && value.to
           ? footerDateToString(value?.to)
           : texts.endDatePlaceholder}
       </S.ChosenRange>

@@ -1,15 +1,15 @@
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 
-import type { Meta, StoryObj } from '@storybook/react-vite';
 import { theme } from '@synerise/ds-core';
 import Status from '@synerise/ds-status';
 
 import {
   BOOLEAN_CONTROL,
   CLASSNAME_ARG_CONTROL,
-  REACT_NODE_AS_STRING,
   centeredPaddedWrapper,
   controlFromOptionsArray,
+  REACT_NODE_AS_STRING,
 } from '../../utils';
 
 const COLOR_OPTIONS = {

@@ -7,18 +7,12 @@ import React, {
 } from 'react';
 
 import Button from '@synerise/ds-button';
-import {
-  type ContextGroup,
-  type ContextItem,
-} from '@synerise/ds-context-selector';
-import { type FactorType, type FactorValueType } from '@synerise/ds-factors';
+import type { ContextGroup, ContextItem } from '@synerise/ds-context-selector';
+import type { FactorType, FactorValueType } from '@synerise/ds-factors';
 import Icon, { Add3M, DragHandleM } from '@synerise/ds-icon';
-import {
-  type OperatorsGroup,
-  type OperatorsItem,
-} from '@synerise/ds-operators';
+import type { OperatorsGroup, OperatorsItem } from '@synerise/ds-operators';
 import { DragOverlay, SortableContainer } from '@synerise/ds-sortable';
-import { type SubjectItem } from '@synerise/ds-subject';
+import type { SubjectItem } from '@synerise/ds-subject';
 import { usePrevious } from '@synerise/ds-utils';
 
 import * as S from './Condition.style';
@@ -92,6 +86,7 @@ const Condition = (props: ConditionProps) => {
 
   const prevSteps = usePrevious(steps);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: dependencies intentionally omitted
   useEffect(() => {
     if (
       autoOpenedComponent &&
@@ -103,7 +98,6 @@ const Condition = (props: ConditionProps) => {
       setCurrentConditionId(steps[0].conditions[0].id);
       setCurrentField(autoOpenedComponent);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

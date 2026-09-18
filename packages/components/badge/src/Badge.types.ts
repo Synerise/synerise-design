@@ -1,9 +1,9 @@
-import { type CSSProperties, type ReactNode } from 'react';
+import type { CSSProperties, ReactNode } from 'react';
 
-import { type DefaultColor } from '@synerise/ds-core';
-import {
-  type LiteralStringUnion,
-  type PassthroughAttributes,
+import type { DefaultColor } from '@synerise/ds-core';
+import type {
+  LiteralStringUnion,
+  PassthroughAttributes,
 } from '@synerise/ds-utils';
 
 export const color = [

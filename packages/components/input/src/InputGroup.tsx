@@ -4,7 +4,7 @@ import FormField from '@synerise/ds-form-field';
 
 import * as InputStyles from './Input.styles';
 import * as S from './InputGroup.styles';
-import { type Props } from './InputGroup.types';
+import type { Props } from './InputGroup.types';
 
 const InputGroup = ({
   children,

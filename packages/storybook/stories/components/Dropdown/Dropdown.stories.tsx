@@ -1,7 +1,7 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React, { ReactNode, useRef, useState } from 'react';
 import { fn } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import Button from '@synerise/ds-button';
 import { theme } from '@synerise/ds-core';
 import Dropdown, {
@@ -27,9 +27,9 @@ import {
 } from '../../utils';
 import Advanced from './Advanced';
 import {
-  PLACEMENTS,
   dataCopy,
   dataItems,
+  PLACEMENTS,
   tabsWithIcons,
 } from './Dropdown.data';
 import * as S from './Dropdown.styles';

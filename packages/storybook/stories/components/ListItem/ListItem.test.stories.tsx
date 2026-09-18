@@ -1,6 +1,6 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import { expect, userEvent, waitFor, within } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import type { ListItemProps } from '@synerise/ds-list-item';
 
 import ListItemMeta, {
@@ -10,8 +10,8 @@ import ListItemMeta, {
   LabelOnly,
   PrefixAndSuffixOnHover,
   WithHoverTooltip,
-  WithStar,
   WithoutHover,
+  WithStar,
 } from './ListItem.stories';
 
 export default {

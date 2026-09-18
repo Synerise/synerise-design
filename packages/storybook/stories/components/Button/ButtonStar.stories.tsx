@@ -1,14 +1,14 @@
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 import { useArgs } from 'storybook/preview-api';
 
-import type { Meta, StoryObj } from '@storybook/react-vite';
-import Button from '@synerise/ds-button';
 import type { StarButtonProps } from '@synerise/ds-button';
+import Button from '@synerise/ds-button';
 
 import {
   BOOLEAN_CONTROL,
-  CLASSNAME_ARG_CONTROL,
   buttonDecorator,
+  CLASSNAME_ARG_CONTROL,
 } from '../../utils';
 
 const meta: Meta<StarButtonProps> = {

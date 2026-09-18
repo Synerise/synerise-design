@@ -4,7 +4,7 @@ import { theme } from '@synerise/ds-core';
 import Icon, { AngleDownS, AngleUpS, DragHandleM } from '@synerise/ds-icon';
 
 import * as S from '../Sidebar.styles';
-import { type PanelProps } from '../Sidebar.types';
+import type { PanelProps } from '../Sidebar.types';
 
 export const DragOverlayPanel = ({
   header,

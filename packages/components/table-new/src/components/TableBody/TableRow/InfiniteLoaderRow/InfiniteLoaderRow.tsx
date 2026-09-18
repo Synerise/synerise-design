@@ -1,10 +1,10 @@
 import React, { type CSSProperties, type ReactNode, useEffect } from 'react';
 
-import {
-  type InfiniteLoaderRowTexts,
-  type InfiniteScrollState,
-} from '../../../../Table.types';
 import { useTableContext } from '../../../../contexts/TableContext';
+import type {
+  InfiniteLoaderRowTexts,
+  InfiniteScrollState,
+} from '../../../../Table.types';
 import { TableCell } from '../../../TableBody/TableCell/TableCell';
 import * as S from '../TableRow.styles';
 import { ErrorItem } from './ErrorItem';

@@ -80,7 +80,7 @@ install:
     - echo "always-auth = true" >> .npmrc
   script:
     - pnpm install --frozen-lockfile
-    - pnpm lint
+    - pnpm lint:ci
     - pnpm check:no-package-test-config
     - rm -f .npmrc
   cache:

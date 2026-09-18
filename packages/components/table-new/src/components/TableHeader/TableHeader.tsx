@@ -3,12 +3,12 @@ import React, { useEffect, useMemo, useRef } from 'react';
 import { useDataFormat } from '@synerise/ds-core';
 import { SearchInput } from '@synerise/ds-search';
 
-import { BOTTOM_BORDER_WIDTH } from '../../Table.const';
-import { TableSkeleton } from '../../Table.styles';
-import { type TableHeaderProps } from '../../Table.types';
 import { useSelectionContext } from '../../contexts/SelectionContext';
 import { useStickyContext } from '../../contexts/StickyContext';
 import { useTableContext } from '../../contexts/TableContext';
+import { BOTTOM_BORDER_WIDTH } from '../../Table.const';
+import { TableSkeleton } from '../../Table.styles';
+import type { TableHeaderProps } from '../../Table.types';
 import { ItemsMenu } from '../ItemsMenu/ItemsMenu';
 import { TableCounter } from './TableCounter/TableCounter';
 import * as S from './TableHeader.styles';
@@ -47,6 +47,7 @@ export const TableHeader = <TData extends object, TValue>({
   const isGlobalSelected =
     hasGlobalSelection && selectionConfig?.globalSelected;
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: dependencies intentionally omitted
   useEffect(() => {
     if (stickyContext && headerRef.current) {
       const { setStickyData } = stickyContext;
@@ -57,7 +58,6 @@ export const TableHeader = <TData extends object, TValue>({
           : 0,
       }));
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Use rowSelection state directly to include items selected but currently filtered out

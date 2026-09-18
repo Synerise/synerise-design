@@ -1,7 +1,7 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React, { useState } from 'react';
 import { expect, fn, screen, userEvent, waitFor, within } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import { ImagePreview, type ImagePreviewProps } from '@synerise/ds-image';
 
 import StoriesMeta, { SingleImage } from './ImagePreview.stories';

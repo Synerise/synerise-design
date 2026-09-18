@@ -13,4 +13,4 @@ export const TUTORIALS = [
   },
 ];
 
-export const TOOLTIP_TITLE = 'Tooltip title'
+export const TOOLTIP_TITLE = 'Tooltip title';

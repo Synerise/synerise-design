@@ -1,4 +1,4 @@
-import { type TextareaProps } from '../TextArea.types';
+import type { TextareaProps } from '../TextArea.types';
 
 // Native input value type (replaces the antd `InputProps['value']` this used to
 // borrow — ds-input no longer depends on antd for this).

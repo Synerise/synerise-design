@@ -4,7 +4,7 @@ import { v4 as uuid } from 'uuid';
 import Tooltip from '@synerise/ds-tooltip';
 
 import * as S from '../InformationCard.styles';
-import { type InformationCardSummaryProps } from './InformationCardSummary.types';
+import type { InformationCardSummaryProps } from './InformationCardSummary.types';
 
 export const InformationCardSummary = ({
   items,

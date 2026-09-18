@@ -73,12 +73,12 @@ export const PageHeaderClose = styled.div`
   }
 `;
 
+export { WrapperPageHeaderBack as PageHeaderBack } from './PageHeaderBack/PageHeaderBack.styles';
 // reexport styles for backwards compatibility
 export {
-  WrapperPageHeaderClamp as PageHeaderClamp,
   PageHeaderTitle,
   PageHeaderTooltipWraper,
+  WrapperPageHeaderClamp as PageHeaderClamp,
 } from './PageHeaderClamp/PageHeaderClamp.styles';
 export { WrapperPageHeaderInlineEdit as PageHeaderInlineEdit } from './PageHeaderInlineEdit/PageHeaderInlineEdit.styles';
-export { WrapperPageHeaderBack as PageHeaderBack } from './PageHeaderBack/PageHeaderBack.styles';
 export { WrapperPageHeaderRightSide as PageHeaderRightSide } from './PageHeaderRightSide/PageHeaderRightSide.styles';

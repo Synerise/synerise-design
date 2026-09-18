@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { type FactorValueProps } from '../Factors.types';
+import type { FactorValueProps } from '../Factors.types';
 import * as S from './FactorValue.style';
 
 const FactorValue = ({

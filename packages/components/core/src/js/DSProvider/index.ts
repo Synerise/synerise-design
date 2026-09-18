@@ -1,1 +1,1 @@
-export { default, type DSProviderProps } from './DSProvider';
+export { type DSProviderProps, default } from './DSProvider';

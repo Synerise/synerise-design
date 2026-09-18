@@ -1,5 +1,4 @@
-
-export const sizes = ['small', 'medium', 'large', 'extraLarge'] as const
+export const sizes = ['small', 'medium', 'large', 'extraLarge'] as const;
 export const shapes = ['circle', 'square'] as const;
 
 export const backgroundColors = [

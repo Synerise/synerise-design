@@ -1,12 +1,12 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 import { fn } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import Confirmation, { ConfirmationProps } from '@synerise/ds-confirmation';
 import Description, { DescriptionRow } from '@synerise/ds-description';
 import { ErrorXl, LaunchXl, PauseXl, PlayXl } from '@synerise/ds-icon';
 import { ListItemProps } from '@synerise/ds-list-item';
-import { TreeTable, legacyColumnConfigAdapter } from '@synerise/ds-table-new';
+import { legacyColumnConfigAdapter, TreeTable } from '@synerise/ds-table-new';
 
 import {
   BOOLEAN_CONTROL,

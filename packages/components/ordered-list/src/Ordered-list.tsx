@@ -4,7 +4,7 @@ import { FormFieldLabel } from '@synerise/ds-form-field';
 
 import Item from './Elements/Item/Item';
 import * as S from './Ordered-list.styles';
-import { type OrderedListProps } from './Ordered-list.types';
+import type { OrderedListProps } from './Ordered-list.types';
 
 const OrderedList = ({
   data,

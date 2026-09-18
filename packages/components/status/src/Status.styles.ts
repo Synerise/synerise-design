@@ -1,6 +1,6 @@
-import styled, { type StyledComponent, css } from 'styled-components';
+import styled, { css, type StyledComponent } from 'styled-components';
 
-import { type ThemeProps } from '@synerise/ds-core';
+import type { ThemeProps } from '@synerise/ds-core';
 import Tag, { type TagProps } from '@synerise/ds-tag';
 
 import type { StatusType } from './Status.types';

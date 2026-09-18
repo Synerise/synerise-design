@@ -1,7 +1,7 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 import { userEvent, within } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import { ConfirmationProps } from '@synerise/ds-confirmation';
 import { ListItemProps } from '@synerise/ds-list-item';
 

@@ -14,7 +14,7 @@ import { useOnClickOutside, usePrevious } from '@synerise/ds-utils';
 
 import * as S from '../../Search.styles';
 import SearchButton from '../SearchButton/SearchButton';
-import { type SearchInputProps } from './SearchInput.types';
+import type { SearchInputProps } from './SearchInput.types';
 
 const SearchInput = ({
   alwaysExpanded,

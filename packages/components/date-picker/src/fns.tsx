@@ -23,25 +23,27 @@ import {
   startOfMonth as fnsStartOfMonth,
 } from 'date-fns';
 
-export { fnsGetSeconds };
-export { fnsDifferenceInSeconds };
-export { fnsStartOfMonth };
-export { fnsSetDate };
-export { fnsSetMonth };
-export { fnsSetYear };
-export { fnsStartOfDay };
-export { fnsEndOfDay };
-export { fnsAddYears };
-export { fnsEndOfMonth };
-export { fnsIsSameMonth };
-export { fnsIsBefore };
-export { fnsIsAfter };
-export { fnsAddMonths };
-export { fnsFormat };
-export { fnsIsSameYear };
-export { fnsGetYear };
-export { fnsAddDays };
-export { fnsAddSeconds };
-export { fnsDifferenceInYears };
-export { fnsIsEqual };
-export { fnsIsSameDay };
+export {
+  fnsAddDays,
+  fnsAddMonths,
+  fnsAddSeconds,
+  fnsAddYears,
+  fnsDifferenceInSeconds,
+  fnsDifferenceInYears,
+  fnsEndOfDay,
+  fnsEndOfMonth,
+  fnsFormat,
+  fnsGetSeconds,
+  fnsGetYear,
+  fnsIsAfter,
+  fnsIsBefore,
+  fnsIsEqual,
+  fnsIsSameDay,
+  fnsIsSameMonth,
+  fnsIsSameYear,
+  fnsSetDate,
+  fnsSetMonth,
+  fnsSetYear,
+  fnsStartOfDay,
+  fnsStartOfMonth,
+};

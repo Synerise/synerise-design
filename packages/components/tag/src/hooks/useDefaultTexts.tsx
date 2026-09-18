@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
-import { type TagTexts } from '../Tag.types';
+import type { TagTexts } from '../Tag.types';
 
 export const useDefaultTexts = (texts?: Partial<TagTexts>): TagTexts => {
   const { formatMessage } = useIntl();

@@ -4,7 +4,7 @@ import type { CSSProperties, ReactNode } from 'react';
 import type { DateToFormatOptions } from '@synerise/ds-core';
 import type { DropdownSharedProps } from '@synerise/ds-dropdown';
 import type { InputProps } from '@synerise/ds-input';
-import { type PopoverTriggerType } from '@synerise/ds-popover';
+import type { PopoverTriggerType } from '@synerise/ds-popover';
 
 export type ClockModes = 'AM' | 'PM';
 

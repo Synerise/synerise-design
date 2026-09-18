@@ -1,10 +1,10 @@
 import React, { useCallback, useEffect, useRef } from 'react';
 
-import { DEFAULT_CELL_HEIGHT } from '../../Table.const';
-import type { BaseTableProps, TableInternalProps } from '../../Table.types';
 import { useStickyContext } from '../../contexts/StickyContext';
 import { useTableContext } from '../../contexts/TableContext';
 import { useScrollSync } from '../../hooks/useScrollSync';
+import { DEFAULT_CELL_HEIGHT } from '../../Table.const';
+import type { BaseTableProps, TableInternalProps } from '../../Table.types';
 import { TableHeader } from '../TableHeader/TableHeader';
 import { TableHorizontalScrollBar } from '../TableHorizontalScrollBar/TableHorizontalScrollBar';
 import { TablePagination } from '../TablePagination/TablePagination';

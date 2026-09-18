@@ -1,12 +1,16 @@
 import React from 'react';
-import { Title, Text, Paragraph } from '@synerise/ds-typography';
+
+import { Paragraph, Text, Title } from '@synerise/ds-typography';
 
 export const DATA = [
   {
     name: `<Title level={1} ellipsis={{title}}></Title>`,
     example: (
       <div style={{ maxWidth: '200px' }}>
-        <Title level={1} ellipsis={{ tooltip: 'h1. Synerise DS with ellipsis' }}>
+        <Title
+          level={1}
+          ellipsis={{ tooltip: 'h1. Synerise DS with ellipsis' }}
+        >
           h1. Synerise DS with ellipsis
         </Title>
       </div>
@@ -74,7 +78,10 @@ export const DATA = [
       <div style={{ maxWidth: '150px' }}>
         <Text
           size="medium"
-          ellipsis={{ tooltip: 'Text with conditional ellipsis. The tooltip will show only if text has ellipsis' }}
+          ellipsis={{
+            tooltip:
+              'Text with conditional ellipsis. The tooltip will show only if text has ellipsis',
+          }}
         >
           Text with conditional ellipsis
         </Text>

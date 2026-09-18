@@ -2,7 +2,7 @@ import React from 'react';
 
 import * as S from '../../RangeFilter.styles';
 import TimeWindow from '../../Shared/TimeWindow/TimeWindow';
-import { type DayKey, type WeeklyFilterProps } from './WeeklyFilter.types';
+import type { DayKey, WeeklyFilterProps } from './WeeklyFilter.types';
 
 const WeeklyFilter = ({
   value,

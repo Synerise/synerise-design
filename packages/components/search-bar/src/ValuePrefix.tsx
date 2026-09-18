@@ -31,9 +31,9 @@ export const ValuePrefix = ({
 
   useResizeObserver(valuePrefixRef, handleValuePrefixWidth);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: dependencies intentionally omitted
   useEffect(() => {
     return () => setValuePrefixWidth(0);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

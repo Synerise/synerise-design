@@ -1,8 +1,8 @@
 import React, { type ReactElement } from 'react';
 
-import {
-  type OrderedListItem,
-  type OrderedListProps,
+import type {
+  OrderedListItem,
+  OrderedListProps,
 } from '../../Ordered-list.types';
 import * as S from './Item.styles';
 

@@ -10,6 +10,7 @@ const locales = {
 };
 
 const isLocaleKey = (key: string): key is keyof typeof locales => {
+  // biome-ignore lint/suspicious/noPrototypeBuiltins: Object.hasOwn is ES2022 (Safari 15.4+); the DS uses no other ES2022 runtime API, so keep the ES2021 floor
   return Object.prototype.hasOwnProperty.call(locales, key);
 };
 

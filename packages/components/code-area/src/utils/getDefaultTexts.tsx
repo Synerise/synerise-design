@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { type CodeAreaTexts } from '../CodeArea.types';
+import type { CodeAreaTexts } from '../CodeArea.types';
 
 export const getDefaultTexts = (
   texts?: Partial<CodeAreaTexts>,

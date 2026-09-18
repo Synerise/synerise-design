@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import React, { type CSSProperties, type ReactNode } from 'react';
 
-import { type DataAttributes } from '@synerise/ds-utils';
+import type { DataAttributes } from '@synerise/ds-utils';
 
 import {
   MediumParagraph,

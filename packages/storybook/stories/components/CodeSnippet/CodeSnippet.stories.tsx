@@ -1,14 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+
 import CodeSnippet, { CodeSnippetType } from '@synerise/ds-code-snippet';
 import { FontSize } from '@synerise/ds-code-snippet/dist/CodeSnippet.types';
 
 import {
   BOOLEAN_CONTROL,
   CLASSNAME_ARG_CONTROL,
-  NUMBER_CONTROL,
-  REACT_NODE_AS_STRING,
   controlFromOptionsArray,
   fixedWrapper200,
+  NUMBER_CONTROL,
+  REACT_NODE_AS_STRING,
 } from '../../utils';
 
 const fontSizeOptions = {

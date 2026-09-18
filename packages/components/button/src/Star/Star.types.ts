@@ -1,4 +1,4 @@
-import { type Props as ButtonProps, type ButtonType } from '../Button.types';
+import type { Props as ButtonProps, ButtonType } from '../Button.types';
 
 type ButtonPropsOmitted = Omit<
   ButtonProps,

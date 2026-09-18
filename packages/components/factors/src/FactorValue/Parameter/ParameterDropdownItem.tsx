@@ -3,8 +3,8 @@ import React from 'react';
 import Icon from '@synerise/ds-icon';
 import ListItem from '@synerise/ds-list-item';
 
-import { type ParameterGroup, type ParameterItem } from '../../Factors.types';
-import { type DropdownItem } from './Parameter.types';
+import type { ParameterGroup, ParameterItem } from '../../Factors.types';
+import type { DropdownItem } from './Parameter.types';
 
 const ParameterDropdownItem = <
   ItemType extends ParameterItem | ParameterGroup,

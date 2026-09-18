@@ -1,15 +1,15 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React, { ReactNode, useRef, useState } from 'react';
 import { fn } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import { Dropdown, TextTrigger } from '@synerise/ds-dropdown';
 
 import { Placeholder } from '../../constants';
 import {
   BOOLEAN_CONTROL,
-  REACT_NODE_AS_STRING,
   controlFromOptionsArray,
   fixedWrapper400,
+  REACT_NODE_AS_STRING,
 } from '../../utils';
 import Advanced from './Advanced';
 import {

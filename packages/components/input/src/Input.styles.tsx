@@ -1,14 +1,14 @@
 import React, {
+  forwardRef,
   type InputHTMLAttributes,
   type TextareaHTMLAttributes,
-  forwardRef,
 } from 'react';
 import styled, {
-  type FlattenSimpleInterpolation,
   css,
+  type FlattenSimpleInterpolation,
 } from 'styled-components';
 
-import { type ThemeProps } from '@synerise/ds-core';
+import type { ThemeProps } from '@synerise/ds-core';
 
 import type { AutoResizeProp, InputSize } from './Input.types';
 import { TextareaWrapper } from './Textarea/Textarea.styles';
@@ -50,9 +50,11 @@ export function autoresizeConfObjToCss({
   }
   if (typeof autoResize === 'object') {
     return css`
-      ${autoResize.maxWidth
-        ? `max-width: calc(${autoResize.maxWidth} - ${finalPadding}px);`
-        : ''}
+      ${
+        autoResize.maxWidth
+          ? `max-width: calc(${autoResize.maxWidth} - ${finalPadding}px);`
+          : ''
+      }
       min-width: calc(${autoResize.minWidth} - ${finalPadding}px);
     `;
   }

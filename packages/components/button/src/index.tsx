@@ -9,17 +9,14 @@ import * as ExpanderStyles from './Expander/Expander.styles';
 import StarButton from './Star/Star';
 import * as StarStyles from './Star/Star.styles';
 
-export { Expander, Creator, StarButton as Star, CheckboxButton as Checkbox };
-
-export { default as ButtonToggle } from './ButtonToggle/ButtonToggle';
-
-export type { ButtonToggleProps } from './ButtonToggle/ButtonToggle.types';
-export { type CreatorProps, CreatorStatus } from './Creator/Creator.types';
-export type { StarButtonProps } from './Star/Star.types';
-export type { CheckboxButtonProps } from './Checkbox/Checkbox.types';
-export { ExpanderSize, type ExpanderProps } from './Expander/Expander.types';
-
 export type { ButtonProps, ButtonType, StyledButton } from './Button.types';
+export { default as ButtonToggle } from './ButtonToggle/ButtonToggle';
+export type { ButtonToggleProps } from './ButtonToggle/ButtonToggle.types';
+export type { CheckboxButtonProps } from './Checkbox/Checkbox.types';
+export { type CreatorProps, CreatorStatus } from './Creator/Creator.types';
+export { type ExpanderProps, ExpanderSize } from './Expander/Expander.types';
+export type { StarButtonProps } from './Star/Star.types';
+export { CheckboxButton as Checkbox, Creator, Expander, StarButton as Star };
 
 export const ButtonStyles = {
   Button: MainButtonStyles,

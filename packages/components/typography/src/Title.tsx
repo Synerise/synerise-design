@@ -3,7 +3,7 @@ import React from 'react';
 
 import { H1, H2, H3, H4, H5, H6, H7 } from './CommonElements';
 import { Ellipsis } from './Ellipsis';
-import { type Props } from './Title.types';
+import type { Props } from './Title.types';
 
 const StyledElements = {
   1: H1,

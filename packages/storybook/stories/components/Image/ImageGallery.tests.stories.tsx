@@ -1,6 +1,6 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import { expect, fn, screen, userEvent, waitFor, within } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import { type GalleryProps } from '@synerise/ds-image';
 
 import StoriesMeta, { Deletable } from './ImageGallery.stories';

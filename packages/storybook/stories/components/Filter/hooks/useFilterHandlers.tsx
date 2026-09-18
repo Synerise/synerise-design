@@ -12,12 +12,19 @@ import Icon, { CalendarM } from '@synerise/ds-icon';
 import Tag, { TagShape } from '@synerise/ds-tag';
 import Tooltip from '@synerise/ds-tooltip';
 
-import { ExpressionWithSteps } from '../Filter.types';
-import { DEFAULT_EXPRESSION, renderDateRange } from '../Filter.data';
 import { ConditionExample } from '../ConditionExample';
+import { DEFAULT_EXPRESSION, renderDateRange } from '../Filter.data';
+import { ExpressionWithSteps } from '../Filter.types';
 
-export const useFilterHandlers = ({ isDateFilterOn, conditionFooterRelativeDateRange, showActionAttribute, ...args }) => {
-  const [expressions, setExpressions] = useState<ExpressionWithSteps[]>(args.expressions);
+export const useFilterHandlers = ({
+  isDateFilterOn,
+  conditionFooterRelativeDateRange,
+  showActionAttribute,
+  ...args
+}) => {
+  const [expressions, setExpressions] = useState<ExpressionWithSteps[]>(
+    args.expressions,
+  );
   const [filters, setFilters] = useState<SavedFilter[]>([]);
 
   const expressionRefs = {};
@@ -28,7 +35,7 @@ export const useFilterHandlers = ({ isDateFilterOn, conditionFooterRelativeDateR
   const renderStepFooter = (expression: ExpressionWithSteps) => {
     const handleCompletedWithin = (completedWithinValue: PeriodValue) => {
       setExpressions(
-        expressions.map(exp => {
+        expressions.map((exp) => {
           if (exp.id === expression.id) {
             return {
               ...exp,
@@ -39,13 +46,13 @@ export const useFilterHandlers = ({ isDateFilterOn, conditionFooterRelativeDateR
             };
           }
           return exp;
-        })
+        }),
       );
     };
 
     const handleDateRange = (dateRange: DateRange) => {
       setExpressions(
-        expressions.map(exp => {
+        expressions.map((exp) => {
           if (exp.id === expression.id) {
             return {
               ...exp,
@@ -56,7 +63,7 @@ export const useFilterHandlers = ({ isDateFilterOn, conditionFooterRelativeDateR
             };
           }
           return exp;
-        })
+        }),
       );
     };
 
@@ -79,9 +86,9 @@ export const useFilterHandlers = ({ isDateFilterOn, conditionFooterRelativeDateR
 
     const dateFilterProps = isDateFilterOn
       ? {
-        savedFilters: filters,
-        onFilterSave: setFilters,
-      }
+          savedFilters: filters,
+          onFilterSave: setFilters,
+        }
       : {};
 
     return (
@@ -117,9 +124,16 @@ export const useFilterHandlers = ({ isDateFilterOn, conditionFooterRelativeDateR
     }
   };
 
-  const renderHeaderRightSide = expressions => {
+  const renderHeaderRightSide = (expressions) => {
     return (
-      <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end' }}>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'flex-end',
+        }}
+      >
         {expressions.map((expression, index) => {
           if (expression.type === 'STEP') {
             return (
@@ -132,7 +146,9 @@ export const useFilterHandlers = ({ isDateFilterOn, conditionFooterRelativeDateR
                     jumpToExpression(expression.id);
                   }}
                 />
-                {expression.logic && index + 1 < expressions.length && <>{expression.logic?.data?.value}</>}
+                {expression.logic && index + 1 < expressions.length && (
+                  <>{expression.logic?.data?.value}</>
+                )}
               </>
             );
           }
@@ -141,10 +157,13 @@ export const useFilterHandlers = ({ isDateFilterOn, conditionFooterRelativeDateR
     );
   };
 
-  const renderStepContent = (expression: ExpressionWithSteps, hoverDisabled?: boolean) => {
-    const handleChangeExpressionSteps = expressionSteps => {
+  const renderStepContent = (
+    expression: ExpressionWithSteps,
+    hoverDisabled?: boolean,
+  ) => {
+    const handleChangeExpressionSteps = (expressionSteps) => {
       setExpressions(
-        expressions.map(exp => {
+        expressions.map((exp) => {
           if (exp.id === expression.id) {
             return {
               ...exp,
@@ -152,7 +171,7 @@ export const useFilterHandlers = ({ isDateFilterOn, conditionFooterRelativeDateR
             };
           }
           return exp;
-        })
+        }),
       );
       args.onExpressionStepChange?.();
     };
@@ -165,25 +184,32 @@ export const useFilterHandlers = ({ isDateFilterOn, conditionFooterRelativeDateR
         hoverDisabled={hoverDisabled}
         readOnly={args.readOnly}
         showActionAttribute={showActionAttribute}
-
       />
     );
   };
 
-  const renderStepHeaderRightSide = (_expression: Expression, index: number, options?: { placeholder?: boolean }) => {
-    const isDragPlaceholder = options?.placeholder
+  const renderStepHeaderRightSide = (
+    _expression: Expression,
+    index: number,
+    options?: { placeholder?: boolean },
+  ) => {
+    const isDragPlaceholder = options?.placeholder;
     return (
       <Tag
         shape={TagShape.SINGLE_CHARACTER_ROUND}
         name={String.fromCharCode(index + 65)}
-        color={isDragPlaceholder ? theme.palette['blue-600'] : theme.palette['grey-200']}
+        color={
+          isDragPlaceholder
+            ? theme.palette['blue-600']
+            : theme.palette['grey-200']
+        }
         asPill
       />
     );
   };
   const handleChangeLogic = (id: string, logic: string) => {
     setExpressions(
-      expressions.map(exp => {
+      expressions.map((exp) => {
         if (exp.type === 'STEP' && exp.logic && exp.logic.id === id) {
           return {
             ...exp,
@@ -206,14 +232,14 @@ export const useFilterHandlers = ({ isDateFilterOn, conditionFooterRelativeDateR
           };
         }
         return exp;
-      })
+      }),
     );
     args.onChangeLogic?.(id, logic);
   };
 
   const handleChangeStepMatching = (id: string, stepMatching: boolean) => {
     setExpressions(
-      expressions.map(exp => {
+      expressions.map((exp) => {
         if (exp.id === id) {
           return {
             ...exp,
@@ -224,14 +250,14 @@ export const useFilterHandlers = ({ isDateFilterOn, conditionFooterRelativeDateR
           };
         }
         return exp;
-      })
+      }),
     );
     args.onChangeStepMatching?.(id, stepMatching);
   };
 
   const handleChangeStepName = (id: string, name: string) => {
     setExpressions(
-      expressions.map(exp => {
+      expressions.map((exp) => {
         if (exp.id === id) {
           return {
             ...exp,
@@ -242,25 +268,27 @@ export const useFilterHandlers = ({ isDateFilterOn, conditionFooterRelativeDateR
           };
         }
         return exp;
-      })
+      }),
     );
     args.onChangeStepName?.(id, name);
   };
 
   const handleDeleteStep = (id: string) => {
-    setExpressions(expressions.filter(exp => exp.id !== id));
+    setExpressions(expressions.filter((exp) => exp.id !== id));
     args.onDeleteStep?.(id);
   };
 
   const handleDuplicateStep = (id: string) => {
-    const expressionDuplicate = expressions.find(exp => exp.id === id);
+    const expressionDuplicate = expressions.find((exp) => exp.id === id);
     expressionDuplicate?.type === 'STEP' &&
       setExpressions([
         ...expressions,
         {
           ...expressionDuplicate,
           id: uuid(),
-          logic: expressionDuplicate.logic ? { ...expressionDuplicate.logic, id: uuid() } : undefined,
+          logic: expressionDuplicate.logic
+            ? { ...expressionDuplicate.logic, id: uuid() }
+            : undefined,
         },
       ]);
     args.onDuplicateStep?.(id);
@@ -287,6 +315,6 @@ export const useFilterHandlers = ({ isDateFilterOn, conditionFooterRelativeDateR
     renderHeaderRightSide,
     renderStepContent,
     renderStepFooter,
-    renderStepHeaderRightSide
+    renderStepHeaderRightSide,
   };
 };

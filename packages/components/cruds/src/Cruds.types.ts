@@ -1,4 +1,4 @@
-import { type MouseEvent, type ReactNode } from 'react';
+import type { MouseEvent, ReactNode } from 'react';
 
 import type SingleAction from './SingleAction';
 

@@ -295,7 +295,6 @@ describe('Autocomplete — option extraction from children', () => {
     const onSelect = vi.fn();
     renderWithProvider(
       <Autocomplete open value="" onSelect={onSelect}>
-        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
         <Option key={RED} {...({} as any)}>
           {RED}
         </Option>

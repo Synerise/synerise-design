@@ -3,7 +3,7 @@ import React, { type ReactNode } from 'react';
 import { DEFAULT_DATA_FORMAT_CONFIG } from '../constants';
 import { DataFormatConfigContext, DataFormatIntlsContext } from '../contexts';
 import { useDataFormatUtils, useSingleIntl } from '../hooks';
-import { type DataFormatConfig } from '../types';
+import type { DataFormatConfig } from '../types';
 
 export type DataFormatConfigProviderProps = {
   dataFormatConfig?: DataFormatConfig;

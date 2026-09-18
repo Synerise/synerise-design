@@ -1,9 +1,9 @@
-import { type ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import styled, { css } from 'styled-components';
 
-import { type ThemeProps } from '@synerise/ds-core';
+import type { ThemeProps } from '@synerise/ds-core';
 
-import { type BroadcastBarType } from './BroadcastBar.types';
+import type { BroadcastBarType } from './BroadcastBar.types';
 
 type InsertShapeStyles = {
   type?: BroadcastBarType;

@@ -1,20 +1,20 @@
 import dayjs from 'dayjs';
 
 import {
-  MONTHS_LONG,
-  MONTHS_SHORT,
   MONTH_LONG,
   MONTH_SHORT,
+  MONTHS_LONG,
+  MONTHS_SHORT,
   UPPER_FIRST,
-  WEEKDAYS_LONG,
-  WEEKDAYS_SHORT,
   WEEKDAY_LONG,
   WEEKDAY_SHORT,
+  WEEKDAYS_LONG,
+  WEEKDAYS_SHORT,
 } from '../constants';
-import {
-  type DateConstantsTargetFormat,
-  type DateTargetFormat,
-  type DateToFormatOptions,
+import type {
+  DateConstantsTargetFormat,
+  DateTargetFormat,
+  DateToFormatOptions,
 } from '../types';
 
 export const getDatesRange = (

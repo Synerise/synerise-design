@@ -1,17 +1,17 @@
 import React from 'react';
 
+import { UserAvatar } from '@synerise/ds-avatar';
+import Button from '@synerise/ds-button';
+import { theme } from '@synerise/ds-core';
 import Icon, {
+  ABtestColor,
   ArrowRightCircleM,
+  FunnelColor,
+  ProductBundleColor,
+  ProductLastSeenColor,
   RelationManyManyL,
   UserS,
-  FunnelColor,
-  ProductLastSeenColor,
-  ProductBundleColor,
-  ABtestColor,
 } from '@synerise/ds-icon';
-import Button from '@synerise/ds-button';
-import { UserAvatar } from '@synerise/ds-avatar';
-import { theme } from '@synerise/ds-core';
 
 export const SLIDES = [
   {
@@ -76,7 +76,9 @@ export const SLIDES = [
         <UserAvatar
           backgroundColor="grey-200"
           size="medium"
-          iconComponent={<Icon component={<UserS />} color={theme.palette['grey-600']} />}
+          iconComponent={
+            <Icon component={<UserS />} color={theme.palette['grey-600']} />
+          }
         />
       ),
       description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas accumsan ut leo et viverra. Nulla ut
@@ -97,7 +99,8 @@ export const SLIDES = [
     },
   },
   {
-    label: 'Layout example: leftSideContent: image, rightSideContent: image, mainContent: text ',
+    label:
+      'Layout example: leftSideContent: image, rightSideContent: image, mainContent: text ',
     leftSideContent: {
       media: <Icon component={<ProductBundleColor />} size={128} />,
     },

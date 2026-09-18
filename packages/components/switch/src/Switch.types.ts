@@ -1,12 +1,12 @@
-import {
-  type ButtonHTMLAttributes,
-  type CSSProperties,
-  type MouseEvent,
-  type ReactNode,
+import type {
+  ButtonHTMLAttributes,
+  CSSProperties,
+  MouseEvent,
+  ReactNode,
 } from 'react';
 
-import { type TooltipProps as DsTooltipProps } from '@synerise/ds-tooltip';
-import { type DataAttributes } from '@synerise/ds-utils';
+import type { TooltipProps as DsTooltipProps } from '@synerise/ds-tooltip';
+import type { DataAttributes } from '@synerise/ds-utils';
 
 export type SwitchSize = 'small' | 'default';
 

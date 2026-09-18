@@ -1,4 +1,5 @@
 import React from 'react';
+
 import Radio from '@synerise/ds-radio';
 
 export const STEPS = [

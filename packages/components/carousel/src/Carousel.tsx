@@ -9,7 +9,7 @@ import React, {
 } from 'react';
 
 import * as S from './Carousel.styles';
-import { type CarouselProps, type CarouselRef } from './Carousel.types';
+import type { CarouselProps, CarouselRef } from './Carousel.types';
 
 const TRANSITION_MS = 500;
 const DEFAULT_AUTOPLAY_SPEED = 3000;

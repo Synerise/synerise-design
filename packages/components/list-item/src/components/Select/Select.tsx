@@ -1,9 +1,6 @@
 import React, { forwardRef } from 'react';
 
-import {
-  type BasicItemProps,
-  type NestedItemProps,
-} from '../../ListItem.types';
+import type { BasicItemProps, NestedItemProps } from '../../ListItem.types';
 import * as S from './Select.styles';
 
 const Select = forwardRef<HTMLDivElement, BasicItemProps & NestedItemProps>(

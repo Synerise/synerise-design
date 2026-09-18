@@ -15,7 +15,7 @@ import Tooltip from '@synerise/ds-tooltip';
 import { toCamelCase } from '@synerise/ds-utils';
 
 import * as S from './InlineEdit.styles';
-import { type InlineEditProps } from './InlineEdit.types';
+import type { InlineEditProps } from './InlineEdit.types';
 
 const InlineEdit = ({
   className,

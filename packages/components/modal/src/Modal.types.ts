@@ -1,14 +1,14 @@
 import type {
-  CSSProperties,
   ComponentType,
+  CSSProperties,
   MouseEvent,
   MutableRefObject,
   ReactNode,
   RefObject,
 } from 'react';
 
-import { type ButtonProps, type ButtonType } from '@synerise/ds-button';
-import { type TabsProps } from '@synerise/ds-tabs';
+import type { ButtonProps, ButtonType } from '@synerise/ds-button';
+import type { TabsProps } from '@synerise/ds-tabs';
 
 /**
  * Predefined modal widths.

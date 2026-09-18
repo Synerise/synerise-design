@@ -1,8 +1,8 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
-import { ALL_FACTOR_TYPES } from '@synerise/ds-factors';
 import type { FactorsProps } from '@synerise/ds-factors';
+import { ALL_FACTOR_TYPES } from '@synerise/ds-factors';
 
 import { centeredPaddedWrapper, fixedWrapper300, sleep } from '../../utils';
 import {

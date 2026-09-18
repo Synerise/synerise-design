@@ -91,7 +91,7 @@ cd synerise-design1 && git checkout -q refactor/deantd-<comp> 2>/dev/null \
     will beat a plain prop block — wrap variant/checked overrides in `&&` (→ `0,2,0`) when they must win
     over a positional rule, and keep competing variant blocks (e.g. `$solid && $checked`) at the **same**
     `&&` level so source-order decides (later wins).
-  - **Inline SVG data-URIs:** double-quote the SVG attributes and wrap in `url('…')` (single) — prettier
+  - **Inline SVG data-URIs:** double-quote the SVG attributes and wrap in `url('…')` (single) — biome
     normalises CSS `url()` quotes to single inside `css\`\``, so `url("…")` around a single-quoted SVG
     gets reverted and the image silently drops (the checkbox tick bug). See [[reference_prerelease_yarn_stale_tgz_cache]] for the related re-pin gotcha.
   - Confirm afterwards: `rg "\.(ant|ds)-" <comp>/src/*.styles.* <comp>/src/**/*.styles.*` returns **no
@@ -148,7 +148,7 @@ add it under `dependencies` as `workspace:^`.
 cd synerise-design1
 pnpm --filter @synerise/ds-<comp> run types     # tsc --noEmit
 pnpm --filter @synerise/ds-<comp> test           # vitest
-pnpm exec eslint --fix packages/components/<comp>/src
+pnpm exec biome check --write packages/components/<comp>/src
 pnpm --filter @synerise/ds-<comp> build          # vite + dts
 rg "from 'antd'|import 'antd'|require\('antd'|~antd" packages/components/<comp>/src   # → empty
 rg "antd" packages/components/<comp>/package.json                                     # → empty
@@ -178,7 +178,7 @@ each refinement decision. Test behaviour via the kept class names (`.ant-<comp>-
 - **Switching branches can unlink a workspace dep** that only exists on this branch's `package.json` →
   re-run `pnpm install`, then rebuild the shared dep. Symptom: `Cannot find module '@synerise/ds-utils'`
   + cascading `any`/index-type errors.
-- The **lint-staged pre-commit hook reformats** files (eslint --fix + prettier) and folds the changes into
+- The **lint-staged pre-commit hook reformats** files (`biome check --write`) and folds the changes into
   the commit — re-Read files before further edits.
 
 ---
@@ -186,7 +186,7 @@ each refinement decision. Test behaviour via the kept class names (`.ant-<comp>-
 ## Phase 5 — Docs & stories (same branch)
 
 - Update the component `CLAUDE.md` + `README.md` (props table, removed-props note, structure).
-- Update **Storybook stories** that used removed props (they're eslint-ignored but must still compile for
+- Update **Storybook stories** that used removed props (they're not linted but must still compile for
   the storybook build) and any `*.figma.tsx` Code Connect mappings.
 - Update `docs/antd-migration-status.md` (on `docs/antd-removal`) — mark the component done + MR link.
 
@@ -241,7 +241,7 @@ change was that now-unnecessary migration.
 ## Phase 8 — Verify the pipeline (do NOT stop at push)
 
 Pushing is **not** "done". Poll the GitLab pipeline for the branch until it is green and fix anything it
-surfaces as part of this flow. Local `tsc`/vitest/eslint/build passing is necessary but **not sufficient** —
+surfaces as part of this flow. Local `tsc`/vitest/biome/build passing is necessary but **not sufficient** —
 only Chromatic runs the story `play` functions in a real browser.
 
 ```bash

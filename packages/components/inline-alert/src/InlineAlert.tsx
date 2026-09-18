@@ -4,7 +4,7 @@ import Icon from '@synerise/ds-icon';
 
 import { ICONS } from './InlineAlert.const';
 import * as S from './InlineAlert.styles';
-import { type InlineAlertProps } from './InlineAlert.types';
+import type { InlineAlertProps } from './InlineAlert.types';
 
 const InlineAlert = ({
   className,

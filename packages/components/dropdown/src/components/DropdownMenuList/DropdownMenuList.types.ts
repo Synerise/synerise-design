@@ -1,8 +1,8 @@
-import { type ListItemProps } from '@synerise/ds-list-item';
+import type { ListItemProps } from '@synerise/ds-list-item';
 
-import {
-  type DropdownMenuProps,
-  type DropdownMenuTexts,
+import type {
+  DropdownMenuProps,
+  DropdownMenuTexts,
 } from '../DropdownMenu/DropdownMenu.types';
 
 export type DropdownMenuListItemProps = ListItemProps;

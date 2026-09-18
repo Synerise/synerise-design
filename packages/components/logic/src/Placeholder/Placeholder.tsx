@@ -5,7 +5,7 @@ import Icon, { ClickM } from '@synerise/ds-icon';
 import { Text } from '@synerise/ds-typography';
 
 import * as S from './Placeholder.styles';
-import { type PlaceholderType } from './Placeholder.types';
+import type { PlaceholderType } from './Placeholder.types';
 
 const Placeholder: React.FC<PlaceholderType> = ({ text }) => {
   return (

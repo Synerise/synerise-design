@@ -1,7 +1,7 @@
 import React from 'react';
 
 import * as S from './ActionCell.styles';
-import { type ActionCellProps } from './ActionCell.types';
+import type { ActionCellProps } from './ActionCell.types';
 
 const DEFAULT_GAP_SIZE = 24;
 

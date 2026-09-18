@@ -20,7 +20,7 @@ import {
   PREVIEW_PADDING,
 } from './ImagePreview.const';
 import * as S from './ImagePreview.styles';
-import { type ImagePreviewProps } from './ImagePreview.types';
+import type { ImagePreviewProps } from './ImagePreview.types';
 import PreviewToolbar from './PreviewToolbar';
 
 const SCALE_EPSILON = 0.01;

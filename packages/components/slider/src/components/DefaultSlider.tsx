@@ -1,11 +1,10 @@
+import { type Ranger, useRanger } from '@tanstack/react-ranger';
 import React, { type MouseEvent, useEffect, useRef, useState } from 'react';
 
-import { type Ranger, useRanger } from '@tanstack/react-ranger';
-
-import * as S from '../Slider.styles';
-import { type DefaultSliderProps } from '../Slider.types';
 import { SliderProvider } from '../context/SliderContext';
 import { useColorMap } from '../hooks/useColorMap';
+import * as S from '../Slider.styles';
+import type { DefaultSliderProps } from '../Slider.types';
 import { reversedInterpolator } from '../utils/Slider.interpolators';
 import { couldBeInverted } from '../utils/Slider.utils';
 import { SliderAbove } from './SliderAbove';

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import * as S from './PageHeader.styles';
-import { type PageHeaderProps } from './PageHeader.types';
+import type { PageHeaderProps } from './PageHeader.types';
 import { PageHeaderBack } from './PageHeaderBack';
 import { PageHeaderClamp } from './PageHeaderClamp';
 import { PageHeaderInlineEdit } from './PageHeaderInlineEdit';

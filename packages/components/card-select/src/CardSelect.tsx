@@ -8,7 +8,7 @@ import Tooltip from '@synerise/ds-tooltip';
 import { useOnClickOutside } from '@synerise/ds-utils';
 
 import * as S from './CardSelect.styles';
-import { type CardSelectProps } from './CardSelect.types';
+import type { CardSelectProps } from './CardSelect.types';
 import {
   DEFAULT_ICON_SIZE_LARGE,
   DEFAULT_ICON_SIZE_SMALL,

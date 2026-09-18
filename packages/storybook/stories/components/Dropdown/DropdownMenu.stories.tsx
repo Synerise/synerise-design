@@ -1,6 +1,6 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React, { forwardRef, useState } from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import Button, { Creator } from '@synerise/ds-button';
 import ButtonGroup from '@synerise/ds-button-group';
 import Checkbox from '@synerise/ds-checkbox';
@@ -14,12 +14,12 @@ import { getPopupContainer } from '@synerise/ds-utils';
 
 import {
   BOOLEAN_CONTROL,
-  NUMBER_CONTROL,
-  REACT_NODE_NO_CONTROL,
   centeredPaddedWrapper,
   controlFromOptionsArray,
   fixedWrapper800,
+  NUMBER_CONTROL,
   overflowTestWrapper,
+  REACT_NODE_NO_CONTROL,
 } from '../../utils';
 import { PLACEMENTS } from './Dropdown.data';
 import {

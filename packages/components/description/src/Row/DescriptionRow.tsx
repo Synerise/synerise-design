@@ -1,7 +1,7 @@
 import React from 'react';
 
 import * as S from './DescriptionRow.styles';
-import { type DescriptionRowProps } from './DescriptionRow.types';
+import type { DescriptionRowProps } from './DescriptionRow.types';
 import Star from './Star';
 
 const DescriptionRow: React.FC<DescriptionRowProps> = ({

@@ -1,6 +1,6 @@
-import { type ReactNode, type RefObject } from 'react';
+import type { ReactNode, RefObject } from 'react';
 
-import { type WithHTMLAttributes } from '@synerise/ds-utils';
+import type { WithHTMLAttributes } from '@synerise/ds-utils';
 
 export type FileViewTexts = {
   size?: ReactNode;

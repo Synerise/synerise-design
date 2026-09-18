@@ -4,7 +4,7 @@ import { theme } from '@synerise/ds-core';
 import Icon, { CheckS } from '@synerise/ds-icon';
 import ListItem from '@synerise/ds-list-item';
 
-import { type ContextSelectorDropdownItemProps } from '../ContextSelector.types';
+import type { ContextSelectorDropdownItemProps } from '../ContextSelector.types';
 
 const ContextSelectorDropdownItem = ({
   item,

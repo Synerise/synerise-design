@@ -1,10 +1,10 @@
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import React, { useState } from 'react';
 import { action } from 'storybook/actions';
 import { useArgs } from 'storybook/preview-api';
 
-import type { Meta, StoryObj } from '@storybook/react-vite';
-import Button from '@synerise/ds-button';
 import type { CheckboxButtonProps } from '@synerise/ds-button';
+import Button from '@synerise/ds-button';
 
 import { BOOLEAN_CONTROL, CLASSNAME_ARG_CONTROL } from '../../utils';
 

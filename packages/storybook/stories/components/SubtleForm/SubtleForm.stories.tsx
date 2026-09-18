@@ -1,6 +1,6 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React, { useState } from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import InputNumber from '@synerise/ds-input-number';
 import Select, { SelectValue } from '@synerise/ds-select';
 import SubtleForm from '@synerise/ds-subtle-form';
@@ -8,8 +8,8 @@ import SubtleForm from '@synerise/ds-subtle-form';
 import {
   BOOLEAN_CONTROL,
   CLASSNAME_ARG_CONTROL,
-  REACT_NODE_AS_STRING,
   fixedWrapper300,
+  REACT_NODE_AS_STRING,
 } from '../../utils';
 import { Cities, renderLabel } from './SubtleForm.data';
 

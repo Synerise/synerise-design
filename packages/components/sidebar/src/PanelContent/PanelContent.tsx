@@ -5,7 +5,7 @@ import Icon, { DragHandleM } from '@synerise/ds-icon';
 
 import CollapsePanel from '../Collapse/CollapsePanel';
 import * as S from '../Sidebar.styles';
-import { type PanelProps } from '../Sidebar.types';
+import type { PanelProps } from '../Sidebar.types';
 
 export const PanelContent = ({
   header,

@@ -1,10 +1,10 @@
+import type { Meta, StoryObj } from '@storybook/react-webpack5';
 import React, { useState } from 'react';
 import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
 
-import type { Meta, StoryObj } from '@storybook/react-webpack5';
 import Button from '@synerise/ds-button';
-import Modal from '@synerise/ds-modal';
 import type { ModalProps } from '@synerise/ds-modal';
+import Modal from '@synerise/ds-modal';
 
 const meta: Meta<ModalProps> = {
   title: 'Components/Modal/Tests',

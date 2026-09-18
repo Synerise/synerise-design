@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl';
 
-import { type BannerTexts } from '../Banner.types';
+import type { BannerTexts } from '../Banner.types';
 
 export const useTexts = (texts?: Partial<BannerTexts>): BannerTexts => {
   const intl = useIntl();

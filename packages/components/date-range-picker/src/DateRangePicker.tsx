@@ -8,18 +8,18 @@ import React, {
 } from 'react';
 import { useIntl } from 'react-intl';
 
-import { Popover, PopoverContent, getPlacement } from '@synerise/ds-popover';
+import { getPlacement, Popover, PopoverContent } from '@synerise/ds-popover';
 
-import * as S from './DateRangePicker.styles';
-import { type DateRangePickerProps } from './DateRangePicker.types';
-import RangePickerInput from './RangePickerInput/RangePickerInput';
-import { RawDateRangePicker } from './RawDateRangePicker';
 import {
   POPOVER_FLIP_CONFIG,
   POPOVER_OFFSET_CONFIG,
   POPOVER_SHIFT_CONFIG,
 } from './constants';
-import { type DateFilter, type DateRange } from './date.types';
+import * as S from './DateRangePicker.styles';
+import type { DateRangePickerProps } from './DateRangePicker.types';
+import type { DateFilter, DateRange } from './date.types';
+import RangePickerInput from './RangePickerInput/RangePickerInput';
+import { RawDateRangePicker } from './RawDateRangePicker';
 import { getDefaultTexts } from './utils';
 
 const DateRangePicker = forwardRef<HTMLDivElement, DateRangePickerProps>(
@@ -55,11 +55,11 @@ const DateRangePicker = forwardRef<HTMLDivElement, DateRangePickerProps>(
       [texts, disableDefaultTexts, intl],
     );
 
+    // biome-ignore lint/correctness/useExhaustiveDependencies: dependencies intentionally omitted
     useEffect(() => {
       if (!isEqual(selectedRange, selectedDate)) {
         setSelectedDate(selectedRange);
       }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [selectedRange]);
 
     const onApplyCallback = useCallback(

@@ -6,7 +6,7 @@ import Skeleton from '@synerise/ds-skeleton';
 import Tags from '@synerise/ds-tags';
 
 import * as S from './TagsGroup.styles';
-import { type TagsGroupProps } from './TagsGroup.types';
+import type { TagsGroupProps } from './TagsGroup.types';
 
 export const TagsGroupCell = ({
   disabled,

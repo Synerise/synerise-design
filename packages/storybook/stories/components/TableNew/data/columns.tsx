@@ -1,3 +1,4 @@
+import { type ColumnDef, type Row } from '@tanstack/react-table';
 import React, { ReactNode } from 'react';
 import { action } from 'storybook/actions';
 
@@ -12,7 +13,6 @@ import Switch from '@synerise/ds-switch';
 import { TableCell } from '@synerise/ds-table-new';
 import Tag from '@synerise/ds-tag';
 import Tooltip from '@synerise/ds-tooltip';
-import { type ColumnDef, type Row } from '@tanstack/react-table';
 
 import { AVATAR_IMAGE } from '../../../constants';
 import { Counter } from '../../Loader/Loader.data';

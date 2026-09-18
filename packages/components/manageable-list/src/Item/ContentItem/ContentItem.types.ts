@@ -1,14 +1,14 @@
-import {
-  type ComponentType,
-  type HTMLAttributes,
-  type ReactNode,
-  type ReactText,
+import type {
+  ComponentType,
+  HTMLAttributes,
+  ReactNode,
+  ReactText,
 } from 'react';
-import { type StyledComponent } from 'styled-components';
+import type { StyledComponent } from 'styled-components';
 
 import type { WithHTMLAttributes } from '@synerise/ds-utils';
 
-import { type ItemProps, type Texts } from '../../ManageableList.types';
+import type { ItemProps, Texts } from '../../ManageableList.types';
 
 type BaseContentItemProps = Omit<
   ContentItemHeaderProps,

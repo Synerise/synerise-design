@@ -1,7 +1,7 @@
 import React from 'react';
 
 import * as S from './Block.styles';
-import { type BlockProps } from './Block.types';
+import type { BlockProps } from './Block.types';
 
 /**
  *  @deprecated it will receive no further updates and will be removed from future DS versions

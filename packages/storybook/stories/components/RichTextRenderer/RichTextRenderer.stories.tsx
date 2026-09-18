@@ -1,9 +1,9 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import {
-  type RichTextDocument,
   documentToMarkdown,
+  type RichTextDocument,
 } from '@synerise/ds-rich-text';
 import RichTextRenderer, {
   RichTextRendererProps,
@@ -11,8 +11,8 @@ import RichTextRenderer, {
 
 import {
   CLASSNAME_ARG_CONTROL,
-  STYLE_ARG_CONTROL,
   fixedHeightWrapper,
+  STYLE_ARG_CONTROL,
 } from '../../utils';
 
 type Story = StoryObj<RichTextRendererProps>;

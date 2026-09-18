@@ -2,9 +2,9 @@ import React from 'react';
 
 import { useTheme } from '@synerise/ds-core';
 
-import * as S from '../Slider.styles';
-import { type ColorMap } from '../Slider.types';
 import { useSliderContext } from '../context/SliderContext';
+import * as S from '../Slider.styles';
+import type { ColorMap } from '../Slider.types';
 import { getVisibleSectionsForType } from '../utils/Slider.utils';
 
 type SliderSectionsProps = {

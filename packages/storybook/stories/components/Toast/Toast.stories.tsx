@@ -1,7 +1,7 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 import { fn } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import Button from '@synerise/ds-button';
 import Toast, { ToastProps } from '@synerise/ds-toast';
 import {
@@ -12,10 +12,10 @@ import UnorderedList from '@synerise/ds-unordered-list';
 
 import {
   BOOLEAN_CONTROL,
-  REACT_NODE_AS_STRING,
   controlFromOptionsArray,
   fixedWrapper400,
   gappedColumnDecorator,
+  REACT_NODE_AS_STRING,
 } from '../../utils';
 import { ButtonShowingToast, data } from './Toast.data';
 

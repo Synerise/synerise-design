@@ -1,7 +1,7 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 import { useArgs, useMemo, useState } from 'storybook/preview-api';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import Button from '@synerise/ds-button';
 import CompletedWithin, { PeriodValue } from '@synerise/ds-completed-within';
 import { theme } from '@synerise/ds-core';
@@ -17,8 +17,8 @@ import Tooltip from '@synerise/ds-tooltip';
 import {
   BOOLEAN_CONTROL,
   CLASSNAME_ARG_CONTROL,
-  PREFIXCLS_ARG_CONTROL,
   fixedWrapper800,
+  PREFIXCLS_ARG_CONTROL,
 } from '../../utils';
 import { DEFAULT_STEP } from '../Condition/Condition.data';
 import { ConditionExample } from '../Filter/ConditionExample';

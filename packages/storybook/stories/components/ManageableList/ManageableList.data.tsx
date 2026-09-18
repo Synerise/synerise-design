@@ -1,7 +1,7 @@
+import { faker } from '@faker-js/faker';
 import React, { ReactElement, ReactNode } from 'react';
 import { action } from 'storybook/actions';
 
-import { faker } from '@faker-js/faker';
 import Avatar from '@synerise/ds-avatar';
 import Button from '@synerise/ds-button';
 import { theme } from '@synerise/ds-core';

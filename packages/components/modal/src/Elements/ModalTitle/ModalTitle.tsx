@@ -5,7 +5,7 @@ import Button from '@synerise/ds-button';
 import Icon, { CloseM } from '@synerise/ds-icon';
 import Tabs from '@synerise/ds-tabs';
 
-import { type ModalTitleProps } from '../../Modal.types';
+import type { ModalTitleProps } from '../../Modal.types';
 import * as S from './ModalTitle.styles';
 
 export const ModalTitle = ({

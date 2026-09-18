@@ -1,18 +1,18 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React, { useState } from 'react';
 import { fn } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import Button from '@synerise/ds-button';
 import ItemPicker from '@synerise/ds-item-picker';
 
 import {
   BOOLEAN_CONTROL,
-  REACT_NODE_AS_STRING,
-  STRING_CONTROL,
   centeredPaddedWrapper,
   controlFromOptionsArray,
   fixedWrapper300,
   fixedWrapper800,
+  REACT_NODE_AS_STRING,
+  STRING_CONTROL,
   sideBySide,
   sleep,
 } from '../../utils';

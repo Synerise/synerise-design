@@ -1,13 +1,13 @@
-import {
-  type CellContext,
-  type ColumnDef,
-  type HeaderContext,
-  type Row,
-  type SortingFnOption,
+import type {
+  CellContext,
+  ColumnDef,
+  HeaderContext,
+  Row,
+  SortingFnOption,
 } from '@tanstack/react-table';
 
 import { EXPANDED_ROW_PROPERTY } from '../Table.const';
-import { type ColumnsSortState, type LegacyColumnType } from '../Table.types';
+import type { ColumnsSortState, LegacyColumnType } from '../Table.types';
 import { calculatePixels } from './calculatePixels';
 
 const getSortStateApiAdapter = <A, B>(headerContext: HeaderContext<A, B>) => {

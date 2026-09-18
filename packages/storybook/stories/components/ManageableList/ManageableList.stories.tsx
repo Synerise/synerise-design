@@ -1,8 +1,8 @@
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import React, { useState } from 'react';
 import { action } from 'storybook/actions';
 import { fn } from 'storybook/test';
 
-import type { Meta, StoryObj } from '@storybook/react-vite';
 import Button from '@synerise/ds-button';
 import { theme } from '@synerise/ds-core';
 import Icon, {
@@ -17,14 +17,14 @@ import ManageableList, {
 import {
   BOOLEAN_CONTROL,
   CLASSNAME_ARG_CONTROL,
-  NUMBER_CONTROL,
-  STRING_CONTROL,
-  STYLE_ARG_CONTROL,
   centeredPaddedWrapper,
   controlFromOptionsArray,
   fixedWrapper300,
   fixedWrapper800,
   greyBackgroundDecorator,
+  NUMBER_CONTROL,
+  STRING_CONTROL,
+  STYLE_ARG_CONTROL,
 } from '../../utils';
 import {
   BLANK_DATA,
@@ -38,8 +38,8 @@ import {
   FilterItemType,
   ITEMS,
   ItemType,
-  TEXTS,
   renderBlankItem,
+  TEXTS,
 } from './ManageableList.data';
 
 export default {

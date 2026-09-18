@@ -4,7 +4,7 @@ import { useIntl } from 'react-intl';
 import Panel from '@synerise/ds-panel';
 
 import * as S from './ItemsRoll.styles';
-import { type ItemsRollProps } from './ItemsRoll.types';
+import type { ItemsRollProps } from './ItemsRoll.types';
 import { Footer, Header, List } from './ItemsRollComponents';
 
 export const ItemsRoll = ({

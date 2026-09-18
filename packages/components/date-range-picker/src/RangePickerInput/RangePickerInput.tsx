@@ -9,12 +9,12 @@ import FormField from '@synerise/ds-form-field';
 import Icon, { ArrowRightS, CalendarM, Close3S } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 
-import { type Texts } from '../DateRangePicker.types';
-import { isLifetime } from '../RelativeRangePicker/Elements/RangeDropdown/RangeDropdown';
+import type { Texts } from '../DateRangePicker.types';
 import type { DateRange, NullableDateLimit } from '../date.types';
+import { isLifetime } from '../RelativeRangePicker/Elements/RangeDropdown/RangeDropdown';
 import { normalizeRange } from '../utils';
 import * as S from './RangePickerInput.styles';
-import { type RangePickerInputProps } from './RangePickerInput.types';
+import type { RangePickerInputProps } from './RangePickerInput.types';
 
 const RangePickerInput = ({
   value,

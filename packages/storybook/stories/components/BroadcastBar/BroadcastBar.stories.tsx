@@ -1,14 +1,14 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import BroadcastBar from '@synerise/ds-broadcast-bar';
 import Button from '@synerise/ds-button';
 
 import {
   BOOLEAN_CONTROL,
-  REACT_NODE_AS_STRING,
   centeredPaddedWrapper,
   controlFromOptionsArray,
+  REACT_NODE_AS_STRING,
 } from '../../utils';
 import { type } from '../BroadcastBar/BroadcastBar.data';
 

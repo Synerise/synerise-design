@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 
-import { type Texts } from '../../../../DateRangePicker.types';
-import { type DayKey } from '../TimeWindow.types';
+import type { Texts } from '../../../../DateRangePicker.types';
+import type { DayKey } from '../TimeWindow.types';
 
 export type RangeSummaryProps = {
   texts: Pick<Texts, 'setTimeFor'>;

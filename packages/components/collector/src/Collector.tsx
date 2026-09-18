@@ -21,7 +21,7 @@ import {
 } from '@synerise/ds-utils';
 
 import * as S from './Collector.styles';
-import { type CollectorProps, type CollectorValue } from './Collector.types';
+import type { CollectorProps, CollectorValue } from './Collector.types';
 import ButtonPanel from './Elements/ButtonPanel/ButtonPanel';
 import NavigationHint from './Elements/NavigationHint/NavigationHint';
 import OptionsDropdown from './Elements/OptionsDropdown/OptionsDropdown';
@@ -177,9 +177,9 @@ const Collector = ({
     return false;
   }, [createItem, value]);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: dependencies intentionally omitted
   useEffect(() => {
     enableCustomFilteringSuggestions && setFilteredSuggestions(suggestions);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [suggestions]);
 
   useEffect(() => {
@@ -280,7 +280,7 @@ const Collector = ({
       allowMultipleValues &&
       event.key === 'Backspace' &&
       !value &&
-      !!selectedValues?.length
+      selectedValues?.length
     ) {
       const lastElement = selected.pop();
       if (lastElement && onItemDeselect) {

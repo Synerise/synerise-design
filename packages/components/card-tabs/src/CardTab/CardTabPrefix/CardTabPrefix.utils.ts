@@ -3,8 +3,8 @@ import {
   type HandlePrefixProps,
   type IconPrefixProps,
   type PrefixProps,
-  type TagPrefixProps,
   prefixType,
+  type TagPrefixProps,
 } from '../CardTab.types';
 
 export const isTagPrefix = (props: PrefixProps): props is TagPrefixProps => {

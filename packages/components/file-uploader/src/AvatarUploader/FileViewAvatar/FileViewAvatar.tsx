@@ -6,7 +6,7 @@ import Tooltip from '@synerise/ds-tooltip';
 
 import { ICON_MAP } from './FileViewAvatar.const';
 import * as S from './FileViewAvatar.styles';
-import { type FileViewAvatarProps } from './FileViewAvatar.types';
+import type { FileViewAvatarProps } from './FileViewAvatar.types';
 import { isPreviewableMimeType, toCssUrl } from './FileViewAvatar.util';
 
 const FileViewAvatar = ({

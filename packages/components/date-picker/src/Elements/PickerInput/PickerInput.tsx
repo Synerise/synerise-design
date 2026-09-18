@@ -1,7 +1,7 @@
 import { isValid as fnsIsValid, parseISO } from 'date-fns';
 import React, {
-  type MouseEvent,
   forwardRef,
+  type MouseEvent,
   useCallback,
   useMemo,
   useState,
@@ -16,7 +16,7 @@ import Icon, { CalendarM, Close3S } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 
 import * as S from './PickerInput.styles';
-import { type PickerInputProps } from './PickerInput.types';
+import type { PickerInputProps } from './PickerInput.types';
 
 const PickerInput = forwardRef<HTMLDivElement, PickerInputProps>(
   (
@@ -95,7 +95,7 @@ const PickerInput = forwardRef<HTMLDivElement, PickerInputProps>(
 
     const iconInput = useMemo(
       () =>
-        (hovered || highlight) && allowClear && !readOnly && !!value ? (
+        (hovered || highlight) && allowClear && !readOnly && value ? (
           <S.ClearIconWrapper>
             <Tooltip title={clearTooltip}>
               <Icon component={<Close3S />} onClick={handleIconClick} />

@@ -1,7 +1,7 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import random from 'lodash/random';
 import React, { useState } from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import {
   ExtendedFile,
   FileWithContent,

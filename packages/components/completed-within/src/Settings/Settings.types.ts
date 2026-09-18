@@ -1,11 +1,11 @@
 import type InputNumber from '@synerise/ds-input-number';
 
-import {
-  type CompletedWithinProps,
-  type CompletedWithinTexts,
-  type CustomPeriod,
-  type Period,
-  type PeriodValue,
+import type {
+  CompletedWithinProps,
+  CompletedWithinTexts,
+  CustomPeriod,
+  Period,
+  PeriodValue,
 } from '../CompletedWithin.types';
 
 type InputProps = React.ComponentProps<typeof InputNumber>;

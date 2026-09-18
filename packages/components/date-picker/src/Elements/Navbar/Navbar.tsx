@@ -9,7 +9,7 @@ import Icon, {
 } from '@synerise/ds-icon';
 
 import * as S from './Navbar.styles';
-import { type NavbarProps } from './Navbar.types';
+import type { NavbarProps } from './Navbar.types';
 
 const Navbar: React.FC<NavbarProps> = (props: NavbarProps) => {
   const {

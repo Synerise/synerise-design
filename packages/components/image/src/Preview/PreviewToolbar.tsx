@@ -13,7 +13,7 @@ import {
   ToolbarLabel,
 } from '@synerise/ds-toolbar';
 
-import { type ImageTexts } from '../shared/Image.shared.types';
+import type { ImageTexts } from '../shared/Image.shared.types';
 
 const TOOLTIP_PLACEMENT = 'top';
 

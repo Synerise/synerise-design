@@ -1,13 +1,13 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import { UserM } from '@synerise/ds-icon';
 import { type BaseIconLabelProps, IconLabelCell } from '@synerise/ds-table-new';
 
 import {
   BOOLEAN_CONTROL,
-  REACT_NODE_AS_STRING,
   fixedWrapper300,
+  REACT_NODE_AS_STRING,
 } from '../../../utils';
 
 const meta: Meta<BaseIconLabelProps> = {

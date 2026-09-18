@@ -8,9 +8,9 @@ import React, {
 
 import Icon, { CloseS } from '@synerise/ds-icon';
 
-import * as S from '../Select.styles';
-import { type RawValueType } from '../Select.types';
 import { useResponsiveTagCount } from '../hooks/useResponsiveTagCount';
+import * as S from '../Select.styles';
+import type { RawValueType } from '../Select.types';
 
 type SelectorContentProps = {
   isMultiple: boolean;

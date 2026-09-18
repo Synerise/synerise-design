@@ -6,7 +6,7 @@ import Icon, { ArrowLeftCircleM } from '@synerise/ds-icon';
 import Modal from '@synerise/ds-modal';
 
 import * as S from '../Wizard.styles';
-import { type OnModalProps } from './onModal.types';
+import type { OnModalProps } from './onModal.types';
 
 const WizardOnModal = ({
   visible,

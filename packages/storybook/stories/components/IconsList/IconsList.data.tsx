@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { OrderedListItem } from '@synerise/ds-ordered-list';
-import Icon, { Check3S, CheckS, Close3S } from '@synerise/ds-icon';
+
 import { theme } from '@synerise/ds-core';
+import Icon, { Check3S, CheckS, Close3S } from '@synerise/ds-icon';
+import { OrderedListItem } from '@synerise/ds-ordered-list';
 
 export const LIST_DATA: OrderedListItem[] = [
   {
@@ -75,12 +76,32 @@ export const LIST_DATA: OrderedListItem[] = [
   },
 ];
 
-export const emptyFormatter = { empty: () => ``,}
-
+export const emptyFormatter = { empty: () => `` };
 
 export const FORMATTERS = {
-    CheckS: () => <Icon size={20} style={{marginRight: '4px', marginLeft: '-3px'}} color={theme.palette['grey-600']} component={<CheckS />} />,
-    Close3S: () => <Icon size={20} style={{marginRight: '4px', marginLeft: '-3px'}} color={theme.palette['red-600']} component={<Close3S />} />,
-    Check3S: () => <Icon size={20} style={{marginRight: '4px', marginLeft: '-3px'}} color={theme.palette['green-600']} component={<Check3S />} />,
-    Emoji: () => <Icon size={20} style={{marginLeft: '1px'}}  component='👉' />
+  CheckS: () => (
+    <Icon
+      size={20}
+      style={{ marginRight: '4px', marginLeft: '-3px' }}
+      color={theme.palette['grey-600']}
+      component={<CheckS />}
+    />
+  ),
+  Close3S: () => (
+    <Icon
+      size={20}
+      style={{ marginRight: '4px', marginLeft: '-3px' }}
+      color={theme.palette['red-600']}
+      component={<Close3S />}
+    />
+  ),
+  Check3S: () => (
+    <Icon
+      size={20}
+      style={{ marginRight: '4px', marginLeft: '-3px' }}
+      color={theme.palette['green-600']}
+      component={<Check3S />}
+    />
+  ),
+  Emoji: () => <Icon size={20} style={{ marginLeft: '1px' }} component="👉" />,
 };

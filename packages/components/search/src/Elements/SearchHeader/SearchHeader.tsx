@@ -4,7 +4,7 @@ import Icon, { InfoFillS } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 
 import * as S from '../../Search.styles';
-import { type SearchHeaderProps } from './SearchHeader.types';
+import type { SearchHeaderProps } from './SearchHeader.types';
 
 const SearchHeader: React.FC<SearchHeaderProps> = ({
   headerText,

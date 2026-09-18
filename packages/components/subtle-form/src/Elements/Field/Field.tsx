@@ -6,7 +6,7 @@ import Tooltip from '@synerise/ds-tooltip';
 import { useOnClickOutside } from '@synerise/ds-utils';
 
 import * as S from '../../SubtleForm.styles';
-import { type SubtleFieldProps } from '../../SubtleForm.types';
+import type { SubtleFieldProps } from '../../SubtleForm.types';
 import { MaskedDatePlaceholder } from '../DatePicker/DatePicker.styles';
 
 const SubtleField = ({

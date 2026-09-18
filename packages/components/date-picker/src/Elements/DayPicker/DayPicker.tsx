@@ -17,7 +17,7 @@ import defaultLocaleUtils from '../../localeUtils';
 import Navbar from '../Navbar/Navbar';
 import * as S from '../Navbar/Navbar.styles';
 import { DayPicker } from './DayPicker.styles';
-import { type DayPickerProps } from './DayPicker.types';
+import type { DayPickerProps } from './DayPicker.types';
 
 /**
  * react-day-picker v10 emits its own `rdp-*` class names. The design system's stylesheet, its

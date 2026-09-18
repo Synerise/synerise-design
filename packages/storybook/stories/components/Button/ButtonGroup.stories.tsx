@@ -1,6 +1,6 @@
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import React, { useState } from 'react';
 
-import type { Meta, StoryObj } from '@storybook/react-vite';
 import Button from '@synerise/ds-button';
 import ButtonGroup, { ButtonDivider } from '@synerise/ds-button-group';
 import { theme } from '@synerise/ds-core';
@@ -10,11 +10,11 @@ import Icon, { AngleDownS, DragHandleM } from '@synerise/ds-icon';
 import {
   BOOLEAN_CONTROL,
   CLASSNAME_ARG_CONTROL,
+  controlFromOptionsArray,
+  fixedWrapper588,
   PREFIXCLS_ARG_CONTROL,
   STRING_CONTROL,
   STYLE_ARG_CONTROL,
-  controlFromOptionsArray,
-  fixedWrapper588,
 } from '../../utils';
 import { BUTTON_TYPES, ButtonTypeWrapper } from './Button.constants';
 import { IconLeft, IconSolo, Simple } from './Button.stories';

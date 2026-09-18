@@ -6,7 +6,7 @@ import { AutosizeInput } from '@synerise/ds-input';
 import { NOOP, toCamelCase } from '@synerise/ds-utils';
 
 import * as S from './InlineSelect.style';
-import { type InlineSelectProps } from './InlineSelect.types';
+import type { InlineSelectProps } from './InlineSelect.types';
 import SelectDropdown from './SelectDropdown/SelectDropdown';
 
 const InlineSelect = ({

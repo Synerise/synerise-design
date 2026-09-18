@@ -1,13 +1,13 @@
 import styled, {
-  type FlattenSimpleInterpolation,
   css,
+  type FlattenSimpleInterpolation,
   keyframes,
 } from 'styled-components';
 
-import { type ThemeProps } from '@synerise/ds-core';
+import type { ThemeProps } from '@synerise/ds-core';
 import { macro } from '@synerise/ds-typography';
 
-import { type Status } from './Badge.types';
+import type { Status } from './Badge.types';
 
 // Colour props are transient ($-prefixed) so they are not forwarded to the DOM element.
 type ColorProps = { $status?: Status; $customColor?: string };
@@ -156,8 +156,9 @@ export const DotSup = styled.sup<
         content: ${props.$flag ? "''" : 'none'};
         transform: translate3d(-2px, -2px, 0);
         transform-origin: center;
-        ${props.$pulsing &&
-        css`
+        ${
+          props.$pulsing &&
+          css`
           position: absolute;
           top: 0;
           left: 0;
@@ -166,7 +167,8 @@ export const DotSup = styled.sup<
           background-color: inherit;
           border-radius: 50%;
           animation: ${beforeElementAnimation} 2s infinite;
-        `}
+        `
+        }
       }
 
       &::after {
@@ -174,8 +176,9 @@ export const DotSup = styled.sup<
         content: ${props.$flag ? "''" : 'none'};
         transform: translate3d(-5px, -5px, 0);
         transform-origin: center;
-        ${props.$pulsing &&
-        css`
+        ${
+          props.$pulsing &&
+          css`
           position: absolute;
           top: 0;
           left: 0;
@@ -184,7 +187,8 @@ export const DotSup = styled.sup<
           background-color: inherit;
           border-radius: 50%;
           animation: ${afterElementAnimation} 2s infinite;
-        `}
+        `
+        }
       }
     `}
 `;

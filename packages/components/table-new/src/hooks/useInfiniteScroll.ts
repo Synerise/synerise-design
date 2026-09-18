@@ -1,3 +1,4 @@
+import type { Virtualizer } from '@tanstack/react-virtual';
 import {
   type Dispatch,
   type SetStateAction,
@@ -7,17 +8,15 @@ import {
   useState,
 } from 'react';
 
-import { type Virtualizer } from '@tanstack/react-virtual';
-
 import {
   INFINITE_SCROLL_PADDING_START,
   INFINITE_SCROLL_TRIGGER_THRESHOLD,
 } from '../Table.const';
-import {
-  type InfiniteScrollProps,
-  type OnItemsRenderedProps,
-  type ScrollDirection,
-  type StickyData,
+import type {
+  InfiniteScrollProps,
+  OnItemsRenderedProps,
+  ScrollDirection,
+  StickyData,
 } from '../Table.types';
 
 type UseInfiniteScrollProps = {

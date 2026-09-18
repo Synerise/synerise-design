@@ -1,6 +1,6 @@
-import { type ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
-import { type AllocationVariant } from '../Slider.types';
+import type { AllocationVariant } from '../Slider.types';
 
 export const countControlGroupAllocation = (userAllocation: number[]): number =>
   100 - userAllocation.reduce((prev, curr) => prev + curr, 0);

@@ -7,9 +7,9 @@ import Icon, {
 
 import Button from '../Button';
 import * as S from './Checkbox.styles';
-import {
-  type ButtonCheckboxIconProps,
-  type CheckboxButtonProps,
+import type {
+  ButtonCheckboxIconProps,
+  CheckboxButtonProps,
 } from './Checkbox.types';
 
 const CheckboxButtonIcon = ({

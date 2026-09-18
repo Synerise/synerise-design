@@ -15,10 +15,10 @@ import InformationCard, {
 import { getClosest, getPopupContainer } from '@synerise/ds-utils';
 
 import { ErrorWrapper, ItemWrapper } from './ContextSelector.styles';
-import {
-  type ContextGroup,
-  type ContextItem,
-  type ContextProps,
+import type {
+  ContextGroup,
+  ContextItem,
+  ContextProps,
 } from './ContextSelector.types';
 import ContextSelectorDropdown from './ContextSelectorDropdown/ContextSelectorDropdown';
 import {

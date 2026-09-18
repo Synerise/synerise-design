@@ -23,7 +23,7 @@ export type SearchInputProps = {
   closeOnClickOutside?: boolean;
   textLookupKey?: string;
   filterLookupKey?: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // biome-ignore lint/suspicious/noExplicitAny: upstream type is not expressible here
   filterLabel?: { icon?: ReactNode; [key: string]: any } | null;
   focusTrigger?: boolean;
   onButtonClick?: () => void;

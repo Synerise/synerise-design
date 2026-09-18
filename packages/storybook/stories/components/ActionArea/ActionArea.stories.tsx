@@ -1,16 +1,16 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 import { fn } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import ActionArea from '@synerise/ds-action-area';
 import Button from '@synerise/ds-button';
 import Tooltip from '@synerise/ds-tooltip';
 
 import {
   BOOLEAN_CONTROL,
-  REACT_NODE_AS_STRING,
   centeredPaddedWrapper,
   fixedWrapper400,
+  REACT_NODE_AS_STRING,
 } from '../../utils';
 
 export default {

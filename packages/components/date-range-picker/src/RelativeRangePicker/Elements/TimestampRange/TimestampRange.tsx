@@ -1,19 +1,19 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+// biome-ignore-start lint/suspicious/noExplicitAny: upstream picker types are not expressible here
 import React from 'react';
 import { useIntl } from 'react-intl';
 
 import { DatePicker, getDefaultTexts } from '@synerise/ds-date-picker';
 
 import { CUSTOM_RANGE_KEY, DURATION_MODIFIERS } from '../../../constants';
-import {
-  type Duration,
-  type RelativeDateRange,
-  type RelativeUnits,
+import type {
+  Duration,
+  RelativeDateRange,
+  RelativeUnits,
 } from '../../../date.types';
 import { DEFAULT_RANGE } from '../../../utils';
 import * as S from '../../RelativeRangePicker.styles';
 import TimestampDuration from './TimestampDuration/TimestampDuration';
-import { type TimestampRangeProps as Props } from './TimestampRange.types';
+import type { TimestampRangeProps as Props } from './TimestampRange.types';
 
 const TimestampRange: React.FC<Props> = ({
   currentRange,
@@ -61,13 +61,13 @@ const TimestampRange: React.FC<Props> = ({
     }
   };
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: dependencies intentionally omitted
   React.useEffect((): void => {
     const duration: Duration = {
       type: durationUnit as RelativeUnits,
       value: durationValue,
     };
     handleRangeChange(timestamp, duration);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [durationValue, durationModifier, durationUnit, timestamp]);
 
   const renderDatePicker = (): React.ReactNode => {
@@ -127,4 +127,4 @@ const TimestampRange: React.FC<Props> = ({
 };
 
 export default TimestampRange;
-/* eslint-enable @typescript-eslint/no-explicit-any */
+// biome-ignore-end lint/suspicious/noExplicitAny: upstream picker types are not expressible here

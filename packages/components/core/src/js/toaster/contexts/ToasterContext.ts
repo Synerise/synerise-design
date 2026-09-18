@@ -1,7 +1,7 @@
 import { createContext } from 'react';
 
-import { type ToasterProps } from '../Toaster.types';
 import { TOASTER_DEFAULTS } from '../constants';
+import type { ToasterProps } from '../Toaster.types';
 
 export type ToastContextType = {
   options: Partial<ToasterProps>;

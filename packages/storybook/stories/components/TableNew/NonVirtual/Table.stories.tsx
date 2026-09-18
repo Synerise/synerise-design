@@ -1,6 +1,6 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import Button from '@synerise/ds-button';
 import { Box, Flex } from '@synerise/ds-flex-box';
 import { SearchInput } from '@synerise/ds-search';

@@ -1,10 +1,9 @@
+import type { StorybookConfig } from '@storybook/react-vite';
 import NpmImportPlugin from 'less-plugin-npm-import';
 import { dirname, join, resolve } from 'path';
 import deeperSortSetup from 'storybook-deeper-sort';
 import { fileURLToPath } from 'url';
 import type { Plugin } from 'vite';
-
-import type { StorybookConfig } from '@storybook/react-vite';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 

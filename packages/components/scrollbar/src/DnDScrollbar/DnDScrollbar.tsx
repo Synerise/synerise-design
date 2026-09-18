@@ -1,14 +1,14 @@
 import React, {
   type MouseEvent as ReactMouseEvent,
   type UIEvent,
-  type WheelEvent,
   useCallback,
   useEffect,
   useRef,
   useState,
+  type WheelEvent,
 } from 'react';
 
-import { type ScrollbarProps } from '../Scrollbar.types';
+import type { ScrollbarProps } from '../Scrollbar.types';
 import * as S from './DnDScrollbar.styles';
 
 export const DnDScrollbar = ({

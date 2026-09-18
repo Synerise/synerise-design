@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 
 import type { ListItemProps } from '@synerise/ds-list-item';
 
-import { type DropdownSharedProps } from '../../Dropdown.types';
+import type { DropdownSharedProps } from '../../Dropdown.types';
 
 export type DropdownMenuTexts = {
   searchPlaceholder: string;

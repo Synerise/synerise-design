@@ -4,9 +4,9 @@ import { theme } from '@synerise/ds-core';
 import Icon, { CheckS } from '@synerise/ds-icon';
 import { renderSearchList } from '@synerise/ds-search';
 
-import { type Path } from '../../Cascader.types';
+import type { Path } from '../../Cascader.types';
 import Breadcrumb from '../Breadcrumb/Breadcrumb';
-import { type BreadcrumbsListProps } from './BreadcrumbsList.types';
+import type { BreadcrumbsListProps } from './BreadcrumbsList.types';
 
 const DEFAULT_VISIBLE_ROWS = 6;
 const DEFAULT_ROW_HEIGHT = 50;

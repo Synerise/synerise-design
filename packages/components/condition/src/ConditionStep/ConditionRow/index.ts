@@ -1,2 +1,2 @@
-export * from './ConditionRow.types';
 export * from './ConditionRow';
+export * from './ConditionRow.types';

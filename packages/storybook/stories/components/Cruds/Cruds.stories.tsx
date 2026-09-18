@@ -1,13 +1,13 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 import { fn } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import Cruds from '@synerise/ds-cruds';
 
 import {
   BOOLEAN_CONTROL,
-  STRING_CONTROL,
   centeredPaddedWrapper,
+  STRING_CONTROL,
 } from '../../utils';
 
 export default {

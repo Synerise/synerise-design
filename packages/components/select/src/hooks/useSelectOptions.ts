@@ -1,9 +1,9 @@
 import { type ReactNode, useMemo, useRef } from 'react';
 
-import {
-  type FilterOptionFn,
-  type RawValueType,
-  type SelectOption,
+import type {
+  FilterOptionFn,
+  RawValueType,
+  SelectOption,
 } from '../Select.types';
 import { areOptionChildrenEqual } from '../utils/areOptionChildrenEqual';
 import { getOptionsFromChildren } from '../utils/getOptionsFromChildren';

@@ -1,6 +1,6 @@
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import React, { useState } from 'react';
 
-import type { Meta, StoryObj } from '@storybook/react-vite';
 import { ObjectAvatar } from '@synerise/ds-avatar';
 import Button from '@synerise/ds-button';
 import { theme } from '@synerise/ds-core';
@@ -22,8 +22,8 @@ import { useOnClickOutside } from '@synerise/ds-utils';
 import {
   BOOLEAN_CONTROL,
   CLASSNAME_ARG_CONTROL,
-  REACT_NODE_AS_STRING,
   headerWrapper,
+  REACT_NODE_AS_STRING,
   reactNodeAsSelect,
 } from '../../utils';
 import { StepData, steps, tabs, tabsSkeleton } from './PageHeader.data';

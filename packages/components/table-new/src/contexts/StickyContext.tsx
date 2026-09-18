@@ -1,6 +1,6 @@
 import { createContext, useContext } from 'react';
 
-import { type StickyData } from '../Table.types';
+import type { StickyData } from '../Table.types';
 
 type StickyContextType = {
   stickyData: StickyData;

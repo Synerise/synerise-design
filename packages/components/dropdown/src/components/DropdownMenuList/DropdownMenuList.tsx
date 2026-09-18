@@ -9,17 +9,17 @@ import { type ListChildComponentProps, VariableSizeList } from 'react-window';
 
 import { SearchNoResultsL } from '@synerise/ds-icon';
 import {
-  LIST_ITEM_SIZE_MAPPING,
-  type ListItemProps,
   itemSizes,
   itemTypes,
+  LIST_ITEM_SIZE_MAPPING,
+  type ListItemProps,
 } from '@synerise/ds-list-item';
 import Scrollbar from '@synerise/ds-scrollbar';
 import { useMeasuredRow, useMeasuredRowHeights } from '@synerise/ds-utils';
 
 import { MAX_VISIBLE_ITEMS, SCROLLBAR_OFFSET } from '../../Dropdown.const';
 import * as S from './DropdownMenuList.styles';
-import { type DropdownMenuListProps } from './DropdownMenuList.types';
+import type { DropdownMenuListProps } from './DropdownMenuList.types';
 
 /** A divider is not a row and does not read `size`; it is always 1px plus its margins. */
 const DIVIDER_HEIGHT = 17;

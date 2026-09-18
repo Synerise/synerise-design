@@ -6,9 +6,9 @@ import { toDateValue } from '../../toDateValue';
 import { getDecadeRange } from '../../utils';
 import DecadePicker from '../DecadePicker/DecadePicker';
 import GridPicker from '../GridPicker/GridPicker';
-import { type Cell } from '../GridPicker/GridPicker.types';
+import type { Cell } from '../GridPicker/GridPicker.types';
 import Navbar from '../Navbar/Navbar';
-import { type YearPickerProps, type YearPickerState } from './YearPicker.types';
+import type { YearPickerProps, YearPickerState } from './YearPicker.types';
 
 function getInitialState(props: YearPickerProps): YearPickerState {
   return {

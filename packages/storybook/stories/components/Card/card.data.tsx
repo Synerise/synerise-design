@@ -3,8 +3,8 @@ import { useArgs } from 'storybook/preview-api';
 
 import { ObjectAvatar, UserAvatar } from '@synerise/ds-avatar';
 import Button from '@synerise/ds-button';
-import Card, { CardBadge } from '@synerise/ds-card';
 import type { CardProps } from '@synerise/ds-card';
+import Card, { CardBadge } from '@synerise/ds-card';
 import { theme } from '@synerise/ds-core';
 import Icon, {
   AiSearchGreyM,

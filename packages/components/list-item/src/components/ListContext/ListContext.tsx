@@ -1,6 +1,6 @@
 import { createContext, useContext } from 'react';
 
-import { type DelayConfig } from '@synerise/ds-popover';
+import type { DelayConfig } from '@synerise/ds-popover';
 
 import type { ListItemProps } from '../../ListItem.types';
 

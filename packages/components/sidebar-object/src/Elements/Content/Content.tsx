@@ -8,7 +8,7 @@ import {
   InlineEditWrapper,
   TagsWrapper,
 } from './Content.style';
-import { type ContentProps } from './Content.types';
+import type { ContentProps } from './Content.types';
 
 const Content = ({
   onFolderSelect,
@@ -30,7 +30,7 @@ const Content = ({
           <SubtleForm.TextArea
             minRows={3}
             // TODO: fix handler type
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            // biome-ignore lint/suspicious/noExplicitAny: upstream type is not expressible here
             onChange={onDescriptionChange as any}
             value={textDescription}
             placeholder={texts.placeholder}

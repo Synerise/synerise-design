@@ -4,7 +4,7 @@ import { FormFieldLabel } from '@synerise/ds-form-field';
 
 import Item from './Elements/Item/Item';
 import * as S from './Unordered-list.styles';
-import { type UnorderedListProps } from './Unordered-list.types';
+import type { UnorderedListProps } from './Unordered-list.types';
 
 const UnorderedList = ({
   data,

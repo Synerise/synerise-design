@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl';
 
-import { type ImageTexts } from './Image.shared.types';
+import type { ImageTexts } from './Image.shared.types';
 
 /**
  * Resolves the control labels: DS-translated defaults (`DS.IMAGE.*`) shallow-

@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 
 import * as S from './ProgressTiles.styles';
-import { type ProgressTilesProps } from './ProgressTiles.types';
+import type { ProgressTilesProps } from './ProgressTiles.types';
 
 const MAX_PERCENT = 100;
 

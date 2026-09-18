@@ -1,6 +1,6 @@
 import styled, {
-  type FlattenSimpleInterpolation,
   css,
+  type FlattenSimpleInterpolation,
 } from 'styled-components';
 
 import type { RangeDisplayMode } from './RangeForm.types';

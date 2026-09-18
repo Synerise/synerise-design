@@ -373,7 +373,7 @@ RTL `render()` wrapped in `DSProvider` with sensible test defaults. Use in compo
 - **`ThemeProvider` merges with defaults**: `{ ..dsTheme, ..theme }` — partial overrides are safe; you cannot remove keys from the theme object.
 - **`breakpoints.xxlarge.max = 0`** — intentionally 0; `MEDIA_FROM.xxlarge` produces an unbounded min-width query.
 - **Nested i18n messages** are flattened by `LocaleProvider.utils.ts` before passing to `IntlProvider`; keys use dot-notation after flattening.
-- **`useDataFormat` uses `eslint-disable @typescript-eslint/no-explicit-any`** in `formatValue` and `formatMultipleValues` to handle the overload dispatch pattern.
+- **`useDataFormat` uses `biome-ignore lint/suspicious/noExplicitAny`** in `formatValue` and `formatMultipleValues` to handle the overload dispatch pattern.
 - **Data format contexts are split**: `DataFormatConfigContext` holds the raw config; `DataFormatIntlsContext` holds three `IntlShape` instances (number/date/time) derived from that config. Splitting them avoids re-creating all intl instances when only one notation changes.
 - **`timeZone.utils.ts` — wall clock vs instant.** A "wall clock" is a `Date` whose *local* fields carry a reading in some other timezone; an "instant" is a real point in time. `toIsoString` encodes a wall clock into an offset-carrying ISO string, `getLocalDateInTimeZone` decodes such a string back into a wall clock, and the two are inverses. Mixing the two representations shifts a value by the browser-to-target timezone delta.
   - Both directions go through local wrappers — `getOffsetAtWallClock` and `getWallClockAtInstant`. Use them rather than reaching for `@date-fns/tz` directly, and see `utils/__specs__/timeZone.utils.spec.ts` for the transition-day coverage.

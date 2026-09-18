@@ -3,7 +3,7 @@ import React from 'react';
 import Checkbox from '@synerise/ds-checkbox';
 
 import * as S from '../../Mapping.styles';
-import { type BatchSelectionProps } from '../../Mapping.types';
+import type { BatchSelectionProps } from '../../Mapping.types';
 
 export const BatchSelectionHeader = ({
   counter,

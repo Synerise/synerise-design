@@ -1,6 +1,6 @@
 import range from 'lodash.range';
 import React from 'react';
-import { type WrappedComponentProps, injectIntl } from 'react-intl';
+import { injectIntl, type WrappedComponentProps } from 'react-intl';
 
 import {
   fnsAddYears,
@@ -14,13 +14,10 @@ import {
 import fnsFormat from '../../format';
 import { toDateValue } from '../../toDateValue';
 import GridPicker from '../GridPicker/GridPicker';
-import { type Cell } from '../GridPicker/GridPicker.types';
+import type { Cell } from '../GridPicker/GridPicker.types';
 import Navbar from '../Navbar/Navbar';
 import YearPicker from '../YearPicker/YearPicker';
-import {
-  type MonthPickerProps,
-  type MonthPickerState,
-} from './MonthPicker.types';
+import type { MonthPickerProps, MonthPickerState } from './MonthPicker.types';
 
 function getInitialState(props: MonthPickerProps): MonthPickerState {
   return {

@@ -1,6 +1,5 @@
-import React, { HTMLAttributes } from 'react';
-
 import { faker } from '@faker-js/faker';
+import React, { HTMLAttributes } from 'react';
 
 export const getContent = (orientation?: string) => (
   <div

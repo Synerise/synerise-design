@@ -1,19 +1,19 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React, { ChangeEvent } from 'react';
 import { useArgs } from 'storybook/preview-api';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import Icon, { Add2M, FileM } from '@synerise/ds-icon';
 import { TextArea, TextareaProps } from '@synerise/ds-input';
 
 import {
   BOOLEAN_CONTROL,
   CLASSNAME_ARG_CONTROL,
+  fixedWrapper300,
   NUMBER_CONTROL,
   PREFIXCLS_ARG_CONTROL,
   REACT_NODE_AS_STRING,
   STRING_CONTROL,
   STYLE_ARG_CONTROL,
-  fixedWrapper300,
 } from '../../utils';
 
 type Story = StoryObj<TextareaProps>;

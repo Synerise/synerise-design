@@ -1,12 +1,12 @@
-import {
-  type DateRangePickerProps,
-  type RelativeMode,
-  type Texts,
+import type {
+  DateRangePickerProps,
+  RelativeMode,
+  Texts,
 } from '../../../DateRangePicker.types';
-import {
-  type DateRange,
-  type RelativeDateRange,
-  type RelativeUnits,
+import type {
+  DateRange,
+  RelativeDateRange,
+  RelativeUnits,
 } from '../../../date.types';
 
 export type Props = {

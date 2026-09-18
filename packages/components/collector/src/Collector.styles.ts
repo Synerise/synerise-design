@@ -142,12 +142,8 @@ export const CollectorValue = styled(Value)<{ hasError?: boolean }>`
       }
     `}
 `;
-export { ContentAbove };
-export { Label };
-export { ContentBelow };
-export { Description };
-export { ErrorText };
-export { ValueText };
+
+export { ContentAbove, ContentBelow, Description, ErrorText, Label, ValueText };
 export const DropdownWrapper = styled.div`
   position: relative;
   user-select: none;

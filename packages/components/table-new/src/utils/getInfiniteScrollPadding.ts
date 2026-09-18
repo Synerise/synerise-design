@@ -1,5 +1,5 @@
 import { INFINITE_LOADER_ITEM_HEIGHT } from '../Table.const';
-import { type InfiniteScrollProps } from '../Table.types';
+import type { InfiniteScrollProps } from '../Table.types';
 
 export const getInfiniteScrollPadding = (
   infiniteScroll?: InfiniteScrollProps,

@@ -1,17 +1,17 @@
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 import { fn } from 'storybook/test';
 
-import type { Meta, StoryObj } from '@storybook/react-vite';
-import Carousel from '@synerise/ds-carousel';
 import type { CarouselProps } from '@synerise/ds-carousel';
+import Carousel from '@synerise/ds-carousel';
 
 import {
   BOOLEAN_CONTROL,
   CLASSNAME_ARG_CONTROL,
-  NUMBER_CONTROL,
-  STYLE_ARG_CONTROL,
   controlFromOptionsArray,
   fixedWrapper588,
+  NUMBER_CONTROL,
+  STYLE_ARG_CONTROL,
 } from '../../utils';
 import {
   CarouselWithControls,

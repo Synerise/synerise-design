@@ -1,10 +1,10 @@
 import classnames from 'classnames';
 import React, {
   type FocusEvent,
+  forwardRef,
   type KeyboardEvent,
   type MouseEvent,
   type ReactNode,
-  forwardRef,
 } from 'react';
 
 import { useTheme } from '@synerise/ds-core';
@@ -14,9 +14,9 @@ import Icon, {
   AngleUpS,
   CheckS,
 } from '@synerise/ds-icon';
-import { type WithHTMLAttributes } from '@synerise/ds-utils';
+import type { WithHTMLAttributes } from '@synerise/ds-utils';
 
-import { type ItemSize } from '../../ListItem.types';
+import type { ItemSize } from '../../ListItem.types';
 import { rendersDescription } from './ItemLabel.const';
 import * as S from './Text.styles';
 

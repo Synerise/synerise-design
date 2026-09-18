@@ -7,12 +7,9 @@ import type {
   ReactNode,
   RefAttributes,
 } from 'react';
-import { type StyledComponent } from 'styled-components';
+import type { StyledComponent } from 'styled-components';
 
-import {
-  type LegacyPlacement,
-  type PopoverOptions,
-} from '@synerise/ds-popover';
+import type { LegacyPlacement, PopoverOptions } from '@synerise/ds-popover';
 import type { TooltipProps } from '@synerise/ds-tooltip';
 import type { WithHTMLAttributes } from '@synerise/ds-utils';
 

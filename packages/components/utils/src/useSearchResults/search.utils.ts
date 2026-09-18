@@ -1,4 +1,4 @@
-import { type BaseGroupType } from './types';
+import type { BaseGroupType } from './types';
 
 export const isItemInGroup = <GroupType extends BaseGroupType<GroupType>>(
   groupId?: string | number,

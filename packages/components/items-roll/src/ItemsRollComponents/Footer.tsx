@@ -9,10 +9,10 @@ import Icon, {
 import Popconfirm from '@synerise/ds-popconfirm';
 
 import * as S from '../ItemsRoll.styles';
-import {
-  type FooterProps,
-  type ShowLessButtonProps,
-  type ShowMoreButtonProps,
+import type {
+  FooterProps,
+  ShowLessButtonProps,
+  ShowMoreButtonProps,
 } from './Footer.types';
 
 const ShowLessButton = ({

@@ -1,13 +1,13 @@
 import type { ReactNode } from 'react';
 
-import { type Color, type Size } from '@synerise/ds-avatar';
-import { type IconProps } from '@synerise/ds-icon';
-import { type SubtleTextAreaProps } from '@synerise/ds-subtle-form';
+import type { Color, Size } from '@synerise/ds-avatar';
+import type { IconProps } from '@synerise/ds-icon';
+import type { SubtleTextAreaProps } from '@synerise/ds-subtle-form';
 import type { WithHTMLAttributes } from '@synerise/ds-utils';
 
-import { type InformationCardActionsProps } from './InformationCardActions/InformationCardActions.types';
-import { type InformationCardPropertyListProps } from './InformationCardPropertyList/InformationCardPropertyList.types';
-import { type InformationCardSummaryProps } from './InformationCardSummary/InformationCardSummary.types';
+import type { InformationCardActionsProps } from './InformationCardActions/InformationCardActions.types';
+import type { InformationCardPropertyListProps } from './InformationCardPropertyList/InformationCardPropertyList.types';
+import type { InformationCardSummaryProps } from './InformationCardSummary/InformationCardSummary.types';
 
 export type BadgeData = {
   type?: string;

@@ -1,8 +1,8 @@
 import type React from 'react';
-import { type IntlShape, type WrappedComponentProps } from 'react-intl';
+import type { IntlShape, WrappedComponentProps } from 'react-intl';
 
-import { type GridTexts } from '../Grid/Grid.types';
-import { type DayKey } from '../TimeWindow.types';
+import type { GridTexts } from '../Grid/Grid.types';
+import type { DayKey } from '../TimeWindow.types';
 
 export type DayProps = {
   dayKey: DayKey;

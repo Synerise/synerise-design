@@ -13,9 +13,9 @@ import {
   VirtualTable,
 } from '@synerise/ds-table-new';
 
-import { type DataSource } from '../AvatarGroup.types';
+import type { DataSource } from '../AvatarGroup.types';
 import * as S from './GroupModal.styles';
-import { type GroupModalProps } from './GroupModal.types';
+import type { GroupModalProps } from './GroupModal.types';
 
 const TABLE_MAX_HEIGHT = 430;
 const CELL_HEIGHT = 64;

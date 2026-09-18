@@ -1,15 +1,11 @@
 export { default } from './InformationCard';
-
-export { InformationCardPropertyList } from './InformationCardPropertyList/InformationCardPropertyList';
-
+export * from './InformationCard.types';
 export {
   buildExtraInfo,
   buildIconBadge,
   buildInitialsBadge,
 } from './InformationCard.utils';
-
-export { InformationCardTooltip } from './InformationCardTooltip/InformationCardTooltip';
-
+export { InformationCardPropertyList } from './InformationCardPropertyList/InformationCardPropertyList';
 export * from './InformationCardPropertyList/InformationCardPropertyList.types';
-export * from './InformationCard.types';
+export { InformationCardTooltip } from './InformationCardTooltip/InformationCardTooltip';
 export * from './InformationCardTooltip/InformationCardTooltip.types';

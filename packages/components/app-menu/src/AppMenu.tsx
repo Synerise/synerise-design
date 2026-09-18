@@ -3,7 +3,7 @@ import React from 'react';
 import { useOnClickOutside } from '@synerise/ds-utils';
 
 import * as S from './AppMenu.styles';
-import { type AppMenuProps } from './AppMenu.types';
+import type { AppMenuProps } from './AppMenu.types';
 import Item from './Item/Item';
 import MenuContext from './MenuContext/MenuContext';
 import NavigableItems from './NavigableItems/NavigableItems';

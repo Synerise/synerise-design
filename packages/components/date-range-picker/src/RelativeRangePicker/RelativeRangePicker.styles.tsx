@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Button, { ButtonToggle } from '@synerise/ds-button';
 import { InputGroup } from '@synerise/ds-input';
 import { InputGroupItem } from '@synerise/ds-input/dist/InputGroup.styles';
-import { type Props as InputGroupProps } from '@synerise/ds-input/dist/InputGroup.types';
+import type { Props as InputGroupProps } from '@synerise/ds-input/dist/InputGroup.types';
 import ListItem, { type StyledListItem } from '@synerise/ds-list-item';
 
 export const Container = styled.div``;

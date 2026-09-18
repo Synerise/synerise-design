@@ -1,12 +1,12 @@
 import React, {
   type ChangeEvent,
   type FocusEvent,
-  type ReactNode,
   forwardRef,
+  type ReactNode,
 } from 'react';
 
 import * as S from '../Input.styles';
-import { type InputProps } from '../Input.types';
+import type { InputProps } from '../Input.types';
 import Textarea from '../Textarea/Textarea';
 
 type ExpandableWrapperProps = Pick<InputProps, 'value'> & {

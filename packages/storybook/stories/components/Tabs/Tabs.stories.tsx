@@ -1,9 +1,9 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React, { ReactNode } from 'react';
 import { action } from 'storybook/actions';
 import { useArgs } from 'storybook/preview-api';
 import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import Badge from '@synerise/ds-badge';
 import { theme } from '@synerise/ds-core';
 import {
@@ -14,8 +14,8 @@ import {
   SearchM,
   TextM,
 } from '@synerise/ds-icon';
-import Tabs from '@synerise/ds-tabs';
 import type { TabsConfiguration, TabsProps } from '@synerise/ds-tabs';
+import Tabs from '@synerise/ds-tabs';
 
 import { BOOLEAN_CONTROL, fixedWrapper300, fixedWrapper588 } from '../../utils';
 

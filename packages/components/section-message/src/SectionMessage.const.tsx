@@ -9,7 +9,7 @@ import {
   WarningM,
 } from '@synerise/ds-icon';
 
-import { type SectionType } from './SectionMessage.types';
+import type { SectionType } from './SectionMessage.types';
 
 export const ICONS: Record<SectionType, ReactNode> = {
   positive: <Check2M />,

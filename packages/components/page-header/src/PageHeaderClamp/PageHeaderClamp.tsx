@@ -3,7 +3,7 @@ import React from 'react';
 import Icon from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 
-import { type PageHeaderProps } from '../PageHeader.types';
+import type { PageHeaderProps } from '../PageHeader.types';
 import * as S from './PageHeaderClamp.styles';
 
 type PageHeaderClampProps = Pick<

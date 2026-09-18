@@ -5,9 +5,9 @@ import Dropdown from '@synerise/ds-dropdown';
 import Icon, { AngleDownS, Close3S } from '@synerise/ds-icon';
 import { getPopupContainer } from '@synerise/ds-utils';
 
-import {
-  type FactorValueComponentProps,
-  type RelativeDateValueType,
+import type {
+  FactorValueComponentProps,
+  RelativeDateValueType,
 } from '../../Factors.types';
 import { defaultTriggerModifier } from './RelativeDate.utils';
 import { RelativeDateDropdown } from './RelativeDateDropdown';

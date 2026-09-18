@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { useIntl } from 'react-intl';
 
-import { type ConditionTexts } from '../Condition.types';
+import type { ConditionTexts } from '../Condition.types';
 
 export const useTranslations = (
   defaultTexts?: Partial<ConditionTexts>,

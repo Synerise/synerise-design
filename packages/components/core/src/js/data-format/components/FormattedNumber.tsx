@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useDataFormat } from '../hooks';
-import { type NumberToFormatOptions } from '../types';
+import type { NumberToFormatOptions } from '../types';
 
 export type FormattedNumberProps = {
   value: number;

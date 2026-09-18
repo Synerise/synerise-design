@@ -17,7 +17,7 @@ import Tooltip from '@synerise/ds-tooltip';
 
 import * as S from '../../SubtleForm.styles';
 import { MaskedDatePlaceholder, SelectContainer } from './DatePicker.styles';
-import { type SubtleDatePickerProps } from './DatePicker.types';
+import type { SubtleDatePickerProps } from './DatePicker.types';
 import { replaceLettersWithUnderscore } from './utils';
 
 const SubtleDatePicker = ({
@@ -59,7 +59,7 @@ const SubtleDatePicker = ({
   );
 
   const getDisplayText = useCallback((): string | undefined => {
-    return value && !!String(value).trim()
+    return value && String(value).trim()
       ? formatDisplayValue(value as Date)
       : placeholder;
   }, [value, placeholder, formatDisplayValue]);

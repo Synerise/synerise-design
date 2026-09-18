@@ -1,7 +1,7 @@
 import React from 'react';
 
 import * as S from '../Item.styles';
-import { type ItemNameLargeProps } from './ItemNameLarge.types';
+import type { ItemNameLargeProps } from './ItemNameLarge.types';
 
 const ItemNameLarge = ({ item }: ItemNameLargeProps) => {
   const classes = item.nameWrapperClassNames?.length

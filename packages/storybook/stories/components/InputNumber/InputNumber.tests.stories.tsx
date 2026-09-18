@@ -1,3 +1,4 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import {
   expect,
   fireEvent,
@@ -7,7 +8,6 @@ import {
   within,
 } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import type { InputProps } from '@synerise/ds-input';
 import { InputNumberProps } from '@synerise/ds-input-number';
 

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import CopyIcon from '@synerise/ds-copy-icon';
 
 import * as S from './Copyable.styles';
-import { type CopyableCellProps } from './Copyable.types';
+import type { CopyableCellProps } from './Copyable.types';
 
 const DEFAULT_TIMEOUT = 2000;
 

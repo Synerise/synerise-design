@@ -1,5 +1,5 @@
 import { CUSTOM_RANGE_KEY } from '../../constants';
-import { type RelativeDateRange } from '../../date.types';
+import type { RelativeDateRange } from '../../date.types';
 import { findMatchingPreset } from './findMatchingPreset.utils';
 
 export const updatePresetKey = (

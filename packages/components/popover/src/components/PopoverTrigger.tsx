@@ -1,12 +1,11 @@
+import { useMergeRefs } from '@floating-ui/react';
 import React, {
-  type HTMLProps,
-  type ReactNode,
   cloneElement,
   forwardRef,
+  type HTMLProps,
   isValidElement,
+  type ReactNode,
 } from 'react';
-
-import { useMergeRefs } from '@floating-ui/react';
 
 import { usePopoverContext } from '../hooks/usePopoverContext';
 import * as S from './PopoverTrigger.styles';
@@ -21,7 +20,7 @@ export const PopoverTrigger = forwardRef<
   HTMLProps<HTMLElement> & PopoverTriggerProps
 >(({ children, asChild = false, ...props }, propRef) => {
   const context = usePopoverContext();
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // biome-ignore lint/suspicious/noExplicitAny: upstream type is not expressible here
   const childrenRef = (children as any).ref;
   const renderAsChild = asChild && isValidElement(children);
   const refsArray = [

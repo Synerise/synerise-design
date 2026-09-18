@@ -1,8 +1,8 @@
-import React, { type ReactElement, memo } from 'react';
+import React, { memo, type ReactElement } from 'react';
 import { areEqual } from 'react-window';
 
 import * as S from '../IconPicker.styles';
-import { type RowItemProps, type SourceType } from '../IconPicker.types';
+import type { RowItemProps, SourceType } from '../IconPicker.types';
 import { isCategories } from '../utils/typeguards.utils';
 import ListItem from './ListItem/ListItem';
 

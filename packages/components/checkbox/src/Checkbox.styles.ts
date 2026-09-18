@@ -2,9 +2,9 @@ import styled, { css } from 'styled-components';
 
 const checkSvgWithCustomColor = (color: string): string => {
   const colorValueForSvg = color.replace(/#/, '%23');
-  // NB: SVG attributes are double-quoted so the data URI can be wrapped in CSS url('...') with
-  // single quotes — prettier normalises url() quotes to single inside css`` and would otherwise
-  // break the string (the old single-quoted SVG ended the url early → missing tick).
+  // NB: SVG attributes must stay double-quoted. This data URI is interpolated into a css``
+  // url('...'), so a single-quoted attribute would terminate the url() early and the tick
+  // would silently disappear.
   return `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="3 3 18 18" >/><path fill="none" d="M0 0h24v24H0z" /><path style="fill: ${colorValueForSvg};" stroke-width="1" stroke="${colorValueForSvg}" d="M10.61 15.744a.75.75 0 01-.535-.224l-3.11-3.162a.75.75 0 011.07-1.052l2.575 2.618 5.355-5.444a.75.75 0 111.07 1.052l-5.89 5.988a.75.75 0 01-.535.224z"/></svg>`;
 };
 
@@ -112,10 +112,12 @@ export const CheckboxInner = styled.span<{
     css`
       border-color: ${props.theme.palette['grey-200']} !important;
       background-color: ${props.theme.palette['grey-050']} !important;
-      ${props.$checked &&
-      `background-image: url('${checkSvgWithCustomColor(
-        props.theme.palette['grey-400'],
-      )}');`}
+      ${
+        props.$checked &&
+        `background-image: url('${checkSvgWithCustomColor(
+          props.theme.palette['grey-400'],
+        )}');`
+      }
     `}
 `;
 

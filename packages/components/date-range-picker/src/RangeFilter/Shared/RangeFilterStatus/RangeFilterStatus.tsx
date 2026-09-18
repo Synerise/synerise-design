@@ -6,9 +6,9 @@ import { theme } from '@synerise/ds-core';
 import Icon, { CloseS, FilterM } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 
-import { type Texts } from '../../../DateRangePicker.types';
+import type { Texts } from '../../../DateRangePicker.types';
 import * as S from './RangeFilterStatus.styles';
-import { type RangeFilterStatusProps } from './RangeFilterStatus.types';
+import type { RangeFilterStatusProps } from './RangeFilterStatus.types';
 
 const RangeFilterStatus = ({
   onFilterRemove,

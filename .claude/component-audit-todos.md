@@ -730,5 +730,5 @@ No gaps found.
 - [ ] **Docs** — README `includeToaster: boolean` prop does not exist in `DSProviderProps`; actual prop is `toasterProps: false | Partial<ToasterProps>` (now fixed)
 - [ ] **Docs** — `onErrorIntl` prop missing from README API table (now added)
 - [ ] **Docs** — README says "react-i18n" in Features; actual library is `react-intl`
-- [ ] **Cleanup** — `useDataFormat.ts` uses `eslint-disable @typescript-eslint/no-explicit-any` for overload dispatch; type the overloads properly to remove the `any`
+- [ ] **Cleanup** — `useDataFormat.ts` uses `biome-ignore lint/suspicious/noExplicitAny` for overload dispatch; type the overloads properly to remove the `any`
 - [x] **Migration** — ~~Uses Jest~~ Migrated to Vitest

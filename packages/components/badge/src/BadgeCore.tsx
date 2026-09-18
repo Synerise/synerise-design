@@ -1,7 +1,7 @@
 import React, { type ReactNode } from 'react';
 
 import * as S from './Badge.styles';
-import { type BadgeProps } from './Badge.types';
+import type { BadgeProps } from './Badge.types';
 
 const DEFAULT_OVERFLOW_COUNT = 99;
 
