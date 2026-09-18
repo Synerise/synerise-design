@@ -11,12 +11,30 @@ overrides:
   react-dom: 18.3.1
   svgo: 3.3.3
 
-onlyBuiltDependencies:
-  - '@swc/core'
-  - core-js
-  - esbuild
-  - husky
-  - nx
+# Replaces onlyBuiltDependencies, which pnpm 11 removed. Only these packages
+# may run install scripts; strictDepBuilds is on by default, so anything else
+# with a build script fails the install rather than warning.
+allowBuilds:
+  '@swc/core': true
+  core-js: true
+  esbuild: true
+  husky: true
+  nx: true
+  # Neither was in onlyBuiltDependencies, so pnpm 10 never ran their scripts
+  # either - both ship prebuilt binaries. false keeps that, rather than newly
+  # enabling two builds under cover of the upgrade.
+  '@parcel/watcher': false
+  unrs-resolver: false
+
+# pnpm 11 no longer reads this from .npmrc. It matters because CI runs as root,
+# where the default is false and install scripts would silently drop privileges.
+# (strict-ssl moved to .install_pnpm instead - it is a CI-only concern.)
+unsafePerm: true
+
+# pnpm 11 defaults this to `install`, which would run an install before every
+# script - including in the jobs that deliberately installed with --offline.
+# false is the pnpm 10 behaviour we already rely on.
+verifyDepsBeforeRun: false
 
 linkWorkspacePackages: "deep"
 preferWorkspacePackages: true

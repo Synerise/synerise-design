@@ -24,8 +24,24 @@ variables:
   USE_MERGE_REQUEST_TESTS: 'yes'
 
 .install_pnpm: &install_pnpm
-  - npm install -g pnpm@latest-10
-  - pnpm config set store-dir .pnpm-store
+  - npm install -g pnpm@11.26.0
+  # pnpm 11 reads pnpm_config_* rather than npm_config_*, and `pnpm config set`
+  # now writes global YAML instead of .npmrc, where a relative store-dir has no
+  # well-defined base. An absolute env var leaves nothing to interpret: get this
+  # wrong and the store lands outside .pnpm-store, the cache is always empty and
+  # every --offline job fails.
+  - export pnpm_config_store_dir="$CI_PROJECT_DIR/.pnpm-store"
+  # Since 11.21 pnpm verifies the lockfile against its supply-chain policies on
+  # every install, and offline it reads registry metadata from the cache dir
+  # rather than the package store. That default is ~/.cache/pnpm, outside the
+  # project, so GitLab cannot cache it and every --offline job fails with
+  # ERR_PNPM_NO_OFFLINE_META even with a fully warm .pnpm-store.
+  - export pnpm_config_cache_dir="$CI_PROJECT_DIR/.pnpm-cache"
+  # The nexus cert chain is why .npmrc.dist carries strict-ssl=false; v11 no
+  # longer reads that from .npmrc. Kept here rather than in pnpm-workspace.yaml
+  # so it stays a CI concern instead of a committed default every local install
+  # would silently inherit.
+  - export pnpm_config_strict_ssl=false
   - export SNR_NPM_TOKEN="$(echo -n $SNR_NPM_REGISTRY_USERNAME:$SNR_NPM_REGISTRY_PASSWORD | base64)"
   - cp .npmrc.dist .npmrc
 
@@ -35,8 +51,10 @@ default:
     - key:
         files:
           - pnpm-lock.yaml
+        prefix: v11
       paths:
         - .pnpm-store
+        - .pnpm-cache
       policy: pull
     - key: $CI_COMMIT_REF_SLUG
       paths:
@@ -70,8 +88,6 @@ install:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
   before_script:
     - !reference [.install_pnpm]
-    - pnpm config set registry $NPM_REGISTRY
-    - pnpm config set unsafe-perm true
     - cp .npmrc.dist .npmrc
     - echo "" >> .npmrc
     - export SNR_NPM_TOKEN="$(echo -n $SNR_NPM_REGISTRY_USERNAME:$SNR_NPM_REGISTRY_PASSWORD | base64)"
@@ -87,8 +103,10 @@ install:
     key:
       files:
         - pnpm-lock.yaml
+      prefix: v11
     paths:
         - .pnpm-store
+        - .pnpm-cache
     policy: pull-push
 
 build_packages:
@@ -102,8 +120,10 @@ build_packages:
     - key:
         files:
         - pnpm-lock.yaml
+        prefix: v11
       paths:
         - .pnpm-store
+        - .pnpm-cache
       policy: pull
     - key: $CI_COMMIT_REF_SLUG
       paths:
@@ -138,8 +158,10 @@ circular_dependencies:
     - key:
         files:
         - pnpm-lock.yaml
+        prefix: v11
       paths:
         - .pnpm-store
+        - .pnpm-cache
       policy: pull
   rules:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
@@ -161,8 +183,10 @@ run_tests:
     - key:
         files:
         - pnpm-lock.yaml
+        prefix: v11
       paths:
         - .pnpm-store
+        - .pnpm-cache
       policy: pull
     - key: $CI_COMMIT_REF_SLUG
       paths:
@@ -189,8 +213,10 @@ chromatic_publish:
     - key:
         files:
         - pnpm-lock.yaml
+        prefix: v11
       paths:
         - .pnpm-store
+        - .pnpm-cache
       policy: pull
   rules:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
@@ -227,8 +253,10 @@ publish_packages:
     - key:
         files:
         - pnpm-lock.yaml
+        prefix: v11
       paths:
         - .pnpm-store
+        - .pnpm-cache
       policy: pull
   environment:
     name: npm
@@ -239,13 +267,21 @@ publish_packages:
   before_script:
     - !reference [.install_pnpm]
   script:
-    - pnpm config set registry https://registry.npmjs.org/
+    # Install against nexus, which is the only registry .pnpm-cache was warmed
+    # for: pnpm's metadata cache is keyed by hostname, and since 11.21 an
+    # --offline install verifies the lockfile against that metadata. Switching
+    # the registry first would send it looking for registry.npmjs.org metadata
+    # that no job ever populated, failing with ERR_PNPM_NO_OFFLINE_META.
     - pnpm install --frozen-lockfile --offline
     - echo "Tag version $CI_COMMIT_TAG"
     - echo "Commit ref $CI_COMMIT_REF_NAME"
     - echo "Commit title $CI_COMMIT_TITLE"
     - echo "Publisher $GITLAB_USER_EMAIL"
-    - echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}'>.npmrc
+    # Publishing goes to npmjs, and lerna reads .npmrc with npm's own ini
+    # semantics via libnpmpublish - it cannot read the global YAML that v11's
+    # `pnpm config set` now writes, so the registry has to be stated here.
+    - echo 'registry=https://registry.npmjs.org/' > .npmrc
+    - echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' >> .npmrc
     - echo "email = $GITLAB_USER_EMAIL" >> .npmrc
     - npx lerna publish from-package --no-git-tag-version --yes
     - rm -f .npmrc
@@ -286,8 +322,10 @@ build_storybook:
     - key:
         files:
         - pnpm-lock.yaml
+        prefix: v11
       paths:
         - .pnpm-store
+        - .pnpm-cache
       policy: pull
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
@@ -351,8 +389,10 @@ chromatic_publish_baseline:
     - key:
         files:
         - pnpm-lock.yaml
+        prefix: v11
       paths:
         - .pnpm-store
+        - .pnpm-cache
       policy: pull
   allow_failure: true
   variables:

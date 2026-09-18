@@ -61,6 +61,7 @@ bundle.crt
 
 .nx/
 .pnpm-store
+.pnpm-cache
 
 # Claude Code local state
 .claude/settings.local.json
