@@ -1,4 +1,10 @@
-import React, { type Key, useCallback, useMemo } from 'react';
+import React, {
+  type Key,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+} from 'react';
 import { type ListChildComponentProps, VariableSizeList } from 'react-window';
 
 import { SearchNoResultsL } from '@synerise/ds-icon';
@@ -17,6 +23,12 @@ import { type DropdownMenuListProps } from './DropdownMenuList.types';
 
 /** A divider is not a row and does not read `size`; it is always 1px plus its margins. */
 const DIVIDER_HEIGHT = 17;
+
+/**
+ * Closing is deferred by a tick so the item's own `onClick` finishes before the overlay unmounts
+ * the row it was fired from.
+ */
+const CLOSE_DELAY = 10;
 
 type RowData<ItemType extends ListItemProps> = {
   dataSource: ItemType[];
@@ -95,13 +107,25 @@ export const DropdownMenuList = <ItemType extends ListItemProps>({
       estimate: getEstimatedItemSize,
     });
 
+  const closeTimeoutRef = useRef<ReturnType<typeof setTimeout>>();
+
   const handleItemClick = useCallback(() => {
     if (hideOnItemClick) {
-      setTimeout(() => {
+      clearTimeout(closeTimeoutRef.current);
+      closeTimeoutRef.current = setTimeout(() => {
         closeOverlay();
-      }, 10);
+      }, CLOSE_DELAY);
     }
   }, [hideOnItemClick, closeOverlay]);
+
+  /**
+   * The list can go before the timer does — the consumer unmounts, or something else closes the
+   * overlay first — and a pending close then calls `closeOverlay` on a tree that is no longer
+   * there. In a browser that is a harmless no-op state update; under jsdom the document may
+   * already be gone, and React's scheduler reaches for `window` and throws, which a test runner
+   * reports as an unhandled error against whatever happened to be running at the time.
+   */
+  useEffect(() => () => clearTimeout(closeTimeoutRef.current), []);
 
   /**
    * `getItemSize` returns measured heights once rows have reported them, so this total
