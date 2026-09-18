@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import styled from 'styled-components';
 
-import { type CustomColorType, type SectionType } from './SectionMessage.types';
+import type { CustomColorType, SectionType } from './SectionMessage.types';
 import {
   getColorBackground,
   getColorBorder,

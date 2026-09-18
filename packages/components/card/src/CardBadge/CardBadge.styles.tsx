@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-import { type ThemePropsVars } from '@synerise/ds-core';
+import type { ThemePropsVars } from '@synerise/ds-core';
 
-import { type BadgeStatus } from './CardBadge.types';
+import type { BadgeStatus } from './CardBadge.types';
 
 const background: Record<BadgeStatus, string> = {
   success: 'green-600',

@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components';
 
-import { Text, macro } from '@synerise/ds-typography';
+import { macro, Text } from '@synerise/ds-typography';
 
-import { type StickyData } from '../../Table.types';
+import type { StickyData } from '../../Table.types';
 
 export const Header = styled.div<{
   stickyData?: StickyData;
@@ -21,9 +21,11 @@ export const Header = styled.div<{
     css`
       transition: top 0.3s ease-in-out;
       position: sticky;
-      top: ${stickyData.isRevealed
-        ? `-${stickyData.containerPaddingTop}px`
-        : `-${stickyData.titleBarHeight + stickyData.containerPaddingTop}px`};
+      top: ${
+        stickyData.isRevealed
+          ? `-${stickyData.containerPaddingTop}px`
+          : `-${stickyData.titleBarHeight + stickyData.containerPaddingTop}px`
+      };
       /* Above SubHeader (12), which slides out from under it, which is above
          the column header row (11). */
       z-index: 13;

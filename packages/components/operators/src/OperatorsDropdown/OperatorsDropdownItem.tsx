@@ -4,7 +4,7 @@ import { theme } from '@synerise/ds-core';
 import Icon, { CheckS } from '@synerise/ds-icon';
 import ListItem from '@synerise/ds-list-item';
 
-import { type OperatorsGroup, type OperatorsItem } from '../Operator.types';
+import type { OperatorsGroup, OperatorsItem } from '../Operator.types';
 
 type OperatorsDropdownItemProps = {
   item: OperatorsItem | OperatorsGroup;

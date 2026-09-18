@@ -23,7 +23,7 @@ import * as S from '../ContentItem/ContentItem.styles';
 import ItemMeta from '../ItemMeta/ItemMeta';
 import ItemName from '../ItemName/ItemName';
 import { ItemHeader, SelectFilterItem } from './FilterItem.styles';
-import { type FilterItemProps } from './FilterItem.types';
+import type { FilterItemProps } from './FilterItem.types';
 
 const FilterItemComponent = ({
   item,

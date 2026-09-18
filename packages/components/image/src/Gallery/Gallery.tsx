@@ -1,10 +1,10 @@
 import React, { useMemo, useState } from 'react';
 
+import { ImageGalleryContext } from '../context/ImageGalleryContext';
 import ImagePreview from '../Preview/ImagePreview';
 import Thumbnail from '../Thumbnail/Thumbnail';
-import { ImageGalleryContext } from '../context/ImageGalleryContext';
 import * as S from './Gallery.styles';
-import { type GalleryProps } from './Gallery.types';
+import type { GalleryProps } from './Gallery.types';
 
 const Gallery = ({
   images,

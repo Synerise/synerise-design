@@ -19,7 +19,7 @@ import {
 } from '@synerise/ds-utils';
 
 import * as S from './ColorPicker.styles';
-import { type ColorPickerProps } from './ColorPicker.types';
+import type { ColorPickerProps } from './ColorPicker.types';
 import {
   convert3DigitHexTo6Digit,
   filterAlphanumeric,
@@ -113,13 +113,13 @@ const ColorPicker = ({
     setDropdownVisible(!dropdownVisible);
   }, [dropdownVisible]);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: dependencies intentionally omitted
   useEffect(() => {
     if (value && (isValidHexColor(value) || isValidTextColor(value))) {
       setLocalValues(value);
     } else {
       setLocalValues(DEFAULT_COLOR);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const heightOfDropdown = useCallback(() => {

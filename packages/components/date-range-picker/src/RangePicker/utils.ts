@@ -1,13 +1,13 @@
 import {
-  // Stopped being an ambient global in date-fns 3, so it is imported like any other symbol.
-  type Interval,
   isValid as fnsIsValid,
   isWithinInterval as fnsIsWithinRange,
   max as fnsMax,
   min as fnsMin,
+  // Stopped being an ambient global in date-fns 3, so it is imported like any other symbol.
+  type Interval,
 } from 'date-fns';
 import dayjs from 'dayjs';
-import { type Matcher } from 'react-day-picker';
+import type { Matcher } from 'react-day-picker';
 
 import {
   AM,
@@ -20,7 +20,7 @@ import {
 } from '@synerise/ds-time-picker';
 
 import { TIME_OPTIONS } from '../constants';
-import { type DateRange, type NullableDateLimit } from '../date.types';
+import type { DateRange, NullableDateLimit } from '../date.types';
 import ADD from '../dateUtils/add';
 import GET from '../dateUtils/get';
 import SET from '../dateUtils/set';
@@ -32,7 +32,7 @@ import {
   fnsStartOfDay,
   fnsStartOfMonth,
 } from '../fns';
-import { type State } from './RangePicker.types';
+import type { State } from './RangePicker.types';
 
 const NOW = new Date();
 const HOURS_GRANULARITY = 'HOURS';
@@ -193,9 +193,9 @@ export const getModifiers = (
         })
     : enteredTo;
   const startModifier =
-    isSelecting && !!enteredTo && !!from && enteredTo < from ? undefined : from;
+    isSelecting && enteredTo && from && enteredTo < from ? undefined : from;
   const endModifier =
-    isSelecting && !!enteredTo && !!from && enteredTo < from ? from : to;
+    isSelecting && enteredTo && from && enteredTo < from ? from : to;
   return {
     start: toDate(startModifier),
     end: toDate(endModifier),

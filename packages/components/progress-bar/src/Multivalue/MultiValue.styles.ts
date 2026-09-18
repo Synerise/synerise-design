@@ -1,4 +1,4 @@
-import { type MouseEvent } from 'react';
+import type { MouseEvent } from 'react';
 import styled, { css } from 'styled-components';
 
 export const Multivalue = styled.div<{
@@ -19,25 +19,31 @@ export const Multivalue = styled.div<{
     props.$stacked
       ? css`
           border-radius: 6px;
-          ${!props.$isFirst &&
-          css`
+          ${
+            !props.$isFirst &&
+            css`
             border-top-right-radius: 0px;
             border-bottom-right-radius: 0px;
             border-right: 2px solid white;
-          `}
+          `
+          }
         `
       : css`
           border-radius: 0;
-          ${props.$isFirst &&
-          css`
+          ${
+            props.$isFirst &&
+            css`
             border-top-left-radius: 6px;
             border-bottom-left-radius: 6px;
-          `}
-          ${props.$isLast &&
-          css`
+          `
+          }
+          ${
+            props.$isLast &&
+            css`
             border-top-right-radius: 6px;
             border-bottom-right-radius: 6px;
-          `}
+          `
+          }
         `}
 `;
 export const Container = styled.div<{ stackedBars: boolean }>`

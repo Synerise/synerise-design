@@ -3,7 +3,7 @@ import React from 'react';
 import Icon from '@synerise/ds-icon';
 
 import * as S from './IconLabel.styles';
-import { type IconLabelProps } from './IconLabel.types';
+import type { IconLabelProps } from './IconLabel.types';
 
 const IconLabelCell = ({
   label,

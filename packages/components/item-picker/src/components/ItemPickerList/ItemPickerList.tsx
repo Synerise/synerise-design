@@ -1,10 +1,10 @@
 import debounce from 'lodash.debounce';
 import React, {
+  forwardRef,
   type Key,
   type KeyboardEvent as ReactKeyboardEvent,
   type Ref,
   type UIEvent,
-  forwardRef,
   useCallback,
   useEffect,
   useImperativeHandle,
@@ -12,13 +12,13 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import { type VariableSizeList } from 'react-window';
+import type { VariableSizeList } from 'react-window';
 import { v4 as uuid } from 'uuid';
 
 import { useTheme } from '@synerise/ds-core';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { ArrowLeftM } from '@synerise/ds-icon';
-import { ListContextProvider, itemSizes } from '@synerise/ds-list-item';
+import { itemSizes, ListContextProvider } from '@synerise/ds-list-item';
 import { Text } from '@synerise/ds-typography';
 import {
   focusWithArrowKeys,
@@ -29,13 +29,11 @@ import {
 } from '@synerise/ds-utils';
 
 import { useDefaultTexts } from '../../hooks/useDefaultTexts';
-import { type ItemPickerListProps } from '../ItemPickerNew/ItemPickerNew.types';
+import type { ItemPickerListProps } from '../ItemPickerNew/ItemPickerNew.types';
 import type {
   BaseItemType,
   BaseSectionType,
 } from '../ItemPickerNew/types/baseItemSectionType.types';
-import * as S from './ItemPickerList.styles';
-import { type ItemPickerListRef } from './ItemPickerList.types';
 import {
   EmptyListMessage,
   ErrorMessage,
@@ -52,6 +50,8 @@ import {
   SECTION_HEADER_HEIGHT,
 } from './constants';
 import { useItemsInSections, useListHeight } from './hooks';
+import * as S from './ItemPickerList.styles';
+import type { ItemPickerListRef } from './ItemPickerList.types';
 import { findSectionById, isNavKey, isTitle } from './utils';
 
 const ItemPickerListInner = <
@@ -301,6 +301,7 @@ const ItemPickerListInner = <
     !isLoadingItems &&
     (mergedItemsList?.length === 0 || isLoadingError);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: dependencies intentionally omitted
   const listContent = useMemo(() => {
     if (isLoadingError) {
       return <ErrorMessage texts={allTexts} />;
@@ -400,7 +401,6 @@ const ItemPickerListInner = <
         )}
       </>
     );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     allTexts,
     currentSection,
@@ -423,6 +423,7 @@ const ItemPickerListInner = <
     setTimeout(focusSearchInput, 0);
   }, [isLoading, isLoadingItems, isLoadingMore, focusSearchInput]);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: dependencies intentionally omitted
   useEffect(() => {
     if (isVisible) {
       resetCurrentSection();
@@ -430,7 +431,6 @@ const ItemPickerListInner = <
       setSearchByParamConfig(undefined);
       setTimeout(focusSearchInput, 0);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isVisible, focusSearchInput]);
 
   useEffect(() => {

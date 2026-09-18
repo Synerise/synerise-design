@@ -1,14 +1,14 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import dayjs from 'dayjs';
 import moment from 'moment';
 import React, { useState } from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import DatePicker from '@synerise/ds-date-picker';
 
 import {
   BOOLEAN_CONTROL,
-  REACT_NODE_AS_STRING,
   fixedWrapper588,
+  REACT_NODE_AS_STRING,
 } from '../../utils';
 import { baseArgs } from './constants';
 

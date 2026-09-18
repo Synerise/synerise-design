@@ -1,7 +1,6 @@
 export { default } from './Tabs';
-
 export type {
-  TabItem,
   Configuration as TabsConfiguration,
+  TabItem,
   TabsProps,
 } from './Tabs.types';

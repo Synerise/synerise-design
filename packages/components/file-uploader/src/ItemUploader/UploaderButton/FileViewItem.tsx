@@ -4,7 +4,7 @@ import { FormattedMessage } from 'react-intl';
 import Icon, { Close3M, FileM, RepeatM } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 
-import { type FileViewAvatarProps } from '../../AvatarUploader/FileViewAvatar/FileViewAvatar.types';
+import type { FileViewAvatarProps } from '../../AvatarUploader/FileViewAvatar/FileViewAvatar.types';
 import { ICON_MAP, isPreviewableMimeType } from './FileViewItem.const';
 import * as S from './FileViewItem.styles';
 

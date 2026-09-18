@@ -2,7 +2,7 @@ import React from 'react';
 
 import Value from './Elements/Value';
 import * as S from './InputMultivalue.styles';
-import { type InputMultivalueProps } from './InputMultivalue.types';
+import type { InputMultivalueProps } from './InputMultivalue.types';
 
 const emptyValue = '';
 const InputMultivalue = (props: InputMultivalueProps) => {

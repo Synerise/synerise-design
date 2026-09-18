@@ -1,7 +1,7 @@
-import { type ResizeProperty } from 'csstype';
+import type { ResizeProperty } from 'csstype';
 import styled, {
-  type FlattenSimpleInterpolation,
   css,
+  type FlattenSimpleInterpolation,
 } from 'styled-components';
 
 export const TextareaWrapper = styled.div<{

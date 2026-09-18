@@ -36,7 +36,7 @@ export const mockSortable = () => {
       transition: null,
     })),
     arrayMove: jest.fn(
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      // biome-ignore lint/suspicious/noExplicitAny: upstream type is not expressible here
       (arr: any[], _from: number, _to: number) => arr,
     ),
     CSS: {},
@@ -56,7 +56,7 @@ export const mockSortableMinimal = () => {
       transition: null,
     })),
     arrayMove: jest.fn(
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      // biome-ignore lint/suspicious/noExplicitAny: upstream type is not expressible here
       (arr: any[]) => arr,
     ),
     CSS: {},

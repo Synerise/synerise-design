@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { v4 as uuid } from 'uuid';
 
 import * as S from './Skeleton.styles';
-import { type SkeletonProps } from './Skeleton.types';
+import type { SkeletonProps } from './Skeleton.types';
 
 const Skeleton = ({
   size = 'M',

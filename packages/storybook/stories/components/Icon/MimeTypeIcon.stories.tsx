@@ -1,14 +1,14 @@
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import React, { useMemo, useState } from 'react';
 
-import type { Meta, StoryObj } from '@storybook/react-vite';
 import { MimeTypeIcon } from '@synerise/ds-icon';
 
 import {
   CLASSNAME_ARG_CONTROL,
-  NUMBER_CONTROL,
-  STRING_CONTROL,
   centeredPaddedWrapper,
   gappedColumnDecorator,
+  NUMBER_CONTROL,
+  STRING_CONTROL,
 } from '../../utils';
 import { TYPES } from './MimeTypeIcon.data';
 

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import * as S from './SkeletonAvatar.styles';
-import { type SkeletonAvatarProps } from './SkeletonAvatar.types';
+import type { SkeletonAvatarProps } from './SkeletonAvatar.types';
 
 const SkeletonAvatar = ({
   size = 'M',

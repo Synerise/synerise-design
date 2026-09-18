@@ -1,13 +1,13 @@
+import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import React, { useCallback, useState } from 'react';
 
-import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import Icon from '@synerise/ds-icon';
 import * as medium from '@synerise/ds-icon/dist/icons/M';
 
-import {
-  type FilterElement,
-  type SourceType,
-  type ValueTypeForSource,
+import type {
+  FilterElement,
+  SourceType,
+  ValueTypeForSource,
 } from '../IconPicker.types';
 import { loadFontAwesome } from '../utils/loadFontAwesome';
 import { prepareItems } from '../utils/prepareItems';

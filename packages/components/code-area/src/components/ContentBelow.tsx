@@ -1,7 +1,7 @@
-import React, { type ReactNode, forwardRef } from 'react';
+import React, { forwardRef, type ReactNode } from 'react';
 
 import * as S from '../CodeArea.styles';
-import { type CodeAreaProps } from '../CodeArea.types';
+import type { CodeAreaProps } from '../CodeArea.types';
 
 type ContentBelowProps = Pick<CodeAreaProps, 'description' | 'errorText'> & {
   additionalDescription?: ReactNode;

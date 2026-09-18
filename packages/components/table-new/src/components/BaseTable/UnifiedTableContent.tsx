@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 
-import type { BaseTableProps, TableInternalProps } from '../../Table.types';
 import { useTableContext } from '../../contexts/TableContext';
+import type { BaseTableProps, TableInternalProps } from '../../Table.types';
 import { getUnifiedColumnSizingStyle } from '../../utils/getUnifiedColumnSizingStyle';
 import { TableBody } from '../TableBody/TableBody';
 import { TableBodySkeleton } from '../TableBody/TableBodySkeleton/TableBodySkeleton';

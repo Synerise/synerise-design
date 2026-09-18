@@ -16,7 +16,7 @@ import SearchBar from '@synerise/ds-search-bar';
 import { useResize } from '@synerise/ds-utils';
 
 import * as S from './Cascader.styles';
-import { type CascaderProps, type Category, type Path } from './Cascader.types';
+import type { CascaderProps, Category, Path } from './Cascader.types';
 import BreadcrumbsList from './Elements/BreadcrumbsList/BreadcrumbsList';
 import CategoriesList from './Elements/CategoriesList/CategoriesList';
 import Navigation from './Elements/Navigation/Navigation';

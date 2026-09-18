@@ -1,16 +1,16 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React, { useState } from 'react';
 import { injectIntl } from 'react-intl';
 import { fn } from 'storybook/test';
 import styled from 'styled-components';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import Button from '@synerise/ds-button';
+import type { DateRangePickerProps } from '@synerise/ds-date-range-picker';
 import DateRangePicker, {
   CONST,
   RawDateRangePicker,
   utils,
 } from '@synerise/ds-date-range-picker';
-import type { DateRangePickerProps } from '@synerise/ds-date-range-picker';
 import Tooltip from '@synerise/ds-tooltip';
 
 import { centeredPaddedWrapper } from '../../utils';

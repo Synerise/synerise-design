@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import { type ThemeProps } from '@synerise/ds-core';
+import type { ThemeProps } from '@synerise/ds-core';
 
 type MatchingProps = ThemeProps & {
   matching: boolean;

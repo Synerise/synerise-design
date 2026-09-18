@@ -1,7 +1,7 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 import { fn } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import Avatar from '@synerise/ds-avatar';
 import Button from '@synerise/ds-button';
 import { theme } from '@synerise/ds-core';
@@ -14,7 +14,7 @@ import Icon, {
 import Insight, { InsightProps } from '@synerise/ds-insight';
 
 import { Placeholder } from '../../constants';
-import { REACT_NODE_AS_STRING, fixedWrapper400 } from '../../utils';
+import { fixedWrapper400, REACT_NODE_AS_STRING } from '../../utils';
 
 export default {
   component: Insight,

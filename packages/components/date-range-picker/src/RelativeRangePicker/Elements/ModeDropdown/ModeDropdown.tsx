@@ -4,10 +4,10 @@ import { theme } from '@synerise/ds-core';
 import Icon, { CheckS } from '@synerise/ds-icon';
 import { useOnClickOutside } from '@synerise/ds-utils';
 
-import { type RelativeMode, type Texts } from '../../../DateRangePicker.types';
 import { RANGES_ICON } from '../../../constants';
+import type { RelativeMode, Texts } from '../../../DateRangePicker.types';
 import * as S from '../../RelativeRangePicker.styles';
-import { type Props } from './ModeDropdown.types';
+import type { Props } from './ModeDropdown.types';
 
 const MODE_TRANSLATION_KEYS = {
   PAST: 'last',

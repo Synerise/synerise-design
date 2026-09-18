@@ -1,7 +1,7 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
-import { Table, legacyColumnConfigAdapter } from '@synerise/ds-table-new';
+import { legacyColumnConfigAdapter, Table } from '@synerise/ds-table-new';
 
 import { COLUMNS, DATA } from './Typography.data';
 

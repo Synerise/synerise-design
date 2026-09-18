@@ -1,11 +1,10 @@
+import type { RowData } from '@tanstack/react-table';
 import { createContext, useContext } from 'react';
 
-import { type RowData } from '@tanstack/react-table';
-
-import { type SelectionConfig } from '../Table.types';
+import type { SelectionConfig } from '../Table.types';
 
 export const SelectionContext = createContext<
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // biome-ignore lint/suspicious/noExplicitAny: upstream type is not expressible here
   SelectionConfig<any> | undefined
 >(undefined);
 

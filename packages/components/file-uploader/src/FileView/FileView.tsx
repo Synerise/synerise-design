@@ -17,7 +17,7 @@ import Tooltip from '@synerise/ds-tooltip';
 
 import { ICON_MAP, isPreviewableMimeType } from './FileView.const';
 import * as S from './FileView.styles';
-import { type FileViewProps } from './FileView.types';
+import type { FileViewProps } from './FileView.types';
 
 const FileView = ({
   data,

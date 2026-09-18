@@ -1,4 +1,4 @@
-import { type Texts } from '../../../DateRangePicker.types';
+import type { Texts } from '../../../DateRangePicker.types';
 import type {
   AbsoluteDateRange,
   DateRange,

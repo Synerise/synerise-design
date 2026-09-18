@@ -18,7 +18,7 @@ import { NOOP, useResizeObserver } from '@synerise/ds-utils';
 
 import Tab from './Tab/Tab';
 import * as S from './Tabs.styles';
-import { type TabWithRef, type TabsProps } from './Tabs.types';
+import type { TabsProps, TabWithRef } from './Tabs.types';
 
 const MARGIN_BETWEEN_TABS = 24;
 const DROPDOWN_TRIGGER_SIZE = 32;
@@ -54,10 +54,10 @@ const Tabs = ({
     debouncedEventHandler(width);
   }, [width, debouncedEventHandler]);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: dependencies intentionally omitted
   useEffect(() => {
     containerRef.current &&
       setContainerWidth(containerRef.current?.offsetWidth);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [containerRef.current]);
 
   useEffect(() => {
@@ -92,6 +92,7 @@ const Tabs = ({
     }
   }, [items, block]);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: dependencies intentionally omitted
   useEffect(() => {
     if (!block) {
       let tabsWidth = DROPDOWN_TRIGGER_SIZE + MARGIN_BETWEEN_TABS;
@@ -108,7 +109,6 @@ const Tabs = ({
       setVisibleTabs(visibleItems);
       setHiddenTabs(hiddenItems);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [block, itemsWidths, containerWidth]);
 
   const handleConfigurationAction = useCallback(() => {

@@ -5,7 +5,7 @@ import Radio from '@synerise/ds-radio';
 
 import { ItemWrapper, ListDivider, TextItem } from './Elements';
 import * as S from './List.styles';
-import { type ListPropsType } from './List.types';
+import type { ListPropsType } from './List.types';
 
 export const isNestedArray = <V,>(array: V[] | V[][]): boolean => {
   return !!array.length && Array.isArray(array[0]);

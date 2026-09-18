@@ -1,6 +1,6 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import { theme } from '@synerise/ds-core';
 import { type BaseTagsGroupProps, TagsGroupCell } from '@synerise/ds-table-new';
 

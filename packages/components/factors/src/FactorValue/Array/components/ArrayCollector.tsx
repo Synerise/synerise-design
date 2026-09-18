@@ -5,7 +5,7 @@ import Collector, { type CollectorValue } from '@synerise/ds-collector';
 
 import { COMMA } from '../Array.const';
 import * as S from '../Array.styles';
-import { type ArrayCollectorProps } from '../Array.types';
+import type { ArrayCollectorProps } from '../Array.types';
 import {
   isArrayOfNumbersAsString,
   isNumberAsString,

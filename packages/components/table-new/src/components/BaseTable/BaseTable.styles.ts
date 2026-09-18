@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 
 import DSSkeleton from '@synerise/ds-skeleton';
 
-import { type StickyData } from '../../Table.types';
+import type { StickyData } from '../../Table.types';
 import { TableHorizontalScroll } from '../TableHorizontalScroll/TableHorizontalScroll';
 
 // --col-N-width / --table-size are set inline in BaseTable.tsx (they change on
@@ -145,9 +145,11 @@ export const SubHeader = styled.div<{ stickyData?: StickyData }>`
     css`
       position: sticky;
       transition: top 0.3s ease-in-out;
-      top: ${stickyData.isRevealed
-        ? `${stickyData.titleBarHeight - stickyData.containerPaddingTop}px`
-        : `-${stickyData.subHeaderHeight + stickyData.containerPaddingTop}px`};
+      top: ${
+        stickyData.isRevealed
+          ? `${stickyData.titleBarHeight - stickyData.containerPaddingTop}px`
+          : `-${stickyData.subHeaderHeight + stickyData.containerPaddingTop}px`
+      };
       z-index: 12;
       background: ${theme.palette['white']};
     `}
@@ -168,15 +170,20 @@ export const TableColumnsHorizontalScroll = styled(TableHorizontalScroll)<{
       css`
         position: sticky;
         transition: top 0.3s ease-in-out;
-        top: ${stickyData.isRevealed
-          ? `${revealedStackHeight - stickyData.containerPaddingTop}px` // '49px' with no sub-header
-          : `-${stickyData.containerPaddingTop}px`};
+        top: ${
+          stickyData.isRevealed
+            ? `${revealedStackHeight - stickyData.containerPaddingTop}px` // '49px' with no sub-header
+            : `-${stickyData.containerPaddingTop}px`
+        };
         z-index: 11;
         background: ${theme.palette['white']};
-        ${((isScrolled &&
-          isScrolled > revealedStackHeight + stickyData.containerPaddingTop) ||
-          stickyData.isRevealed) &&
-        `box-shadow: ${theme.variables['box-shadow-1']};`}
+        ${
+          ((isScrolled &&
+            isScrolled >
+              revealedStackHeight + stickyData.containerPaddingTop) ||
+            stickyData.isRevealed) &&
+          `box-shadow: ${theme.variables['box-shadow-1']};`
+        }
       `
     );
   }}

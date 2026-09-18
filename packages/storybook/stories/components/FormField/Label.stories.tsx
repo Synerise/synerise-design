@@ -1,10 +1,11 @@
 import { Meta, StoryObj } from '@storybook/react-vite';
+
 import { FormFieldLabel, FormFieldLabelProps } from '@synerise/ds-form-field';
 
 import {
+  fixedWrapper400,
   REACT_NODE_AS_STRING,
   STRING_CONTROL,
-  fixedWrapper400,
 } from '../../utils';
 
 export default {

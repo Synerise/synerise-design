@@ -1,8 +1,8 @@
 import React, { type ReactNode, useMemo } from 'react';
 
-import { type ProgressValue } from '@synerise/ds-progress-bar';
+import type { ProgressValue } from '@synerise/ds-progress-bar';
 
-import { type EstimationProgressValue } from '../Estimation.types';
+import type { EstimationProgressValue } from '../Estimation.types';
 import * as S from './EstimationProgressBar.styles';
 
 type EstimationProgressBarProps = {

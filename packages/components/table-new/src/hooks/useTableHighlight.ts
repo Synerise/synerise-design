@@ -1,6 +1,6 @@
 import { type MutableRefObject, useCallback } from 'react';
 
-import { type HighlightOptions } from '../Table.types';
+import type { HighlightOptions } from '../Table.types';
 
 const HIGHLIGHT_CLASS = 'ds-table-row-highlight';
 const DEFAULT_HIGHLIGHT_DURATION = 600;

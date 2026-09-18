@@ -1,15 +1,13 @@
 import { max as fnsMax, min as fnsMin } from 'date-fns';
 import omit from 'lodash.omit';
-import { type IntlShape } from 'react-intl';
+import type { IntlShape } from 'react-intl';
 
-import { type Texts } from './DateRangePicker.types';
 import { ABSOLUTE, CUSTOM_RANGE_KEY, RELATIVE } from './constants';
-import { type DateRange } from './date.types';
+import type { Texts } from './DateRangePicker.types';
+import type { DateRange } from './date.types';
 import ADD from './dateUtils/add';
 import END_OF from './dateUtils/endOf';
 import START_OF from './dateUtils/startOf';
-
-export { START_OF, END_OF };
 
 /**
  * Re-exported rather than implemented here. This package used to carry its own copy, which took
@@ -21,6 +19,8 @@ export { START_OF, END_OF };
  * Kept exported because `utils` is part of this package's public surface (`export * as utils`).
  */
 export { toIsoString } from '@synerise/ds-core';
+
+export { END_OF, START_OF };
 
 const rmvTZOffset = (dateString: string | Date) => {
   const date = dateString.toString();

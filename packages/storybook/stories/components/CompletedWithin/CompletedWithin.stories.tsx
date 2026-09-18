@@ -1,14 +1,15 @@
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import React, { useState } from 'react';
 
-import type { Meta, StoryObj } from '@storybook/react-vite';
-import CompletedWithin from '@synerise/ds-completed-within';
-import { CompletedWithinProps } from '@synerise/ds-completed-within';
+import CompletedWithin, {
+  CompletedWithinProps,
+} from '@synerise/ds-completed-within';
 
 import {
   BOOLEAN_CONTROL,
+  centeredPaddedWrapper,
   NUMBER_CONTROL,
   REACT_NODE_AS_STRING,
-  centeredPaddedWrapper,
 } from '../../utils';
 
 export default {

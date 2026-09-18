@@ -19,8 +19,8 @@ import Dropdown from '@synerise/ds-dropdown';
 import Icon, { ArrowRightCircleM, SearchM } from '@synerise/ds-icon';
 import {
   type ItemSize,
-  ListContextProvider,
   itemSizes,
+  ListContextProvider,
 } from '@synerise/ds-list-item';
 import Result from '@synerise/ds-result';
 import Scrollbar from '@synerise/ds-scrollbar';
@@ -41,8 +41,8 @@ import {
   type ContextItem,
   type ContextItemsInSubGroup,
   type DropdownItemProps,
-  type ListDivider,
   isContextItemsInSubGroup,
+  type ListDivider,
 } from '../ContextSelector.types';
 import { DROPDOWN_HEIGHT, NO_GROUP_NAME } from '../constants';
 import ContextSelectorDropdownItem from './ContextSelectorDropdownItem';

@@ -28,7 +28,7 @@
   "scripts": {
     "build": "vite build",
     "build:watch": "vite build --watch",
-    "lint": "eslint . --ext .ts --ext .tsx --max-warnings 0 --ignore-pattern dist",
+    "lint": "biome lint .",
     "pack:ci": "pnpm pack --pack-destination ../../storybook/storybook-static/static",
     "prepublish": "pnpm run build",
     "test": "vitest run",

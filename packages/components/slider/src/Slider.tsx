@@ -1,13 +1,13 @@
 import React from 'react';
 
-import {
-  type AllocationSliderProps,
-  type RangeSliderProps,
-  type SliderProps,
-} from './Slider.types';
 import { AllocationSlider } from './components/AllocationSlider';
 import { DefaultSlider } from './components/DefaultSlider';
 import { RangeSlider } from './components/RangeSlider';
+import type {
+  AllocationSliderProps,
+  RangeSliderProps,
+  SliderProps,
+} from './Slider.types';
 
 const isRangeSlider = (props: SliderProps): props is RangeSliderProps => {
   return 'range' in props && props.range;

@@ -2,8 +2,8 @@ import React from 'react';
 
 import Pagination from '@synerise/ds-pagination';
 
-import { type TablePaginationProps } from '../../Table.types';
 import { useTableContext } from '../../contexts/TableContext';
+import type { TablePaginationProps } from '../../Table.types';
 import * as S from './TablePagination.styles';
 
 export const TablePagination = ({ ...rest }: TablePaginationProps) => {

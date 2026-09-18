@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { type EstimationTexts } from '../Estimation.types';
+import type { EstimationTexts } from '../Estimation.types';
 
 export const useDefaultTexts = (
   defaultTexts?: Partial<EstimationTexts>,

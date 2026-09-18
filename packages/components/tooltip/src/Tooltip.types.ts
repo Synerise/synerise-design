@@ -1,9 +1,9 @@
-import { type CSSProperties, type ReactNode } from 'react';
+import type { CSSProperties, ReactNode } from 'react';
 
-import {
-  type LegacyTooltipPlacement,
-  type PopoverOptions,
-  type PopoverTriggerType,
+import type {
+  LegacyTooltipPlacement,
+  PopoverOptions,
+  PopoverTriggerType,
 } from '@synerise/ds-popover';
 
 export type TooltipContentProps = Pick<

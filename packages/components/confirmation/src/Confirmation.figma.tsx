@@ -1,5 +1,6 @@
 // @ts-nocheck
 import figma from '@figma/code-connect';
+
 import Icon, {
   CheckM,
   InfoFillM,

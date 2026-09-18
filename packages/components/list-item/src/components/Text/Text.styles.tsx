@@ -1,4 +1,4 @@
-import { type ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import styled, { css } from 'styled-components';
 
 import { IconContainer } from '@synerise/ds-icon';
@@ -248,8 +248,9 @@ export const Wrapper = styled.div<StyledListItemProps>`
         }
       }
 
-      ${disabled &&
-      css`
+      ${
+        disabled &&
+        css`
         &:hover {
           && {
             ${PrefixWrapper} > .ds-icon > svg,
@@ -262,10 +263,12 @@ export const Wrapper = styled.div<StyledListItemProps>`
             }
           }
         }
-      `}
+      `
+      }
 
-      ${selected &&
-      css`
+      ${
+        selected &&
+        css`
         &:hover {
           && {
             ${PrefixWrapper} > .ds-icon > svg,
@@ -278,7 +281,8 @@ export const Wrapper = styled.div<StyledListItemProps>`
             }
           }
         }
-      `}
+      `
+      }
     `}
   ${(props) =>
     props.disabled
@@ -309,9 +313,11 @@ export const Wrapper = styled.div<StyledListItemProps>`
                 !props.noHover &&
                 css`
                   & {
-                    color: ${props.noHover
-                      ? props.theme.palette['grey-700']
-                      : props.theme.palette['blue-600']};
+                    color: ${
+                      props.noHover
+                        ? props.theme.palette['grey-700']
+                        : props.theme.palette['blue-600']
+                    };
                   }
 
                   ${PrefixWrapper} {

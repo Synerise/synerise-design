@@ -14,8 +14,9 @@ export const ButtonToggle = styled(({ toggleType, activated, ...rest }) => {
         color: ${props.theme.palette['grey-600']};
       }
 
-      ${!props.activated
-        ? css`
+      ${
+        !props.activated
+          ? css`
             &:hover:not(:disabled):not(:focus) {
               color: ${props.theme.palette['grey-600']};
               svg {
@@ -23,9 +24,10 @@ export const ButtonToggle = styled(({ toggleType, activated, ...rest }) => {
               }
             }
           `
-        : css`
-            ${!props.disabled &&
-            css`
+          : css`
+            ${
+              !props.disabled &&
+              css`
               && {
                 background: ${props.theme.palette['blue-050']};
                 color: ${props.theme.palette['blue-600']};
@@ -36,7 +38,9 @@ export const ButtonToggle = styled(({ toggleType, activated, ...rest }) => {
                   box-shadow: none;
                 }
               }
-            `}
-          `}
+            `
+            }
+          `
+      }
     `}
 `;

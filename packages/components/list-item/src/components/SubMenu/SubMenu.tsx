@@ -1,6 +1,6 @@
 import React, { type ComponentType, forwardRef } from 'react';
 
-import { type ItemSize, type ListItemProps } from '../../ListItem.types';
+import type { ItemSize, ListItemProps } from '../../ListItem.types';
 import { ListContextProvider } from '../ListContext/ListContextProvider';
 import * as S from './SubMenu.styles';
 

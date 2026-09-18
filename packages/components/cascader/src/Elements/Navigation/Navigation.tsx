@@ -7,7 +7,7 @@ import Icon, { HomeM } from '@synerise/ds-icon';
 import * as S from '../../Cascader.styles';
 import { BackAction } from '../BackAction/BackAction';
 import { Breadcrumb } from '../Breadcrumb/Breadcrumb';
-import { type NavigationProps } from './Navigation.types';
+import type { NavigationProps } from './Navigation.types';
 
 export const Navigation = ({
   backActionVisible,

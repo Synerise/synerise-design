@@ -1,6 +1,6 @@
 import styled, {
-  type FlattenSimpleInterpolation,
   css,
+  type FlattenSimpleInterpolation,
 } from 'styled-components';
 
 // A flex child wrapping an <input> defaults to `min-width: auto`, which refuses
@@ -72,8 +72,9 @@ export const InputGroupWrapper = styled.div<{
             ${InputGroupItem}:not(:only-child):not(:last-child) {
               margin-right: -1px;
             }
-            ${!isNone &&
-            css`
+            ${
+              !isNone &&
+              css`
               ${InputGroupItem}:not(:only-child):${growChild} {
                 flex: auto;
               }
@@ -88,7 +89,8 @@ export const InputGroupWrapper = styled.div<{
               ${InputGroupItem}:not(:only-child):not(:${growChild}) .ds-input-number {
                 width: 90px;
               }
-            `}
+            `
+            }
             ${notLastControls} {
               border-top-right-radius: 0;
               border-bottom-right-radius: 0;
@@ -99,12 +101,14 @@ export const InputGroupWrapper = styled.div<{
             }
           `
         : css`
-            ${!isNone &&
-            css`
+            ${
+              !isNone &&
+              css`
               ${InputGroupItem}:${growChild} {
                 flex-grow: 1;
               }
-            `}
+            `
+            }
             ${InputGroupItem}:not(:last-child) {
               margin-right: 12px;
             }

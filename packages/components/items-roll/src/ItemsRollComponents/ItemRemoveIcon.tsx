@@ -6,7 +6,7 @@ import { FloatingDelayGroup } from '@synerise/ds-popover';
 import Tooltip from '@synerise/ds-tooltip';
 
 import { RemoveIconWrapper } from './ItemRemoveIcon.styles';
-import { type RemoveIconProps } from './ItemRemoveIcon.types';
+import type { RemoveIconProps } from './ItemRemoveIcon.types';
 
 export const RemoveIcon = ({
   id,

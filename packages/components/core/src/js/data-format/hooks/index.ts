@@ -1,6 +1,6 @@
+export { type UseDataFormatProps, useDataFormat } from './useDataFormat';
 export { useDataFormatConfig } from './useDataFormatConfig';
-export { useDataFormat, type UseDataFormatProps } from './useDataFormat';
-export { useDataFormatUtils } from './useDataFormatUtils';
-export { useSingleIntl } from './useSingleIntl';
 export { useDataFormatIntls } from './useDataFormatIntls';
+export { useDataFormatUtils } from './useDataFormatUtils';
 export { useRelativeDateTimeUpdate } from './useRelativeDateTimeUpdate';
+export { useSingleIntl } from './useSingleIntl';

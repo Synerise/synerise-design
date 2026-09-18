@@ -1,13 +1,13 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 import styled from 'styled-components';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import FormField, { FormFieldProps } from '@synerise/ds-form-field';
 
 import {
+  fixedWrapper400,
   REACT_NODE_AS_STRING,
   REACT_NODE_NO_CONTROL,
-  fixedWrapper400,
 } from '../../utils';
 
 const ChildrenWrapper = styled.div`

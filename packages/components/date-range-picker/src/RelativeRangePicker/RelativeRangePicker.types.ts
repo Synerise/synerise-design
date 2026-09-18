@@ -1,9 +1,9 @@
-import { type IntlShape } from 'react-intl';
+import type { IntlShape } from 'react-intl';
 
-import {
-  type DateRangePickerProps,
-  type RelativeMode,
-  type Texts,
+import type {
+  DateRangePickerProps,
+  RelativeMode,
+  Texts,
 } from '../DateRangePicker.types';
 import type {
   DateRange,
@@ -23,7 +23,7 @@ export type RelativeRangePickerProps = {
   relativeModes?: RelativeMode[];
   rangeUnits: DateRangePickerProps['rangeUnits'];
   showCustomRange?: boolean;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // biome-ignore lint/suspicious/noExplicitAny: upstream type is not expressible here
   valueTransformer?: (e: RelativeDateRange | any) => RelativeDateRange | any;
 };
 

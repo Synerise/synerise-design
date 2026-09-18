@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
-import { type DropdownMenuTexts } from '../components/DropdownMenu/DropdownMenu.types';
+import type { DropdownMenuTexts } from '../components/DropdownMenu/DropdownMenu.types';
 
 export const useDefaultTexts = (
   customTexts?: Partial<DropdownMenuTexts>,

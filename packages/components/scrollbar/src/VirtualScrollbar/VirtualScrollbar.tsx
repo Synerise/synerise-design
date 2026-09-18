@@ -1,17 +1,17 @@
+import PerfectScrollbar from '@ofsajd/react-perfect-scrollbar';
 import classnames from 'classnames';
 import React, {
-  type MutableRefObject,
   forwardRef,
+  type MutableRefObject,
   useCallback,
   useEffect,
   useRef,
   useState,
 } from 'react';
 
-import PerfectScrollbar from '@ofsajd/react-perfect-scrollbar';
 import { useCombinedRefs, useResizeObserver } from '@synerise/ds-utils';
 
-import { type VirtualScrollbarProps } from '../Scrollbar.types';
+import type { VirtualScrollbarProps } from '../Scrollbar.types';
 import '../style/index.less';
 import * as S from './VirtualScrollbar.styles';
 

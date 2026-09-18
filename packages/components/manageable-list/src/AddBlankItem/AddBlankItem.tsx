@@ -4,7 +4,7 @@ import Button from '@synerise/ds-button';
 import Icon, { Add3S } from '@synerise/ds-icon';
 
 import * as S from './AddBlankItem.styles';
-import { type AddBlankItemProps } from './AddBlankItem.types';
+import type { AddBlankItemProps } from './AddBlankItem.types';
 
 const AddBlankItem = ({
   disabled,

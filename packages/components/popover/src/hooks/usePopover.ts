@@ -1,10 +1,8 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
-
 import {
+  autoUpdate,
   type FloatingElement,
   type OpenChangeReason,
   type ReferenceElement,
-  autoUpdate,
   useClick,
   useDelayGroup,
   useDismiss,
@@ -16,10 +14,12 @@ import {
   useRole,
   useTransitionStyles,
 } from '@floating-ui/react';
+import { useEffect, useMemo, useRef, useState } from 'react';
+
 import { registerOverlay } from '@synerise/ds-core';
 
 import { HOVER_CLOSE_DELAY, HOVER_OPEN_DELAY } from '../Popover.const';
-import { type PopoverOptions, type UsePopoverReturn } from '../Popover.types';
+import type { PopoverOptions, UsePopoverReturn } from '../Popover.types';
 import { getDefaultTransitionConfig, getMiddleware } from '../utils';
 import { useListNavigationConfig } from './useListNavigationConfig';
 

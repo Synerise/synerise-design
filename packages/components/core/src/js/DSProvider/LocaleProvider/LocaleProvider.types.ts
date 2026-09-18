@@ -1,7 +1,6 @@
-import type { ReactNode } from 'react';
-
 import type { MessageFormatElement } from '@formatjs/icu-messageformat-parser';
 import type { OnErrorFn } from '@formatjs/intl';
+import type { ReactNode } from 'react';
 
 export type IntlMessages =
   | Record<string, string>

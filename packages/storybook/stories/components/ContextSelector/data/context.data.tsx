@@ -1,7 +1,14 @@
 import React from 'react';
-import { ApiM, FolderM, FormM, MegaphoneM, SegmentM, WebhookM } from '@synerise/ds-icon';
-import type { ContextItem } from '@synerise/ds-context-selector';
 
+import type { ContextItem } from '@synerise/ds-context-selector';
+import {
+  ApiM,
+  FolderM,
+  FormM,
+  MegaphoneM,
+  SegmentM,
+  WebhookM,
+} from '@synerise/ds-icon';
 import InformationCard from '@synerise/ds-information-card';
 
 export const CONTEXT_TEXTS = {
@@ -11,7 +18,7 @@ export const CONTEXT_TEXTS = {
   loadingResults: 'Loading results',
   showMore: 'Show more',
   recentItemsGroupName: 'Recent',
-  allItemsGroupName: 'Items'
+  allItemsGroupName: 'Items',
 };
 
 export const CONTEXT_GROUPS = [
@@ -50,7 +57,9 @@ const infocardProps = {
 };
 
 export const generateInfoCard = (item: ContextItem) => {
-  const randomCount = <span className="chromatic-ignore">{Math.floor(Math.random() * 100)}</span>;
+  const randomCount = (
+    <span className="chromatic-ignore">{Math.floor(Math.random() * 100)}</span>
+  );
   return {
     ...item,
     renderHoverTooltip: () => (
@@ -60,7 +69,11 @@ export const generateInfoCard = (item: ContextItem) => {
         subtitle={item.subtitle}
         renderAdditionalDescription={item.renderAdditionalDescription}
         propertyListItems={[{ label: 'Count', value: randomCount }]}
-        descriptionConfig={item.description ? { label: item.description, disabled: true } : undefined}
+        descriptionConfig={
+          item.description
+            ? { label: item.description, disabled: true }
+            : undefined
+        }
         {...item.informationCardProps}
       />
     ),

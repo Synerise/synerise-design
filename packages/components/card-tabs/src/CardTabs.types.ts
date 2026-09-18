@@ -1,6 +1,6 @@
-import { type ReactElement } from 'react';
+import type { ReactElement } from 'react';
 
-import { type WithHTMLAttributes } from '@synerise/ds-utils';
+import type { WithHTMLAttributes } from '@synerise/ds-utils';
 
 import type { CardTabProps } from './CardTab/CardTab.types';
 

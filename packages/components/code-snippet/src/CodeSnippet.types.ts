@@ -1,8 +1,8 @@
 import type React from 'react';
 
-import { type OverscrollBehavior } from '@synerise/ds-scrollbar';
+import type { OverscrollBehavior } from '@synerise/ds-scrollbar';
 
-import { type LanguageHighlight } from './Highlight/Highlight.types';
+import type { LanguageHighlight } from './Highlight/Highlight.types';
 
 export enum FontSize {
   SMALL = 12,

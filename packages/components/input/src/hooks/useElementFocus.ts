@@ -1,4 +1,4 @@
-import { type MutableRefObject } from 'react';
+import type { MutableRefObject } from 'react';
 
 export const useElementFocus = <T extends { focus: () => void }>(
   ref: MutableRefObject<T | null>,

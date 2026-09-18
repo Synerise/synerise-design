@@ -4,7 +4,7 @@ import React, { forwardRef, useCallback, useState } from 'react';
 import Icon, { AddM } from '@synerise/ds-icon';
 
 import * as S from './Creator.styles';
-import { type CreatorProps } from './Creator.types';
+import type { CreatorProps } from './Creator.types';
 
 const Creator = forwardRef<HTMLButtonElement, CreatorProps>(
   (

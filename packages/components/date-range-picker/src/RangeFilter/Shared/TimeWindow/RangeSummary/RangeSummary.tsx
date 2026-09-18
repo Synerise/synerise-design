@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { SPACE_UNICODE } from '../../../constants';
-import { type DayKey } from '../TimeWindow.types';
+import type { DayKey } from '../TimeWindow.types';
 import * as S from './RangeSummary.styles';
-import { type RangeSummaryProps } from './RangeSummary.types';
+import type { RangeSummaryProps } from './RangeSummary.types';
 
 const RangeSummary: React.FC<RangeSummaryProps> = ({
   dayKeys,

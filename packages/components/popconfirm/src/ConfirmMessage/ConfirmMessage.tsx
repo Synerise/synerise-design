@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import Tooltip from '@synerise/ds-tooltip';
 
 import * as S from './ConfirmMessage.style';
-import { type ConfirmMessageProps } from './ConfirmMessage.types';
+import type { ConfirmMessageProps } from './ConfirmMessage.types';
 
 export const ConfirmMessage = ({
   children,

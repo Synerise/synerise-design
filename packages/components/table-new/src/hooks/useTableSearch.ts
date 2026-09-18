@@ -1,6 +1,6 @@
 import { useCallback, useMemo, useState } from 'react';
 
-import { type SharedTableProps } from '../Table.types';
+import type { SharedTableProps } from '../Table.types';
 
 type UseTableSearchProps<TData> = Pick<
   SharedTableProps<TData, unknown>,

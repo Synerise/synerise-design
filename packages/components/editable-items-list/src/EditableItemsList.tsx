@@ -6,7 +6,7 @@ import Cruds from '@synerise/ds-cruds';
 import Icon, { Add3M } from '@synerise/ds-icon';
 
 import * as S from './EditableItemsList.style';
-import { type EditableItemsListProps } from './EditableItemsList.types';
+import type { EditableItemsListProps } from './EditableItemsList.types';
 
 const DEFAULT_ADD_BUTTON_PROPS = {
   type: 'ghost-primary',

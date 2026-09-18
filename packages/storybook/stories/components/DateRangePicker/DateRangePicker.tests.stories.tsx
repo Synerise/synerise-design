@@ -1,19 +1,19 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 import { injectIntl } from 'react-intl';
 import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
+import type { DateRangePickerProps } from '@synerise/ds-date-range-picker';
 import DateRangePicker, {
   RawDateRangePicker,
 } from '@synerise/ds-date-range-picker';
-import type { DateRangePickerProps } from '@synerise/ds-date-range-picker';
 
-import { Default } from './DateRangePicker.stories';
 import {
   DEFAULT_CUSTOM_RANGE,
   LIFETIME_VALUE,
   TEXTS as texts,
 } from './constants';
+import { Default } from './DateRangePicker.stories';
 
 export default {
   title: 'Components/Pickers/DateRangePicker/Tests',

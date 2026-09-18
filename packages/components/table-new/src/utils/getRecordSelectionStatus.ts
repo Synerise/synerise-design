@@ -1,4 +1,4 @@
-import { type SelectionConfig } from '../Table.types';
+import type { SelectionConfig } from '../Table.types';
 
 export const getRecordSelectionStatus = <TData>(
   checkRowSelectionStatus: SelectionConfig<TData>['checkRowSelectionStatus'],

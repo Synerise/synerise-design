@@ -31,11 +31,11 @@ const ColumnManager = <ColumnType extends Column>({
     setCurrentColumns(columns);
   }, [columns]);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: dependencies intentionally omitted
   useEffect(() => {
     if (!visible) {
       setCurrentColumns(columns);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [visible]);
 
   const handleApply = () => {

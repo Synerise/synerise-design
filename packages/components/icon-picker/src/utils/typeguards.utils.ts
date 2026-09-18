@@ -1,10 +1,10 @@
-import {
-  type Category,
-  type DSSource,
-  type DataSource,
-  type FASource,
-  type GroupedFilterElement,
-  type SourceType,
+import type {
+  Category,
+  DataSource,
+  DSSource,
+  FASource,
+  GroupedFilterElement,
+  SourceType,
 } from '../IconPicker.types';
 
 export const isFASourceType = (data: SourceType): data is FASource => {

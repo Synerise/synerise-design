@@ -1,4 +1,4 @@
-import { type DropdownProps } from '../../Dropdown.types';
+import type { DropdownProps } from '../../Dropdown.types';
 
 export type DropdownPopoverProps = Pick<
   DropdownProps,

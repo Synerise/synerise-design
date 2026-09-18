@@ -3,11 +3,13 @@
 ## Project Overview
 - Component library / design system — publishes `@synerise/ds-*` packages to npm
 - React 18.3 + TypeScript 5.8, monorepo via **pnpm workspaces + Lerna** (`"npmClient": "pnpm"`)
-- styled-components for all styling; **antd has been fully removed** (see `docs/adr/0001-remove-antd-dependency.md`) — never reintroduce it, eslint bans the import
+- styled-components for all styling; **antd has been fully removed** (see `docs/adr/0001-remove-antd-dependency.md`) — never reintroduce it, biome bans the import
 - Functional components with hooks for all new code
 
 ## Code Quality
-- ESLint + Prettier (120 char lines, single quotes, 2-space indent)
+- **Biome** for lint + format + import order (80 char lines, single quotes, 2-space indent).
+  `pnpm lint` / `pnpm lint:fix` / `pnpm format` / `pnpm check` — `pnpm lint:ci` is the CI gate.
+  Suppress a rule with `// biome-ignore lint/<group>/<rule>: <reason>` (the reason is mandatory)
 - Relative imports only — no path aliases
 - Named exports preferred, PascalCase components, camelCase utilities
 - TypeScript `strict: true`, no `any` — use `unknown` + type guards

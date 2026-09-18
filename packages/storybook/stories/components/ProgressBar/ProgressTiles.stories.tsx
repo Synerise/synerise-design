@@ -1,10 +1,11 @@
 import { Meta, StoryObj } from '@storybook/react-vite';
+
 import { ProgressTiles } from '@synerise/ds-progress-bar';
 
 import {
+  fixedWrapper300,
   NUMBER_CONTROL,
   REACT_NODE_AS_STRING,
-  fixedWrapper300,
 } from '../../utils';
 import { COLORS } from './ProgressBar.constants';
 

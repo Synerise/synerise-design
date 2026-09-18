@@ -6,14 +6,14 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import { type VariableSizeList } from 'react-window';
+import type { VariableSizeList } from 'react-window';
 import { v4 as uuid } from 'uuid';
 
 import { useTheme } from '@synerise/ds-core';
 import Divider from '@synerise/ds-divider';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { ArrowRightCircleM, SearchM } from '@synerise/ds-icon';
-import { ListContextProvider, itemSizes } from '@synerise/ds-list-item';
+import { itemSizes, ListContextProvider } from '@synerise/ds-list-item';
 import Result from '@synerise/ds-result';
 import Scrollbar from '@synerise/ds-scrollbar';
 import Tabs from '@synerise/ds-tabs';
@@ -25,10 +25,10 @@ import {
   useSearchResults,
 } from '@synerise/ds-utils';
 
-import {
-  type ParameterDropdownProps,
-  type ParameterGroup,
-  type ParameterItem,
+import type {
+  ParameterDropdownProps,
+  ParameterGroup,
+  ParameterItem,
 } from '../../Factors.types';
 import {
   DROPDOWN_HEIGHT,

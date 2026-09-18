@@ -1,6 +1,6 @@
 import styled, {
-  type FlattenSimpleInterpolation,
   css,
+  type FlattenSimpleInterpolation,
 } from 'styled-components';
 
 import { Text } from '@synerise/ds-typography';

@@ -1,8 +1,8 @@
-import { type Dayjs, type default as dayjs } from 'dayjs';
-import {
-  type FormatDateOptions,
-  type FormatNumberOptions,
-  type FormatPluralOptions,
+import type { Dayjs, default as dayjs } from 'dayjs';
+import type {
+  FormatDateOptions,
+  FormatNumberOptions,
+  FormatPluralOptions,
 } from 'react-intl';
 
 const _DATE_TARGET_FORMATS = [
@@ -90,15 +90,13 @@ export type OverloadFormatMultipleValues = {
   (values: string[], options?: CommonFormatOptions): string[];
 };
 
-export type OverloadGetConstants = {
-  (
-    targetFormat: DateConstantsTargetFormat,
-    options?: DateToFormatOptions,
-    customStartDate?: Date,
-    customEndDate?: Date,
-    customInterval?: dayjs.UnitType,
-  ): string[] | undefined;
-};
+export type OverloadGetConstants = (
+  targetFormat: DateConstantsTargetFormat,
+  options?: DateToFormatOptions,
+  customStartDate?: Date,
+  customEndDate?: Date,
+  customInterval?: dayjs.UnitType,
+) => string[] | undefined;
 
 const _DELIMITERS = [',', '.', ' '] as const;
 export type Delimiter = (typeof _DELIMITERS)[number];

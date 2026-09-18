@@ -3,10 +3,10 @@ import { flatten } from 'flat';
 import React from 'react';
 import { IntlProvider } from 'react-intl';
 
-import {
-  type IntlMessages,
-  type LocaleProviderProps,
-  type NestedMessages,
+import type {
+  IntlMessages,
+  LocaleProviderProps,
+  NestedMessages,
 } from './LocaleProvider.types';
 import { getDSMessages, getLangForCode } from './LocaleProvider.utils';
 

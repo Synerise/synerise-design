@@ -1,6 +1,6 @@
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 
-import type { Meta, StoryObj } from '@storybook/react-vite';
 import Button from '@synerise/ds-button';
 import ButtonGroup from '@synerise/ds-button-group';
 import { theme } from '@synerise/ds-core';

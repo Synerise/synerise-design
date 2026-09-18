@@ -1,6 +1,6 @@
-import {
-  type RelativeDateUnit,
-  type RelativeTimeRelation,
+import type {
+  RelativeDateUnit,
+  RelativeTimeRelation,
 } from '../../Factors.types';
 
 export const INTERVALS: RelativeDateUnit[] = [

@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
 import Button from '@synerise/ds-button';
-import { type ThemeProps } from '@synerise/ds-core';
+import type { ThemeProps } from '@synerise/ds-core';
 import { Tag } from '@synerise/ds-tag/dist/Tag.styles';
 
 import { ItemLabel } from '../Item.styles';

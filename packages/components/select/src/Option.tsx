@@ -1,6 +1,6 @@
-import { type CSSProperties, type ReactNode } from 'react';
+import type { CSSProperties, ReactNode } from 'react';
 
-import { type RawValueType } from './Select.types';
+import type { RawValueType } from './Select.types';
 
 export type OptionProps = {
   /** antd parity: optional — falls back to the element's React `key` when omitted. */

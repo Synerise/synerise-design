@@ -13,6 +13,12 @@ import {
 } from '@synerise/ds-icon';
 import { NOOP } from '@synerise/ds-utils';
 
+import type {
+  DefinedFactorTypes,
+  FactorsProps,
+  MergedFactorTypeMapping,
+  SelectedFactorType,
+} from './Factors.types';
 import FactorTypeSelector from './FactorTypeSelector/FactorTypeSelector';
 import { Array } from './FactorValue/Array/Array';
 import DateInput from './FactorValue/Date/Date';
@@ -24,12 +30,6 @@ import NumberInput from './FactorValue/Number/NumberInput';
 import ParameterInput from './FactorValue/Parameter/Parameter';
 import RelativeDateInput from './FactorValue/RelativeDate/RelativeDate';
 import TextInput from './FactorValue/Text/Text';
-import {
-  type DefinedFactorTypes,
-  type FactorsProps,
-  type MergedFactorTypeMapping,
-  type SelectedFactorType,
-} from './Factors.types';
 import { useTexts } from './hooks/useTexts';
 import * as S from './style/Factors.style';
 

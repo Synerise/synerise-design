@@ -1,14 +1,14 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React, { useState } from 'react';
 import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import DatePicker from '@synerise/ds-date-picker';
 import { getPopupContainer } from '@synerise/ds-utils';
 
 import {
   BOOLEAN_CONTROL,
-  REACT_NODE_AS_STRING,
   fixedWrapper200,
+  REACT_NODE_AS_STRING,
 } from '../../utils';
 import { baseArgs, texts } from './constants';
 

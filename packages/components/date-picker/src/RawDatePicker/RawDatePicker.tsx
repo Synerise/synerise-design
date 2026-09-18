@@ -1,9 +1,9 @@
 import React from 'react';
-import { type Modifiers } from 'react-day-picker';
-import { type WrappedComponentProps, injectIntl } from 'react-intl';
+import type { Modifiers } from 'react-day-picker';
+import { injectIntl, type WrappedComponentProps } from 'react-intl';
 
 import * as S from '../DatePicker.styles';
-import { type State, type Texts } from '../DatePicker.types';
+import type { State, Texts } from '../DatePicker.types';
 import DayPicker from '../Elements/DayPicker/DayPicker';
 import {
   DayBackground,
@@ -26,7 +26,7 @@ import {
 } from '../fns';
 import { toDateValue } from '../toDateValue';
 import { getDefaultTexts } from '../utils/getDefaultTexts';
-import { type RawDatePickerProps } from './RawDatePicker.types';
+import type { RawDatePickerProps } from './RawDatePicker.types';
 
 class RawDatePicker extends React.Component<
   RawDatePickerProps & WrappedComponentProps,
@@ -42,7 +42,6 @@ class RawDatePicker extends React.Component<
   constructor(props: RawDatePickerProps & WrappedComponentProps) {
     super(props);
 
-    // eslint-disable-next-line react/state-in-constructor
     this.state = {
       mode: 'date',
       month: fnsStartOfMonth(props.value || new Date()),

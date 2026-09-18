@@ -1,7 +1,7 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 import { fn } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import { Gallery, type GalleryProps } from '@synerise/ds-image';
 
 import { avatar1, avatar2, avatar3, avatar4, avatar5 } from '../../constants';

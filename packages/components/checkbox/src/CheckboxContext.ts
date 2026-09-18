@@ -1,6 +1,6 @@
 import { createContext } from 'react';
 
-import { type CheckboxValueType } from './Checkbox.types';
+import type { CheckboxValueType } from './Checkbox.types';
 
 export type CheckboxGroupContextValue = {
   /** Currently checked values. */

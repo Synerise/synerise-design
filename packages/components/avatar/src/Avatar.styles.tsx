@@ -1,10 +1,10 @@
 import React, { forwardRef } from 'react';
 import styled, { css } from 'styled-components';
 
-import { type ThemeProps } from '@synerise/ds-core';
+import type { ThemeProps } from '@synerise/ds-core';
 import { macro } from '@synerise/ds-typography';
 
-import { type AvatarProps } from './Avatar.types';
+import type { AvatarProps } from './Avatar.types';
 
 export const TooltipGroup = styled.div`
   margin: 13px 8px;
@@ -23,9 +23,11 @@ export const TooltipGroup = styled.div`
 const applyBgColors = (
   props: ThemeProps & { backgroundColor?: string; backgroundColorHue?: string },
 ) => css`
-  background: ${props.theme.palette[
-    `${props.backgroundColor}-${props.backgroundColorHue ? props.backgroundColorHue : '400'}`
-  ]};
+  background: ${
+    props.theme.palette[
+      `${props.backgroundColor}-${props.backgroundColorHue ? props.backgroundColorHue : '400'}`
+    ]
+  };
 `;
 
 const applyDisabledStyles = (props: { disabled?: boolean }) =>

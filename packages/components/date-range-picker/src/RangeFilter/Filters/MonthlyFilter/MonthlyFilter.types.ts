@@ -1,23 +1,20 @@
-import { type IntlShape } from 'react-intl';
+import type { IntlShape } from 'react-intl';
 
 import type { TimePickerProps } from '@synerise/ds-time-picker';
 
-import { type WithTranslations } from '../../../DateRangePicker.types';
-import {
-  type DenormalizedFilter,
-  type FilterDefinition,
-  type MonthlySelectValue,
-  type WithDisabledProp,
+import type { WithTranslations } from '../../../DateRangePicker.types';
+import type { COUNTED_FROM_ENUM, DAYS_OF_PERIOD_ENUM } from '../../constants';
+import type {
+  DenormalizedFilter,
+  FilterDefinition,
+  MonthlySelectValue,
+  WithDisabledProp,
 } from '../../RangeFilter.types';
-import {
-  type DateLimitMode,
-  type RangeDisplayMode,
+import type {
+  DateLimitMode,
+  RangeDisplayMode,
 } from '../../Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
-import { type RangeActions } from '../../Shared/TimeWindow/TimeWindow.types';
-import {
-  type COUNTED_FROM_ENUM,
-  type DAYS_OF_PERIOD_ENUM,
-} from '../../constants';
+import type { RangeActions } from '../../Shared/TimeWindow/TimeWindow.types';
 
 export type MonthlyFilterProps = {
   maxEntries?: number;

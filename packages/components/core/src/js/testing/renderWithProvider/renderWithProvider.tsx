@@ -1,10 +1,9 @@
-import React, { type ReactNode } from 'react';
-
 import {
   type RenderOptions,
   type RenderResult,
   render,
 } from '@testing-library/react';
+import React, { type ReactNode } from 'react';
 
 import DSProvider, { type DSProviderProps } from '../../DSProvider/DSProvider';
 import {

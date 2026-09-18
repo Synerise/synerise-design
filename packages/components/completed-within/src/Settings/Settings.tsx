@@ -4,9 +4,9 @@ import { InputGroup } from '@synerise/ds-input';
 import InputNumber from '@synerise/ds-input-number';
 import Select, { type RawValueType } from '@synerise/ds-select';
 
-import { type Period } from '../CompletedWithin.types';
+import type { Period } from '../CompletedWithin.types';
 import * as S from './Settings.styles';
-import { type SettingsProps } from './Settings.types';
+import type { SettingsProps } from './Settings.types';
 
 const Settings = ({
   value,

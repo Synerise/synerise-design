@@ -1,8 +1,8 @@
 import React, { type ReactElement } from 'react';
 
-import {
-  type UnorderedListItem,
-  type UnorderedListProps,
+import type {
+  UnorderedListItem,
+  UnorderedListProps,
 } from '../../Unordered-list.types';
 import * as S from './Item.styles';
 

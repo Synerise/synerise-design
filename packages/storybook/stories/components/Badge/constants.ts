@@ -1,6 +1,12 @@
-import { controlFromOptionsArray } from "../../utils";
+import { controlFromOptionsArray } from '../../utils';
 
-export const STATUSES = ['active', 'inactive', 'blocked', 'processing', 'warning'] as const;
+export const STATUSES = [
+  'active',
+  'inactive',
+  'blocked',
+  'processing',
+  'warning',
+] as const;
 // export const SIZES = ['small', 'medium', 'large', 'extraLarge'] as const
 // export const SHAPES = ['circle', 'square'] as const;
 export const BACKGROUND_COLORS = [
@@ -51,9 +57,15 @@ export const BACKGROUND_COLOR_HUE = [
 export const AVATAR_ARG_TYPES = {
   size: {
     defaultValue: 'default',
-    ...controlFromOptionsArray('select', ['extraLarge', 'large', 'default', 'small']),
+    ...controlFromOptionsArray('select', [
+      'extraLarge',
+      'large',
+      'default',
+      'small',
+    ]),
   },
   shape: {
     defaultValue: 'circle',
     ...controlFromOptionsArray('select', ['circle', 'square']),
-  },}
+  },
+};

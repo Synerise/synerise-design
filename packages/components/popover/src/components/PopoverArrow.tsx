@@ -1,7 +1,7 @@
+import type { Placement } from '@floating-ui/react';
 import classNames from 'classnames';
-import { type ReactElement, cloneElement, isValidElement } from 'react';
+import { cloneElement, isValidElement, type ReactElement } from 'react';
 
-import { type Placement } from '@floating-ui/react';
 import { useTheme } from '@synerise/ds-core';
 
 import { usePopoverContext } from '../hooks';

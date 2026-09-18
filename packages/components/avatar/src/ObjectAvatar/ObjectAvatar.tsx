@@ -6,7 +6,7 @@ import Icon, { MailM } from '@synerise/ds-icon';
 import Status from '@synerise/ds-status';
 
 import Avatar from '../Avatar';
-import { type ObjectAvatarProps } from '../Avatar.types';
+import type { ObjectAvatarProps } from '../Avatar.types';
 import { addIconColor, getColorByText, getObjectName } from '../utils';
 
 export const DEFAULT_COLOR_HUE = '600';

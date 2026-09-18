@@ -1,8 +1,8 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React, { useState } from 'react';
 import { useArgs } from 'storybook/preview-api';
 import { fn } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import Avatar, { ObjectAvatar } from '@synerise/ds-avatar';
 import Badge from '@synerise/ds-badge';
 import Button from '@synerise/ds-button';
@@ -23,20 +23,20 @@ import { AVATAR_IMAGE } from '../../constants/images';
 import {
   BOOLEAN_CONTROL,
   CLASSNAME_ARG_CONTROL,
+  controlFromOptionsArray,
+  fixedWrapper200,
   NUMBER_CONTROL,
   REACT_NODE_AS_STRING,
   STRING_CONTROL,
-  controlFromOptionsArray,
-  fixedWrapper200,
 } from '../../utils';
 import {
-  LIST_ITEMS,
-  StarWithTooltip,
   hoverSuffixType,
+  LIST_ITEMS,
   prefixArgTypes,
   prefixType,
   renderPrefix,
   renderSuffix,
+  StarWithTooltip,
   suffixType,
 } from './listItem.data';
 import * as S from './styles';

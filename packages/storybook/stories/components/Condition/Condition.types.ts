@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+
 import type { ConditionProps } from '@synerise/ds-condition';
 
 export type ConditionStoryProps = ConditionProps & {

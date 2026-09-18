@@ -5,11 +5,11 @@ import { fnsAddYears, fnsGetYear, fnsSetYear } from '../../fns';
 import { toDateValue } from '../../toDateValue';
 import { getCenturyRange, getDecadeRange } from '../../utils';
 import GridPicker from '../GridPicker/GridPicker';
-import { type Cell } from '../GridPicker/GridPicker.types';
+import type { Cell } from '../GridPicker/GridPicker.types';
 import Navbar from '../Navbar/Navbar';
-import {
-  type DecadePickerProps,
-  type DecadePickerState,
+import type {
+  DecadePickerProps,
+  DecadePickerState,
 } from './DecadePicker.types';
 
 function getInitialState(props: DecadePickerProps): DecadePickerState {

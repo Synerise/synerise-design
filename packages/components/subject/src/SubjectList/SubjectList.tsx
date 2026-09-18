@@ -7,7 +7,7 @@ import Result from '@synerise/ds-result';
 import Scrollbar from '@synerise/ds-scrollbar';
 import { focusWithArrowKeys } from '@synerise/ds-utils';
 
-import { type SubjectItem, type SubjectListProps } from '../Subject.types';
+import type { SubjectItem, SubjectListProps } from '../Subject.types';
 import * as S from './SubjectList.styles';
 import SubjectListItem from './SubjectListItem';
 

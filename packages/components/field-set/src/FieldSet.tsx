@@ -12,7 +12,7 @@ import { RawSwitch } from '@synerise/ds-switch';
 import { useResizeObserver } from '@synerise/ds-utils';
 
 import * as S from './FieldSet.styles';
-import { type FieldSetProps } from './FieldSet.types';
+import type { FieldSetProps } from './FieldSet.types';
 
 const FieldSet = ({
   className,

@@ -9,9 +9,9 @@ import { CSS, useSortable } from '@synerise/ds-sortable';
 import Subject from '@synerise/ds-subject';
 
 import * as S from '../Condition.style';
-import {
-  type CustomContextSelectorProps,
-  type StepConditions,
+import type {
+  CustomContextSelectorProps,
+  StepConditions,
 } from '../Condition.types';
 import { ACTION_ATTRIBUTE, SUBJECT } from '../constants';
 import { useTranslations } from '../hooks/useTranslations';

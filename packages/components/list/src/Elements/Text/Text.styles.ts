@@ -1,6 +1,6 @@
-import styled, { type SimpleInterpolation, css } from 'styled-components';
+import styled, { css, type SimpleInterpolation } from 'styled-components';
 
-import { type ThemeProps } from '@synerise/ds-core';
+import type { ThemeProps } from '@synerise/ds-core';
 
 type WrapperProps = {
   disabled?: boolean;

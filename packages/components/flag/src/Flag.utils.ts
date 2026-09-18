@@ -1,4 +1,4 @@
-import { type CountryCode } from './Flag.types';
+import type { CountryCode } from './Flag.types';
 
 export const countryCodes: CountryCode[] = [
   'AD',

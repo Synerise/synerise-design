@@ -1,27 +1,27 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React, { useState } from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
-import Card, { CardBadge, CardGroup, CardSummary } from '@synerise/ds-card';
 import type { CardProps } from '@synerise/ds-card';
+import Card, { CardBadge, CardGroup, CardSummary } from '@synerise/ds-card';
 import { CheckS } from '@synerise/ds-icon';
 import Layout from '@synerise/ds-layout';
 
 import {
   BOOLEAN_CONTROL,
   CLASSNAME_ARG_CONTROL,
+  controlFromOptionsArray,
   REACT_NODE_AS_STRING,
   STYLE_ARG_CONTROL,
-  controlFromOptionsArray,
 } from '../../utils';
 import * as S from '../Layout/components/Layout.styles';
 import {
   CARD_CONTENT,
   CARD_HEADER_VARIANTS,
   CARD_SUMMARY_ITEMS,
-  CUSTOM_BADGES,
   CardWithState,
-  TYPES_OF_BADGES,
+  CUSTOM_BADGES,
   defaultRender,
+  TYPES_OF_BADGES,
 } from './card.data';
 
 type Story = StoryObj<CardProps>;

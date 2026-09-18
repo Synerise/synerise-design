@@ -4,14 +4,14 @@ import { v4 as uuid } from 'uuid';
 
 import Icon, { AngleDownS, CloseM } from '@synerise/ds-icon';
 
-import * as S from './Toast.styles';
-import {
-  type ShowToastProps,
-  type ToastCustomisationOptions,
-  type ToastProps,
-  type ToastType,
-} from './Toast.types';
 import { ICONS } from './constants';
+import * as S from './Toast.styles';
+import type {
+  ShowToastProps,
+  ToastCustomisationOptions,
+  ToastProps,
+  ToastType,
+} from './Toast.types';
 
 export const Toast = ({
   type,

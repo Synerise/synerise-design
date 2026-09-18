@@ -4,7 +4,7 @@ import { useIntl } from 'react-intl';
 
 import { utils as dateRangePickerUtils } from '@synerise/ds-date-range-picker';
 import ShortCuts from '@synerise/ds-short-cuts';
-import { type DeepPartial } from '@synerise/ds-utils';
+import type { DeepPartial } from '@synerise/ds-utils';
 
 import type { FactorsTexts } from '../Factors.types';
 

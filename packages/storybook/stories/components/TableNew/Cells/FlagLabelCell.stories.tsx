@@ -1,9 +1,9 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import { type BaseFlagLabelProps, FlagLabelCell } from '@synerise/ds-table-new';
 
-import { STRING_CONTROL, fixedWrapper300 } from '../../../utils';
+import { fixedWrapper300, STRING_CONTROL } from '../../../utils';
 
 const meta: Meta<BaseFlagLabelProps> = {
   title: 'Components/TableNew/Cells/FlagLabelCell',

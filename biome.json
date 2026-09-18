@@ -1,0 +1,144 @@
+{
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true
+  },
+  "files": {
+    "includes": [
+      "packages/**",
+      "!**/*.json",
+      "!**/*.svg",
+      "!**/*.d.ts",
+      "!**/dist/**",
+      "!**/build/**",
+      "!**/storybook-static/**",
+      "!**/*.config.js",
+      "!**/icon/src/icons/**",
+      "!**/flag/src/icons/**",
+      "!**/avatar/src/**/defaultAvatars/**",
+      "!**/core/src/js/DSProvider/ThemeProvider/variables.ts",
+      "!**/*.spec.*",
+      "!**/__specs__/**"
+    ]
+  },
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineWidth": 80,
+    "lineEnding": "lf"
+  },
+  "assist": {
+    "enabled": true,
+    "actions": {
+      "source": {
+        "organizeImports": {
+          "level": "on",
+          "options": {
+            "groups": [
+              [
+                ":PACKAGE:",
+                "!@synerise/**"
+              ],
+              ":BLANK_LINE:",
+              [
+                "@synerise/**"
+              ],
+              ":BLANK_LINE:",
+              [
+                ":PATH:"
+              ]
+            ]
+          }
+        }
+      }
+    }
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "a11y": {
+        "recommended": false
+      },
+      "suspicious": {
+        "noConsole": "warn",
+        "noExplicitAny": "warn",
+        "noImplicitAnyLet": "warn",
+        "noArrayIndexKey": "warn",
+        "noAssignInExpressions": "warn",
+        "noShadowRestrictedNames": "warn",
+        "useIterableCallbackReturn": "warn",
+        "noShadow": "warn"
+      },
+      "correctness": {
+        "useExhaustiveDependencies": "warn",
+        "useHookAtTopLevel": "error",
+        "useJsxKeyInIterable": "warn",
+        "noVoidTypeReturn": "warn",
+        "noUnsafeOptionalChaining": "warn",
+        "noUnreachable": "warn",
+        "noUnusedVariables": "error"
+      },
+      "security": {
+        "noDangerouslySetInnerHtml": "warn"
+      },
+      "style": {
+        "noRestrictedImports": {
+          "level": "warn",
+          "options": {
+            "patterns": [
+              {
+                "group": [
+                  "@synerise/ds-*/dist/*"
+                ],
+                "message": "Import from the package root instead of deep /dist/ paths. Deep /dist/ imports bypass the package exports map and couple you to its build layout."
+              },
+              {
+                "group": [
+                  "antd",
+                  "antd/*"
+                ],
+                "message": "antd has been removed from the design system \u2014 see docs/adr/0001-remove-antd-dependency.md. Build the component natively with styled-components and ds-core tokens instead."
+              }
+            ]
+          }
+        },
+        "useBlockStatements": "error",
+        "useImportType": "error"
+      }
+    }
+  },
+  "javascript": {
+    "jsxRuntime": "reactClassic",
+    "formatter": {
+      "quoteStyle": "single",
+      "jsxQuoteStyle": "double",
+      "semicolons": "always",
+      "trailingCommas": "all",
+      "bracketSpacing": true,
+      "bracketSameLine": false
+    }
+  },
+  "overrides": [
+    {
+      "includes": [
+        "packages/storybook/**"
+      ],
+      "linter": {
+        "enabled": false
+      }
+    },
+    {
+      "includes": [
+        "**/*.figma.ts",
+        "**/*.figma.tsx"
+      ],
+      "linter": {
+        "enabled": false
+      }
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 import styled, { css, keyframes } from 'styled-components';
 
-import { type ThemeProps } from '@synerise/ds-core';
+import type { ThemeProps } from '@synerise/ds-core';
 import { IconContainer } from '@synerise/ds-icon';
 import DSTag from '@synerise/ds-tag';
 
@@ -342,9 +342,11 @@ export const StyledButton = styled(BaseButton)<StyledButtonProps>`
             position: relative;
             &:before {
               content: '';
-              background-color: ${!splitTypes.includes(props.type)
-                ? `rgba(255, 255, 255, 0.15);`
-                : props.theme.palette['grey-300']};
+              background-color: ${
+                !splitTypes.includes(props.type)
+                  ? `rgba(255, 255, 255, 0.15);`
+                  : props.theme.palette['grey-300']
+              };
               top: ${props.size === 'large' ? '-12px' : '-4px'};
               height: ${props.size === 'large' ? '48px' : '32px'};
               width: 1px;
@@ -458,8 +460,8 @@ export const StyledButton = styled(BaseButton)<StyledButtonProps>`
       `}
 
       ${(props) =>
-      props.error &&
-      css`
+        props.error &&
+        css`
         &.ant-btn {
           background-color: ${props.theme.palette[`red-100`]};
           box-shadow: inset 0 0 0 1px ${props.theme.palette['red-600']};
@@ -491,9 +493,9 @@ export const StyledButton = styled(BaseButton)<StyledButtonProps>`
         }
       `}
           ${(props) =>
-      props.error &&
-      props.type === 'secondary' &&
-      css`
+            props.error &&
+            props.type === 'secondary' &&
+            css`
         &&&.ant-btn {
           color: ${props.theme.palette[`red-600`]};
           .btn-focus {
@@ -536,9 +538,9 @@ export const StyledButton = styled(BaseButton)<StyledButtonProps>`
           }
 
           ${RippleEffect} {
-            background-color: ${props.theme.palette[
-              `${props.customColor}-700`
-            ]};
+            background-color: ${
+              props.theme.palette[`${props.customColor}-700`]
+            };
           }
 
           &:focus-visible:not(.read-only) {
@@ -548,34 +550,36 @@ export const StyledButton = styled(BaseButton)<StyledButtonProps>`
           }
 
           &:hover:not(:disabled):not(:focus-visible):not(.pressed) {
-            background-color: ${props.theme.palette[
-              props.readOnly
-                ? `${props.customColor}-600`
-                : `${props.customColor}-500`
-            ]};
+            background-color: ${
+              props.theme.palette[
+                props.readOnly
+                  ? `${props.customColor}-600`
+                  : `${props.customColor}-500`
+              ]
+            };
             color: ${props.theme.palette.white};
           }
 
           &.pressed {
-            background-color: ${props.theme.palette[
-              `${props.customColor}-700`
-            ]};
+            background-color: ${
+              props.theme.palette[`${props.customColor}-700`]
+            };
             color: ${props.theme.palette.white};
           }
 
           &:disabled {
             opacity: 0.4;
-            background-color: ${props.theme.palette[
-              `${props.customColor}-600`
-            ]};
+            background-color: ${
+              props.theme.palette[`${props.customColor}-600`]
+            };
             color: ${props.theme.palette.white};
           }
         }
       `}
       ${(props) =>
-      props.type === 'custom-color-ghost' &&
-      !props.error &&
-      css`
+        props.type === 'custom-color-ghost' &&
+        !props.error &&
+        css`
         && {
           color: ${props.theme.palette[`${props.customColor}-600`]};
           &:hover:not(:disabled) {
@@ -588,9 +592,9 @@ export const StyledButton = styled(BaseButton)<StyledButtonProps>`
         }
       `}
         ${(props) =>
-      props.readOnly &&
-      props.type === 'custom-color-ghost' &&
-      css`
+          props.readOnly &&
+          props.type === 'custom-color-ghost' &&
+          css`
         &&.ant-btn {
           cursor: default;
           transition: none;

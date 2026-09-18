@@ -1,17 +1,17 @@
+import {
+  FloatingFocusManager,
+  FloatingPortal,
+  useMergeRefs,
+} from '@floating-ui/react';
 import React, {
-  type HTMLProps,
   forwardRef,
+  type HTMLProps,
   useEffect,
   useMemo,
   useRef,
   useState,
 } from 'react';
 
-import {
-  FloatingFocusManager,
-  FloatingPortal,
-  useMergeRefs,
-} from '@floating-ui/react';
 import { useTheme } from '@synerise/ds-core';
 
 import { usePopoverContext } from '../hooks/usePopoverContext';

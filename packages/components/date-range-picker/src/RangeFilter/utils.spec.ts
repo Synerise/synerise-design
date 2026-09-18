@@ -299,7 +299,7 @@ describe('DateRangePicker utils ', () => {
       expect(isValidValue(VALID_DAILY_FILTER)).toBe(true);
     });
     it('should return false for invalid daily filter', () => {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      // biome-ignore lint/suspicious/noExplicitAny: upstream type is not expressible here
       expect(isValidValue(INVALID_DAILY_FILTER as any)).toBe(false);
     });
   });

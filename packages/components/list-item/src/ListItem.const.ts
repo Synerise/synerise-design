@@ -1,4 +1,4 @@
-import { type ItemSize } from './ListItem.types';
+import type { ItemSize } from './ListItem.types';
 
 /**
  * Row height in px per `size`. For `'auto'` this is the `min-height` floor the CSS

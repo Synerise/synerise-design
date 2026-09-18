@@ -1,9 +1,10 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import Result from '@synerise/ds-result';
-import Drawer from '@synerise/ds-drawer';
+
 import Button from '@synerise/ds-button';
+import Drawer from '@synerise/ds-drawer';
 import Icon, { ArrowLeftM, CloseM } from '@synerise/ds-icon';
+import Result from '@synerise/ds-result';
 
 export const TABS = [
   {
@@ -46,7 +47,12 @@ export const renderBackIcon = (headerType, onBackClickHandler) => {
   if (headerType === headerTypes.singleTitleWithBackIcon) {
     return (
       <Drawer.DrawerHeaderBack>
-        <Button type="ghost" mode="single-icon" onClick={onBackClickHandler} data-testid="ds-item-filter-close-button">
+        <Button
+          type="ghost"
+          mode="single-icon"
+          onClick={onBackClickHandler}
+          data-testid="ds-item-filter-close-button"
+        >
           <Icon component={<ArrowLeftM />} />
         </Button>
       </Drawer.DrawerHeaderBack>
@@ -58,7 +64,12 @@ export const renderActionButtons = (closeActionType, actionClickHandler) => {
   if (closeActionType === closeActionTypes.singleCloseIcon) {
     return (
       <React.Fragment>
-        <Button type="ghost" mode="single-icon" onClick={actionClickHandler} data-testid="ds-item-filter-close-button">
+        <Button
+          type="ghost"
+          mode="single-icon"
+          onClick={actionClickHandler}
+          data-testid="ds-item-filter-close-button"
+        >
           <Icon component={<CloseM />} />
         </Button>
       </React.Fragment>
@@ -69,7 +80,11 @@ export const renderActionButtons = (closeActionType, actionClickHandler) => {
         <Button type={'ghost'} onClick={actionClickHandler}>
           Cancel
         </Button>
-        <Button style={{ marginLeft: '8px' }} type={'primary'} onClick={actionClickHandler}>
+        <Button
+          style={{ marginLeft: '8px' }}
+          type={'primary'}
+          onClick={actionClickHandler}
+        >
           Save
         </Button>
       </React.Fragment>

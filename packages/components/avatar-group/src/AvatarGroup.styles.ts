@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 
 import Avatar from '@synerise/ds-avatar';
 
-import { type Size } from './AvatarGroup.types';
+import type { Size } from './AvatarGroup.types';
 
 const MARGINS: Record<Size, string> = {
   small: '-8px',

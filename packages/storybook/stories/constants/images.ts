@@ -1,9 +1,12 @@
 // @ts-nocheck
-export { default as AVATAR_IMAGE } from './avatars/av-anonym-004.png';
+
 export { default as avatar1 } from './avatars/av-anonym-001.png';
 export { default as avatar2 } from './avatars/av-anonym-002.png';
 export { default as avatar3 } from './avatars/av-anonym-003.png';
-export { default as avatar4 } from './avatars/av-anonym-004.png';
+export {
+  default as AVATAR_IMAGE,
+  default as avatar4,
+} from './avatars/av-anonym-004.png';
 export { default as avatar5 } from './avatars/av-anonym-005.png';
 export { default as avatar6 } from './avatars/av-anonym-006.png';
 export { default as avatar7 } from './avatars/av-anonym-007.png';
@@ -20,4 +23,4 @@ export { default as avatar17 } from './avatars/av-anonym-017.png';
 export { default as avatar18 } from './avatars/av-anonym-018.png';
 export { default as avatar19 } from './avatars/av-anonym-019.png';
 export { default as avatar20 } from './avatars/av-anonym-020.png';
-export { default as tooltipImage } from './img/tooltipImage.png'
+export { default as tooltipImage } from './img/tooltipImage.png';

@@ -1,13 +1,13 @@
 import React, {
   type CSSProperties,
+  forwardRef,
   type HTMLAttributes,
   type Key,
   type MouseEvent,
+  memo,
   type ReactElement,
   type ReactNode,
   type UIEvent,
-  forwardRef,
-  memo,
   useCallback,
   useEffect,
   useMemo,
@@ -20,13 +20,13 @@ import Scrollbar from '@synerise/ds-scrollbar';
 import { useMeasuredRow, useMeasuredRowHeights } from '@synerise/ds-utils';
 
 import * as S from '../Select.styles';
-import { type RawValueType, type SelectOption } from '../Select.types';
+import type { RawValueType, SelectOption } from '../Select.types';
 import {
+  cx,
   DEFAULT_LIST_HEIGHT,
   DEFAULT_LIST_ITEM_HEIGHT,
   MAX_MEASURED_ROWS,
   OVERSCAN_COUNT,
-  cx,
 } from '../utils/helpers';
 
 /** Scrolling belongs to the surrounding `Scrollbar`, not to the window itself. */

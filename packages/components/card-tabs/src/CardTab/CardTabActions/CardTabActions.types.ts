@@ -1,6 +1,6 @@
-import { type MouseEvent } from 'react';
+import type { MouseEvent } from 'react';
 
-import { type CardTabTexts } from '../CardTab.types';
+import type { CardTabTexts } from '../CardTab.types';
 
 export type CardTabActionsProps = {
   onChangeName?: (event?: MouseEvent<HTMLElement>) => void;

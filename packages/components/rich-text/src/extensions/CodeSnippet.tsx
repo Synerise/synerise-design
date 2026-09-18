@@ -1,13 +1,13 @@
-import React from 'react';
-
-import CopyIcon from '@synerise/ds-copy-icon';
-import { Node, mergeAttributes } from '@tiptap/core';
+import { mergeAttributes, Node } from '@tiptap/core';
 import {
   NodeViewContent,
   type NodeViewProps,
   NodeViewWrapper,
   ReactNodeViewRenderer,
 } from '@tiptap/react';
+import React from 'react';
+
+import CopyIcon from '@synerise/ds-copy-icon';
 
 export type CodeSnippetOptions = {
   copyText: string;

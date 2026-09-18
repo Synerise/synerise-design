@@ -1,13 +1,12 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
-import Skeleton from '@synerise/ds-skeleton';
-import { SkeletonProps } from '@synerise/ds-skeleton';
+import Skeleton, { SkeletonProps } from '@synerise/ds-skeleton';
 
 import {
-  NUMBER_CONTROL,
   controlFromOptionsArray,
   fixedWrapper200,
+  NUMBER_CONTROL,
 } from '../../utils';
 
 export default {

@@ -1,7 +1,7 @@
+import { faker } from '@faker-js/faker';
 import React from 'react';
 import { fn } from 'storybook/test';
 
-import { faker } from '@faker-js/faker';
 import { ObjectAvatar } from '@synerise/ds-avatar';
 import { Color } from '@synerise/ds-avatar/dist/Avatar.types';
 import Button from '@synerise/ds-button';

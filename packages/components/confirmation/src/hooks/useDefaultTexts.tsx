@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { type ConfirmationTexts } from '../Confirmation.types';
+import type { ConfirmationTexts } from '../Confirmation.types';
 
 export const useDefaultTexts = (
   defaultTexts?: Partial<ConfirmationTexts>,

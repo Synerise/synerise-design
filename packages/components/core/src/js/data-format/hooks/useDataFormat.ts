@@ -2,12 +2,12 @@ import { isDayjs } from 'dayjs';
 import { useCallback, useMemo } from 'react';
 
 import { DATE_CONSTANTS_TARGET_FORMATS } from '../constants';
-import {
-  type Delimiter,
-  type MomentLike,
-  type OverloadFormatMultipleValues,
-  type OverloadFormatValue,
-  type OverloadGetConstants,
+import type {
+  Delimiter,
+  MomentLike,
+  OverloadFormatMultipleValues,
+  OverloadFormatValue,
+  OverloadGetConstants,
 } from '../types';
 import { getConstantDatesAndFormattingOptions } from '../utils';
 import { isValidDate } from '../utils/date.utils';
@@ -67,7 +67,7 @@ export const useDataFormat = (): UseDataFormatProps => {
   );
 
   const formatValue = useCallback<OverloadFormatValue>(
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // biome-ignore lint/suspicious/noExplicitAny: upstream type is not expressible here
     (value: any, options?: any) => {
       let result = '';
 
@@ -127,7 +127,7 @@ export const useDataFormat = (): UseDataFormatProps => {
   );
 
   const formatMultipleValues = useCallback<OverloadFormatMultipleValues>(
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // biome-ignore lint/suspicious/noExplicitAny: upstream type is not expressible here
     (values: any[], options?: any) => {
       return values.map((value) => formatValue(value, options));
     },

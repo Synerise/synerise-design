@@ -11,7 +11,7 @@ import Icon, {
 } from '@synerise/ds-icon';
 
 import * as S from './RangeActions.styles';
-import { type RangeActionsProps } from './RangeActions.types';
+import type { RangeActionsProps } from './RangeActions.types';
 
 const RangeActions: React.FC<RangeActionsProps> = ({
   texts,

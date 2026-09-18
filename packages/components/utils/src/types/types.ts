@@ -1,4 +1,4 @@
-import { type HTMLAttributes } from 'react';
+import type { HTMLAttributes } from 'react';
 
 /**
  *  Allows creating a literal string union type with auto-completion in IDEs

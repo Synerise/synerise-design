@@ -7,7 +7,7 @@ import Tooltip from '@synerise/ds-tooltip';
 
 import * as S from '../../SubtleForm.styles';
 import { SelectContainer } from './Select.styles';
-import { type SubtleSelectProps } from './Select.types';
+import type { SubtleSelectProps } from './Select.types';
 
 const SubtleSelect = ({
   disabled,
@@ -66,7 +66,7 @@ const SubtleSelect = ({
               $disabled={disabled}
             >
               <S.MainContent className="main-content" hasMargin>
-                <>{value && !!String(value).trim() ? value : placeholder}</>
+                <>{value && String(value).trim() ? value : placeholder}</>
               </S.MainContent>
               {!active && !disabled && suffix && (
                 <S.Suffix select>

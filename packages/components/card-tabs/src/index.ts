@@ -1,10 +1,10 @@
 import * as CardTabStyles from './CardTab/CardTab.styles';
 import * as MainCardTabsStyles from './CardTabs.styles';
 
-export { default } from './CardTabs';
 export { default as CardTab } from './CardTab/CardTab';
-export { prefixType, type CardTabProps } from './CardTab/CardTab.types';
 export { CardDot } from './CardTab/CardTab.styles';
+export { type CardTabProps, prefixType } from './CardTab/CardTab.types';
+export { default } from './CardTabs';
 
 export const CardTabsStyles = {
   CardTabs: MainCardTabsStyles,

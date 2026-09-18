@@ -2,7 +2,7 @@ import React from 'react';
 
 import SearchHeader from '../SearchHeader/SearchHeader';
 import SearchItems from '../SearchItems/SearchItems';
-import { type SearchRendererProps } from './SearchRenderer.types';
+import type { SearchRendererProps } from './SearchRenderer.types';
 
 const SearchRenderer = ({
   title,

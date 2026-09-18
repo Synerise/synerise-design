@@ -5,7 +5,7 @@ import Icon from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 
 import * as S from './Tab.styles';
-import { type TabProps } from './Tab.types';
+import type { TabProps } from './Tab.types';
 
 const Tab = ({
   index,

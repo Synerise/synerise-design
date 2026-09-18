@@ -6,7 +6,7 @@ import Tooltip from '@synerise/ds-tooltip';
 
 import { useTexts } from '../../hooks/useTexts';
 import * as S from './BlankItem.styles';
-import { type BlankItemProps } from './BlankItem.types';
+import type { BlankItemProps } from './BlankItem.types';
 
 const BlankItem = <T extends object>({
   onRemove,

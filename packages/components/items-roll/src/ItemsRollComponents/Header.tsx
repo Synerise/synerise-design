@@ -7,7 +7,7 @@ import { NOOP } from '@synerise/ds-utils';
 
 import Extras from '../Extras';
 import * as S from '../ItemsRoll.styles';
-import { type HeaderProps } from './Header.types';
+import type { HeaderProps } from './Header.types';
 
 const Header = ({
   actions,

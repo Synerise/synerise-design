@@ -3,7 +3,7 @@ import React, { type MouseEvent } from 'react';
 import Scrollbar from '@synerise/ds-scrollbar';
 
 import * as S from './Tooltip.styles';
-import { type TooltipContentProps } from './Tooltip.types';
+import type { TooltipContentProps } from './Tooltip.types';
 
 export const TooltipContent = ({
   type,

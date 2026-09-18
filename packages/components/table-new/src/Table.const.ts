@@ -1,8 +1,8 @@
-import {
-  type OnSortFn,
-  type SelectionAll,
-  type SelectionInvert,
-  type StickyData,
+import type {
+  OnSortFn,
+  SelectionAll,
+  SelectionInvert,
+  StickyData,
 } from './Table.types';
 
 export const EXPANDED_ROW_PROPERTY = 'expandedChild';

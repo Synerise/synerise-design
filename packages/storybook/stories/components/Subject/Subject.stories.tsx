@@ -1,13 +1,13 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React, { useState } from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import { AggregateM, NotificationsM, WebhookM } from '@synerise/ds-icon';
-import Subject from '@synerise/ds-subject';
 import type {
   ContextGroup,
   ContextItem,
   SubjectProps,
 } from '@synerise/ds-subject';
+import Subject from '@synerise/ds-subject';
 
 import { controlFromOptionsArray } from '../../utils';
 import { SUBJECT_ITEMS, SUBJECT_TEXTS } from './data/index.data';

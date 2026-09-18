@@ -1,7 +1,7 @@
+import type { Editor } from '@tiptap/react';
 import type { CSSProperties, ReactNode } from 'react';
 
 import type { TooltipProps } from '@synerise/ds-tooltip';
-import type { Editor } from '@tiptap/react';
 
 import type { RichTextDocument } from './blockModel';
 

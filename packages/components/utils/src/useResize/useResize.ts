@@ -6,7 +6,7 @@ type Dimensions = {
 };
 
 const useResize = (
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // biome-ignore lint/suspicious/noExplicitAny: upstream type is not expressible here
   componentRef?: React.RefObject<any>,
   visible = true,
 ): Dimensions => {

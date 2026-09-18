@@ -1,5 +1,5 @@
-import { type OperatorsItem } from '../Operator.types';
 import { NO_GROUP_NAME } from '../constants';
+import type { OperatorsItem } from '../Operator.types';
 
 type GroupedOperators = Record<string, OperatorsItem[]>;
 

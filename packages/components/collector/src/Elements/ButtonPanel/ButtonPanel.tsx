@@ -3,7 +3,7 @@ import React, { type FocusEvent } from 'react';
 import Button from '@synerise/ds-button';
 
 import * as S from './ButtonPanel.styles';
-import { type ButtonPanelProps } from './ButtonPanel.types';
+import type { ButtonPanelProps } from './ButtonPanel.types';
 
 const ButtonPanel = ({
   onConfirm,

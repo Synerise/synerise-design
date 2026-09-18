@@ -1,14 +1,14 @@
+import type { CellContext, ColumnDef } from '@tanstack/react-table';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { Expander } from '@synerise/ds-button';
 import { theme } from '@synerise/ds-core';
 import Icon, { ChildRowLeftDownM } from '@synerise/ds-icon';
-import { type CellContext, type ColumnDef } from '@tanstack/react-table';
 
 import { Table } from '../../Table';
 import * as S from './TreeTable.styles';
 import { INDENT_SIZE } from './TreeTable.styles';
-import { type TreeTableProps } from './TreeTable.types';
+import type { TreeTableProps } from './TreeTable.types';
 
 const getAllKeys = <TData,>(
   data: TData[],

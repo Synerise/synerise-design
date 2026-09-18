@@ -1,13 +1,13 @@
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 
-import type { Meta, StoryObj } from '@storybook/react-vite';
 import InlineAlert from '@synerise/ds-inline-alert';
 
 import {
   BOOLEAN_CONTROL,
-  REACT_NODE_AS_STRING,
   centeredPaddedWrapper,
   controlFromOptionsArray,
+  REACT_NODE_AS_STRING,
 } from '../../utils';
 
 const TYPES = ['success', 'warning', 'alert', 'info'] as const;

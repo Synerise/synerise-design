@@ -5,11 +5,11 @@ import Button from '@synerise/ds-button';
 import Icon, { Add3M, InfoFillS } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 
-import { type FileViewAvatarTexts } from '../AvatarUploader/FileViewAvatar/FileViewAvatar.types';
-import {
-  type FileContent,
-  type FileUploaderRef,
-  type ItemUploaderProps,
+import type { FileViewAvatarTexts } from '../AvatarUploader/FileViewAvatar/FileViewAvatar.types';
+import type {
+  FileContent,
+  FileUploaderRef,
+  ItemUploaderProps,
 } from '../FileUploader.types';
 import * as S from './ItemUploader.styles';
 import FileViewItem from './UploaderButton/FileViewItem';

@@ -1,7 +1,7 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 import { fn } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import { Prompt, PromptProps } from '@synerise/ds-confirmation';
 import { Input } from '@synerise/ds-input';
 

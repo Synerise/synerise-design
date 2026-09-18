@@ -8,10 +8,7 @@ import type {
 
 import type { NumberToFormatOptions } from '@synerise/ds-core';
 import type { FormFieldCommonProps } from '@synerise/ds-form-field';
-import {
-  type AutoResizeProp,
-  type AutosizeInputProps,
-} from '@synerise/ds-input';
+import type { AutoResizeProp, AutosizeInputProps } from '@synerise/ds-input';
 import type { PassthroughAttributes } from '@synerise/ds-utils';
 
 type InputNumberOwnProps = {

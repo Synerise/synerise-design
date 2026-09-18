@@ -1,8 +1,8 @@
 import type { ReactNode, ReactText } from 'react';
 
 import type {
-  FactorValueComponentProps,
   FactorsProps,
+  FactorValueComponentProps,
 } from '@synerise/ds-factors';
 import type { OperatorsProps } from '@synerise/ds-operators';
 

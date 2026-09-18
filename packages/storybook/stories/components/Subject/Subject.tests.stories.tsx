@@ -1,10 +1,10 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import type { SubjectProps } from '@synerise/ds-subject';
 
-import SubjectMeta from './Subject.stories';
 import { SUBJECT_ITEMS, SUBJECT_TEXTS } from './data/index.data';
+import SubjectMeta from './Subject.stories';
 
 export default {
   ...SubjectMeta,

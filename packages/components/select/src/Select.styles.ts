@@ -1,7 +1,7 @@
 import styled, {
   type CSSObject,
-  type FlattenSimpleInterpolation,
   css,
+  type FlattenSimpleInterpolation,
 } from 'styled-components';
 
 import DSListItem, {
@@ -150,12 +150,16 @@ export const Selector = styled.div<SelectorProps>`
     props.$disabled &&
     css`
       cursor: ${props.$readOnly ? 'default' : 'not-allowed'};
-      color: ${props.$readOnly
-        ? props.theme.palette['grey-600']
-        : props.theme.palette['grey-400']};
-      background-color: ${props.$readOnly
-        ? props.theme.palette.white
-        : props.theme.palette['grey-050']};
+      color: ${
+        props.$readOnly
+          ? props.theme.palette['grey-600']
+          : props.theme.palette['grey-400']
+      };
+      background-color: ${
+        props.$readOnly
+          ? props.theme.palette.white
+          : props.theme.palette['grey-050']
+      };
       &:hover {
         border-color: ${props.theme.palette['grey-300']};
       }

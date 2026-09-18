@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 
-import { type ListItemProps } from '@synerise/ds-list-item';
+import type { ListItemProps } from '@synerise/ds-list-item';
 
 import type { ItemsRollProps, Texts } from '../ItemsRoll.types';
 

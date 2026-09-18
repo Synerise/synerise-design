@@ -4,9 +4,9 @@ import { useTheme } from '@synerise/ds-core';
 import Icon, { Add3M, SearchM } from '@synerise/ds-icon';
 import Result from '@synerise/ds-result';
 import SearchBar from '@synerise/ds-search-bar';
-import { type TagProps, type TagTexts } from '@synerise/ds-tag';
+import type { TagProps, TagTexts } from '@synerise/ds-tag';
 
-import { type TagsProps } from '../../Tags.types';
+import type { TagsProps } from '../../Tags.types';
 import { TagsDropdown } from '../TagsDropdown/TagsDropdown';
 import * as S from './AddTags.styles';
 
@@ -91,7 +91,7 @@ export const AddTags = ({
   const isSeparated = !emptyPool;
 
   const noTagsContentLabel =
-    !!notSelectedList?.length && !!searchQuery
+    notSelectedList?.length && searchQuery
       ? texts?.noResultsLabel
       : texts?.dropdownNoTags;
 

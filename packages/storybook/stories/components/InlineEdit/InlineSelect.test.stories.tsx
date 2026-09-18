@@ -1,8 +1,8 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import { expect, userEvent, waitFor, within } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
-import InlineSelect from '@synerise/ds-inline-edit';
 import type { InlineSelectProps } from '@synerise/ds-inline-edit';
+import InlineSelect from '@synerise/ds-inline-edit';
 
 import { DATA_SOURCE } from './InlineSelect.data';
 import InlineSelectMeta from './InlineSelect.stories';

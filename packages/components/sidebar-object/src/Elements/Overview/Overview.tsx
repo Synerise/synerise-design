@@ -8,7 +8,7 @@ import Icon, { Add3M, AngleDownS, FolderM } from '@synerise/ds-icon';
 import Content from '../Content/Content';
 import * as S from '../Header/Header.style';
 import ObjectSummary from '../ObjectSummary/ObjectSummary';
-import { type OverviewObjectProps } from './Overview.types';
+import type { OverviewObjectProps } from './Overview.types';
 
 const Overview = ({
   inputObject,

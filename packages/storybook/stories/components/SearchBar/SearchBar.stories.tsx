@@ -1,16 +1,16 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 import { useArgs } from 'storybook/preview-api';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import { theme } from '@synerise/ds-core';
 import Icon, { SearchM } from '@synerise/ds-icon';
 import SearchBar, { SearchBarProps } from '@synerise/ds-search-bar';
 
 import {
   BOOLEAN_CONTROL,
+  fixedWrapper300,
   REACT_NODE_AS_STRING,
   STRING_CONTROL,
-  fixedWrapper300,
 } from '../../utils';
 
 type Story = StoryObj<SearchBarProps>;

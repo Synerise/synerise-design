@@ -1,24 +1,24 @@
-import { type ReactNode } from 'react';
-import { type IntlShape } from 'react-intl';
+import type { ReactNode } from 'react';
+import type { IntlShape } from 'react-intl';
 
-import { type DateToFormatOptions } from '@synerise/ds-core';
-import { type LegacyPlacement, type PopoverProps } from '@synerise/ds-popover';
+import type { DateToFormatOptions } from '@synerise/ds-core';
+import type { LegacyPlacement, PopoverProps } from '@synerise/ds-popover';
 
-import { type Props as FooterProps } from './Footer/Footer.types';
-import { type FilterDefinition } from './RangeFilter/RangeFilter.types';
-import { type SavedFilter } from './RangeFilter/Shared/FilterDropdown/FilterDropdown.types';
-import {
-  type DateLimitMode,
-  type RangeDisplayMode,
-} from './RangeFilter/Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
-import { type RangeFilterType } from './RangeFilter/constants';
-import { type RangePickerInputProps } from './RangePickerInput/RangePickerInput.types';
-import {
-  type DateFilter,
-  type DateRange,
-  type DateRangePreset,
-  type RelativeUnits,
+import type {
+  DateFilter,
+  DateRange,
+  DateRangePreset,
+  RelativeUnits,
 } from './date.types';
+import type { Props as FooterProps } from './Footer/Footer.types';
+import type { RangeFilterType } from './RangeFilter/constants';
+import type { FilterDefinition } from './RangeFilter/RangeFilter.types';
+import type { SavedFilter } from './RangeFilter/Shared/FilterDropdown/FilterDropdown.types';
+import type {
+  DateLimitMode,
+  RangeDisplayMode,
+} from './RangeFilter/Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
+import type { RangePickerInputProps } from './RangePickerInput/RangePickerInput.types';
 
 export type DateRangePickerProps = {
   /**
@@ -78,7 +78,7 @@ export type DateRangePickerProps = {
     readOnly?: RangePickerInputProps['readOnly'];
   };
   allowedFilterTypes?: RangeFilterType[];
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // biome-ignore lint/suspicious/noExplicitAny: upstream type is not expressible here
   renderPopoverTrigger?: (...args: any) => JSX.Element;
   isTruncateMs?: boolean;
   filterValueSelectionModes?: DateLimitMode[];

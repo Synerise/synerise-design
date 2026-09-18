@@ -1,6 +1,6 @@
 import {
-  type ThemeProps as SCThemeProps,
   useTheme as originalUseTheme,
+  type ThemeProps as SCThemeProps,
 } from 'styled-components';
 
 import { breakpoints } from './breakpoints';

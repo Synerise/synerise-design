@@ -88,16 +88,16 @@ export const DrawerContentWrapper = styled.div<
   ${(props) =>
     (props.$placement === 'left' || props.$placement === 'right') &&
     css`
-      width: ${typeof props.$width === 'number'
-        ? `${props.$width}px`
-        : props.$width};
+      width: ${
+        typeof props.$width === 'number' ? `${props.$width}px` : props.$width
+      };
     `}
   ${(props) =>
     (props.$placement === 'top' || props.$placement === 'bottom') &&
     css`
-      height: ${typeof props.$height === 'number'
-        ? `${props.$height}px`
-        : props.$height};
+      height: ${
+        typeof props.$height === 'number' ? `${props.$height}px` : props.$height
+      };
     `}
   transform: ${(props) =>
     props.$open ? 'none' : hiddenTransform(props.$placement)};

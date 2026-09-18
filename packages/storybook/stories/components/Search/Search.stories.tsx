@@ -1,6 +1,6 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React, { useState } from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import { theme } from '@synerise/ds-core';
 import Divider from '@synerise/ds-divider';
 import Icon from '@synerise/ds-icon';
@@ -15,21 +15,21 @@ import {
   STYLE_ARG_CONTROL,
 } from '../../utils';
 import {
+  getItemsWithAvatar,
+  getSuggestions,
   ItemType,
   PARAMETERS_COUNT,
   PARAMETERS_TITLE,
   PARAMETERS_TOOLTIP,
   ParameterType,
+  parameters,
   RECENT_COUNT,
   RECENT_TITLE,
   RECENT_TOOLTIP,
+  recent,
+  SearchDecorator,
   SUGGESTIONS_TITLE,
   SUGGESTIONS_TOOLTIP,
-  SearchDecorator,
-  getItemsWithAvatar,
-  getSuggestions,
-  parameters,
-  recent,
 } from './Search.data';
 
 // `initialValue`/`initialParameterValue` are story-only: `Search` is controlled,

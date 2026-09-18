@@ -1,6 +1,6 @@
-import { type Column, type SortDirection } from '@tanstack/react-table';
+import type { Column, SortDirection } from '@tanstack/react-table';
 
-import { type ColumnSortOrder } from '../Table.types';
+import type { ColumnSortOrder } from '../Table.types';
 
 export const isSorted = <TData>(column: Column<TData>) => {
   return Boolean(column.columnDef.meta?.sortOrder ?? column.getIsSorted());

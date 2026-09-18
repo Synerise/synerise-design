@@ -1,8 +1,8 @@
 import React, { forwardRef } from 'react';
 
 import ItemPickerLegacy from './components/ItemPickerLegacy/ItemPickerLegacy';
-import { type ItemPickerProps } from './components/ItemPickerLegacy/ItemPickerLegacy.types';
-import { type ItemPickerListRef } from './components/ItemPickerList/ItemPickerList.types';
+import type { ItemPickerProps } from './components/ItemPickerLegacy/ItemPickerLegacy.types';
+import type { ItemPickerListRef } from './components/ItemPickerList/ItemPickerList.types';
 import { ItemPickerNew } from './components/ItemPickerNew/ItemPickerNew';
 import type { ItemPickerProps as ItemPickerPropsNew } from './components/ItemPickerNew/ItemPickerNew.types';
 import type {

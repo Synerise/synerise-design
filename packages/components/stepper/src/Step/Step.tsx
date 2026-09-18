@@ -7,7 +7,7 @@ import Tooltip from '@synerise/ds-tooltip';
 
 import { ORIENTATIONS } from '../Stepper.types';
 import * as S from './Step.styles';
-import { type StepProps } from './Step.types';
+import type { StepProps } from './Step.types';
 
 const Step = ({
   stepNumber,

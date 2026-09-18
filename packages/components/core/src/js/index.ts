@@ -1,33 +1,32 @@
-export { default as DSProvider, type DSProviderProps } from './DSProvider';
-export { default as mediaQuery } from './mediaQuery/mediaQuery';
-export { setPortalContent } from './portal/portalStore';
+export * from './DropdownContext';
+export { type DSProviderProps, default as DSProvider } from './DSProvider';
 export {
-  closeAllOverlays,
-  registerOverlay,
-  createOverlayCloseEvent,
-  type OverlayKind,
-  type OverlayEntry,
+  type DefaultColor,
+  defaultColorsOrder,
+  type ThemeProps,
+  type ThemePropsVars,
+  theme,
+  themeVariables,
+  useTheme,
+  type WithTheme,
+} from './DSProvider/ThemeProvider/theme';
+export * from './data-format';
+export { default as mediaQuery } from './mediaQuery/mediaQuery';
+export {
   type CloseAllOverlaysOptions,
+  closeAllOverlays,
+  createOverlayCloseEvent,
+  type OverlayEntry,
+  type OverlayKind,
+  registerOverlay,
 } from './overlays/overlayRegistry';
 export {
   OVERLAY_Z_INDEX_STEP,
   OverlayZIndexProvider,
+  type OverlayZIndexProviderProps,
   useOverlayZIndex,
   useResolvedOverlayZIndex,
-  type OverlayZIndexProviderProps,
 } from './overlays/overlayZIndex';
-export {
-  theme,
-  useTheme,
-  defaultColorsOrder,
-  themeVariables,
-  type ThemePropsVars,
-  type ThemeProps,
-  type WithTheme,
-  type DefaultColor,
-} from './DSProvider/ThemeProvider/theme';
-
-export * from './data-format';
+export { setPortalContent } from './portal/portalStore';
 export * from './testing';
 export * from './toaster';
-export * from './DropdownContext';

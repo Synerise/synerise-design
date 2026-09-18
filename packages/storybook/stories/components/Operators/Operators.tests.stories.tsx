@@ -1,10 +1,10 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import type { OperatorsProps } from '@synerise/ds-operators';
 
-import OperatorsMeta from './Operators.stories';
 import { OPERATORS_ITEMS, OPERATORS_TEXTS } from './data/index.data';
+import OperatorsMeta from './Operators.stories';
 
 export default {
   ...OperatorsMeta,

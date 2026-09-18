@@ -5,7 +5,7 @@ import Icon, { StarFillM, StarM } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
 
 import * as S from './StarCell.styles';
-import { type StarCellProps } from './StarCell.types';
+import type { StarCellProps } from './StarCell.types';
 
 const StarCell = ({
   children,

@@ -5,7 +5,7 @@ import Icon from '@synerise/ds-icon';
 import { Text } from '@synerise/ds-typography';
 
 import * as S from './ShortCuts.style';
-import { type ShortCutsProps } from './ShortCuts.types';
+import type { ShortCutsProps } from './ShortCuts.types';
 
 const ShortCuts = ({
   size = 'L',

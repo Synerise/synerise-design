@@ -1,5 +1,5 @@
 import React, { type UIEvent } from 'react';
-import { type WrappedComponentProps, injectIntl } from 'react-intl';
+import { injectIntl, type WrappedComponentProps } from 'react-intl';
 import {
   type FixedSizeList,
   FixedSizeList as List,
@@ -19,7 +19,7 @@ import Tabs from '@synerise/ds-tabs';
 import Typography from '@synerise/ds-typography';
 
 import * as S from './ItemFIlter.styles';
-import { type ItemFilterProps } from './ItemFilter.types';
+import type { ItemFilterProps } from './ItemFilter.types';
 
 const DRAWER_WIDTH = 676;
 const FILTER_ITEM_HEIGHT = 48;

@@ -3,18 +3,17 @@ import * as Styles from './FileUploader.styles';
 import * as FileViewStyles from './FileView/FileView.styles';
 import * as ItemUploaderStyles from './ItemUploader/ItemUploader.styles';
 
-export { default } from './FileUploader';
 export { default as AvatarUploader } from './AvatarUploader/AvatarUploader';
-export { default as ItemUploader } from './ItemUploader/ItemUploader';
-
-export type { ItemUploaderProps } from './ItemUploader/ItemUploader.types';
+export { default } from './FileUploader';
 export type {
-  FileUploaderProps,
   ExtendedFile,
-  FileWithContent,
-  FileUploaderRef,
   FileContent,
+  FileUploaderProps,
+  FileUploaderRef,
+  FileWithContent,
 } from './FileUploader.types';
+export { default as ItemUploader } from './ItemUploader/ItemUploader';
+export type { ItemUploaderProps } from './ItemUploader/ItemUploader.types';
 
 export const FileUploaderStyles = {
   FileUploader: Styles,

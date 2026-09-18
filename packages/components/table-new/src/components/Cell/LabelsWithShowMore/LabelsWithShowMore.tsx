@@ -3,9 +3,9 @@ import React, { useMemo, useState } from 'react';
 import Tooltip from '@synerise/ds-tooltip';
 
 import * as S from './LabelsWithShowMore.styles';
-import { type LabelsWithShowMoreProps } from './LabelsWithShowMore.types';
+import type { LabelsWithShowMoreProps } from './LabelsWithShowMore.types';
 import { DetailsModal } from './Modal/Modal';
-import { type DataSourceType } from './Modal/Modal.types';
+import type { DataSourceType } from './Modal/Modal.types';
 
 const LabelsWithShowMore = ({
   items,

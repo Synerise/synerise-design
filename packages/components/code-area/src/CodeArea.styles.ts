@@ -56,9 +56,11 @@ export const EditorWrapper = styled.div<{
     props.hasError &&
     css`
       background: ${props.theme.palette['red-050']};
-      box-shadow: ${props.noBorder
-        ? 'none'
-        : `inset 0 0 0 1px ${props.theme.palette['red-600']}`};
+      box-shadow: ${
+        props.noBorder
+          ? 'none'
+          : `inset 0 0 0 1px ${props.theme.palette['red-600']}`
+      };
     `};
   canvas {
     opacity: 0;
@@ -89,9 +91,11 @@ export const CodeAreaWrapper = styled.div<{
         position: fixed;
         width: 100vw;
         height: 100vh;
-        z-index: ${props.zIndex !== undefined
-          ? props.zIndex
-          : props.theme.variables['zindex-modal']};
+        z-index: ${
+          props.zIndex !== undefined
+            ? props.zIndex
+            : props.theme.variables['zindex-modal']
+        };
         left: 0;
         top: 0;
         background: ${props.theme.palette.white};
@@ -104,21 +108,25 @@ export const CodeAreaWrapper = styled.div<{
       `;
     }
     return css`
-      ${props.customHeight
-        ? css`
+      ${
+        props.customHeight
+          ? css`
             ${EditorInnerWrapper} {
               flex: 1 1 100%;
               min-height: 0;
             }
-            height: ${typeof props.customHeight === 'number'
-              ? `${props.customHeight}px`
-              : props.customHeight};
+            height: ${
+              typeof props.customHeight === 'number'
+                ? `${props.customHeight}px`
+                : props.customHeight
+            };
           `
-        : css`
+          : css`
             ${EditorInnerWrapper} {
               height: 295px;
             }
-          `}
+          `
+      }
       display:flex;
       flex-direction: column;
       margin-bottom: 12px;
@@ -164,15 +172,17 @@ export const BottomBar = styled(FlexRow)<{
     hasError &&
     css`
       background: ${theme.palette['red-050']};
-      ${noBorder
-        ? css`
+      ${
+        noBorder
+          ? css`
             border: none;
             border-top: solid 1px ${theme.palette['grey-200']};
           `
-        : css`
+          : css`
             border: solid 1px ${theme.palette['red-600']};
             border-top-color: ${theme.palette['grey-200']};
-          `}
+          `
+      }
     `}
 `;
 

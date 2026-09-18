@@ -2,8 +2,8 @@ import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 
 import Button from '@synerise/ds-button';
-import Carousel from '@synerise/ds-carousel';
 import type { CarouselProps, CarouselRef } from '@synerise/ds-carousel';
+import Carousel from '@synerise/ds-carousel';
 import { theme } from '@synerise/ds-core';
 
 /** A colourful demo panel — one per slide. */

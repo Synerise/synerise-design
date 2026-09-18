@@ -6,6 +6,7 @@ import { DragOverlay, SortableContainer } from '@synerise/ds-sortable';
 import AddBlankItem from './AddBlankItem/AddBlankItem';
 import AddItem from './AddItem/AddItem';
 import AddItemWithName from './AddItemWithName/AddItemWithName';
+import { useTexts } from './hooks/useTexts';
 import { DraggableItem } from './Item/DraggableItem';
 import Item from './Item/Item';
 import * as S from './ManageableList.styles';
@@ -14,7 +15,6 @@ import {
   ListType,
   type ManageableListProps,
 } from './ManageableList.types';
-import { useTexts } from './hooks/useTexts';
 
 const ManageableListComponent = <T extends object>({
   className,

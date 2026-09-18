@@ -12,11 +12,11 @@ import Icon, { AddM, FileUploadL, InfoFillS } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 
 import * as S from './FileUploader.styles';
-import {
-  type FileContent,
-  type FileUploaderProps,
-  type FileUploaderRef,
-  type FileViewTexts,
+import type {
+  FileContent,
+  FileUploaderProps,
+  FileUploaderRef,
+  FileViewTexts,
 } from './FileUploader.types';
 import FileView from './FileView/FileView';
 

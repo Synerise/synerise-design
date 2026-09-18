@@ -3,9 +3,9 @@ import React from 'react';
 import Tooltip from '@synerise/ds-tooltip';
 import { Text } from '@synerise/ds-typography';
 
-import * as S from '../Slider.styles';
-import { type BaseSliderProps, type HandlerConfig } from '../Slider.types';
 import { useSliderContext } from '../context/SliderContext';
+import * as S from '../Slider.styles';
+import type { BaseSliderProps, HandlerConfig } from '../Slider.types';
 
 type SliderHandlesProps = Pick<BaseSliderProps, 'tipFormatter'> & {
   disabled?: boolean;

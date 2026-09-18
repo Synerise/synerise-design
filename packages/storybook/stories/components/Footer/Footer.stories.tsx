@@ -1,6 +1,6 @@
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 
-import type { Meta, StoryObj } from '@storybook/react-vite';
 import Button from '@synerise/ds-button';
 import Footer from '@synerise/ds-footer';
 import Icon, { AcademyM, ChatM, LifebuoyM } from '@synerise/ds-icon';

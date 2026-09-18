@@ -1,10 +1,9 @@
-import React from 'react';
-
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
+import React from 'react';
 
 import * as S from './Sortable.styles';
-import { type BaseItem, type SortableItemProps } from './Sortable.types';
+import type { BaseItem, SortableItemProps } from './Sortable.types';
 
 export const SortableItem = <ItemType extends BaseItem>({
   id,

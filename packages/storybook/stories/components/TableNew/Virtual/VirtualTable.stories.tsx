@@ -1,7 +1,8 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
+import { type ColumnDef } from '@tanstack/react-table';
 import React from 'react';
 import { fn } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import { Expander } from '@synerise/ds-button';
 import {
   SELECTION_ALL,
@@ -10,7 +11,6 @@ import {
   VirtualTable,
   type VirtualTableProps,
 } from '@synerise/ds-table-new';
-import { type ColumnDef } from '@tanstack/react-table';
 
 import {
   BOOLEAN_CONTROL,

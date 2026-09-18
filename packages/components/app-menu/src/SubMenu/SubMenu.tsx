@@ -3,7 +3,7 @@ import React from 'react';
 import { useSubMenu } from '../hooks/useSubMenu';
 import Item from './Item/Item';
 import * as S from './SubMenu.styles';
-import { type SubComponents, type SubMenuProps } from './SubMenu.types';
+import type { SubComponents, SubMenuProps } from './SubMenu.types';
 
 const SubMenu: React.FC<SubMenuProps> & SubComponents = ({
   children,

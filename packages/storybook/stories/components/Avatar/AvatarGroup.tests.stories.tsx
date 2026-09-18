@@ -1,7 +1,7 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 import { expect, userEvent, waitFor, within } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import AvatarGroup, { type AvatarGroupProps } from '@synerise/ds-avatar-group';
 import { theme } from '@synerise/ds-core';
 import Icon, { LockM, UserRemoveM } from '@synerise/ds-icon';

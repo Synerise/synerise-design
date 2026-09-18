@@ -1,29 +1,29 @@
-import {
-  type CSSProperties,
-  type Dispatch,
-  type ReactNode,
-  type RefObject,
-  type SetStateAction,
+import type {
+  ArrowOptions,
+  AutoUpdateOptions,
+  Delay,
+  FlipOptions,
+  HideOptions,
+  OffsetOptions,
+  OpenChangeReason,
+  Placement,
+  ShiftOptions,
+  UseDismissProps,
+  UseFloatingReturn,
+  UseHoverProps,
+  UseInteractionsReturn,
+  UseListNavigationProps,
+  UseTransitionStylesProps,
+} from '@floating-ui/react';
+import type {
+  CSSProperties,
+  Dispatch,
+  ReactNode,
+  RefObject,
+  SetStateAction,
 } from 'react';
 
-import {
-  type ArrowOptions,
-  type AutoUpdateOptions,
-  type Delay,
-  type FlipOptions,
-  type HideOptions,
-  type OffsetOptions,
-  type OpenChangeReason,
-  type Placement,
-  type ShiftOptions,
-  type UseDismissProps,
-  type UseFloatingReturn,
-  type UseHoverProps,
-  type UseInteractionsReturn,
-  type UseListNavigationProps,
-  type UseTransitionStylesProps,
-} from '@floating-ui/react';
-import { type OverlayKind } from '@synerise/ds-core';
+import type { OverlayKind } from '@synerise/ds-core';
 
 export type PopoverProps = {
   children: ReactNode;

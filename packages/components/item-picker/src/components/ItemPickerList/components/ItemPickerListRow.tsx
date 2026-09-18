@@ -9,7 +9,7 @@ import { useMeasuredRow } from '@synerise/ds-utils';
 
 import type { ItemPickerListTexts } from '../../ItemPickerNew/types/itemPickerListTexts.types';
 import * as S from '../ItemPickerList.styles';
-import { type TitleListItemProps } from '../ItemPickerList.types';
+import type { TitleListItemProps } from '../ItemPickerList.types';
 import { isTitle } from '../utils/typeguards.utils';
 import { InfiniteLoaderItem } from './InfiniteLoaderItem';
 

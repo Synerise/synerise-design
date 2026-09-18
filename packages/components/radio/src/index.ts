@@ -1,9 +1,9 @@
 export { default } from './Radio';
 export type {
-  RadioProps,
-  RadioGroupProps,
+  Props,
   RadioButtonProps,
   RadioChangeEvent,
+  RadioGroupProps,
+  RadioProps,
   RadioValueType,
-  Props,
 } from './Radio.types';

@@ -4,7 +4,7 @@ import Button from '@synerise/ds-button';
 import Icon, { FullScreenM } from '@synerise/ds-icon';
 
 import * as S from '../CodeArea.styles';
-import { type CodeAreaTexts } from '../CodeArea.types';
+import type { CodeAreaTexts } from '../CodeArea.types';
 
 type BottomBarProps = {
   texts: CodeAreaTexts;

@@ -16,7 +16,7 @@ import { useTheme } from '@synerise/ds-core';
 import Icon, { FullScreenM } from '@synerise/ds-icon';
 import { Input } from '@synerise/ds-input';
 
-import { type FactorValueComponentProps } from '../../Factors.types';
+import type { FactorValueComponentProps } from '../../Factors.types';
 import * as S from './Text.styles';
 import TextModal from './TextModal';
 
@@ -90,11 +90,11 @@ const TextInput = ({
     }
   }, [value, uncontrolledComponent]);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: dependencies intentionally omitted
   useEffect(() => {
     if (uncontrolledComponent && !value && localValue !== value) {
       setLocalValue(value);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value, uncontrolledComponent]);
 
   const autocompleteOptions = useMemo(() => {

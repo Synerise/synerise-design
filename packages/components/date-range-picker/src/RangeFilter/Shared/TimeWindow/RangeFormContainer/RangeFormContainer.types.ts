@@ -1,21 +1,21 @@
-import { type ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
 import type { DateToFormatOptions } from '@synerise/ds-core';
 import type { TimePickerProps } from '@synerise/ds-time-picker';
 
-import {
-  type FilterDefinition,
-  type WithDisabledProp,
+import type {
+  FilterDefinition,
+  WithDisabledProp,
 } from '../../../RangeFilter.types';
-import {
-  type DayKey,
-  type RangeActions,
-  type TimeWindowProps,
-  type TimeWindowTexts,
+import type {
+  DayKey,
+  RangeActions,
+  TimeWindowProps,
+  TimeWindowTexts,
 } from '../TimeWindow.types';
-import {
-  type DateLimitMode,
-  type RangeDisplayMode,
+import type {
+  DateLimitMode,
+  RangeDisplayMode,
 } from './RangeForm/RangeForm.types';
 
 export type DateValue = [

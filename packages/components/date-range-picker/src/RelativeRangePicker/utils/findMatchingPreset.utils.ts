@@ -1,5 +1,5 @@
 import * as CONST from '../../constants';
-import { type DateRange } from '../../date.types';
+import type { DateRange } from '../../date.types';
 
 export const findMatchingPreset = (range: DateRange) => {
   if (!range || range.type !== CONST.RELATIVE) {

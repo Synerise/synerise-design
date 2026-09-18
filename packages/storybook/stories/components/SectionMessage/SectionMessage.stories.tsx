@@ -1,7 +1,7 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React, { useState } from 'react';
 import { action } from 'storybook/actions';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import Button from '@synerise/ds-button';
 import Card, { CardBadge } from '@synerise/ds-card';
 import Icon, { CheckS, DuplicateS, UserAddM } from '@synerise/ds-icon';
@@ -15,12 +15,12 @@ import UnorderedList from '@synerise/ds-unordered-list';
 import {
   BOOLEAN_CONTROL,
   CLASSNAME_ARG_CONTROL,
-  PREFIXCLS_ARG_CONTROL,
-  REACT_NODE_AS_STRING,
-  STYLE_ARG_CONTROL,
   controlFromOptionsArray,
   fixedWrapper800,
   gappedColumnDecorator,
+  PREFIXCLS_ARG_CONTROL,
+  REACT_NODE_AS_STRING,
+  STYLE_ARG_CONTROL,
 } from '../../utils';
 import { TYPE_MAPPING } from './SectionMessage.data';
 import {

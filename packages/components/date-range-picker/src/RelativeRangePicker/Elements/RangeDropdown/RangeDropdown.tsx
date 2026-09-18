@@ -8,12 +8,12 @@ import type { ItemData } from '@synerise/ds-list-item';
 import Scrollbar from '@synerise/ds-scrollbar';
 import { useOnClickOutside } from '@synerise/ds-utils';
 
-import { type Texts } from '../../../DateRangePicker.types';
 import { ALL_TIME } from '../../../constants';
-import { type DateRange } from '../../../date.types';
+import type { Texts } from '../../../DateRangePicker.types';
+import type { DateRange } from '../../../date.types';
 import * as S from '../../RelativeRangePicker.styles';
 import { findRangeByKey } from '../../utils';
-import { type RangeDropdownProps } from './RangeDropdown.types';
+import type { RangeDropdownProps } from './RangeDropdown.types';
 
 const MAX_ITEMS_COUNT = 7;
 const ITEMS_HEIGHT = 32;

@@ -1,11 +1,11 @@
+import { flexRender, type Row } from '@tanstack/react-table';
 import React, { memo, useCallback } from 'react';
 
 import Tooltip from '@synerise/ds-tooltip';
-import { type Row, flexRender } from '@tanstack/react-table';
 
-import { INFINITE_LOADER_ITEM_HEIGHT } from '../../../Table.const';
-import { type TableRowVirtualProps } from '../../../Table.types';
 import { useTableContext } from '../../../contexts/TableContext';
+import { INFINITE_LOADER_ITEM_HEIGHT } from '../../../Table.const';
+import type { TableRowVirtualProps } from '../../../Table.types';
 import { isSorted } from '../../../utils/sort';
 import { TableCell } from '../TableCell/TableCell';
 import { InfiniteLoaderRow } from './InfiniteLoaderRow/InfiniteLoaderRow';

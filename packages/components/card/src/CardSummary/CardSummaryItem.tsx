@@ -6,7 +6,7 @@ import { AngleDownS } from '@synerise/ds-icon';
 
 import { ANIMATION_DURATION } from '../constants';
 import * as S from './CardSummary.styles';
-import { type CardSummaryItemProps } from './CardSummary.types';
+import type { CardSummaryItemProps } from './CardSummary.types';
 
 export const CardSummaryItem = ({
   label,

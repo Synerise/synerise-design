@@ -1,7 +1,7 @@
 import type { CSSProperties, ReactNode } from 'react';
 
-import { type InformationCardProps } from '@synerise/ds-information-card';
-import { type TagProps, type TagShape, type TagTexts } from '@synerise/ds-tag';
+import type { InformationCardProps } from '@synerise/ds-information-card';
+import type { TagProps, TagShape, TagTexts } from '@synerise/ds-tag';
 
 export type ActionTaken = {
   type: 'ADD' | 'REMOVE';

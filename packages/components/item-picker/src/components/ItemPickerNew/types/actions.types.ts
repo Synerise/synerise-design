@@ -1,9 +1,9 @@
-import { type ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
-import {
-  type BaseItemType,
-  type BaseSectionType,
-  type InheritedFromListItem,
+import type {
+  BaseItemType,
+  BaseSectionType,
+  InheritedFromListItem,
 } from './baseItemSectionType.types';
 
 export const ACTION_TYPES = {

@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import React, { type CSSProperties, type ReactNode } from 'react';
 
-import { type DataAttributes } from '@synerise/ds-utils';
+import type { DataAttributes } from '@synerise/ds-utils';
 
 import { MediumText, SmallText, XSmallText } from './CommonElements';
 import { Ellipsis, type EllipsisProps } from './Ellipsis';

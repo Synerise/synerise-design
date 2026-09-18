@@ -1,6 +1,6 @@
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 
-import type { Meta, StoryObj } from '@storybook/react-vite';
 import { FormattedTime } from '@synerise/ds-core';
 
 import { fixedWrapper200 } from '../../utils';

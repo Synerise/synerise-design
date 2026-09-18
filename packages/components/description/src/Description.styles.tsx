@@ -1,12 +1,9 @@
 import styled, {
-  type FlattenSimpleInterpolation,
   css,
+  type FlattenSimpleInterpolation,
 } from 'styled-components';
 
-import {
-  type DescriptionRatio,
-  type DescriptionType,
-} from './Description.types';
+import type { DescriptionRatio, DescriptionType } from './Description.types';
 import {
   PrefixWrapper,
   RowLabel,

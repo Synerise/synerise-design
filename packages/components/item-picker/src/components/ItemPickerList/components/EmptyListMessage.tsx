@@ -3,8 +3,8 @@ import React, { type ReactElement, type ReactNode } from 'react';
 import Button from '@synerise/ds-button';
 import { NoData, SearchNoResultsL } from '@synerise/ds-icon';
 
-import { type BaseSectionType } from '../../ItemPickerNew/types/baseItemSectionType.types';
-import { type ItemPickerListTexts } from '../../ItemPickerNew/types/itemPickerListTexts.types';
+import type { BaseSectionType } from '../../ItemPickerNew/types/baseItemSectionType.types';
+import type { ItemPickerListTexts } from '../../ItemPickerNew/types/itemPickerListTexts.types';
 import * as S from '../ItemPickerList.styles';
 
 type EmptyListMessageProps = {

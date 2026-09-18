@@ -1,8 +1,8 @@
+import { faker } from '@faker-js/faker';
 import React, { type MouseEvent } from 'react';
 import { action } from 'storybook/actions';
 import { v4 as uuid } from 'uuid';
 
-import { faker } from '@faker-js/faker';
 import Icon, {
   Add3M,
   AddM,

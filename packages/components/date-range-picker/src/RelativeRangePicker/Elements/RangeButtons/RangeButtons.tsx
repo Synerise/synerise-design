@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { type Texts } from '../../../DateRangePicker.types';
-import { findMatchingPreset } from '../../../RelativeRangePicker/utils';
 import { ALL_TIME } from '../../../constants';
+import type { Texts } from '../../../DateRangePicker.types';
+import { findMatchingPreset } from '../../../RelativeRangePicker/utils';
 import * as S from '../../RelativeRangePicker.styles';
 import { isLifetime } from '../RangeDropdown/RangeDropdown';
-import { type Props } from './RangeButtons.types';
+import type { Props } from './RangeButtons.types';
 
 const RangeButtons = ({ ranges, currentRange, texts, onChange }: Props) => {
   const matchingPreset = findMatchingPreset(currentRange);

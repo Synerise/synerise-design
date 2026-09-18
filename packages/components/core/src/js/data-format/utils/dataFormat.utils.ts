@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
 import relativeTimePlugin from 'dayjs/plugin/relativeTime.js';
-import { type IntlShape } from 'react-intl';
+import type { IntlShape } from 'react-intl';
 
 import {
   COMPACT_DECIMAL_LARGER_NUMBER,
@@ -15,11 +15,11 @@ import {
   UPPER_CASE,
   UPPER_FIRST,
 } from '../constants';
-import {
-  type CommonFormatOptions,
-  type DateToFormatOptions,
-  type Delimiter,
-  type NumberToFormatOptions,
+import type {
+  CommonFormatOptions,
+  DateToFormatOptions,
+  Delimiter,
+  NumberToFormatOptions,
 } from '../types';
 import {
   dateTimePartsToString,

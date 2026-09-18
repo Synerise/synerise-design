@@ -3,16 +3,16 @@ import React from 'react';
 import { ArrowLeftM, ArrowRightM, SinceArrowRightM } from '@synerise/ds-icon';
 import {
   type FlipConfig,
+  limitShift,
   type OffsetConfig,
   type ShiftConfig,
-  limitShift,
 } from '@synerise/ds-popover';
 
-import {
-  type AbsoluteDateRangePreset,
-  type RangeKey,
-  type RelativeDateRangePreset,
-  type RelativeUnits,
+import type {
+  AbsoluteDateRangePreset,
+  RangeKey,
+  RelativeDateRangePreset,
+  RelativeUnits,
 } from './date.types';
 
 export const SECONDS = 'SECONDS';

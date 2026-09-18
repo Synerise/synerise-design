@@ -6,22 +6,22 @@ import { v4 as uuid } from 'uuid';
 import Button from '@synerise/ds-button';
 import ButtonGroup from '@synerise/ds-button-group';
 
-import {
-  type Translations,
-  type TranslationsPlaceholders,
+import type {
+  Translations,
+  TranslationsPlaceholders,
 } from '../DateRangePicker.types';
 import { getDefaultTexts } from '../utils';
+import { type RangeFilterType, TYPES, TYPES_DATA } from './constants';
 import * as S from './RangeFilter.styles';
-import {
-  type FilterDefinition,
-  type FilterValue,
-  type RangeFilterProps,
-  type RangeFilterState,
+import type {
+  FilterDefinition,
+  FilterValue,
+  RangeFilterProps,
+  RangeFilterState,
 } from './RangeFilter.types';
 import FilterDropdown from './Shared/FilterDropdown/FilterDropdown';
-import { type SavedFilter } from './Shared/FilterDropdown/FilterDropdown.types';
+import type { SavedFilter } from './Shared/FilterDropdown/FilterDropdown.types';
 import SaveFilterForm from './Shared/SaveFilterForm/SaveFilterForm';
-import { type RangeFilterType, TYPES, TYPES_DATA } from './constants';
 import {
   addSuffixToDuplicate,
   denormalizeValue,
@@ -46,7 +46,6 @@ class RangeFilter extends React.PureComponent<
       props?.value?.type && allowedFilterTypes.includes(props?.value?.type)
         ? props?.value?.type
         : allowedFilterTypes[0];
-    // eslint-disable-next-line react/state-in-constructor
     this.state = {
       activeType: valueType,
       [String(valueType)]: { ...denormalizeValue(props.value as FilterValue) },
@@ -245,5 +244,4 @@ class RangeFilter extends React.PureComponent<
   }
 }
 
-// @ts-ignore
 export default injectIntl(RangeFilter);

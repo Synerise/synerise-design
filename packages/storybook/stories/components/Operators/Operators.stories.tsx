@@ -1,9 +1,9 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React, { useState } from 'react';
 import { fn } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
-import Operators from '@synerise/ds-operators';
 import type { OperatorsItem, OperatorsProps } from '@synerise/ds-operators';
+import Operators from '@synerise/ds-operators';
 
 import { BOOLEAN_CONTROL, REACT_NODE_AS_STRING } from '../../utils';
 import {

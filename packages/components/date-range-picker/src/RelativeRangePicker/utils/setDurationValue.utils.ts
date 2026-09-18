@@ -1,7 +1,7 @@
 import lensPath from 'ramda/src/lensPath';
 import set from 'ramda/src/set';
 
-import { type RelativeDateRange } from '../../date.types';
+import type { RelativeDateRange } from '../../date.types';
 
 export const setDurationValue = (
   value: number | string,

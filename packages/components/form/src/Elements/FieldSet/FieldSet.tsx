@@ -3,7 +3,7 @@ import React from 'react';
 import Divider from '@synerise/ds-divider';
 
 import * as S from './FieldSet.styles';
-import { type FieldSetProps } from './FieldSet.types';
+import type { FieldSetProps } from './FieldSet.types';
 
 /**
  * @deprecated - FieldSet component will no longer be supported

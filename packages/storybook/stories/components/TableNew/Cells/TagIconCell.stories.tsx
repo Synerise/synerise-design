@@ -1,14 +1,14 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import Icon, { LockM } from '@synerise/ds-icon';
 import { type BaseTagIconProps, TagIconCell } from '@synerise/ds-table-new';
 import Tag, { TagShape } from '@synerise/ds-tag';
 
 import {
   BOOLEAN_CONTROL,
-  REACT_NODE_NO_CONTROL,
   fixedWrapper300,
+  REACT_NODE_NO_CONTROL,
 } from '../../../utils';
 
 const meta: Meta<BaseTagIconProps> = {

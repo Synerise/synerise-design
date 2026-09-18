@@ -1,19 +1,19 @@
 import React, {
+  forwardRef,
   type KeyboardEvent,
   type MouseEvent,
-  forwardRef,
   useContext,
 } from 'react';
 
 import { useDropdown } from '@synerise/ds-core';
 
-import { type ItemData, type ListItemProps, itemTypes } from './ListItem.types';
 import Danger from './components/Danger/Danger';
 import { Divider } from './components/Divider/Divider';
 import { Header } from './components/Header/Header';
 import { ListContext } from './components/ListContext/ListContext';
 import Select from './components/Select/Select';
 import Text from './components/Text/Text';
+import { type ItemData, itemTypes, type ListItemProps } from './ListItem.types';
 
 const ListItem = forwardRef<HTMLDivElement, ListItemProps>(
   (props, forwardedRef) => {

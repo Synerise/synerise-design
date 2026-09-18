@@ -9,8 +9,8 @@ import React, {
 import { createPortal } from 'react-dom';
 
 import {
-  OverlayZIndexProvider,
   createOverlayCloseEvent,
+  OverlayZIndexProvider,
   registerOverlay,
   useResolvedOverlayZIndex,
 } from '@synerise/ds-core';
@@ -28,7 +28,7 @@ import {
   DrawerMask,
   DrawerRoot,
 } from './Drawer.styles';
-import { type DrawerCloseTrigger, type DrawerProps } from './Drawer.types';
+import type { DrawerCloseTrigger, DrawerProps } from './Drawer.types';
 
 const DEFAULT_WIDTH = 256;
 

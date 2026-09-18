@@ -1,7 +1,8 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
+import { type ColumnDef } from '@tanstack/react-table';
 import React, { useRef, useState } from 'react';
 import { fn } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import { ObjectAvatar } from '@synerise/ds-avatar';
 import Button from '@synerise/ds-button';
 import { closeAllOverlays, theme } from '@synerise/ds-core';
@@ -11,22 +12,21 @@ import Layout, { LayoutProps } from '@synerise/ds-layout';
 import Modal, { showModal } from '@synerise/ds-modal';
 import Stepper from '@synerise/ds-stepper';
 import { VirtualTable } from '@synerise/ds-table-new';
-import { type ColumnDef } from '@tanstack/react-table';
 
 import { Placeholder, PropNamePill } from '../../constants';
 import {
   BOOLEAN_CONTROL,
   CLASSNAME_ARG_CONTROL,
-  NUMBER_CONTROL,
-  REACT_NODE_AS_STRING,
   centeredPaddedWrapper,
   controlFromOptionsArray,
+  NUMBER_CONTROL,
+  REACT_NODE_AS_STRING,
   reactNodeAsSelect,
   sleep,
 } from '../../utils';
 import { STEPPER_STEPS, StepData } from '../Stepper/Stepper.data';
 import { DATA_SOURCE_FULL } from '../TableNew/data/tableData';
-import { SIZES, TAB_PROPS, headerWithPrefix } from './Modal.data';
+import { headerWithPrefix, SIZES, TAB_PROPS } from './Modal.data';
 import * as S from './styles';
 
 type RecordRow = (typeof DATA_SOURCE_FULL)[number];
@@ -349,7 +349,7 @@ export const ModalWithStepper: Story = {
 export const WithInitialFocusRef: Story = {
   render: (args, storyContext) => {
     const open = storyContext.viewMode === 'docs' ? false : args.open;
-    // eslint-disable-next-line react-hooks/rules-of-hooks
+    // biome-ignore lint/correctness/useHookAtTopLevel: hook call is intentionally conditional
     const searchRef = useRef<HTMLInputElement>(null);
     return (
       <Modal {...args} open={open} initialFocusRef={searchRef}>

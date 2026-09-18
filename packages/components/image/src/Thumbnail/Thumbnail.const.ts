@@ -1,7 +1,4 @@
-import {
-  type AspectRatio,
-  type ThumbnailSize,
-} from '../shared/Image.shared.types';
+import type { AspectRatio, ThumbnailSize } from '../shared/Image.shared.types';
 
 /** Fixed thumbnail heights (px) per size token. `custom` defers to `height`. */
 export const SIZE_MAP: Record<Exclude<ThumbnailSize, 'custom'>, number> = {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { withTheme } from 'styled-components';
 
-import { type ThemeProps } from '@synerise/ds-core';
+import type { ThemeProps } from '@synerise/ds-core';
 import Icon, { InfoM } from '@synerise/ds-icon';
 
 import * as S from '../TimeWindow/TimeWindow.styles';

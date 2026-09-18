@@ -1,7 +1,7 @@
 import styled, {
+  css,
   type FlattenInterpolation,
   type ThemeProps,
-  css,
 } from 'styled-components';
 
 import Button, { type StyledButton } from '@synerise/ds-button';

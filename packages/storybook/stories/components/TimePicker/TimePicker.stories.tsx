@@ -1,18 +1,18 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 import { useArgs } from 'storybook/preview-api';
 import { within } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import TimePicker, { TimePickerProps } from '@synerise/ds-time-picker';
 
 import {
   BOOLEAN_CONTROL,
   CLASSNAME_ARG_CONTROL,
-  REACT_NODE_AS_STRING,
-  STRING_CONTROL,
   centeredPaddedWrapper,
   fixedWrapper300,
+  REACT_NODE_AS_STRING,
   reactNodeAsSelect,
+  STRING_CONTROL,
 } from '../../utils';
 
 type Story = StoryObj<TimePickerProps>;

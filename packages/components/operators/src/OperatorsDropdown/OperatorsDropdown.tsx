@@ -16,12 +16,6 @@ import Tabs from '@synerise/ds-tabs';
 import { focusWithArrowKeys } from '@synerise/ds-utils';
 
 import {
-  type OperatorsDropdownProps,
-  type OperatorsGroup,
-  type OperatorsItem,
-} from '../Operator.types';
-import * as S from '../Operators.style';
-import {
   DEFAULT_TAB_INDEX,
   DROPDOWN_HEIGHT,
   NO_GROUP_NAME,
@@ -29,6 +23,12 @@ import {
   SEARCH_HEIGHT,
   TABS_HEIGHT,
 } from '../constants';
+import type {
+  OperatorsDropdownProps,
+  OperatorsGroup,
+  OperatorsItem,
+} from '../Operator.types';
+import * as S from '../Operators.style';
 import { groupByGroupName } from '../utils';
 import OperatorsDropdownGroupName from './OperatorsDropdownGroupName';
 import OperatorsDropdownItem from './OperatorsDropdownItem';

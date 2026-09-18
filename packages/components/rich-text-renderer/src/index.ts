@@ -1,8 +1,6 @@
 export { default } from './RichTextRenderer';
-
 export type {
-  RichTextRendererProps,
   BlockOverrideProps,
+  RichTextRendererProps,
 } from './RichTextRenderer.types';
-
 export { renderBlock, renderInline, renderMark } from './renderers';

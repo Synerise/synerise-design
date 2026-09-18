@@ -1,7 +1,7 @@
+import type { IconName, IconPrefix } from '@fortawesome/fontawesome-svg-core';
 import type { CSSProperties, ReactElement, ReactNode } from 'react';
 
-import type { IconName, IconPrefix } from '@fortawesome/fontawesome-svg-core';
-import { type PopoverTriggerType } from '@synerise/ds-popover';
+import type { PopoverTriggerType } from '@synerise/ds-popover';
 
 export type IconMetadata = {
   name?: string;

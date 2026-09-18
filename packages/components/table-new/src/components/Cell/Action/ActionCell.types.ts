@@ -1,6 +1,6 @@
-import { type ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
-import { type WithHTMLAttributes } from '@synerise/ds-utils';
+import type { WithHTMLAttributes } from '@synerise/ds-utils';
 
 export type ContentAlign = 'left' | 'right' | 'center';
 

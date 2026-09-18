@@ -1,21 +1,20 @@
 import React from 'react';
-import { type WrappedComponentProps, injectIntl } from 'react-intl';
+import { injectIntl, type WrappedComponentProps } from 'react-intl';
 
-import { type WithTranslations } from '../../../DateRangePicker.types';
-import { type Days } from '../../../date.types';
-import {
-  type ValueSelectionModes,
-  type WithDisabledProp,
+import type { WithTranslations } from '../../../DateRangePicker.types';
+import type { Days } from '../../../date.types';
+import type {
+  ValueSelectionModes,
+  WithDisabledProp,
 } from '../../RangeFilter.types';
 import { RANGE_DISPLAY_MODES } from '../../Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.constants';
-import { type RangeDisplayMode } from '../../Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
+import type { RangeDisplayMode } from '../../Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
 import TimeWindow from '../../Shared/TimeWindow/TimeWindow';
-import { type RangeActions as RangeActionsMethods } from '../../Shared/TimeWindow/TimeWindow.types';
+import type { RangeActions as RangeActionsMethods } from '../../Shared/TimeWindow/TimeWindow.types';
 import * as S from './DailyFilter.styles';
 
 export interface Props
-  extends
-    WrappedComponentProps,
+  extends WrappedComponentProps,
     Partial<RangeActionsMethods>,
     WithTranslations,
     WithDisabledProp {

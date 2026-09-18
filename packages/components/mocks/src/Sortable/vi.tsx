@@ -30,7 +30,7 @@ export const sortableMockFactory = () => ({
     transition: null,
   })),
   arrayMove: vi.fn(
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // biome-ignore lint/suspicious/noExplicitAny: upstream type is not expressible here
     (arr: any[], _from: number, _to: number) => arr,
   ),
   CSS: {},
@@ -47,7 +47,7 @@ export const sortableMinimalMockFactory = () => ({
     transition: null,
   })),
   arrayMove: vi.fn(
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // biome-ignore lint/suspicious/noExplicitAny: upstream type is not expressible here
     (arr: any[]) => arr,
   ),
   CSS: {},

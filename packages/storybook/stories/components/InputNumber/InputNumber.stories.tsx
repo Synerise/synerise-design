@@ -1,16 +1,16 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import { fn } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import InputNumber, { InputNumberProps } from '@synerise/ds-input-number';
 
 import {
   BOOLEAN_CONTROL,
   CLASSNAME_ARG_CONTROL,
+  fixedWrapper300,
   NUMBER_CONTROL,
   REACT_NODE_AS_STRING,
   STRING_CONTROL,
   STYLE_ARG_CONTROL,
-  fixedWrapper300,
 } from '../../utils';
 
 type Story = StoryObj<InputNumberProps>;

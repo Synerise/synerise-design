@@ -1,10 +1,10 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React, { CSSProperties } from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
-import Avatar from '@synerise/ds-avatar';
 import type { AvatarProps } from '@synerise/ds-avatar';
-import Badge, { BadgeWithLabel } from '@synerise/ds-badge';
+import Avatar from '@synerise/ds-avatar';
 import type { BadgeProps } from '@synerise/ds-badge';
+import Badge, { BadgeWithLabel } from '@synerise/ds-badge';
 import { theme } from '@synerise/ds-core';
 import Icon, { FileM, IconProps } from '@synerise/ds-icon';
 
@@ -12,10 +12,10 @@ import { AVATAR_IMAGE } from '../../constants';
 import {
   BOOLEAN_CONTROL,
   COLOR_CONTROL,
-  NUMBER_CONTROL,
   controlFromOptionsArray,
   fixedWrapper200,
   fixedWrapper400,
+  NUMBER_CONTROL,
 } from '../../utils';
 import { AVATAR_ARG_TYPES, STATUSES } from './constants';
 

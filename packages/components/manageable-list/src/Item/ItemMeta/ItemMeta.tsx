@@ -8,7 +8,7 @@ import React from 'react';
 import { UserAvatar } from '@synerise/ds-avatar';
 
 import * as S from './ItemMeta.styles';
-import { type Props } from './ItemMeta.types';
+import type { Props } from './ItemMeta.types';
 
 // Registered here rather than relying on ds-core extending the same shared dayjs instance: that
 // works today only as a side effect of module evaluation order in another package.

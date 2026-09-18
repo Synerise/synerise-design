@@ -1,6 +1,6 @@
-import React, { type ReactNode, memo } from 'react';
+import React, { memo, type ReactNode } from 'react';
 
-import { type WithHTMLAttributes } from '@synerise/ds-utils';
+import type { WithHTMLAttributes } from '@synerise/ds-utils';
 
 import * as S from './TableCell.styles';
 

@@ -6,10 +6,10 @@ import type {
   ContextProps,
 } from '@synerise/ds-context-selector';
 import type {
+  FactorsProps,
   FactorType,
   FactorValueComponentProps,
   FactorValueType,
-  FactorsProps,
   InputProps,
   ParameterValueType,
 } from '@synerise/ds-factors';

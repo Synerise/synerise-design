@@ -1,6 +1,6 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import {
   type BaseStatusLabelProps,
   StatusLabelCell,
@@ -8,9 +8,9 @@ import {
 
 import {
   BOOLEAN_CONTROL,
-  REACT_NODE_AS_STRING,
   controlFromOptionsArray,
   fixedWrapper300,
+  REACT_NODE_AS_STRING,
 } from '../../../utils';
 
 const meta: Meta<BaseStatusLabelProps> = {

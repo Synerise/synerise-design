@@ -1,7 +1,7 @@
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import React, { useState } from 'react';
 import { action } from 'storybook/actions';
 
-import type { Meta, StoryObj } from '@storybook/react-vite';
 import Button from '@synerise/ds-button';
 import { theme } from '@synerise/ds-core';
 import Drawer from '@synerise/ds-drawer';
@@ -12,12 +12,12 @@ import { Title } from '@synerise/ds-typography';
 
 import { CLASSNAME_ARG_CONTROL, centeredPaddedWrapper } from '../../utils';
 import {
-  TABS,
   closeActionTypes,
   headerTypes,
   renderActionButtons,
   renderBackIcon,
   renderDrawerContent,
+  TABS,
 } from './Drawer.data';
 
 export default {

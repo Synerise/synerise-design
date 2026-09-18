@@ -43,7 +43,7 @@ export const mockSelect = () => {
         >
           {placeholder && <option value="">{placeholder}</option>}
           {options?.map(
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            // biome-ignore lint/suspicious/noExplicitAny: upstream type is not expressible here
             (opt: any, idx: number) => (
               <option key={idx} value={String(opt.value)}>
                 {opt.label}

@@ -1,7 +1,7 @@
-import { type ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
-import { type InlineAlertProps } from '@synerise/ds-inline-alert';
-import { type WithHTMLAttributes } from '@synerise/ds-utils';
+import type { InlineAlertProps } from '@synerise/ds-inline-alert';
+import type { WithHTMLAttributes } from '@synerise/ds-utils';
 
 export type InsightProps = WithHTMLAttributes<
   HTMLDivElement,

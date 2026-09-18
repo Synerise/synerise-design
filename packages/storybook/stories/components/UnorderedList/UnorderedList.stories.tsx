@@ -1,6 +1,6 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import { OrderedListSkeleton } from '@synerise/ds-skeleton';
 import UnorderedList, { UnorderedListProps } from '@synerise/ds-unordered-list';
 

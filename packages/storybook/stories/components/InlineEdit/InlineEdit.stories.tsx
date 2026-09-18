@@ -1,16 +1,16 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React, { ChangeEvent, useCallback, useMemo, useState } from 'react';
 import { fn } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
-import InlineEdit from '@synerise/ds-inline-edit';
 import type { InlineEditProps } from '@synerise/ds-inline-edit';
+import InlineEdit from '@synerise/ds-inline-edit';
 
 import {
   BOOLEAN_CONTROL,
   CLASSNAME_ARG_CONTROL,
+  fixedWrapper300,
   STRING_CONTROL,
   STYLE_ARG_CONTROL,
-  fixedWrapper300,
 } from '../../utils';
 
 const InlineEditMeta = {

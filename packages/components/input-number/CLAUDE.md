@@ -103,7 +103,7 @@ All styling lives in `InputNumber.styles.tsx` as DS-native styled-components dri
 
 > **Deep import**: `InputNumber.styles.tsx` imports `autoresizeConfObjToCss` from
 > `@synerise/ds-input/dist/Input.styles` — a fragile internal path (pre-existing; flagged as an
-> eslint warning until ds-input exposes it from the root).
+> biome warning until ds-input exposes it from the root).
 
 ## Key dependencies
 

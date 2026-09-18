@@ -1,5 +1,4 @@
 export { default } from './AvatarGroup';
-
 export type {
   AvatarGroupProps,
   DataSource,

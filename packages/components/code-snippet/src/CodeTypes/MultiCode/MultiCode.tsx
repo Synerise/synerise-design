@@ -4,7 +4,7 @@ import AnimateHeight from 'react-animate-height';
 import Icon, { ArrowDownCircleM, DuplicateS } from '@synerise/ds-icon';
 import Scrollbar from '@synerise/ds-scrollbar';
 
-import { type CodeSnippetProps } from '../../CodeSnippet.types';
+import type { CodeSnippetProps } from '../../CodeSnippet.types';
 import Highlight from '../../Highlight/Highlight';
 import {
   ICON_CLASSNAME,
@@ -54,7 +54,7 @@ const MultiCode: React.FC<CodeSnippetProps> = ({
   }, [rows, allRows]);
 
   const onMounting = React.useCallback(() => {
-    if (!!codeRef && !!codeRef?.current) {
+    if (codeRef && codeRef?.current) {
       setAllRows(
         Math.round(codeRef.current.offsetHeight / LINE_HEIGHT_DEFAULT),
       );

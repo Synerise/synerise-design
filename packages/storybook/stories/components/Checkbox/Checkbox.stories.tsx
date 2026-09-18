@@ -1,11 +1,11 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 import { useArgs } from 'storybook/preview-api';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
-import Checkbox from '@synerise/ds-checkbox';
 import type { CheckboxProps } from '@synerise/ds-checkbox';
-import { CheckboxSkeleton as CheckboxSkeletonComponent } from '@synerise/ds-skeleton';
+import Checkbox from '@synerise/ds-checkbox';
 import type { CheckboxSkeletonProps } from '@synerise/ds-skeleton';
+import { CheckboxSkeleton as CheckboxSkeletonComponent } from '@synerise/ds-skeleton';
 
 import {
   BOOLEAN_CONTROL,

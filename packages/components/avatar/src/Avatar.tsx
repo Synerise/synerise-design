@@ -1,9 +1,9 @@
-import React, { type ReactElement, cloneElement } from 'react';
+import React, { cloneElement, type ReactElement } from 'react';
 
 import Tooltip from '@synerise/ds-tooltip';
 
 import * as S from './Avatar.styles';
-import { type AvatarProps } from './Avatar.types';
+import type { AvatarProps } from './Avatar.types';
 import { getTooltipProps, isIconComponent, isSmallIconVariant } from './utils';
 
 export const DEFAULT_SIZE = 'medium';

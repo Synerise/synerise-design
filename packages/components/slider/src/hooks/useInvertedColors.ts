@@ -1,4 +1,4 @@
-import { type ColorMap } from '../Slider.types';
+import type { ColorMap } from '../Slider.types';
 
 export const useInvertedColors = ({
   inverted,

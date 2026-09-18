@@ -31,8 +31,10 @@ export const IconContainer = styled.div<{
 
               &.ds-icon-set-large,
               &.ds-icon-set-xlarge {
-                color: ${props.theme?.palette?.[DEFAULT_COLOR_TOKEN] ||
-                theme.palette[DEFAULT_COLOR_TOKEN]};
+                color: ${
+                  props.theme?.palette?.[DEFAULT_COLOR_TOKEN] ||
+                  theme.palette[DEFAULT_COLOR_TOKEN]
+                };
               }
             `}
     

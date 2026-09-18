@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { v4 as uuid } from 'uuid';
 
 import * as S from './ProgressBar.styles';
-import { type ProgressProps } from './ProgressBar.types';
+import type { ProgressProps } from './ProgressBar.types';
 
 const MAX_PERCENT = 100;
 

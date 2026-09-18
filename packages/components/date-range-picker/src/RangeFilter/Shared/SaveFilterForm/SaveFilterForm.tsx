@@ -5,7 +5,7 @@ import Icon, { CheckM, CloseM } from '@synerise/ds-icon';
 import { RawInput } from '@synerise/ds-input';
 
 import * as S from './SaveFilterForm.styles';
-import { type SaveFilterFormProps } from './SaveFilterForm.types';
+import type { SaveFilterFormProps } from './SaveFilterForm.types';
 
 const SaveFilterForm: React.FC<SaveFilterFormProps> = ({
   texts,

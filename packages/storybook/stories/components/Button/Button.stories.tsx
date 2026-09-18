@@ -1,16 +1,16 @@
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 
-import type { Meta, StoryObj } from '@storybook/react-vite';
 import Avatar from '@synerise/ds-avatar';
-import Button from '@synerise/ds-button';
 import type { ButtonProps } from '@synerise/ds-button';
+import Button from '@synerise/ds-button';
 import { theme } from '@synerise/ds-core';
 import Icon, { Add2S, AngleDownS, CheckS } from '@synerise/ds-icon';
 
 import {
   BOOLEAN_CONTROL,
-  CLASSNAME_ARG_CONTROL,
   buttonDecorator,
+  CLASSNAME_ARG_CONTROL,
   controlFromOptionsArray,
   reactNodeAsSelect,
 } from '../../utils';
@@ -431,8 +431,9 @@ const MODES = [
     title: 'two-icons',
     children: (
       <>
-        <Icon component={<Add2S />} /> Label{' '}
-        <Icon component={<AngleDownS />} />{' '}
+        <Icon component={<Add2S />} /> Label <Icon
+          component={<AngleDownS />}
+        />{' '}
       </>
     ),
   },

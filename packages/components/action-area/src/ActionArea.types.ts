@@ -1,6 +1,6 @@
-import { type CSSProperties, type ReactNode } from 'react';
+import type { CSSProperties, ReactNode } from 'react';
 
-import { type ButtonProps } from '@synerise/ds-button';
+import type { ButtonProps } from '@synerise/ds-button';
 
 type CommonProps = {
   className?: string;

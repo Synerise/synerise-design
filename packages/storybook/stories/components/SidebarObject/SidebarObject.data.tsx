@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 
+import { UserAvatar } from '@synerise/ds-avatar';
 import Button from '@synerise/ds-button';
 import { theme } from '@synerise/ds-core';
+import Drawer from '@synerise/ds-drawer';
 import Icon, { ArrowLeftM, StarFillM, StarM } from '@synerise/ds-icon';
 import { ContentItem } from '@synerise/ds-manageable-list';
-import Tooltip from '@synerise/ds-tooltip';
-import Drawer from '@synerise/ds-drawer';
 import Status from '@synerise/ds-status';
-import { UserAvatar } from '@synerise/ds-avatar';
+import Tooltip from '@synerise/ds-tooltip';
 
 import { avatar1 } from '../../constants';
 
@@ -25,7 +25,12 @@ export const TEXTS = {
 export const BackIcon = ({ onBackClickHandler }) => {
   return (
     <Drawer.DrawerHeaderBack>
-      <Button type="ghost" mode="single-icon" onClick={onBackClickHandler} data-testid="ds-item-filter-close-button">
+      <Button
+        type="ghost"
+        mode="single-icon"
+        onClick={onBackClickHandler}
+        data-testid="ds-item-filter-close-button"
+      >
         <Icon component={<ArrowLeftM />} />
       </Button>
     </Drawer.DrawerHeaderBack>
@@ -38,7 +43,9 @@ export const StarPrefix = () => {
     <div style={{ marginRight: '10px' }}>
       <Tooltip align={{ offset: [0, 5] }} title="Starred">
         <Button
-          iconColor={starred ? theme.palette['yellow-600'] : theme.palette['grey-600']}
+          iconColor={
+            starred ? theme.palette['yellow-600'] : theme.palette['grey-600']
+          }
           type="ghost"
           mode="single-icon"
           onClick={() => {
@@ -47,7 +54,9 @@ export const StarPrefix = () => {
         >
           <Icon
             component={starred ? <StarFillM /> : <StarM />}
-            color={starred ? theme.palette['yellow-600'] : theme.palette['grey-600']}
+            color={
+              starred ? theme.palette['yellow-600'] : theme.palette['grey-600']
+            }
           />
         </Button>
       </Tooltip>
@@ -109,7 +118,12 @@ export const OVERVIEW_INPUT_OBJECT = {
   ),
   Author: (
     <div style={{ display: 'flex', alignItems: 'center' }}>
-      <UserAvatar src={avatar1} size="small" badgeStatus="active" style={{ marginRight: '10px' }} />
+      <UserAvatar
+        src={avatar1}
+        size="small"
+        badgeStatus="active"
+        style={{ marginRight: '10px' }}
+      />
       <span>Teresa Smith</span>
     </div>
   ),

@@ -1,26 +1,26 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import React, { ReactNode, useState } from 'react';
 import { fn } from 'storybook/test';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import type { Meta, StoryObj } from '@storybook/react-vite';
 import Button from '@synerise/ds-button';
 import Icon, { Add3M } from '@synerise/ds-icon';
-import IconPicker from '@synerise/ds-icon-picker';
 import type {
-  DSSource,
   DataSource,
+  DSSource,
   FASource,
   FAValue,
   IconMetadata,
   IconPickerProps,
   SourceType,
 } from '@synerise/ds-icon-picker';
+import IconPicker from '@synerise/ds-icon-picker';
 
 import {
-  REACT_NODE_AS_STRING,
-  STRING_CONTROL,
   centeredPaddedWrapper,
   fixedWrapper300,
+  REACT_NODE_AS_STRING,
+  STRING_CONTROL,
 } from '../../utils';
 import { PICKER_DATA } from './IconPicker.data';
 

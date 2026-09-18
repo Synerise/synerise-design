@@ -12,9 +12,9 @@ import InlineAlert from '@synerise/ds-inline-alert';
 import { Matching } from '@synerise/ds-logic';
 import { Title } from '@synerise/ds-typography';
 
-import * as S from './StepCard.styles';
-import { type StepCardProps } from './StepCard.types';
 import { useDefaultTexts } from './hooks/useDefaultTexts';
+import * as S from './StepCard.styles';
+import type { StepCardProps } from './StepCard.types';
 
 export const REORDER_THROTTLE = 1000;
 const MOVE_SUCCESS_FEEDBACK_DURATION = 2000;

@@ -1,6 +1,5 @@
-import styled from 'styled-components';
-
 import { Flex as RebassFlex } from '@rebass/grid';
+import styled from 'styled-components';
 
 const resolveGap = (
   gap: number | string | undefined,

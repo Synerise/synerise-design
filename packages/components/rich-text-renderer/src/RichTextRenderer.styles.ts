@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { type ThemeProps } from '@synerise/ds-core';
+import type { ThemeProps } from '@synerise/ds-core';
 
 export const RendererWrapper = styled.div`
   font-size: 13px;

@@ -2,7 +2,7 @@ import React from 'react';
 import { useIntl } from 'react-intl';
 
 import * as S from './Matching.styles';
-import { type MatchingProps } from './Matching.types';
+import type { MatchingProps } from './Matching.types';
 
 const MATCHING_TOGGLE = '#MATCHING_TOGGLE#';
 

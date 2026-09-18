@@ -6,7 +6,7 @@ import Icon, { SearchM } from '@synerise/ds-icon';
 
 import { EmojiList } from '../EmojiList/EmojiList';
 import { useEmojiTranslations } from '../hooks/useEmojiTranslations';
-import { type EmojiOverlayType } from './EmojiOverlay.types';
+import type { EmojiOverlayType } from './EmojiOverlay.types';
 
 export const EmojiOverlay = ({
   texts: customTexts,

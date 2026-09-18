@@ -1,7 +1,7 @@
-import { type Dayjs } from 'dayjs';
+import type { Dayjs } from 'dayjs';
 import { useEffect, useState } from 'react';
 
-import { type MomentLike } from '../types';
+import type { MomentLike } from '../types';
 
 const getIntervalForTimeDifference = (timeDiffMs: number): number | null => {
   // https://day.js.org/docs/en/display/from-now#list-of-breakdown-range

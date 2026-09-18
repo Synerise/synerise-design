@@ -1,18 +1,18 @@
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import React, { MouseEvent } from 'react';
 import { useArgs } from 'storybook/preview-api';
 import { fn } from 'storybook/test';
 
-import type { Meta, StoryObj } from '@storybook/react-vite';
-import { ButtonToggle } from '@synerise/ds-button';
 import type { ButtonToggleProps } from '@synerise/ds-button';
+import { ButtonToggle } from '@synerise/ds-button';
 import { theme } from '@synerise/ds-core';
 import Icon, { AngleDownS, CheckS } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 
 import {
   BOOLEAN_CONTROL,
-  CLASSNAME_ARG_CONTROL,
   buttonDecorator,
+  CLASSNAME_ARG_CONTROL,
   controlFromOptionsArray,
   reactNodeAsSelect,
 } from '../../utils';

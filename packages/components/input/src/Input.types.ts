@@ -7,7 +7,7 @@ import type {
   ReactNode,
   RefAttributes,
 } from 'react';
-import { type StyledComponent } from 'styled-components';
+import type { StyledComponent } from 'styled-components';
 
 import type { FormFieldCommonProps } from '@synerise/ds-form-field';
 
@@ -41,8 +41,9 @@ export type NativeInputProps = Omit<
 };
 
 export type BaseProps<
-  RefElementType extends HTMLTextAreaElement | HTMLInputElement =
-    HTMLInputElement,
+  RefElementType extends
+    | HTMLTextAreaElement
+    | HTMLInputElement = HTMLInputElement,
 > = {
   error?: boolean;
   className?: string;

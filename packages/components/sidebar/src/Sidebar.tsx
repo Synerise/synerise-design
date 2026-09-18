@@ -17,7 +17,7 @@ import Collapse from './Collapse/Collapse';
 import { DragOverlayPanel } from './DragOverlayPanel/DragOverlayPanel';
 import { Panel } from './Panel/Panel';
 import { SidebarContext } from './Sidebar.context';
-import { type PanelProps, type SidebarProps } from './Sidebar.types';
+import type { PanelProps, SidebarProps } from './Sidebar.types';
 
 export const Sidebar = ({
   children,

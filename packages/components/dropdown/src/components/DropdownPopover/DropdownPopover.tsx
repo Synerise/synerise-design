@@ -1,12 +1,12 @@
+import { FloatingList } from '@floating-ui/react';
 import React, { useRef } from 'react';
 
-import { FloatingList } from '@floating-ui/react';
 import { DropdownContextProvider } from '@synerise/ds-core';
 import {
+  getPlacement,
   Popover,
   PopoverContent,
   PopoverTrigger,
-  getPlacement,
 } from '@synerise/ds-popover';
 
 import {
@@ -17,7 +17,7 @@ import {
 } from '../../Dropdown.const';
 import { getTransitionConfig } from '../../utils';
 import { DropdownOverlay } from '../DropdownOverlay/DropdownOverlay';
-import { type DropdownPopoverProps } from './DropdownPopover.types';
+import type { DropdownPopoverProps } from './DropdownPopover.types';
 
 export const DropdownPopover = ({
   placement = 'bottomLeft',

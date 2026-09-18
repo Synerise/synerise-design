@@ -1,7 +1,7 @@
+import { faker } from '@faker-js/faker';
 import React, { ReactNode } from 'react';
 import styled from 'styled-components';
 
-import { faker } from '@faker-js/faker';
 import { UserAvatar } from '@synerise/ds-avatar';
 import {
   VarTypeListM,

@@ -1,11 +1,12 @@
 import React, { type UIEvent, useRef } from 'react';
 import { FormattedMessage } from 'react-intl';
-import { type FixedSizeList } from 'react-window';
+import type { FixedSizeList } from 'react-window';
 
 import { useTheme } from '@synerise/ds-core';
 import Icon, { SearchNoResultsM } from '@synerise/ds-icon';
 import Scrollbar from '@synerise/ds-scrollbar';
 
+import { useGroupItems } from '../../hooks/useGroupItems';
 import { ELEMENT_HEIGHT, ITEMS_PER_ROW } from '../../IconPicker.const';
 import * as S from '../../IconPicker.styles';
 import type {
@@ -13,7 +14,6 @@ import type {
   RowItemProps,
   SourceType,
 } from '../../IconPicker.types';
-import { useGroupItems } from '../../hooks/useGroupItems';
 import { createItemData } from '../../utils/createItemData';
 import { RowItem } from '../RowItem';
 

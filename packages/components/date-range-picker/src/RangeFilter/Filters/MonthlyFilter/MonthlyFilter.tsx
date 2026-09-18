@@ -8,22 +8,22 @@ import { ContentItem } from '@synerise/ds-manageable-list';
 import Tag, { TagShape } from '@synerise/ds-tag';
 
 import { getDefaultTexts } from '../../../utils';
-import TimeWindow from '../../Shared/TimeWindow/TimeWindow';
-import { type TimeWindowProps } from '../../Shared/TimeWindow/TimeWindow.types';
 import {
   COUNTED_FROM_ENUM,
   DAYS_OF_PERIOD_ENUM,
   DEFAULT_COUNTED_FROM,
   DEFAULT_DAYS_OF_PERIODS,
+  defaultId,
   MONTH_DAYS,
   SPACE_UNICODE,
-  defaultId,
 } from '../../constants';
+import TimeWindow from '../../Shared/TimeWindow/TimeWindow';
+import type { TimeWindowProps } from '../../Shared/TimeWindow/TimeWindow.types';
 import * as S from './MonthlyFilter.styles';
-import {
-  type Month,
-  type MonthlyFilterProps,
-  type MonthlyFilterState,
+import type {
+  Month,
+  MonthlyFilterProps,
+  MonthlyFilterState,
 } from './MonthlyFilter.types';
 
 class MonthlyFilter extends PureComponent<
@@ -321,7 +321,7 @@ class MonthlyFilter extends PureComponent<
       rangeDisplayMode,
       intl,
     } = this.props;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // biome-ignore lint/suspicious/noExplicitAny: upstream type is not expressible here
     const { min = 1 } = this.props as any;
     const { visible } = this.state;
     const data = [...value];
@@ -352,7 +352,7 @@ class MonthlyFilter extends PureComponent<
               canDelete: !disabled && deletableDueToEntriesLimit(key),
               id: item.id as string,
 
-              // @ts-ignore
+              // @ts-expect-error
               name: (
                 <S.DropdownHeader
                   onClick={(event) => event.stopPropagation()}

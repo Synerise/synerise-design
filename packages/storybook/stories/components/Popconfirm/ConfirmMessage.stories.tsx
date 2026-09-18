@@ -1,7 +1,7 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import Button from '@synerise/ds-button';
 import Icon, { WarningFillM } from '@synerise/ds-icon';
 import Popconfirm, { ConfirmMessageProps } from '@synerise/ds-popconfirm';

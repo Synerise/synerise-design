@@ -1,6 +1,6 @@
+import type { Decorator } from '@storybook/react-vite';
 import React from 'react';
 
-import type { Decorator } from '@storybook/react-vite';
 import Card from '@synerise/ds-card';
 import { theme } from '@synerise/ds-core';
 

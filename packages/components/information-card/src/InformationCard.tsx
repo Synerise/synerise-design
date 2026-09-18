@@ -10,7 +10,7 @@ import {
 import { useResizeObserver } from '@synerise/ds-utils';
 
 import * as S from './InformationCard.styles';
-import { type InformationCardProps } from './InformationCard.types';
+import type { InformationCardProps } from './InformationCard.types';
 import { buildIconBadge } from './InformationCard.utils';
 import { InformationCardActions } from './InformationCardActions/InformationCardActions';
 import { InformationCardDescription } from './InformationCardDescription/InformationCardDescription';
@@ -76,7 +76,6 @@ const InformationCard = forwardRef<HTMLDivElement, InformationCardProps>(
 
     const hasFooter = !!(footerText || actionButton || actionsMenu);
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
       if (!mainSlideRef.current?.clientWidth) {
         setIsActionsMenuVisible(false);

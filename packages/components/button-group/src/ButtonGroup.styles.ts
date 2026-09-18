@@ -1,7 +1,7 @@
-import styled, { type Keyframes, css, keyframes } from 'styled-components';
+import styled, { css, type Keyframes, keyframes } from 'styled-components';
 
-import { type ThemeProps } from '@synerise/ds-core';
-import { type LiteralStringUnion } from '@synerise/ds-utils';
+import type { ThemeProps } from '@synerise/ds-core';
+import type { LiteralStringUnion } from '@synerise/ds-utils';
 
 // A "button unit" inside .ant-btn-group is either a bare button or a span that wraps a
 // button — Dropdown/Tooltip triggers insert such a span. The empty display:contents anchor

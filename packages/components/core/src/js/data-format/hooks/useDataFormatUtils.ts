@@ -21,13 +21,13 @@ import {
   WEEKDAY_LONG,
   WEEKDAY_SHORT,
 } from '../constants';
-import {
-  type CommonFormatOptions,
-  type DataFormatNotationType,
-  type DateToFormatOptions,
-  type Delimiter,
-  type MomentLike,
-  type NumberToFormatOptions,
+import type {
+  CommonFormatOptions,
+  DataFormatNotationType,
+  DateToFormatOptions,
+  Delimiter,
+  MomentLike,
+  NumberToFormatOptions,
 } from '../types';
 import {
   addPrefix,

@@ -1,7 +1,7 @@
-import { Children, type ReactNode, isValidElement } from 'react';
+import { Children, isValidElement, type ReactNode } from 'react';
 
 import { Option, type OptionProps } from '../Option';
-import { type RawValueType, type SelectOption } from '../Select.types';
+import type { RawValueType, SelectOption } from '../Select.types';
 
 /**
  * Maps declarative `<Select.Option>` children to the internal option shape.

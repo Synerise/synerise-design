@@ -1,24 +1,24 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 import { useArgs } from 'storybook/preview-api';
 import { v4 as uuid } from 'uuid';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import Button from '@synerise/ds-button';
 import { theme } from '@synerise/ds-core';
 import Icon, { ExternalLinkM } from '@synerise/ds-icon';
-import Tags, { TagShape } from '@synerise/ds-tags';
 import type { TagProps, TagsProps } from '@synerise/ds-tags';
+import Tags, { TagShape } from '@synerise/ds-tags';
 
 import {
   BOOLEAN_CONTROL,
   CLASSNAME_ARG_CONTROL,
   COLOR_CONTROL,
+  controlFromOptionsArray,
+  fixedWrapper400,
   NUMBER_CONTROL,
   REACT_NODE_AS_STRING,
   STRING_CONTROL,
   STYLE_ARG_CONTROL,
-  controlFromOptionsArray,
-  fixedWrapper400,
 } from '../../utils';
 import { ALL_TAGS, TAG_PROP_CATEGORY, TAG_TEXTS } from './Tags.constants';
 import { getTagNameForShape } from './Tags.utils';

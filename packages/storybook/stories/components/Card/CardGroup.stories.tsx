@@ -1,8 +1,8 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
-import { CardGroup } from '@synerise/ds-card';
 import type { CardGroupProps } from '@synerise/ds-card';
+import { CardGroup } from '@synerise/ds-card';
 
 import CardMeta from './Card.stories';
 import { CardWithState } from './card.data';

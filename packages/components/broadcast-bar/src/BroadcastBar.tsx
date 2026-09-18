@@ -3,7 +3,7 @@ import React, { useMemo } from 'react';
 import Icon, { CloseM } from '@synerise/ds-icon';
 
 import * as S from './BroadcastBar.styles';
-import { type BroadcastBarProps } from './BroadcastBar.types';
+import type { BroadcastBarProps } from './BroadcastBar.types';
 import { DEFAULT_ICON, ICONS } from './constants';
 
 const BroadcastBar = ({

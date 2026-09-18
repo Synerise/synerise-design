@@ -1,23 +1,21 @@
 export type {
-  NumberToFormatOptions,
-  DateToFormatOptions,
   CommonFormatOptions,
-  DateTargetFormat,
-  NumberTargetFormat,
-  NamingConvention,
-  DateToFormat,
-  MomentLike,
-  OverloadFormatValue,
-  OverloadFormatMultipleValues,
-  OverloadGetConstants,
-  Delimiter,
   DateConstantsTargetFormat,
+  DateTargetFormat,
+  DateToFormat,
+  DateToFormatOptions,
+  Delimiter,
+  MomentLike,
+  NamingConvention,
+  NumberTargetFormat,
+  NumberToFormatOptions,
+  OverloadFormatMultipleValues,
+  OverloadFormatValue,
+  OverloadGetConstants,
 } from './dataFormat.types';
-
 export type {
-  DataFormatNotationType,
   DataFormatConfig,
   DataFormatIntls,
+  DataFormatNotationType,
 } from './dataFormatConfig.types';
-
 export type { DateTimePartFormat } from './dateTimeParts.types';

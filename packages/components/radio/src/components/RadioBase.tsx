@@ -1,11 +1,11 @@
 import React, { type ChangeEvent, useContext, useState } from 'react';
 
 import * as S from '../Radio.styles';
-import {
-  type RadioChangeEvent,
-  type RadioChangeEventTarget,
-  type RadioProps,
-  type RadioValueType,
+import type {
+  RadioChangeEvent,
+  RadioChangeEventTarget,
+  RadioProps,
+  RadioValueType,
 } from '../Radio.types';
 import { RadioGroupContext } from '../RadioContext';
 

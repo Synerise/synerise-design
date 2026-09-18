@@ -5,7 +5,7 @@ import EmptyState, { EmptyStatesSize } from '@synerise/ds-empty-states';
 import { SearchNoResultsL } from '@synerise/ds-icon';
 import Scrollbar from '@synerise/ds-scrollbar';
 
-import { ITEMS_PER_ROW, ITEM_SIZE } from '../EmojiPicker.const';
+import { ITEM_SIZE, ITEMS_PER_ROW } from '../EmojiPicker.const';
 import { useEmojiTranslations } from '../hooks/useEmojiTranslations';
 import { useMultipleItemsPerRow } from '../hooks/useMultipleItemsPerRow';
 import * as S from './EmojiList.styles';

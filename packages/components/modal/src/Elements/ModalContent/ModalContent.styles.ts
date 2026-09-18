@@ -99,18 +99,21 @@ export const ModalContainer = styled.div<{
         `
       : css`
           left: 50%;
-          ${props.centered
-            ? css`
+          ${
+            props.centered
+              ? css`
                 top: 50%;
                 transform: translate(-50%, -50%);
               `
-            : css`
+              : css`
                 top: 100px;
                 transform: translateX(-50%);
-              `}
+              `
+          }
 
-          ${props.maxHeight &&
-          css`
+          ${
+            props.maxHeight &&
+            css`
             display: flex;
             flex-direction: column;
             height: ${props.maxHeight}vh;
@@ -120,7 +123,8 @@ export const ModalContainer = styled.div<{
               overflow: scroll;
               padding-right: 0;
             }
-          `}
+          `
+          }
         `}
 `;
 

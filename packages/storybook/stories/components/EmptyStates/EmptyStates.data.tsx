@@ -9,7 +9,7 @@ const mapIcons = () => {
     ...allIconsL,
     ...allIconsXL,
   };
-  Object.keys(allIcons).forEach(iconName => {
+  Object.keys(allIcons).forEach((iconName) => {
     const Component = allIcons[iconName];
     allIcons[iconName] = <Component />;
   });

@@ -1,5 +1,6 @@
-import { renderWithProvider } from '@synerise/ds-core';
 import { fireEvent, screen, within } from '@testing-library/react';
+
+import { renderWithProvider } from '@synerise/ds-core';
 
 import { InformationCardFooter } from './InformationCardFooter';
 

@@ -1,6 +1,6 @@
 import styled, { keyframes } from 'styled-components';
 
-import { type OverscrollBehavior } from '../Scrollbar.types';
+import type { OverscrollBehavior } from '../Scrollbar.types';
 
 export const ScrollbarContent = styled.div`
   -ms-overflow-style: none;

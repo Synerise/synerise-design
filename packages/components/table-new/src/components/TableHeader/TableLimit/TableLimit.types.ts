@@ -2,10 +2,10 @@ import type { ReactNode } from 'react';
 
 import type { RequiredProps } from '@synerise/ds-utils';
 
-import {
-  type CustomCounterFn,
-  type SelectionConfig,
-  type TableLimitTexts,
+import type {
+  CustomCounterFn,
+  SelectionConfig,
+  TableLimitTexts,
 } from '../../../Table.types';
 
 export type TableLimitProps<TData> = {

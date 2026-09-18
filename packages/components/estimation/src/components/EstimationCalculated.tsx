@@ -3,7 +3,7 @@ import React from 'react';
 import { FormattedRelativeDateTimeTo } from '@synerise/ds-core';
 
 import * as S from '../Estimation.styles';
-import { type EstimationCalculatedDateProps } from '../Estimation.types';
+import type { EstimationCalculatedDateProps } from '../Estimation.types';
 
 export const EstimationCalculatedDate = ({
   label,

@@ -1,12 +1,12 @@
 import React, { type MouseEvent } from 'react';
 
 import { setPortalContent } from '@synerise/ds-core';
-import { type ListItemProps } from '@synerise/ds-list-item';
+import type { ListItemProps } from '@synerise/ds-list-item';
 
 import Confirmation from './Confirmation';
-import {
-  type ConfirmationHandle,
-  type ConfirmationProps,
+import type {
+  ConfirmationHandle,
+  ConfirmationProps,
 } from './Confirmation.types';
 
 let instanceId = 0;

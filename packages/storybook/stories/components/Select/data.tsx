@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
-import Select from '@synerise/ds-select';
 import type { SelectProps, SelectValue } from '@synerise/ds-select';
+import Select from '@synerise/ds-select';
 
 export const OPTIONS = [
   { value: 'a', label: 'Option A' },

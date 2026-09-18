@@ -1,9 +1,9 @@
 import { registerIcons } from './iconLoader';
+import * as additional from './icons/additional';
+import * as color from './icons/colorIcons';
 import * as large from './icons/L';
 import * as medium from './icons/M';
 import * as xlarge from './icons/XL';
-import * as additional from './icons/additional';
-import * as color from './icons/colorIcons';
 
 /**
  * Side-effect entry point that registers every icon eagerly, making `<Icon iconName="..." />`

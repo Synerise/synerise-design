@@ -1,6 +1,6 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import { theme } from '@synerise/ds-core';
 import { VarTypeStringM } from '@synerise/ds-icon';
 import {
@@ -11,9 +11,9 @@ import {
 
 import {
   BOOLEAN_CONTROL,
+  fixedWrapper300,
   NUMBER_CONTROL,
   STRING_CONTROL,
-  fixedWrapper300,
 } from '../../../utils';
 
 type SampleItem = {

@@ -19,7 +19,7 @@ const countDecimals = (value: number): number => {
 
 // Integer-scaled addition so e.g. 0.1 + 0.2 yields 0.3 rather than 0.30000000000000004.
 const scaledAdd = (a: number, b: number): number => {
-  const factor = Math.pow(10, Math.max(countDecimals(a), countDecimals(b)));
+  const factor = 10 ** Math.max(countDecimals(a), countDecimals(b));
   return (Math.round(a * factor) + Math.round(b * factor)) / factor;
 };
 

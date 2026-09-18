@@ -1,12 +1,12 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React, { useState } from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import {
   type BaseEditableCellProps,
   EditableCell,
 } from '@synerise/ds-table-new';
 
-import { STRING_CONTROL, fixedWrapper300 } from '../../../utils';
+import { fixedWrapper300, STRING_CONTROL } from '../../../utils';
 
 const meta: Meta<BaseEditableCellProps> = {
   title: 'Components/TableNew/Cells/EditableCell',

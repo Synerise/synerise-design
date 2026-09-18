@@ -1,13 +1,13 @@
 import React, { type MouseEvent } from 'react';
 
-import * as S from '../Slider.styles';
-import {
-  type BaseSliderProps,
-  type ColorMap,
-  type HandlerConfig,
-  type SharedSliderProps,
-} from '../Slider.types';
 import { useInvertedColors } from '../hooks/useInvertedColors';
+import * as S from '../Slider.styles';
+import type {
+  BaseSliderProps,
+  ColorMap,
+  HandlerConfig,
+  SharedSliderProps,
+} from '../Slider.types';
 import { SliderDots } from './SliderDots';
 import { SliderHandles } from './SliderHandles';
 import { SliderSections } from './SliderSections';

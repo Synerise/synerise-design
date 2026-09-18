@@ -4,7 +4,7 @@ import { useIntl } from 'react-intl';
 import { Title } from '@synerise/ds-typography';
 
 import * as S from './Logic.style';
-import { type LogicProps, type LogicSubComponents } from './Logic.types';
+import type { LogicProps, LogicSubComponents } from './Logic.types';
 import Matching from './Matching/Matching';
 
 const DEFAULT_OPTIONS = ['AND', 'OR'];
