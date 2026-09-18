@@ -67,6 +67,7 @@ bundle.crt
 .claude/cache/
 .claude/logs/
 .claude/tmp/
+.claude/skills/*/config.json
 
 # Secrets
 *.pem
