@@ -117,6 +117,12 @@ export type ButtonProps = Omit<BaseButtonProps, 'type'> & {
   tagProps?: TagProps;
   /** Wraps the button label in a tooltip */
   tooltipProps?: TooltipProps;
+  /**
+   * Lets the label stretch instead of clipping at a fixed max-width, floored at this min width
+   * (a number is treated as px). For buttons whose label must grow to fill the available space
+   * (e.g. filter parameter buttons) while never collapsing below this width.
+   */
+  fluidMinWidth?: string | number;
 };
 
 /** @deprecated - use ButtonProps instead */

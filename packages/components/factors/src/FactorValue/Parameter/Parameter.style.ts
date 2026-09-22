@@ -1,8 +1,9 @@
 import { VariableSizeList } from 'react-window';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import Button from '@synerise/ds-button';
 import DropdownSkeleton from '@synerise/ds-skeleton';
+import { toCssSize } from '@synerise/ds-utils';
 
 export const TabsWrapper = styled.div`
   width: 100%;
@@ -28,8 +29,14 @@ export const SearchResultHighlight = styled.span`
   color: ${(props): string => props.theme.palette['grey-700']};
 `;
 
-export const Value = styled.span`
-  max-width: 110px;
+export const Value = styled.span<{ $fluidMinWidth?: string | number }>`
+  max-width: ${({ $fluidMinWidth }) =>
+    $fluidMinWidth !== undefined ? 'none' : '110px'};
+  ${({ $fluidMinWidth }) =>
+    $fluidMinWidth !== undefined &&
+    css`
+      min-width: ${toCssSize($fluidMinWidth)};
+    `}
   text-overflow: ellipsis;
   overflow: hidden;
   text-align: left;

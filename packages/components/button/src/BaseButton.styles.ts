@@ -16,6 +16,7 @@ const dsProps = new Set([
   'expanded',
   'htmlType',
   'loading',
+  'fluidMinWidth',
 ]);
 
 export const Button = styled.button.withConfig({

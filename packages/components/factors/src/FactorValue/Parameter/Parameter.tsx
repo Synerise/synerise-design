@@ -29,6 +29,7 @@ const ParameterInput = ({
   opened,
   preventAutoloadData,
   getPopupContainerOverride,
+  fluidMinWidth,
   onActivate,
   onDeactivate,
   readOnly = false,
@@ -116,7 +117,7 @@ const ParameterInput = ({
       readOnly={readOnly}
     >
       {parameterIcon && <Icon component={parameterIcon} />}
-      <Value>{parameterName}</Value>
+      <Value $fluidMinWidth={fluidMinWidth}>{parameterName}</Value>
       {!readOnly && <Icon component={<AngleDownS />} />}
     </ParameterButton>
   );
