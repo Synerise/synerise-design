@@ -60,6 +60,8 @@ Uses `:focus-visible` (not `:focus`) so the focus ring only appears on keyboard 
 | `loading` | `boolean \| { delay?: number }` | `false` | Shows spinning overlay |
 | `error` | `boolean` | `undefined` | Red error styling |
 | `readOnly` | `boolean` | `undefined` | Disables ripple, freezes hover/focus styles |
+| `size` | `'small' \| 'middle' \| 'large'` | `'middle'` | Height 28/32/48px; also drives width in `mode="single-icon"` |
+| `block` | `boolean` | `false` | Full-width layout (applies in every `mode`) |
 | `tagProps` | `TagProps` | `undefined` | Renders a pill tag after the label |
 | `tooltipProps` | `TooltipProps` | `undefined` | Wraps label in a tooltip |
 | `onClick` | `(event: MouseEvent<HTMLElement>) => void` | `undefined` | Click handler (also triggers ripple) |
@@ -72,7 +74,7 @@ Additional variant types handled by `Button.variants.ts`: `'danger' | 'success' 
 #### `ButtonMode` values
 | Value | Description |
 |-------|-------------|
-| `'single-icon'` | 32×32px icon-only; no min-width |
+| `'single-icon'` | Square icon-only, no min-width. Width tracks `size`: 28px (`small`), 32px (default), 48px (`large`); `block` overrides it with `100%` |
 | `'split'` | label + right icon with a divider |
 | `'two-icons'` | left icon + label + right icon |
 | `'label-icon'` | label then icon |
