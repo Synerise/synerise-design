@@ -17,6 +17,26 @@ const rippleInitialSize = 20;
 
 const splitTypes = ['secondary', 'tertiary'];
 
+// `single-icon` is a square button, so its width has to track `size` exactly as the height does via
+// `ant-btn-lg` / `ant-btn-sm`. Resolving it in JS rather than as a second CSS rule is deliberate:
+// the previous override lost the cascade to the base rule's `:not(.ds-expander)` and was dead for
+// years. One declaration cannot be outranked.
+const SINGLE_ICON_WIDTHS: Record<string, string> = {
+  small: '28px',
+  large: '48px',
+};
+const SINGLE_ICON_DEFAULT_WIDTH = '32px';
+
+const singleIconWidth = ({
+  block,
+  size,
+}: Pick<StyledButtonProps, 'block' | 'size'>): string => {
+  if (block) {
+    return '100%';
+  }
+  return (size && SINGLE_ICON_WIDTHS[size]) || SINGLE_ICON_DEFAULT_WIDTH;
+};
+
 const pressedStyles = (props: ThemeProps) => css`
   color: ${props.theme.palette['blue-600']};
   background: ${props.theme.palette['blue-100']};
@@ -133,6 +153,7 @@ type StyledButtonProps = {
   readOnly?: boolean;
   type: string;
   size?: string;
+  block?: boolean;
   loading?: boolean | { delay?: number };
   fluidMinWidth?: string | number;
 };
@@ -421,7 +442,7 @@ export const StyledButton = styled(BaseButton)<StyledButtonProps>`
           justify-content: center;
           padding: 0;
           transition: 0s;
-          width: 32px;
+          width: ${singleIconWidth(props)};
 
           ${ButtonLabel} > ${IconContainer},
           ${ButtonLabel} > .ds-icon,
@@ -429,14 +450,6 @@ export const StyledButton = styled(BaseButton)<StyledButtonProps>`
           & > .ds-icon {
             margin: 0 4px 0 4px;
           }
-        }
-      `}
-    ${(props) =>
-      props.mode === 'single-icon' &&
-      props.size === 'large' &&
-      css`
-        &.ant-btn {
-          width: 48px;
         }
       `}
     ${(props) =>

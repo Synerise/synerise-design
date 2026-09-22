@@ -65,3 +65,13 @@ export const ButtonTypeWrapper = styled.div<{ type?: string }>`
     border: 0;
   }
 `;
+
+/**
+ * The square sizes of `mode="single-icon"`, paired with the width each one must resolve to.
+ * Shared by the docs story and the visual test so the two cannot drift apart.
+ */
+export const SINGLE_ICON_SIZES = [
+  { size: 'small', label: 'small — 28px', width: 28 },
+  { size: undefined, label: 'default — 32px', width: 32 },
+  { size: 'large', label: 'large — 48px', width: 48 },
+] as const;
