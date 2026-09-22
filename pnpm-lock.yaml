@@ -1156,9 +1156,6 @@ importers:
       '@synerise/ds-dropdown':
         specifier: workspace:^
         version: link:../dropdown
-      '@synerise/ds-factors':
-        specifier: workspace:^
-        version: link:../factors
       '@synerise/ds-icon':
         specifier: workspace:^
         version: link:../icon
