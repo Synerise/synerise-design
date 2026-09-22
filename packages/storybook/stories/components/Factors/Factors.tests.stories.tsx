@@ -520,7 +520,7 @@ export const DateRangePickerOpen: StoryObj<FactorsProps> = {
     selectedFactorType: 'dateRange',
   },
   parameters: {
-    date: new Date('March 10, 2021 10:00:00'),
+    mockingDate: new Date('March 10, 2021 10:00:00'),
     layout: 'centered',
   },
   play: async ({ canvasElement, args }) => {

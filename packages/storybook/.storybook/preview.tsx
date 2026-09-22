@@ -8,7 +8,6 @@ import {
 import { Preview } from '@storybook/react-vite';
 import React from 'react';
 import { configure } from 'storybook/test';
-import { mockDateDecorator } from 'storybook-mock-date-decorator';
 
 import {
   DEFAULT_DATA_FORMAT_NOTATION,
@@ -57,7 +56,6 @@ const preview: Preview = {
     },
   },
   decorators: [
-    mockDateDecorator,
     (Story, storyContext) => {
       const DSProviderProps = {
         dataFormatConfig: {

@@ -1,4 +1,4 @@
-import { ArgTypes } from 'storybook/internal/types';
+import type { ArgTypes } from '@storybook/react-vite';
 
 import DateRangePicker, {
   DailyDateFilter,

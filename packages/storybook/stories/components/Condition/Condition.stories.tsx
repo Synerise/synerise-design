@@ -1,5 +1,5 @@
 import React, { ReactText, useState } from 'react';
-import { action } from 'storybook/internal/actions';
+import { action } from 'storybook/actions';
 import { fn } from 'storybook/test';
 import { v4 as uuid } from 'uuid';
 
