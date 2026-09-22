@@ -89,6 +89,7 @@ const config: StorybookConfig = {
     getAbsolutePath('storybook-addon-tag-badges'),
     getAbsolutePath('@storybook/addon-docs'),
     getAbsolutePath('@chromatic-com/storybook'),
+    getAbsolutePath('storybook-addon-mock-date'),
     getAbsolutePath('storybook-addon-pseudo-states'),
     getAbsolutePath('@storybook/addon-designs'),
     getAbsolutePath('@storybook/addon-mcp'),
@@ -108,7 +109,7 @@ const config: StorybookConfig = {
   typescript: {
     reactDocgen: 'react-docgen-typescript',
     reactDocgenTypescriptOptions: {
-      tsconfigPath: '../../config/typescript/tsconfig.base.json',
+      tsconfigPath: './tsconfig.json',
       propFilter: (prop: any) => {
         const res = !/@types\/react/.test(prop.parent?.fileName);
         return prop.parent ? res : true;

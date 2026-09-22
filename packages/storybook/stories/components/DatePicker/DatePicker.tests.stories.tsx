@@ -17,7 +17,7 @@ export default {
   title: 'Components/Pickers/DatePicker/Tests',
   tags: ['visualtests'],
   parameters: {
-    date: new Date('March 10, 2021 10:00:00'),
+    mockingDate: new Date('March 10, 2021 10:00:00'),
   },
   decorators: [fixedWrapper200],
   render: (args) => {

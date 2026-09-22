@@ -23,7 +23,7 @@ export default {
   title: 'Components/Pickers/DatePicker',
   tags: ['autodocs'],
   parameters: {
-    date: new Date('March 10, 2021 10:00:00'),
+    mockingDate: new Date('March 10, 2021 10:00:00'),
   },
   render: (args) => {
     const [value, setValue] = useState<Date | undefined>(args.value);

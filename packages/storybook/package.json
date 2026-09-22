@@ -15,7 +15,7 @@
   "peerDependencies": {
     "react": "18.3.1",
     "react-dom": "18.3.1",
-    "typescript": "4.9.5"
+    "typescript": "^5.8.0"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.0.0",
@@ -152,22 +152,22 @@
     "@chromatic-com/storybook": "^5.0.2",
     "@faker-js/faker": "^9.6.0",
     "@storybook/addon-designs": "^11.1.2",
-    "@storybook/addon-docs": "10.3.3",
-    "@storybook/addon-mcp": "^0.4.2",
-    "@storybook/addon-onboarding": "10.3.3",
-    "@storybook/addon-vitest": "10.3.3",
-    "@storybook/react-vite": "10.3.3",
+    "@storybook/addon-docs": "10.6.0",
+    "@storybook/addon-mcp": "10.6.0",
+    "@storybook/addon-onboarding": "10.6.0",
+    "@storybook/addon-vitest": "10.6.0",
+    "@storybook/react-vite": "10.6.0",
     "@types/lodash.debounce": "^4.0.9",
     "@types/lodash.isequal": "^4.5.8",
     "@use-it/interval": "^1.0.0",
-    "@vitest/browser": "^4.1.1",
-    "@vitest/browser-playwright": "^4.1.1",
-    "chromatic": "^13.3.4",
-    "storybook": "10.3.3",
-    "storybook-addon-pseudo-states": "10.3.3",
+    "@vitest/browser": "^4.1.6",
+    "@vitest/browser-playwright": "^4.1.6",
+    "chromatic": "^18.9.4",
+    "storybook": "10.6.0",
+    "storybook-addon-mock-date": "^3.2.1",
+    "storybook-addon-pseudo-states": "10.6.0",
     "storybook-addon-tag-badges": "^3.1.0",
     "storybook-deeper-sort": "^2.0.0",
-    "storybook-mock-date-decorator": "^3.0.0",
-    "vitest": "^4.1.1"
+    "vitest": "^4.1.6"
   }
 }

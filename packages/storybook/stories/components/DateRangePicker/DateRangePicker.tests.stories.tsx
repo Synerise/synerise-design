@@ -21,7 +21,7 @@ export default {
   tags: ['visualtests'],
   parameters: {
     layout: 'padded',
-    date: new Date('March 10, 2021 10:00:00'),
+    mockingDate: new Date('March 10, 2021 10:00:00'),
   },
   render: (args) => <DateRangePicker {...args} />,
 } as Meta<DateRangePickerProps>;
@@ -275,7 +275,7 @@ const InlineCalendar = injectIntl(RawDateRangePicker);
 
 const calendarStateStory = (args: Partial<DateRangePickerProps>): Story => ({
   parameters: {
-    date: new Date('March 10, 2021 10:00:00'),
+    mockingDate: new Date('March 10, 2021 10:00:00'),
     layout: 'centered',
   },
   render: (storyArgs) => <InlineCalendar {...storyArgs} texts={texts} />,

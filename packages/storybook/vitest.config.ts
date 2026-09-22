@@ -20,7 +20,7 @@ export default defineConfig({
     include: [
       'storybook/actions',
       'storybook/test',
-      'storybook-mock-date-decorator',
+      'storybook-addon-mock-date',
       'react',
       'react-dom',
       'react-intl',

@@ -1,7 +1,8 @@
 import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 
-import CopyIcon, { type CopyIconProps } from '../../../../components/copy-icon';
+import CopyIcon, { type CopyIconProps } from '@synerise/ds-copy-icon';
+
 import { centeredPaddedWrapper, REACT_NODE_AS_STRING } from '../../utils';
 
 export default {
