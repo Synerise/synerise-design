@@ -1,5 +1,5 @@
 import React from 'react';
-import { renderWithProvider } from '@synerise/ds-core';
+import { renderWithProvider } from '@synerise/ds-core/testing';
 import { screen, fireEvent, waitFor } from '@testing-library/react';
 import CopyIcon from '../CopyIcon';
 import copy from 'copy-to-clipboard';

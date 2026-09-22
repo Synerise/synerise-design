@@ -82,7 +82,7 @@ import Loader from '@synerise/ds-loader';
 ## Key dependencies
 
 - `styled-components` ^5 (peer)
-- `@synerise/ds-core` (peer) — provides `renderWithProvider` in tests and theme tokens
+- `@synerise/ds-core` (peer) — theme tokens, plus `renderWithProvider` from its `/testing` subpath in tests
 - No Ant Design dependency
 
 ## Implementation notes

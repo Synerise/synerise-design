@@ -16,7 +16,7 @@ src/
  index.ts — re-exports default + all named types
  modules.d.ts — @testing-library/jest-dom augmentation (test setup only)
  __specs__/
- ItemFilter.spec.tsx — Vitest tests (uses renderWithProvider from @synerise/ds-core)
+ ItemFilter.spec.tsx — Vitest tests (uses renderWithProvider from @synerise/ds-core/testing)
 ```
 
 ## Public exports

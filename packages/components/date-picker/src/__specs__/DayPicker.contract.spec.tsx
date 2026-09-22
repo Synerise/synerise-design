@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { EU_NOTATION, US_NOTATION, renderWithProvider } from '@synerise/ds-core';
+import { EU_NOTATION, US_NOTATION } from '@synerise/ds-core';
+import { renderWithProvider } from '@synerise/ds-core/testing';
 import userEvent from '@testing-library/user-event';
 
 import RawDatePicker from '../RawDatePicker/RawDatePicker';

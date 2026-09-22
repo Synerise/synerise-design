@@ -1,6 +1,7 @@
 import React, { type ReactNode } from 'react';
 
-import { theme , TOASTER_DEFAULTS , renderWithProvider } from '@synerise/ds-core';
+import { theme, TOASTER_DEFAULTS } from '@synerise/ds-core';
+import { renderWithProvider } from '@synerise/ds-core/testing';
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 

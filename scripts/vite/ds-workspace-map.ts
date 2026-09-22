@@ -6,6 +6,13 @@ export interface WorkspaceSourcePackage {
   dir: string;
   /** Absolute, extensionless src entry, e.g. <root>/packages/components/core/src/js/index */
   bareEntry: string;
+  /**
+   * Declared subpath exports other than '.', keyed with a leading slash to match the shape
+   * an import specifier carries ('/testing'), mapped to their absolute extensionless src
+   * entry. Wildcard patterns are excluded — they are catch-alls for dist paths, which the
+   * resolver already rewrites on its own.
+   */
+  subpathEntries: Map<string, string>;
 }
 
 /** Workspace parents to scan, mirroring pnpm-workspace.yaml. */
@@ -29,26 +36,56 @@ function distEntryToSrc(entry: string): string | null {
   return `src${rel.slice('dist'.length)}`.replace(/\.(js|mjs|cjs|jsx)$/, '');
 }
 
-function readEntryField(manifest: PackageManifest): string | undefined {
-  const dot =
-    typeof manifest.exports === 'object' && manifest.exports !== null
-      ? (manifest.exports as Record<string, unknown>)['.']
-      : undefined;
-
-  if (typeof dot === 'string') {
-    return dot;
+/** Unwraps an exports entry — a bare path, or the import/default arm of a condition object. */
+function readExportTarget(value: unknown): string | undefined {
+  if (typeof value === 'string') {
+    return value;
   }
-  if (typeof dot === 'object' && dot !== null) {
-    const conditions = dot as Record<string, unknown>;
+  if (typeof value === 'object' && value !== null) {
+    const conditions = value as Record<string, unknown>;
     const picked = conditions.import ?? conditions.default;
     if (typeof picked === 'string') {
       return picked;
     }
   }
+  return undefined;
+}
+
+function readExportsMap(manifest: PackageManifest): Record<string, unknown> {
+  return typeof manifest.exports === 'object' && manifest.exports !== null
+    ? (manifest.exports as Record<string, unknown>)
+    : {};
+}
+
+function readEntryField(manifest: PackageManifest): string | undefined {
+  const dot = readExportTarget(readExportsMap(manifest)['.']);
+  if (dot) {
+    return dot;
+  }
   if (typeof manifest.module === 'string') {
     return manifest.module;
   }
   return typeof manifest.main === 'string' ? manifest.main : undefined;
+}
+
+function readSubpathEntries(
+  manifest: PackageManifest,
+  dir: string,
+): Map<string, string> {
+  const entries = new Map<string, string>();
+
+  for (const [key, value] of Object.entries(readExportsMap(manifest))) {
+    if (key === '.' || !key.startsWith('./') || key.includes('*')) {
+      continue;
+    }
+    const target = readExportTarget(value);
+    const srcEntry = target ? distEntryToSrc(target) : null;
+    if (srcEntry) {
+      entries.set(key.slice(1), join(dir, srcEntry));
+    }
+  }
+
+  return entries;
 }
 
 /**
@@ -105,7 +142,11 @@ export function getDsWorkspacePackages(
         continue;
       }
 
-      map.set(manifest.name, { dir, bareEntry: join(dir, srcEntry) });
+      map.set(manifest.name, {
+        dir,
+        bareEntry: join(dir, srcEntry),
+        subpathEntries: readSubpathEntries(manifest, dir),
+      });
     }
   }
 

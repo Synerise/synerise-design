@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { renderWithProvider } from '@synerise/ds-core';
+import { renderWithProvider } from '@synerise/ds-core/testing';
 import { act, fireEvent, screen } from '@testing-library/react';
 
 import { DropdownMenu } from '../components/DropdownMenu/DropdownMenu';

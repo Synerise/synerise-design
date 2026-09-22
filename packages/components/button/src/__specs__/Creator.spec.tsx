@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { theme, renderWithProvider } from '@synerise/ds-core';
+import { theme } from '@synerise/ds-core';
+import { renderWithProvider } from '@synerise/ds-core/testing';
 import { fireEvent, screen, waitFor } from '@testing-library/react';
 
 import { Creator } from '../index';

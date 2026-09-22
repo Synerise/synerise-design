@@ -11,10 +11,20 @@
       "import": "./dist/js/index.js",
       "default": "./dist/js/index.js"
     },
+    "./testing": {
+      "types": "./dist/js/testing/index.d.ts",
+      "import": "./dist/js/testing/index.js",
+      "default": "./dist/js/testing/index.js"
+    },
     "./dist/*.js": "./dist/*.js",
     "./dist/*": "./dist/*.js"
   },
   "types": "dist/js/index.d.ts",
+  "typesVersions": {
+    "*": {
+      "testing": ["./dist/js/testing/index.d.ts"]
+    }
+  },
   "files": [
     "/dist",
     "CHANGELOG.md",
@@ -51,10 +61,19 @@
     "react-hot-toast": "^2.6.0"
   },
   "peerDependencies": {
+    "@testing-library/react": ">=14",
     "react": ">=16.9.0 <= 18.3.1",
     "react-intl": ">=3.12.0 <= 6.8",
     "styled-components": "^5.3.3",
     "vitest": "4"
+  },
+  "peerDependenciesMeta": {
+    "@testing-library/react": {
+      "optional": true
+    },
+    "vitest": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "@formatjs/icu-messageformat-parser": "^2.11.1",

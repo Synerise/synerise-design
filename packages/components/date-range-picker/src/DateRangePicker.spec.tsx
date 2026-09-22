@@ -1,5 +1,5 @@
 import React from 'react';
-import { renderWithProvider, sleep } from '@synerise/ds-core';
+import { renderWithProvider, sleep } from '@synerise/ds-core/testing';
 import { waitFor, within, screen, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 

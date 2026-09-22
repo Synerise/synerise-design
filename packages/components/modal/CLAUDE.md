@@ -181,6 +181,6 @@ document.body (portal target)
 - `@synerise/ds-tabs` — optional tab bar via `headerTabProps`
 - `@synerise/ds-scrollbar` — wraps children when `maxViewportHeight` is set
 - `@synerise/ds-typography` — `Typography.Title` for the modal title
-- `@synerise/ds-core` (peer) — `setPortalContent` for `showModal`, `renderWithProvider` for tests
+- `@synerise/ds-core` (peer) — `setPortalContent` for `showModal`; `renderWithProvider` for tests, from its `/testing` subpath
 - `styled-components` (peer) — all styling
 - `react` (peer) — `createPortal`, `forwardRef`, `useImperativeHandle`

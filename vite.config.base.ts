@@ -83,6 +83,11 @@ function dsTestSourceRedirectPlugin(): Plugin {
         target = pkg.bareEntry;
       } else if (subpath === '/dist' || subpath.startsWith('/dist/')) {
         target = resolve(pkg.dir, `src${subpath.slice('/dist'.length)}`);
+      } else if (pkg.subpathEntries.has(subpath)) {
+        // A declared subpath export (e.g. @synerise/ds-core/testing). Left to the exports
+        // map it would load from dist while the rest of the package loads from src — two
+        // module instances of the same package, so two React contexts.
+        target = pkg.subpathEntries.get(subpath) as string;
       } else {
         return null;
       }

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { renderWithProvider, sleep } from '@synerise/ds-core';
+import { renderWithProvider, sleep } from '@synerise/ds-core/testing';
 import userEvent from '@testing-library/user-event';
 
 import { type DateRange } from '../date.types';

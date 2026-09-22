@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { renderWithProvider } from '@synerise/ds-core';
+import { renderWithProvider } from '@synerise/ds-core/testing';
 import Badge from '@synerise/ds-badge';
 
 import Avatar from './index';

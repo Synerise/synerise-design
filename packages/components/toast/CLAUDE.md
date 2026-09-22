@@ -14,7 +14,7 @@ src/
  removeToast.ts — Re-exports toast.remove from react-hot-toast (instant removal)
  index.ts — Re-exports both utils
  __specs__/
- Toast.spec.tsx — Vitest tests (renderWithProvider + TOASTER_DEFAULTS from ds-core)
+ Toast.spec.tsx — Vitest tests (renderWithProvider from ds-core/testing + TOASTER_DEFAULTS from ds-core)
 ```
 
 ## Public exports
@@ -132,6 +132,6 @@ import Toast from '@synerise/ds-toast';
 - `onDismiss` is fired from a `useEffect` cleanup (component unmount), not from the close click handler. It therefore fires for both manual dismissal and timeout expiry.
 - `onCloseClick` fires first, then `toast.dismiss(toastId)` is called — both only if `toastId` is present.
 - `Toast.error` maps to type `'negative'` (not `'error'`). There is no `'error'` type in `ToastType`.
-- The Toaster must be mounted for imperative toasts to render. In tests this is done via `renderWithProvider(.., { toasterProps: TOASTER_DEFAULTS })` from `@synerise/ds-core`.
+- The Toaster must be mounted for imperative toasts to render. In tests this is done via `renderWithProvider(.., { toasterProps: TOASTER_DEFAULTS })` — `renderWithProvider` from `@synerise/ds-core/testing`, `TOASTER_DEFAULTS` from `@synerise/ds-core`.
 - Tests use **Jest** (not Vitest) — see `jest.config.js`.
 - `FirstButtonWrapper` and `Wrapper` styled-components are exported from `dist/Toast.styles` (not from the package root) and used in Storybook stories for layout.

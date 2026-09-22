@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { US_NOTATION , renderWithProvider } from '@synerise/ds-core';
+import { US_NOTATION } from '@synerise/ds-core';
+import { renderWithProvider } from '@synerise/ds-core/testing';
 import { fireEvent, screen, waitFor } from '@testing-library/react';
 
 import DatePicker from '../DatePicker';

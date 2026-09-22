@@ -1,5 +1,5 @@
 import React from 'react';
-import { renderWithProvider } from '@synerise/ds-core';
+import { renderWithProvider } from '@synerise/ds-core/testing';
 
 import AppMenu from '../index';
 import { fireEvent } from '@testing-library/react';

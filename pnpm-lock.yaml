@@ -1242,6 +1242,9 @@ importers:
       '@date-fns/tz':
         specifier: ^1.4.1
         version: 1.5.0
+      '@testing-library/react':
+        specifier: '>=14'
+        version: 14.3.1(@types/react@18.3.17)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       dayjs:
         specifier: ^1.8.36
         version: 1.11.19
