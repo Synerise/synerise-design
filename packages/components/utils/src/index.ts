@@ -10,6 +10,7 @@ export {
   default as selectColorByLetter,
 } from './selectColorByLetter/selectColorByLetter';
 export { default as toCamelCase } from './toCamelCase/toCamelCase';
+export { toCssSize } from './toCssSize/toCssSize';
 export * from './useBreakpoint/useBreakpoint';
 export { default as useCombinedRefs } from './useCombinedRefs/useCombinedRefs';
 export { useDebounce } from './useDebounce/useDebounce';

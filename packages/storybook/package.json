@@ -48,6 +48,7 @@
     "@synerise/ds-column-manager": "workspace:^",
     "@synerise/ds-completed-within": "workspace:^",
     "@synerise/ds-condition": "workspace:^",
+    "@synerise/ds-condition-blocks": "workspace:^",
     "@synerise/ds-confirmation": "workspace:^",
     "@synerise/ds-context-selector": "workspace:^",
     "@synerise/ds-copy-icon": "workspace:^",

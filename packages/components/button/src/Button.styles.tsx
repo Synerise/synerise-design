@@ -3,6 +3,7 @@ import styled, { css, keyframes } from 'styled-components';
 import type { ThemeProps } from '@synerise/ds-core';
 import { IconContainer } from '@synerise/ds-icon';
 import DSTag from '@synerise/ds-tag';
+import { toCssSize } from '@synerise/ds-utils';
 
 import BaseButton from './BaseButton';
 import { getVariantStyles } from './Button.variants';
@@ -133,6 +134,7 @@ type StyledButtonProps = {
   type: string;
   size?: string;
   loading?: boolean | { delay?: number };
+  fluidMinWidth?: string | number;
 };
 
 export const StyledButton = styled(BaseButton)<StyledButtonProps>`
@@ -617,5 +619,14 @@ export const StyledButton = styled(BaseButton)<StyledButtonProps>`
         cursor: inherit;
       }
     }
+
+    ${(props) =>
+      props.fluidMinWidth !== undefined &&
+      css`
+        ${ButtonLabel} {
+          min-width: ${toCssSize(props.fluidMinWidth)};
+          max-width: none;
+        }
+      `}
   }
 `;

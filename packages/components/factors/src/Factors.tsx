@@ -121,6 +121,7 @@ const Factors = ({
   onActivate,
   onDeactivate,
   getPopupContainerOverride,
+  fluidMinWidth,
   customFactorValueComponents,
   error,
   inputProps,
@@ -197,6 +198,7 @@ const Factors = ({
         texts={allTexts}
         opened={opened}
         inputProps={inputProps}
+        fluidMinWidth={fluidMinWidth}
         arrayProps={arrayProps}
         loading={loading}
         factorKey={factorKey}

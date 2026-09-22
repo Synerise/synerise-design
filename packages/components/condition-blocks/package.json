@@ -1,0 +1,56 @@
+{
+  "name": "@synerise/ds-condition-blocks",
+  "version": "0.0.1",
+  "description": "Composable building blocks for filtering-condition layouts in the Synerise Design System",
+  "license": "ISC",
+  "repository": "Synerise/synerise-design",
+  "main": "dist/index.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./dist/*.js": "./dist/*.js",
+    "./dist/*": "./dist/*.js"
+  },
+  "files": [
+    "/dist",
+    "CHANGELOG.md",
+    "CLAUDE.md",
+    "README.md",
+    "package.json",
+    "LICENSE.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "vite build",
+    "build:watch": "vite build --watch",
+    "pack:ci": "pnpm pack --pack-destination ../../storybook/storybook-static/static",
+    "prepublish": "pnpm run build",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "types": "tsc --noEmit",
+    "check:circular-dependencies": "madge --circular --extensions ts,tsx,js,jsx --ts-config tsconfig.json src/ --exclude '/dist/'",
+    "upgrade:ds": "ncu -f \"@synerise/ds-*\" -u"
+  },
+  "sideEffects": [
+    "dist/style/*",
+    "*.less"
+  ],
+  "types": "dist/index.d.ts",
+  "dependencies": {
+    "@synerise/ds-icon": "workspace:^",
+    "@synerise/ds-typography": "workspace:^",
+    "@synerise/ds-utils": "workspace:^"
+  },
+  "peerDependencies": {
+    "@synerise/ds-core": "*",
+    "react": ">=16.9.0 <= 18.3.1",
+    "react-intl": "^6.8.7",
+    "styled-components": "^5.3.3",
+    "vitest": "4"
+  }
+}
