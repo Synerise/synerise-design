@@ -1,6 +1,6 @@
 import React from 'react';
 import { fireEvent } from '@testing-library/react';
-import { renderWithProvider } from '@synerise/ds-core';
+import { renderWithProvider } from '@synerise/ds-core/testing';
 
 import { CONDITION_REMOVE_CLASS, CONDITION_ROWS_GAP } from '../constants';
 import {
@@ -232,6 +232,34 @@ describe('ConditionRows', () => {
       </ConditionRows>,
     );
     expect(window.getComputedStyle(getByTestId('rows')).gap).toBe('1.5rem');
+  });
+});
+
+describe('ConditionRemove translations', () => {
+  // The ✕ has no text, so aria-label is the whole accessible name. A defaultMessage means an
+  // en-locale test passes even with the catalogue entry missing — so assert a non-English locale,
+  // which only resolves if DS.CONDITION-BLOCKS.REMOVE is really in ds-core's i18n bundle.
+  it.each([
+    ['pl', 'Usuń'],
+    ['es', 'Eliminar'],
+    ['pt', 'Remover'],
+    ['en', 'Remove'],
+  ])('names the button from the %s catalogue', (locale, expected) => {
+    const { getByRole } = renderWithProvider(
+      <ConditionRemove revealOnRowHover={false} />,
+      undefined,
+      { locale },
+    );
+    expect(getByRole('button', { name: expected })).toBeInTheDocument();
+  });
+
+  it('still lets an explicit aria-label win', () => {
+    const { getByRole } = renderWithProvider(
+      <ConditionRemove revealOnRowHover={false} aria-label="Drop this rule" />,
+      undefined,
+      { locale: 'pl' },
+    );
+    expect(getByRole('button', { name: 'Drop this rule' })).toBeInTheDocument();
   });
 });
 

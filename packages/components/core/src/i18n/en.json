@@ -502,6 +502,9 @@
       "CLEAR-TOOLTIP": "Clear",
       "DELETE-TOOLTIP": "Delete",
       "NO-SEARCH-RESULTS": "No tags found"
+    },
+    "CONDITION-BLOCKS": {
+      "REMOVE": "Remove"
     }
   }
 }
