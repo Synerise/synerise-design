@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@2.0.4...@synerise/ds-button@2.1.0) (2026-09-22)
+
+
+### Bug Fixes
+
+* **core:** move test helpers to a ./testing subpath export ([b38cd82](https://github.com/synerise/synerise-design/commit/b38cd82c956111d2331d5c1e0efd1935366f1139))
+
+
+### Features
+
+* add @synerise/ds-condition-blocks — building blocks for filtering-condition layouts ([ed332ce](https://github.com/synerise/synerise-design/commit/ed332cefddd418a293a73c51c57e9a4c1ed4f22f))
+
+
+
+
+
 ## [2.0.4](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@2.0.3...@synerise/ds-button@2.0.4) (2026-09-18)
 
 **Note:** Version bump only for package @synerise/ds-button

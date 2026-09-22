@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-core",
-  "version": "2.3.1",
+  "version": "2.3.2",
   "description": "Core Components for the Synerise Design System",
   "license": "ISC",
   "repository": "synerise/synerise-design",
@@ -22,7 +22,9 @@
   "types": "dist/js/index.d.ts",
   "typesVersions": {
     "*": {
-      "testing": ["./dist/js/testing/index.d.ts"]
+      "testing": [
+        "./dist/js/testing/index.d.ts"
+      ]
     }
   },
   "files": [

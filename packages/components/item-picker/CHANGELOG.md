@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@2.1.1...@synerise/ds-item-picker@2.1.2) (2026-09-22)
+
+
+### Bug Fixes
+
+* **core:** move test helpers to a ./testing subpath export ([b38cd82](https://github.com/Synerise/synerise-design/commit/b38cd82c956111d2331d5c1e0efd1935366f1139))
+
+
+
+
+
 ## [2.1.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@2.1.0...@synerise/ds-item-picker@2.1.1) (2026-09-18)
 
 **Note:** Version bump only for package @synerise/ds-item-picker

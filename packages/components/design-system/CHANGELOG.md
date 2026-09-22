@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/Synerise/synerise-design/compare/@synerise/design-system@2.0.8...@synerise/design-system@2.1.0) (2026-09-22)
+
+
+### Features
+
+* add @synerise/ds-condition-blocks — building blocks for filtering-condition layouts ([ed332ce](https://github.com/Synerise/synerise-design/commit/ed332cefddd418a293a73c51c57e9a4c1ed4f22f))
+
+
+
+
+
 ## [2.0.8](https://github.com/Synerise/synerise-design/compare/@synerise/design-system@2.0.7...@synerise/design-system@2.0.8) (2026-09-18)
 
 **Note:** Version bump only for package @synerise/design-system
