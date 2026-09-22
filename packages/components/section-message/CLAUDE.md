@@ -109,7 +109,7 @@ Several styled components (`NumberWrapper`, `OrderWrapper`, `IconOrderWrapper`, 
 
 - `@synerise/ds-icon` — `Icon` wrapper component plus icon components (`Check2M`, `WarningM`, `InfoM`, `NotificationsReceiveM`, `UpdateDataM`, `UserUpM`, `CloseM`)
 - `@synerise/ds-utils` — `WithHTMLAttributes` utility type
-- `@synerise/ds-core` — `ThemePropsVars` (for colour helpers), `renderWithProvider` in tests
+- `@synerise/ds-core` — `ThemePropsVars` (for colour helpers); `renderWithProvider` in tests, from its `/testing` subpath
 
 ## Implementation notes
 

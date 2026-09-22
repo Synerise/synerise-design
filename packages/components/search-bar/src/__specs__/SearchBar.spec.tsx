@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { renderWithProvider } from '@synerise/ds-core';
+import { renderWithProvider } from '@synerise/ds-core/testing';
 import { fireEvent, waitFor } from '@testing-library/react';
 
 import SearchBar from './../SearchBar';

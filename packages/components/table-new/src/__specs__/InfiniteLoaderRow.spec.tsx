@@ -1,6 +1,6 @@
 import React, { type ReactNode } from 'react';
 
-import { renderWithProvider } from '@synerise/ds-core';
+import { renderWithProvider } from '@synerise/ds-core/testing';
 import { act } from '@testing-library/react';
 
 import { InfiniteLoaderRow } from '../components/TableBody/TableRow/InfiniteLoaderRow/InfiniteLoaderRow';

@@ -1,10 +1,7 @@
 import React from 'react';
 import { fireEvent, screen } from '@testing-library/react';
-import {
-  OverlayZIndexProvider,
-  renderWithProvider,
-  theme,
-} from '@synerise/ds-core';
+import { OverlayZIndexProvider, theme } from '@synerise/ds-core';
+import { renderWithProvider } from '@synerise/ds-core/testing';
 
 import { type ImageSource } from '../../shared/Image.shared.types';
 import ImagePreview from '../ImagePreview';

@@ -105,7 +105,7 @@ const [query, setQuery] = React.useState('');
 - `@synerise/ds-tooltip` — wraps the clear icon
 - `@synerise/ds-typography` — `Title` (level 6) used to render `valuePrefix`
 - `@synerise/ds-utils` — `useResizeObserver` (measures `valuePrefix` width), `WithHTMLAttributes` type
-- `@synerise/ds-core` — `useTheme` for palette access; `renderWithProvider` in tests
+- `@synerise/ds-core` — `useTheme` for palette access; `renderWithProvider` in tests, from its `/testing` subpath
 - `classnames` — merges `className` with `is-focused` state class
 - `react-intl` — default `clearTooltip` message (`DS.SEARCH-BAR.CLEAR-TOOLTIP`)
 

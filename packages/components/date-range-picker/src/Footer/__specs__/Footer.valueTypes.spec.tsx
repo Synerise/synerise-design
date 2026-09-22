@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { renderWithProvider } from '@synerise/ds-core';
+import { renderWithProvider } from '@synerise/ds-core/testing';
 
 import { ABSOLUTE } from '../../constants';
 import { type DateRange } from '../../date.types';

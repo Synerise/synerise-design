@@ -28,5 +28,4 @@ export {
   useResolvedOverlayZIndex,
 } from './overlays/overlayZIndex';
 export { setPortalContent } from './portal/portalStore';
-export * from './testing';
 export * from './toaster';

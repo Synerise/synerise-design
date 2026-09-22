@@ -1,6 +1,6 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
-import { renderWithProvider } from '@synerise/ds-core';
+import { renderWithProvider } from '@synerise/ds-core/testing';
 import { describe, it, expect } from 'vitest';
 
 import type { RichTextDocument } from '@synerise/ds-rich-text';

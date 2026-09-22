@@ -349,6 +349,26 @@ unused in DS — 991050 is the real floor. The clamp allows 24 levels of nesting
 
 ## Testing utilities
 
+Exported from the **`@synerise/ds-core/testing`** subpath, not the package root:
+
+```ts
+import { renderWithProvider, sleep } from '@synerise/ds-core/testing';
+```
+
+They are not on the root entry because `renderWithProvider` imports
+`@testing-library/react` as a value, which would put a test-only dependency into every
+consumer's production bundle — and fail their build outright when they have not installed
+it. `@testing-library/react` is an **optional** peer dependency: install it to use this
+subpath, ignore it otherwise.
+
+The subpath is declared twice on purpose: in `exports` for Node and modern TypeScript, and
+in `typesVersions` for consumers still on `moduleResolution: "node"` — classic resolution
+predates `exports`, so without the second entry they get `TS2307: Cannot find module
+'@synerise/ds-core/testing'` while the runtime import works fine. `typesVersions` is
+types-only; bundlers and Vitest never read it. **Any new subpath export must be added to
+both maps**, or it silently breaks those consumers. Drop `typesVersions` once every
+consumer has moved to `bundler`/`node16` resolution.
+
 ### `renderWithProvider`
 
 RTL `render()` wrapped in `DSProvider` with sensible test defaults. Use in component tests that need i18n or theme.

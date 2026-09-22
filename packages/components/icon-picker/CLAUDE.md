@@ -152,4 +152,4 @@ Flattens `FilterElement[]` into `GroupedFilterElement[]` for react-window. Each 
 - **`ListItem` has a fragile Avatar check** — `(element.item as any).type.name === 'Avatar'` detects Avatar items by component name. Minification or renaming will break this.
 - **Deep import for DS icons** — `import * as medium from '@synerise/ds-icon/dist/icons/M'` is a fragile path that may break if `@synerise/ds-icon` restructures its dist output.
 - **Uses Vitest** — `package.json` has `"test": "jest"`. Spec also uses `vi.fn()`. Not yet migrated.
-- **`react-intl` is required** — `IntlProvider` must be present for the default `noResultMsg`. Tests use `renderWithProvider` from `@synerise/ds-core`.
+- **`react-intl` is required** — `IntlProvider` must be present for the default `noResultMsg`. Tests use `renderWithProvider` from `@synerise/ds-core/testing`.

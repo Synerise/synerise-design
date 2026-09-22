@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { closeAllOverlays, renderWithProvider } from '@synerise/ds-core';
+import { closeAllOverlays } from '@synerise/ds-core';
+import { renderWithProvider } from '@synerise/ds-core/testing';
 import { act, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
