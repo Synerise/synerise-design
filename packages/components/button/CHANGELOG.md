@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@2.1.0...@synerise/ds-button@2.1.1) (2026-09-24)
+
+
+### Bug Fixes
+
+* make single-icon button width follow size and block ([a1c9ff2](https://github.com/synerise/synerise-design/commit/a1c9ff251800239489388647f8471da6d244dd17))
+
+
+
+
+
 # [2.1.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@2.0.4...@synerise/ds-button@2.1.0) (2026-09-22)
 
 

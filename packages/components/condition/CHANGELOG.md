@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@2.0.8...@synerise/ds-condition@2.0.9) (2026-09-24)
+
+
+### Bug Fixes
+
+* condition allows hosts to skip auto-opening the next field on a value swap ([c7835e7](https://github.com/Synerise/synerise-design/commit/c7835e7e20691447aeee13b521c860b576d1eef8))
+
+
+
+
+
 ## [2.0.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@2.0.7...@synerise/ds-condition@2.0.8) (2026-09-22)
 
 

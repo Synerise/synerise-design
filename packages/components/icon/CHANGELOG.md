@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@2.1.3...@synerise/ds-icon@2.2.0) (2026-09-24)
+
+
+### Features
+
+* **icon:** add stories group and widget xl icons ([9a8a502](https://github.com/Synerise/synerise-design/commit/9a8a50275251db3fe0f940a78fdd6309a1f6804f))
+
+
+
+
+
 ## [2.1.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@2.1.2...@synerise/ds-icon@2.1.3) (2026-09-22)
 
 
