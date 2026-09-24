@@ -2,9 +2,11 @@ import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 import { fn } from 'storybook/test';
 
+import Button from '@synerise/ds-button';
 import { SegmentM } from '@synerise/ds-icon';
 import type { InformationCardProps } from '@synerise/ds-information-card';
 import InformationCard, { buildExtraInfo } from '@synerise/ds-information-card';
+import Result from '@synerise/ds-result';
 
 import {
   BOOLEAN_CONTROL,
@@ -168,6 +170,44 @@ export const CustomFooter: Story = {
   avatarTooltipText="Tooltip Text"
   descriptionConfig={{}}
   renderFooter={() => <>Custom footer element</>}
+/>`,
+      },
+    },
+  },
+};
+
+export const WithErrorState: Story = {
+  args: {
+    descriptionConfig: null,
+    renderAdditionalDescription: () => (
+      <Result
+        type="error"
+        description="Could not load the preview"
+        buttons={
+          <Button type="primary" onClick={fn()}>
+            Try again
+          </Button>
+        }
+      />
+    ),
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<InformationCard
+  title="Title"
+  subtitle="Subtitle"
+  icon={<SegmentM color="mars" />}
+  iconColor="mars"
+  avatarTooltipText="Tooltip Text"
+  descriptionConfig={null}
+  renderAdditionalDescription={() => (
+    <Result
+      type="error"
+      description="Could not load the preview"
+      buttons={<Button type="primary" onClick={() => {}}>Try again</Button>}
+    />
+  )}
 />`,
       },
     },
