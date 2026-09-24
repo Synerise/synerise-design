@@ -6,6 +6,7 @@ export const OPERATOR = 'operator';
 export const PARAMETER = 'parameter';
 export const FACTOR = 'factor';
 export const SUBJECT = 'subject';
+export const CONTEXT = 'context';
 export const ACTION_ATTRIBUTE = 'actionAttribute';
 
 export const DEFAULT_INPUT_PROPS = {

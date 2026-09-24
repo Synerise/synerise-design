@@ -6,10 +6,13 @@ import { fireEvent, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 
+import type { FactorValueComponentProps } from '@synerise/ds-factors';
+
 import Condition from '../Condition';
 import {
   type ConditionProps,
   type ConditionStep,
+  type CustomContextSelectorProps,
   type StepConditions,
 } from '../Condition.types';
 import {
@@ -696,5 +699,196 @@ describe('Condition component', () => {
     expect(
       await screen.findByText('TEST_SELECTED_ITEM_SUBTITLE'),
     ).toBeInTheDocument();
+  });
+});
+
+const AUTO_OPEN_STEP_ID = 'auto-open-step';
+const AUTO_OPEN_CONDITION_ID = 'auto-open-condition';
+const SELECTED_PARAMETER = { id: 'param-1', name: 'First name' };
+const SWAPPED_PARAMETER = { id: 'param-2', name: 'Last name' };
+const OPERATOR_IN_DROPDOWN_ONLY = 'Matches current hour';
+
+const ParameterSelectorStub = ({ onChange }: FactorValueComponentProps) => (
+  <button type="button" onClick={() => onChange(SWAPPED_PARAMETER)}>
+    swap parameter
+  </button>
+);
+
+const CONTEXT_STEP_ID = 'auto-open-context-step';
+const SWAPPED_CONTEXT = { id: 'ctx-2', name: 'Catalog id' };
+
+const ContextSelectorStub = ({ onSelectItem }: CustomContextSelectorProps) => (
+  <button type="button" onClick={() => onSelectItem(SWAPPED_CONTEXT)}>
+    swap context
+  </button>
+);
+
+const getContextSteps = (): ConditionStep[] => [
+  {
+    ...DEFAULT_STEP,
+    id: CONTEXT_STEP_ID,
+    subject: undefined,
+    context: {
+      texts: {
+        buttonLabel: 'Choose',
+        searchPlaceholder: 'Search',
+        noResults: 'No results',
+        loadingResults: 'Loading results',
+      },
+      selectedItem: { id: 'ctx-1', name: 'Uuid', icon: <VarTypeStringM /> },
+      groups: [],
+      items: [],
+    },
+    conditions: getConditions(2),
+  },
+];
+
+const getCompleteRowSteps = (): ConditionStep[] => [
+  {
+    ...DEFAULT_STEP,
+    id: AUTO_OPEN_STEP_ID,
+    conditions: [
+      {
+        id: AUTO_OPEN_CONDITION_ID,
+        parameter: {
+          availableFactorTypes: ['parameter'],
+          selectedFactorType: 'parameter',
+          defaultFactorType: 'parameter',
+          value: SELECTED_PARAMETER,
+          parameters: {
+            buttonLabel: 'Parameter',
+            buttonIcon: <VarTypeStringM />,
+            groups: PARAMETER_GROUPS,
+            items: PARAMETER_ITEMS,
+          },
+          withoutTypeSelector: true,
+          texts: FACTORS_TEXTS,
+        },
+        operator: {
+          value: OPERATORS_ITEMS[0],
+          items: OPERATORS_ITEMS,
+          groups: OPERATORS_GROUPS,
+          texts: OPERATORS_TEXTS,
+        },
+        factor: undefined,
+      },
+    ],
+  },
+];
+
+describe('Condition auto-opening the next field', () => {
+  test('opens the operator dropdown after the parameter changes', () => {
+    renderWithProvider(
+      RENDER_CONDITIONS({
+        steps: getCompleteRowSteps(),
+        parameterSelectorComponent: ParameterSelectorStub,
+      }),
+    );
+
+    expect(screen.queryByText(OPERATOR_IN_DROPDOWN_ONLY)).toBeFalsy();
+
+    fireEvent.click(screen.getByText('swap parameter'));
+
+    expect(screen.getByText(OPERATOR_IN_DROPDOWN_ONLY)).toBeTruthy();
+  });
+
+  test('leaves the operator dropdown closed when shouldAutoOpenNextField returns false', () => {
+    const onChangeParameter = vi.fn();
+    renderWithProvider(
+      RENDER_CONDITIONS({
+        steps: getCompleteRowSteps(),
+        parameterSelectorComponent: ParameterSelectorStub,
+        onChangeParameter,
+        shouldAutoOpenNextField: () => false,
+      }),
+    );
+
+    fireEvent.click(screen.getByText('swap parameter'));
+
+    expect(onChangeParameter).toHaveBeenCalledWith(
+      AUTO_OPEN_STEP_ID,
+      AUTO_OPEN_CONDITION_ID,
+      SWAPPED_PARAMETER,
+    );
+    expect(screen.queryByText(OPERATOR_IN_DROPDOWN_ONLY)).toBeFalsy();
+  });
+
+  test('clears the extra condition rows after the context changes', () => {
+    const removeCondition = vi.fn();
+    renderWithProvider(
+      RENDER_CONDITIONS({
+        steps: getContextSteps(),
+        contextSelectorComponent: ContextSelectorStub,
+        parameterSelectorComponent: ParameterSelectorStub,
+        removeCondition,
+      }),
+    );
+
+    fireEvent.click(screen.getByText('swap context'));
+
+    expect(removeCondition).toHaveBeenCalled();
+  });
+
+  test('keeps the extra condition rows when shouldAutoOpenNextField returns false', () => {
+    const removeCondition = vi.fn();
+    const onChangeContext = vi.fn();
+    renderWithProvider(
+      RENDER_CONDITIONS({
+        steps: getContextSteps(),
+        contextSelectorComponent: ContextSelectorStub,
+        parameterSelectorComponent: ParameterSelectorStub,
+        removeCondition,
+        onChangeContext,
+        shouldAutoOpenNextField: () => false,
+      }),
+    );
+
+    fireEvent.click(screen.getByText('swap context'));
+
+    expect(onChangeContext).toHaveBeenCalledWith(
+      CONTEXT_STEP_ID,
+      SWAPPED_CONTEXT,
+    );
+    expect(removeCondition).not.toHaveBeenCalled();
+  });
+
+  test('describes a parameter change to shouldAutoOpenNextField', () => {
+    const shouldAutoOpenNextField = vi.fn().mockReturnValue(false);
+    renderWithProvider(
+      RENDER_CONDITIONS({
+        steps: getCompleteRowSteps(),
+        parameterSelectorComponent: ParameterSelectorStub,
+        shouldAutoOpenNextField,
+      }),
+    );
+
+    fireEvent.click(screen.getByText('swap parameter'));
+
+    expect(shouldAutoOpenNextField).toHaveBeenCalledWith({
+      field: 'parameter',
+      stepId: AUTO_OPEN_STEP_ID,
+      conditionId: AUTO_OPEN_CONDITION_ID,
+      value: SWAPPED_PARAMETER,
+    });
+  });
+
+  test('describes a context change to shouldAutoOpenNextField', () => {
+    const shouldAutoOpenNextField = vi.fn().mockReturnValue(false);
+    renderWithProvider(
+      RENDER_CONDITIONS({
+        steps: getContextSteps(),
+        contextSelectorComponent: ContextSelectorStub,
+        parameterSelectorComponent: ParameterSelectorStub,
+        shouldAutoOpenNextField,
+      }),
+    );
+
+    fireEvent.click(screen.getByText('swap context'));
+
+    expect(shouldAutoOpenNextField).toHaveBeenCalledWith({
+      field: 'context',
+      stepId: CONTEXT_STEP_ID,
+      value: SWAPPED_CONTEXT,
+    });
   });
 });
