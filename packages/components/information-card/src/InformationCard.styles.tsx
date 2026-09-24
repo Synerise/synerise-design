@@ -143,13 +143,6 @@ export const InfoCardWrapper = styled.div<{
     font-size: 11px;
   }
 
-  .ds-button {
-    background: transparent;
-  }
-  .btn-focus,
-  .btn-focus:hover {
-    box-shadow: unset;
-  }
 `;
 
 export const AlertWrapper = styled.div`
