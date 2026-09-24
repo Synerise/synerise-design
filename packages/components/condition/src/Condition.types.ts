@@ -79,6 +79,27 @@ export type CustomParameterSelectorProps = Pick<
   selectedItem?: ParameterValueType;
 };
 
+export type ConditionFieldChange =
+  | {
+      field: 'context';
+      stepId: ReactText;
+      value: ContextItem | ContextGroup | undefined;
+    }
+  | { field: 'subject'; stepId: ReactText; value: SubjectItem }
+  | { field: 'actionAttribute'; stepId: ReactText; value: FactorValueType }
+  | {
+      field: 'parameter';
+      stepId: ReactText;
+      conditionId: ReactText;
+      value: FactorValueType;
+    }
+  | {
+      field: 'operator';
+      stepId: ReactText;
+      conditionId: ReactText;
+      value: OperatorsItem;
+    };
+
 export type ConditionProps = {
   steps: ConditionStep[];
   getPopupContainerOverride?: (trigger: HTMLElement | null) => HTMLElement;
@@ -91,6 +112,7 @@ export type ConditionProps = {
   minConditionsLength: number;
   maxConditionsLength?: number | undefined;
   autoClearCondition?: boolean;
+  shouldAutoOpenNextField?: (change: ConditionFieldChange) => boolean;
   contextSelectorComponent?: ComponentType<CustomContextSelectorProps>;
   parameterSelectorComponent?: ComponentType<FactorValueComponentProps>;
   factorParameterSelectorComponent?: ComponentType<FactorValueComponentProps>;
