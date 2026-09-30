@@ -21,7 +21,7 @@
     "lerna:version": "bash scripts/release-preflight.sh && lerna version --conventional-commits",
     "lint": "biome lint ./packages",
     "lint:fix": "biome lint --write ./packages",
-    "pack:ci": "lerna run pack:ci --since origin/master",
+    "pack:ci": "node scripts/pack-prerelease.mjs",
     "storybook": "cd packages/storybook && pnpm storybook",
     "test:ci": "lerna run test --stream --concurrency 3",
     "tgz-package-json": "node ./scripts/tgz/index.cjs",
