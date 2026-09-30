@@ -22,7 +22,7 @@ async function main() {
 
   lines.forEach(filename => {
     // Ensure the filename matches the expected pattern
-    const match = filename.match(/^synerise-ds-(.+)-(\d+\.\d+\.\d+)\.tgz$/);
+    const match = filename.match(/^synerise-ds-(.+?)-(\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?)\.tgz$/);
 
     if (!match) {
       // console.warn(`Skipping invalid filename: ${filename}`);
