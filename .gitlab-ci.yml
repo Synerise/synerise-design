@@ -208,6 +208,10 @@ chromatic_publish:
   stage: test
   needs: ['build_packages']
   variables:
+    # pack:ci counts changed packages from `git merge-base origin/master HEAD`, which needs the
+    # branch point inside the fetched history. Full history is the project default today; this
+    # keeps it so if the default ever turns shallow.
+    GIT_DEPTH: 0
     KUBERNETES_CPU_REQUEST: 4
     KUBERNETES_MEMORY_REQUEST: 16Gi
     KUBERNETES_MEMORY_LIMIT: 22Gi
@@ -286,6 +290,46 @@ publish_packages:
     - echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' >> .npmrc
     - echo "email = $GITLAB_USER_EMAIL" >> .npmrc
     - npx lerna publish from-package --no-git-tag-version --yes
+    - rm -f .npmrc
+
+# Manual, merge requests only: publishes the packages the MR changed to the Nexus hosted repo under
+# the same `x.y.z-mr<iid>.g<sha>` versions `chromatic_publish` packs, so a consumer can pin one by
+# version from `npm-release` (the group, which also proxies the released versions from npmjs)
+# instead of by Chromatic tarball URL. Released versions keep going to npmjs only.
+# `allow_failure` keeps the unplayed job from leaving the pipeline blocked.
+publish_prerelease_nexus:
+  stage: build
+  needs: ['build_packages']
+  cache:
+    - key:
+        files:
+        - pnpm-lock.yaml
+        prefix: v11
+      paths:
+        - .pnpm-store
+        - .pnpm-cache
+      policy: pull
+  variables:
+    # See chromatic_publish: the script counts changes from the merge base.
+    GIT_DEPTH: 0
+    # Not NPM_REGISTRY_LOCAL: a CI/CD settings variable of that name points at npmjs and would
+    # override this one, since settings variables take precedence over the job's own. Keep the
+    # trailing slash: npm looks up auth by the registry URL with it, so without it the `_auth` line
+    # below would not match and the publish would go out unauthenticated.
+    NEXUS_PRERELEASE_REGISTRY: https://nexus.snrinternal.com/repository/npm-release-local/
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      when: manual
+      allow_failure: true
+  before_script:
+    - !reference [.install_pnpm]
+  script:
+    - pnpm install --frozen-lockfile --offline
+    # .install_pnpm authenticates only npm-release, the group installs read from.
+    - echo "//${NEXUS_PRERELEASE_REGISTRY#https://}:_auth = $SNR_NPM_TOKEN" >> .npmrc
+    - pnpm publish:prerelease
+  # In after_script, so the credential is removed even when the publish fails.
+  after_script:
     - rm -f .npmrc
 
 # Best-effort: post a mechanical "packages published" card to the Teams releases channel as soon

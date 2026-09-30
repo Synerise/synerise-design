@@ -22,6 +22,7 @@
     "lint": "biome lint ./packages",
     "lint:fix": "biome lint --write ./packages",
     "pack:ci": "node scripts/pack-prerelease.mjs",
+    "publish:prerelease": "node scripts/pack-prerelease.mjs --publish",
     "storybook": "cd packages/storybook && pnpm storybook",
     "test:ci": "lerna run test --stream --concurrency 3",
     "tgz-package-json": "node ./scripts/tgz/index.cjs",
