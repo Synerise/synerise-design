@@ -153,5 +153,3 @@ export function getDsWorkspacePackages(
   cache = map;
   return map;
 }
-
-export default getDsWorkspacePackages;

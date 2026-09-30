@@ -42,7 +42,6 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-icon": "workspace:^",
     "@synerise/ds-typography": "workspace:^",
     "@synerise/ds-utils": "workspace:^"
   },

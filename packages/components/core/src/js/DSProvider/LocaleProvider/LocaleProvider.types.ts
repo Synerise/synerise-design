@@ -1,6 +1,5 @@
-import type { MessageFormatElement } from '@formatjs/icu-messageformat-parser';
-import type { OnErrorFn } from '@formatjs/intl';
 import type { ReactNode } from 'react';
+import type { MessageFormatElement, ResolvedIntlConfig } from 'react-intl';
 
 export type IntlMessages =
   | Record<string, string>
@@ -10,7 +9,7 @@ export type NestedMessages = {
   [key: string]: string | NestedMessages;
 };
 
-export type onErrorFnParameters = Parameters<OnErrorFn>;
+export type onErrorFnParameters = Parameters<ResolvedIntlConfig['onError']>;
 
 export type LocaleProviderProps = {
   locale?: string;

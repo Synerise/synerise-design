@@ -65,6 +65,7 @@
   "peerDependencies": {
     "@testing-library/react": ">=14",
     "react": ">=16.9.0 <= 18.3.1",
+    "react-dom": ">=16.9.0 <= 18.3.1",
     "react-intl": ">=3.12.0 <= 6.8",
     "styled-components": "^5.3.3",
     "vitest": "4"
@@ -78,8 +79,6 @@
     }
   },
   "devDependencies": {
-    "@formatjs/icu-messageformat-parser": "^2.11.1",
-    "@formatjs/intl": "^2.10.14",
     "glob": "^11.0.2",
     "hex-rgb": "^5.0.0",
     "less-vars-to-js": "^1.3.0",

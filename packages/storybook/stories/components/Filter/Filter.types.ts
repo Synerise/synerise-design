@@ -14,7 +14,7 @@ export type ExpressionWithSteps = Expression & {
   };
 };
 
-export type FilterStoryProps = FilterProps & {
+type FilterStoryProps = FilterProps & {
   layoutNativeScroll?: boolean;
   showStepTags?: boolean;
   isDateFilterOn?: boolean;

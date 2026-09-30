@@ -1,4 +1,3 @@
-// import { type UseTransitionStylesProps } from '@floating-ui/react';
 import type { OffsetConfig } from '@synerise/ds-popover';
 
 import type { TooltipProps } from './Tooltip.types';

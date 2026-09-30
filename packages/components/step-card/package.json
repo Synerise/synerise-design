@@ -46,10 +46,8 @@
     "@synerise/ds-icon": "workspace:^",
     "@synerise/ds-inline-alert": "workspace:^",
     "@synerise/ds-logic": "workspace:^",
+    "@synerise/ds-sortable": "workspace:^",
     "@synerise/ds-typography": "workspace:^"
-  },
-  "devDependencies": {
-    "@synerise/ds-sortable": "workspace:^"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

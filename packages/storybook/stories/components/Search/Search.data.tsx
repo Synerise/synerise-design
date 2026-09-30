@@ -12,7 +12,7 @@ import { AnyObject } from '@synerise/ds-search/dist/Search.types';
 
 import { avatar1 } from '../../constants';
 
-export const populateCities = (numberOfCities) => {
+const populateCities = (numberOfCities) => {
   const result: string[] = [];
   for (let i = 0; i < numberOfCities; i++) {
     result.push(faker.location.city());
@@ -20,7 +20,7 @@ export const populateCities = (numberOfCities) => {
   result.sort((a, b) => a.localeCompare(b));
   return result;
 };
-export const populateFirstName = (numberOfCities) => {
+const populateFirstName = (numberOfCities) => {
   const result: string[] = [];
   for (let i = 0; i < numberOfCities; i++) {
     result.push(faker.name.firstName());
@@ -28,7 +28,7 @@ export const populateFirstName = (numberOfCities) => {
   result.sort((a, b) => a.localeCompare(b));
   return result;
 };
-export const popuLateLastName = (numberOfCities) => {
+const popuLateLastName = (numberOfCities) => {
   const result: string[] = [];
   for (let i = 0; i < numberOfCities; i++) {
     result.push(faker.name.lastName());

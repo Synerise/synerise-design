@@ -1,7 +1,6 @@
 import type { Decorator } from '@storybook/react-vite';
 import React from 'react';
 
-import Card from '@synerise/ds-card';
 import { theme } from '@synerise/ds-core';
 
 export const fixedWrapper200: Decorator = (Story) => (
@@ -24,10 +23,6 @@ export const fixedWrapper800: Decorator = (Story) => (
   <div style={{ width: '800px' }}>{Story()}</div>
 );
 
-export const fixedWrapper1000: Decorator = (Story) => (
-  <div style={{ width: '1000px' }}>{Story()}</div>
-);
-
 export const fixedWrapper1200: Decorator = (Story) => (
   <div style={{ width: '1200px' }}>{Story()}</div>
 );
@@ -42,10 +37,6 @@ export const flexColumnWrapper: Decorator = (Story) => (
   <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
     {Story()}
   </div>
-);
-
-export const responsiveTableWrapper: Decorator = (Story) => (
-  <div style={{ padding: 20, width: '100vw', minWidth: '100%' }}>{Story()}</div>
 );
 
 export const footerWrapper: Decorator = (Story) => (
@@ -203,11 +194,6 @@ export const greyBackgroundDecorator: Decorator = (Story, storyContext) => {
       {Story()}
     </div>
   );
-};
-
-export const cardDecorator: Decorator = (Story, storyContext) => {
-  const decoratorProps = storyContext?.args?.decoratorProps || {};
-  return <Card {...decoratorProps}>{Story()}</Card>;
 };
 
 export const gappedColumnDecorator: Decorator = (Story) => {

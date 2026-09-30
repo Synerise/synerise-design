@@ -56,7 +56,7 @@ const infocardProps = {
   descriptionConfig: {},
 };
 
-export const generateInfoCard = (item: ContextItem) => {
+const generateInfoCard = (item: ContextItem) => {
   const randomCount = (
     <span className="chromatic-ignore">{Math.floor(Math.random() * 100)}</span>
   );

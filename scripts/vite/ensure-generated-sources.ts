@@ -90,5 +90,3 @@ export function ensureGeneratedSources(repoRoot: string): void {
     'Missing generated sources — run `pnpm run generate` (details above).',
   );
 }
-
-export default ensureGeneratedSources;

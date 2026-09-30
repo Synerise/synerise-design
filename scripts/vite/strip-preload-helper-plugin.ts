@@ -68,5 +68,3 @@ export function stripPreloadHelperPlugin(): Plugin {
     },
   };
 }
-
-export default stripPreloadHelperPlugin;

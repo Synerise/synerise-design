@@ -20,7 +20,7 @@ export const TABS = [
     label: 'Layout',
   },
 ];
-export const texts = {
+const texts = {
   noResults: <FormattedMessage id="DS.ITEM-FILTER.NO-RESULTS" />,
 };
 export const headerTypes = {

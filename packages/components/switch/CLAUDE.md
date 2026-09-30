@@ -73,7 +73,7 @@ DS-native `<button role="switch">`. Keyboard (space/enter) toggling works native
 ## Key dependencies
 
 - `@synerise/ds-form-field` (`FormFieldLabel`), `@synerise/ds-typography` (`macro.heading`),
-  `@synerise/ds-utils` (`DataAttributes`), `@synerise/ds-tooltip` (dev — `TooltipProps`), `classnames`.
+  `@synerise/ds-utils` (`DataAttributes`), `@synerise/ds-tooltip` (`TooltipProps`, imported by the published types), `classnames`.
 
 ## Implementation notes
 

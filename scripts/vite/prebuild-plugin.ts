@@ -62,5 +62,3 @@ export function preBuildPlugin(options: PreBuildPluginOptions): Plugin {
     },
   };
 }
-
-export default preBuildPlugin;

@@ -47,8 +47,6 @@
     "@synerise/ds-copy-icon": "workspace:^",
     "@synerise/ds-icon": "workspace:^",
     "@synerise/ds-scrollbar": "workspace:^",
-    "@synerise/ds-tooltip": "workspace:^",
-    "@synerise/ds-utils": "workspace:^",
     "highlight.js": "^10.7.2",
     "react-animate-height": "^2.0.23"
   },

@@ -91,22 +91,6 @@ export const COLOR_CONTROL = {
   control: 'color',
 } as const;
 
-export const COLOR_HUE_CONTROL = {
-  ...controlFromOptionsArray('select', [
-    '050',
-    '100',
-    '200',
-    '300',
-    '300',
-    '400',
-    '500',
-    '600',
-    '700',
-    '800',
-    '900',
-  ]),
-};
-
 export const STYLE_ARG_CONTROL = {
   table: {
     category: 'Common',
@@ -139,10 +123,6 @@ export const PREFIXCLS_ARG_CONTROL = {
   },
   control: false,
 } as const;
-
-export const GETPOPUPCONTAINER_ARG_CONTROL = {
-  control: false,
-};
 
 export const stringWithNoControl = (detail?: string) => {
   return {

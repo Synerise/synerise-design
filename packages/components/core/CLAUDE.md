@@ -382,6 +382,7 @@ RTL `render()` wrapped in `DSProvider` with sensible test defaults. Use in compo
 ## Key dependencies
 
 - `react-intl` — i18n; `LocaleProvider` wraps `IntlProvider`
+- `react-dom` (peer) — `createPortal` in `PortalRenderer`
 - `styled-components` — theming via `ThemeProvider`
 - `react-hot-toast` — toast notifications (`Toaster` is a thin wrapper)
 - `dayjs`, `moment` — date value detection in `useDataFormat`

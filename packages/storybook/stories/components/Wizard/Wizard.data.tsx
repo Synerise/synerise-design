@@ -60,8 +60,3 @@ export const STEPS = [
     ),
   },
 ];
-
-export const DEFAULT_STATE = {
-  activeStep: 0,
-  visible: false,
-};
