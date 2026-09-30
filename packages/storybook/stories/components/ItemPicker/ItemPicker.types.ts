@@ -42,7 +42,7 @@ export type FolderType = {
   author?: string;
 } & SharedItemProps;
 
-export type SimpleItem = {
+type SimpleItem = {
   itemType?: undefined;
 } & SharedItemProps;
 

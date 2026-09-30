@@ -119,8 +119,9 @@ type Syntax = 'json' | 'javascript';
 ## Key dependencies
 
 - `@monaco-editor/react` (4.4.6) — React wrapper for Monaco Editor; provides `<Editor>`, `loader`, and types
-- `monaco-editor` (0.34.1, devDep) — types used in `constants.ts` and `CodeArea.types.ts`
+- `monaco-editor` (peer `>= 0.25.0 < 1`, the same range `@monaco-editor/react` requires; 0.34.1 as devDep) — types used in `constants.ts` and `CodeArea.types.ts`, which the published d.ts imports
 - `react-intl` — **required peer dep** for default `texts`; app must have `<IntlProvider>`
+- `react-dom` (peer) — `createPortal` for the fullscreen view
 - `@synerise/ds-form-field` (`FormFieldLabel`) — renders `label` + `tooltip` above the editor
 - `@synerise/ds-inline-edit` (`InlineSelect`) — syntax switcher in BottomBar
 

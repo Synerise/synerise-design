@@ -415,5 +415,3 @@ export const createViteConfig = (
     ),
   });
 };
-
-export default createViteConfig;

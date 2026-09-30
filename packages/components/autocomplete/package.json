@@ -47,9 +47,7 @@
     "@synerise/ds-input": "workspace:^",
     "@synerise/ds-list-item": "workspace:^",
     "@synerise/ds-scrollbar": "workspace:^",
-    "@synerise/ds-search": "workspace:^",
-    "@synerise/ds-tooltip": "workspace:^",
-    "@synerise/ds-utils": "workspace:^"
+    "@synerise/ds-tooltip": "workspace:^"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

@@ -138,6 +138,8 @@ build_packages:
     - pnpm install --frozen-lockfile --offline
     - pnpm build
     - pnpm types
+    # After the build, so the strict pass also checks the published dist/ js and d.ts
+    - pnpm knip:ci
   artifacts:
     paths:
       - packages/components/*/dist

@@ -1,6 +1,6 @@
 import { theme } from '@synerise/ds-core';
 
-export const HUES = [
+const HUES = [
   '050',
   '100',
   '200',

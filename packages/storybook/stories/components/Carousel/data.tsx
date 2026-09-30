@@ -7,7 +7,7 @@ import Carousel from '@synerise/ds-carousel';
 import { theme } from '@synerise/ds-core';
 
 /** A colourful demo panel — one per slide. */
-export const Slide = styled.div<{ $bg: string }>`
+const Slide = styled.div<{ $bg: string }>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -40,7 +40,7 @@ export const colorfulSlides = (count = 5): React.ReactNode[] =>
   ));
 
 /** A compact product tile for the multi-slide (`slidesToShow`) strip demo. */
-export const ProductCard = styled.div`
+const ProductCard = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;

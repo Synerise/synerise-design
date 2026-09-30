@@ -176,6 +176,7 @@ import ListItem, { ListWrapper, ListContextProvider, useListContext } from '@syn
 
 ## Styling / Key dependencies / Implementation notes
 
+- **`react-intl` (peer)** — `ListWrapper` calls `useIntl()`, so an `IntlProvider` must be present.
 - **`@floating-ui/react` `useListItem`** — `Text` registers each item with floating-ui's list context via `useListItem()`. The merged ref (`useMergeRefs`) handles both the forwarded ref and the floating-ui ref. This is required for keyboard navigation in dropdowns.
 - **`useDropdown` integration** — if an item is rendered inside `@synerise/ds-core`'s `DropdownProvider`, clicking an item calls `setIsOpen(false)` when `hideOnItemClick === true`.
 - **`description` renders at `size="large"` and `size="auto"`** — setting `description` on a default-size item silently does nothing. At `large` it is one ellipsized line; at `auto` it wraps. The allow-list is `rendersDescription` in `components/Text/ItemLabel.const.ts`, deliberately not `size !== 'default'`, so a future size has to opt in explicitly.

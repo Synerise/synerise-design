@@ -10,7 +10,6 @@ import {
   controlFromOptionsArray,
   REACT_NODE_AS_STRING,
 } from '../../utils';
-import { type } from '../BroadcastBar/BroadcastBar.data';
 
 export default {
   title: 'Components/Alert/BroadcastBar',

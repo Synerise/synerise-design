@@ -10,6 +10,10 @@
 - **Biome** for lint + format + import order (80 char lines, single quotes, 2-space indent).
   `pnpm lint` / `pnpm lint:fix` / `pnpm format` / `pnpm check` — `pnpm lint:ci` is the CI gate.
   Suppress a rule with `// biome-ignore lint/<group>/<rule>: <reason>` (the reason is mandatory)
+- **knip** keeps every `package.json` in sync with its imports (`pnpm build && pnpm knip`; `pnpm knip:ci`
+  gates CI after the build). A runtime import must be declared in the package's **own** manifest — the
+  root one does not count — and anything the published `d.ts` imports belongs in `dependencies`, not
+  `devDependencies`. A false positive goes in `knip.config.ts` with a comment explaining why (see `CONTRIBUTING.md`)
 - Relative imports only — no path aliases
 - Named exports preferred, PascalCase components, camelCase utilities
 - TypeScript `strict: true`, no `any` — use `unknown` + type guards

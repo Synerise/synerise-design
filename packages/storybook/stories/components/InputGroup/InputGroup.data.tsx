@@ -5,7 +5,7 @@ import { RawInput } from '@synerise/ds-input';
 import InputNumber from '@synerise/ds-input-number';
 import Select from '@synerise/ds-select';
 
-export const data = ['POST', 'GET'];
+const data = ['POST', 'GET'];
 
 export const inputGroupOptions = [
   'input',

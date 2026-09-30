@@ -151,7 +151,6 @@ Star favourite toggle. Uses `Button`.
 - `@synerise/ds-tag` — optional status tag inside button label
 - `@synerise/ds-tooltip` — optional tooltip wrapping button label
 - `classnames` — className composition in Creator and Expander
-- `csstype` — `JustifyContentProperty` type
 
 ## Implementation notes
 

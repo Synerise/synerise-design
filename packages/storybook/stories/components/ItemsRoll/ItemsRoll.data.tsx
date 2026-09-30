@@ -16,7 +16,7 @@ import InformationCard from '@synerise/ds-information-card';
 import Tooltip from '@synerise/ds-tooltip';
 
 export const SEARCH_PLACEHOLDER = 'Search...';
-export const TEXT = 'Example item';
+const TEXT = 'Example item';
 
 const infocard = (title: string, type: string) => () => (
   <InformationCard
@@ -30,8 +30,7 @@ const infocard = (title: string, type: string) => () => (
   />
 );
 
-export const hundredItems = Array.from(Array(100).keys());
-export const thousandItems = Array.from(Array(1000).keys());
+const hundredItems = Array.from(Array(100).keys());
 
 export const ITEMS_100 = hundredItems.map((key) => ({
   id: uuid(),
@@ -49,12 +48,6 @@ export const ITEMS_LARGE = hundredItems.map((key) => ({
   ),
   text: `${TEXT}-${key}`,
   renderHoverTooltip: infocard(`${TEXT}-${key}`, 'Large item'),
-}));
-
-export const ITEMS_1000 = thousandItems.map((key) => ({
-  id: uuid(),
-  text: `${TEXT}-${key}`,
-  renderHoverTooltip: infocard(`${TEXT}-${key}`, 'Item'),
 }));
 
 const tenParams = Array.from(Array(13).keys()).map((key) => ({

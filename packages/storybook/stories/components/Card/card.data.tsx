@@ -219,14 +219,6 @@ export const CARD_CONTENT = (
   </>
 );
 
-export const CARD_BACKGROUNDS = [
-  'white',
-  'white-shadow',
-  'grey',
-  'grey-shadow',
-  'outline',
-];
-
 export const CUSTOM_BADGES = {
   icon: (
     <div style={{ marginRight: '16px' }}>

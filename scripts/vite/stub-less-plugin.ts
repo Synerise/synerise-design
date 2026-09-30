@@ -33,5 +33,3 @@ export function stubLessImportsPlugin(): Plugin {
     },
   };
 }
-
-export default stubLessImportsPlugin;

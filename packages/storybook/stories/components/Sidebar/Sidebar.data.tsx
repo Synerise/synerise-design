@@ -18,12 +18,6 @@ export const createSidebarPanels = () =>
     </Sidebar.Panel>
   ));
 
-export const createPanel = (header, id) => (
-  <Sidebar.Panel header={header} id={id} key={id}>
-    {mockContent}
-  </Sidebar.Panel>
-);
-
 export const SIDEBAR_WITH_BUTTON_DATA = [
   { text: 'Item 1' },
   { text: 'Item 2' },

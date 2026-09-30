@@ -30,7 +30,6 @@ import {
   STRING_CONTROL,
 } from '../../utils';
 import {
-  hoverSuffixType,
   LIST_ITEMS,
   prefixArgTypes,
   prefixType,
@@ -694,7 +693,7 @@ export const AllSuffixes: StoryObj<
     suffixType: controlFromOptionsArray('select', Object.values(suffixType)),
     hoverSuffixType: controlFromOptionsArray(
       'select',
-      Object.values(hoverSuffixType),
+      Object.values(suffixType),
     ),
   },
   args: {

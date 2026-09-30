@@ -48,9 +48,7 @@
     "@synerise/ds-panel": "workspace:^",
     "@synerise/ds-skeleton": "workspace:^",
     "@synerise/ds-tooltip": "workspace:^",
-    "@synerise/ds-typography": "workspace:^"
-  },
-  "devDependencies": {
+    "@synerise/ds-typography": "workspace:^",
     "@synerise/ds-utils": "workspace:^"
   },
   "peerDependencies": {

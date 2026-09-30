@@ -12,8 +12,6 @@ import { TimePickerProps } from '@synerise/ds-time-picker';
 type DateLimitMode =
   Required<DateRangePickerProps>['filterValueSelectionModes'][number];
 
-export { DEFAULT_RANGE_END, DEFAULT_RANGE_START };
-
 export const TEXTS = {
   after: 'after',
   allTime: 'Lifetime',

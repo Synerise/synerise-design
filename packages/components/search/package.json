@@ -48,7 +48,6 @@
     "@synerise/ds-scrollbar": "workspace:^",
     "@synerise/ds-tooltip": "workspace:^",
     "@synerise/ds-utils": "workspace:^",
-    "react-onclickoutside": "^6.9.0",
     "react-window": "^1.8.11"
   },
   "peerDependencies": {

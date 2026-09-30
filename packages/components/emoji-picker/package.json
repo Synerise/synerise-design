@@ -43,7 +43,6 @@
   "types": "dist/index.d.ts",
   "dependencies": {
     "@synerise/ds-button": "workspace:^",
-    "@synerise/ds-divider": "workspace:^",
     "@synerise/ds-dropdown": "workspace:^",
     "@synerise/ds-empty-states": "workspace:^",
     "@synerise/ds-icon": "workspace:^",

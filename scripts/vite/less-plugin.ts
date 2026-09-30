@@ -159,5 +159,3 @@ export function lessCompilePlugin(options: LessPluginOptions = {}): Plugin {
     },
   };
 }
-
-export default lessCompilePlugin;

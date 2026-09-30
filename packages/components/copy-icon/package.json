@@ -43,10 +43,10 @@
   "types": "dist/index.d.ts",
   "dependencies": {
     "@synerise/ds-icon": "workspace:^",
-    "@synerise/ds-tooltip": "workspace:^"
+    "@synerise/ds-tooltip": "workspace:^",
+    "@synerise/ds-utils": "workspace:^"
   },
   "devDependencies": {
-    "@synerise/ds-utils": "workspace:^",
     "vitest": "4"
   },
   "peerDependencies": {

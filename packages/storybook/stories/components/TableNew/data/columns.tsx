@@ -23,7 +23,7 @@ import { TAGS } from './tags';
 
 type RowType = (typeof DATA_SOURCE_FULL)[number];
 
-export const COLUMNS_WITH_LABELS: ColumnDef<RowType, unknown>[] = [
+const COLUMNS_WITH_LABELS: ColumnDef<RowType, unknown>[] = [
   {
     accessorKey: 'name',
     id: 'name',
@@ -71,7 +71,7 @@ export const COLUMNS_WITH_LABELS: ColumnDef<RowType, unknown>[] = [
   },
 ];
 
-export const COLUMNS_WITH_ICONS: ColumnDef<RowType, unknown>[] = [
+const COLUMNS_WITH_ICONS: ColumnDef<RowType, unknown>[] = [
   {
     accessorKey: 'country',
     id: 'country',
@@ -113,7 +113,7 @@ export const COLUMNS_WITH_ICONS: ColumnDef<RowType, unknown>[] = [
   },
 ];
 
-export const COLUMNS_WITH_STATUSES: ColumnDef<RowType, unknown>[] = [
+const COLUMNS_WITH_STATUSES: ColumnDef<RowType, unknown>[] = [
   {
     accessorKey: 'status',
     id: 'status',
@@ -172,7 +172,7 @@ export const COLUMNS_WITH_STATUSES: ColumnDef<RowType, unknown>[] = [
   },
 ];
 
-export const COLUMNS_WITH_AVATARS: ColumnDef<RowType, unknown>[] = [
+const COLUMNS_WITH_AVATARS: ColumnDef<RowType, unknown>[] = [
   {
     accessorKey: 'avatar',
     id: 'avatar-s',
@@ -315,7 +315,7 @@ export const COLUMNS_WITH_AVATARS: ColumnDef<RowType, unknown>[] = [
   },
 ];
 
-export const COLUMNS_WITH_TRIGGERS: ColumnDef<RowType, unknown>[] = [
+const COLUMNS_WITH_TRIGGERS: ColumnDef<RowType, unknown>[] = [
   {
     accessorKey: 'select',
     id: 'select',
@@ -408,7 +408,7 @@ export const COLUMNS_WITH_TRIGGERS: ColumnDef<RowType, unknown>[] = [
   },
 ];
 
-export const COLUMNS_WITH_TAGS: ColumnDef<RowType, unknown>[] = [
+const COLUMNS_WITH_TAGS: ColumnDef<RowType, unknown>[] = [
   {
     accessorKey: 'tags',
     id: 'tags',
@@ -433,7 +433,7 @@ export const COLUMNS_WITH_TAGS: ColumnDef<RowType, unknown>[] = [
   },
 ];
 
-export const COLUMNS_WITH_PROGRESS_BAR: ColumnDef<RowType, unknown>[] = [
+const COLUMNS_WITH_PROGRESS_BAR: ColumnDef<RowType, unknown>[] = [
   {
     id: 'progress-bar',
     header: 'Progress Bar',
@@ -452,7 +452,7 @@ export const COLUMNS_WITH_PROGRESS_BAR: ColumnDef<RowType, unknown>[] = [
   },
 ];
 
-export const COLUMNS_WITH_INPUT_NUMBER: ColumnDef<RowType, unknown>[] = [
+const COLUMNS_WITH_INPUT_NUMBER: ColumnDef<RowType, unknown>[] = [
   {
     accessorKey: 'input-number',
     id: 'input-number',

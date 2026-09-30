@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker';
 
-export const companies = new Array(10).fill('').map(() => faker.company.name());
+const companies = new Array(10).fill('').map(() => faker.company.name());
 
 export const fakeData = new Array(50).fill({}).map((v, i) => ({
   id: String(i),

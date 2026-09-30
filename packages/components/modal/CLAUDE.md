@@ -183,4 +183,5 @@ document.body (portal target)
 - `@synerise/ds-typography` — `Typography.Title` for the modal title
 - `@synerise/ds-core` (peer) — `setPortalContent` for `showModal`; `renderWithProvider` for tests, from its `/testing` subpath
 - `styled-components` (peer) — all styling
-- `react` (peer) — `createPortal`, `forwardRef`, `useImperativeHandle`
+- `react` (peer) — `forwardRef`, `useImperativeHandle`
+- `react-dom` (peer) — `createPortal`
