@@ -3,7 +3,6 @@ import styled, { css } from 'styled-components';
 import Button, { type StyledButton } from '@synerise/ds-button';
 import { IconContainer } from '@synerise/ds-icon';
 import { Text, Label as TypographyLabel } from '@synerise/ds-typography';
-import { hexToRgba } from '@synerise/ds-utils';
 
 export const Container = styled.div`
   width: 100%;
@@ -97,14 +96,13 @@ export const DropAreaButton = styled.button<{
     css`
       &&&:active,
       &&& {
-        background-color: ${hexToRgba(props.theme.palette['grey-200'], 0.4)};
+        background-color: var(--ds-file-uploader-bg-pressed);
       }
     `}
 
 
   &:hover:not(:disabled) {
-    background-color: ${(props) =>
-      hexToRgba(props.theme.palette['grey-200'], 0.2)};
+    background-color: var(--ds-file-uploader-bg-hover);
     border-color: var(--ds-color-border-base-stronghover);
 
     ${DropAreaLabel}, ${LargeDropAreaLabel} {

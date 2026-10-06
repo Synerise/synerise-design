@@ -173,7 +173,7 @@ const uploaderRef = useRef(null);
 
 ## Styling
 
-Styles in `FileUploader.styles.ts` (and per-variant siblings). Uses `props.theme.palette` tokens from `@synerise/ds-core` throughout — no hardcoded hex values. Drop area transitions colours on `isDragActive`, hover, focus, error, and disabled states.
+Styles in `FileUploader.styles.ts` (and per-variant siblings). Hover/pressed backgrounds use `--ds-file-uploader-bg-hover` / `--ds-file-uploader-bg-pressed` (translucent module tokens); the remaining colours still use `props.theme.palette` from `@synerise/ds-core` — no hardcoded hex values. Drop area transitions colours on `isDragActive`, hover, focus, error, and disabled states.
 
 ## Key dependencies
 
