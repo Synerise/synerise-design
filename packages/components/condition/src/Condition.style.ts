@@ -318,7 +318,7 @@ export const ConditionConnections = styled.span<{
     height: 1px;
     top: 16px;
     left: ${(props) => (props.first ? '0' : '16px')};
-    background-color: ${(props) => props.theme.palette['grey-300']};
+    background-color: var(--ds-color-border-base-strong);
   }
   &:after {
     display: ${(props) =>
@@ -332,7 +332,7 @@ export const ConditionConnections = styled.span<{
     height: auto;
     top: ${(props) => (props.first ? '16px' : '0')};
     bottom: ${(props) => (props.last ? '16px' : '-100%')};
-    background-color: ${(props) => props.theme.palette['grey-300']};
+    background-color: var(--ds-color-border-base-strong);
   }
 `;
 export const ConditionRow = styled.div<{
