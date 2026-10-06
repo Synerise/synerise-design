@@ -145,7 +145,7 @@ describe('Context selector component', () => {
       }),
     );
     // The trigger button's error background is the tokenised
-    // var(--ds-color-background-danger-subtlehover) (red-100). jsdom can't reliably
+    // var(--ds-buttons-error-bg-default) (red-100). jsdom can't reliably
     // resolve var() via getComputedStyle — asserting the resolved hex is flaky — so
     // assert the error rule is wired into the injected styled-components CSS instead.
     const injectedCss = Array.from(document.querySelectorAll('style'))
@@ -153,7 +153,7 @@ describe('Context selector component', () => {
       .join('')
       .replace(/\s/g, '');
     expect(injectedCss).toContain(
-      'background-color:var(--ds-color-background-danger-subtlehover)',
+      'background-color:var(--ds-buttons-error-bg-default)',
     );
   });
 });

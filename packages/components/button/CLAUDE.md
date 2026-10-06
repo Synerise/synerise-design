@@ -161,6 +161,9 @@ Star favourite toggle. Uses `Button`.
 - **`custom-color-ghost`** — has its own variant entry in `Button.variants.ts` (maps to ghost-primary base styles). Hover preserves the custom color instead of switching to blue.
 - **`ButtonToggle` blurs after pointer-up** — `setTimeout(..., 200)` removes focus after mouse use.
 - **`Checkbox` indeterminate click** — always transitions to `checked=true`.
+- **Error state tokens** — `error` uses `--ds-buttons-error-*` (bg default/hover/pressed, border, text default/pressed). Hover is red-200 (was `palette['red-200']`).
+- **Creator tokens** — hover/pressed backgrounds use `--ds-button-creator-bg-hover` / `-bg-pressed`; upload hover text uses `--ds-button-creator-upload-text-hover`.
+- **Intended visual shift (Chromatic)** — Creator `status="upload"` hover text changes from blue-500 to blue-600 (`text.brand.default`). This is a design decision, not a regression.
 
 ## Deprecated
 

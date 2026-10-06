@@ -33,4 +33,20 @@ describe('Button', () => {
     );
     expect(screen.getByText(TAG_NAME)).toBeInTheDocument();
   });
+
+  it('should wire error state to buttons-error tokens', () => {
+    renderWithProvider(<Button error>Click ME!</Button>);
+    const css = Array.from(document.querySelectorAll('style'))
+      .map((s) => s.textContent)
+      .join('')
+      .replace(/\s/g, '');
+    [
+      'background-color:var(--ds-buttons-error-bg-default)',
+      'background-color:var(--ds-buttons-error-bg-hover)',
+      'background-color:var(--ds-buttons-error-bg-pressed)',
+      'var(--ds-buttons-error-border)',
+      'color:var(--ds-buttons-error-text-default)',
+      'color:var(--ds-buttons-error-text-pressed)',
+    ].forEach((decl) => expect(css).toContain(decl));
+  });
 });

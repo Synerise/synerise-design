@@ -1,8 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import type { ThemeProps } from '@synerise/ds-core';
 import { IconContainer } from '@synerise/ds-icon';
-import { hexToRgba } from '@synerise/ds-utils';
 
 import BaseButton from '../BaseButton';
 import { CreatorStatus } from './Creator.types';
@@ -25,7 +23,7 @@ const errorStyles = () => css`
   }
 `;
 
-const uploadStyles = ({ theme }: ThemeProps) => css`
+const uploadStyles = () => css`
   & {
     border: 1px dashed var(--ds-color-border-brand-strong);
     background-color: var(--ds-color-background-brand-subtle);
@@ -33,7 +31,7 @@ const uploadStyles = ({ theme }: ThemeProps) => css`
     &:hover:not(:disabled):not(:focus-visible) {
       border: 1px dashed var(--ds-color-border-brand-strong);
       background-color: var(--ds-color-background-brand-subtle);
-      color: ${theme.palette['blue-500']};
+      color: var(--ds-button-creator-upload-text-hover);
     }
     &:focus-visible:active {
       border: 1px dashed var(--ds-color-border-brand-default);
@@ -99,12 +97,11 @@ export const Creator = styled(BaseButton).attrs({
 
     &:hover:not(:disabled):not(:focus-visible) {
       border: 1px dashed var(--ds-color-border-base-stronghover);
-      background-color: ${({ theme }) =>
-        hexToRgba(theme.palette['grey-200'], 0.25)};
+      background-color: var(--ds-button-creator-bg-hover);
     }
     ${(props) =>
       props.pressed &&
-      `&&{ background-color: ${hexToRgba(props.theme.palette['grey-200'], 0.4)}; }`}
+      `&&{ background-color: var(--ds-button-creator-bg-pressed); }`}
 
     &:focus-visible:active {
       border: 1px dashed var(--ds-color-border-base-stronghover) !important ;
@@ -120,6 +117,6 @@ export const Creator = styled(BaseButton).attrs({
       background-color: var(--ds-color-background-base-subtle);
     }
     ${(props) => props.status === CreatorStatus.Error && errorStyles()}
-    ${(props) => props.status === CreatorStatus.Upload && uploadStyles(props)}
+    ${(props) => props.status === CreatorStatus.Upload && uploadStyles()}
   }
 `;

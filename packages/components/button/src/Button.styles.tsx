@@ -497,33 +497,33 @@ export const StyledButton = styled(BaseButton)<StyledButtonProps>`
         props.error &&
         css`
         &.ant-btn {
-          background-color: var(--ds-color-background-danger-subtlehover);
-          box-shadow: inset 0 0 0 1px var(--ds-color-border-danger-default);
-          color: var(--ds-color-text-danger-default);
+          background-color: var(--ds-buttons-error-bg-default);
+          box-shadow: inset 0 0 0 1px var(--ds-buttons-error-border);
+          color: var(--ds-buttons-error-text-default);
           .btn-focus {
             box-shadow: none;
           }
           &&:hover:not(:disabled):not(:focus-visible):not(.pressed) {
-            background-color: ${props.theme.palette[`red-200`]};
-            box-shadow: inset 0 0 0 1px var(--ds-color-border-danger-default);
-            color: var(--ds-color-text-danger-default);
+            background-color: var(--ds-buttons-error-bg-hover);
+            box-shadow: inset 0 0 0 1px var(--ds-buttons-error-border);
+            color: var(--ds-buttons-error-text-default);
           }
           &.pressed {
-            background-color: var(--ds-color-background-danger-solidhover);
+            background-color: var(--ds-buttons-error-bg-pressed);
             box-shadow: none;
-            color: var(--ds-color-text-danger-onsolid);
+            color: var(--ds-buttons-error-text-pressed);
           }
           &&:focus-visible:not(.pressed) {
             border: none !important;
-            background-color: var(--ds-color-background-danger-subtlehover);
-            color: var(--ds-color-text-danger-default);
+            background-color: var(--ds-buttons-error-bg-default);
+            color: var(--ds-buttons-error-text-default);
             .btn-focus {
               box-shadow: inset 0 0 0 2px var(--ds-color-focus-base-default);
             }
           }
         }
         ${RippleEffect} {
-          background-color: var(--ds-color-background-danger-solidhover);
+          background-color: var(--ds-buttons-error-bg-pressed);
         }
       `}
           ${(props) =>
@@ -531,13 +531,13 @@ export const StyledButton = styled(BaseButton)<StyledButtonProps>`
             props.type === 'secondary' &&
             css`
         &&&.ant-btn {
-          color: var(--ds-color-text-danger-default);
+          color: var(--ds-buttons-error-text-default);
           .btn-focus {
             box-shadow: none;
           }
 
           &&&:hover {
-            background-color: ${props.theme.palette[`red-200`]};
+            background-color: var(--ds-buttons-error-bg-hover);
             .btn-focus {
               box-shadow: none;
             }
@@ -548,11 +548,11 @@ export const StyledButton = styled(BaseButton)<StyledButtonProps>`
             }
           }
           &&&.pressed {
-            background-color: var(--ds-color-background-danger-solidhover);
-            color: var(--ds-color-text-danger-onsolid);
+            background-color: var(--ds-buttons-error-bg-pressed);
+            color: var(--ds-buttons-error-text-pressed);
           }
           ${RippleEffect} {
-            background-color: var(--ds-color-background-danger-solidhover);
+            background-color: var(--ds-buttons-error-bg-pressed);
           }
         }
       `}
