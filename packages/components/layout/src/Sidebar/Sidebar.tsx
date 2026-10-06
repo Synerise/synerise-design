@@ -81,11 +81,11 @@ export const Sidebar = ({
           >
             <S.ArrowIcon
               component={side === 'right' ? <AngleLeftS /> : <AngleRightS />}
-              color="var(--ds-color-icon-onsolid-default)"
+              color="var(--ds-color-icon-base-onsolid)"
             />
             <S.CloseIcon
               component={<CloseS />}
-              color="var(--ds-color-icon-onsolid-default)"
+              color="var(--ds-color-icon-base-onsolid)"
             />
           </S.SidebarButton>
         ))}

@@ -229,7 +229,7 @@ export const Wrapper = styled.div<StyledListItemProps>`
           ${SuffixWrapper},
         ${ArrowRight},
         ${Content} {
-            color: var(--ds-color-text-brand-hover);
+            color: var(--ds-color-text-brand-defaulthover);
           }
 
           &:focus-visible:not(:active) ${Inner} {
@@ -261,7 +261,7 @@ export const Wrapper = styled.div<StyledListItemProps>`
             ${PrefixWrapper},
             ${SuffixWrapper},
           ${Content} {
-              color: var(--ds-color-text-brand-hover);
+              color: var(--ds-color-text-brand-defaulthover);
             }
           }
         }

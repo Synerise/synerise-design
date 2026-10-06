@@ -26,7 +26,7 @@ export const TextTrigger = styled.div<{
   &&&:focus {
     .ds-title,
     .ds-icon {
-      color: var(--ds-color-text-brand-hover);
+      color: var(--ds-color-text-brand-defaulthover);
     }
   }
 

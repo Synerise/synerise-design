@@ -130,10 +130,7 @@ export const LargeTypeWithImage: Story = {
       </Button>
     ),
     icon: (
-      <Icon
-        color="var(--ds-color-icon-onsolid-default)"
-        component={<InfoM />}
-      />
+      <Icon color="var(--ds-color-icon-base-onsolid)" component={<InfoM />} />
     ),
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
   },
@@ -144,10 +141,7 @@ export const LargeScrollableType: Story = {
     type: 'largeScrollable',
     title: TOOLTIP_TITLE,
     icon: (
-      <Icon
-        color="var(--ds-color-icon-onsolid-default)"
-        component={<InfoM />}
-      />
+      <Icon color="var(--ds-color-icon-base-onsolid)" component={<InfoM />} />
     ),
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras quis pellentesque felis, luctus vestibulum ligula. Vestibulum tristique vulputate nulla, sed tempor nisi rhoncus a. Suspendisse sit amet vulputate dui, sit amet congue dolor. Ut sagittis ex sed turpis tristique, in hendrerit ligula venenatis. Aenean fringilla libero a rhoncus viverra. Sed non orci libero. Etiam venenatis ultrices odio, vel sodales massa facilisis ac. Vivamus ac fermentum elit. Aenean vel facilisis tortor, sit amet ornare erat. ',

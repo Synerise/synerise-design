@@ -122,7 +122,7 @@ const FilterItemComponent = ({
                 <Icon
                   className="selected-item-icon"
                   component={<CheckS />}
-                  color="var(--ds-color-icon-onsolid-success)"
+                  color="var(--ds-color-icon-success-onsolid)"
                 />
               ) : (
                 <Popconfirm

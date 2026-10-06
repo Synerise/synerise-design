@@ -55,7 +55,7 @@ export const Wrapper = styled.div<{
   border-radius: 3px;
   color: ${(props): string =>
     props.color === 'dark'
-      ? 'var(--ds-color-text-onsolid-default)'
+      ? 'var(--ds-color-text-base-onsolid)'
       : 'var(--ds-color-text-base-muted)'};
   padding: ${(props): string => getPadding(props)};
   font-size: 11px;

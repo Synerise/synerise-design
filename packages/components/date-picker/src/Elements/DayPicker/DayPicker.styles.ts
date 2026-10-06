@@ -493,7 +493,7 @@ ${daySelector('entered')}:not(${daySelector('outside')}):not(${daySelector('end'
         border-radius: 3px;
         z-index: 9;
         font-weight: 400;
-        color: var(--ds-color-text-onsolid-default);
+        color: var(--ds-color-text-base-onsolid);
       }
   }
   ${daySelector('initial')}:not(${daySelector('disabled')}):not(${daySelector('entered')}),

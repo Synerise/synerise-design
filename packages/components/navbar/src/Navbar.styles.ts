@@ -10,7 +10,7 @@ export const Navbar = styled.div<{ color?: string }>`
   display: flex;
   flex: 0 0 100%;
   align-items: center;
-  color: var(--ds-color-text-onsolid-default);
+  color: var(--ds-color-text-base-onsolid);
 
   img {
     max-width: 100px;
@@ -67,9 +67,9 @@ export const NavbarAlertNotification = styled.div`
     margin-left: 12px;
   }
   .ds-inline-alert svg {
-    color: var(--ds-color-text-onsolid-default);
+    color: var(--ds-color-text-base-onsolid);
   }
   .ds-inline-alert > span {
-    color: var(--ds-color-text-onsolid-default);
+    color: var(--ds-color-text-base-onsolid);
   }
 `;

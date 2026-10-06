@@ -14,7 +14,7 @@ const Slide = styled.div<{ $bg: string }>`
   height: 220px;
   border-radius: 8px;
   background: ${({ $bg }) => $bg};
-  color: var(--ds-color-text-onsolid-default);
+  color: var(--ds-color-text-base-onsolid);
   font-size: 32px;
   font-weight: 600;
   user-select: none;

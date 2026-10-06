@@ -31,11 +31,11 @@ export const Logic = styled.div<{ readOnly?: boolean }>`
     !readOnly
       ? ` &:hover {
     .ds-title {
-      color: var(--ds-color-text-brand-hover);
+      color: var(--ds-color-text-brand-defaulthover);
       &:after {
         background-image: linear-gradient(
           to right,
-          var(--ds-color-text-brand-hover) 25%,
+          var(--ds-color-text-brand-defaulthover) 25%,
           transparent 0%
         );
       }

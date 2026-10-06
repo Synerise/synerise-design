@@ -253,7 +253,7 @@ export const RadioButtonLabel = styled.label<{
       /* '&&' matches the checked block's specificity and, coming later, restores white text on the
          solid (blue) background — otherwise the checked block's blue 'color' would win. */
       && {
-        color: var(--ds-color-text-onsolid-default);
+        color: var(--ds-color-text-base-onsolid);
         background-color: var(--ds-color-background-brand-solid);
         border-color: var(--ds-color-background-brand-solid);
 

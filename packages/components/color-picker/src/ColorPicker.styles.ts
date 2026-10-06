@@ -113,7 +113,7 @@ export const SwatchDot = styled.span`
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background-color: var(--ds-color-icon-onsolid-default);
+  background-color: var(--ds-color-icon-base-onsolid);
 `;
 
 /** An empty swatch slot (Figma: Swatch — Default). */

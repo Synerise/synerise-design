@@ -28,7 +28,7 @@ const LayoutNavbar = () => (
         >
           <Icon
             component={<Add3M />}
-            color={'var(--ds-color-icon-onsolid-default)'}
+            color={'var(--ds-color-icon-base-onsolid)'}
           />
         </Button>
         <Button
@@ -38,7 +38,7 @@ const LayoutNavbar = () => (
         >
           <Icon
             component={<BookM />}
-            color={'var(--ds-color-icon-onsolid-default)'}
+            color={'var(--ds-color-icon-base-onsolid)'}
           />
         </Button>
         <Button
@@ -48,7 +48,7 @@ const LayoutNavbar = () => (
         >
           <Icon
             component={<HelpM />}
-            color={'var(--ds-color-icon-onsolid-default)'}
+            color={'var(--ds-color-icon-base-onsolid)'}
           />
         </Button>
         <Button
@@ -58,7 +58,7 @@ const LayoutNavbar = () => (
         >
           <Icon
             component={<NotificationsActiveM />}
-            color={'var(--ds-color-icon-onsolid-default)'}
+            color={'var(--ds-color-icon-base-onsolid)'}
           />
         </Button>
       </>,

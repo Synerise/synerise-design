@@ -69,7 +69,7 @@ export const CheckboxInner = styled.span<{
     css`
       background-color: var(--ds-form-checkbox-bg-selected);
       border-color: var(--ds-form-checkbox-bg-selected);
-      color: var(--ds-color-text-onsolid-default);
+      color: var(--ds-color-text-base-onsolid);
 
       ${CheckIcon} {
         opacity: 1;
@@ -121,10 +121,12 @@ export const CheckboxInner = styled.span<{
       border-color: var(--ds-form-checkbox-border-color-blocked) !important;
       background-color: var(--ds-form-checkbox-bg-blocked) !important;
 
-      ${props.$checked &&
-      css`
+      ${
+        props.$checked &&
+        css`
         color: var(--ds-color-icon-base-muted);
-      `}
+      `
+      }
     `}
 `;
 

@@ -84,8 +84,8 @@ export const link = css`
   color: var(--ds-color-text-brand-default);
   &:hover {
     text-decoration: underline;
-    /* ⚑ Shift: link hover blue-500 → --ds-color-text-brand-hover (blue-700, darker; per UX 2026-07-21). */
-    color: var(--ds-color-text-brand-hover);
+    /* ⚑ Shift: link hover blue-500 → --ds-color-text-brand-defaulthover (blue-700, darker; per UX 2026-07-21). */
+    color: var(--ds-color-text-brand-defaulthover);
   }
 `;
 

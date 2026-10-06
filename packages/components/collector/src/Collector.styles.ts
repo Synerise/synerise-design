@@ -136,9 +136,9 @@ export const CollectorValue = styled(Value)<{ hasError?: boolean }>`
     css`
       && {
         background: var(--ds-color-background-danger-solid);
-        color: var(--ds-color-text-onsolid-danger);
+        color: var(--ds-color-text-danger-onsolid);
         ${IconWrapper} {
-          color: var(--ds-color-icon-onsolid-danger);
+          color: var(--ds-color-icon-danger-onsolid);
         }
       }
     `}

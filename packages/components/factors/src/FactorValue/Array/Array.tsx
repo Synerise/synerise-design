@@ -58,7 +58,7 @@ export const Array = <ItemType extends ArrayItemType>({
     color: error
       ? 'var(--ds-color-background-danger-solid)'
       : theme.palette['grey-600'],
-    textColor: 'var(--ds-color-text-onsolid-default)',
+    textColor: 'var(--ds-color-text-base-onsolid)',
     shape: TagShape.DEFAULT_ROUND,
   };
 

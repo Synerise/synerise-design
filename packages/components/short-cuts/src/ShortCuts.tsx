@@ -26,7 +26,7 @@ const ShortCuts = ({
         <Icon
           color={
             color === 'dark'
-              ? 'var(--ds-color-icon-onsolid-default)'
+              ? 'var(--ds-color-icon-base-onsolid)'
               : 'var(--ds-color-icon-base-default)'
           }
           component={icon}

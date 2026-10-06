@@ -50,7 +50,7 @@ export const MatrixCell = styled.div<{ type?: string }>`
     (props.type === 'ghost-white' || props.type === 'tertiary-white') &&
     `
       background: ${customColors.grey['600']};
-      color: var(--ds-color-text-onsolid-default);
+      color: var(--ds-color-text-base-onsolid);
     `}
 `;
 
@@ -60,7 +60,7 @@ export const ButtonTypeWrapper = styled.div<{ type?: string }>`
     (props.type === 'ghost-white' || props.type === 'tertiary-white') &&
     `
       background: ${customColors.grey['600']};
-      color: var(--ds-color-text-onsolid-default);
+      color: var(--ds-color-text-base-onsolid);
     `}
   border-bottom: solid 1px var(--ds-color-border-base-default);
   &:last-of-type {

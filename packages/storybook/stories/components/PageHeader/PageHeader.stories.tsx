@@ -238,7 +238,7 @@ export const withDropdown: Story = {
               Edit
               <Icon
                 component={<AngleDownS />}
-                color={'var(--ds-color-icon-onsolid-default)'}
+                color={'var(--ds-color-icon-base-onsolid)'}
               />
             </Button>
           </>

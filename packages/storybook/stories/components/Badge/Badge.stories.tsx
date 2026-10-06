@@ -87,7 +87,7 @@ export const Standalone: StoryObj<BadgeProps> = {
           {...args}
           style={{
             backgroundColor: 'transparent',
-            color: 'var(--ds-color-text-onsolid-default)',
+            color: 'var(--ds-color-text-base-onsolid)',
           }}
         />
       </div>

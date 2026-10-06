@@ -108,7 +108,7 @@ export const TabContainer = styled.button<{ block?: boolean }>`
     }
     &:focus:active {
       ${TabLabel} {
-        color: var(--ds-color-text-brand-hover);
+        color: var(--ds-color-text-brand-defaulthover);
       }
     }
     svg {
@@ -182,11 +182,11 @@ export const TabContainer = styled.button<{ block?: boolean }>`
 
   &.pressed {
     svg {
-      color: var(--ds-color-text-brand-hover);
+      color: var(--ds-color-text-brand-defaulthover);
     }
 
     ${TabLabel} {
-      color: var(--ds-color-text-brand-hover);
+      color: var(--ds-color-text-brand-defaulthover);
     }
     && {
       &::after {

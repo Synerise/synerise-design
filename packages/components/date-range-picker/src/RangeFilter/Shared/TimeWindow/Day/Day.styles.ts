@@ -19,7 +19,7 @@ export const Container = styled.div`
       border-radius: 3px;
       z-index: 9;
       font-weight: 400;
-      color: var(--ds-color-text-onsolid-default);
+      color: var(--ds-color-text-base-onsolid);
     }
   }
 `;

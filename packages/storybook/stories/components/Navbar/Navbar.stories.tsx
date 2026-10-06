@@ -57,25 +57,25 @@ export default {
             <Button type="ghost-white" mode="single-icon">
               <Icon
                 component={<Add3M />}
-                color={'var(--ds-color-icon-onsolid-default)'}
+                color={'var(--ds-color-icon-base-onsolid)'}
               />
             </Button>
             <Button type="ghost-white" mode="single-icon">
               <Icon
                 component={<BookM />}
-                color={'var(--ds-color-icon-onsolid-default)'}
+                color={'var(--ds-color-icon-base-onsolid)'}
               />
             </Button>
             <Button type="ghost-white" mode="single-icon">
               <Icon
                 component={<HelpM />}
-                color={'var(--ds-color-icon-onsolid-default)'}
+                color={'var(--ds-color-icon-base-onsolid)'}
               />
             </Button>
             <Button type="ghost-white" mode="single-icon">
               <Icon
                 component={<NotificationsActiveM />}
-                color={'var(--ds-color-icon-onsolid-default)'}
+                color={'var(--ds-color-icon-base-onsolid)'}
               />
             </Button>
           </>,

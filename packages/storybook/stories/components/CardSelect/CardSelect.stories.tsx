@@ -37,7 +37,7 @@ const tagProps = {
     <Icon
       size={20}
       className="icon1"
-      color="var(--ds-color-icon-onsolid-default)"
+      color="var(--ds-color-icon-base-onsolid)"
       component={<ClockS />}
     />
   ),

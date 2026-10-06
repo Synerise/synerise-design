@@ -511,7 +511,7 @@ export const StyledButton = styled(BaseButton)<StyledButtonProps>`
           &.pressed {
             background-color: var(--ds-color-background-danger-solidhover);
             box-shadow: none;
-            color: var(--ds-color-text-onsolid-danger);
+            color: var(--ds-color-text-danger-onsolid);
           }
           &&:focus-visible:not(.pressed) {
             border: none !important;
@@ -549,7 +549,7 @@ export const StyledButton = styled(BaseButton)<StyledButtonProps>`
           }
           &&&.pressed {
             background-color: var(--ds-color-background-danger-solidhover);
-            color: var(--ds-color-text-onsolid-danger);
+            color: var(--ds-color-text-danger-onsolid);
           }
           ${RippleEffect} {
             background-color: var(--ds-color-background-danger-solidhover);
@@ -639,7 +639,7 @@ export const StyledButton = styled(BaseButton)<StyledButtonProps>`
 
     &:hover:not(:disabled):not(:focus-visible):not(.pressed) {
       ${Tag} span {
-        color: var(--ds-color-text-onsolid-default);
+        color: var(--ds-color-text-base-onsolid);
         cursor: inherit;
       }
     }
