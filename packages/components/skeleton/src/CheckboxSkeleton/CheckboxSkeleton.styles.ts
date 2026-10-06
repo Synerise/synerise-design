@@ -7,15 +7,15 @@ export const loadingAnimation = keyframes`
 
   0% {
      background: ${BackgroundGradient}; left:-120px; top:0px;
-     opacity: 0.1;
+     opacity: var(--ds-skeleton-pulse-opacity-min);
   }
   50% {
      background: ${BackgroundGradient}; left:140px; top:0px;
-     opacity: 0.3;
+     opacity: var(--ds-skeleton-pulse-opacity-max);
   }
   100% {
      background: ${BackgroundGradient}; left:-120px; top:0px;
-     opacity: 0.1;
+     opacity: var(--ds-skeleton-pulse-opacity-min);
   }
 `;
 export const Container = styled.div`

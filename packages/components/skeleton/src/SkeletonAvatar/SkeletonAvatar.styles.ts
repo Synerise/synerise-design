@@ -9,15 +9,15 @@ const SKELETON_WIDTH = 80;
 export const loadingAnimation = (size?: 'S' | 'M' | 'L' | 'XL') => keyframes`
   0% {
      background: ${BackgroundGradient}; left: -${size ? LeftSize[size] : SIZE_LEFT}px; top:0px;
-     opacity: 0.1;
+     opacity: var(--ds-skeleton-pulse-opacity-min);
   }
   50% {
      background: ${BackgroundGradient}; left: ${size ? LeftSize[size] : SIZE_RIGHT}px; top:0px;
-     opacity: 0.3;
+     opacity: var(--ds-skeleton-pulse-opacity-max);
   }
    100% {
      background: ${BackgroundGradient}; left: -${size ? LeftSize[size] : SIZE_LEFT}px; top:0px;
-     opacity: 0.1;
+     opacity: var(--ds-skeleton-pulse-opacity-min);
   }
 `;
 const SIZE_DEFAULT = 40;
