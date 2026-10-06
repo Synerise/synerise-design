@@ -129,4 +129,27 @@ describe('Checkbox', () => {
       ]);
     });
   });
+
+  describe('disabled styling', () => {
+    // jsdom cannot resolve var(), so read the css styled-components injected rather than computed style.
+    const injectedCss = (): string =>
+      Array.from(document.querySelectorAll('style'))
+        .map((style) => style.textContent ?? '')
+        .join('');
+
+    it('uses the disabled tokens, never the blocked ones', () => {
+      renderWithProvider(
+        <Checkbox disabled checked>
+          {CHECKBOX_LABEL}
+        </Checkbox>,
+      );
+      const css = injectedCss();
+
+      expect(css).toContain('var(--ds-form-checkbox-bg-disabled)');
+      expect(css).toContain('var(--ds-form-checkbox-border-color-disabled)');
+      expect(css).toContain('var(--ds-form-checkbox-icon-disabled)');
+      expect(css).not.toContain('--ds-form-checkbox-bg-blocked');
+      expect(css).not.toContain('--ds-form-checkbox-border-color-blocked');
+    });
+  });
 });

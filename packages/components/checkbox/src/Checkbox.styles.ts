@@ -69,7 +69,7 @@ export const CheckboxInner = styled.span<{
     css`
       background-color: var(--ds-form-checkbox-bg-selected);
       border-color: var(--ds-form-checkbox-bg-selected);
-      color: var(--ds-color-text-base-onsolid);
+      color: var(--ds-form-checkbox-icon-selected);
 
       ${CheckIcon} {
         opacity: 1;
@@ -81,7 +81,7 @@ export const CheckboxInner = styled.span<{
     props.$indeterminate &&
     css`
       background-color: var(--ds-form-checkbox-bg-selected);
-      border-color: var(--ds-form-checkbox-border-color-blocked);
+      border-color: var(--ds-form-checkbox-bg-selected);
 
       ${CheckIcon} {
         opacity: 0;
@@ -94,7 +94,7 @@ export const CheckboxInner = styled.span<{
         left: 50%;
         width: 8px;
         height: 2px;
-        background: var(--ds-color-background-base-default);
+        background: var(--ds-form-checkbox-icon-selected);
         border-radius: 2px;
         transform: translate(-50%, -50%);
       }
@@ -114,17 +114,26 @@ export const CheckboxInner = styled.span<{
       border-color: var(--ds-form-checkbox-bg-selected);
     `}
 
-  /* disabled — bg/border use the blocked module tokens (see flag: currently mis-valued blue) */
+  /* disabled — grey surface; blocked is a separate (blue) Figma state and is not used here */
   ${(props) =>
     props.$disabled &&
     css`
-      border-color: var(--ds-form-checkbox-border-color-blocked) !important;
-      background-color: var(--ds-form-checkbox-bg-blocked) !important;
+      border-color: var(--ds-form-checkbox-border-color-disabled) !important;
+      background-color: var(--ds-form-checkbox-bg-disabled) !important;
 
       ${
         props.$checked &&
         css`
-        color: var(--ds-color-icon-base-muted);
+        color: var(--ds-form-checkbox-icon-disabled);
+      `
+      }
+
+      ${
+        props.$indeterminate &&
+        css`
+        &::after {
+          background: var(--ds-form-checkbox-icon-disabled);
+        }
       `
       }
     `}
@@ -185,7 +194,7 @@ export const CheckboxLabel = styled.label<{
     css`
       &:hover ${CheckboxInner} {
         border-color: var(--ds-form-checkbox-border-color-hover);
-        color: var(--ds-color-icon-brand-default);
+        color: var(--ds-form-checkbox-icon-hover);
 
         ${CheckIcon} {
           opacity: 1;
