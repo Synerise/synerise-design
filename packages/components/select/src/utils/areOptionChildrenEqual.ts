@@ -1,4 +1,4 @@
-import { Children, type ReactNode, isValidElement } from 'react';
+import { Children, isValidElement, type ReactNode } from 'react';
 
 /** Depth cap for the structural walk — deeper trees simply report "changed". */
 const MAX_DEPTH = 6;
@@ -47,6 +47,7 @@ const isEqualValue = (a: unknown, b: unknown, depth: number): boolean => {
       keysA.length === keysB.length &&
       keysA.every(
         (key) =>
+          // biome-ignore lint/suspicious/noPrototypeBuiltins: Object.hasOwn is ES2022 (Safari 15.4+); the DS uses no other ES2022 runtime API, so keep the ES2021 floor
           Object.prototype.hasOwnProperty.call(b, key) &&
           isEqualValue(a[key], b[key], depth + 1),
       )

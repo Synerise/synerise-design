@@ -7,7 +7,7 @@ import Tooltip from '@synerise/ds-tooltip';
 import { Text } from '@synerise/ds-typography';
 
 import * as S from '../InformationCard.styles';
-import { type InformationCardFooterProps } from './InformationCardFooter.types';
+import type { InformationCardFooterProps } from './InformationCardFooter.types';
 
 export const InformationCardFooter = ({
   actionButton = false,

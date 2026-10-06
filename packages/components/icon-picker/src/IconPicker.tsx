@@ -7,15 +7,15 @@ import Icon, { AddM, Close3S } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 import { useOnClickOutside } from '@synerise/ds-utils';
 
-import * as S from './IconPicker.styles';
-import {
-  type IconMetadata,
-  type IconPickerProps,
-  type SourceType,
-  type ValueTypeForSource,
-} from './IconPicker.types';
 import Overlay from './components/Overlay/Overlay';
 import { useIconSourceLoader } from './hooks/useIconSourceLoader';
+import * as S from './IconPicker.styles';
+import type {
+  IconMetadata,
+  IconPickerProps,
+  SourceType,
+  ValueTypeForSource,
+} from './IconPicker.types';
 import { matchesSearchQuery } from './utils/matchesSearchQuery';
 
 const IconPicker = <IconSource extends SourceType>({

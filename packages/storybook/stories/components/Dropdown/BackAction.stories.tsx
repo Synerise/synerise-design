@@ -1,12 +1,12 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 import { fn } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import Button from '@synerise/ds-button';
 import Dropdown, { BackAction } from '@synerise/ds-dropdown';
 
 import { Placeholder } from '../../constants';
-import { REACT_NODE_AS_STRING, fixedWrapper400 } from '../../utils';
+import { fixedWrapper400, REACT_NODE_AS_STRING } from '../../utils';
 
 export default {
   title: 'Components/Dropdown/BackAction',

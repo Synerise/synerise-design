@@ -2,10 +2,10 @@ import React, { forwardRef, useEffect, useMemo, useRef, useState } from 'react';
 
 import { useTheme } from '@synerise/ds-core';
 import {
+  getPlacement,
   Popover,
   PopoverContent,
   PopoverTrigger,
-  getPlacement,
 } from '@synerise/ds-popover';
 import { getPopupContainer as defaultGetPopupContainer } from '@synerise/ds-utils';
 

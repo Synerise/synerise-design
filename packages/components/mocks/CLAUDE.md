@@ -77,7 +77,7 @@ dsMocks.mockButtonMinimal(); // null mock
 | Jest minimal | `mock{PascalCase}Minimal` | `mockButtonMinimal` |
 | Props type | `Mock{PascalCase}Props` | `MockButtonProps`, `MockTableProps` |
 | Default test ID | `ds-{kebab-case}` | `ds-button`, `ds-date-range-picker` |
-| Sub-component test ID | `{parentTestId}-{sub}` | `ds-modal-title`, `ds-menu-item` |
+| Sub-component test ID | `{parentTestId}-{sub}` | `ds-modal-title`, `ds-app-menu-item` |
 
 ## Adding a new mock
 

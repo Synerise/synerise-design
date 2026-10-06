@@ -1,5 +1,5 @@
-import { type AnyObject } from '../../Search.types';
 import { LIST_HEADER_HEIGHT } from '../../const';
+import type { AnyObject } from '../../Search.types';
 
 export const getAllElementsFiltered = <T extends AnyObject>(
   data: T[] | undefined | null,

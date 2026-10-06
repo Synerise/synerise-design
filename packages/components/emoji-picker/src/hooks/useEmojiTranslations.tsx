@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
-import { type EmojiPickerTexts } from '../EmojiPicker.types';
+import type { EmojiPickerTexts } from '../EmojiPicker.types';
 
 export const useEmojiTranslations = (
   texts?: Partial<EmojiPickerTexts>,

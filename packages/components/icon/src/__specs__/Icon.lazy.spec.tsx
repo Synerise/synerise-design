@@ -3,7 +3,7 @@ import { join } from 'path';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 
-import { renderWithProvider } from '@synerise/ds-core';
+import { renderWithProvider } from '@synerise/ds-core/testing';
 import { screen, waitFor } from '@testing-library/react';
 
 import Icon from '../Icon';

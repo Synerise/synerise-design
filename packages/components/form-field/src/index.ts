@@ -1,10 +1,10 @@
-export { default } from './FormField';
 export * from './components';
+export { default } from './FormField';
 export type {
-  FormFieldProps,
-  FormFieldCommonProps,
-  FormFieldLabelProps,
+  BaseLabelProps,
   ContentAboveProps,
   ContentBelowProps,
-  BaseLabelProps,
+  FormFieldCommonProps,
+  FormFieldLabelProps,
+  FormFieldProps,
 } from './FormField.types';

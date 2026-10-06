@@ -1,10 +1,11 @@
 import { Meta, StoryObj } from '@storybook/react-vite';
+
 import {
   ContentBelowElement,
   ContentBelowProps,
 } from '@synerise/ds-form-field';
 
-import { REACT_NODE_AS_STRING, fixedWrapper400 } from '../../utils';
+import { fixedWrapper400, REACT_NODE_AS_STRING } from '../../utils';
 
 export default {
   component: ContentBelowElement,

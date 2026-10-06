@@ -1,10 +1,8 @@
 export { default } from './Confirmation';
-export { showConfirmation } from './ShowConfirmation';
-
 export type {
   ConfirmationProps,
-  PromptProps,
   ConfirmationTexts,
+  PromptProps,
 } from './Confirmation.types';
-
 export { Prompt } from './components/Prompt';
+export { showConfirmation } from './ShowConfirmation';

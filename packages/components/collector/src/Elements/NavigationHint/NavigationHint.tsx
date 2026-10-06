@@ -3,7 +3,7 @@ import React from 'react';
 import Icon, { KeyboardEnterM, KeyboardKeysM } from '@synerise/ds-icon';
 
 import * as S from '../../Collector.styles';
-import { type NavigationHintProps } from './NavigationHint.types';
+import type { NavigationHintProps } from './NavigationHint.types';
 
 const NavigationHint: React.FC<NavigationHintProps> = ({
   texts,

@@ -1,4 +1,4 @@
-import { type Category, type Path } from './Cascader.types';
+import type { Category, Path } from './Cascader.types';
 
 export const searchCategoryWithId = (
   category: Category,

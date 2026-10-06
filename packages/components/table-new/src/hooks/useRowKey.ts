@@ -1,6 +1,5 @@
-import { useCallback } from 'react';
-
 import type { Row, RowData } from '@tanstack/react-table';
+import { useCallback } from 'react';
 
 const parentIndex = <TData>(row: Row<TData>): string => {
   const parent = row.getParentRow();

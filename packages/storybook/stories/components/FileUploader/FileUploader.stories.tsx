@@ -1,7 +1,7 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import random from 'lodash/random';
 import React, { useState } from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import FileUploader, {
   ExtendedFile,
   FileUploaderProps,
@@ -11,10 +11,10 @@ import FileUploader, {
 import {
   BOOLEAN_CONTROL,
   CLASSNAME_ARG_CONTROL,
+  fixedWrapper300,
   NUMBER_CONTROL,
   REACT_NODE_AS_STRING,
   STRING_CONTROL,
-  fixedWrapper300,
 } from '../../utils';
 
 type StoryProps = FileUploaderProps & {

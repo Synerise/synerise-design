@@ -4,8 +4,8 @@ import Button from '@synerise/ds-button';
 import Tooltip from '@synerise/ds-tooltip';
 
 import * as S from '../../IconPicker.styles';
-import { type SourceType } from '../../IconPicker.types';
-import { type ListItemProps } from './ListItem.types';
+import type { SourceType } from '../../IconPicker.types';
+import type { ListItemProps } from './ListItem.types';
 
 const ListItem = <Source extends SourceType>({
   element,
@@ -19,7 +19,7 @@ const ListItem = <Source extends SourceType>({
   return (
     <S.ListItem itemsPerRow={itemsPerRow}>
       {typeof element.item !== 'string' &&
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      // biome-ignore lint/suspicious/noExplicitAny: upstream type is not expressible here
       (element.item as any).type.name === 'Avatar' ? (
         <S.IconTrigger onMouseUp={selectIcon} data-testid={`icon-${index}`}>
           {element.item}

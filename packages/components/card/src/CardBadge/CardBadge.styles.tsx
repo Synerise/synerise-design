@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { type BadgeStatus } from './CardBadge.types';
+import type { BadgeStatus } from './CardBadge.types';
 
 const background: Record<BadgeStatus, string> = {
   success: 'var(--ds-card-header-badge-success-bg)',

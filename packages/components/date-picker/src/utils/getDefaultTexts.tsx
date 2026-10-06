@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormattedMessage, type IntlShape } from 'react-intl';
 
-import { type Texts } from '../DatePicker.types';
+import type { Texts } from '../DatePicker.types';
 
 export const getDefaultTexts = (
   intl: IntlShape,

@@ -2,10 +2,10 @@ import React, { useMemo } from 'react';
 import { v4 as uuid } from 'uuid';
 
 import * as S from '../InformationCard.styles';
-import {
-  type InformationCardPropertyDivider,
-  type InformationCardPropertyItem,
-  type InformationCardPropertyListProps,
+import type {
+  InformationCardPropertyDivider,
+  InformationCardPropertyItem,
+  InformationCardPropertyListProps,
 } from './InformationCardPropertyList.types';
 
 const isDivider = (

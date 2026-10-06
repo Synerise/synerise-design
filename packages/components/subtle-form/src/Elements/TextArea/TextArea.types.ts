@@ -1,6 +1,6 @@
-import { type RawTextAreaProps } from '@synerise/ds-input';
+import type { RawTextAreaProps } from '@synerise/ds-input';
 
-import { type SubtleFieldProps } from '../../SubtleForm.types';
+import type { SubtleFieldProps } from '../../SubtleForm.types';
 
 export type SubtleTextAreaProps = {
   minRows?: number;

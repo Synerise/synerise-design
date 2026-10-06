@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components';
 import { Title as DSTitle } from '@synerise/ds-typography';
 
 import { CardSummaryWrapper } from '../CardSummary/CardSummary.styles';
-import { type Backgrounds } from './Card.types';
+import type { Backgrounds } from './Card.types';
 
 const whiteBg = ['white', 'white-shadow'];
 const greyBg = ['grey', 'grey-shadow'];

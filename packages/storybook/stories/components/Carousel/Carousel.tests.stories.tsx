@@ -1,7 +1,7 @@
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import React, { type ReactNode } from 'react';
 import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
 
-import type { Meta, StoryObj } from '@storybook/react-vite';
 import Carousel from '@synerise/ds-carousel';
 
 import { CarouselWithControls, colorfulSlides, productSlides } from './data';

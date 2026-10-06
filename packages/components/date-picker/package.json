@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-date-picker",
-  "version": "2.0.1",
+  "version": "2.1.4",
   "description": "DatePicker UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -30,7 +30,8 @@
     "build:watch": "vite build --watch",
     "pack:ci": "pnpm pack --pack-destination ../../storybook/storybook-static/static",
     "prepublish": "pnpm run build",
-    "test": "vitest run",
+    "test": "vitest run && pnpm test:dst",
+    "test:dst": "TZ=Europe/Warsaw vitest run -t DaylightSavings",
     "test:watch": "vitest",
     "types": "tsc --noEmit",
     "check:circular-dependencies": "madge --circular --extensions ts,tsx,js,jsx --ts-config tsconfig.json src/ --exclude '/dist/'",
@@ -42,7 +43,6 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@date-fns/upgrade": "^1.0.3",
     "@synerise/ds-button": "workspace:^",
     "@synerise/ds-dropdown": "workspace:^",
     "@synerise/ds-icon": "workspace:^",
@@ -52,9 +52,9 @@
     "@synerise/ds-typography": "workspace:^",
     "@synerise/ds-utils": "workspace:^",
     "classnames": "^2.5.1",
-    "date-fns": "2.16.1",
+    "date-fns": "^4.1.0",
     "lodash.range": "^3.2.0",
-    "react-day-picker": "^7.4.8",
+    "react-day-picker": "^10.0.1",
     "uuid": "^8.3.2"
   },
   "devDependencies": {

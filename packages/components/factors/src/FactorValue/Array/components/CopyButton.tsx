@@ -5,7 +5,7 @@ import Button from '@synerise/ds-button';
 import Icon, { CopyClipboardM } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 
-import { type CopyButtonProps } from '../Array.types';
+import type { CopyButtonProps } from '../Array.types';
 
 export const CopyButton = ({ copyValue, texts }: CopyButtonProps) => {
   const [tooltipOpen, setTooltipOpen] = useState(false);

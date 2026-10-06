@@ -1,8 +1,8 @@
-import { type ForwardRefExoticComponent } from 'react';
+import type { ForwardRefExoticComponent } from 'react';
 import styled, {
+  css,
   type FlattenSimpleInterpolation,
   type StyledComponent,
-  css,
 } from 'styled-components';
 
 import DSDropdown, { type DropdownProps } from '@synerise/ds-dropdown';

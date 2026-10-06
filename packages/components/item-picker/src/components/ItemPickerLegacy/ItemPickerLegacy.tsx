@@ -7,7 +7,7 @@ import FormField from '@synerise/ds-form-field';
 import * as S from '../../ItemPicker.styles';
 import ItemPickerDropdown from '../ItemPickerDropdown/ItemPickerDropdown';
 import Trigger from '../ItemPickerTrigger/Trigger';
-import { type ItemPickerProps } from './ItemPickerLegacy.types';
+import type { ItemPickerProps } from './ItemPickerLegacy.types';
 
 /**
  * @deprecated - use new ItemPicker

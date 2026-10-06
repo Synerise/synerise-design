@@ -1,6 +1,6 @@
 import styled, {
-  type FlattenSimpleInterpolation,
   css,
+  type FlattenSimpleInterpolation,
 } from 'styled-components';
 
 import { mediaQuery } from '@synerise/ds-core';
@@ -87,9 +87,11 @@ export const LayoutContainer = styled.div<{
       width: 100%;
       height: calc(
         100vh -
-          ${props.viewportTopOffset !== undefined
-            ? props.viewportTopOffset
-            : DEFAULT_TOP_OFFSET}px
+          ${
+            props.viewportTopOffset !== undefined
+              ? props.viewportTopOffset
+              : DEFAULT_TOP_OFFSET
+          }px
       );
     `};
 

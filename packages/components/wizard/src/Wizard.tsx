@@ -7,9 +7,9 @@ import Icon, { ArrowLeftCircleM } from '@synerise/ds-icon';
 import Layout from '@synerise/ds-layout';
 import PageHeader from '@synerise/ds-page-header';
 
-import * as S from './Wizard.styles';
-import { type WizardProps } from './Wizard.types';
 import WizardOnModal from './onModal/onModal';
+import * as S from './Wizard.styles';
+import type { WizardProps } from './Wizard.types';
 
 const Wizard = ({
   stepper,

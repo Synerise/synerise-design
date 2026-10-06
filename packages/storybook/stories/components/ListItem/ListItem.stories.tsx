@@ -1,8 +1,8 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React, { useState } from 'react';
 import { useArgs } from 'storybook/preview-api';
 import { fn } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import Avatar, { ObjectAvatar } from '@synerise/ds-avatar';
 import Badge from '@synerise/ds-badge';
 import Button from '@synerise/ds-button';
@@ -23,20 +23,19 @@ import { AVATAR_IMAGE } from '../../constants/images';
 import {
   BOOLEAN_CONTROL,
   CLASSNAME_ARG_CONTROL,
+  controlFromOptionsArray,
+  fixedWrapper200,
   NUMBER_CONTROL,
   REACT_NODE_AS_STRING,
   STRING_CONTROL,
-  controlFromOptionsArray,
-  fixedWrapper200,
 } from '../../utils';
 import {
   LIST_ITEMS,
-  StarWithTooltip,
-  hoverSuffixType,
   prefixArgTypes,
   prefixType,
   renderPrefix,
   renderSuffix,
+  StarWithTooltip,
   suffixType,
 } from './listItem.data';
 import * as S from './styles';
@@ -690,7 +689,7 @@ export const AllSuffixes: StoryObj<
     suffixType: controlFromOptionsArray('select', Object.values(suffixType)),
     hoverSuffixType: controlFromOptionsArray(
       'select',
-      Object.values(hoverSuffixType),
+      Object.values(suffixType),
     ),
   },
   args: {
@@ -726,6 +725,90 @@ export const AllCombinations: StoryObj<
     );
   },
   args: {
+    items: LIST_ITEMS,
+  },
+};
+
+/**
+ * `size="auto"` lets a row grow with its content: the label and the `description` wrap
+ * instead of being ellipsized onto one line. A single-line auto row is the same 32px as a
+ * `default` row — the 32px is a floor, not a fixed height. Shown in a 200px wrapper so the
+ * text is forced to wrap the way it would inside a real dropdown.
+ */
+export const AutoSize: StoryObj<
+  ListItemProps & { prefixType?: string; suffixType?: string }
+> = {
+  render: renderWithPrefixAndSuffix,
+  decorators: [fixedWrapper200],
+  parameters: {
+    controls: {
+      include: ['children', 'description', 'size', 'prefixType', 'suffixType'],
+    },
+  },
+  args: {
+    children: 'Count as percentage',
+    description:
+      "Shows each metric's share of the total number of event occurrences, grouped by the selected dimensions.",
+    size: 'auto',
+  },
+};
+
+/**
+ * The same auto row with an avatar prefix. The prefix sits beside the *first line* of the
+ * label rather than against the middle of the wrapped block, and the negative vertical
+ * margins that keep an avatar from growing a 32px row are dropped here — the row is
+ * allowed to grow instead.
+ */
+export const AutoSizeWithAvatarPrefix: StoryObj<
+  ListItemProps & { prefixType?: string; suffixType?: string }
+> = {
+  render: renderWithPrefixAndSuffix,
+  decorators: [fixedWrapper200],
+  parameters: {
+    controls: {
+      include: [
+        'children',
+        'description',
+        'size',
+        'suffixType',
+        'suffixVisibilityTrigger',
+      ],
+    },
+  },
+  argTypes: prefixArgTypes,
+  args: {
+    children: 'List Item',
+    description:
+      "Shows each metric's share of the total number of event occurrences, grouped by the selected dimensions.",
+    size: 'auto',
+    prefixel: (
+      <Badge status="active">
+        <Avatar size="medium" src={AVATAR_IMAGE} shape="circle" />
+      </Badge>
+    ),
+  },
+};
+
+/**
+ * Every prefix/suffix combination at `size="auto"` with a wrapping description — the matrix
+ * that catches check/arrow/suffix alignment regressions on tall rows.
+ */
+export const AllCombinationsAuto: StoryObj<
+  ListItemProps & { items: ListItemProps[] }
+> = {
+  render: ({ items, ...args }) => {
+    return (
+      <div style={{ width: '260px' }}>
+        {items.map((props) => (
+          <ListItem {...args} {...props} />
+        ))}
+      </div>
+    );
+  },
+  args: {
+    size: 'auto',
+    description:
+      "Shows each metric's share of the total number of event occurrences, grouped by the selected dimensions.",
     items: LIST_ITEMS,
   },
 };

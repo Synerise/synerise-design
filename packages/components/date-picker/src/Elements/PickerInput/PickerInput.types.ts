@@ -12,10 +12,6 @@ type InputProps = DatePickerProps['inputProps'];
 export type Props = InputProps & {
   autoFocus?: boolean;
   size?: InputSize;
-  /**
-   * @deprecated use `valueFormatOptions` instead
-   */
-  format?: string;
   valueFormatOptions?: DateToFormatOptions;
   showTime?: boolean;
   allowClear?: boolean;

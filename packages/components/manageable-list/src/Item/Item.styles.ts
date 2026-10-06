@@ -54,11 +54,6 @@ export const ItemLabelWrapper = styled.div<{ largeSize?: boolean }>`
   flex-grow: 1;
   min-width: 0;
 
-  .ant-tooltip-inner {
-    max-width: 164px;
-    padding: 16px 16px 19px;
-  }
-
   ${(props) =>
     props.largeSize
       ? css`

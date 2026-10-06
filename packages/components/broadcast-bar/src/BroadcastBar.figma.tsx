@@ -1,4 +1,5 @@
 import figma from '@figma/code-connect';
+
 import Button from '@synerise/ds-button';
 
 import BroadcastBar from './BroadcastBar';

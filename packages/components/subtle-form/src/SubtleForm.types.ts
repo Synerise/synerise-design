@@ -1,6 +1,6 @@
 import type { ReactElement, ReactNode } from 'react';
 
-import { type FormFieldCommonProps } from '@synerise/ds-form-field';
+import type { FormFieldCommonProps } from '@synerise/ds-form-field';
 
 export type SubtleFieldProps = {
   active?: boolean;

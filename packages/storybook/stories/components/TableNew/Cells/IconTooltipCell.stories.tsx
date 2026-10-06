@@ -1,6 +1,6 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import { InfoFillS, UserM } from '@synerise/ds-icon';
 import {
   type BaseIconTooltipCellProps,
@@ -9,8 +9,8 @@ import {
 
 import {
   BOOLEAN_CONTROL,
-  REACT_NODE_AS_STRING,
   fixedWrapper300,
+  REACT_NODE_AS_STRING,
 } from '../../../utils';
 
 const meta: Meta<BaseIconTooltipCellProps> = {

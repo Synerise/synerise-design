@@ -4,9 +4,9 @@ import styled from 'styled-components';
 import Icon, { CheckS } from '@synerise/ds-icon';
 import ListItem from '@synerise/ds-list-item';
 
-import { type Category } from '../../Cascader.types';
+import type { Category } from '../../Cascader.types';
 import { hasNestedCategories } from '../../utils';
-import { type CategoriesListProps } from './CategoriesList.types';
+import type { CategoriesListProps } from './CategoriesList.types';
 
 const CategoriesSuffix = styled.div``;
 

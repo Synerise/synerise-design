@@ -4,7 +4,7 @@ import Dropdown from '@synerise/ds-dropdown';
 import Icon, { ShowM } from '@synerise/ds-icon';
 
 import * as S from './Subject.style';
-import { type SubjectProps } from './Subject.types';
+import type { SubjectProps } from './Subject.types';
 import SubjectList from './SubjectList/SubjectList';
 import SubjectTrigger from './SubjectTrigger/SubjectTrigger';
 

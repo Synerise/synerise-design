@@ -3,7 +3,7 @@ import React, { type MouseEvent } from 'react';
 import { setPortalContent } from '@synerise/ds-core';
 
 import Modal from './Modal';
-import { type ModalHandle, type ModalProps } from './Modal.types';
+import type { ModalHandle, ModalProps } from './Modal.types';
 
 let modalInstanceId = 0;
 

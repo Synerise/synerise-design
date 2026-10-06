@@ -109,6 +109,7 @@ import Sidebar from '@synerise/ds-sidebar';
 - `@synerise/ds-sortable` — `SortableContainer`, `DragOverlay`, `useSortable`, `CSS`
 - `@synerise/ds-icon` — expand icons (`AngleDownS`, `AngleUpS`) and drag handle (`DragHandleM`)
 - `@synerise/ds-dropdown`, `@synerise/ds-list-item`, `@synerise/ds-button` — used by `SidebarWithButton`
+- `react-dom` (peer) — `createPortal`
 
 ## Implementation notes
 

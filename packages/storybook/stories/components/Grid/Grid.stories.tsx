@@ -1,6 +1,6 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import Description, { DescriptionRow } from '@synerise/ds-description';
 import Grid from '@synerise/ds-grid';
 

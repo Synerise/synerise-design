@@ -7,22 +7,17 @@ import React, {
 } from 'react';
 
 import Button from '@synerise/ds-button';
-import {
-  type ContextGroup,
-  type ContextItem,
-} from '@synerise/ds-context-selector';
-import { type FactorType, type FactorValueType } from '@synerise/ds-factors';
+import type { ContextGroup, ContextItem } from '@synerise/ds-context-selector';
+import type { FactorType, FactorValueType } from '@synerise/ds-factors';
 import Icon, { Add3M, DragHandleM } from '@synerise/ds-icon';
-import {
-  type OperatorsGroup,
-  type OperatorsItem,
-} from '@synerise/ds-operators';
+import type { OperatorsGroup, OperatorsItem } from '@synerise/ds-operators';
 import { DragOverlay, SortableContainer } from '@synerise/ds-sortable';
-import { type SubjectItem } from '@synerise/ds-subject';
+import type { SubjectItem } from '@synerise/ds-subject';
 import { usePrevious } from '@synerise/ds-utils';
 
 import * as S from './Condition.style';
 import type {
+  ConditionFieldChange,
   ConditionProps,
   ConditionStep as ConditionStepType,
   StepConditions,
@@ -31,6 +26,7 @@ import { ConditionStep } from './ConditionStep';
 import { StepName } from './ConditionStep/StepName/StepName';
 import {
   ACTION_ATTRIBUTE,
+  CONTEXT,
   DEFAULT_CONDITION,
   DEFAULT_FIELD,
   DEFAULT_INPUT_PROPS,
@@ -56,6 +52,7 @@ const Condition = (props: ConditionProps) => {
     minConditionsLength = 1,
     maxConditionsLength,
     autoClearCondition,
+    shouldAutoOpenNextField,
     onChangeContext,
     onChangeSubject,
     onChangeParameter,
@@ -92,6 +89,7 @@ const Condition = (props: ConditionProps) => {
 
   const prevSteps = usePrevious(steps);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: dependencies intentionally omitted
   useEffect(() => {
     if (
       autoOpenedComponent &&
@@ -103,7 +101,6 @@ const Condition = (props: ConditionProps) => {
       setCurrentConditionId(steps[0].conditions[0].id);
       setCurrentField(autoOpenedComponent);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -143,6 +140,12 @@ const Condition = (props: ConditionProps) => {
       setCurrentConditionId(newConditionId);
     }
   }, [currentConditionId, currentField, prevSteps, steps]);
+
+  const shouldAdvanceField = useCallback(
+    (change: ConditionFieldChange): boolean =>
+      shouldAutoOpenNextField?.(change) !== false,
+    [shouldAutoOpenNextField],
+  );
 
   const clearConditionRow = useCallback(
     (stepId: string | number) => {
@@ -188,16 +191,23 @@ const Condition = (props: ConditionProps) => {
 
   const selectSubject = useCallback(
     (value: SubjectItem, stepId: ReactText): void => {
-      clearConditionRow(stepId);
-      setCurrentStepId(stepId);
-      if (showActionAttribute) {
-        setCurrentField(ACTION_ATTRIBUTE);
-      } else {
-        setCurrentField(PARAMETER);
+      if (shouldAdvanceField({ field: SUBJECT, stepId, value })) {
+        clearConditionRow(stepId);
+        setCurrentStepId(stepId);
+        if (showActionAttribute) {
+          setCurrentField(ACTION_ATTRIBUTE);
+        } else {
+          setCurrentField(PARAMETER);
+        }
       }
       onChangeSubject && onChangeSubject(stepId, value);
     },
-    [clearConditionRow, onChangeSubject, showActionAttribute],
+    [
+      clearConditionRow,
+      onChangeSubject,
+      shouldAdvanceField,
+      showActionAttribute,
+    ],
   );
 
   const selectContext = useCallback(
@@ -205,26 +215,35 @@ const Condition = (props: ConditionProps) => {
       value: ContextItem | ContextGroup | undefined,
       stepId: ReactText,
     ): void => {
-      clearConditionRow(stepId);
-      setCurrentStepId(stepId);
-      if (showActionAttribute) {
-        setCurrentField(ACTION_ATTRIBUTE);
-      } else {
-        setCurrentField(PARAMETER);
+      if (shouldAdvanceField({ field: CONTEXT, stepId, value })) {
+        clearConditionRow(stepId);
+        setCurrentStepId(stepId);
+        if (showActionAttribute) {
+          setCurrentField(ACTION_ATTRIBUTE);
+        } else {
+          setCurrentField(PARAMETER);
+        }
       }
       onChangeContext && onChangeContext(stepId, value);
     },
-    [clearConditionRow, onChangeContext, showActionAttribute],
+    [
+      clearConditionRow,
+      onChangeContext,
+      shouldAdvanceField,
+      showActionAttribute,
+    ],
   );
 
   const selectActionAttribute = useCallback(
     (value: FactorValueType, stepId: string | number) => {
-      clearConditionRow(stepId);
-      setCurrentStepId(stepId);
-      setCurrentField(PARAMETER);
+      if (shouldAdvanceField({ field: ACTION_ATTRIBUTE, stepId, value })) {
+        clearConditionRow(stepId);
+        setCurrentStepId(stepId);
+        setCurrentField(PARAMETER);
+      }
       onChangeActionAttribute && onChangeActionAttribute(stepId, value);
     },
-    [onChangeActionAttribute, clearConditionRow],
+    [onChangeActionAttribute, clearConditionRow, shouldAdvanceField],
   );
 
   const selectParameter = useCallback(
@@ -234,16 +253,26 @@ const Condition = (props: ConditionProps) => {
       value: FactorValueType,
     ): void => {
       if (conditionId && onChangeParameter) {
-        autoClearCondition &&
+        const advance = shouldAdvanceField({
+          field: PARAMETER,
+          stepId,
+          conditionId,
+          value,
+        });
+        advance &&
+          autoClearCondition &&
           onChangeOperator &&
           onChangeOperator(stepId, conditionId, undefined);
-        autoClearCondition &&
+        advance &&
+          autoClearCondition &&
           onChangeFactorValue &&
           onChangeFactorValue(stepId, conditionId, undefined);
         onChangeParameter(stepId, conditionId, value);
-        setCurrentConditionId(conditionId);
-        setCurrentStepId(stepId);
-        setCurrentField(OPERATOR);
+        if (advance) {
+          setCurrentConditionId(conditionId);
+          setCurrentStepId(stepId);
+          setCurrentField(OPERATOR);
+        }
       }
     },
     [
@@ -251,6 +280,7 @@ const Condition = (props: ConditionProps) => {
       onChangeFactorValue,
       onChangeOperator,
       onChangeParameter,
+      shouldAdvanceField,
     ],
   );
 
@@ -261,16 +291,30 @@ const Condition = (props: ConditionProps) => {
       value: OperatorsItem | OperatorsGroup | undefined,
     ): void => {
       if (conditionId && onChangeOperator && value && 'groupId' in value) {
-        autoClearCondition &&
+        const advance = shouldAdvanceField({
+          field: OPERATOR,
+          stepId,
+          conditionId,
+          value,
+        });
+        advance &&
+          autoClearCondition &&
           onChangeFactorValue &&
           onChangeFactorValue(stepId, conditionId, undefined);
         onChangeOperator(stepId, conditionId, value);
-        setCurrentConditionId(conditionId);
-        setCurrentStepId(stepId);
-        setCurrentField(FACTOR);
+        if (advance) {
+          setCurrentConditionId(conditionId);
+          setCurrentStepId(stepId);
+          setCurrentField(FACTOR);
+        }
       }
     },
-    [autoClearCondition, onChangeFactorValue, onChangeOperator],
+    [
+      autoClearCondition,
+      onChangeFactorValue,
+      onChangeOperator,
+      shouldAdvanceField,
+    ],
   );
 
   const setStepConditionFactorType = useCallback(

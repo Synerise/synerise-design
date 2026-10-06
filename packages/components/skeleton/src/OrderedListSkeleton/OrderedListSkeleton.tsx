@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { v4 as uuid } from 'uuid';
 
-import { type CheckboxSkeletonProps } from '../CheckboxSkeleton/CheckboxSkeleton.types';
+import type { CheckboxSkeletonProps } from '../CheckboxSkeleton/CheckboxSkeleton.types';
 import * as S from './OrderedListSkeleton.styles';
 
 const OrderedListSkeleton = ({

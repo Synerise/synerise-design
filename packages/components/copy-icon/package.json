@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-copy-icon",
-  "version": "2.0.1",
+  "version": "2.0.6",
   "description": "CopyIcon UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -43,10 +43,10 @@
   "types": "dist/index.d.ts",
   "dependencies": {
     "@synerise/ds-icon": "workspace:^",
-    "@synerise/ds-tooltip": "workspace:^"
+    "@synerise/ds-tooltip": "workspace:^",
+    "@synerise/ds-utils": "workspace:^"
   },
   "devDependencies": {
-    "@synerise/ds-utils": "workspace:^",
     "vitest": "4"
   },
   "peerDependencies": {

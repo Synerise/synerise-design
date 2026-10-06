@@ -1,11 +1,11 @@
-import { type MouseEvent, type ReactNode } from 'react';
+import type { MouseEvent, ReactNode } from 'react';
 
-import {
-  type AspectRatio,
-  type ImageTexts,
-  type ObjectFit,
-  type ThumbnailBackground,
-  type ThumbnailSize,
+import type {
+  AspectRatio,
+  ImageTexts,
+  ObjectFit,
+  ThumbnailBackground,
+  ThumbnailSize,
 } from '../shared/Image.shared.types';
 
 export type ThumbnailProps = {

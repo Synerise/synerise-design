@@ -57,6 +57,7 @@ import { AngleDownS } from '@synerise/ds-icon';
 
 | Property       | Description                                                                  | Type                                                                                                                                      | Default     |
 | -------------- | ---------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| block          | Defines if the button should take all available space.                       | boolean                                                                                                                                   | `false`     |
 | color          | Defines color of `custom-color` button.                                      | `green` / `grey` / `yellow` / `blue` / `pink`/ `mars`/ `orange`/ `fern`/ `cyan`/ `purple` / `violet`                                      | `red`       |
 | disabled       | Defines if the button is disabled.                                           | boolean                                                                                                                                   | `false`     |
 | groupVariant   | Defines shape of the button                                                  | `left-rounded` / `squared` / `right-rounded`                                                                                              | -           |
@@ -68,6 +69,7 @@ import { AngleDownS } from '@synerise/ds-icon';
 | iconColor      | Defines color of `icon` in button.                                           | `green` / `grey` / `yellow` / `blue` / `pink`/ `mars`/ `orange`/ `fern`/ `cyan`/ `purple` / `violet`                                      | -           |
 | error          | Defines if the button has error button styles .                              | boolean                                                                                                                                   | `false`     |
 | readOnly       | Disables ripple and freezes hover/focus styles (cursor: default).            | boolean                                                                                                                                   | -           |
+| size           | Defines the size of the button. Sets the height, and in `mode="single-icon"` the width too (28 / 32 / 48px square). | `small` / `middle` / `large`                                                                                 | `middle`    |
 | tagProps       | Renders a status tag next to button label                                    | TagProps see ds-tag                                                                                                                       | -           |
 | tooltipProps   | Wraps the button label in a tooltip.                                         | TooltipProps see ds-tooltip                                                                                                               | -           |
 

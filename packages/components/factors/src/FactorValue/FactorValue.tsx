@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { type FactorValueProps } from '../Factors.types';
+import type { FactorValueProps } from '../Factors.types';
 import * as S from './FactorValue.style';
 
 const FactorValue = ({
@@ -20,6 +20,7 @@ const FactorValue = ({
   factorKey,
   preventAutoloadData,
   getPopupContainerOverride,
+  fluidMinWidth,
   onActivate,
   onDeactivate,
   error,
@@ -66,6 +67,7 @@ const FactorValue = ({
         allowClear={allowClear}
         readOnly={readOnly}
         inputProps={inputProps}
+        fluidMinWidth={fluidMinWidth}
         factorValueExtraProps={factorValueExtraProps}
         {...relativeDateProps}
         uncontrolledComponent={uncontrolledComponent}
@@ -83,6 +85,7 @@ const FactorValue = ({
     parameters,
     withoutTypeSelector,
     inputProps,
+    fluidMinWidth,
     arrayProps,
     formulaEditor,
     opened,

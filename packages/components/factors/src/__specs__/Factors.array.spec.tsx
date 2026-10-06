@@ -3,12 +3,8 @@ import userEvent from '@testing-library/user-event';
 import { screen, waitFor, within } from '@testing-library/react';
 
 import { VarTypeStringM } from '@synerise/ds-icon';
-import {
-    OVERLAY_Z_INDEX_STEP,
-    renderWithProvider,
-    sleep,
-    theme,
-} from '@synerise/ds-core';
+import { OVERLAY_Z_INDEX_STEP, theme } from '@synerise/ds-core';
+import { renderWithProvider, sleep } from '@synerise/ds-core/testing';
 import Modal from '@synerise/ds-modal';
 
 import Factors from './../Factors';

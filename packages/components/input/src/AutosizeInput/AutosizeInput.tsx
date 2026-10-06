@@ -1,6 +1,5 @@
-import React, { type CSSProperties, forwardRef, useRef } from 'react';
-
 import { useMergeRefs } from '@floating-ui/react';
+import React, { type CSSProperties, forwardRef, useRef } from 'react';
 
 import type { AutosizeInputProps } from './AutosizeInput.types';
 import { SIZER_STYLE, useAutosizeWidth } from './useAutosizeWidth';

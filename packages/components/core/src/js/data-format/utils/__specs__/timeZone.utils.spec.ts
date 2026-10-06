@@ -1,6 +1,10 @@
 import { describe, expect, it } from 'vitest';
 
-import { getLocalDateInTimeZone, toIsoString } from '../timeZone.utils';
+import {
+  applyTimezoneOffset,
+  getLocalDateInTimeZone,
+  toIsoString,
+} from '../timeZone.utils';
 
 /**
  * `toIsoString` encodes a wall clock of `timeZone` as an offset-carrying ISO string, and
@@ -36,6 +40,16 @@ const wallClock = (isoDateTime: string): Date => {
   const [hours, minutes, seconds] = time.split(':').map(Number);
 
   return new Date(year, month - 1, day, hours, minutes, seconds);
+};
+
+// The reading a wall-clock date carries in its local fields, in the same shape as `wallClock`'s
+// input — the representation `getLocalDateInTimeZone` returns.
+const localFieldsOf = (date: Date): string => {
+  const pad = (value: number) => String(value).padStart(2, '0');
+
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}T${pad(date.getHours())}:${pad(
+    date.getMinutes(),
+  )}:${pad(date.getSeconds())}`;
 };
 
 // A wall clock the *process* timezone skips (its own spring-forward) cannot be held in a Date's
@@ -115,15 +129,23 @@ describe('getLocalDateInTimeZone', () => {
     ['2024-03-10T07:00:00+00:00', 'America/New_York', '2024-03-10T03:00:00'],
     ['2024-03-31T00:30:00+02:00', 'Asia/Tokyo', '2024-03-31T07:30:00'],
   ])('decodes %s in %s', (isoString, timeZone, expectedWallClock) => {
-    const decoded = getLocalDateInTimeZone(isoString, timeZone);
-    const localFields = `${decoded.getFullYear()}-${String(decoded.getMonth() + 1).padStart(2, '0')}-${String(
-      decoded.getDate(),
-    ).padStart(2, '0')}T${String(decoded.getHours()).padStart(2, '0')}:${String(decoded.getMinutes()).padStart(
-      2,
-      '0',
-    )}:${String(decoded.getSeconds()).padStart(2, '0')}`;
+    expect(localFieldsOf(getLocalDateInTimeZone(isoString, timeZone))).toBe(expectedWallClock);
+  });
 
-    expect(localFields).toBe(expectedWallClock);
+  // `Date.prototype.toISOString()` terminates in 'Z', not '+00:00', and it is the most common way
+  // a caller reaches this function (`getValueAsLocalDate`, `getFormattedDate`). The offset parser
+  // has to read that designator as zero — one that returns NaN for it invalidates every such
+  // call, and the offset-carrying cases above would not notice.
+  it.each([
+    ['2024-03-31T00:59:59.000Z', 'Europe/Warsaw', '2024-03-31T01:59:59'],
+    ['2024-03-31T01:00:00.000Z', 'Europe/Warsaw', '2024-03-31T03:00:00'],
+    ['2023-06-25T16:40:00.000Z', 'Australia/Darwin', '2023-06-26T02:10:00'],
+    ['2023-06-25T16:40:00.000Z', 'UTC', '2023-06-25T16:40:00'],
+  ])('decodes the Z designator in %s as UTC', (isoString, timeZone, expectedWallClock) => {
+    const decoded = getLocalDateInTimeZone(isoString, timeZone);
+
+    expect(Number.isNaN(decoded.getTime())).toBe(false);
+    expect(localFieldsOf(decoded)).toBe(expectedWallClock);
   });
 
   it.each(['Europe/Warsaw', 'America/New_York', 'Asia/Tokyo'])(
@@ -137,4 +159,54 @@ describe('getLocalDateInTimeZone', () => {
       });
     },
   );
+});
+
+describe('applyTimezoneOffset', () => {
+  /**
+   * The encoder the pickers emit through. It used to return `toIsoString(...)` — an
+   * offset-carrying string — which fixed one wire format on every consumer. It now returns a
+   * `TZDate`: the same instant, plus the zone, so the call site projects to whichever shape its
+   * API wants.
+   *
+   * Nothing on `master` calls this yet; the pickers reach it from `feature/timezones-clean`.
+   * These assertions are therefore the only thing pinning the contract, and they are written to
+   * be browser-independent like the rest of the file.
+   */
+
+  it.each([
+    ['Europe/Warsaw', '2026-09-10T18:00:00'],
+    ['Asia/Tokyo', '2026-09-10T18:00:00'],
+    ['America/New_York', '2026-03-08T12:00:00'], // the DST spring-forward day
+  ])('returns a TZDate carrying %s and the same instant', (timeZone, reading) => {
+    if (!isRepresentableLocally(reading)) {
+      return;
+    }
+    const carrier = wallClock(reading);
+
+    const result = applyTimezoneOffset(carrier, timeZone);
+
+    expect(result).toBeInstanceOf(Date);
+    expect((result as { timeZone?: string }).timeZone).toBe(timeZone);
+    // The carrier's fields are that zone's wall clock, so the result must read back the same
+    // there — and the instant it denotes is the one `toIsoString` encodes.
+    expect(wallClockIn(result as Date, timeZone)).toBe(reading);
+    expect((result as Date).getTime()).toBe(
+      new Date(toIsoString(carrier, timeZone)).getTime(),
+    );
+  });
+
+  it('passes the value through untouched when no timezone is given', () => {
+    const date = wallClock('2026-09-10T18:00:00');
+
+    // The load-bearing half: without an opt-in the pickers must keep emitting the plain `Date`
+    // they were handed. Defaulting to the provider or browser zone here would silently change
+    // what every consumer serializes, with no compiler error.
+    expect(applyTimezoneOffset(date, undefined)).toBe(date);
+    expect(applyTimezoneOffset(date, false)).toBe(date);
+    expect((applyTimezoneOffset(date, undefined) as { timeZone?: string }).timeZone).toBeUndefined();
+  });
+
+  it('returns undefined for a missing value', () => {
+    expect(applyTimezoneOffset(undefined, 'Asia/Tokyo')).toBeUndefined();
+  });
 });

@@ -45,7 +45,7 @@ export const ImagePopover = ({
           insertImage(src);
         } catch (error) {
           // The consumer's upload failed; keep the popover open so the user can retry.
-          // eslint-disable-next-line no-console
+          // biome-ignore lint/suspicious/noConsole: deliberate developer-facing log
           console.error('RichText: image upload failed', error);
         } finally {
           setIsUploading(false);
@@ -58,7 +58,7 @@ export const ImagePopover = ({
           }
         };
         reader.onerror = () => {
-          // eslint-disable-next-line no-console
+          // biome-ignore lint/suspicious/noConsole: deliberate developer-facing log
           console.error('RichText: failed to read image file', reader.error);
         };
         reader.readAsDataURL(file);

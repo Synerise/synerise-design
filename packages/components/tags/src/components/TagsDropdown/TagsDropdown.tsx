@@ -9,7 +9,7 @@ import Tag, {
 } from '@synerise/ds-tag';
 import { NOOP } from '@synerise/ds-utils';
 
-import { type ExtendedTagProps } from '../../Tags.types';
+import type { ExtendedTagProps } from '../../Tags.types';
 import * as S from './TagsDropdown.styles';
 
 type TagDropdownProps = {

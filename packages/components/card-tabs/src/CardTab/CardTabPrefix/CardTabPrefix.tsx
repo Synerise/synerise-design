@@ -4,7 +4,7 @@ import Icon, { DragHandleM } from '@synerise/ds-icon';
 
 import * as S from '../CardTab.styles';
 import { prefixType } from '../CardTab.types';
-import { type CardTabPrefixProps } from './CardTabPrefix.types';
+import type { CardTabPrefixProps } from './CardTabPrefix.types';
 import {
   isDotPrefix,
   isHandlePrefix,

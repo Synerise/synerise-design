@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import { type CollapseExpandIconPosition } from './Collapse.types';
+import type { CollapseExpandIconPosition } from './Collapse.types';
 
 /*
  * DS-native accordion visual, expressed entirely with styled-components. The `ant-collapse*` /

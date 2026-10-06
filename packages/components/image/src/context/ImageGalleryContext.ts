@@ -1,11 +1,11 @@
-import { type ReactNode, createContext, useContext } from 'react';
+import { createContext, type ReactNode, useContext } from 'react';
 
-import {
-  type AspectRatio,
-  type ImageTexts,
-  type ObjectFit,
-  type ThumbnailBackground,
-  type ThumbnailSize,
+import type {
+  AspectRatio,
+  ImageTexts,
+  ObjectFit,
+  ThumbnailBackground,
+  ThumbnailSize,
 } from '../shared/Image.shared.types';
 
 /** Visual settings a `Gallery` broadcasts to every `Thumbnail` it renders. */

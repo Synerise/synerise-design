@@ -1,8 +1,8 @@
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 
-import type { Meta, StoryObj } from '@storybook/react-vite';
-import Button from '@synerise/ds-button';
 import type { StarButtonProps } from '@synerise/ds-button';
+import Button from '@synerise/ds-button';
 
 import { BOOLEAN_CONTROL, CLASSNAME_ARG_CONTROL } from '../../utils';
 

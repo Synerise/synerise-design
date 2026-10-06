@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 
 import * as S from './Icon.styles';
-import { type IconProps } from './Icon.types';
+import type { IconProps } from './Icon.types';
 import { useIconComponent } from './useIconComponent';
 
 const Icon = forwardRef<HTMLDivElement, IconProps>(

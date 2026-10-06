@@ -1,4 +1,4 @@
-import { type ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
 /** One image in a gallery or preview set. */
 export type ImageSource = {

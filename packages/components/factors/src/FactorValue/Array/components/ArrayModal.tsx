@@ -13,11 +13,11 @@ import InlineAlert from '@synerise/ds-inline-alert';
 import { SearchInput } from '@synerise/ds-search';
 import { useIsMounted } from '@synerise/ds-utils';
 
+import type { ArrayValueElement } from './../../../Factors.types';
 import { MODAL_VIEWPORT_HEIGHT } from '../Array.const';
 import * as S from '../Array.styles';
-import { type ArrayModalProps, type ArrayValueWithID } from '../Array.types';
+import type { ArrayModalProps, ArrayValueWithID } from '../Array.types';
 import { arrayWithUUID, sanitiseValues } from '../Array.utils';
-import { type ArrayValueElement } from './../../../Factors.types';
 import { ArrayCreator } from './ArrayCreator';
 import { ArrayLimit } from './ArrayLimit';
 import { ArrayRaw } from './ArrayRaw';

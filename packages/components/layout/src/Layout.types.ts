@@ -1,4 +1,4 @@
-import { type CSSProperties, type ReactNode, type Ref } from 'react';
+import type { CSSProperties, ReactNode, Ref } from 'react';
 
 export interface ColumnProps<T> {
   left?: T;

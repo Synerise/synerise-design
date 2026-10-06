@@ -9,7 +9,7 @@ import {
   PanelHeader,
   PanelItem,
 } from './Collapse.styles';
-import { type CollapsePanelProps } from './Collapse.types';
+import type { CollapsePanelProps } from './Collapse.types';
 
 /**
  * One accordion item. Each element is a styled-component that owns its styles; the

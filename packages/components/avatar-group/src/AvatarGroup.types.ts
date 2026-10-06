@@ -1,6 +1,6 @@
 import type React from 'react';
 
-import { type AvatarProps } from '@synerise/ds-avatar';
+import type { AvatarProps } from '@synerise/ds-avatar';
 import type { BadgeProps } from '@synerise/ds-badge';
 
 export type Size = 'small' | 'medium' | 'large';

@@ -1,4 +1,4 @@
-import styled, { type Keyframes, css, keyframes } from 'styled-components';
+import styled, { css, type Keyframes, keyframes } from 'styled-components';
 
 import { SkeletonSize, StartOffsetSize, WidthSize } from './Skeleton.types';
 

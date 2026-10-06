@@ -1,18 +1,18 @@
-import {
-  type AriaAttributes,
-  type CSSProperties,
-  type FocusEvent,
-  type Key,
-  type KeyboardEvent,
-  type MouseEvent,
-  type ReactElement,
-  type ReactNode,
-  type UIEvent,
+import type {
+  AriaAttributes,
+  CSSProperties,
+  FocusEvent,
+  Key,
+  KeyboardEvent,
+  MouseEvent,
+  ReactElement,
+  ReactNode,
+  UIEvent,
 } from 'react';
-import { type CSSObject } from 'styled-components';
+import type { CSSObject } from 'styled-components';
 
-import { type DropdownPlacement } from '@synerise/ds-dropdown';
-import { type FormFieldCommonProps } from '@synerise/ds-form-field';
+import type { DropdownPlacement } from '@synerise/ds-dropdown';
+import type { FormFieldCommonProps } from '@synerise/ds-form-field';
 
 /**
  * The selected value. A plain value for single-select, an array for

@@ -4,10 +4,10 @@ import Badge from '@synerise/ds-badge';
 import Button from '@synerise/ds-button';
 import Icon, { EditS } from '@synerise/ds-icon';
 
-import {
-  type FactorValueComponentProps,
-  type FactorValueType,
-  type FormulaValueType,
+import type {
+  FactorValueComponentProps,
+  FactorValueType,
+  FormulaValueType,
 } from '../../Factors.types';
 import * as S from './Formula.styles';
 import FormulaModal from './FormulaModal';

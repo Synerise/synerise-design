@@ -220,6 +220,8 @@ export type FactorsProps = {
   customFactorValueComponents?: Partial<FactorTypeMapping>;
   factorValueExtraProps?: Partial<ExtraPropsMapping>;
   getPopupContainerOverride?: (trigger: HTMLElement | null) => HTMLElement;
+  /** Forwarded to the parameter button: lets its label stretch (no fixed max-width), floored at this min width. */
+  fluidMinWidth?: string | number;
   onActivate?: () => void;
   onDeactivate?: () => void;
   onChangeValue: (value: FactorValueType) => void;
@@ -319,6 +321,7 @@ export type FactorValueProps = Pick<
   | 'relativeDateProps'
   | 'arrayProps'
   | 'factorValueExtraProps'
+  | 'fluidMinWidth'
   | 'uncontrolledComponent'
 > & {
   texts: FactorsTexts;
@@ -343,6 +346,7 @@ export type FactorValueComponentProps = Pick<
   | 'readOnly'
   | 'arrayProps'
   | 'factorValueExtraProps'
+  | 'fluidMinWidth'
   | 'uncontrolledComponent'
 > & {
   texts: FactorsTexts;

@@ -1,4 +1,4 @@
-import { type ListItemProps } from '@synerise/ds-list-item';
+import type { ListItemProps } from '@synerise/ds-list-item';
 
 import {
   ACTION_TYPES,
@@ -8,12 +8,12 @@ import {
   type SearchByParamConfig,
   type SearchInAction,
 } from '../../ItemPickerNew/types/actions.types';
-import { type ItemPickerListTexts } from '../../ItemPickerNew/types/itemPickerListTexts.types';
-import { type TitleListItemProps } from '../ItemPickerList.types';
+import type { ItemPickerListTexts } from '../../ItemPickerNew/types/itemPickerListTexts.types';
 import {
   getTitleItem,
   matchesSearchQuery,
 } from '../hooks/useItemsInSections.utils';
+import type { TitleListItemProps } from '../ItemPickerList.types';
 import { isSearchByAction, isSearchInAction, isTruthy } from '../utils';
 import { getContextAwareActions } from './getContextAwareActions';
 

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import * as S from './Loader.styles';
-import { type LoaderProps } from './Loader.types';
+import type { LoaderProps } from './Loader.types';
 
 const Loader = ({
   size = 'M',

@@ -1,13 +1,13 @@
-import {
-  type CSSProperties,
-  type KeyboardEvent,
-  type MouseEvent,
-  type PropsWithChildren,
+import type {
+  CSSProperties,
+  KeyboardEvent,
+  MouseEvent,
+  PropsWithChildren,
 } from 'react';
 
-import { type PassthroughAttributes } from '@synerise/ds-utils';
+import type { PassthroughAttributes } from '@synerise/ds-utils';
 
-import { type DrawerPlacement } from './Drawer.styles';
+import type { DrawerPlacement } from './Drawer.styles';
 
 export type { DrawerPlacement };
 

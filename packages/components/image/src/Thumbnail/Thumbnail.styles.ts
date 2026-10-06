@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-import { type ThemeProps } from '@synerise/ds-core';
+import type { ThemeProps } from '@synerise/ds-core';
 
-import {
-  type ObjectFit,
-  type ThumbnailBackground,
+import type {
+  ObjectFit,
+  ThumbnailBackground,
 } from '../shared/Image.shared.types';
 import ImageContent from '../shared/ImageContent';
 

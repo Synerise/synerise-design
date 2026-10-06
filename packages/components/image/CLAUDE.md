@@ -152,5 +152,6 @@ tables.
 - `@synerise/ds-tooltip` — wraps the thumbnail delete button.
 - `@synerise/ds-utils` — `useFocusTrap`.
 - `react-intl` (peer) — control labels/tooltips via `useImageTexts`.
+- `react-dom` (peer) — `createPortal` for the preview overlay.
 - `@synerise/ds-core` (peer) — theme palette, `box-shadow-*` variables and
   `useResolvedOverlayZIndex` (overlay stacking).

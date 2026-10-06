@@ -3,6 +3,72 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.62.1](https://github.com/Synerise/synerise-design/compare/storybook@1.62.0...storybook@1.62.1) (2026-09-24)
+
+
+### Bug Fixes
+
+* **information-card:** keep background on buttons inside the card ([87240f6](https://github.com/Synerise/synerise-design/commit/87240f63f9c9778a833eaf56e1fc138294b4f723))
+* make single-icon button width follow size and block ([a1c9ff2](https://github.com/Synerise/synerise-design/commit/a1c9ff251800239489388647f8471da6d244dd17))
+
+
+
+
+
+# [1.62.0](https://github.com/Synerise/synerise-design/compare/storybook@1.61.1...storybook@1.62.0) (2026-09-22)
+
+
+### Features
+
+* add @synerise/ds-condition-blocks — building blocks for filtering-condition layouts ([ed332ce](https://github.com/Synerise/synerise-design/commit/ed332cefddd418a293a73c51c57e9a4c1ed4f22f))
+
+
+
+
+
+## [1.61.1](https://github.com/Synerise/synerise-design/compare/storybook@1.61.0...storybook@1.61.1) (2026-09-18)
+
+**Note:** Version bump only for package storybook
+
+
+
+
+
+# [1.61.0](https://github.com/Synerise/synerise-design/compare/storybook@1.60.0...storybook@1.61.0) (2026-09-16)
+
+### Bug Fixes
+
+- **wizard:** render footerAction in Wizard.OnModal footer ([ef088a7](https://github.com/Synerise/synerise-design/commit/ef088a74f0ab1fd2f3a585338ffbcf697f5a3685))
+
+### Features
+
+- **list-item:** add content-fitting size="auto" ([e269f0a](https://github.com/Synerise/synerise-design/commit/e269f0a48ca7472f4766a50a957e22d7988c5e13))
+- **table-new:** add subHeaderComponent slot between title bar and columns ([02ad898](https://github.com/Synerise/synerise-design/commit/02ad898afce03402d64708867880f6600886ed86))
+
+# [1.60.0](https://github.com/Synerise/synerise-design/compare/storybook@1.59.2...storybook@1.60.0) (2026-09-10)
+
+### Features
+
+- **global:** move the pickers to date-fns 4 ([f878075](https://github.com/Synerise/synerise-design/commit/f878075940c2cd0d2d8a4a5603eb18d01f837640))
+
+## [1.59.2](https://github.com/Synerise/synerise-design/compare/storybook@1.59.1...storybook@1.59.2) (2026-09-08)
+
+**Note:** Version bump only for package storybook
+
+## [1.59.1](https://github.com/Synerise/synerise-design/compare/storybook@1.59.0...storybook@1.59.1) (2026-09-07)
+
+**Note:** Version bump only for package storybook
+
+# [1.59.0](https://github.com/Synerise/synerise-design/compare/storybook@1.58.0...storybook@1.59.0) (2026-09-05)
+
+### Bug Fixes
+
+- address review on the stored-file thumbnail ([2856afa](https://github.com/Synerise/synerise-design/commit/2856afa081bf2edf7887c1102494adf497da3253))
+
+### Features
+
+- render a stored file's url as the uploader thumbnail ([bd1a6eb](https://github.com/Synerise/synerise-design/commit/bd1a6eb4094f0ca380585dc98168f76dfae4b61e))
+
 # [1.58.0](https://github.com/Synerise/synerise-design/compare/storybook@1.57.1...storybook@1.58.0) (2026-09-02)
 
 ### Features

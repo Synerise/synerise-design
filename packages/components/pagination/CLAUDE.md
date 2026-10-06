@@ -85,6 +85,6 @@ No CSS import is required (styled-components).
 - **Controlled/uncontrolled** both for `current` and `pageSize` independently.
 - **`itemRender` is ignored** — the component always renders its own DS nav controls (the prop is kept
   in the type for back-compat since the old wrapper also overrode it).
-- ds-table / ds-table-new render this component and target the `ds-pagination-*` hooks (updated from the
+- ds-table-new renders this component and targets the `ds-pagination-*` hooks (updated from the
   old `ant-pagination-*`).
 - Uses **Vitest**.

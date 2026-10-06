@@ -1,10 +1,10 @@
-import React, { type MouseEvent, cloneElement } from 'react';
+import React, { cloneElement, type MouseEvent } from 'react';
 
 import Icon, { ResizeArrowM } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 
 import * as S from '../Input.styles';
-import { type BaseProps } from '../Input.types';
+import type { BaseProps } from '../Input.types';
 
 type IconProps = Pick<
   BaseProps,

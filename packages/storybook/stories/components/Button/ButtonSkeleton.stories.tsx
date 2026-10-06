@@ -1,6 +1,6 @@
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 
-import type { Meta, StoryObj } from '@storybook/react-vite';
 import Skeleton from '@synerise/ds-skeleton';
 
 import { controlFromOptionsArray, fixedWrapper200 } from '../../utils';

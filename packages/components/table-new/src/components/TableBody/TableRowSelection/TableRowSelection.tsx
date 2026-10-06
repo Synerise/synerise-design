@@ -3,10 +3,10 @@ import React from 'react';
 import { Checkbox } from '@synerise/ds-button';
 import Tooltip from '@synerise/ds-tooltip';
 
-import { type TableRowSelectionProps } from '../../../Table.types';
 import { useSelectionContext } from '../../../contexts/SelectionContext';
 import { useStickyContext } from '../../../contexts/StickyContext';
 import { useTableContext } from '../../../contexts/TableContext';
+import type { TableRowSelectionProps } from '../../../Table.types';
 
 export const TableRowSelection = <TData extends object>({
   texts,

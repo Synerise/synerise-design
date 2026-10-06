@@ -1,8 +1,8 @@
 import React, {
   Children,
-  type ReactElement,
   cloneElement,
   isValidElement,
+  type ReactElement,
 } from 'react';
 
 import Step from './Step/Step';

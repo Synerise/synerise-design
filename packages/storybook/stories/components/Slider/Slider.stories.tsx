@@ -1,15 +1,15 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React, { useState } from 'react';
 import { fn } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import Slider, { type DefaultSliderProps } from '@synerise/ds-slider';
 
 import {
   BOOLEAN_CONTROL,
   CLASSNAME_ARG_CONTROL,
+  fixedWrapper400,
   NUMBER_CONTROL,
   REACT_NODE_AS_STRING,
-  fixedWrapper400,
 } from '../../utils';
 import { TRACKS_COLOR_MAP } from './Slider.data';
 

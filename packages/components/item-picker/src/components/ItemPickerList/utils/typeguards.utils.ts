@@ -1,8 +1,8 @@
-import { type ListItemProps } from '@synerise/ds-list-item';
+import type { ListItemProps } from '@synerise/ds-list-item';
 
-import {
-  type ItemLoaderConfig,
-  type ItemsConfig,
+import type {
+  ItemLoaderConfig,
+  ItemsConfig,
 } from '../../ItemPickerNew/ItemPickerNew.types';
 import {
   ACTION_TYPES,
@@ -10,12 +10,12 @@ import {
   type SearchByAction,
   type SearchInAction,
 } from '../../ItemPickerNew/types/actions.types';
-import {
-  type BaseItemType,
-  type BaseSectionType,
-  type BaseSectionTypeWithFolders,
+import type {
+  BaseItemType,
+  BaseSectionType,
+  BaseSectionTypeWithFolders,
 } from '../../ItemPickerNew/types/baseItemSectionType.types';
-import { type TitleListItemProps } from '../ItemPickerList.types';
+import type { TitleListItemProps } from '../ItemPickerList.types';
 
 export const isTitle = (
   item: TitleListItemProps | ListItemProps,

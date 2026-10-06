@@ -1,15 +1,15 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import {
   type BaseCopyableCellProps,
   CopyableCell,
 } from '@synerise/ds-table-new';
 
 import {
+  fixedWrapper300,
   NUMBER_CONTROL,
   STRING_CONTROL,
-  fixedWrapper300,
 } from '../../../utils';
 
 const meta: Meta<BaseCopyableCellProps> = {

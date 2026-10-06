@@ -1,6 +1,6 @@
-import { type Placement } from '@floating-ui/react';
+import type { Placement } from '@floating-ui/react';
 
-import { type LegacyPlacement } from './Popover.types';
+import type { LegacyPlacement } from './Popover.types';
 
 export const HOVER_OPEN_DELAY = 100;
 export const HOVER_CLOSE_DELAY = 100;

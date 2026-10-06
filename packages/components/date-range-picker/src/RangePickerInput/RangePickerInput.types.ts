@@ -13,10 +13,6 @@ import type { DateFilter, DateRange } from '../date.types';
 
 export type RangePickerInputProps = {
   size?: 'large' | 'default' | 'small';
-  /**
-   * @deprecated use `valueFormatOptions` instead
-   */
-  format?: string;
   valueFormatOptions?: DateToFormatOptions;
   showTime?: boolean;
   allowClear?: boolean;

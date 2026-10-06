@@ -1,6 +1,6 @@
 import styled, { keyframes } from 'styled-components';
 
-import { type ThemeProps } from '@synerise/ds-core';
+import type { ThemeProps } from '@synerise/ds-core';
 
 import { PREVIEW_PADDING } from './ImagePreview.const';
 

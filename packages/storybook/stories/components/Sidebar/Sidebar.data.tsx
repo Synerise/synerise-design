@@ -1,4 +1,5 @@
 import React from 'react';
+
 import Sidebar from '@synerise/ds-sidebar';
 
 const mockContent =
@@ -11,21 +12,14 @@ const panelsData = [
 ];
 
 export const createSidebarPanels = () =>
-  panelsData.map(panel => (
+  panelsData.map((panel) => (
     <Sidebar.Panel header={panel.header} id={panel.id} key={panel.id}>
       {mockContent}
     </Sidebar.Panel>
   ));
 
-export const createPanel = (header, id) => (
-  <Sidebar.Panel header={header} id={id} key={id}>
-    {mockContent}
-  </Sidebar.Panel>
-);
-
 export const SIDEBAR_WITH_BUTTON_DATA = [
-    { text: 'Item 1' },
-    { text: 'Item 2' },
-    { text: 'Item 3' },
-  ];
-  
+  { text: 'Item 1' },
+  { text: 'Item 2' },
+  { text: 'Item 3' },
+];

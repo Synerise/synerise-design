@@ -1,9 +1,9 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 import { useArgs } from 'storybook/preview-api';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
-import CardSelect from '@synerise/ds-card-select';
 import type { CardSelectProps } from '@synerise/ds-card-select';
+import CardSelect from '@synerise/ds-card-select';
 import Icon, {
   AbTestXl,
   AdOnDemandL,
@@ -16,10 +16,10 @@ import { customColors } from '@synerise/ds-tokens/names';
 import {
   BOOLEAN_CONTROL,
   CLASSNAME_ARG_CONTROL,
-  NUMBER_CONTROL,
-  REACT_NODE_AS_STRING,
   cardSelectWrapper,
   controlFromOptionsArray,
+  NUMBER_CONTROL,
+  REACT_NODE_AS_STRING,
   reactNodeAsSelect,
 } from '../../utils';
 

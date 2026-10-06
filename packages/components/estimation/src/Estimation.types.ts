@@ -1,8 +1,8 @@
-import { type ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
-import { type BaseLabelProps } from '@synerise/ds-form-field';
-import { type ProgressValue } from '@synerise/ds-progress-bar';
-import { type WithHTMLAttributes } from '@synerise/ds-utils';
+import type { BaseLabelProps } from '@synerise/ds-form-field';
+import type { ProgressValue } from '@synerise/ds-progress-bar';
+import type { WithHTMLAttributes } from '@synerise/ds-utils';
 
 export type EstimationProgressValue = ProgressValue & {
   label?: ReactNode;

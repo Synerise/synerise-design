@@ -11,7 +11,7 @@ import {
   SHIFT_CONFIG,
 } from './InformationCard.constants';
 import * as S from './InformationCardTooltip.styles';
-import { type InformationCardTooltipProps } from './InformationCardTooltip.types';
+import type { InformationCardTooltipProps } from './InformationCardTooltip.types';
 
 export const InformationCardTooltip = forwardRef<
   HTMLDivElement,

@@ -6,7 +6,7 @@ import Status from '@synerise/ds-status';
 import { customColors } from '@synerise/ds-tokens/names';
 
 import Avatar from '../Avatar';
-import { type ObjectAvatarProps } from '../Avatar.types';
+import type { ObjectAvatarProps } from '../Avatar.types';
 import { addIconColor, getColorByText, getObjectName } from '../utils';
 
 export const DEFAULT_COLOR_HUE = '600';

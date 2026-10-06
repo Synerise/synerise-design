@@ -1,14 +1,14 @@
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 
-import type { Meta, StoryObj } from '@storybook/react-vite';
 import { ArrowUpM } from '@synerise/ds-icon';
 import ShortCuts from '@synerise/ds-short-cuts';
 
 import {
   BOOLEAN_CONTROL,
-  REACT_NODE_AS_STRING,
   centeredPaddedWrapper,
   controlFromOptionsArray,
+  REACT_NODE_AS_STRING,
 } from '../../utils';
 
 const COLOR_OPTIONS = {

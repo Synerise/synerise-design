@@ -1,15 +1,15 @@
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 
-import type { Meta, StoryObj } from '@storybook/react-vite';
-import Button from '@synerise/ds-button';
 import type { CreatorProps } from '@synerise/ds-button';
+import Button from '@synerise/ds-button';
 
 import {
   BOOLEAN_CONTROL,
   CLASSNAME_ARG_CONTROL,
-  STRING_CONTROL,
   controlFromOptionsArray,
   fixedWrapper400,
+  STRING_CONTROL,
 } from '../../utils';
 
 const meta: Meta<CreatorProps> = {

@@ -7,7 +7,7 @@ import ListItem, { ListWrapper } from '@synerise/ds-list-item';
 import { useOnClickOutside } from '@synerise/ds-utils';
 
 import * as S from './SidebarWithButton.styles';
-import { type SidebarWithButtonProps } from './SidebarWithButton.types';
+import type { SidebarWithButtonProps } from './SidebarWithButton.types';
 
 const SidebarWithButton = ({
   dataSource,

@@ -1,12 +1,7 @@
 import React, { createRef, useState } from 'react';
 
-import {
-  OVERLAY_Z_INDEX_STEP,
-  OverlayZIndexProvider,
-  closeAllOverlays,
-  renderWithProvider,
-  theme,
-} from '@synerise/ds-core';
+import { OVERLAY_Z_INDEX_STEP, OverlayZIndexProvider, closeAllOverlays, theme } from '@synerise/ds-core';
+import { renderWithProvider } from '@synerise/ds-core/testing';
 import { act, fireEvent, screen, waitFor } from '@testing-library/react';
 
 import Dropdown from '@synerise/ds-dropdown';

@@ -1,7 +1,7 @@
 // @ts-nocheck
-import React from 'react';
 
 import figma from '@figma/code-connect';
+import React from 'react';
 
 import Tooltip from './Tooltip';
 

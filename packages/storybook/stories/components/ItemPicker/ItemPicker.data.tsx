@@ -1,8 +1,8 @@
+import { faker } from '@faker-js/faker';
 import React, { type MouseEvent } from 'react';
 import { action } from 'storybook/actions';
 import { v4 as uuid } from 'uuid';
 
-import { faker } from '@faker-js/faker';
 import Icon, {
   Add3M,
   AddM,
@@ -159,6 +159,36 @@ export const FLAT_DATA_SOURCE: ItemType[] = STATIC_ITEMS.concat(
     prefixel: <Icon component={<UserM />} />,
   })),
 );
+
+/**
+ * Mixed row heights, including `size="auto"` rows whose descriptions wrap. Used to check the
+ * list measures its rows rather than laying them out from the constant `ITEM_SIZE` map, which
+ * would overlap the tall ones.
+ */
+export const MIXED_SIZE_DATA_SOURCE: ItemType[] = [
+  {
+    text: 'Count as exact values',
+    size: 'auto',
+    description:
+      "Shows each metric's results grouped by the dimensions you selected.",
+    prefixel: <Icon component={<UserM />} />,
+  },
+  {
+    text: 'Count as percentage',
+    size: 'auto',
+    description:
+      "Shows each metric's share of the total number of event occurrences, grouped by the selected dimensions.",
+    prefixel: <Icon component={<UserM />} />,
+  },
+  { text: 'Default row', prefixel: <Icon component={<UserM />} /> },
+  {
+    text: 'Large row',
+    size: 'large',
+    description: 'Description',
+    prefixel: <Icon component={<UserM />} />,
+  },
+  ...STATIC_ITEMS,
+];
 
 const segmentationItem = (index: number): SegmentationType => {
   const itemData = {

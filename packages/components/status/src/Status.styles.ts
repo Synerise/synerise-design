@@ -1,4 +1,4 @@
-import styled, { type StyledComponent, css } from 'styled-components';
+import styled, { css, type StyledComponent } from 'styled-components';
 
 import Tag, { type TagProps } from '@synerise/ds-tag';
 

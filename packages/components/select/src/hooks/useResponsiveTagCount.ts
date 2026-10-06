@@ -7,7 +7,7 @@ import {
   useState,
 } from 'react';
 
-import { type RawValueType } from '../Select.types';
+import type { RawValueType } from '../Select.types';
 
 /** Gap between chips — keep in sync with `MultiValueArea`'s `gap`. */
 const CHIP_GAP = 4;

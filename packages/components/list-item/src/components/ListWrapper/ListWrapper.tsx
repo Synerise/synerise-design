@@ -3,9 +3,9 @@ import { useIntl } from 'react-intl';
 
 import Button from '@synerise/ds-button';
 import Icon, { ArrowDownCircleM, ArrowUpCircleM } from '@synerise/ds-icon';
-import { type WithHTMLAttributes } from '@synerise/ds-utils';
+import type { WithHTMLAttributes } from '@synerise/ds-utils';
 
-import { type ListContextProps } from '../ListContext/ListContext';
+import type { ListContextProps } from '../ListContext/ListContext';
 import { ListContextProvider } from '../ListContext/ListContextProvider';
 import * as S from './ListWrapper.styles';
 

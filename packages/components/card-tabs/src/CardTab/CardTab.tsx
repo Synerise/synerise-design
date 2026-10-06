@@ -6,10 +6,10 @@ import InlineEdit from '@synerise/ds-inline-edit';
 import Tooltip from '@synerise/ds-tooltip';
 
 import * as S from './CardTab.styles';
-import {
-  type CardTabProps,
-  type CardTabSuffixProps,
-  type ListItemEventType,
+import type {
+  CardTabProps,
+  CardTabSuffixProps,
+  ListItemEventType,
 } from './CardTab.types';
 import CardTabActions from './CardTabActions/CardTabActions';
 import CardTabDropdown from './CardTabDropdown/CardTabDropdown';

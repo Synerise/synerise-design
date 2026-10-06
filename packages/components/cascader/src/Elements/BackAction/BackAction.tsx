@@ -5,7 +5,7 @@ import Icon, { ArrowLeftM } from '@synerise/ds-icon';
 
 import { DividerContainer } from '../../Cascader.styles';
 import * as S from './BackAction.styles';
-import { type BackActionProps } from './BackAction.types';
+import type { BackActionProps } from './BackAction.types';
 
 export const BackAction = ({ label, onClick }: BackActionProps) => (
   <>

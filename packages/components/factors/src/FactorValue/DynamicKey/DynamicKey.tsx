@@ -1,8 +1,8 @@
 import React, { type ChangeEvent, useEffect, useState } from 'react';
 
-import {
-  type DynamicKeyValueType,
-  type FactorValueComponentProps,
+import type {
+  DynamicKeyValueType,
+  FactorValueComponentProps,
 } from '../../Factors.types';
 import * as S from './DynamicKey.style';
 

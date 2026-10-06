@@ -1,6 +1,6 @@
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import React, { useState } from 'react';
 
-import type { Meta, StoryObj } from '@storybook/react-vite';
 import Autocomplete from '@synerise/ds-autocomplete';
 import { EditableList, EditableParam } from '@synerise/ds-form';
 import { escapeRegEx } from '@synerise/ds-utils';

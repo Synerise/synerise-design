@@ -3,6 +3,51 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subtle-form@2.1.3...@synerise/ds-subtle-form@2.1.4) (2026-09-24)
+
+**Note:** Version bump only for package @synerise/ds-subtle-form
+
+
+
+
+
+## [2.1.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subtle-form@2.1.2...@synerise/ds-subtle-form@2.1.3) (2026-09-22)
+
+
+### Bug Fixes
+
+* **core:** move test helpers to a ./testing subpath export ([b38cd82](https://github.com/Synerise/synerise-design/commit/b38cd82c956111d2331d5c1e0efd1935366f1139))
+
+
+
+
+
+## [2.1.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subtle-form@2.1.1...@synerise/ds-subtle-form@2.1.2) (2026-09-18)
+
+**Note:** Version bump only for package @synerise/ds-subtle-form
+
+
+
+
+
+## [2.1.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subtle-form@2.1.0...@synerise/ds-subtle-form@2.1.1) (2026-09-16)
+
+**Note:** Version bump only for package @synerise/ds-subtle-form
+
+# [2.1.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subtle-form@2.0.4...@synerise/ds-subtle-form@2.1.0) (2026-09-10)
+
+### Features
+
+- **global:** move the pickers to date-fns 4 ([f878075](https://github.com/Synerise/synerise-design/commit/f878075940c2cd0d2d8a4a5603eb18d01f837640))
+
+## [2.0.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subtle-form@2.0.3...@synerise/ds-subtle-form@2.0.4) (2026-09-08)
+
+**Note:** Version bump only for package @synerise/ds-subtle-form
+
+## [2.0.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subtle-form@2.0.2...@synerise/ds-subtle-form@2.0.3) (2026-09-07)
+
+**Note:** Version bump only for package @synerise/ds-subtle-form
+
 ## [2.0.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subtle-form@2.0.1...@synerise/ds-subtle-form@2.0.2) (2026-09-02)
 
 **Note:** Version bump only for package @synerise/ds-subtle-form

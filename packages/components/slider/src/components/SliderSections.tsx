@@ -1,8 +1,8 @@
 import React from 'react';
 
-import * as S from '../Slider.styles';
-import { type ColorMap } from '../Slider.types';
 import { useSliderContext } from '../context/SliderContext';
+import * as S from '../Slider.styles';
+import type { ColorMap } from '../Slider.types';
 import {
   getVisibleSectionsForType,
   resolveTrackColor,

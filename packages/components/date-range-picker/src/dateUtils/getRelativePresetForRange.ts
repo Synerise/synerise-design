@@ -1,7 +1,7 @@
 import isEqual from 'lodash.isequal';
 
 import { RELATIVE, RELATIVE_PRESETS } from '../constants';
-import { type DateRange } from '../date.types';
+import type { DateRange } from '../date.types';
 
 const getRelativePresetForRange = (range: DateRange): DateRange => {
   let relativeResult;

@@ -12,7 +12,7 @@ import { FormFieldLabel } from '@synerise/ds-form-field';
 import { useResizeObserver } from '@synerise/ds-utils';
 
 import * as S from '../CodeArea.styles';
-import { type CodeAreaEditorProps } from '../CodeArea.types';
+import type { CodeAreaEditorProps } from '../CodeArea.types';
 import { calculateRequiredSpace } from '../utils/calculateRequiredSpace';
 import { getCharCount } from '../utils/getCharCount';
 import { getDefaultTexts } from '../utils/getDefaultTexts';
@@ -125,8 +125,8 @@ export const CodeAreaEditor = forwardRef<HTMLDivElement, CodeAreaEditorProps>(
 
     const isBottomBarShowing = Boolean(
       isSyntaxSelectVisible ||
-      (allowFullscreen && !isFullscreen) ||
-      renderFooterContent,
+        (allowFullscreen && !isFullscreen) ||
+        renderFooterContent,
     );
     const requiredSpace = isFullscreen
       ? calculateRequiredSpace(isBottomBarShowing, contentBelowHeight)

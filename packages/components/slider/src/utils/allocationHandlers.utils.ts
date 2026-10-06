@@ -1,4 +1,4 @@
-import { type AllocationVariant, type HandlerConfig } from '../Slider.types';
+import type { AllocationVariant, HandlerConfig } from '../Slider.types';
 
 export const calculateHandlersPercentagePosition = (
   variants?: AllocationVariant[],
@@ -7,9 +7,13 @@ export const calculateHandlersPercentagePosition = (
     return [];
   }
   return variants
-    ?.reduce<
-      number[]
-    >((prev, curr) => [...prev, curr.percentage + (prev.length ? prev[prev.length - 1] : 0)], [])
+    ?.reduce<number[]>(
+      (prev, curr) => [
+        ...prev,
+        curr.percentage + (prev.length ? prev[prev.length - 1] : 0),
+      ],
+      [],
+    )
     .slice(0, -1);
 };
 

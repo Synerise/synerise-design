@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { type DividerProps } from '../Divider.types';
+import type { DividerProps } from '../Divider.types';
 import { SVG_PROPS } from './Line.const';
 import * as S from './Line.styles';
 

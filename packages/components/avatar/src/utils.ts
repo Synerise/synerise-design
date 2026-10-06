@@ -1,19 +1,19 @@
 import {
-  type ReactElement,
-  type ReactNode,
   cloneElement,
   isValidElement,
+  type ReactElement,
+  type ReactNode,
 } from 'react';
 
 import Icon from '@synerise/ds-icon';
 import { type ColorObject, selectColorByLetter } from '@synerise/ds-utils';
 
-import {
-  type AvatarProps,
-  type Color,
-  type ColorHue,
-  type TooltipObject,
-  type UserAvatar,
+import type {
+  AvatarProps,
+  Color,
+  ColorHue,
+  TooltipObject,
+  UserAvatar,
 } from './Avatar.types';
 
 function getFirstLetter(from: string | null): string {

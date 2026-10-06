@@ -2,7 +2,7 @@ import React, { memo, useMemo } from 'react';
 import { v4 as uuid } from 'uuid';
 
 import * as S from './DropdownSkeleton.styles';
-import { type DropdownSkeletonProps } from './DropdownSkeleton.types';
+import type { DropdownSkeletonProps } from './DropdownSkeleton.types';
 
 const DropdownSkeleton = ({
   size = 'M',

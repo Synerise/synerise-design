@@ -3,7 +3,7 @@ import type {
   ReactNode,
   RefAttributes,
 } from 'react';
-import { type StyledComponent } from 'styled-components';
+import type { StyledComponent } from 'styled-components';
 
 import type { WithHTMLAttributes } from '@synerise/ds-utils';
 

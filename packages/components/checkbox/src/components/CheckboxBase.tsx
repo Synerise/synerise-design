@@ -9,10 +9,10 @@ import React, {
 import { Description, ErrorText } from '@synerise/ds-typography';
 
 import * as S from '../Checkbox.styles';
-import {
-  type CheckboxBaseProps,
-  type CheckboxChangeEvent,
-  type CheckboxValueType,
+import type {
+  CheckboxBaseProps,
+  CheckboxChangeEvent,
+  CheckboxValueType,
 } from '../Checkbox.types';
 import { CheckboxGroupContext } from '../CheckboxContext';
 import { cx } from '../utils';
@@ -57,13 +57,13 @@ export const CheckboxBase = ({
   const isSolo = !children && !errorText && !description;
 
   // Register with the group (in mount order) so its onChange keeps child order.
+  // biome-ignore lint/correctness/useExhaustiveDependencies: dependencies intentionally omitted
   useEffect(() => {
     if (!group || value === undefined) {
       return undefined;
     }
     group.registerValue(value);
     return () => group.unregisterValue(value);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value]);
 
   // `indeterminate` is a DOM property, not an attribute.

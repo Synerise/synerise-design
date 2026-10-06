@@ -3,6 +3,58 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@2.1.3...@synerise/ds-date-range-picker@2.1.4) (2026-09-24)
+
+**Note:** Version bump only for package @synerise/ds-date-range-picker
+
+
+
+
+
+## [2.1.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@2.1.2...@synerise/ds-date-range-picker@2.1.3) (2026-09-22)
+
+
+### Bug Fixes
+
+* **core:** move test helpers to a ./testing subpath export ([b38cd82](https://github.com/Synerise/synerise-design/commit/b38cd82c956111d2331d5c1e0efd1935366f1139))
+
+
+
+
+
+## [2.1.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@2.1.1...@synerise/ds-date-range-picker@2.1.2) (2026-09-18)
+
+**Note:** Version bump only for package @synerise/ds-date-range-picker
+
+
+
+
+
+## [2.1.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@2.1.0...@synerise/ds-date-range-picker@2.1.1) (2026-09-16)
+
+**Note:** Version bump only for package @synerise/ds-date-range-picker
+
+# [2.1.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@2.0.4...@synerise/ds-date-range-picker@2.1.0) (2026-09-10)
+
+### Bug Fixes
+
+- **date-range-picker:** stop the contract spec depending on the calendar day ([b4f19a7](https://github.com/Synerise/synerise-design/commit/b4f19a764a8abfbfb6b452709bd7bae88297a023))
+
+### Features
+
+- **global:** move the pickers to date-fns 4 ([f878075](https://github.com/Synerise/synerise-design/commit/f878075940c2cd0d2d8a4a5603eb18d01f837640))
+- new month, year and decade picker views, side testids, no title tooltip ([e00f29b](https://github.com/Synerise/synerise-design/commit/e00f29bfc16795bc0ceafa97746c99da1bf3ed9c))
+
+## [2.0.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@2.0.3...@synerise/ds-date-range-picker@2.0.4) (2026-09-08)
+
+### Bug Fixes
+
+- **date-range-picker:** encode non-whole-hour timezone offsets correctly ([a51b393](https://github.com/Synerise/synerise-design/commit/a51b393cad84dcb2da67dcc3da2dabf7d22cf37a))
+
+## [2.0.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@2.0.2...@synerise/ds-date-range-picker@2.0.3) (2026-09-07)
+
+**Note:** Version bump only for package @synerise/ds-date-range-picker
+
 ## [2.0.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@2.0.1...@synerise/ds-date-range-picker@2.0.2) (2026-09-02)
 
 **Note:** Version bump only for package @synerise/ds-date-range-picker

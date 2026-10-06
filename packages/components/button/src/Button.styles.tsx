@@ -2,7 +2,11 @@ import styled, { css, keyframes } from 'styled-components';
 
 import { IconContainer } from '@synerise/ds-icon';
 import DSTag from '@synerise/ds-tag';
-import { type CustomColorShade, resolveCustomColor } from '@synerise/ds-utils';
+import {
+  type CustomColorShade,
+  resolveCustomColor,
+  toCssSize,
+} from '@synerise/ds-utils';
 
 import BaseButton from './BaseButton';
 import { getVariantStyles } from './Button.variants';
@@ -31,6 +35,26 @@ const customColorToken = (
       passthroughResolved: true,
     },
   );
+
+// `single-icon` is a square button, so its width has to track `size` exactly as the height does via
+// `ant-btn-lg` / `ant-btn-sm`. Resolving it in JS rather than as a second CSS rule is deliberate:
+// the previous override lost the cascade to the base rule's `:not(.ds-expander)` and was dead for
+// years. One declaration cannot be outranked.
+const SINGLE_ICON_WIDTHS: Record<string, string> = {
+  small: '28px',
+  large: '48px',
+};
+const SINGLE_ICON_DEFAULT_WIDTH = '32px';
+
+const singleIconWidth = ({
+  block,
+  size,
+}: Pick<StyledButtonProps, 'block' | 'size'>): string => {
+  if (block) {
+    return '100%';
+  }
+  return (size && SINGLE_ICON_WIDTHS[size]) || SINGLE_ICON_DEFAULT_WIDTH;
+};
 
 const spinnerAnimation = keyframes`
   from {
@@ -138,7 +162,9 @@ type StyledButtonProps = {
   readOnly?: boolean;
   type: string;
   size?: string;
+  block?: boolean;
   loading?: boolean | { delay?: number };
+  fluidMinWidth?: string | number;
 };
 
 export const StyledButton = styled(BaseButton)<StyledButtonProps>`
@@ -358,9 +384,11 @@ export const StyledButton = styled(BaseButton)<StyledButtonProps>`
             position: relative;
             &:before {
               content: '';
-              background-color: ${!splitTypes.includes(props.type)
-                ? `rgba(255, 255, 255, 0.15);`
-                : 'var(--ds-color-border-base-strong)'};
+              background-color: ${
+                !splitTypes.includes(props.type)
+                  ? `rgba(255, 255, 255, 0.15);`
+                  : 'var(--ds-color-border-base-strong)'
+              };
               top: ${props.size === 'large' ? '-12px' : '-4px'};
               height: ${props.size === 'large' ? '48px' : '32px'};
               width: 1px;
@@ -433,7 +461,7 @@ export const StyledButton = styled(BaseButton)<StyledButtonProps>`
           justify-content: center;
           padding: 0;
           transition: 0s;
-          width: 32px;
+          width: ${singleIconWidth(props)};
 
           ${ButtonLabel} > ${IconContainer},
           ${ButtonLabel} > .ds-icon,
@@ -441,14 +469,6 @@ export const StyledButton = styled(BaseButton)<StyledButtonProps>`
           & > .ds-icon {
             margin: 0 4px 0 4px;
           }
-        }
-      `}
-    ${(props) =>
-      props.mode === 'single-icon' &&
-      props.size === 'large' &&
-      css`
-        &.ant-btn {
-          width: 48px;
         }
       `}
     ${(props) =>
@@ -474,8 +494,8 @@ export const StyledButton = styled(BaseButton)<StyledButtonProps>`
       `}
 
       ${(props) =>
-      props.error &&
-      css`
+        props.error &&
+        css`
         &.ant-btn {
           background-color: var(--ds-color-background-danger-subtlehover);
           box-shadow: inset 0 0 0 1px var(--ds-color-border-danger-default);
@@ -507,9 +527,9 @@ export const StyledButton = styled(BaseButton)<StyledButtonProps>`
         }
       `}
           ${(props) =>
-      props.error &&
-      props.type === 'secondary' &&
-      css`
+            props.error &&
+            props.type === 'secondary' &&
+            css`
         &&&.ant-btn {
           color: var(--ds-color-text-danger-default);
           .btn-focus {
@@ -562,9 +582,11 @@ export const StyledButton = styled(BaseButton)<StyledButtonProps>`
           }
 
           &:hover:not(:disabled):not(:focus-visible):not(.pressed) {
-            background-color: ${props.readOnly
-              ? customColorToken(props.customColor, '600')
-              : customColorToken(props.customColor, '500')};
+            background-color: ${
+              props.readOnly
+                ? customColorToken(props.customColor, '600')
+                : customColorToken(props.customColor, '500')
+            };
             color: var(--ds-buttons-variant-custom-color-text-hover);
           }
 
@@ -581,9 +603,9 @@ export const StyledButton = styled(BaseButton)<StyledButtonProps>`
         }
       `}
       ${(props) =>
-      props.type === 'custom-color-ghost' &&
-      !props.error &&
-      css`
+        props.type === 'custom-color-ghost' &&
+        !props.error &&
+        css`
         && {
           color: ${customColorToken(props.customColor, '600')};
           &:hover:not(:disabled) {
@@ -596,9 +618,9 @@ export const StyledButton = styled(BaseButton)<StyledButtonProps>`
         }
       `}
         ${(props) =>
-      props.readOnly &&
-      props.type === 'custom-color-ghost' &&
-      css`
+          props.readOnly &&
+          props.type === 'custom-color-ghost' &&
+          css`
         &&.ant-btn {
           cursor: default;
           transition: none;
@@ -621,5 +643,14 @@ export const StyledButton = styled(BaseButton)<StyledButtonProps>`
         cursor: inherit;
       }
     }
+
+    ${(props) =>
+      props.fluidMinWidth !== undefined &&
+      css`
+        ${ButtonLabel} {
+          min-width: ${toCssSize(props.fluidMinWidth)};
+          max-width: none;
+        }
+      `}
   }
 `;

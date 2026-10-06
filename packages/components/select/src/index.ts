@@ -1,17 +1,17 @@
-export { default } from './Select';
 export { Option, type OptionProps } from './Option';
+export { default } from './Select';
+export * as SelectStyles from './Select.styles';
 export type {
+  FilterOptionFn,
   Props,
+  RawValueType,
+  SelectHandler,
+  SelectMode,
+  SelectOption,
   SelectProps,
   SelectValue,
-  SelectOption,
-  SelectMode,
-  SelectHandler,
-  RawValueType,
-  FilterOptionFn,
 } from './Select.types';
-export * as SelectStyles from './Select.styles';
 export {
-  getOptionsFromChildren,
   findOption,
+  getOptionsFromChildren,
 } from './utils/getOptionsFromChildren';

@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { type Texts } from '../ManageableList.types';
+import type { Texts } from '../ManageableList.types';
 
 export const useTexts = (defaultTexts?: Partial<Texts>): Texts => {
   const translations = useMemo(

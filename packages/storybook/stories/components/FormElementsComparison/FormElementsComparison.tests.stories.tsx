@@ -1,6 +1,6 @@
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import React, { useState } from 'react';
 
-import type { Meta, StoryObj } from '@storybook/react-vite';
 import Autocomplete from '@synerise/ds-autocomplete';
 import ColorPicker from '@synerise/ds-color-picker';
 import DatePicker from '@synerise/ds-date-picker';

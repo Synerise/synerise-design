@@ -1,4 +1,4 @@
-import { type ScrollDirection } from '../Table.types';
+import type { ScrollDirection } from '../Table.types';
 
 export const getIsRevealed = ({
   scrollDirection,

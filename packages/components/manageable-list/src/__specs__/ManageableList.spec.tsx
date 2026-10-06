@@ -3,7 +3,7 @@ import { IntlProvider } from 'react-intl';
 import { fireEvent, screen } from '@testing-library/react';
 
 import { FileM } from '@synerise/ds-icon';
-import { renderWithProvider } from '@synerise/ds-core';
+import { renderWithProvider } from '@synerise/ds-core/testing';
 
 import ManageableList from '../ManageableList';
 

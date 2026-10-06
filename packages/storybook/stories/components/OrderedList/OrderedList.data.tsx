@@ -72,14 +72,16 @@ export const LIST_ITEMS: OrderedListItem[] = [
   },
 ];
 
-export const LIST_ITEMS_SINGLE_LEVEL: OrderedListItem[] = LIST_ITEMS.map((item, index) => ({
-  ...item,
-  id: `${index}`,
-  index,
-  subMenu: undefined,
-}));
+export const LIST_ITEMS_SINGLE_LEVEL: OrderedListItem[] = LIST_ITEMS.map(
+  (item, index) => ({
+    ...item,
+    id: `${index}`,
+    index,
+    subMenu: undefined,
+  }),
+);
 
-const romanFormatter = num => {
+const romanFormatter = (num) => {
   const lookup = {
     m: 1000,
     cm: 900,
@@ -108,7 +110,8 @@ const romanFormatter = num => {
 const emptyFormatter = () => ``;
 const numberFormatter = (index: number) => `${index + 1}. `;
 const withZerosFormatter = (index: number) => `0${index + 1}. `;
-const withLettersFormatter = (index: number) => `${String.fromCharCode(index + 97).toLowerCase()}. `;
+const withLettersFormatter = (index: number) =>
+  `${String.fromCharCode(index + 97).toLowerCase()}. `;
 
 export const FORMATTERS = {
   empty: emptyFormatter,

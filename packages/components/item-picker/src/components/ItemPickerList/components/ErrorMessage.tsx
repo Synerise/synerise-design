@@ -2,7 +2,7 @@ import React from 'react';
 
 import Icon, { WarningL } from '@synerise/ds-icon';
 
-import { type ItemPickerListTexts } from '../../ItemPickerNew/types/itemPickerListTexts.types';
+import type { ItemPickerListTexts } from '../../ItemPickerNew/types/itemPickerListTexts.types';
 import * as S from '../ItemPickerList.styles';
 
 type ErrorMessageProps = {

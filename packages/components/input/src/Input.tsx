@@ -1,9 +1,10 @@
+import { useMergeRefs } from '@floating-ui/react';
 import React, {
   type ChangeEvent,
   type FocusEvent,
+  forwardRef,
   type KeyboardEvent,
   type MouseEvent,
-  forwardRef,
   useCallback,
   useEffect,
   useMemo,
@@ -12,7 +13,6 @@ import React, {
 } from 'react';
 import { v4 as uuid } from 'uuid';
 
-import { useMergeRefs } from '@floating-ui/react';
 import FormField from '@synerise/ds-form-field';
 import Icon, { CloseS } from '@synerise/ds-icon';
 
@@ -21,11 +21,11 @@ import {
   useAutosizeWidth,
 } from './AutosizeInput/useAutosizeWidth';
 import { useStretchToFit } from './AutosizeInput/useStretchToFit';
-import * as S from './Input.styles';
-import type { InputProps } from './Input.types';
 import { ElementIcons, ExpandableWrapper } from './components';
 import { useElementFocus } from './hooks';
 import { useCounterLimit } from './hooks/useCounterLimit';
+import * as S from './Input.styles';
+import type { InputProps } from './Input.types';
 import { getCharCount } from './utils';
 
 const DEFAULT_EXTRA_WIDTH = 2;

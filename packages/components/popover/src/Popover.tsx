@@ -1,14 +1,13 @@
-import React from 'react';
-
 import {
   FloatingNode,
   FloatingTree,
   useFloatingParentNodeId,
 } from '@floating-ui/react';
+import React from 'react';
 
-import type { PopoverProps } from './Popover.types';
 import { PopoverContext } from './contexts';
 import { usePopover } from './hooks';
+import type { PopoverProps } from './Popover.types';
 
 // Inner component that must be called from within FloatingTree
 const PopoverContent = ({

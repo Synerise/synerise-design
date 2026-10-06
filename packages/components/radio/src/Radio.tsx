@@ -1,5 +1,5 @@
-import RadioGroup from './RadioGroup';
 import { RadioBase, RadioButton } from './components';
+import RadioGroup from './RadioGroup';
 
 /**
  * DS-native, antd-free radio. `Radio` (radio + label + description) with `Radio.Group` (single-select

@@ -1,18 +1,18 @@
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 import { fn } from 'storybook/test';
 
-import type { Meta, StoryObj } from '@storybook/react-vite';
-import Select from '@synerise/ds-select';
 import type { SelectProps } from '@synerise/ds-select';
+import Select from '@synerise/ds-select';
 
 import {
   BOOLEAN_CONTROL,
   CLASSNAME_ARG_CONTROL,
+  controlFromOptionsArray,
+  fixedWrapper400,
   NUMBER_CONTROL,
   REACT_NODE_AS_STRING,
   STRING_CONTROL,
-  controlFromOptionsArray,
-  fixedWrapper400,
 } from '../../utils';
 import { Label as AddonLabel } from '../Input/Input.styles';
 import { MANY_OPTIONS, OPTIONS, SelectWithState } from './data';

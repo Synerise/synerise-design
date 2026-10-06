@@ -1,5 +1,5 @@
-import { type TagsProps } from '@synerise/ds-tags';
-import { type WithHTMLAttributes } from '@synerise/ds-utils';
+import type { TagsProps } from '@synerise/ds-tags';
+import type { WithHTMLAttributes } from '@synerise/ds-utils';
 
 export type BaseTagsGroupProps = {
   disabled?: boolean;

@@ -1,9 +1,6 @@
 import { createContext } from 'react';
 
-import {
-  type RadioChangeEventTarget,
-  type RadioValueType,
-} from './Radio.types';
+import type { RadioChangeEventTarget, RadioValueType } from './Radio.types';
 
 export type RadioGroupContextValue = {
   /** Currently selected value (single). */

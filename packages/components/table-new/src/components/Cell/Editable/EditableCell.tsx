@@ -4,7 +4,7 @@ import Icon, { EditNolineS } from '@synerise/ds-icon';
 import { Input } from '@synerise/ds-input';
 
 import * as S from './EditableCell.styles';
-import { type EditableCellProps } from './EditableCell.types';
+import type { EditableCellProps } from './EditableCell.types';
 
 const EditableCell = ({
   value,

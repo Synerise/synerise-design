@@ -1,4 +1,17 @@
 import {
+  getCoreRowModel,
+  getExpandedRowModel,
+  getGroupedRowModel,
+  getPaginationRowModel,
+  getSortedRowModel,
+  type PaginationState,
+  type Table as ReactTableInstance,
+  type RowSelectionState,
+  type SortingState,
+  type Updater,
+  useReactTable,
+} from '@tanstack/react-table';
+import {
   type MutableRefObject,
   useCallback,
   useEffect,
@@ -8,26 +21,12 @@ import {
   useState,
 } from 'react';
 
-import {
-  type PaginationState,
-  type Table as ReactTableInstance,
-  type RowSelectionState,
-  type SortingState,
-  type Updater,
-  getCoreRowModel,
-  getExpandedRowModel,
-  getGroupedRowModel,
-  getPaginationRowModel,
-  getSortedRowModel,
-  useReactTable,
-} from '@tanstack/react-table';
-
 import { EMPTY_SORT_STATE } from '../Table.const';
-import {
-  type ColumnsSortState,
-  type SharedTableProps,
-  type TableProps,
-  type VirtualTableProps,
+import type {
+  ColumnsSortState,
+  SharedTableProps,
+  TableProps,
+  VirtualTableProps,
 } from '../Table.types';
 import { arrayToTrueMap } from '../utils/arrayToTrueMap';
 import { compareKeys } from '../utils/compareKeys';
@@ -85,13 +84,13 @@ export const useTable = <TData, TValue>({
     expandable?.childrenColumnName,
   );
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: dependencies intentionally omitted
   useEffect(() => {
     const localSelectionKeys = Object.keys(rowSelection);
 
     if (selectedRowKeys && !compareKeys(selectedRowKeys, localSelectionKeys)) {
       setRowSelection(arrayToTrueMap(selectedRowKeys));
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedRowKeys]);
 
   // Keep a ref to full (unfiltered) data for selection onChange
@@ -425,13 +424,13 @@ export const useTable = <TData, TValue>({
   // leave the user stranded on a now-out-of-range (empty) page. The ref-compare skips the initial
   // mount, so a table that opens on a specific page (e.g. server-side `current`) is not yanked back.
   const previousSearchQuery = useRef(searchQuery);
+  // biome-ignore lint/correctness/useExhaustiveDependencies: dependencies intentionally omitted
   useEffect(() => {
     if (previousSearchQuery.current === searchQuery) {
       return;
     }
     previousSearchQuery.current = searchQuery;
     table.setPageIndex(0);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchQuery]);
 
   // Whether an internal (client-side) search/filter is currently narrowing the rows: built-in

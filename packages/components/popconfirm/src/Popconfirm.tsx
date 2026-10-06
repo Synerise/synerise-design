@@ -3,17 +3,17 @@ import React, { forwardRef, useEffect, useMemo, useState } from 'react';
 import Carousel from '@synerise/ds-carousel';
 import { useTheme } from '@synerise/ds-core';
 import {
+  getPlacement,
   Popover,
   PopoverArrow,
   PopoverContent,
   PopoverTrigger,
-  getPlacement,
 } from '@synerise/ds-popover';
 
 import ConfirmMessage from './ConfirmMessage/ConfirmMessage';
 import { POPOVER_OFFSET_CONFIG } from './Popconfirm.const';
 import * as S from './Popconfirm.styles';
-import { type PopconfirmProps, type PopconfirmType } from './Popconfirm.types';
+import type { PopconfirmProps, PopconfirmType } from './Popconfirm.types';
 import { getTransitionConfig } from './utils/getTransitionConfig';
 
 const Popconfirm = forwardRef<HTMLElement, PopconfirmProps>(

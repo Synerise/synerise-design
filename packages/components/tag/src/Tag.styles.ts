@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import { type ThemeProps, type ThemePropsVars } from '@synerise/ds-core';
+import type { ThemeProps, ThemePropsVars } from '@synerise/ds-core';
 
 import { TagShape } from './Tag.types';
 
@@ -189,8 +189,9 @@ const insertShapeStyles = (props: InsertShapeStyles) => {
           padding-right: ${props.removable && props.suffixel && '4px'};
         }
 
-        ${props.isActionable &&
-        css`
+        ${
+          props.isActionable &&
+          css`
           &:hover {
             padding: ${props.removable && props.suffixel && '0 15px 0 0px'};
 
@@ -213,7 +214,8 @@ const insertShapeStyles = (props: InsertShapeStyles) => {
               }
             }
           }
-        `}
+        `
+        }
       `;
 
     case TagShape.DEFAULT_SQUARE:
@@ -231,8 +233,9 @@ const insertShapeStyles = (props: InsertShapeStyles) => {
           padding-right: ${props.removable && props.suffixel && '4px'};
         }
 
-        ${props.isActionable &&
-        css`
+        ${
+          props.isActionable &&
+          css`
           &:hover {
             padding-right: ${props.removable && props.suffixel && '15px'};
 
@@ -255,7 +258,8 @@ const insertShapeStyles = (props: InsertShapeStyles) => {
               }
             }
           }
-        `}
+        `
+        }
       `;
 
     case TagShape.SINGLE_CHARACTER_ROUND:
@@ -284,9 +288,11 @@ const insertShapeStyles = (props: InsertShapeStyles) => {
       return css`
         border: 1px solid
           ${props.color || 'var(--ds-status-pill-variant-neutral-border-solid)'};
-        color: ${props.textColor ||
-        props.color ||
-        'var(--ds-status-pill-variant-neutral-text)'};
+        color: ${
+          props.textColor ||
+          props.color ||
+          'var(--ds-status-pill-variant-neutral-text)'
+        };
         ${defaultStatusStyles}
       `;
 
@@ -428,19 +434,23 @@ export const Tag = styled.div.withConfig({
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: ${props.color ||
-        (props.shape === TagShape.SMALL_SQUARE ||
-        props.shape === TagShape.SMALL_ROUND
-          ? 'var(--ds-tag-pill-bg-gray)'
-          : 'var(--ds-tag-variant-gray-bg-default)')};
+        background-color: ${
+          props.color ||
+          (props.shape === TagShape.SMALL_SQUARE ||
+          props.shape === TagShape.SMALL_ROUND
+            ? 'var(--ds-tag-pill-bg-gray)'
+            : 'var(--ds-tag-variant-gray-bg-default)')
+        };
       }
 
-      ${props.isActionable &&
-      css`
+      ${
+        props.isActionable &&
+        css`
         &:hover:before {
           filter: ${getFilterColor};
         }
-      `};
+      `
+      };
     `}
 
 

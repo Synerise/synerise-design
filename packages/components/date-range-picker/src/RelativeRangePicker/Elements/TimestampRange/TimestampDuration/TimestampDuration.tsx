@@ -3,11 +3,11 @@ import React from 'react';
 import InputNumber from '@synerise/ds-input-number';
 import Select from '@synerise/ds-select';
 
-import { type Texts } from '../../../../DateRangePicker.types';
 import * as CONST from '../../../../constants';
 import { DURATION_MODIFIERS } from '../../../../constants';
+import type { Texts } from '../../../../DateRangePicker.types';
 import * as S from '../../../RelativeRangePicker.styles';
-import { type Props } from './TimestampDuration.types';
+import type { Props } from './TimestampDuration.types';
 
 const TimestampDuration: React.FC<Props> = ({
   handleDurationValueChange,

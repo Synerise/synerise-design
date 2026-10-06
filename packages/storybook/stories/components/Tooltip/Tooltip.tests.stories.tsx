@@ -1,7 +1,6 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import isChromatic from 'chromatic/isChromatic';
 import { expect, userEvent, waitFor, within } from 'storybook/test';
-
-import { Meta, StoryObj } from '@storybook/react-vite';
 
 import { centeredPaddedWrapper } from '../../utils';
 import StoriesMeta, { StoryProps } from './Tooltip.stories';

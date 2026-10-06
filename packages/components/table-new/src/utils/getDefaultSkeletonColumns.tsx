@@ -1,7 +1,7 @@
+import type { ColumnDef } from '@tanstack/react-table';
 import React, { type ReactNode } from 'react';
 
 import { SkeletonAvatar } from '@synerise/ds-skeleton';
-import { type ColumnDef } from '@tanstack/react-table';
 
 import { AvatarLabelCell } from '../components/Cell/AvatarLabel/AvatarLabel';
 import * as S from '../components/TableBody/TableBodySkeleton/TableBodySkeleton.styles';

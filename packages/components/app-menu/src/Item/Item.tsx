@@ -2,8 +2,8 @@ import React, { type PropsWithChildren, type ReactElement } from 'react';
 
 import Tooltip from '@synerise/ds-tooltip';
 
-import SubMenuContext from '../SubMenu/SubMenuContext/SubMenuContext';
 import { useMenu } from '../hooks/useMenu';
+import SubMenuContext from '../SubMenu/SubMenuContext/SubMenuContext';
 import Icon from './Icon/Icon';
 import * as S from './Item.styles';
 

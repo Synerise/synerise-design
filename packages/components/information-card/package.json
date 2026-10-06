@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-information-card",
-  "version": "2.0.2",
+  "version": "2.0.9",
   "description": "InformationCard UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -28,7 +28,7 @@
   "scripts": {
     "build": "vite build",
     "build:watch": "vite build --watch",
-    "lint": "eslint . --ext .ts --ext .tsx --max-warnings 0 --ignore-pattern dist",
+    "lint": "biome lint .",
     "pack:ci": "pnpm pack --pack-destination ../../storybook/storybook-static/static",
     "prepublish": "pnpm run build",
     "test": "vitest run",
@@ -43,7 +43,6 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@floating-ui/react": "^0.27.16",
     "@synerise/ds-avatar": "workspace:^",
     "@synerise/ds-badge": "workspace:^",
     "@synerise/ds-button": "workspace:^",

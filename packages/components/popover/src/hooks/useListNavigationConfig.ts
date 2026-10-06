@@ -1,6 +1,5 @@
+import type { UseListNavigationProps } from '@floating-ui/react';
 import { useRef } from 'react';
-
-import { type UseListNavigationProps } from '@floating-ui/react';
 
 export const useListNavigationConfig = (
   listNavigationConfig?: UseListNavigationProps,

@@ -1,6 +1,6 @@
-import { type CSSProperties, type ReactNode } from 'react';
+import type { CSSProperties, ReactNode } from 'react';
 
-import { type DataAttributes } from '@synerise/ds-utils';
+import type { DataAttributes } from '@synerise/ds-utils';
 
 export type PaginationItemType =
   | 'page'

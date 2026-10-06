@@ -1,9 +1,45 @@
-import DayPickerBase from 'react-day-picker';
+import { DayPicker as DayPickerBase } from 'react-day-picker';
 import styled from 'styled-components';
 
 const DaySelectorPrefix = `.DayPicker-Day`;
 const daySelector = (modifier: string): string =>
   `${DaySelectorPrefix}--${modifier}`;
+
+/**
+ * react-day-picker v10 renders a real `<button>` inside every day cell, where v7 put the day
+ * layers directly in the cell. The class names below are remapped back onto v7's names in
+ * `DayPicker.tsx`, so the modifier rules are untouched; only the layers moved one level deeper.
+ */
+const DayButton = `.DayPicker-Day-Button`;
+
+/**
+ * All four day layers at once — `DayBackground`, `DayText`, `DayForeground`, `DayTooltip`.
+ *
+ * The button is matched with `*` rather than with `${DayButton}` on purpose. These rules are
+ * written to be overridden by the per-layer ones below (`${DayText}`, `${DayBackground}`), which
+ * under v7 they were: `& > div` scored one class lower than `& > ${DayText}`. Naming the button's
+ * class here adds that class back and flips the order, so `margin-left/right: 0` from the
+ * `--selected` and `--entered` blocks starts winning over the `margin: 4px` that keeps a start or
+ * end day 32px wide — the day stretches to the full 40px cell and its 50% radius draws an ellipse.
+ */
+const dayLayers = `& > * > div`;
+
+/**
+ * The one kind of day that interrupts the range band: an outside day paints nothing at all, so the
+ * band has to be capped against it exactly as it is at a week edge. A disabled day does not
+ * interrupt anything — it keeps the band, in grey (see rangeCovered below).
+ */
+const rangeBreak = daySelector('outside');
+/** A day the range paints a band on — every covered day except the outside ones. */
+const rangeDay = (modifier: string): string =>
+  `${daySelector(modifier)}:not(${daySelector('outside')})`;
+/**
+ * A disabled day the range covers. It keeps the band so the range still reads as one continuous
+ * span, but in grey rather than blue: the range passes over the day, it does not include it.
+ * Without this a covered disabled day was pixel-identical to one outside the range entirely.
+ */
+const rangeCovered = (modifier: string): string =>
+  `${daySelector(modifier) + daySelector('disabled')}:not(${daySelector('outside')})`;
 
 export const DayBackground = styled.div``;
 export const DayForeground = styled.div`
@@ -20,10 +56,7 @@ export const DayTooltip = styled.div`
 export const DayPicker = styled(DayPickerBase)`
   display: inline-block;
   font-size: 12px;
-  .DayPicker-wrapper {
-    position: relative;
-    flex-direction: row;
-  }
+  position: relative;
 
   .DayPicker-Months {
     display: flex;
@@ -56,21 +89,12 @@ export const DayPicker = styled(DayPickerBase)`
     color: var(--ds-calendar-headers-text);
   }
 
-  .DayPicker-Weekday abbr[title] {
-    border-bottom: none;
-    text-decoration: none;
-  }
-
   .DayPicker-Body {
     display: table-row-group;
   }
 
   .DayPicker-Week {
     display: table-row;
-  }
-
-  .DayPicker--interactionDisabled ${DaySelectorPrefix} {
-    cursor: default;
   }
 
   ${DaySelectorPrefix} {
@@ -81,7 +105,22 @@ export const DayPicker = styled(DayPickerBase)`
     position: relative;
     box-sizing: border-box;
 
-    > div {
+    ${DayButton} {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 0;
+      border: 0;
+      background: none;
+      font: inherit;
+      color: inherit;
+      cursor: inherit;
+    }
+
+    ${dayLayers} {
       position: absolute;
       top: 0;
       right: 0;
@@ -91,15 +130,39 @@ export const DayPicker = styled(DayPickerBase)`
       align-items: center;
       justify-content: center;
       margin: 4px;
-      min-width: 32px;
+      min-width:32px;
+    }
+    
+
+    /**
+     * Resting state. An in-month day that is not part of a range still carries a light chip, which
+     * is what gives the grid its rhythm. DayBackground is already the 32px square the range pill
+     * paints on, so rounding it here draws the circle without a fifth layer, and a --today day
+     * keeps its yellow look because DayText paints over the same 32px on top of it.
+     *
+     * The :not()s make this mutually exclusive with every range rule below rather than leaving it
+     * to the cascade — a day is either resting or in a range, never both. --initial-entered is the
+     * anchor between the two clicks, which has its own rule clearing DayBackground; excluding it
+     * here keeps that rule the only thing deciding how the anchor is painted.
+     */
+    &:not(${daySelector('selected')}):not(${daySelector('entered')}):not(${daySelector('outside')}):not(${daySelector('disabled')}):not(${daySelector('initial-entered')}) {
+      & ${DayBackground} {
+        background-color: var(--ds-calendar-day-default-bg);
+        border-radius: 50%;
+      }
     }
 
-    &--start > ${DayBackground} {
+    &:not(${daySelector('selected')}):not(${daySelector('entered')}):not(${daySelector('outside')}):not(${daySelector('disabled')}):not(${daySelector('initial-entered')}):not(${daySelector('today')}):hover ${DayText} {
+      color: var(--ds-calendar-day-hover-text);
+      background-color: var(--ds-color-background-base-mutedhover);
+    }
+
+    &--start ${DayBackground} {
       border-top-left-radius: 50%;
       border-bottom-left-radius: 50%;
     }
 
-    &--end > ${DayBackground} {
+    &--end ${DayBackground} {
       border-top-right-radius: 50%;
       border-bottom-right-radius: 50%;
     }
@@ -107,146 +170,158 @@ export const DayPicker = styled(DayPickerBase)`
     &--today {
       font-weight: 500;
     }
-
+    
+    
     &--today${daySelector('selected')} {
-      & > ${DayText} {
-        font-weight: 400;
+      & ${DayText} {
+          font-weight: 400;
       }
     }
-    &--entered${daySelector('entered-start')}:not(${daySelector(
-        'entered-end',
-      )}) {
-      & > ${DayForeground} {
+    /**
+     * Outside and disabled days never carry the range pill — not in the committed selection, where
+     * every --selected background rule excludes both, and not in the hover preview either, which is
+     * why every --entered rule that paints DayBackground repeats the same two :not()s.
+     *
+     * --disabled matters twice over: the rule that stretches the layer across the full cell (so
+     * neighbouring days join into one pill) already skips disabled days, so painting one without
+     * that stretch left a detached 32px island where the range should read as skipping the day.
+     */
+    &--entered${daySelector('entered-start')}:not(${daySelector('entered-end')}):not(${daySelector('outside')}):not(${daySelector('disabled')}){
+
+      & ${DayForeground} {
         margin-right: 0;
         margin-left: 4px;
       }
 
-      & > ${DayBackground} {
+      & ${DayBackground} {
         margin-right: 0;
         background-color: var(--ds-calendar-day-range-bg);
       }
     }
+    
+    
+    &--entered${daySelector('entered-end')}:not(${daySelector('entered-start')}):not(${daySelector('outside')}):not(${daySelector('disabled')}){
 
-    &--entered${daySelector('entered-end')}:not(${daySelector(
-        'entered-start',
-      )}) {
-      & > ${DayForeground} {
+      & ${DayForeground} {
         margin-right: 4px;
         margin-left: 4px;
       }
-      & > ${DayBackground} {
+      & ${DayBackground} {
         margin-right: 4px;
         background-color: var(--ds-calendar-day-range-bg);
       }
     }
-
-    &--entered:not(${daySelector('entered-start')}):not(
-        ${daySelector('entered-end')}
-      ) {
-      & > ${DayBackground} {
+    
+    &--entered:not(${daySelector('entered-start')}):not(${daySelector('entered-end')}):not(${daySelector('outside')}):not(${daySelector('disabled')}){
+      & ${DayBackground} {
         background-color: var(--ds-calendar-day-range-bg);
       }
     }
-    &--today${daySelector('entered-start') +
-      daySelector('entered-end')}:not(${daySelector('selected')}) {
-      & > ${DayBackground} {
+    &--today${daySelector('entered-start') + daySelector('entered-end')}:not(${daySelector('selected')}):not(${daySelector('outside')}):not(${daySelector('disabled')}) {
+      & ${DayBackground} {
         background-color: var(--ds-calendar-day-range-bg);
       }
     }
-    &--today${daySelector('entered')}:not(${daySelector('selected')}) {
-      & > ${DayText} {
+    &--today${daySelector('entered')}:not(${daySelector('selected')}):not(${daySelector('outside')}):not(${daySelector('disabled')}) {
+      & ${DayText} {
         background-color: transparent;
         font-weight: 400;
         color: var(--ds-calendar-day-range-text);
       }
-      & > ${DayBackground} {
+      & ${DayBackground} {
         background-color: var(--ds-calendar-day-range-bg);
       }
-      & > ${DayForeground} {
+      & ${DayForeground} {
         border: 2px solid transparent;
       }
     }
 
     &--today:not(${daySelector('selected')}) {
-      & > ${DayText} {
+      & ${DayText} {
         background-color: var(--ds-calendar-day-today-bg);
-        /* ⚑ Shift: today text yellow-600 → day-today-text (yellow-700, muted). */
         color: var(--ds-calendar-day-today-text);
       }
 
-      & > ${DayForeground} {
+      & ${DayForeground} {
         border: 2px solid var(--ds-calendar-day-today-border);
       }
     }
 
-    &--entered > ${DayBackground} {
+    &--entered:not(${daySelector('outside')}):not(${daySelector('disabled')}) ${DayBackground} {
       background-color: var(--ds-calendar-day-range-bg);
     }
 
-    &--entered > ${DayText} {
+    &--entered ${DayText} {
       color: var(--ds-calendar-day-range-text);
     }
 
-    &--entered-start:not(${daySelector('selected')}) > ${DayBackground} {
+    &--entered-start:not(${daySelector('selected')}) ${DayBackground} {
       border-top-left-radius: 50%;
       border-bottom-left-radius: 50%;
     }
 
-    &--entered-end:not(${daySelector('selected')}) > ${DayBackground} {
+    &--entered-end:not(${daySelector('selected')}) ${DayBackground} {
       border-top-right-radius: 50%;
       border-bottom-right-radius: 50%;
     }
 
     &--outside {
-      & > ${DayText} {
-        /* Adjacent-month days stay readable (grey-800), not faded — still selectable. */
+      & ${DayText} {
         color: var(--ds-color-text-base-default);
+      }
+    }
+
+    /**
+     * A previous- or next-month day that falls inside the range reads as part of it rather than as
+     * filler, so it takes the in-range text colour — in the hover preview as well as the committed
+     * selection, so the colour does not flip on the second click. Only the text changes: outside
+     * days keep their pill-less background, which is what separates them from the current month.
+     */
+    &--outside${daySelector('selected')}:not(${daySelector('disabled')}),
+    &--outside${daySelector('entered')}:not(${daySelector('disabled')}) {
+      & ${DayText} {
+        color: var(--ds-calendar-day-range-text);
       }
     }
 
     &--disabled {
       cursor: default;
 
-      & > ${DayText} {
+      & ${DayText} {
         color: var(--ds-calendar-day-disabled-text);
       }
     }
   }
 
-  /* Resting in-month day gets the grey-100 pill; hover darkens it to grey-200 and turns
-     the number brand-blue. Scoped out of every special state so it never bleeds into
-     range/selected/today/outside/disabled. */
-
-  ${DaySelectorPrefix}:not(${daySelector('selected')}):not(${daySelector(
-    'entered',
-  )}):not(${daySelector('start')}):not(${daySelector('end')}):not(${daySelector(
-    'today',
-  )}):not(${daySelector('outside')}):not(${daySelector('disabled')}) {
-    & > ${DayText} {
-      background-color: var(--ds-calendar-day-default-bg);
+${daySelector('selected')}:not(${daySelector('outside')}):not(${daySelector('end')}):not(${daySelector('start')}),
+${daySelector('entered')}:not(${daySelector('outside')}):not(${daySelector('end')}):not(${daySelector('start')}){
+    &:last-child  ${DayBackground} {
+            border-top-right-radius: 50%;
+            border-bottom-right-radius: 50%;
+            margin-right: 4px;
+            padding-right:0;
+      }
+      &:first-child  ${DayBackground} {
+            border-top-left-radius: 50%;
+            border-bottom-left-radius: 50%;
+            margin-left: 4px;
+            padding-left:0;
+      }
     }
 
-    &:hover > ${DayText} {
-      color: var(--ds-calendar-day-hover-text);
-      /* grey-200 (base-mutedhover); --ds-calendar-day-hover-bg resolves to grey-100
-         today (same as resting) → re-point upstream. */
-      background-color: var(--ds-color-background-base-mutedhover);
-    }
-  }
-
-  ${daySelector('selected')}:not(${daySelector('disabled')}):not(${daySelector(
-    'end',
-  )}):not(${daySelector('start')}),
-${daySelector('entered')}:not(${daySelector('disabled')}):not(${daySelector(
-    'end',
-  )}):not(${daySelector('start')}) {
-    &:last-child > ${DayBackground} {
-      border-top-right-radius: 50%;
-      border-bottom-right-radius: 50%;
-      margin-right: 4px;
-      padding-right: 0;
-    }
-    &:first-child > ${DayBackground} {
+  /**
+   * The same caps, but where the break is a disabled or outside day rather than the week edge.
+   * Without them the pill stops square against an empty cell and reads as clipped, instead of as
+   * the range stepping over a day it cannot include. The right-hand cap needs :has() to look at the
+   * following cell; the DS already leans on it in ButtonGroup for this same edge-of-a-run problem.
+   *
+   * The leading & on the first rule is load-bearing: stylis concatenates a selector that starts
+   * with a pseudo-class straight onto the component class (.sc-x:is(...)), which would demand that
+   * the picker root itself be a disabled day. The & forces the descendant combinator.
+   */
+  & ${rangeBreak} + ${rangeDay('selected')},
+  & ${rangeBreak} + ${rangeDay('entered')} {
+    & ${DayBackground} {
       border-top-left-radius: 50%;
       border-bottom-left-radius: 50%;
       margin-left: 4px;
@@ -254,104 +329,126 @@ ${daySelector('entered')}:not(${daySelector('disabled')}):not(${daySelector(
     }
   }
 
-  ${daySelector('selected')}:not(${daySelector('disabled')}):not(${daySelector(
-    'outside',
-  )}) {
-    & > div {
+  ${rangeDay('selected')}:has(+ ${rangeBreak}),
+  ${rangeDay('entered')}:has(+ ${rangeBreak}) {
+    & ${DayBackground} {
+      border-top-right-radius: 50%;
+      border-bottom-right-radius: 50%;
+      margin-right: 4px;
+      padding-right: 0;
+    }
+  }
+
+  /**
+   * A disabled day under the range: grey band, muted text. The band is stretched across the whole
+   * cell like any other covered day so it butts up against the blue segments either side with no
+   * seam — the range reads as continuous and the grey says the day itself is not selectable.
+   */
+  ${rangeCovered('selected')},
+  ${rangeCovered('entered')} {
+    ${dayLayers} {
       padding-left: 4px;
       margin-left: 0;
       padding-right: 4px;
       margin-right: 0;
     }
 
-    & > ${DayBackground} {
-      background-color: var(--ds-calendar-day-range-bg);
+    & ${DayBackground} {
+      background-color: var(--ds-color-background-base-muted);
     }
 
-    & > ${DayText} {
-      color: var(--ds-calendar-day-range-text);
-    }
-
-    &${daySelector('ghost')} {
-      & > ${DayBackground} {
-        background-color: var(--ds-calendar-day-range-text);
-      }
-
-      & > ${DayText} {
-        color: inherit;
-      }
+    & ${DayText} {
+      color: var(--ds-calendar-day-disabled-text);
     }
   }
-  ${daySelector('entered')}:not(${daySelector('disabled')}):not(${daySelector(
-    'entered-start',
-  )}) {
-    & > div {
+
+  ${daySelector('selected')}:not(${daySelector('disabled')}):not(${daySelector('outside')}) {
+    ${dayLayers} {
       padding-left: 4px;
       margin-left: 0;
       padding-right: 4px;
       margin-right: 0;
-      text-align: center;
     }
 
-    && > ${DayBackground} {
+    & ${DayBackground} {
       background-color: var(--ds-calendar-day-range-bg);
     }
 
-    && > ${DayText} {
+    & ${DayText} {
       color: var(--ds-calendar-day-range-text);
     }
 
     &${daySelector('ghost')} {
-      && > ${DayBackground} {
+      & ${DayBackground} {
         background-color: var(--ds-calendar-day-range-text);
       }
 
-      && > ${DayText} {
+      & ${DayText} {
         color: inherit;
       }
     }
   }
+    ${daySelector('entered')}:not(${daySelector('disabled')}):not(${daySelector('entered-start')}) {
+    ${dayLayers} {
+      padding-left: 4px;
+      margin-left: 0;
+      padding-right: 4px;
+      margin-right: 0;
+      text-align:center;
+    }
 
-  ${daySelector('start')}:not(${daySelector('disabled')}):not(${daySelector(
-    'outside',
-  )}) {
-    & > ${DayText} {
+    && ${DayBackground} {
+      background-color: var(--ds-calendar-day-range-bg);
+    }
+
+    && ${DayText} {
+      color: var(--ds-calendar-day-range-text);
+    }
+
+    &${daySelector('ghost')} {
+      && ${DayBackground} {
+        background-color: var(--ds-calendar-day-range-text);
+      }
+
+      && ${DayText} {
+        color: inherit;
+      }
+    }
+  }
+ 
+  ${daySelector('start')}:not(${daySelector('disabled')}):not(${daySelector('outside')}) {
+    & ${DayText} {
       border-radius: 50%;
-      font-weight: 500;
+      font-weight:500;
       color: var(--ds-calendar-day-selected-text);
       background-color: var(--ds-calendar-day-selected-bg);
       margin-right: 4px;
       padding-left: 0px;
       padding-right: 0px;
     }
-    & > ${DayBackground} {
+    & ${DayBackground} {
       background-color: var(--ds-calendar-day-range-bg);
     }
-    & > div {
+    ${dayLayers} {
       padding-left: 0px;
       margin-left: 4px;
     }
   }
-  ${daySelector('start')}:not(${daySelector('disabled')}):not(${daySelector(
-    'outside',
-  )}):last-child,
-   ${daySelector('end')}:not(${daySelector('disabled')}):not(${daySelector(
-    'outside',
-  )}):first-child {
-    & > div {
-      margin-right: 4px;
-    }
-    & > ${DayBackground} {
-      background-color: var(--ds-color-background-base-default);
-    }
+  ${daySelector('start')}:not(${daySelector('disabled')}):not(${daySelector('outside')}):last-child,
+   ${daySelector('end')}:not(${daySelector('disabled')}):not(${daySelector('outside')}):first-child {
+      ${dayLayers} {
+         margin-right: 4px;
+      
+      }
+      & ${DayBackground} {
+          background-color: var(--ds-color-background-base-default);
+      }
   }
-
-  ${daySelector('end')}:not(${daySelector('disabled')}):not(${daySelector(
-    'outside',
-  )}) {
-    & > ${DayText} {
+  
+  ${daySelector('end')}:not(${daySelector('disabled')}):not(${daySelector('outside')}) {
+    & ${DayText} {
       border-radius: 50%;
-      font-weight: 500;
+            font-weight:500;
 
       background-color: var(--ds-calendar-day-selected-bg);
       color: var(--ds-calendar-day-selected-text);
@@ -362,96 +459,67 @@ ${daySelector('entered')}:not(${daySelector('disabled')}):not(${daySelector(
        misses --selected's margin:0 and falls back to the base margin:4px, leaving a gap
        before it. Extend the range-bg connector left (margin-left:0) to rejoin the range.
        Single-day (start === end) re-caps the left below so this doesn't leak a tail. */
-    & > ${DayBackground} {
+    & ${DayBackground} {
       background-color: var(--ds-calendar-day-range-bg);
       margin-left: 0;
     }
-    & > div {
+    ${dayLayers} {
       padding-right: 4px;
       margin-right: 4px;
     }
   }
-  ${daySelector('end') + daySelector('start')}:not(${daySelector(
-    'disabled',
-  )}):not(${daySelector('outside')}) {
-    & > div {
-      padding-right: 4px;
+  ${daySelector('end') + daySelector('start')}:not(${daySelector('disabled')}):not(${daySelector('outside')}) {
+    ${dayLayers} {
+      padding-right:4px;
     }
     /* Single-day selection (start === end): re-cap the left so --end's margin-left:0
        connector doesn't leak a range-bg tail past the circle. */
-    & > ${DayBackground} {
+    & ${DayBackground} {
       margin-left: 4px;
     }
   }
 
   ${daySelector('selected')}:not(${daySelector('disabled')}):hover {
-    position: relative;
-    ${DayTooltip} {
+      position:relative;
+      ${DayTooltip} {
       height: 24px;
-      position: absolute;
-      top: -30px;
-      margin-left: calc(-50% + 16px);
-      display: block;
-      white-space: nowrap;
-      background-color: var(--ds-color-background-overlay-solid);
-      padding: 3px 8px;
-      border-radius: 3px;
-      z-index: 9;
-      font-weight: 400;
-      color: var(--ds-color-text-onsolid-default);
-    }
+        position: absolute;
+        top: -30px;
+        margin-left: calc(-50% + 16px);
+        display:block;
+        white-space: nowrap;
+        background-color: var(--ds-color-background-overlay-solid);
+        padding:3px 8px;
+        border-radius: 3px;
+        z-index: 9;
+        font-weight: 400;
+        color: var(--ds-color-text-onsolid-default);
+      }
   }
-  ${daySelector('initial')}:not(${daySelector('disabled')}):not(${daySelector(
-    'entered',
-  )}),
-  ${daySelector('initial-entered')}:not(${daySelector('disabled')}) {
-    & > ${DayBackground} {
-      background: transparent;
-    }
+  ${daySelector('initial')}:not(${daySelector('disabled')}):not(${daySelector('entered')}),
+  ${daySelector('initial-entered')}:not(${daySelector('disabled')}){
+      & ${DayBackground} {
+        background: transparent;
+      }
   }
   ${daySelector('outside') + daySelector('entered') + daySelector('selected')} {
-    & > ${DayBackground} {
+    & ${DayBackground}  {
       border-radius: 50%;
     }
   }
   &.relative {
-    ${daySelector('start') + daySelector('selected')}:not(${daySelector(
-      'disabled',
-    )}):not(${daySelector('outside')}) {
-      & > ${DayText} {
+      ${daySelector('start') + daySelector('selected')}:not(${daySelector('disabled')}):not(${daySelector('outside')}) {
+      & ${DayText} {
         font-weight: 500;
       }
-      ${daySelector('selected')}:not(${daySelector(
-        'disabled',
-      )}):not(${daySelector('outside')}) {
-        & > ${DayBackground} {
-          background-color: var(--ds-calendar-day-range-bg);
-        }
-
-        & > ${DayText} {
-          color: var(--ds-calendar-day-range-text);
-        }
+    ${daySelector('selected')}:not(${daySelector('disabled')}):not(${daySelector('outside')}) {
+      & ${DayBackground} {
+        background-color: var(--ds-calendar-day-range-bg);
       }
-    }
-  }
 
-  /* Adjacent-month (outside) days never take a pill/range fill — only the number's
-     colour reacts: grey-800 normally, brand-blue when inside a range. */
-  ${daySelector('outside')} {
-    &&& > ${DayBackground} {
-      background: transparent;
-    }
-  }
-  ${daySelector('outside')}${daySelector('selected')} {
-    & > ${DayText} {
+      & ${DayText} {
       color: var(--ds-calendar-day-range-text);
-      background: transparent;
-    }
-  }
-  ${daySelector('outside')}${daySelector('entered')} {
-    & > ${DayText} {
-      color: var(--ds-calendar-day-range-text);
-      background: transparent;
+      }
     }
   }
 `;

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import * as S from '../FormField.styles';
-import { type ContentBelowProps } from '../FormField.types';
+import type { ContentBelowProps } from '../FormField.types';
 
 export const ContentBelowElement = ({
   description,

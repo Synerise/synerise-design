@@ -1,15 +1,15 @@
 // @ts-nocheck
-import React from 'react';
 
 import figma from '@figma/code-connect';
+import React from 'react';
 
-import Toolbar from './Toolbar';
 import {
   ToolbarButton,
   ToolbarDivider,
   ToolbarGroup,
   ToolbarLabel,
 } from './components';
+import Toolbar from './Toolbar';
 
 const TOOLBAR_URL =
   'https://www.figma.com/design/fsSZONXpVvtrDsCgtu01Jb/Synerise-Design-System?node-id=2484-39328&m=dev';

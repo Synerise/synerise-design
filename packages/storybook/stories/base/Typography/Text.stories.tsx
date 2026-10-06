@@ -1,10 +1,11 @@
 import { Meta, StoryObj } from '@storybook/react-vite';
+
 import { Text as TextComponent } from '@synerise/ds-typography';
 
 import {
   CLASSNAME_ARG_CONTROL,
-  STRING_CONTROL,
   fixedWrapper300,
+  STRING_CONTROL,
 } from '../../utils';
 
 export default {

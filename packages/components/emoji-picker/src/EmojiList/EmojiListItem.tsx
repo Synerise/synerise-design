@@ -1,11 +1,11 @@
-import React, { type ReactElement, memo } from 'react';
+import React, { memo, type ReactElement } from 'react';
 import { areEqual } from 'react-window';
-import { type Emoji } from 'unicode-emoji-utils';
+import type { Emoji } from 'unicode-emoji-utils';
 
 import Tooltip from '@synerise/ds-tooltip';
 
 import * as S from './EmojiList.styles';
-import { type RowItemProps, type TitleItem } from './EmojiList.types';
+import type { RowItemProps, TitleItem } from './EmojiList.types';
 
 const isTitle = (item: TitleItem[] | Emoji[]): item is TitleItem[] => {
   return item[0] && 'title' in item[0];

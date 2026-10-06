@@ -1,13 +1,13 @@
-import React, { useRef, useState } from 'react';
-
 import { faker } from '@faker-js/faker';
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import React, { useRef, useState } from 'react';
+
 import Card from '@synerise/ds-card';
 import Grid from '@synerise/ds-grid';
 import Layout, { LayoutProps, Page } from '@synerise/ds-layout';
 import PageHeader from '@synerise/ds-page-header';
 import { SearchInput } from '@synerise/ds-search';
-import { Table, legacyColumnConfigAdapter } from '@synerise/ds-table-new';
+import { legacyColumnConfigAdapter, Table } from '@synerise/ds-table-new';
 import Tabs from '@synerise/ds-tabs';
 import { useStickyScroll } from '@synerise/ds-utils';
 
@@ -15,14 +15,14 @@ import { Placeholder } from '../../constants';
 import {
   BOOLEAN_CONTROL,
   CLASSNAME_ARG_CONTROL,
-  NUMBER_CONTROL,
   centeredPaddedWrapper,
+  NUMBER_CONTROL,
 } from '../../utils';
-import { fakeData } from './Layout.data';
 import LayoutAppMenu from './components/AppMenu';
 import LayoutFooter from './components/Footer';
 import * as S from './components/Layout.styles';
 import LayoutNavbar from './components/Navbar';
+import { fakeData } from './Layout.data';
 
 export default {
   title: 'Components/Layout',

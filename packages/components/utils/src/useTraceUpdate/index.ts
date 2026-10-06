@@ -13,7 +13,7 @@ export const useTraceUpdate = (props: Record<string, unknown>): void => {
       {} as Record<string, unknown>,
     );
     if (Object.keys(changedProps).length > 0) {
-      // eslint-disable-next-line no-console
+      // biome-ignore lint/suspicious/noConsole: deliberate developer-facing log
       console.log('Changed props:', changedProps);
     }
     prev.current = props;

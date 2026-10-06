@@ -1,4 +1,4 @@
-import { type DropdownSize } from '../Dropdown.types';
+import type { DropdownSize } from '../Dropdown.types';
 
 export const getDropdownWidth = (size?: DropdownSize | number) => {
   if (typeof size === 'number') {

@@ -3,14 +3,14 @@ import React, { type ComponentType, useMemo, useState } from 'react';
 import SearchBar from '@synerise/ds-search-bar';
 import { getPopupContainer as getPopupContainerDefault } from '@synerise/ds-utils';
 
-import { Wrapper } from './Dropdown.styles';
-import { type DropdownProps } from './Dropdown.types';
 import { BackAction } from './components/BackAction/BackAction';
 import { BottomAction } from './components/BottomAction/BottomAction';
 import { DropdownFooter } from './components/DropdownFooter/DropdownFooter';
 import { MenuWrapper } from './components/DropdownMenuList/DropdownMenuList.styles';
 import { DropdownPopover } from './components/DropdownPopover/DropdownPopover';
 import { TextTrigger } from './components/TextTrigger/TextTrigger';
+import { Wrapper } from './Dropdown.styles';
+import type { DropdownProps } from './Dropdown.types';
 import { useDropdownVisibility } from './hooks/useDropdownVisibility';
 
 type SubComponents = {

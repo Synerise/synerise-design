@@ -7,9 +7,11 @@ import Icon, { Add3M } from '@synerise/ds-icon';
 import { getPopupContainer } from '@synerise/ds-utils';
 
 import { CONDITION_TEXTS } from '../Condition/Condition.data';
-import { CONTEXT_CLIENT_ITEMS, CONTEXT_CLIENT_GROUPS } from '../ContextSelector/data/client.data';
+import {
+  CONTEXT_CLIENT_GROUPS,
+  CONTEXT_CLIENT_ITEMS,
+} from '../ContextSelector/data/client.data';
 import { CONTEXT_TEXTS } from '../ContextSelector/data/context.data';
-
 import { useConditionHandlers } from './hooks/useConditionHandlers';
 
 type ConditionExampleProps = {
@@ -21,8 +23,21 @@ type ConditionExampleProps = {
   addStepType?: string;
 };
 
-export const ConditionExample = forwardRef<HTMLDivElement, ConditionExampleProps>(
-  ({ steps, onChange, hoverDisabled, readOnly = false, addStepType, showActionAttribute }, ref) => {
+export const ConditionExample = forwardRef<
+  HTMLDivElement,
+  ConditionExampleProps
+>(
+  (
+    {
+      steps,
+      onChange,
+      hoverDisabled,
+      readOnly = false,
+      addStepType,
+      showActionAttribute,
+    },
+    ref,
+  ) => {
     const {
       updateStepName,
       duplicateStep,
@@ -45,7 +60,11 @@ export const ConditionExample = forwardRef<HTMLDivElement, ConditionExampleProps
     const handleClick = () => setOpenedAddStep(true);
 
     const triggerButton = (
-      <Button type="ghost" mode="icon-label" onClick={!readOnly ? handleClick : undefined}>
+      <Button
+        type="ghost"
+        mode="icon-label"
+        onClick={!readOnly ? handleClick : undefined}
+      >
         {!readOnly && <Icon component={<Add3M />} />}
         and then...
       </Button>
@@ -89,7 +108,9 @@ export const ConditionExample = forwardRef<HTMLDivElement, ConditionExampleProps
           removeStep={removeStep}
           duplicateStep={duplicateStep}
           addStep={addStepType === 'Default' ? addStep : undefined}
-          renderAddStep={addStepType === 'Custom' ? renderCustomAddStep : undefined}
+          renderAddStep={
+            addStepType === 'Custom' ? renderCustomAddStep : undefined
+          }
           onChangeOrder={onChangeOrder}
           onChangeContext={setStepContext}
           onChangeSubject={setStepContext}
@@ -106,5 +127,5 @@ export const ConditionExample = forwardRef<HTMLDivElement, ConditionExampleProps
         />
       </div>
     );
-  }
+  },
 );

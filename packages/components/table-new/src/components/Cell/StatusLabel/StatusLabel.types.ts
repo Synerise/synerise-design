@@ -1,7 +1,7 @@
-import { type ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
-import { type Color, type Status } from '@synerise/ds-badge/dist/Badge.types';
-import { type WithHTMLAttributes } from '@synerise/ds-utils';
+import type { Color, Status } from '@synerise/ds-badge/dist/Badge.types';
+import type { WithHTMLAttributes } from '@synerise/ds-utils';
 
 export type BaseStatusLabelProps = {
   status?: Status;

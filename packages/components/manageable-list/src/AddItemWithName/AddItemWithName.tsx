@@ -5,7 +5,7 @@ import Icon, { Add3M } from '@synerise/ds-icon';
 import { Input } from '@synerise/ds-input';
 
 import * as S from './AddItemWithName.styles';
-import { type Props } from './AddItemWithName.types';
+import type { Props } from './AddItemWithName.types';
 
 const DEFAULT_NAME = '';
 

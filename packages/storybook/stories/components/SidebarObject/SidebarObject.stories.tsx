@@ -1,7 +1,7 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React, { useState } from 'react';
 import { fn } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import { ObjectAvatar } from '@synerise/ds-avatar';
 import Button from '@synerise/ds-button';
 import Drawer from '@synerise/ds-drawer';
@@ -15,6 +15,7 @@ import {
 import { customColors } from '@synerise/ds-tokens/names';
 
 import { controlFromOptionsArray, fixedWrapper300 } from '../../utils';
+import { useSidebarObjectOverview } from './hooks/useSidebarObjectOverview';
 import {
   ALL_TAGS,
   BackIcon,
@@ -22,7 +23,6 @@ import {
   TABS,
   TEXTS,
 } from './SidebarObject.data';
-import { useSidebarObjectOverview } from './hooks/useSidebarObjectOverview';
 
 type StoryProps = typeof SidebarObject;
 

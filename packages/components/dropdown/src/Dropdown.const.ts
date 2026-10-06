@@ -1,12 +1,13 @@
-import { type Placement } from '@floating-ui/react';
-import { type ListItemProps } from '@synerise/ds-list-item';
-import {
-  type FlipConfig,
-  type OffsetConfig,
-  type ShiftConfig,
+import type { Placement } from '@floating-ui/react';
+
+import type { ListItemProps } from '@synerise/ds-list-item';
+import type {
+  FlipConfig,
+  OffsetConfig,
+  ShiftConfig,
 } from '@synerise/ds-popover';
 
-import { type DropdownPlacement } from './Dropdown.types';
+import type { DropdownPlacement } from './Dropdown.types';
 
 export const PLACEMENT_MAP: Record<DropdownPlacement, Placement> = {
   topRight: 'top-end',

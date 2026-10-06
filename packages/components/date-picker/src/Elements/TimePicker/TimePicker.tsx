@@ -5,7 +5,7 @@ import DSTimePicker from '@synerise/ds-time-picker';
 
 import Navbar from '../Navbar/Navbar';
 import * as S from './TimePicker.styles';
-import { type TimePickerProps } from './TimePicker.types';
+import type { TimePickerProps } from './TimePicker.types';
 
 const TimePicker = ({
   value = new Date(),

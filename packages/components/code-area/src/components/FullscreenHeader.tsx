@@ -4,7 +4,7 @@ import Button from '@synerise/ds-button';
 import Icon, { CloseM, CodeTerminalM } from '@synerise/ds-icon';
 
 import * as S from '../CodeArea.styles';
-import { type CodeAreaTexts } from '../CodeArea.types';
+import type { CodeAreaTexts } from '../CodeArea.types';
 
 type FullscreenHeaderProps = {
   label?: ReactNode;

@@ -1,26 +1,28 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 import { fn } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
+import Button from '@synerise/ds-button';
 import { SegmentM } from '@synerise/ds-icon';
-import InformationCard, { buildExtraInfo } from '@synerise/ds-information-card';
 import type { InformationCardProps } from '@synerise/ds-information-card';
+import InformationCard, { buildExtraInfo } from '@synerise/ds-information-card';
+import Result from '@synerise/ds-result';
 
 import {
   BOOLEAN_CONTROL,
   CLASSNAME_ARG_CONTROL,
+  controlFromOptionsArray,
   REACT_NODE_AS_STRING,
   STRING_CONTROL,
   THEME_PALETTE_COLOR_NAMES_CONTROL,
-  controlFromOptionsArray,
 } from '../../utils';
 import {
   ACTIONS_MENU_ITEMS,
   PROPERTIES_LIST,
   PROPERTIES_LIST_LONG,
-  SUMMARY_ITEMS,
   renderExternalLinkButton,
   renderPreviewButton,
+  SUMMARY_ITEMS,
 } from './InformationCard.data';
 
 const InformationCardMeta = {
@@ -168,6 +170,44 @@ export const CustomFooter: Story = {
   avatarTooltipText="Tooltip Text"
   descriptionConfig={{}}
   renderFooter={() => <>Custom footer element</>}
+/>`,
+      },
+    },
+  },
+};
+
+export const WithErrorState: Story = {
+  args: {
+    descriptionConfig: null,
+    renderAdditionalDescription: () => (
+      <Result
+        type="error"
+        description="Could not load the preview"
+        buttons={
+          <Button type="primary" onClick={fn()}>
+            Try again
+          </Button>
+        }
+      />
+    ),
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<InformationCard
+  title="Title"
+  subtitle="Subtitle"
+  icon={<SegmentM color="mars" />}
+  iconColor="mars"
+  avatarTooltipText="Tooltip Text"
+  descriptionConfig={null}
+  renderAdditionalDescription={() => (
+    <Result
+      type="error"
+      description="Could not load the preview"
+      buttons={<Button type="primary" onClick={() => {}}>Try again</Button>}
+    />
+  )}
 />`,
       },
     },

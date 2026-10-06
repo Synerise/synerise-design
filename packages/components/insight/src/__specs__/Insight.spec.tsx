@@ -2,7 +2,7 @@ import React from 'react';
 import { screen } from '@testing-library/react';
 
 import Insight from '../Insight';
-import { renderWithProvider } from '@synerise/ds-core';
+import { renderWithProvider } from '@synerise/ds-core/testing';
 
 describe('Section message component', () => {
 

@@ -4,7 +4,7 @@ import Icon, { CloseS, DuplicateS, EditS } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 
 import * as S from './ItemActions.styles';
-import { type ItemActionsProps } from './ItemActions.types';
+import type { ItemActionsProps } from './ItemActions.types';
 
 const DEFAULT_COLOR = 'var(--ds-color-icon-base-subtle)';
 

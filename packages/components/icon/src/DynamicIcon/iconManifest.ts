@@ -1,8 +1,8 @@
+import type * as additional from '../icons/additional';
+import type * as color from '../icons/colorIcons';
 import type * as large from '../icons/L';
 import type * as medium from '../icons/M';
 import type * as xlarge from '../icons/XL';
-import type * as additional from '../icons/additional';
-import type * as color from '../icons/colorIcons';
 
 /**
  * Union of every icon name across all sets.

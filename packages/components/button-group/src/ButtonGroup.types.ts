@@ -1,6 +1,6 @@
-import { type CSSProperties, type ReactNode } from 'react';
+import type { CSSProperties, ReactNode } from 'react';
 
-import { type LiteralStringUnion } from '@synerise/ds-utils';
+import type { LiteralStringUnion } from '@synerise/ds-utils';
 
 export type ButtonGroupProps = {
   /** Size class applied to the group container */

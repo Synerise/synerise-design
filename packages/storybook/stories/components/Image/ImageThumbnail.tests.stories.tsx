@@ -1,6 +1,6 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import { expect, fn, userEvent, within } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import { type ThumbnailProps } from '@synerise/ds-image';
 
 import StoriesMeta, { Deletable } from './ImageThumbnail.stories';

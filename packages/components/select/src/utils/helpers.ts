@@ -1,7 +1,7 @@
-import {
-  type FilterOptionFn,
-  type RawValueType,
-  type SelectValue,
+import type {
+  FilterOptionFn,
+  RawValueType,
+  SelectValue,
 } from '../Select.types';
 
 /** Default max height (px) of the option list. */

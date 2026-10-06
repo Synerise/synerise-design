@@ -1,6 +1,6 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import Divider from '@synerise/ds-divider';
 
 import {
@@ -41,7 +41,13 @@ export default {
   },
   decorators: [
     (Story) => (
-      <div style={{ background: 'var(--ds-page-bg)', width: '300px', padding: '16px' }}>
+      <div
+        style={{
+          background: 'var(--ds-page-bg)',
+          width: '300px',
+          padding: '16px',
+        }}
+      >
         <Story />
       </div>
     ),

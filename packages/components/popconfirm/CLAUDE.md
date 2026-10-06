@@ -142,7 +142,7 @@ import { ConfirmMessage } from '@synerise/ds-popconfirm';
 - `@synerise/ds-tooltip` — used by `ConfirmMessage` internally
 - `@synerise/ds-core` — `useTheme` for z-index and colour tokens
 - `@synerise/ds-carousel` — image slideshow (fade + dots)
-- `@floating-ui/react` — `UseTransitionStylesProps` (peer dep declared as devDependency)
+- `@floating-ui/react` — `UseTransitionStylesProps`, re-exported in the published types
 
 ## Implementation notes
 
@@ -154,4 +154,3 @@ import { ConfirmMessage } from '@synerise/ds-popconfirm';
 - **`Popconfirm.ConfirmMessage`** is a deprecated access pattern — use the named export `ConfirmMessage` instead (JSDoc `@deprecated` comment in `Popconfirm.tsx`).
 - **`buttonsAlign`** default is effectively right-aligned (`flex-end`) when undefined, but the README says default is `'right'` — the prop simply being absent achieves the same visual result via a falsy branch.
 - Tests use **Jest** (not Vitest), consistent with `jest.config.js` present in package root.
-- `@floating-ui/react` is listed only in `devDependencies` despite `getTransitionConfig.ts` importing its types — safe at runtime because types are erased, but indicates the package relies on the host having it transitively.

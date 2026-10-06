@@ -1,12 +1,11 @@
 export { default } from './ContextSelector';
-
 export type {
-  ContextProps,
-  ContextItem,
-  ContextGroup,
   ContextDropdownProps,
-  ContextTexts,
-  ContextSelectorDropdownItemProps,
+  ContextGroup,
+  ContextItem,
   ContextItemsInSubGroup,
+  ContextProps,
+  ContextSelectorDropdownItemProps,
+  ContextTexts,
   DropdownItemProps,
 } from './ContextSelector.types';

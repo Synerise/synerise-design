@@ -9,12 +9,12 @@ import { v4 as uuid } from 'uuid';
 
 import FormField from '@synerise/ds-form-field';
 
-import * as S from './Input.styles';
-import { type TextareaProps } from './TextArea.types';
-import DSTextArea from './Textarea/Textarea';
 import { ElementIcons } from './components/ElementIcons';
 import { useElementFocus } from './hooks';
 import { useCounterLimit } from './hooks/useCounterLimit';
+import * as S from './Input.styles';
+import type { TextareaProps } from './TextArea.types';
+import DSTextArea from './Textarea/Textarea';
 import { getCharCount } from './utils';
 
 export const TextArea = ({

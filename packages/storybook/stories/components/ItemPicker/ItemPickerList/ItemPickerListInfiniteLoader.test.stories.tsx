@@ -1,4 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react-vite';
+
 import type { ItemPickerProps } from '@synerise/ds-item-picker';
 
 import type { StoryPropsOverlay } from '../ItemPicker.types';

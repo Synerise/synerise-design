@@ -1,12 +1,11 @@
 export { default } from './Badge';
-export {
-  default as BadgeWithLabel,
-  type BadgeWithLabelProps,
-} from './BadgeWithLabel';
-
 export type {
-  Status as BadgeStatus,
   BadgeProps,
   Color as BadgeColor,
   ColorHue as BadgeColorHue,
+  Status as BadgeStatus,
 } from './Badge.types';
+export {
+  type BadgeWithLabelProps,
+  default as BadgeWithLabel,
+} from './BadgeWithLabel';

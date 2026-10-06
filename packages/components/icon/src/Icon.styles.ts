@@ -37,8 +37,10 @@ export const IconContainer = styled.div<{
                  see DEFAULT_COLOR_TOKEN: grey-800 has no semantic icon token yet, needs one. */
               &.ds-icon-set-large,
               &.ds-icon-set-xlarge {
-                color: ${props.theme?.palette?.[DEFAULT_COLOR_TOKEN] ||
-                theme.palette[DEFAULT_COLOR_TOKEN]};
+                color: ${
+                  props.theme?.palette?.[DEFAULT_COLOR_TOKEN] ||
+                  theme.palette[DEFAULT_COLOR_TOKEN]
+                };
               }
             `}
     

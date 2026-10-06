@@ -3,6 +3,42 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@2.1.3...@synerise/ds-icon@2.2.0) (2026-09-24)
+
+
+### Features
+
+* **icon:** add stories group and widget xl icons ([9a8a502](https://github.com/Synerise/synerise-design/commit/9a8a50275251db3fe0f940a78fdd6309a1f6804f))
+
+
+
+
+
+## [2.1.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@2.1.2...@synerise/ds-icon@2.1.3) (2026-09-22)
+
+
+### Bug Fixes
+
+* **core:** move test helpers to a ./testing subpath export ([b38cd82](https://github.com/Synerise/synerise-design/commit/b38cd82c956111d2331d5c1e0efd1935366f1139))
+
+
+
+
+
+## [2.1.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@2.1.1...@synerise/ds-icon@2.1.2) (2026-09-18)
+
+**Note:** Version bump only for package @synerise/ds-icon
+
+
+
+
+
+## [2.1.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@2.1.0...@synerise/ds-icon@2.1.1) (2026-09-16)
+
+### Bug Fixes
+
+- **icon:** keep Vite's preload helper out of dist ([0351dca](https://github.com/Synerise/synerise-design/commit/0351dca80e32abd0049e4d8188d99b8a13042e91))
+
 # [2.1.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@2.0.0...@synerise/ds-icon@2.1.0) (2026-09-02)
 
 ### Features

@@ -499,6 +499,9 @@
       "CLEAR-TOOLTIP": "Limpar",
       "DELETE-TOOLTIP": "Excluir",
       "NO-SEARCH-RESULTS": "Nenhuma tag encontrada"
+    },
+    "CONDITION-BLOCKS": {
+      "REMOVE": "Remover"
     }
   }
 }

@@ -1,5 +1,4 @@
-import fnsIsSameDay from 'date-fns/isSameDay';
-import fnsIsValid from 'date-fns/isValid';
+import { isSameDay as fnsIsSameDay, isValid as fnsIsValid } from 'date-fns';
 import React, {
   type FC,
   type MouseEvent,
@@ -7,22 +6,21 @@ import React, {
   type ReactNode,
   type UIEvent,
 } from 'react';
-import { DateUtils, type DayModifiers } from 'react-day-picker';
+import type { Matcher, Modifiers } from 'react-day-picker';
 
-import { legacyParse } from '@date-fns/upgrade/v2';
 import {
-  type WithDataFormatProps,
   getDefaultDataTimeOptions,
+  type WithDataFormatProps,
   withDataFormat,
 } from '@synerise/ds-core';
 import {
   DayPicker,
-  MonthPicker,
-  TimePicker,
-  YearPicker,
   fnsDifferenceInYears,
   datePickerFormat as fnsFormat,
   localeUtils,
+  MonthPicker,
+  TimePicker,
+  YearPicker,
 } from '@synerise/ds-date-picker';
 import {
   DayBackground,
@@ -32,30 +30,32 @@ import {
 import Icon, { CalendarM, ClockM } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 
-import { Range } from '../RelativeRangePicker/RelativeRangePicker.styles';
 import { ABSOLUTE, COLUMNS, MODES } from '../constants';
-import {
-  type AbsoluteDateRange,
-  type DateFilter,
-  type RelativeDateRange,
-} from '../date.types';
+import type { AbsoluteDateRange, RelativeDateRange } from '../date.types';
 import ADD from '../dateUtils/add';
 import getDateFromString from '../dateUtils/getDateFromString';
+import { toDateValue } from '../dateUtils/toDateValue';
 import {
   fnsAddDays,
   fnsAddMinutes,
   fnsEndOfDay,
   fnsIsAfter,
+  fnsIsBefore,
   fnsIsSameMonth,
   fnsStartOfDay,
 } from '../fns';
+import { Range } from '../RelativeRangePicker/RelativeRangePicker.styles';
 import * as S from './RangePicker.styles';
-import {
-  type RangePickerProps as Props,
-  type Side as SideType,
-  type State,
+import type {
+  RangePickerProps as Props,
+  Side as SideType,
+  State,
 } from './RangePicker.types';
 import { getDisabledTimeOptions, getModifiers, getSidesState } from './utils';
+
+/** Day-granularity comparison, replacing react-day-picker v7's `DateUtils.isDayBefore`. */
+const isDayBefore = (day: Date, reference: Date): boolean =>
+  fnsIsBefore(fnsStartOfDay(day), fnsStartOfDay(reference));
 
 const NOOP = (): void => {};
 const TOOLTIP_FORMAT = 'MMM d, yyyy, HH:mm';
@@ -76,12 +76,12 @@ function replaceRange(
   } else if (
     from &&
     to &&
-    DateUtils.isSameDay(from as Date, to as Date) &&
-    DateUtils.isSameDay(day, from as Date)
+    fnsIsSameDay(from as Date, to as Date) &&
+    fnsIsSameDay(day, from as Date)
   ) {
     from = null;
     to = null;
-  } else if (to && DateUtils.isSameDay(day, to as Date)) {
+  } else if (to && fnsIsSameDay(day, to as Date)) {
     from = day;
     to = day;
   } else if (from && to) {
@@ -89,7 +89,7 @@ function replaceRange(
     to = null;
   } else {
     to = day;
-    if (DateUtils.isDayBefore(to, from as Date)) {
+    if (isDayBefore(to, from as Date)) {
       to = from;
       from = day;
     }
@@ -99,7 +99,6 @@ function replaceRange(
 class RangePicker extends PureComponent<Props & WithDataFormatProps, State> {
   constructor(props: Props & WithDataFormatProps) {
     super(props);
-    // eslint-disable-next-line react/state-in-constructor
     this.state = {
       enteredTo: null,
       ...getSidesState(props.value),
@@ -114,12 +113,12 @@ class RangePicker extends PureComponent<Props & WithDataFormatProps, State> {
     const fromDateChanged =
       !!value?.from && value?.from !== prevProps?.value?.from;
     const startOnLeft = fnsIsSameMonth(
-      legacyParse(value.from),
-      legacyParse(left.month),
+      toDateValue(value.from),
+      toDateValue(left.month),
     );
     const endOnLeft = fnsIsSameMonth(
-      legacyParse(value.to),
-      legacyParse(left.month),
+      toDateValue(value.to),
+      toDateValue(left.month),
     );
     if (
       (fromDateChanged && !endOnLeft) ||
@@ -132,8 +131,8 @@ class RangePicker extends PureComponent<Props & WithDataFormatProps, State> {
     }
     if (jumpToStartAndEnd && (fromDateChanged || toDateChanged)) {
       const startOnRight = fnsIsSameMonth(
-        legacyParse(value.from),
-        legacyParse(right.month),
+        toDateValue(value.from),
+        toDateValue(right.month),
       );
       const isStartVisible = startOnLeft || startOnRight;
       if (!isStartVisible) {
@@ -141,8 +140,8 @@ class RangePicker extends PureComponent<Props & WithDataFormatProps, State> {
         return null;
       }
       const endOnRight = fnsIsSameMonth(
-        legacyParse(value.to),
-        legacyParse(right.month),
+        toDateValue(value.to),
+        toDateValue(right.month),
       );
       const isEndVisible = endOnLeft || endOnRight;
       if (!isEndVisible) {
@@ -165,8 +164,8 @@ class RangePicker extends PureComponent<Props & WithDataFormatProps, State> {
 
   handleDayClick = (
     day: Date,
-    modifiers: DayModifiers,
-    e: MouseEvent<HTMLDivElement>,
+    modifiers: Modifiers,
+    e: MouseEvent<Element>,
   ): void => {
     e.preventDefault();
     const { value, onChange } = this.props;
@@ -195,7 +194,7 @@ class RangePicker extends PureComponent<Props & WithDataFormatProps, State> {
       onChange({
         ...value,
         type: ABSOLUTE,
-        from: fnsAddDays(legacyParse(value.from), numberOfDays),
+        from: fnsAddDays(toDateValue(value.from), numberOfDays),
       });
     }
     if (side === COLUMNS.RIGHT) {
@@ -203,7 +202,7 @@ class RangePicker extends PureComponent<Props & WithDataFormatProps, State> {
       onChange({
         ...value,
         type: ABSOLUTE,
-        to: fnsAddDays(legacyParse(value.to), numberOfDays),
+        to: fnsAddDays(toDateValue(value.to), numberOfDays),
       });
     }
   };
@@ -216,8 +215,8 @@ class RangePicker extends PureComponent<Props & WithDataFormatProps, State> {
     const opposite = side === COLUMNS.LEFT ? COLUMNS.RIGHT : COLUMNS.LEFT;
     const { state } = this;
     const { forceAdjacentMonths } = this.props;
-    if (fnsIsSameMonth(month, legacyParse(state[opposite].month))) {
-      const dir = fnsIsAfter(month, legacyParse(state[side].month)) ? 1 : -1;
+    if (fnsIsSameMonth(month, toDateValue(state[opposite].month))) {
+      const dir = fnsIsAfter(month, toDateValue(state[side].month)) ? 1 : -1;
       const adjacentMonth = ADD.MONTHS(month, dir);
       this.setState((prevState) => ({
         ...prevState,
@@ -256,14 +255,14 @@ class RangePicker extends PureComponent<Props & WithDataFormatProps, State> {
 
     const formatDate = (date: Date | string): string => {
       if (typeof date === 'string') {
-        return fnsFormat(legacyParse(date), TOOLTIP_FORMAT, intl.locale);
+        return fnsFormat(toDateValue(date), TOOLTIP_FORMAT, intl.locale);
       }
       return formatValue(date, { ...getDefaultDataTimeOptions(true) });
     };
 
     const { from, to } = value;
-    const rangeFrom = from ? legacyParse(from) : null;
-    const rangeTo = to ? legacyParse(to) : null;
+    const rangeFrom = from ? toDateValue(from) : null;
+    const rangeTo = to ? toDateValue(to) : null;
     // Whether this day sits inside the currently selected range. The range
     // label is shown on hover of any such day, rendered through a portaled
     // tooltip (ds-tooltip) so the overlay keeps its vertical scroll
@@ -275,8 +274,8 @@ class RangePicker extends PureComponent<Props & WithDataFormatProps, State> {
       !!rangeTo &&
       fnsIsValid(rangeFrom) &&
       fnsIsValid(rangeTo) &&
-      !DateUtils.isDayBefore(day, rangeFrom) &&
-      !DateUtils.isDayBefore(rangeTo, day);
+      !isDayBefore(day, rangeFrom) &&
+      !isDayBefore(rangeTo, day);
 
     const dayForeground = <DayForeground className="DayPicker-Day-FG" />;
 
@@ -317,7 +316,7 @@ class RangePicker extends PureComponent<Props & WithDataFormatProps, State> {
         ? (COLUMNS.RIGHT as SideType)
         : (COLUMNS.LEFT as SideType);
     const { [side]: currentSide, [opposite]: oppositeSide } = this.state;
-    const oppositeMonth = legacyParse(oppositeSide.month);
+    const oppositeMonth = toDateValue(oppositeSide.month);
     return (
       <MonthPicker
         key={`month_picker_${opposite}`}
@@ -344,12 +343,14 @@ class RangePicker extends PureComponent<Props & WithDataFormatProps, State> {
       fnsIsValid(to) ? to : null,
       enteredTo,
     );
-    const selectedDays =
+    // v10's `Matcher` accepts a `Date` and a `{ from, to }` range, which is what v7 was being
+    // handed all along — only untyped. Bounds are coerced because they may still be strings.
+    const selectedDays: Matcher[] =
       fnsIsValid(from) && fnsIsValid(to)
-        ? [from, { from, to } as DateFilter]
-        : [undefined, { from: undefined, to: undefined }];
-    const parsedLeft = legacyParse(left.month);
-    const parsedRight = legacyParse(right.month);
+        ? [toDateValue(from), { from: toDateValue(from), to: toDateValue(to) }]
+        : [];
+    const parsedLeft = toDateValue(left.month);
+    const parsedRight = toDateValue(right.month);
     const adjacentMonths =
       forceAdjacentMonths ||
       fnsIsSameMonth(ADD.MONTHS(parsedLeft, 1), parsedRight);
@@ -364,7 +365,6 @@ class RangePicker extends PureComponent<Props & WithDataFormatProps, State> {
         disabledDays={disabledDate}
         localeUtils={localeUtils}
         month={getDateFromString(sideState.month)}
-        title={sideState.monthTitle}
         hideLongNext={side === COLUMNS.LEFT && adjacentYears}
         hideShortNext={side === COLUMNS.LEFT && adjacentMonths}
         hideLongPrev={side === COLUMNS.RIGHT && adjacentYears}
@@ -380,9 +380,7 @@ class RangePicker extends PureComponent<Props & WithDataFormatProps, State> {
         fixedWeeks
         showOutsideDays
         modifiers={modifiers}
-        // @ts-ignore
         onDayClick={this.handleDayClick}
-        // @ts-ignore
         selectedDays={selectedDays}
       />
     );
@@ -394,7 +392,7 @@ class RangePicker extends PureComponent<Props & WithDataFormatProps, State> {
     if (!from || !to) {
       return null;
     }
-    const sidesAreAdjacent = fnsIsSameDay(legacyParse(from), legacyParse(to));
+    const sidesAreAdjacent = fnsIsSameDay(toDateValue(from), toDateValue(to));
     switch (side) {
       case COLUMNS.LEFT: {
         return (
@@ -513,10 +511,16 @@ class RangePicker extends PureComponent<Props & WithDataFormatProps, State> {
     return (
       <>
         <S.Sides>
-          <S.Side mode={mode}>
+          <S.Side
+            mode={mode}
+            data-testid={`date-range-picker-side-${COLUMNS.LEFT}`}
+          >
             {this.renderSide(COLUMNS.LEFT as SideType)}
           </S.Side>
-          <S.Side mode={mode}>
+          <S.Side
+            mode={mode}
+            data-testid={`date-range-picker-side-${COLUMNS.RIGHT}`}
+          >
             {this.renderSide(COLUMNS.RIGHT as SideType)}
           </S.Side>
         </S.Sides>

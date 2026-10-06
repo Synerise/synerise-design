@@ -3,9 +3,9 @@ import React from 'react';
 import Button from '@synerise/ds-button';
 import Icon, { CloseM } from '@synerise/ds-icon';
 
+import { useTrayContext } from './hooks/useTrayContext';
 import * as S from './Tray.styles';
 import type { TrayProps } from './Tray.types';
-import { useTrayContext } from './hooks/useTrayContext';
 
 const Tray = ({ id, ...htmlAttributes }: TrayProps) => {
   const { getTrayState, closeTray } = useTrayContext();

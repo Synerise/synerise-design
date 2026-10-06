@@ -1,9 +1,9 @@
-import { type ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
 import { orderedBase } from '@synerise/ds-tokens/names';
 import { resolveCustomColor } from '@synerise/ds-utils';
 
-import { type ColorMap, type MarkObj } from '../Slider.types';
+import type { ColorMap, MarkObj } from '../Slider.types';
 
 export const getDefaultTooltipPopupContainer = (): HTMLElement =>
   document.querySelector(`.ant-slider`) as HTMLElement;

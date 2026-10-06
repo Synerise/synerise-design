@@ -1,6 +1,5 @@
-import { type CSSProperties } from 'react';
-
-import { type Column } from '@tanstack/react-table';
+import type { Column } from '@tanstack/react-table';
+import type { CSSProperties } from 'react';
 
 const toCssLength = (
   v: number | string | undefined | null,

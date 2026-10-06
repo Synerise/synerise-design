@@ -4,7 +4,7 @@ import Icon, { CloseM } from '@synerise/ds-icon';
 
 import { DEFAULT_ICON, ICONS } from './SectionMessage.const';
 import * as S from './SectionMessage.styles';
-import { type SectionMessageProps } from './SectionMessage.types';
+import type { SectionMessageProps } from './SectionMessage.types';
 import { isSectionType } from './SectionMessage.utils';
 
 const SectionMessage = ({

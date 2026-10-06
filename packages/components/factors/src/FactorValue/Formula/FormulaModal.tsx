@@ -3,7 +3,7 @@ import React from 'react';
 import InlineEdit from '@synerise/ds-inline-edit';
 import ModalProxy from '@synerise/ds-modal';
 
-import { type FormulaModalProps } from '../../Factors.types';
+import type { FormulaModalProps } from '../../Factors.types';
 
 const FormulaModal: React.FC<FormulaModalProps> = ({
   value,

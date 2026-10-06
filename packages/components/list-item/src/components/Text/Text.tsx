@@ -1,21 +1,18 @@
+import { useListItem, useMergeRefs } from '@floating-ui/react';
 import copy from 'copy-to-clipboard';
 import React, {
   type FocusEvent,
+  forwardRef,
   type KeyboardEvent,
   type MouseEvent,
-  forwardRef,
   useMemo,
   useState,
 } from 'react';
 
-import { useListItem, useMergeRefs } from '@floating-ui/react';
 import { renderWithHighlight, useStableId } from '@synerise/ds-utils';
 
-import {
-  type BasicItemProps,
-  type NestedItemProps,
-} from '../../ListItem.types';
 import { useTemporaryLabel } from '../../hooks/useTemporaryLabel';
+import type { BasicItemProps, NestedItemProps } from '../../ListItem.types';
 import HoverTooltip from '../HoverTooltip/HoverTooltip';
 import { SubMenu } from '../SubMenu/SubMenu';
 import { DynamicLabel } from './DynamicLabel';
@@ -291,6 +288,7 @@ const Text = forwardRef<HTMLDivElement, BasicItemProps & NestedItemProps>(
           <SubMenu
             onClick={onClick}
             indentLevel={nextIndentLevel}
+            size={size}
             dataSource={subMenu}
             isOpen={subMenuOpen}
             ItemComponent={ItemComponent}

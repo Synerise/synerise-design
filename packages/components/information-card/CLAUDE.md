@@ -131,7 +131,7 @@ import InformationCard, {
 - `@synerise/ds-popover` (floating-ui) — `InformationCardTooltip` hover popover
 - `@synerise/ds-subtle-form` — `SubtleTextAreaProps` used for editable description; imported via **deep path** `dist/Elements/TextArea/TextArea.types`
 - `@synerise/ds-avatar` — `Color` and `Size` types imported via **deep path** `dist/Avatar.types`
-- `@floating-ui/react` — `FloatingDelayGroup` wrapping for nested popover delay isolation
+- `FloatingDelayGroup` (re-exported by `@synerise/ds-popover`) — nested popover delay isolation
 - `react-resize-detector` — `useResizeObserver` used to track card height for the actions-menu slide animation
 
 ## Implementation notes

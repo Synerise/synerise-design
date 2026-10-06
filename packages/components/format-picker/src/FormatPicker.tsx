@@ -6,9 +6,9 @@ import { type NumberToFormatOptions, useDataFormat } from '@synerise/ds-core';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { HashM } from '@synerise/ds-icon';
 
-import {
-  type FormatPickerProps,
-  type FormatPickerTexts,
+import type {
+  FormatPickerProps,
+  FormatPickerTexts,
 } from './FomartPicker.types';
 import FormatSettings from './FormatSettings/FormatSettings';
 

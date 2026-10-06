@@ -1,6 +1,6 @@
-import { type Ref } from 'react';
+import type { Ref } from 'react';
 
-import { type ListItemProps } from '@synerise/ds-list-item';
+import type { ListItemProps } from '@synerise/ds-list-item';
 
 import type {
   BaseItemType,

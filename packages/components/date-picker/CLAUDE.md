@@ -1,6 +1,6 @@
 # DatePicker (`@synerise/ds-date-picker`)
 
-> Single-date picker with a dropdown calendar, optional time picker, quick-pick presets, and a formatted text input trigger — built on `react-day-picker` v7 and `date-fns` 2.
+> Single-date picker with a dropdown calendar, optional time picker, quick-pick presets, and a formatted text input trigger — built on `react-day-picker` v10 and `date-fns` 4.
 
 ## Package structure
 
@@ -16,8 +16,8 @@ src/
   Elements/
     DayPicker/                — calendar grid (react-day-picker wrapper)
     MonthPicker/              — 12-month grid; clicking title switches to YearPicker
-    YearPicker/               — decade grid; clicking title switches to DecadePicker
-    DecadePicker/             — century grid
+    YearPicker/               — the decade's ten years; clicking title switches to DecadePicker
+    DecadePicker/             — century grid, plus a step cell either side
     TimePicker/               — HH:MM:SS column selector with prev/next day navigation
     PickerInput/              — formatted text input trigger (uses ds-input)
     Footer/                   — Apply / Now / Date / Time mode-switch buttons
@@ -27,10 +27,10 @@ src/
     GridPicker/               — shared grid layout used by Month/Year/DecadePicker
   utils/
     getDefaultTexts.tsx       — merges consumer texts with react-intl defaults
-  fns.tsx                     — date-fns v2 wrappers
+  fns.tsx                     — date-fns re-exports (named, from the package root)
   format.ts                   — fnsFormat wrapper
-  localeUtils.ts              — locale helpers for react-day-picker
-  utils.ts                    — changeDayWithHoursPreserved and other helpers
+  localeUtils.ts              — weekday/month name tables; adapted into react-day-picker formatters/labels
+  utils.ts                    — range / getDecadeRange / getCenturyRange helpers
   index.ts                    — public exports
 ```
 
@@ -60,7 +60,6 @@ src/
 | `quickPicks` | `QuickPick[]` | `undefined` | Preset date buttons rendered in a left column beside the calendar. |
 | `texts` | `Partial<Texts>` | `undefined` | Override i18n strings. |
 | `valueFormatOptions` | `DateToFormatOptions` | `undefined` | Format options for displaying the selected date in the input. |
-| `format` | `string` | `undefined` | **Deprecated** — use `valueFormatOptions` instead. |
 | `popoverPlacement` | `'topLeft' \| 'topCenter' \| 'topRight' \| 'bottomLeft' \| 'bottomCenter' \| 'bottomRight'` | `undefined` | Dropdown placement. |
 | `prefixel` | `ReactNode` | `undefined` | Content shown before the date value in the input. |
 | `suffixel` | `ReactNode` | `undefined` | Content shown after the date value in the input. |
@@ -127,9 +126,9 @@ import { RawDatePicker } from '@synerise/ds-date-picker';
 
 ## Key dependencies
 
-- `react-day-picker` v7 — calendar grid, day modifiers, locale utilities
-- `date-fns` 2.16.1 — all date arithmetic (pinned version)
-- `@date-fns/upgrade` — `legacyParse` compat shim for date-fns v1→v2 migration in `RawDatePicker`
+- `react-day-picker` v10 — calendar grid and day modifiers (shares this package's `date-fns` 4, plus `@date-fns/tz`)
+- `date-fns` ^4 — all date arithmetic, imported by name from the package root
+- Loosely-typed date inputs are normalised by `src/toDateValue.ts`, which replaced `@date-fns/upgrade`'s `legacyParse`. Use it rather than `new Date` or `toDate`: a naive string must be read as *local* time, which only `parseISO` does
 - `@synerise/ds-dropdown` — wraps `RawDatePicker` as a popover triggered by `PickerInput`
 - `@synerise/ds-input` — base for `PickerInput`
 - `react-intl` (peer dep) — default label strings; `IntlProvider` required in tree
@@ -141,8 +140,49 @@ import { RawDatePicker } from '@synerise/ds-date-picker';
 - **`readOnly` short-circuits the Dropdown** — when `readOnly={true}`, the component renders only the `PickerInput` (or `renderTrigger` output) with no calendar attached.
 - **Mode switching** — clicking the month name in `DayPicker` switches to `'month'` mode; clicking the year name switches to `'year'` mode. The back navigation in those modes returns to `'date'`. Selecting a day when `showTime=true` switches to `'time'` mode automatically.
 - **`useStartOfDay` / `useEndOfDay`** — applied on day click, before `onValueChange` fires. `useStartOfDay` takes precedence if both are set (implemented as `if/else if` in `handleDayClick`).
-- **Time preserved on day change** — when changing the day while already having a time selected (`changed=true`), hours/minutes/seconds from the previous value are preserved (`changeDayWithHoursPreserved`).
+- **Time preserved on day change** — clicking a day rewrites only the calendar fields of the current `value` (`setYear`/`setMonth`/`setDate`), so its local clock carries over. Local fields are the whole mechanism, and they are what makes this correct across a DST boundary; do not reintroduce a seconds-difference round-trip here. The removed `changeDayWithHoursPreserved` did exactly that and multiplied a calendar-day count by a hard-coded `86400`, so any pair of dates straddling a transition came out an hour wrong — and with `useStartOfDay`/`useEndOfDay` that hour crossed midnight and moved the day.
 - **Apply vs onChange** — `onValueChange` fires on every day/time interaction. `onApply` fires only when the user explicitly clicks Apply (or selects a quick pick), and also closes the dropdown.
 - **`dropdownProps.open`** — if provided, it OR-s with internal `dropVisible` state: `open={(dropdownProps?.open || dropVisible) && !disabled}`. This means both sources can open the dropdown independently.
-- **`format` is deprecated** — use `valueFormatOptions: DateToFormatOptions` (from `@synerise/ds-core`) for display formatting.
+- **`format` has been removed** — use `valueFormatOptions: DateToFormatOptions` (from `@synerise/ds-core`). It took a token pattern, which no consumer passed and which disagreed with `formatValue` for every locale. `PickerInput` now renders a `Date` and an ISO string identically; whether a value is an *instant* is signalled by `isInstantValue`, not inferred from its runtime type.
 - **`inputPlaceholder` i18n default is empty** — `getDefaultTexts` calls `intl.formatMessage({ id: 'DS.DATE-PICKER.SELECT-DATE' })` with no `defaultMessage`, so the placeholder is empty if the message is not in the IntlProvider's messages.
+
+## react-day-picker v10 notes
+
+`Elements/DayPicker/DayPicker.tsx` is an adapter: it keeps the v7-era prop shape this package and
+`ds-date-range-picker` were written against (`selectedDays`, `disabledDays`, `renderDay`,
+`modifiers`, `canChangeMonth`, `localeUtils`) and translates it to v10 at that one boundary.
+
+- **Class names are remapped back to v7's.** `CLASS_NAMES` / `MODIFIER_CLASS_NAMES` in
+  `DayPicker.tsx` turn v10's `rdp-*` into `DayPicker-*`, so `DayPicker.styles.ts`, the specs and
+  the Chromatic stories keep working. A modifier that stops being styled means a missing entry
+  there, not a stylesheet bug.
+- **The day cell now contains a real `<button class="DayPicker-Day-Button">`.** v7 put the three
+  day layers straight into the cell. Anything clicking a day must target the button (or a
+  descendant) — a click on the `<td>` no longer reaches the handler.
+- **`localeUtils` is deprecated** and no longer passed to the library; it feeds v10's `formatters`
+  and `labels` instead. Its moment-derived `formatDate` / `parseDate` / `getMonths` are gone, which
+  is what removed the undeclared `moment` dependency.
+- **The weekday header row is `aria-hidden`** — upstream's choice, since each day button's
+  accessible name already carries the full date.
+- **v10 renders twice on mount**, so `disabledDates` is evaluated twice per day. It is a pure
+  predicate, so this is a cost rather than a correctness issue; assert on distinct dates, not on
+  call counts.
+
+## Month, year and decade grids
+
+The three grid views share `Elements/GridPicker` and follow the Figma `Date Picker` states
+(`Months`, `Year`, `Years range`):
+
+- **Every reachable cell carries a chip** — `grey-100` at rest, `grey-200` + `blue-600` text on
+  hover, `blue-600` + white when selected, at regular weight. A **disabled** cell drops the chip
+  and keeps only a `grey-400` label, matching the day grid, where the chip likewise marks a day as
+  reachable.
+- **Layout** is three columns on a 24px inset with an 8px column gap and 32px rows spread by
+  `align-content: space-between`, so the same rules give Figma's spacing in `DatePicker`'s 304px
+  panel and fit `DateRangePicker`'s 290px side.
+- **`YearPicker` renders the decade's ten years and nothing more.** The `±1 decade` cells it used
+  to append are gone — the navbar's chevrons already step by ten years. `DecadePicker` keeps its
+  two `cell--outside` cells because they are the only way to leave the century, and the design
+  draws them like any other cell.
+- **`Navbar` takes `singleStep`** for these views: one step per side, drawn as a single angle in
+  the outer slot the day view's double angle occupies, with the inner slot left out.

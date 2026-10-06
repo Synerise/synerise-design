@@ -1,8 +1,8 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React, { useState } from 'react';
 import { action } from 'storybook/actions';
 import { fn } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import { ObjectAvatar } from '@synerise/ds-avatar';
 import Button from '@synerise/ds-button';
 import Icon, { AcademyM, ChatM, EditM, HelpM, MailM } from '@synerise/ds-icon';
@@ -227,6 +227,33 @@ export const OnModalFooterCustomAndStepButtons: StoryObj<
           Suffix Action
         </Button>
       ),
+    },
+  },
+};
+
+export const OnModalFooterAction: StoryObj<typeof Wizard.OnModal> = {
+  render: (args) => {
+    const [activeStep, setActiveStep] = useState(1);
+
+    const handlePrevStep = () => setActiveStep(activeStep - 1);
+    const handleNextStep = () => setActiveStep(activeStep + 1);
+
+    return (
+      <Wizard.OnModal
+        {...args}
+        onPrevStep={activeStep === 0 ? undefined : handlePrevStep}
+        onNextStep={activeStep === 3 ? undefined : handleNextStep}
+      />
+    );
+  },
+  args: {
+    footerAction: (
+      <Button type="secondary" onClick={action('footer action')}>
+        Cancel
+      </Button>
+    ),
+    modalProps: {
+      size: 'medium',
     },
   },
 };

@@ -1,6 +1,6 @@
-import { type ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
-import { type InputProps } from './Input.types';
+import type { InputProps } from './Input.types';
 
 export type PasswordInputTexts = {
   showText: ReactNode;

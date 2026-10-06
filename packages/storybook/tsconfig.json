@@ -1,0 +1,26 @@
+{
+  "include": [
+    "../components/*/src",
+    "../../global.d.ts",
+    ".storybook/**/*",
+    "addon-code-panel/**/*",
+    "stories"
+  ],
+  "exclude": [
+    "../components/*/src/**/__specs__/**",
+    "../components/*/src/**/__spec__/**",
+    "../components/*/src/**/*.spec.ts",
+    "../components/*/src/**/*.spec.tsx",
+    "../components/*/src/**/*.figma.ts",
+    "../components/*/src/**/*.figma.tsx"
+  ],
+  "extends": "../../config/typescript/tsconfig.base.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "jsx": "preserve",
+    "moduleResolution": "bundler",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "noUnusedLocals": false
+  }
+}

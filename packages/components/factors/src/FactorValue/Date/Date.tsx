@@ -3,9 +3,9 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import DatePicker from '@synerise/ds-date-picker';
 import { getPopupContainer } from '@synerise/ds-utils';
 
-import {
-  type FactorValueComponentProps,
-  type FactorsProps,
+import type {
+  FactorsProps,
+  FactorValueComponentProps,
 } from '../../Factors.types';
 
 const DateInput = ({

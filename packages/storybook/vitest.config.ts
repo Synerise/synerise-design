@@ -1,8 +1,7 @@
-import path from 'path';
-import { defineConfig } from 'vitest/config';
-
 import { storybookTest } from '@storybook/addon-vitest/vitest-plugin';
 import { playwright } from '@vitest/browser-playwright';
+import path from 'path';
+import { defineConfig } from 'vitest/config';
 
 const monorepoRoot = path.resolve(__dirname, '../..');
 
@@ -21,7 +20,7 @@ export default defineConfig({
     include: [
       'storybook/actions',
       'storybook/test',
-      'storybook-mock-date-decorator',
+      'storybook-addon-mock-date',
       'react',
       'react-dom',
       'react-intl',

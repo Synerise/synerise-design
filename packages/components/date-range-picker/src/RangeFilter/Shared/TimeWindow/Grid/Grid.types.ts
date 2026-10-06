@@ -1,8 +1,8 @@
 import type React from 'react';
-import { type IntlShape } from 'react-intl';
+import type { IntlShape } from 'react-intl';
 
 import type { Texts } from '../../../../DateRangePicker.types';
-import { type DayKey, type Days } from '../TimeWindow.types';
+import type { DayKey, Days } from '../TimeWindow.types';
 
 export type GridProps = {
   keys: number[];

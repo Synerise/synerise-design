@@ -360,6 +360,26 @@ unused in DS — 991050 is the real floor. The clamp allows 24 levels of nesting
 
 ## Testing utilities
 
+Exported from the **`@synerise/ds-core/testing`** subpath, not the package root:
+
+```ts
+import { renderWithProvider, sleep } from '@synerise/ds-core/testing';
+```
+
+They are not on the root entry because `renderWithProvider` imports
+`@testing-library/react` as a value, which would put a test-only dependency into every
+consumer's production bundle — and fail their build outright when they have not installed
+it. `@testing-library/react` is an **optional** peer dependency: install it to use this
+subpath, ignore it otherwise.
+
+The subpath is declared twice on purpose: in `exports` for Node and modern TypeScript, and
+in `typesVersions` for consumers still on `moduleResolution: "node"` — classic resolution
+predates `exports`, so without the second entry they get `TS2307: Cannot find module
+'@synerise/ds-core/testing'` while the runtime import works fine. `typesVersions` is
+types-only; bundlers and Vitest never read it. **Any new subpath export must be added to
+both maps**, or it silently breaks those consumers. Drop `typesVersions` once every
+consumer has moved to `bundler`/`node16` resolution.
+
 ### `renderWithProvider`
 
 RTL `render()` wrapped in `DSProvider` with sensible test defaults. Use in component tests that need i18n or theme.
@@ -373,9 +393,11 @@ RTL `render()` wrapped in `DSProvider` with sensible test defaults. Use in compo
 ## Key dependencies
 
 - `react-intl` — i18n; `LocaleProvider` wraps `IntlProvider`
+- `react-dom` (peer) — `createPortal` in `PortalRenderer`
 - `styled-components` — theming via `ThemeProvider`
 - `react-hot-toast` — toast notifications (`Toaster` is a thin wrapper)
-- `dayjs`, `moment`, `date-fns-tz` — date value detection and formatting in `useDataFormat`
+- `dayjs`, `moment` — date value detection in `useDataFormat`
+- `@date-fns/tz` — `TZDate` + `tzOffset` for the timezone utilities. Standalone: no `date-fns` dependency and no peers, so ds-core takes no position on the consumer's `date-fns` major
 
 ## Implementation notes
 
@@ -386,10 +408,15 @@ RTL `render()` wrapped in `DSProvider` with sensible test defaults. Use in compo
 - **`theme.tokens` follows the resolved `mode`** — light or dark resolved map, keyed by CSS var name; for non-CSS consumers only (prefer `var(--ds-…)` for styling).
 - **`breakpoints.xxlarge.max = 0`** — intentionally 0; `MEDIA_FROM.xxlarge` produces an unbounded min-width query.
 - **Nested i18n messages** are flattened by `LocaleProvider.utils.ts` before passing to `IntlProvider`; keys use dot-notation after flattening.
-- **`useDataFormat` uses `eslint-disable @typescript-eslint/no-explicit-any`** in `formatValue` and `formatMultipleValues` to handle the overload dispatch pattern.
+- **`useDataFormat` uses `biome-ignore lint/suspicious/noExplicitAny`** in `formatValue` and `formatMultipleValues` to handle the overload dispatch pattern.
 - **Data format contexts are split**: `DataFormatConfigContext` holds the raw config; `DataFormatIntlsContext` holds three `IntlShape` instances (number/date/time) derived from that config. Splitting them avoids re-creating all intl instances when only one notation changes.
 - **`timeZone.utils.ts` — wall clock vs instant.** A "wall clock" is a `Date` whose *local* fields carry a reading in some other timezone; an "instant" is a real point in time. `toIsoString` encodes a wall clock into an offset-carrying ISO string, `getLocalDateInTimeZone` decodes such a string back into a wall clock, and the two are inverses. Mixing the two representations shifts a value by the browser-to-target timezone delta.
-  - `date-fns-tz@1`'s `getTimezoneOffset(tz, date)` reads `date`'s **UTC** fields as the wall clock to look the offset up at — *not* as an instant. A date holding a wall clock in its local fields must therefore be re-based (`asUtcFields`) first; asking for the offset at an instant needs `utcToZonedTime` instead, which is the only one of the two that can tell the sides of a DST transition apart. Both are wrapped locally (`getOffsetAtWallClock`, `getWallClockAtInstant`) — go through them rather than calling `getTimezoneOffset` directly, and see `utils/__specs__/timeZone.utils.spec.ts` for the transition-day coverage.
+  - Both directions go through local wrappers — `getOffsetAtWallClock` and `getWallClockAtInstant`. Use them rather than reaching for `@date-fns/tz` directly, and see `utils/__specs__/timeZone.utils.spec.ts` for the transition-day coverage.
+    - `asInstantInTimeZone` builds a `TZDate` from a wall clock's components, which `TZDate` reads as a reading *in* the zone — so it resolves which side of a DST transition the wall clock falls on by itself. This replaced the `asUtcFields` re-basing that `date-fns-tz@1` needed, whose `getTimezoneOffset(tz, date)` read `date`'s **UTC** fields as the wall clock to look up.
+    - `tzOffset` returns **minutes** ahead of UTC, where `date-fns-tz@1`'s `getTimezoneOffset` returned **milliseconds**. Everything in the module is minutes now.
+    - `tzOffset` cannot parse the `'Z'` designator and returns `NaN` for it, where `getTimezoneOffset` read it as zero. `extractTimeZoneOffset` reports a UTC-terminated string as `'Z'`, and `value.toISOString()` is the most common input to `getLocalDateInTimeZone` — so that case is normalised explicitly (`UTC_DESIGNATOR`) and pinned by a spec.
+    - `dateToIsoWithOffset` delegates to `toIsoString`. It must keep the date's own fields and only stamp the zone's offset, which is what `date-fns-tz@1`'s `format({ timeZone })` did; wrapping the value in a `TZDate` instead re-reads it as an instant and shifts it by the browser-to-zone delta.
+  - **A `TZDate` is not interchangeable with a wall-clock carrier.** Its getters report the same reading, but `toISOString()` emits an offset-carrying string rather than a `Z` one, and its instant is the real one rather than the re-based value callers observe today. `getLocalDateInTimeZone` therefore still returns a plain `Date`; switching that return type is a deliberate follow-up, not a drop-in.
   - `toIsoString(date, timeZone)` defaults `timeZone` to `'UTC'`, so passing `undefined` does **not** mean "leave this date alone" — it stamps `+00:00` onto the local fields. Callers that mean that must skip the call.
 - **`applyTimeZoneOffset` is opt-in** (`DataFormatConfig`, default `false`) and gates the projection of an instant into the provider timezone inside `getFormattedDate`. A component that deliberately hands `formatValue` an instant should request the flag per call (`options.applyTimeZoneOffset`, which takes precedence over the config) rather than inheriting it — otherwise its output silently depends on how the consuming app is configured.
 - **Uses Vitest** for testing.

@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import React from 'react';
 
 import * as S from './GridPicker.styles';
-import { type Cell, type GridPickerProps } from './GridPicker.types';
+import type { Cell, GridPickerProps } from './GridPicker.types';
 
 export default class GridPicker extends React.PureComponent<GridPickerProps> {
   handleCellClick = (cell: Cell): void => {

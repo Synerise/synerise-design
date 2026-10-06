@@ -12,7 +12,7 @@ import Icon, {
 } from '@synerise/ds-icon';
 
 import * as S from '../CardTab.styles';
-import { type CardTabDropdownProps } from './CardTabDropdown.types';
+import type { CardTabDropdownProps } from './CardTabDropdown.types';
 
 const CardTabDropdown = ({
   editNameHandler,

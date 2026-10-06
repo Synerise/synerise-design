@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import { type CarouselEffect } from './Carousel.types';
+import type { CarouselEffect } from './Carousel.types';
 
 export const Root = styled.div`
   position: relative;
@@ -48,13 +48,14 @@ export const Slide = styled.div<{
       ? css`
           width: 100%;
           transition: opacity 0.5s ease;
-          ${$active
-            ? css`
+          ${
+            $active
+              ? css`
                 position: relative;
                 opacity: 1;
                 z-index: 1;
               `
-            : css`
+              : css`
                 position: absolute;
                 top: 0;
                 left: 0;
@@ -62,7 +63,8 @@ export const Slide = styled.div<{
                 opacity: 0;
                 z-index: 0;
                 pointer-events: none;
-              `}
+              `
+          }
         `
       : css`
           flex: 0 0 ${100 / $slidesToShow}%;

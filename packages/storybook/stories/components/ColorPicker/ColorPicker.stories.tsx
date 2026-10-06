@@ -1,17 +1,17 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 import { useArgs } from 'storybook/preview-api';
 import { fn } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import ColorPicker from '@synerise/ds-color-picker';
 
 import {
   BOOLEAN_CONTROL,
   COLOR_CONTROL,
+  centeredPaddedWrapper,
   NUMBER_CONTROL,
   REACT_NODE_AS_STRING,
   STRING_CONTROL,
-  centeredPaddedWrapper,
 } from '../../utils';
 import { size } from '../ColorPicker/ColorPicker.data';
 

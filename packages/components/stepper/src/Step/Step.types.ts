@@ -1,6 +1,6 @@
-import { type ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
-import { type StepperOrientation, type StepperSize } from '../Stepper.types';
+import type { StepperOrientation, StepperSize } from '../Stepper.types';
 
 export type StepProps = {
   label: string | ReactNode;

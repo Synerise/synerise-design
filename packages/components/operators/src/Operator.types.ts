@@ -1,4 +1,4 @@
-import { type ReactNode, type ReactText } from 'react';
+import type { ReactNode, ReactText } from 'react';
 
 export type OperatorTexts = {
   buttonLabel: string;

@@ -3,6 +3,56 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@2.2.0...@synerise/ds-factors@2.2.1) (2026-09-24)
+
+**Note:** Version bump only for package @synerise/ds-factors
+
+
+
+
+
+# [2.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@2.1.1...@synerise/ds-factors@2.2.0) (2026-09-22)
+
+
+### Bug Fixes
+
+* **core:** move test helpers to a ./testing subpath export ([b38cd82](https://github.com/Synerise/synerise-design/commit/b38cd82c956111d2331d5c1e0efd1935366f1139))
+
+
+### Features
+
+* add @synerise/ds-condition-blocks — building blocks for filtering-condition layouts ([ed332ce](https://github.com/Synerise/synerise-design/commit/ed332cefddd418a293a73c51c57e9a4c1ed4f22f))
+
+
+
+
+
+## [2.1.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@2.1.0...@synerise/ds-factors@2.1.1) (2026-09-18)
+
+**Note:** Version bump only for package @synerise/ds-factors
+
+
+
+
+
+# [2.1.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@2.0.5...@synerise/ds-factors@2.1.0) (2026-09-16)
+
+### Features
+
+- **list-item:** add content-fitting size="auto" ([e269f0a](https://github.com/Synerise/synerise-design/commit/e269f0a48ca7472f4766a50a957e22d7988c5e13))
+
+## [2.0.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@2.0.4...@synerise/ds-factors@2.0.5) (2026-09-10)
+
+**Note:** Version bump only for package @synerise/ds-factors
+
+## [2.0.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@2.0.3...@synerise/ds-factors@2.0.4) (2026-09-08)
+
+**Note:** Version bump only for package @synerise/ds-factors
+
+## [2.0.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@2.0.2...@synerise/ds-factors@2.0.3) (2026-09-07)
+
+**Note:** Version bump only for package @synerise/ds-factors
+
 ## [2.0.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@2.0.1...@synerise/ds-factors@2.0.2) (2026-09-02)
 
 **Note:** Version bump only for package @synerise/ds-factors

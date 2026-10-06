@@ -1,8 +1,8 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React, { ReactNode } from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
-import Cascader from '@synerise/ds-cascader';
 import type { CascaderProps } from '@synerise/ds-cascader';
+import Cascader from '@synerise/ds-cascader';
 
 import { fixedWrapper300 } from '../../utils';
 import * as mock from './data/mock.json';

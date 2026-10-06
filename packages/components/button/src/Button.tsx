@@ -1,6 +1,6 @@
 import React, {
-  type MouseEvent,
   forwardRef,
+  type MouseEvent,
   useEffect,
   useMemo,
   useRef,

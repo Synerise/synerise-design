@@ -5,7 +5,7 @@ import Badge from '@synerise/ds-badge';
 import Tooltip from '@synerise/ds-tooltip';
 
 import * as S from './AvatarGroup.styles';
-import { type AvatarGroupProps } from './AvatarGroup.types';
+import type { AvatarGroupProps } from './AvatarGroup.types';
 import GroupModal from './Modal/GroupModal';
 
 const AvatarGroup: React.FC<AvatarGroupProps> = ({

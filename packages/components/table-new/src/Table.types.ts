@@ -1,24 +1,24 @@
-import {
-  type CSSProperties,
-  type HTMLAttributes,
-  type MouseEvent,
-  type MutableRefObject,
-  type ReactElement,
-  type ReactNode,
-  type RefObject,
+import type {
+  Column,
+  ColumnDef,
+  ColumnMeta,
+  Row,
+  RowData,
+} from '@tanstack/react-table';
+import type { VirtualItem, Virtualizer } from '@tanstack/react-virtual';
+import type {
+  CSSProperties,
+  HTMLAttributes,
+  MouseEvent,
+  MutableRefObject,
+  ReactElement,
+  ReactNode,
+  RefObject,
 } from 'react';
 
 import type { PaginationProps } from '@synerise/ds-pagination';
 import type { SearchInputProps } from '@synerise/ds-search';
 import type { TooltipProps } from '@synerise/ds-tooltip';
-import {
-  type Column,
-  type ColumnDef,
-  type ColumnMeta,
-  type Row,
-  type RowData,
-} from '@tanstack/react-table';
-import { type VirtualItem, type Virtualizer } from '@tanstack/react-virtual';
 
 export type HighlightOptions = {
   /** Duration in milliseconds. Default: 600 */
@@ -302,6 +302,19 @@ export type SharedTableProps<TData, TValue> = {
    * Custom filter component rendered in the table header.
    */
   filterComponent?: ReactNode;
+  /**
+   * Full-width content rendered between the title bar and the column header
+   * row — for example an RSQL filter bar.
+   *
+   * Unlike `filterComponent`, which sits inside the title bar's right-hand
+   * flex row, this gets its own row at the table's full width. It is not
+   * sticky: with `stickyHeader` it scrolls away behind the pinned column
+   * header row. Nothing is rendered when the prop is omitted.
+   *
+   * Independent of `hideTitleBar` — with the title bar hidden this becomes
+   * the top of the table, so a consumer's own top-rounded corners line up.
+   */
+  subHeaderComponent?: ReactNode;
   rowKey?: RowKey<TData>;
   /**
    * render table top border
@@ -338,7 +351,6 @@ export type SharedTableProps<TData, TValue> = {
     // TODO - makes no sense to pass the configuration back
     // would make much more sense to pass info about currently selected items ....
     selection?: SelectionConfig<TData>,
-    // filters?: Filter[],
   ) => ReactNode;
   /**
    * set to true to render only the table title, without the counter
@@ -690,26 +702,6 @@ export type TableHeaderProps<TData, TValue> = Pick<
   //   locale: Locale;
 } & Partial<Pick<Expandable<TData>, 'childrenColumnName'>>;
 
-// TBD
-export type Filter = {
-  tooltips: {
-    default: string;
-    clear: string;
-    define: string;
-    list: string;
-  };
-  openedLabel: string;
-  key: string;
-  icon: ReactNode;
-  showList: () => void;
-  show: () => void;
-  handleClear: () => void;
-  selected?: {
-    name: string;
-  };
-  disabled?: boolean;
-};
-
 export type TableSelectionProps<TData, TValue> = Pick<
   BaseTableProps<TData, TValue>,
   'rowKey'
@@ -735,6 +727,14 @@ export type TableColumnSorterProps<TData, TValue> = {
 export type StickyData = {
   containerPaddingTop: number;
   titleBarHeight: number;
+  /**
+   * Measured height of `subHeaderComponent`, or 0 when there is none.
+   *
+   * Observed rather than measured once: the slot's content is injected by the consumer and can
+   * reflow — a filter bar's chips wrap onto a second line — and every offset below it is derived
+   * from this number.
+   */
+  subHeaderHeight: number;
   columnHeadersHeight: number;
   isRevealed: boolean;
 };

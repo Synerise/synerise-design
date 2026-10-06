@@ -1,8 +1,8 @@
 import React, {
   type CSSProperties,
+  cloneElement,
   type ReactElement,
   type ReactNode,
-  cloneElement,
   useEffect,
   useMemo,
   useRef,
@@ -17,7 +17,7 @@ import {
   type ListItemProps,
 } from '@synerise/ds-list-item';
 
-import { type SearchItemListProps } from './SearchItems.types';
+import type { SearchItemListProps } from './SearchItems.types';
 
 const listStyle: CSSProperties = { overflowX: 'unset', overflowY: 'unset' };
 
@@ -70,8 +70,8 @@ const SearchItems = ({
   rowHeight,
   visibleRows,
   width,
-}: // eslint-disable-next-line @typescript-eslint/no-explicit-any
-SearchItemListProps<any>) => {
+  // biome-ignore lint/suspicious/noExplicitAny: item shape is caller-defined
+}: SearchItemListProps<any>) => {
   const listRef = useRef<List>(null);
 
   const listHeight = useMemo(() => {

@@ -3,11 +3,11 @@ import set from 'ramda/src/set';
 import React from 'react';
 
 import { RANGES_MODE } from '../../../constants';
-import { type RelativeUnits } from '../../../date.types';
+import type { RelativeUnits } from '../../../date.types';
 import * as S from '../../RelativeRangePicker.styles';
 import ModeDropdown from '../ModeDropdown/ModeDropdown';
 import TimestampRange from '../TimestampRange/TimestampRange';
-import { type Props } from './CustomRangeForm.types';
+import type { Props } from './CustomRangeForm.types';
 import DurationField from './DurationField/DurationField';
 import OffsetField from './OffsetField/OffsetField';
 

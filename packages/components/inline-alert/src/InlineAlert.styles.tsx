@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import { type InlineAlertType } from './InlineAlert.types';
+import type { InlineAlertType } from './InlineAlert.types';
 
 const COLOR_TOKENS: Record<InlineAlertType, string> = {
   success: 'var(--ds-inline-alert-icon-success-default)',

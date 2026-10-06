@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
 import Button from '@synerise/ds-button';
-import { type ThemeProps } from '@synerise/ds-core';
+import type { ThemeProps } from '@synerise/ds-core';
 import { Tag } from '@synerise/ds-tag/dist/Tag.styles';
 
 import { ItemLabel } from '../Item.styles';
@@ -76,7 +76,6 @@ export const ItemHeaderSuffix = styled.div`
     svg {
       transition: all 0.3s ease;
     }
-    &.ant-dropdown-open,
     &:hover {
       svg {
         color: var(--ds-color-icon-brand-default);

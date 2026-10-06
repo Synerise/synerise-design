@@ -1,4 +1,4 @@
-import { type UseTransitionStylesProps } from '@floating-ui/react';
+import type { UseTransitionStylesProps } from '@floating-ui/react';
 
 export const getDefaultTransitionConfig =
   (): Partial<UseTransitionStylesProps> => {

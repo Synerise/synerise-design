@@ -1,6 +1,6 @@
-import styled, { type Interpolation, css } from 'styled-components';
+import styled, { css, type Interpolation } from 'styled-components';
 
-import { type ThemeProps } from '@synerise/ds-core';
+import type { ThemeProps } from '@synerise/ds-core';
 
 export const SortableItemContent = styled.div``;
 

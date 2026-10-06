@@ -96,7 +96,7 @@ export const FACTORS_GROUPS = [
   },
 ];
 
-export const FACTORS_ITEMS_DATA: ParameterItem[] = [
+const FACTORS_ITEMS_DATA: ParameterItem[] = [
   {
     id: 0,
     name: 'First name',

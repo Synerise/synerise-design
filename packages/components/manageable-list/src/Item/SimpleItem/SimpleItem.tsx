@@ -7,7 +7,7 @@ import { useTexts } from '../../hooks/useTexts';
 import * as S from '../Item.styles';
 import ItemActions from '../ItemActions/ItemActions';
 import ItemName from '../ItemName/ItemName';
-import { type Props } from './SimpleItem.types';
+import type { Props } from './SimpleItem.types';
 
 const SimpleItemComponent = ({
   item,

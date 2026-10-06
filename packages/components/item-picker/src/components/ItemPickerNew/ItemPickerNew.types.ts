@@ -3,23 +3,23 @@ import type { ReactElement, ReactNode, Ref } from 'react';
 import type { DropdownSharedProps } from '@synerise/ds-dropdown';
 import type { FormFieldCommonProps } from '@synerise/ds-form-field';
 import type { InformationCardTooltipProps } from '@synerise/ds-information-card';
-import { type ScrollbarAdditionalProps } from '@synerise/ds-scrollbar';
-import { type SearchBarProps } from '@synerise/ds-search-bar';
+import type { ScrollbarAdditionalProps } from '@synerise/ds-scrollbar';
+import type { SearchBarProps } from '@synerise/ds-search-bar';
 import type { WithHTMLAttributes } from '@synerise/ds-utils';
 
-import { type ItemSelectHandler } from '../ItemPickerList/ItemPickerList.types';
+import type { ItemSelectHandler } from '../ItemPickerList/ItemPickerList.types';
 import type { RenderMode } from '../ItemPickerList/types/renderMode';
 import type {
   ItemPickerTriggerProps,
   ItemPickerTriggerTexts,
 } from '../ItemPickerTrigger/Trigger.types';
-import { type Action } from './types/actions.types';
+import type { Action } from './types/actions.types';
 import type {
   BaseItemType,
   BaseSectionType,
   BaseSectionTypeWithFolders,
 } from './types/baseItemSectionType.types';
-import { type ItemPickerListTexts } from './types/itemPickerListTexts.types';
+import type { ItemPickerListTexts } from './types/itemPickerListTexts.types';
 
 type HeightConfig = {
   defaultHeight: number;

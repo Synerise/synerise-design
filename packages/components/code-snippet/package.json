@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-code-snippet",
-  "version": "2.0.1",
+  "version": "2.0.6",
   "description": "CodeSnippet UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -47,8 +47,6 @@
     "@synerise/ds-copy-icon": "workspace:^",
     "@synerise/ds-icon": "workspace:^",
     "@synerise/ds-scrollbar": "workspace:^",
-    "@synerise/ds-tooltip": "workspace:^",
-    "@synerise/ds-utils": "workspace:^",
     "highlight.js": "^10.7.2",
     "react-animate-height": "^2.0.23"
   },

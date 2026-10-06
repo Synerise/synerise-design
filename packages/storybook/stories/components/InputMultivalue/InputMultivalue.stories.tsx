@@ -1,14 +1,14 @@
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 
-import type { Meta, StoryObj } from '@storybook/react-vite';
 import { InputMultivalue, InputMultivalueProps } from '@synerise/ds-input';
 
 import {
   BOOLEAN_CONTROL,
   CLASSNAME_ARG_CONTROL,
+  fixedWrapper300,
   NUMBER_CONTROL,
   REACT_NODE_AS_STRING,
-  fixedWrapper300,
 } from '../../utils';
 
 export default {

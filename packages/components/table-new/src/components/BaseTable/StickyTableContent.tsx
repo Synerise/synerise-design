@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useRef } from 'react';
 
-import type { BaseTableProps, TableInternalProps } from '../../Table.types';
 import { useStickyContext } from '../../contexts/StickyContext';
 import { useTableContext } from '../../contexts/TableContext';
+import type { BaseTableProps, TableInternalProps } from '../../Table.types';
 import { TableBody } from '../TableBody/TableBody';
 import { TableBodySkeleton } from '../TableBody/TableBodySkeleton/TableBodySkeleton';
 import { TableColumns } from '../TableColumns/TableColumns';

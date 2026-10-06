@@ -1,8 +1,8 @@
 import React from 'react';
 
-import * as S from './Divider.styles';
-import { type DividerProps } from './Divider.types';
 import { Line } from './components/Line';
+import * as S from './Divider.styles';
+import type { DividerProps } from './Divider.types';
 
 const Divider = (props: DividerProps) => {
   const { labelAbove, labelBelow, hiddenLine = false } = props;

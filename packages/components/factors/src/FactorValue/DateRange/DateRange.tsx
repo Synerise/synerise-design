@@ -7,7 +7,7 @@ import DateRangePicker, {
 } from '@synerise/ds-date-range-picker';
 import { getPopupContainer } from '@synerise/ds-utils';
 
-import { type FactorValueComponentProps } from '../../Factors.types';
+import type { FactorValueComponentProps } from '../../Factors.types';
 
 const DateRangeInput = ({
   getPopupContainerOverride,

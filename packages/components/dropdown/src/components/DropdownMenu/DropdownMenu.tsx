@@ -7,7 +7,7 @@ import React, {
 } from 'react';
 
 import Icon, { SearchM } from '@synerise/ds-icon';
-import { type ListItemProps } from '@synerise/ds-list-item';
+import type { ListItemProps } from '@synerise/ds-list-item';
 import SearchBar from '@synerise/ds-search-bar';
 
 import {
@@ -18,7 +18,7 @@ import { useDefaultTexts } from '../../hooks/useDefaultTexts';
 import { DropdownFooter } from '../DropdownFooter/DropdownFooter';
 import { DropdownMenuList } from '../DropdownMenuList/DropdownMenuList';
 import { DropdownPopover } from '../DropdownPopover/DropdownPopover';
-import { type DropdownMenuProps } from './DropdownMenu.types';
+import type { DropdownMenuProps } from './DropdownMenu.types';
 
 export const DropdownMenu = <ItemType extends ListItemProps>({
   dataSource,

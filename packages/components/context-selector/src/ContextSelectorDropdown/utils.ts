@@ -10,7 +10,7 @@ import {
   SUBGROUP_HEADER_HEIGHT,
   TABS_HEIGHT,
 } from '../constants';
-import { type DropdownContentHeightArgs } from './ContextSelectorDropdown.types';
+import type { DropdownContentHeightArgs } from './ContextSelectorDropdown.types';
 
 export const getDropdownContentHeight = ({
   outerHeight,

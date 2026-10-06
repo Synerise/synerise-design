@@ -1,12 +1,12 @@
-import { type ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
-import { type InputProps } from '@synerise/ds-inline-edit';
-import { type TabItem } from '@synerise/ds-tabs';
+import type { InputProps } from '@synerise/ds-inline-edit';
+import type { TabItem } from '@synerise/ds-tabs';
 
-import {
-  type ButtonVariant,
-  type HeaderTexts,
-  type HeaderType,
+import type {
+  ButtonVariant,
+  HeaderTexts,
+  HeaderType,
 } from './Elements/Header/Header.types';
 
 export type SidebarObjectProps = {

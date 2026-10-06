@@ -1,9 +1,10 @@
 import debounce from 'lodash.debounce';
 import React, {
+  forwardRef,
+  type Key,
   type KeyboardEvent as ReactKeyboardEvent,
   type Ref,
   type UIEvent,
-  forwardRef,
   useCallback,
   useEffect,
   useImperativeHandle,
@@ -11,28 +12,27 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import { type VariableSizeList } from 'react-window';
+import type { VariableSizeList } from 'react-window';
 import { v4 as uuid } from 'uuid';
 
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { ArrowLeftM } from '@synerise/ds-icon';
-import { ListContextProvider, itemSizes } from '@synerise/ds-list-item';
+import { itemSizes, ListContextProvider } from '@synerise/ds-list-item';
 import { Text } from '@synerise/ds-typography';
 import {
   focusWithArrowKeys,
   useCombinedRefs,
   useKeyboardShortcuts,
+  useMeasuredRowHeights,
   useScrollContain,
 } from '@synerise/ds-utils';
 
 import { useDefaultTexts } from '../../hooks/useDefaultTexts';
-import { type ItemPickerListProps } from '../ItemPickerNew/ItemPickerNew.types';
+import type { ItemPickerListProps } from '../ItemPickerNew/ItemPickerNew.types';
 import type {
   BaseItemType,
   BaseSectionType,
 } from '../ItemPickerNew/types/baseItemSectionType.types';
-import * as S from './ItemPickerList.styles';
-import { type ItemPickerListRef } from './ItemPickerList.types';
 import {
   EmptyListMessage,
   ErrorMessage,
@@ -49,6 +49,8 @@ import {
   SECTION_HEADER_HEIGHT,
 } from './constants';
 import { useItemsInSections, useListHeight } from './hooks';
+import * as S from './ItemPickerList.styles';
+import type { ItemPickerListRef } from './ItemPickerList.types';
 import { findSectionById, isNavKey, isTitle } from './utils';
 
 const ItemPickerListInner = <
@@ -86,7 +88,6 @@ const ItemPickerListInner = <
 ) => {
   const [searchQuery, setSearchQuery] = useState('');
 
-  const listRef = useRef<VariableSizeList>(null);
   const scrollBarRef = useRef<HTMLDivElement>(null);
 
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -204,7 +205,7 @@ const ItemPickerListInner = <
     }
   };
 
-  const getItemSize = useCallback(
+  const getEstimatedItemSize = useCallback(
     (index: number) => {
       const item = mergedItemsList && mergedItemsList[index];
       if (isTitle(item)) {
@@ -215,11 +216,28 @@ const ItemPickerListInner = <
     [mergedItemsList],
   );
 
+  /** Row identity, so a measured height follows its row through filtering. */
+  const rowKeys = useMemo<Key[]>(
+    () =>
+      mergedItemsList.map((item, index) =>
+        isTitle(item) ? `title-${index}` : (item.itemKey ?? item.key ?? index),
+      ),
+    [mergedItemsList],
+  );
+
+  // `ITEM_SIZE` is only an estimate: a `size="auto"` row is as tall as its content, so the
+  // rows report their real heights and the list re-lays out around them.
+  const { listRef, getItemSize, measureRow } = useMeasuredRowHeights<
+    Key,
+    VariableSizeList
+  >({ keys: rowKeys, estimate: getEstimatedItemSize });
+
   const itemData: ItemPickerListRowProps['data'] = useMemo(
     () => ({
       dataSource: mergedItemsList,
       classNames,
       getItemSize,
+      measureRow,
       texts: allTexts,
       infiniteScroll: {
         isLoading: isLoadingMore,
@@ -231,6 +249,7 @@ const ItemPickerListInner = <
       mergedItemsList,
       classNames,
       getItemSize,
+      measureRow,
       allTexts,
       isLoadingMore,
       isLoadedAll,
@@ -279,6 +298,7 @@ const ItemPickerListInner = <
     !isLoadingItems &&
     (mergedItemsList?.length === 0 || isLoadingError);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: dependencies intentionally omitted
   const listContent = useMemo(() => {
     if (isLoadingError) {
       return <ErrorMessage texts={allTexts} />;
@@ -377,7 +397,6 @@ const ItemPickerListInner = <
         )}
       </>
     );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     allTexts,
     currentSection,
@@ -400,6 +419,7 @@ const ItemPickerListInner = <
     setTimeout(focusSearchInput, 0);
   }, [isLoading, isLoadingItems, isLoadingMore, focusSearchInput]);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: dependencies intentionally omitted
   useEffect(() => {
     if (isVisible) {
       resetCurrentSection();
@@ -407,7 +427,6 @@ const ItemPickerListInner = <
       setSearchByParamConfig(undefined);
       setTimeout(focusSearchInput, 0);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isVisible, focusSearchInput]);
 
   useEffect(() => {

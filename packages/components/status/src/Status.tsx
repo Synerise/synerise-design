@@ -3,7 +3,7 @@ import React, { forwardRef } from 'react';
 import { TagShape } from '@synerise/ds-tag';
 
 import * as S from './Status.styles';
-import { type StatusProps } from './Status.types';
+import type { StatusProps } from './Status.types';
 
 const Status = forwardRef<HTMLDivElement, StatusProps>(
   (

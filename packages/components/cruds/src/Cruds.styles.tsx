@@ -1,6 +1,6 @@
-import styled, { type FlattenInterpolation, css } from 'styled-components';
+import styled, { css, type FlattenInterpolation } from 'styled-components';
 
-import { type ThemeProps } from '@synerise/ds-core';
+import type { ThemeProps } from '@synerise/ds-core';
 
 export const CrudsContainer = styled.div`
   display: flex;

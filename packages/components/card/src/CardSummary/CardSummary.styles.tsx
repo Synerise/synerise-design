@@ -2,9 +2,9 @@ import styled from 'styled-components';
 
 import DSIcon from '@synerise/ds-icon';
 import { Tag } from '@synerise/ds-tag/dist/Tag.styles';
-import { Text, Title, macro } from '@synerise/ds-typography';
+import { macro, Text, Title } from '@synerise/ds-typography';
 
-import { type SummaryObjectsDirection } from './CardSummary.types';
+import type { SummaryObjectsDirection } from './CardSummary.types';
 
 export const CardSummaryWrapper = styled.div``;
 export const CardSummaryTitle = styled(Title)``;

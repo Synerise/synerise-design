@@ -1,59 +1,65 @@
 import styled from 'styled-components';
 
+export const CellContainer = styled.div``;
+
+/**
+ * The month, year and decade grids: three columns of chips, laid out on the same 24px inset and
+ * 8px column gap the day grid uses, with the rows spread over whatever height the host gives the
+ * grid (304px in `DatePicker`, 290px in `DateRangePicker`'s side).
+ *
+ * Every cell carries a resting chip, so an empty trailing slot — the year grid holds ten years in
+ * a twelve-slot grid — is simply an absent cell rather than a blank chip.
+ */
 export const GridContainer = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  font-size: 12px;
-  padding: 0 8px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-auto-rows: 32px;
+  align-content: space-between;
+  column-gap: 8px;
+  padding: 24px;
+  font-size: 13px;
+  line-height: 18px;
+
   .cell {
-    height: 32px;
-    margin: auto 8px;
     cursor: pointer;
-    position: relative;
-    vertical-align: middle;
-    text-align: center;
 
     > div {
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
+      height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 16px;
+      border-radius: 60px;
+      background-color: var(--ds-calendar-day-default-bg);
+      color: var(--ds-color-text-base-default);
 
       &:hover {
-        /* ⚑ Shift: cell hover bg grey-050 → day-hover-bg (grey-100). */
-        background-color: var(--ds-calendar-day-hover-bg);
+        background-color: var(--ds-color-background-base-mutedhover);
         color: var(--ds-calendar-day-hover-text);
       }
     }
 
-    &--selected {
-      font-weight: 500;
-    }
-
-    &--outside {
-      color: var(--ds-calendar-day-pastfuture-text);
-    }
-
+    /**
+     * A disabled cell drops the chip rather than greying its label on one: the chip is what marks
+     * a cell as reachable, which is also why the day grid paints it on every day except the
+     * disabled and outside ones. The decade grid's two out-of-century cells keep theirs — they
+     * still navigate.
+     */
     &--disabled {
       cursor: default;
-      color: var(--ds-calendar-day-disabled-text);
-    }
-  }
 
-  .cell--selected:not(.cell--disabled):not(.cell--outside) {
-    > div {
-      background-color: var(--ds-calendar-day-hover-text);
-      color: var(--ds-calendar-day-selected-text);
-
-      &:hover {
-        background-color: var(--ds-calendar-day-hover-text);
+      > div,
+      > div:hover {
+        background-color: transparent;
+        color: var(--ds-calendar-day-disabled-text);
       }
     }
   }
+
+  .cell--selected:not(.cell--disabled) {
+    > div,
+    > div:hover {
+      background-color: var(--ds-calendar-day-selected-bg);
+      color: var(--ds-calendar-day-selected-text);
+    }
+  }
 `;
-export const CellContainer = styled.div``;

@@ -1,4 +1,4 @@
-import { type ModalSize } from './Modal.types';
+import type { ModalSize } from './Modal.types';
 
 export const SIZE_MAP: Record<ModalSize, string> = {
   small: '520px',

@@ -1,11 +1,11 @@
-import { type FormatDateOptions, type FormatNumberOptions } from 'react-intl';
+import type { FormatDateOptions, FormatNumberOptions } from 'react-intl';
 
-import {
-  type DateConstantsTargetFormat,
-  type DateTargetFormat,
-  type Delimiter,
-  type NamingConvention,
-  type NumberTargetFormat,
+import type {
+  DateConstantsTargetFormat,
+  DateTargetFormat,
+  Delimiter,
+  NamingConvention,
+  NumberTargetFormat,
 } from '../types';
 
 export const DEFAULT_FORMAT_NUMBER_OPTIONS: FormatNumberOptions = {

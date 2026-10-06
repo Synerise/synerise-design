@@ -1,7 +1,5 @@
 import React, { useImperativeHandle, useMemo, useRef, useState } from 'react';
 
-import { DEFAULT_STICKY_VALUE } from './Table.const';
-import { type StickyData, type TableProps } from './Table.types';
 import { BaseTable } from './components/BaseTable/BaseTable';
 import { SelectionContext } from './contexts/SelectionContext';
 import { StickyContext } from './contexts/StickyContext';
@@ -9,6 +7,8 @@ import { TableContext } from './contexts/TableContext';
 import { useDefaultTexts } from './hooks/useDefaultTexts';
 import { useTable } from './hooks/useTable';
 import { useTableHighlight } from './hooks/useTableHighlight';
+import { DEFAULT_STICKY_VALUE } from './Table.const';
+import type { StickyData, TableProps } from './Table.types';
 import { getDefaultSkeletonColumns } from './utils/getDefaultSkeletonColumns';
 import { processColumns } from './utils/processColumns';
 

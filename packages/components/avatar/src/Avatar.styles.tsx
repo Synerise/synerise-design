@@ -1,11 +1,11 @@
 import React, { forwardRef } from 'react';
 import styled, { css } from 'styled-components';
 
-import { type ThemeProps } from '@synerise/ds-core';
+import type { ThemeProps } from '@synerise/ds-core';
 import { customColors } from '@synerise/ds-tokens/names';
 import { macro } from '@synerise/ds-typography';
 
-import { type AvatarProps } from './Avatar.types';
+import type { AvatarProps } from './Avatar.types';
 
 export const TooltipGroup = styled.div`
   margin: 13px 8px;

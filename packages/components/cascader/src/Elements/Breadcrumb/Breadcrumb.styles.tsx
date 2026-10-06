@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import { type ThemeProps } from '@synerise/ds-core';
+import type { ThemeProps } from '@synerise/ds-core';
 import ListItem, { type StyledListItem } from '@synerise/ds-list-item';
 import { Inner } from '@synerise/ds-list-item/dist/components/Text/Text.styles';
 
@@ -195,15 +195,19 @@ export const Breadcrumb: StyledListItem<BreadcrumbProps> = styled(
             background: var(--ds-color-background-base-subtle);
             color: var(--ds-color-text-brand-default);
             ${ArrowRight} > .ds-icon > svg {
-              fill: ${props.disabled
-                ? 'var(--ds-color-icon-base-default)'
-                : 'var(--ds-color-icon-brand-default)'};
+              fill: ${
+                props.disabled
+                  ? 'var(--ds-color-icon-base-default)'
+                  : 'var(--ds-color-icon-brand-default)'
+              };
             }
 
             ${BreadcrumbName}, ${Description} {
-              color: ${props.disabled
-                ? 'var(--ds-color-text-base-muted)'
-                : 'var(--ds-color-text-brand-default)'};
+              color: ${
+                props.disabled
+                  ? 'var(--ds-color-text-base-muted)'
+                  : 'var(--ds-color-text-brand-default)'
+              };
             }
           }
           &:focus:not(:active) {

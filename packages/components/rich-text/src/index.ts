@@ -1,24 +1,19 @@
+export * from './blockModel';
 export { default } from './RichText';
-
+export * from './RichText.styles';
 export type {
-  RichTextProps,
-  RichTextFormat,
-  RichTextTexts,
+  ImagePopoverProps,
+  LinkPopoverProps,
   RichTextAIOption,
+  RichTextFormat,
+  RichTextProps,
+  RichTextTexts,
   ToolbarFeature,
   ToolbarProps,
-  LinkPopoverProps,
-  ImagePopoverProps,
 } from './RichText.types';
-
 export {
   ALL_TOOLBAR_FEATURES,
   DEFAULT_HEADING_LEVELS,
   DEFAULT_TEXTS,
 } from './RichText.types';
-
-export * from './RichText.styles';
-
-export * from './blockModel';
-
 export { normalizeUrl, sanitizeUrl } from './utils';

@@ -8,10 +8,40 @@ variables:
   LIBRARY_PIPELINE: 'NO'
   APP_NAME_OVERRIDE: ds-docs
   NPM_REGISTRY: https://nexus.snrinternal.com/repository/npm-release/
+  # Every job below runs only on `merge_request_event` or on the default branch, so without this
+  # opt-in nothing is tested before merge. `core/gitlab_templates` (included at `ref: master`, so
+  # its changes land here with no commit on our side) gates merge request pipelines behind this
+  # flag in `pipeline/defaults.yml`:
+  #
+  #   - if: $CI_PIPELINE_SOURCE == "merge_request_event" && $USE_MERGE_REQUEST_TESTS != "yes"
+  #     when: never
+  #
+  # The gate exists because `workflow:rules` switches off the implicit `only: [branches, tags]` of
+  # legacy `only:`/`except:` jobs, which gave some consumers a duplicate merge request pipeline.
+  # This repo has none: every job here declares `rules:`, and the last merge request pipeline to
+  # run under `workflow:rules` before the gate landed (1750711, !3955) built the same five jobs as
+  # the ones before it, with nothing extra.
+  USE_MERGE_REQUEST_TESTS: 'yes'
 
 .install_pnpm: &install_pnpm
-  - npm install -g pnpm@latest-10
-  - pnpm config set store-dir .pnpm-store
+  - npm install -g pnpm@11.26.0
+  # pnpm 11 reads pnpm_config_* rather than npm_config_*, and `pnpm config set`
+  # now writes global YAML instead of .npmrc, where a relative store-dir has no
+  # well-defined base. An absolute env var leaves nothing to interpret: get this
+  # wrong and the store lands outside .pnpm-store, the cache is always empty and
+  # every --offline job fails.
+  - export pnpm_config_store_dir="$CI_PROJECT_DIR/.pnpm-store"
+  # Since 11.21 pnpm verifies the lockfile against its supply-chain policies on
+  # every install, and offline it reads registry metadata from the cache dir
+  # rather than the package store. That default is ~/.cache/pnpm, outside the
+  # project, so GitLab cannot cache it and every --offline job fails with
+  # ERR_PNPM_NO_OFFLINE_META even with a fully warm .pnpm-store.
+  - export pnpm_config_cache_dir="$CI_PROJECT_DIR/.pnpm-cache"
+  # The nexus cert chain is why .npmrc.dist carries strict-ssl=false; v11 no
+  # longer reads that from .npmrc. Kept here rather than in pnpm-workspace.yaml
+  # so it stays a CI concern instead of a committed default every local install
+  # would silently inherit.
+  - export pnpm_config_strict_ssl=false
   - export SNR_NPM_TOKEN="$(echo -n $SNR_NPM_REGISTRY_USERNAME:$SNR_NPM_REGISTRY_PASSWORD | base64)"
   - cp .npmrc.dist .npmrc
 
@@ -21,8 +51,10 @@ default:
     - key:
         files:
           - pnpm-lock.yaml
+        prefix: v11
       paths:
         - .pnpm-store
+        - .pnpm-cache
       policy: pull
     - key: $CI_COMMIT_REF_SLUG
       paths:
@@ -108,8 +140,6 @@ install:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
   before_script:
     - !reference [.install_pnpm]
-    - pnpm config set registry $NPM_REGISTRY
-    - pnpm config set unsafe-perm true
     - cp .npmrc.dist .npmrc
     - echo "" >> .npmrc
     - export SNR_NPM_TOKEN="$(echo -n $SNR_NPM_REGISTRY_USERNAME:$SNR_NPM_REGISTRY_PASSWORD | base64)"
@@ -118,15 +148,17 @@ install:
     - echo "always-auth = true" >> .npmrc
   script:
     - pnpm install --frozen-lockfile
-    - pnpm lint
+    - pnpm lint:ci
     - pnpm check:no-package-test-config
     - rm -f .npmrc
   cache:
     key:
       files:
         - pnpm-lock.yaml
+      prefix: v11
     paths:
         - .pnpm-store
+        - .pnpm-cache
     policy: pull-push
 
 build_packages:
@@ -140,8 +172,10 @@ build_packages:
     - key:
         files:
         - pnpm-lock.yaml
+        prefix: v11
       paths:
         - .pnpm-store
+        - .pnpm-cache
       policy: pull
     - key: $CI_COMMIT_REF_SLUG
       paths:
@@ -156,6 +190,8 @@ build_packages:
     - pnpm install --frozen-lockfile --offline
     - pnpm build
     - pnpm types
+    # After the build, so the strict pass also checks the published dist/ js and d.ts
+    - pnpm knip:ci
   artifacts:
     paths:
       - packages/components/*/dist
@@ -177,8 +213,10 @@ circular_dependencies:
     - key:
         files:
         - pnpm-lock.yaml
+        prefix: v11
       paths:
         - .pnpm-store
+        - .pnpm-cache
       policy: pull
   rules:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
@@ -200,8 +238,10 @@ run_tests:
     - key:
         files:
         - pnpm-lock.yaml
+        prefix: v11
       paths:
         - .pnpm-store
+        - .pnpm-cache
       policy: pull
     - key: $CI_COMMIT_REF_SLUG
       paths:
@@ -221,6 +261,10 @@ chromatic_publish:
   stage: test
   needs: ['build_packages']
   variables:
+    # pack:ci counts changed packages from `git merge-base origin/master HEAD`, which needs the
+    # branch point inside the fetched history. Full history is the project default today; this
+    # keeps it so if the default ever turns shallow.
+    GIT_DEPTH: 0
     KUBERNETES_CPU_REQUEST: 4
     KUBERNETES_MEMORY_REQUEST: 16Gi
     KUBERNETES_MEMORY_LIMIT: 22Gi
@@ -228,8 +272,10 @@ chromatic_publish:
     - key:
         files:
         - pnpm-lock.yaml
+        prefix: v11
       paths:
         - .pnpm-store
+        - .pnpm-cache
       policy: pull
   rules:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
@@ -248,7 +294,7 @@ chromatic_publish:
         echo "Token-sync MR - TurboSnap disabled (full snapshot)"
       fi
     - test ! -e packages/storybook/storybook-static && (cd packages/storybook; pnpm build-storybook --quiet --stats-json)
-    - npx lerna run pack:ci --since origin/master
+    - pnpm pack:ci
     - test -d packages/storybook/storybook-static/static && (cd packages/storybook/storybook-static/static; ls > index.txt) || true
     - (cd packages/storybook; npx chromatic --diagnostics-file --project-token=$CHROMATIC_PROJECT_TOKEN_SB7 --storybook-build-dir ./storybook-static/ --exit-zero-on-changes)
     # - CHROMATIC_SB_URL=$(jq -r '.storybookUrl' packages/storybook/chromatic-diagnostics.json)
@@ -292,8 +338,10 @@ publish_packages:
     - key:
         files:
         - pnpm-lock.yaml
+        prefix: v11
       paths:
         - .pnpm-store
+        - .pnpm-cache
       policy: pull
   environment:
     name: npm
@@ -304,15 +352,63 @@ publish_packages:
   before_script:
     - !reference [.install_pnpm]
   script:
-    - pnpm config set registry https://registry.npmjs.org/
+    # Install against nexus, which is the only registry .pnpm-cache was warmed
+    # for: pnpm's metadata cache is keyed by hostname, and since 11.21 an
+    # --offline install verifies the lockfile against that metadata. Switching
+    # the registry first would send it looking for registry.npmjs.org metadata
+    # that no job ever populated, failing with ERR_PNPM_NO_OFFLINE_META.
     - pnpm install --frozen-lockfile --offline
     - echo "Tag version $CI_COMMIT_TAG"
     - echo "Commit ref $CI_COMMIT_REF_NAME"
     - echo "Commit title $CI_COMMIT_TITLE"
     - echo "Publisher $GITLAB_USER_EMAIL"
-    - echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}'>.npmrc
+    # Publishing goes to npmjs, and lerna reads .npmrc with npm's own ini
+    # semantics via libnpmpublish - it cannot read the global YAML that v11's
+    # `pnpm config set` now writes, so the registry has to be stated here.
+    - echo 'registry=https://registry.npmjs.org/' > .npmrc
+    - echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' >> .npmrc
     - echo "email = $GITLAB_USER_EMAIL" >> .npmrc
     - npx lerna publish from-package --no-git-tag-version --yes
+    - rm -f .npmrc
+
+# Manual, merge requests only: publishes the packages the MR changed to the Nexus hosted repo under
+# the same `x.y.z-mr<iid>.g<sha>` versions `chromatic_publish` packs, so a consumer can pin one by
+# version from `npm-release` (the group, which also proxies the released versions from npmjs)
+# instead of by Chromatic tarball URL. Released versions keep going to npmjs only.
+# `allow_failure` keeps the unplayed job from leaving the pipeline blocked.
+publish_prerelease_nexus:
+  stage: build
+  needs: ['build_packages']
+  cache:
+    - key:
+        files:
+        - pnpm-lock.yaml
+        prefix: v11
+      paths:
+        - .pnpm-store
+        - .pnpm-cache
+      policy: pull
+  variables:
+    # See chromatic_publish: the script counts changes from the merge base.
+    GIT_DEPTH: 0
+    # Not NPM_REGISTRY_LOCAL: a CI/CD settings variable of that name points at npmjs and would
+    # override this one, since settings variables take precedence over the job's own. Keep the
+    # trailing slash: npm looks up auth by the registry URL with it, so without it the `_auth` line
+    # below would not match and the publish would go out unauthenticated.
+    NEXUS_PRERELEASE_REGISTRY: https://nexus.snrinternal.com/repository/npm-release-local/
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      when: manual
+      allow_failure: true
+  before_script:
+    - !reference [.install_pnpm]
+  script:
+    - pnpm install --frozen-lockfile --offline
+    # .install_pnpm authenticates only npm-release, the group installs read from.
+    - echo "//${NEXUS_PRERELEASE_REGISTRY#https://}:_auth = $SNR_NPM_TOKEN" >> .npmrc
+    - pnpm publish:prerelease
+  # In after_script, so the credential is removed even when the publish fails.
+  after_script:
     - rm -f .npmrc
 
 # Best-effort: post a mechanical "packages published" card to the Teams releases channel as soon
@@ -351,8 +447,10 @@ build_storybook:
     - key:
         files:
         - pnpm-lock.yaml
+        prefix: v11
       paths:
         - .pnpm-store
+        - .pnpm-cache
       policy: pull
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
@@ -417,8 +515,10 @@ chromatic_publish_baseline:
     - key:
         files:
         - pnpm-lock.yaml
+        prefix: v11
       paths:
         - .pnpm-store
+        - .pnpm-cache
       policy: pull
   allow_failure: true
   variables:

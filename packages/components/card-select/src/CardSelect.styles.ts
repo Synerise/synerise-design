@@ -1,16 +1,16 @@
 import type React from 'react';
 import styled, {
-  type FlattenSimpleInterpolation,
   css,
+  type FlattenSimpleInterpolation,
 } from 'styled-components';
 import is, { isNot } from 'styled-is';
 
-import { type ThemeProps } from '@synerise/ds-core';
+import type { ThemeProps } from '@synerise/ds-core';
 import Tag from '@synerise/ds-tag';
 
-import {
-  type CardSelectAlignType,
-  type CardSelectSizeType,
+import type {
+  CardSelectAlignType,
+  CardSelectSizeType,
 } from './CardSelect.types';
 
 const TRANSITION = `
@@ -170,25 +170,33 @@ export const Container = styled.div<
   &&:focus-within {
     box-shadow: 0px 0px 0px 2px var(--ds-card-select-border-color-focused);
   }
-  ${isNot('pressed') &&
-  isNot(
-    'value',
-  )`box-shadow:  0px 0px 0px 1px var(--ds-card-select-border-color-default);`}
+  ${
+    isNot('pressed') &&
+    isNot(
+      'value',
+    )`box-shadow:  0px 0px 0px 1px var(--ds-card-select-border-color-default);`
+  }
   ${is('value')`
   box-shadow:  0px 0px 0px 2px var(--ds-card-select-border-color-selected);
   `}
-    ${is('value') &&
-  is(
-    'pressed',
-  )` box-shadow:  0px 0px 0px 2px var(--ds-card-select-border-color-selected);`}
-    ${is('value') &&
-  is('raised')`
+    ${
+      is('value') &&
+      is(
+        'pressed',
+      )` box-shadow:  0px 0px 0px 2px var(--ds-card-select-border-color-selected);`
+    }
+    ${
+      is('value') &&
+      is('raised')`
   box-shadow:  0px 0px 0px 2px var(--ds-card-select-border-color-selected);
-  `}
-    ${is('value') &&
-  is(
-    'pressed',
-  )` box-shadow:  0px 0px 0px 2px var(--ds-card-select-border-color-selected);`}
+  `
+    }
+    ${
+      is('value') &&
+      is(
+        'pressed',
+      )` box-shadow:  0px 0px 0px 2px var(--ds-card-select-border-color-selected);`
+    }
 
   ${Title}, ${Description}, ${IconWrapper} {
     text-align: ${(props): string => props.elementsPosition};

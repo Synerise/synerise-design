@@ -1,7 +1,6 @@
+import type { useReactTable } from '@tanstack/react-table';
+import type { Virtualizer } from '@tanstack/react-virtual';
 import { createContext, useContext } from 'react';
-
-import { type useReactTable } from '@tanstack/react-table';
-import { type Virtualizer } from '@tanstack/react-virtual';
 
 type TableInstance<TData extends object> = ReturnType<
   typeof useReactTable<TData>
@@ -13,7 +12,7 @@ type TableContextType<TData extends object> = {
   getScrollContainer: () => HTMLElement | null;
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// biome-ignore lint/suspicious/noExplicitAny: upstream type is not expressible here
 export const TableContext = createContext<TableContextType<any> | null>(null);
 
 export const useTableContext = <TData extends object>() => {

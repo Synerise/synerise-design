@@ -55,8 +55,8 @@ grep -rn "console\." packages/components/<package-name>/src/ --include="*.ts" --
 # Check for ts-ignore / ts-expect-error / @ts-nocheck
 grep -rn "@ts-ignore\|@ts-expect-error\|@ts-nocheck" packages/components/<package-name>/src/
 
-# Check for eslint-disable comments
-grep -rn "eslint-disable" packages/components/<package-name>/src/
+# Check for biome-ignore comments
+grep -rn "biome-ignore" packages/components/<package-name>/src/
 
 # List exported symbols from index
 cat packages/components/<package-name>/src/index.ts 2>/dev/null || cat packages/components/<package-name>/src/index.tsx
@@ -125,8 +125,8 @@ grep -rn "from '.*<package-name>'" packages/ --include="*.ts" --include="*.tsx" 
 - `// @ts-nocheck` — flag as Critical at file level.
 - Evaluate if removing the comment is feasible with a minor type annotation change.
 
-#### 3.7 ESLint Suppression Comments
-- `// eslint-disable-next-line` and `/* eslint-disable */` — flag each.
+#### 3.7 Biome Suppression Comments
+- `// biome-ignore lint/<group>/<rule>: <reason>` and `// biome-ignore-start` / `-end` ranges — flag each.
 - Distinguish: some are legitimately unavoidable (e.g., `react-hooks/exhaustive-deps` with a documented reason); most should be fixed.
 - Flag bare disables without explanatory comments as higher severity.
 
@@ -224,7 +224,7 @@ Format the report as follows:
 | Interactive Tests | 🔴 / 🟡 / 🟢 | e.g. "No play functions found" |
 | Console Logs | 🔴 / 🟡 / 🟢 | e.g. "2 console.log calls" |
 | TS Suppressions | 🔴 / 🟡 / 🟢 | e.g. "1 @ts-ignore, 0 @ts-nocheck" |
-| ESLint Suppressions | 🔴 / 🟡 / 🟢 | e.g. "4 disable comments, 2 unjustified" |
+| Biome Suppressions | 🔴 / 🟡 / 🟢 | e.g. "4 disable comments, 2 unjustified" |
 | Code Organisation | 🔴 / 🟡 / 🟢 | e.g. "Main file 520 lines, logic not split" |
 | Dependencies | 🔴 / 🟡 / 🟢 | e.g. "1 missing dep, 2 unused, react in dependencies" |
 | README | 🔴 / 🟡 / 🟢 | e.g. "Missing, stale props, no usage example" |

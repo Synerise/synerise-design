@@ -1,6 +1,6 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import type { TabsProps } from '@synerise/ds-tabs';
 
 import { fixedWrapper300 } from '../../utils';

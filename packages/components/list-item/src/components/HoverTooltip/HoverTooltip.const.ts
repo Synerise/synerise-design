@@ -1,8 +1,8 @@
-import {
-  type FlipConfig,
-  type HoverConfig,
-  type OffsetConfig,
-  type ShiftConfig,
+import type {
+  FlipConfig,
+  HoverConfig,
+  OffsetConfig,
+  ShiftConfig,
 } from '@synerise/ds-popover';
 
 export const TRANSITION_DURATION = 150;

@@ -1,15 +1,15 @@
 import type React from 'react';
-import { type ListProps } from 'react-window';
+import type { ListProps } from 'react-window';
 
-import { type TooltipProps } from '@synerise/ds-tooltip';
+import type { TooltipProps } from '@synerise/ds-tooltip';
 
-import { type SearchInputAttributes } from './Elements/SearchInput/SearchInput.types';
+import type { SearchInputAttributes } from './Elements/SearchInput/SearchInput.types';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// biome-ignore lint/suspicious/noExplicitAny: upstream type is not expressible here
 export type AnyObject = Record<string, any>;
 
 export type DataSetProps = {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // biome-ignore lint/suspicious/noExplicitAny: upstream type is not expressible here
   itemRender: (item: any) => JSX.Element;
   rowHeight: number;
   title: string;

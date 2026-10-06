@@ -1,4 +1,4 @@
-import styled, { type SimpleInterpolation, css } from 'styled-components';
+import styled, { css, type SimpleInterpolation } from 'styled-components';
 
 type WrapperProps = {
   disabled?: boolean;

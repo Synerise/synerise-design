@@ -3,7 +3,7 @@ import React, { useMemo } from 'react';
 import Tooltip from '@synerise/ds-tooltip';
 
 import * as S from './MultiValue.styles';
-import { type MultivalueProps } from './Multivalue.types';
+import type { MultivalueProps } from './Multivalue.types';
 
 const normalizePercent = (value: number): number => {
   if (value < 0) {

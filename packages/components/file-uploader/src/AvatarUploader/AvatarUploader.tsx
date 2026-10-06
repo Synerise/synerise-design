@@ -10,14 +10,14 @@ import Button from '@synerise/ds-button';
 import Icon, { Add3M, FileTypePictureL, InfoFillS } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 
-import {
-  type FileContent,
-  type FileUploaderProps,
-  type FileUploaderRef,
+import type {
+  FileContent,
+  FileUploaderProps,
+  FileUploaderRef,
 } from '../FileUploader.types';
 import * as S from './AvatarUploader.styles';
 import FileViewAvatar from './FileViewAvatar/FileViewAvatar';
-import { type FileViewAvatarTexts } from './FileViewAvatar/FileViewAvatar.types';
+import type { FileViewAvatarTexts } from './FileViewAvatar/FileViewAvatar.types';
 
 function readAsText(file: File): Promise<FileContent> {
   return new Promise((resolve) => {

@@ -3,7 +3,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 
 import ShortCuts from '@synerise/ds-short-cuts';
 
-import { type ItemPickerTexts } from '../components/ItemPickerNew/ItemPickerNew.types';
+import type { ItemPickerTexts } from '../components/ItemPickerNew/ItemPickerNew.types';
 
 export const useDefaultTexts = (
   texts?: Partial<ItemPickerTexts>,

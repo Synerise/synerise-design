@@ -2,12 +2,12 @@ import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 
 import Button from '@synerise/ds-button';
-import Carousel from '@synerise/ds-carousel';
 import type { CarouselProps, CarouselRef } from '@synerise/ds-carousel';
+import Carousel from '@synerise/ds-carousel';
 import { customColors } from '@synerise/ds-tokens/names';
 
 /** A colourful demo panel — one per slide. */
-export const Slide = styled.div<{ $bg: string }>`
+const Slide = styled.div<{ $bg: string }>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -40,7 +40,7 @@ export const colorfulSlides = (count = 5): React.ReactNode[] =>
   ));
 
 /** A compact product tile for the multi-slide (`slidesToShow`) strip demo. */
-export const ProductCard = styled.div`
+const ProductCard = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;

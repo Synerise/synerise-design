@@ -14,15 +14,17 @@ export const ButtonToggle = styled(({ toggleType, activated, ...rest }) => {
         color: var(--ds-color-text-base-muted);
       }
 
-      ${!props.activated
-        ? css`
+      ${
+        !props.activated
+          ? css`
             &:hover:not(:disabled):not(:focus) {
               color: var(--ds-color-text-base-muted);
             }
           `
-        : css`
-            ${!props.disabled &&
-            css`
+          : css`
+            ${
+              !props.disabled &&
+              css`
               && {
                 background: var(--ds-color-background-brand-subtle);
                 color: var(--ds-color-text-brand-default);
@@ -30,7 +32,9 @@ export const ButtonToggle = styled(({ toggleType, activated, ...rest }) => {
                   box-shadow: none;
                 }
               }
-            `}
-          `}
+            `
+            }
+          `
+      }
     `}
 `;

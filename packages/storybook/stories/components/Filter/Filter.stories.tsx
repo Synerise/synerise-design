@@ -7,8 +7,8 @@ import Layout from '@synerise/ds-layout';
 
 import {
   BOOLEAN_CONTROL,
-  NUMBER_CONTROL,
   controlFromOptionsArray,
+  NUMBER_CONTROL,
 } from '../../utils';
 import {
   CONTEXT_CLIENT_GROUPS,

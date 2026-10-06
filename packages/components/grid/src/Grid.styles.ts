@@ -1,4 +1,4 @@
-import styled, { type FlattenInterpolation, css } from 'styled-components';
+import styled, { css, type FlattenInterpolation } from 'styled-components';
 
 export const GridContainer = styled.div<{ columns: number; gutter: number }>`
   width: 100%;
@@ -20,12 +20,16 @@ export const GridItem = styled.div<{
     Boolean(props.maxColumns) &&
     Boolean(props.columns) &&
     css`
-      grid-column-start: ${props.maxColumns && props.columns
-        ? (props.maxColumns - props.columns) / 2 + 1
-        : 'span'};
-      grid-column-end: ${props.maxColumns && props.columns
-        ? (props.maxColumns - props.columns) / 2 + 1 + props.columns
-        : 1};
+      grid-column-start: ${
+        props.maxColumns && props.columns
+          ? (props.maxColumns - props.columns) / 2 + 1
+          : 'span'
+      };
+      grid-column-end: ${
+        props.maxColumns && props.columns
+          ? (props.maxColumns - props.columns) / 2 + 1 + props.columns
+          : 1
+      };
       display: flex;
       flex-direction: column;
       align-items: flex-start;

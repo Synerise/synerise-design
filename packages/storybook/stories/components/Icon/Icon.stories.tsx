@@ -1,20 +1,20 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React, { useMemo, useState } from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
-import Icon from '@synerise/ds-icon';
 import type { BaseIconProps } from '@synerise/ds-icon';
+import Icon from '@synerise/ds-icon';
+import * as additional from '@synerise/ds-icon/dist/icons/additional';
+import * as color from '@synerise/ds-icon/dist/icons/colorIcons';
 import * as large from '@synerise/ds-icon/dist/icons/L';
 import * as medium from '@synerise/ds-icon/dist/icons/M';
 import * as xLarge from '@synerise/ds-icon/dist/icons/XL';
-import * as additional from '@synerise/ds-icon/dist/icons/additional';
-import * as color from '@synerise/ds-icon/dist/icons/colorIcons';
 
 import {
   CLASSNAME_ARG_CONTROL,
-  STYLE_ARG_CONTROL,
   reactNodeAsSelect,
+  STYLE_ARG_CONTROL,
 } from '../../utils';
-import { IconWrapper, IconsWrapper } from './Icon.stories.styles';
+import { IconsWrapper, IconWrapper } from './Icon.stories.styles';
 
 const iconNames = Object.keys(medium);
 const iconOptions = iconNames.reduce(

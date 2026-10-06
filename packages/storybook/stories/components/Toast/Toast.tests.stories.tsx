@@ -1,15 +1,15 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 import { expect, userEvent, waitFor, within } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import Toast, { ToastProps } from '@synerise/ds-toast';
 
 import {
   BOOLEAN_CONTROL,
-  REACT_NODE_AS_STRING,
   controlFromOptionsArray,
   fixedWrapper400,
   gappedColumnDecorator,
+  REACT_NODE_AS_STRING,
   sleep,
 } from '../../utils';
 import { ShowToast } from './Toast.stories';

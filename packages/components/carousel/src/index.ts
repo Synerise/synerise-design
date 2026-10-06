@@ -1,6 +1,6 @@
 export { default } from './Carousel';
 export type {
+  CarouselEffect,
   CarouselProps,
   CarouselRef,
-  CarouselEffect,
 } from './Carousel.types';

@@ -1,6 +1,8 @@
-import fnsSetHours from 'date-fns/setHours';
-import fnsSetMinutes from 'date-fns/setMinutes';
-import fnsSetSeconds from 'date-fns/setSeconds';
+import {
+  setHours as fnsSetHours,
+  setMinutes as fnsSetMinutes,
+  setSeconds as fnsSetSeconds,
+} from 'date-fns';
 
 export default {
   HOURS: fnsSetHours,

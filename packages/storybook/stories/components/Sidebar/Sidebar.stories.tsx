@@ -1,6 +1,6 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React, { useState } from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import Block from '@synerise/ds-block';
 import Icon, { EditM } from '@synerise/ds-icon';
 import Sidebar, {
@@ -9,10 +9,10 @@ import Sidebar, {
 
 import {
   CLASSNAME_ARG_CONTROL,
-  STRING_CONTROL,
   fixedWrapper300,
+  STRING_CONTROL,
 } from '../../utils';
-import { SIDEBAR_WITH_BUTTON_DATA, createSidebarPanels } from './Sidebar.data';
+import { createSidebarPanels, SIDEBAR_WITH_BUTTON_DATA } from './Sidebar.data';
 
 export default {
   component: Sidebar,

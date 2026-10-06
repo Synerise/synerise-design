@@ -1,5 +1,5 @@
-import { type RelativeMode, type Texts } from '../../../DateRangePicker.types';
-import { type RelativeDateRange } from '../../../date.types';
+import type { RelativeMode, Texts } from '../../../DateRangePicker.types';
+import type { RelativeDateRange } from '../../../date.types';
 
 export type TimestampRangeProps = {
   currentRange: RelativeDateRange;

@@ -1,14 +1,14 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import debounce from 'lodash.debounce';
 import React, { useState } from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import { SearchInput, SearchInputProps } from '@synerise/ds-search';
 
 import {
   BOOLEAN_CONTROL,
+  fixedWrapper300,
   REACT_NODE_AS_STRING,
   STRING_CONTROL,
-  fixedWrapper300,
 } from '../../utils';
 import DebouncedInput from './DebouncedInput';
 

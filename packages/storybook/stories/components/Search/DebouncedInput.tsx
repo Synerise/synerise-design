@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 import { SearchInput } from '@synerise/ds-search';
 
 type DebouncedInputProps = { debouncedOnChange: (text: string) => void };
@@ -9,7 +10,7 @@ const DebouncedInput = ({ debouncedOnChange }: DebouncedInputProps) => {
     <SearchInput
       clearTooltip="Clear"
       placeholder="Search"
-      onChange={value => {
+      onChange={(value) => {
         setValue(value);
         debouncedOnChange(value);
       }}

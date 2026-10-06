@@ -5,7 +5,7 @@ import Tooltip from '@synerise/ds-tooltip';
 import { Text } from '@synerise/ds-typography';
 
 import * as S from '../FormField.styles';
-import { type FormFieldLabelProps } from '../FormField.types';
+import type { FormFieldLabelProps } from '../FormField.types';
 
 export const FormFieldLabel = ({
   id,

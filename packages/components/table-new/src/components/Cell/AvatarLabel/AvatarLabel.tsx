@@ -1,7 +1,7 @@
 import React, { type MouseEvent, type ReactNode } from 'react';
 
 import * as S from './AvatarLabel.styles';
-import { type AvatarLabelProps } from './AvatarLabel.types';
+import type { AvatarLabelProps } from './AvatarLabel.types';
 
 const AvatarLabelCell = ({
   avatar,

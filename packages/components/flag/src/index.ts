@@ -1,3 +1,3 @@
 export { default } from './Flag';
+export type { CountryCode, FlagProps } from './Flag.types';
 export { countryCodes } from './Flag.utils';
-export type { FlagProps, CountryCode } from './Flag.types';

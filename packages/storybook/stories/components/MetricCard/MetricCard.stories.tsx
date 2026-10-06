@@ -1,6 +1,6 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import Button from '@synerise/ds-button';
 import { FormattedNumber } from '@synerise/ds-core';
 import Icon, { ArrowRightCircleM, OptionHorizontalM } from '@synerise/ds-icon';
@@ -8,9 +8,9 @@ import MetricCard, { MetricCardProps } from '@synerise/ds-metric-card';
 
 import {
   BOOLEAN_CONTROL,
+  fixedWrapper300,
   REACT_NODE_AS_STRING,
   STRING_CONTROL,
-  fixedWrapper300,
 } from '../../utils';
 import { COMPACT_NUMBER_OPTIONS } from './MetricCard.data';
 

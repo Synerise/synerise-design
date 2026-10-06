@@ -12,9 +12,9 @@ import Toaster, {
   ToasterProvider,
 } from '../toaster';
 import LocaleProvider from './LocaleProvider';
-import { type LocaleProviderProps } from './LocaleProvider/LocaleProvider.types';
+import type { LocaleProviderProps } from './LocaleProvider/LocaleProvider.types';
 import ThemeProvider from './ThemeProvider';
-import { type ThemeProviderProps } from './ThemeProvider/ThemeProvider';
+import type { ThemeProviderProps } from './ThemeProvider/ThemeProvider';
 
 export type DSProviderProps = PropsWithChildren<
   LocaleProviderProps &

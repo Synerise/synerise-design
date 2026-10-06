@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { resolveCustomColor } from '@synerise/ds-utils';
 
-import { type CustomColorType, type SectionType } from './SectionMessage.types';
+import type { CustomColorType, SectionType } from './SectionMessage.types';
 import {
   getColorBackground,
   getColorBorder,

@@ -13,9 +13,9 @@ import {
 } from '@synerise/ds-icon';
 
 import * as S from './Cruds.styles';
-import { type CrudsProps, type CrudsSubComponents } from './Cruds.types';
+import type { CrudsProps, CrudsSubComponents } from './Cruds.types';
 import SingleAction from './SingleAction';
-import { type SingleActionProps } from './SingleAction.types';
+import type { SingleActionProps } from './SingleAction.types';
 
 const Cruds: React.FC<CrudsProps> & CrudsSubComponents = ({
   onDelete,

@@ -127,7 +127,7 @@ Takes `EmojiCategory[]` and `itemsPerRow` (6), returns a flat `EmojiVirtualListI
 
 ## Implementation notes
 
-- **`react-intl` is required** — there is no fallback if `IntlProvider` is absent. Tests use `renderWithProvider` from `@synerise/ds-core` which wraps the tree with `IntlProvider`.
+- **`react-intl` is required** — there is no fallback if `IntlProvider` is absent. Tests use `renderWithProvider` from `@synerise/ds-core/testing` which wraps the tree with `IntlProvider`.
 - **Click-outside handling** — `useOnClickOutside` is used with a special guard: if the click target is inside `triggerRef`, the handler returns early to avoid fighting with the dropdown's own toggle logic.
 - **Overlay stops propagation** — the `S.Overlay` div has `onClick={(event) => event.stopPropagation()}`, preventing emoji clicks from bubbling to parent handlers (e.g. form or modal click-outside listeners).
 - **`children` must be a single `ReactElement`** (typed as `ReactElement`, not `ReactNode`) — the dropdown's `asChild` mode merges the open handler onto the child. Passing a fragment or string will break it.

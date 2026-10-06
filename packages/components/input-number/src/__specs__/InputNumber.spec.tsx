@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { type DataFormatNotationType , renderWithProvider } from '@synerise/ds-core';
+import { type DataFormatNotationType } from '@synerise/ds-core';
+import { renderWithProvider } from '@synerise/ds-core/testing';
 import { act, fireEvent } from '@testing-library/react';
 
 import InputNumber from '../index';

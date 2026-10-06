@@ -3,10 +3,10 @@ import React from 'react';
 import InformationCard from '@synerise/ds-information-card';
 import Tag, { useDefaultTexts } from '@synerise/ds-tag';
 
-import * as S from './Tags.styles';
-import type { TagsProps } from './Tags.types';
 import { AddTags } from './components/AddTags/AddTags';
 import { LimitedTags } from './components/LimitedTags/LimitedTags';
+import * as S from './Tags.styles';
+import type { TagsProps } from './Tags.types';
 
 const Tags = ({
   data = [],

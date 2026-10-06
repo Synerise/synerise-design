@@ -1,6 +1,6 @@
 import styled, {
-  type FlattenSimpleInterpolation,
   css,
+  type FlattenSimpleInterpolation,
 } from 'styled-components';
 
 import type { RangeDisplayMode } from './RangeForm.types';
@@ -61,18 +61,6 @@ export const Row = styled.div<{
   .ant-slider {
     width: 100%;
     margin: 24px 8px 8px;
-  }
-  .ant-tooltip-inner {
-    white-space: nowrap;
-  }
-  && .ant-slider-handle:focus,
-  && .ant-slider-handle:hover {
-    .ant-tooltip-content {
-      background-color: transparent;
-    }
-    .ant-tooltip-inner {
-      color: var(--ds-color-text-base-muted);
-    }
   }
 `;
 export const Separator = styled.span`

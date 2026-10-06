@@ -1,5 +1,5 @@
 import { previewableMimeTypes } from './FileViewAvatar.const';
-import { type PreviewableMimeType } from './FileViewAvatar.types';
+import type { PreviewableMimeType } from './FileViewAvatar.types';
 
 export const isPreviewableMimeType = (
   mimeType: string,

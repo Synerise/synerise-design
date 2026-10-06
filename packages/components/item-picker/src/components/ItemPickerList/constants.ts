@@ -1,6 +1,6 @@
 import type { CSSProperties } from 'react';
 
-import { itemSizes } from '@synerise/ds-list-item';
+import { type ItemSize, itemSizes } from '@synerise/ds-list-item';
 
 import type { BaseItemType } from '../ItemPickerNew/types/baseItemSectionType.types';
 
@@ -9,9 +9,16 @@ export const LIST_STYLE: CSSProperties = {
   overflowY: 'unset',
 };
 
-export const ITEM_SIZE = {
+/**
+ * Row height estimates. Typed exhaustively over `ItemSize` on purpose: a new size must
+ * fail the build here rather than silently yield an undefined row offset. `auto` has no
+ * fixed height — 32 is its `min-height` floor, and the real height is measured (see
+ * `useMeasuredRowHeights` in `ItemPickerList`).
+ */
+export const ITEM_SIZE: Record<ItemSize, number> & { title: number } = {
   [itemSizes.LARGE]: 50,
   [itemSizes.DEFAULT]: 32,
+  [itemSizes.AUTO]: 32,
   title: 32,
 };
 

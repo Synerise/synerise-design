@@ -2,9 +2,9 @@ import React from 'react';
 
 import { CSS, useSortable } from '@synerise/ds-sortable';
 
-import { type Column } from '../ColumnManager.types';
+import type { Column } from '../ColumnManager.types';
 import { ColumnManagerItem } from '../ColumnManagerItem/ColumnManagerItem';
-import { type ColumnManagerSortableItemProps } from './ColumnManagerSortableItem.types';
+import type { ColumnManagerSortableItemProps } from './ColumnManagerSortableItem.types';
 
 export const ColumnManagerSortableItem = <ColumnType extends Column>(
   props: ColumnManagerSortableItemProps<ColumnType>,

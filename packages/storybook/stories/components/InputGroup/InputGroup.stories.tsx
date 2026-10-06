@@ -1,13 +1,13 @@
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import React, { ReactNode } from 'react';
 
-import type { Meta, StoryObj } from '@storybook/react-vite';
 import { InputGroup } from '@synerise/ds-input';
 import { Props } from '@synerise/ds-input/dist/InputGroup.types';
 
 import {
   BOOLEAN_CONTROL,
-  REACT_NODE_AS_STRING,
   controlFromOptionsArray,
+  REACT_NODE_AS_STRING,
 } from '../../utils';
 import {
   inputGroupOptions,

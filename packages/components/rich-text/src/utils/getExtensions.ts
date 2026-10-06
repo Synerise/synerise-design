@@ -10,8 +10,8 @@ import Underline from '@tiptap/extension-underline';
 import type { Extensions } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 
-import type { ToolbarFeature } from '../RichText.types';
 import { CodeSnippet } from '../extensions/CodeSnippet';
+import type { ToolbarFeature } from '../RichText.types';
 
 type GetExtensionsOptions = {
   features: ToolbarFeature[];

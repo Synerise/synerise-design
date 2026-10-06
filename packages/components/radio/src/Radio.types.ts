@@ -1,14 +1,11 @@
-import {
-  type CSSProperties,
-  type FocusEventHandler,
-  type MouseEventHandler,
-  type ReactNode,
+import type {
+  CSSProperties,
+  FocusEventHandler,
+  MouseEventHandler,
+  ReactNode,
 } from 'react';
 
-import {
-  type DataAttributes,
-  type PassthroughAttributes,
-} from '@synerise/ds-utils';
+import type { DataAttributes, PassthroughAttributes } from '@synerise/ds-utils';
 
 export type RadioValueType = string | number | boolean;
 

@@ -1,14 +1,14 @@
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 import { within } from 'storybook/test';
 
-import type { Meta, StoryObj } from '@storybook/react-vite';
 import { DynamicIcon, type DynamicIconProps } from '@synerise/ds-icon';
 
 import {
   CLASSNAME_ARG_CONTROL,
+  centeredPaddedWrapper,
   NUMBER_CONTROL,
   STRING_CONTROL,
-  centeredPaddedWrapper,
 } from '../../utils';
 
 export default {

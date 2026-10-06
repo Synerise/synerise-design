@@ -60,6 +60,6 @@ export type LookupConfig = {
   display: string;
 };
 export type CollectorValue = {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // biome-ignore lint/suspicious/noExplicitAny: upstream type is not expressible here
   [key: string]: any;
 };

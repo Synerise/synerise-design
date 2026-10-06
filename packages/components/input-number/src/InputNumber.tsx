@@ -17,9 +17,9 @@ import {
   useStretchToFit,
 } from '@synerise/ds-input';
 
-import * as S from './InputNumber.styles';
-import { type InputNumberProps } from './InputNumber.types';
 import { useStepper } from './hooks/useStepper';
+import * as S from './InputNumber.styles';
+import type { InputNumberProps } from './InputNumber.types';
 import { formatNumber, parseFormattedNumber } from './utils/inputNumber.utils';
 
 const AUTOSIZE_EXTRA_WIDTH = 45;
@@ -96,12 +96,12 @@ const InputNumber = ({
   const id = useMemo(() => idProp ?? uuid(), [idProp]);
   const showError = Boolean(error || errorText);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: dependencies intentionally omitted
   useEffect(() => {
     if (value !== undefined && value !== localValue) {
       setLocalValue(value);
       setDisplayValue(formatter(value));
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value]);
 
   // Typed input: parse the locale-formatted string to a JS number string FIRST (so a comma decimal

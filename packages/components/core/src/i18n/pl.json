@@ -444,6 +444,9 @@
       "CLEAR-TOOLTIP": "Wyczyść",
       "DELETE-TOOLTIP": "Usuń",
       "NO-SEARCH-RESULTS": "Nie znaleziono tagów"
+    },
+    "CONDITION-BLOCKS": {
+      "REMOVE": "Usuń"
     }
   }
 }

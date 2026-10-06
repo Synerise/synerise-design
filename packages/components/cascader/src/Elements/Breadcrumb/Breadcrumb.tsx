@@ -4,7 +4,7 @@ import Icon, { AngleRightS } from '@synerise/ds-icon';
 import { renderWithHighlight } from '@synerise/ds-utils';
 
 import * as S from './Breadcrumb.styles';
-import { type BreadcrumbProps } from './Breadcrumb.types';
+import type { BreadcrumbProps } from './Breadcrumb.types';
 import {
   attachActiveClassName,
   isOverflown,

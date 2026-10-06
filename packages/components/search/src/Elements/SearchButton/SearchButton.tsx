@@ -4,7 +4,7 @@ import Button from '@synerise/ds-button';
 import Icon, { SearchM } from '@synerise/ds-icon';
 
 import * as S from '../../Search.styles';
-import { type SearchButtonProps } from './SearchButton.types';
+import type { SearchButtonProps } from './SearchButton.types';
 
 const SearchButton: React.FC<SearchButtonProps> = ({
   inputOpen,

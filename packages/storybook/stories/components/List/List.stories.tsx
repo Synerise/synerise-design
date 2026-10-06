@@ -1,7 +1,7 @@
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import React, { useState } from 'react';
 import { action } from 'storybook/actions';
 
-import type { Meta, StoryObj } from '@storybook/react-vite';
 import Checkbox from '@synerise/ds-checkbox';
 import Icon, { FileM } from '@synerise/ds-icon';
 import List, { ListPropsType, TextProps } from '@synerise/ds-list';
@@ -11,10 +11,10 @@ import Switch from '@synerise/ds-switch';
 import {
   BOOLEAN_CONTROL,
   CLASSNAME_ARG_CONTROL,
+  fixedWrapper588,
   REACT_NODE_AS_STRING,
   STRING_CONTROL,
   STYLE_ARG_CONTROL,
-  fixedWrapper588,
 } from '../../utils';
 import { actions, dataCheckboxes, dataMultiple, dataSingle } from './List.data';
 

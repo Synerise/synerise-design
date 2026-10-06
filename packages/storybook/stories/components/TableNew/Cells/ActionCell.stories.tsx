@@ -1,6 +1,6 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import Button from '@synerise/ds-button';
 import Icon, { EditM, TrashM } from '@synerise/ds-icon';
 import { ActionCell, type BaseActionCellProps } from '@synerise/ds-table-new';

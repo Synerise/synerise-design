@@ -1,8 +1,7 @@
 export { default } from './Collector';
-
 export type {
-  CollectorValue,
   CollectorProps,
-  CollectorValuesSeparator,
   CollectorTexts,
+  CollectorValue,
+  CollectorValuesSeparator,
 } from './Collector.types';

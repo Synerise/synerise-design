@@ -1,11 +1,9 @@
 import React from 'react';
-import { type DayModifiers, type Modifiers } from 'react-day-picker';
-import { type WrappedComponentProps, injectIntl } from 'react-intl';
-
-import { legacyParse } from '@date-fns/upgrade/v2';
+import type { Modifiers } from 'react-day-picker';
+import { injectIntl, type WrappedComponentProps } from 'react-intl';
 
 import * as S from '../DatePicker.styles';
-import { type State, type Texts } from '../DatePicker.types';
+import type { State, Texts } from '../DatePicker.types';
 import DayPicker from '../Elements/DayPicker/DayPicker';
 import {
   DayBackground,
@@ -26,10 +24,9 @@ import {
   fnsStartOfDay,
   fnsStartOfMonth,
 } from '../fns';
-import fnsFormat from '../format';
-import { changeDayWithHoursPreserved } from '../utils';
+import { toDateValue } from '../toDateValue';
 import { getDefaultTexts } from '../utils/getDefaultTexts';
-import { type RawDatePickerProps } from './RawDatePicker.types';
+import type { RawDatePickerProps } from './RawDatePicker.types';
 
 class RawDatePicker extends React.Component<
   RawDatePickerProps & WrappedComponentProps,
@@ -45,7 +42,6 @@ class RawDatePicker extends React.Component<
   constructor(props: RawDatePickerProps & WrappedComponentProps) {
     super(props);
 
-    // eslint-disable-next-line react/state-in-constructor
     this.state = {
       mode: 'date',
       month: fnsStartOfMonth(props.value || new Date()),
@@ -79,33 +75,34 @@ class RawDatePicker extends React.Component<
 
   handleChange = (value: Date | undefined): void => {
     const { onValueChange } = this.props;
-    const { mode, value: valueFromState } = this.state;
-    if (mode === 'date' && !!valueFromState && !!value) {
-      const dateToBeUpdated = changeDayWithHoursPreserved(
-        valueFromState,
-        value,
-      );
-      this.setState({ value: dateToBeUpdated, changed: true });
-      onValueChange && onValueChange(dateToBeUpdated);
-    } else {
-      this.setState({ value, changed: true });
-      onValueChange && onValueChange(value);
-    }
+    this.setState({ value, changed: true });
+    onValueChange && onValueChange(value);
   };
 
   handleDayMouseEnter = (day: Date): void => this.setState({ enteredTo: day });
 
   handleDayMouseLeave = (): void => this.setState({ enteredTo: undefined });
 
-  handleDayClick = (day: Date, modifiers: DayModifiers): void => {
-    const { changed: isChanged, value } = this.state;
+  handleDayClick = (day: Date, modifiers: Modifiers): void => {
+    const { value } = this.state;
     const { useStartOfDay, useEndOfDay, showTime } = this.props;
 
     if (modifiers.disabled) {
       return;
     }
 
-    let nextDateWithCurrentTime = isChanged && value ? value : new Date();
+    // Carrying the time of day forward is what the three setters below do: they rewrite the
+    // calendar fields of the existing value and leave its local clock alone, which is correct
+    // across a DST boundary because local fields are what a wall clock means.
+    //
+    // `value` rather than `isChanged && value`: the old guard fell back to `new Date()` on the
+    // first click of a picker that already had a value, throwing that value's time away — and
+    // `handleChange` then put it back by re-deriving it from a seconds difference. That
+    // round-trip is what `changeDayWithHoursPreserved` existed for, and it assumed every
+    // calendar day is 86400s, so any pair of dates straddling a DST transition came out an hour
+    // wrong. Starting from `value` makes the round-trip unnecessary rather than fixing its
+    // arithmetic.
+    let nextDateWithCurrentTime = value || new Date();
     nextDateWithCurrentTime = fnsSetYear(
       nextDateWithCurrentTime,
       day.getFullYear(),
@@ -205,7 +202,6 @@ class RawDatePicker extends React.Component<
         disabledDays={disabledDates}
         selectedDays={selectedDays}
         month={month}
-        title={fnsFormat(month, 'MMM yyyy')}
         renderDay={this.renderDay}
         onDayClick={this.handleDayClick}
         onDayMouseEnter={this.handleDayMouseEnter}
@@ -215,7 +211,7 @@ class RawDatePicker extends React.Component<
         onMonthChange={(selectedMonth: Date): void =>
           this.handleMonthChange(selectedMonth, 'date')
         }
-        modifiers={modifiers as unknown as Modifiers}
+        modifiers={modifiers}
       />
     );
   };
@@ -223,18 +219,17 @@ class RawDatePicker extends React.Component<
   handleDaySwitch = (day: Date): void => {
     const { disabledDates } = this.props;
 
-    // @ts-ignore
     this.handleDayClick(day, {
       disabled: disabledDates ? disabledDates(day) : false,
-    });
+    } as Modifiers);
   };
 
   renderTimePicker = (): React.ReactNode => {
     const { value } = this.state;
     const { disabledHours, disabledMinutes, disabledSeconds, disabledDates } =
       this.props;
-    const prevDay = fnsAddDays(legacyParse(value), -1);
-    const nextDay = fnsAddDays(legacyParse(value), 1);
+    const prevDay = fnsAddDays(toDateValue(value), -1);
+    const nextDay = fnsAddDays(toDateValue(value), 1);
     const inactivePrev = disabledDates ? disabledDates(prevDay) : false;
     const inactiveNext = disabledDates ? disabledDates(nextDay) : false;
     return (

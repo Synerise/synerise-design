@@ -61,12 +61,14 @@ bundle.crt
 
 .nx/
 .pnpm-store
+.pnpm-cache
 
 # Claude Code local state
 .claude/settings.local.json
 .claude/cache/
 .claude/logs/
 .claude/tmp/
+.claude/skills/*/config.json
 
 # Secrets
 *.pem

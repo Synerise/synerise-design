@@ -1,6 +1,6 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import OrderedList, { OrderedListProps } from '@synerise/ds-ordered-list';
 import { OrderedListSkeleton } from '@synerise/ds-skeleton';
 

@@ -1,7 +1,7 @@
-import { type CSSProperties, type Key, type ReactNode } from 'react';
+import type { CSSProperties, Key, ReactNode } from 'react';
 
-import { type RadioGroupProps } from '@synerise/ds-radio';
-import { type WithHTMLAttributes } from '@synerise/ds-utils';
+import type { RadioGroupProps } from '@synerise/ds-radio';
+import type { WithHTMLAttributes } from '@synerise/ds-utils';
 
 export type ListSize = 'small' | 'default' | 'large';
 export type ListItemLayout = 'horizontal' | 'vertical';

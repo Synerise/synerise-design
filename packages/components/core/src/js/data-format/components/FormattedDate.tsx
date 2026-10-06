@@ -1,12 +1,11 @@
-import { type Dayjs } from 'dayjs';
-import { type Moment } from 'moment';
+import type { Dayjs } from 'dayjs';
 import React from 'react';
 
 import { useDataFormat } from '../hooks';
-import { type DateToFormatOptions } from '../types';
+import type { DateToFormatOptions, MomentLike } from '../types';
 
 export type FormattedDateProps = {
-  value: Date | Moment | Dayjs;
+  value: Date | MomentLike | Dayjs;
   options?: DateToFormatOptions;
 };
 

@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-table-new",
-  "version": "2.0.2",
+  "version": "2.1.3",
   "description": "TableNew UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -46,7 +46,6 @@
     "@floating-ui/react": "^0.27.16",
     "@synerise/ds-badge": "workspace:^",
     "@synerise/ds-button": "workspace:^",
-    "@synerise/ds-checkbox": "workspace:^",
     "@synerise/ds-copy-icon": "workspace:^",
     "@synerise/ds-dropdown": "workspace:^",
     "@synerise/ds-flag": "workspace:^",
@@ -68,8 +67,7 @@
     "@synerise/ds-utils": "workspace:^",
     "@tanstack/react-table": "^8.21.3",
     "@tanstack/react-virtual": "^3.13.12",
-    "unit-to-px": "^1.0.5",
-    "uuid": "^10.0.0"
+    "unit-to-px": "^1.0.5"
   },
   "devDependencies": {
     "vitest": "4"

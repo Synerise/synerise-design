@@ -3,7 +3,7 @@ import React from 'react';
 import Icon from '@synerise/ds-icon';
 
 import * as S from './BottomAction.styles';
-import { type BottomActionProps } from './BottomAction.types';
+import type { BottomActionProps } from './BottomAction.types';
 
 export const BottomAction = ({
   onClickAction,

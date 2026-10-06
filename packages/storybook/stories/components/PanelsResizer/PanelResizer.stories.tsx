@@ -1,24 +1,41 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import { PanelsResizer } from '@synerise/ds-panels-resizer';
 
 const LeftContent = () => (
-  <div style={{ height: '100%', padding: '24px', background: 'var(--ds-color-background-brand-subtle)' }}>
+  <div
+    style={{
+      height: '100%',
+      padding: '24px',
+      background: 'var(--ds-color-background-brand-subtle)',
+    }}
+  >
     <h2>Left Panel</h2>
     <p>This is the content of the left panel.</p>
   </div>
 );
 
 const RightContent = () => (
-  <div style={{ height: '100%', padding: '24px', background: 'var(--ds-color-background-danger-subtle)' }}>
+  <div
+    style={{
+      height: '100%',
+      padding: '24px',
+      background: 'var(--ds-color-background-danger-subtle)',
+    }}
+  >
     <h2>Right Panel</h2>
     <p>This is the content of the right panel.</p>
   </div>
 );
 
 const LongContent = () => (
-  <div style={{ padding: '24px', background: 'var(--ds-color-background-success-subtle)' }}>
+  <div
+    style={{
+      padding: '24px',
+      background: 'var(--ds-color-background-success-subtle)',
+    }}
+  >
     <h2>Long text</h2>
     <p>
       {Array.from({ length: 100 }, (_, i) => (

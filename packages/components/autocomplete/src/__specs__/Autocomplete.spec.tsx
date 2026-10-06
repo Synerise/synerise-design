@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 
-import { renderWithProvider } from '@synerise/ds-core';
+import { renderWithProvider } from '@synerise/ds-core/testing';
 import { act, fireEvent, screen } from '@testing-library/react';
 
 import Autocomplete from '../index';
@@ -295,7 +295,6 @@ describe('Autocomplete — option extraction from children', () => {
     const onSelect = vi.fn();
     renderWithProvider(
       <Autocomplete open value="" onSelect={onSelect}>
-        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
         <Option key={RED} {...({} as any)}>
           {RED}
         </Option>

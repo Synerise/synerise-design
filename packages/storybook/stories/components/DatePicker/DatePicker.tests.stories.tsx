@@ -1,14 +1,14 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React, { useState } from 'react';
 import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import DatePicker from '@synerise/ds-date-picker';
 import { getPopupContainer } from '@synerise/ds-utils';
 
 import {
   BOOLEAN_CONTROL,
-  REACT_NODE_AS_STRING,
   fixedWrapper200,
+  REACT_NODE_AS_STRING,
 } from '../../utils';
 import { baseArgs, texts } from './constants';
 
@@ -17,7 +17,7 @@ export default {
   title: 'Components/Pickers/DatePicker/Tests',
   tags: ['visualtests'],
   parameters: {
-    date: new Date('March 10, 2021 10:00:00'),
+    mockingDate: new Date('March 10, 2021 10:00:00'),
   },
   decorators: [fixedWrapper200],
   render: (args) => {
@@ -171,5 +171,49 @@ export const SelectDateAndApply: Story = {
       expect(args.onValueChange).toHaveBeenCalled();
       expect(args.onApply).toHaveBeenCalled();
     });
+  },
+};
+
+/**
+ * Visual baseline for the day-grid modifier states of the single-date calendar.
+ *
+ * The mocked clock is 10 March 2021 and the value is the same day, so this one frame covers
+ * --today, --selected, --start, --end and the --today--selected combination, while the disabled
+ * weekends cover --disabled and the leading/trailing cells cover --outside. None of these had a
+ * Chromatic baseline of their own before.
+ */
+export const TestCalendarDayModifiers: Story = {
+  args: {
+    value: new Date('2021-03-10T10:00:00'),
+    showTime: false,
+    disabledDates: (date?: Date) => {
+      const day = date?.getDay();
+      return day === 0 || day === 6;
+    },
+  },
+  play: async ({ args, canvasElement, step }) => {
+    const canvas = within(canvasElement);
+
+    await step('Open picker popover', async () => {
+      const input = canvas.getByPlaceholderText(texts.inputPlaceholder);
+      await userEvent.click(input);
+    });
+
+    await waitFor(() =>
+      expect(args.onDropdownVisibleChange).toHaveBeenCalled(),
+    );
+
+    await waitFor(() =>
+      expect(
+        canvasElement.querySelector(
+          '.DayPicker-Day--today.DayPicker-Day--selected',
+        ),
+      ).toBeTruthy(),
+    );
+    await waitFor(() =>
+      expect(
+        canvasElement.querySelectorAll('.DayPicker-Day--disabled').length,
+      ).toBeGreaterThan(0),
+    );
   },
 };

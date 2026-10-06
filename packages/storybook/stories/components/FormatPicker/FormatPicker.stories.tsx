@@ -1,10 +1,10 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 import { useArgs } from 'storybook/preview-api';
 import { fn } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
-import FormatPicker from '@synerise/ds-format-picker';
 import type { FormatPickerProps } from '@synerise/ds-format-picker';
+import FormatPicker from '@synerise/ds-format-picker';
 import { NOOP } from '@synerise/ds-utils';
 
 import {

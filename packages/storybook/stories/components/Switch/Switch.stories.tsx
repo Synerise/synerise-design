@@ -1,17 +1,17 @@
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 import { useArgs } from 'storybook/preview-api';
 
-import type { Meta, StoryObj } from '@storybook/react-vite';
-import Switch from '@synerise/ds-switch';
 import type { SwitchProps } from '@synerise/ds-switch';
+import Switch from '@synerise/ds-switch';
 
 import {
   BOOLEAN_CONTROL,
   CLASSNAME_ARG_CONTROL,
+  fixedWrapper400,
   PREFIXCLS_ARG_CONTROL,
   REACT_NODE_AS_STRING,
   STYLE_ARG_CONTROL,
-  fixedWrapper400,
 } from '../../utils';
 
 export default {

@@ -1,8 +1,8 @@
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import React, { useState } from 'react';
 import { expect, fn, userEvent, within } from 'storybook/test';
 import type { Emoji } from 'unicode-emoji-utils';
 
-import type { Meta, StoryObj } from '@storybook/react-vite';
 import Button from '@synerise/ds-button';
 import EmojiPicker, { EmojiPickerProps } from '@synerise/ds-emoji-picker';
 import Icon, { EmoticonsM } from '@synerise/ds-icon';

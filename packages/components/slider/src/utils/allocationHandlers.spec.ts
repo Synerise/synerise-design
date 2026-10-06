@@ -1,6 +1,6 @@
 import { calculateHandlersPercentagePosition, getBlockedHandlersKeys, checkIsBlockedHandlersConfigEnabled } from './allocationHandlers.utils';
 import type { HandlerConfig } from '../Slider.types';
-import type { AllocationVariant } from '../Allocation/Allocation.types';
+import type { AllocationVariant } from '../Slider.types';
 
 const mockAllocationVariants1: AllocationVariant[] = [
     { name: 'Variant A', percentage: 30, tabId: 1, tabLetter: 'A' },

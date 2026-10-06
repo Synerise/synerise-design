@@ -15,16 +15,16 @@ import { useDataFormat } from '@synerise/ds-core';
 import { getDefaultTexts } from '../../../../utils';
 import * as S from '../../../RangeFilter.styles';
 import { AddButton, SelectionCount, SelectionHint } from '../../../Shared';
-import Day from '../../../Shared/TimeWindow/Day/Day';
-import Grid from '../../../Shared/TimeWindow/Grid/Grid';
-import { type DateLimitMode } from '../../../Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
-import RangeFormContainer from '../../../Shared/TimeWindow/RangeFormContainer/RangeFormContainer';
-import type { DateValue } from '../../../Shared/TimeWindow/RangeFormContainer/RangeFormContainer.types';
 import {
   EU_NOTATION_WEEK_DAYS_INDEXES,
   US_NOTATION_WEEK_DAYS_INDEXES,
 } from '../../../Shared/TimeWindow/constants/timeWindow.constants';
-import { type DayKey } from '../../WeeklyFilter/WeeklyFilter.types';
+import Day from '../../../Shared/TimeWindow/Day/Day';
+import Grid from '../../../Shared/TimeWindow/Grid/Grid';
+import type { DateLimitMode } from '../../../Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
+import RangeFormContainer from '../../../Shared/TimeWindow/RangeFormContainer/RangeFormContainer';
+import type { DateValue } from '../../../Shared/TimeWindow/RangeFormContainer/RangeFormContainer.types';
+import type { DayKey } from '../../WeeklyFilter/WeeklyFilter.types';
 import {
   DEFAULT_MAX_ENTRIES,
   DEFAULT_RANGE_END,
@@ -35,13 +35,13 @@ import {
   RENDER_EMPTY_NODE_FN,
 } from '../constants';
 import { useShiftAndControlKeys } from '../hooks/useShiftAndControlKeys';
-import { type WeeklyProps, type WeeklySchedule } from './Weekly.types';
 import {
   canAddAnotherRange,
   haveActiveDaysCommonRange,
   range,
   removeEmptyEntries,
 } from './utils';
+import type { WeeklyProps, WeeklySchedule } from './Weekly.types';
 
 const Weekly = ({
   maxEntries = DEFAULT_MAX_ENTRIES,
@@ -141,7 +141,7 @@ const Weekly = ({
   const getDayValue = useCallback(
     (dayKey: DayKey, guid: string) => {
       // @ts-expect-error - requires type refactor
-      if (typeof dayKey === 'number' && value[guid] && !!value[guid][dayKey]) {
+      if (typeof dayKey === 'number' && value[guid] && value[guid][dayKey]) {
         // @ts-expect-error - requires type refactor
         return value[guid][dayKey];
       }
@@ -387,7 +387,7 @@ const Weekly = ({
               handleDayTimeChange(dates, activeDays, guid)
             }
             dayKeys={activeDays}
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            // biome-ignore lint/suspicious/noExplicitAny: upstream type is not expressible here
             getDayLabel={getDayLabel as any}
             activeDays={activeDays}
             getDayValue={(dayKey: DayKey) => getDayValue(dayKey, guid)}

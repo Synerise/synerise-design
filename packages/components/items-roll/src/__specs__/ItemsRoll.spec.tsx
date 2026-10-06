@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { renderWithProvider } from '@synerise/ds-core';
+import { renderWithProvider } from '@synerise/ds-core/testing';
 import { cleanup, fireEvent, screen, within, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
@@ -115,11 +115,11 @@ describe('ItemsRoll', () => {
       onClearAll,
     });
 
-    const { container } = renderWithProvider(
-      <ItemsRoll {...props} useFooter />,
-    );
+    renderWithProvider(<ItemsRoll {...props} useFooter />);
 
-    expect(container.querySelectorAll('.ant-dropdown-trigger').length).toBe(0);
+    expect(
+      screen.queryByTestId('popover-items-roll-actions-trigger'),
+    ).not.toBeInTheDocument();
   });
 
   it('renders without footer', () => {

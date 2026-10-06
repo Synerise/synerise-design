@@ -1,13 +1,13 @@
-import { type ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
-import {
-  type AspectRatio,
-  type ImageSource,
-  type ImageTexts,
-  type InitialZoom,
-  type ObjectFit,
-  type ThumbnailBackground,
-  type ThumbnailSize,
+import type {
+  AspectRatio,
+  ImageSource,
+  ImageTexts,
+  InitialZoom,
+  ObjectFit,
+  ThumbnailBackground,
+  ThumbnailSize,
 } from '../shared/Image.shared.types';
 
 export type GalleryProps = {

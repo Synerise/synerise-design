@@ -1,10 +1,10 @@
+import { flexRender } from '@tanstack/react-table';
 import React from 'react';
 
 import Tooltip from '@synerise/ds-tooltip';
-import { flexRender } from '@tanstack/react-table';
 
-import { type TableRowProps } from '../../../Table.types';
 import { useStickyContext } from '../../../contexts/StickyContext';
+import type { TableRowProps } from '../../../Table.types';
 import { getUnifiedColumnSizingStyle } from '../../../utils/getUnifiedColumnSizingStyle';
 import { isSorted } from '../../../utils/sort';
 import { TableCell } from '../TableCell/TableCell';

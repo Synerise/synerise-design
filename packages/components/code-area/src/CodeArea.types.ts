@@ -1,7 +1,7 @@
+import type { EditorProps, loader } from '@monaco-editor/react';
 import type { editor } from 'monaco-editor/esm/vs/editor/editor.api';
 import type { CSSProperties, ReactNode } from 'react';
 
-import type { EditorProps, loader } from '@monaco-editor/react';
 import type { TooltipProps } from '@synerise/ds-tooltip';
 
 export type CodeAreaSyntax =

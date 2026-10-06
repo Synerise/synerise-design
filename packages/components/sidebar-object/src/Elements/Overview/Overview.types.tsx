@@ -1,9 +1,9 @@
-import { type ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
-import { type SubtleTextAreaProps } from '@synerise/ds-subtle-form';
+import type { SubtleTextAreaProps } from '@synerise/ds-subtle-form';
 
-import { type FolderItem } from '../../SidebarObject.types';
-import { type HeaderTexts } from '../Header/Header.types';
+import type { FolderItem } from '../../SidebarObject.types';
+import type { HeaderTexts } from '../Header/Header.types';
 
 export type OverviewObjectProps = {
   inputObject: {

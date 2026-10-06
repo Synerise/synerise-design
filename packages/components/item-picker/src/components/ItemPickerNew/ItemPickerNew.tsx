@@ -3,10 +3,10 @@ import React, { forwardRef, useEffect, useMemo, useState } from 'react';
 import Dropdown from '@synerise/ds-dropdown';
 import FormField from '@synerise/ds-form-field';
 
-import * as S from '../../ItemPicker.styles';
 import { useDefaultTexts } from '../../hooks/useDefaultTexts';
+import * as S from '../../ItemPicker.styles';
 import { ItemPickerList } from '../ItemPickerList/ItemPickerList';
-import { type ItemPickerListRef } from '../ItemPickerList/ItemPickerList.types';
+import type { ItemPickerListRef } from '../ItemPickerList/ItemPickerList.types';
 import Trigger from '../ItemPickerTrigger/Trigger';
 import type { ItemPickerProps } from './ItemPickerNew.types';
 import type {

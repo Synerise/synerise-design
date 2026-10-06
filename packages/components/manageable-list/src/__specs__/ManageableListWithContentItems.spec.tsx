@@ -3,7 +3,7 @@ import { fireEvent, screen, waitFor } from '@testing-library/react';
 
 import Tag, { TagShape } from '@synerise/ds-tag';
 import FileM from '@synerise/ds-icon';
-import { renderWithProvider } from '@synerise/ds-core';
+import { renderWithProvider } from '@synerise/ds-core/testing';
 
 import ManageableList from '../ManageableList';
 

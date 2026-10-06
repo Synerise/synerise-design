@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import { DraggablePanel } from '../DraggablePanel/DraggablePanel';
 import { PanelContent } from '../PanelContent/PanelContent';
 import { SidebarContext } from '../Sidebar.context';
-import { type PanelProps } from '../Sidebar.types';
+import type { PanelProps } from '../Sidebar.types';
 
 export const Panel = (props: PanelProps) => {
   const context = useContext(SidebarContext);

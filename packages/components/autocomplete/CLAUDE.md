@@ -174,9 +174,6 @@ The dropdown overlay keeps class `ds-autocomplete-dropdown ps__child--consume` (
 - `@synerise/ds-input` — provides `useAutosizeWidth`, `SIZER_STYLE`, `autoresizeConfObjToCss`
 - `@synerise/ds-tooltip` — wraps `icon1`/`icon2` when tooltip props are provided
 
-> `@synerise/ds-search` and `@synerise/ds-utils` are still declared in `package.json` but no longer
-> imported — the rewrite dropped the `SearchItems`/react-window overlay in favour of plain `ListItem`s.
-
 > **No `antd` dependency** — antd was removed from `peerDependencies` and from all `src` imports/`.ant-*` selectors as part of the antd-removal effort.
 
 ## Implementation notes

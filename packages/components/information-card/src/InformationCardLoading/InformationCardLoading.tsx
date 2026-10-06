@@ -3,7 +3,7 @@ import React from 'react';
 import Skeleton, { SkeletonAvatar } from '@synerise/ds-skeleton';
 
 import * as S from '../InformationCard.styles';
-import { type InformationCardLoadingProps } from './InformationCardLoading.types';
+import type { InformationCardLoadingProps } from './InformationCardLoading.types';
 
 export const InformationCardLoading = ({
   hasFooter,

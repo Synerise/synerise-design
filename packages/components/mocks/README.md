@@ -144,7 +144,6 @@ screen.getByTestId('submit-btn')
 
 | Component | Package | Factory | Sub-components |
 |-----------|---------|---------|---------------|
-| Alert | `ds-alert` | `alertMockFactory` | Toast, SectionMessage, BroadcastBar, IconAlert, InlineAlert, AlertInfo |
 | AppMenu | `ds-app-menu` | `appMenuMockFactory` | + `useMenu`, `useSubMenu` hooks |
 | Avatar | `ds-avatar` | `avatarMockFactory` | UserAvatar, ObjectAvatar, DefaultAvatarIcon |
 | Button | `ds-button` | `buttonMockFactory` | |
@@ -175,7 +174,6 @@ screen.getByTestId('submit-btn')
 | ListItem | `ds-list-item` | `listItemMockFactory` | HoverTooltip, GroupItem, ListWrapper, ListContextProvider |
 | Logic | `ds-logic` | `logicMockFactory` | Logic.Matching, Placeholder |
 | ManageableList | `ds-manageable-list` | `manageableListMockFactory` | ContentItem, FilterItem, SimpleItem, AddItem |
-| Menu _(deprecated — use ListItem)_ | `ds-menu` | `menuMockFactory` | Menu.Item, .Breadcrumb, .Header, .Divider, .SubMenu, .ItemGroup |
 | Modal | `ds-modal` | `modalMockFactory` | |
 | Navbar | `ds-navbar` | `navbarMockFactory` | Navbar.Divider |
 | Popconfirm | `ds-popconfirm` | `popconfirmMockFactory` | ConfirmMessage |
@@ -191,7 +189,6 @@ screen.getByTestId('submit-btn')
 | Stepper | `ds-stepper` | `stepperMockFactory` | Stepper.Step |
 | SubtleForm | `ds-subtle-form` | `subtleFormMockFactory` | .TextArea, .Input, .Select, .DatePicker, .Field |
 | Switch | `ds-switch` | `switchMockFactory` | RawSwitch |
-| Table _(deprecated — use TableNew)_ | `ds-table` | `tableMockFactory` | |
 | TableNew | `ds-table-new` | `tableNewMockFactory` | VirtualTable |
 | Tabs | `ds-tabs` | `tabsMockFactory` | |
 | Tag | `ds-tag` | `tagMockFactory` | TagShape, useDefaultTexts |

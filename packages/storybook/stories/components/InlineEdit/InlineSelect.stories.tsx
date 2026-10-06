@@ -1,16 +1,16 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 import { fn } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
-import { InlineSelect } from '@synerise/ds-inline-edit';
 import type { InlineSelectProps } from '@synerise/ds-inline-edit';
+import { InlineSelect } from '@synerise/ds-inline-edit';
 
 import {
   BOOLEAN_CONTROL,
   CLASSNAME_ARG_CONTROL,
+  centeredPaddedWrapper,
   STRING_CONTROL,
   STYLE_ARG_CONTROL,
-  centeredPaddedWrapper,
 } from '../../utils';
 import { DATA_SOURCE } from './InlineSelect.data';
 

@@ -5,7 +5,7 @@ import Icon, { AngleDownS } from '@synerise/ds-icon';
 import { Title } from '@synerise/ds-typography';
 
 import * as S from './TextTrigger.styles';
-import { type TextTriggerProps } from './TextTrigger.types';
+import type { TextTriggerProps } from './TextTrigger.types';
 
 export const TextTrigger = forwardRef<HTMLDivElement, TextTriggerProps>(
   (

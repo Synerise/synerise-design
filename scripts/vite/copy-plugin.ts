@@ -68,5 +68,3 @@ export function copyFilesPlugin(options: CopyPluginOptions): Plugin {
     },
   };
 }
-
-export default copyFilesPlugin;

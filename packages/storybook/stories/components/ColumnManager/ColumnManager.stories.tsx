@@ -1,7 +1,7 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 import { fn } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import Button from '@synerise/ds-button';
 import ColumnManager, { ColumnManagerProps } from '@synerise/ds-column-manager';
 
@@ -11,7 +11,7 @@ import { useColumnManager } from './useColumnManager';
 
 export default {
   component: ColumnManager,
-  title: 'Components/Table/ColumnManager',
+  title: 'Components/ColumnManager',
   tags: ['autodocs'],
   decorators: [fixedWrapper300],
   render: ({ onApply, ...args }) => {

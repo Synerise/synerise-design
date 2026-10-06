@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 
-import Skeleton from '@synerise/ds-skeleton';
 import Radio from '@synerise/ds-radio';
+import Skeleton from '@synerise/ds-skeleton';
 
 export type StepData = {
   stepNumber: number;
@@ -25,19 +25,25 @@ export const tabs = [
 ];
 export const tabsSkeleton = [
   {
-    label: <div style={{width: '66px'}}>
-      <Skeleton numberOfSkeletons={1} width='M'/>
-    </div>,
+    label: (
+      <div style={{ width: '66px' }}>
+        <Skeleton numberOfSkeletons={1} width="M" />
+      </div>
+    ),
   },
   {
-    label: <div style={{width: '66px'}}>
-      <Skeleton numberOfSkeletons={1} width='M'/>
-    </div>,
+    label: (
+      <div style={{ width: '66px' }}>
+        <Skeleton numberOfSkeletons={1} width="M" />
+      </div>
+    ),
   },
   {
-    label: <div style={{width: '66px'}}>
-      <Skeleton numberOfSkeletons={1} width='M'/>
-    </div>,
+    label: (
+      <div style={{ width: '66px' }}>
+        <Skeleton numberOfSkeletons={1} width="M" />
+      </div>
+    ),
   },
 ];
 

@@ -12,7 +12,7 @@ import Icon, {
   SortZaM,
 } from '@synerise/ds-icon';
 
-import { type TableColumnSorterProps } from '../../../Table.types';
+import type { TableColumnSorterProps } from '../../../Table.types';
 import { getSortOrder } from '../../../utils/sort';
 import { DefaultSortIcon } from './SortIcons/DefaultSortIcon';
 import { StringSortIcon } from './SortIcons/StringSortIcon';

@@ -1,8 +1,8 @@
 import classNames from 'classnames';
-import React, { type MouseEvent, forwardRef, useState } from 'react';
+import React, { forwardRef, type MouseEvent, useState } from 'react';
 
 import * as S from './RawSwitch.styles';
-import { type RawSwitchProps } from './Switch.types';
+import type { RawSwitchProps } from './Switch.types';
 
 /**
  * DS-native bare toggle (antd-free replacement for the former `RawSwitch = antd Switch`). Renders a

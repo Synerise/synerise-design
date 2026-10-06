@@ -6,23 +6,20 @@ import React, {
   useState,
 } from 'react';
 
-import {
-  DatePicker,
-  datePickerFormat as format,
-} from '@synerise/ds-date-picker';
+import { getDefaultDataTimeOptions, useDataFormat } from '@synerise/ds-core';
+import { DatePicker } from '@synerise/ds-date-picker';
 import Icon, { CalendarM } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 
 import * as S from '../../SubtleForm.styles';
 import { MaskedDatePlaceholder, SelectContainer } from './DatePicker.styles';
-import { type SubtleDatePickerProps } from './DatePicker.types';
-import { getFormattingString, replaceLettersWithUnderscore } from './utils';
+import type { SubtleDatePickerProps } from './DatePicker.types';
+import { replaceLettersWithUnderscore } from './utils';
 
 const SubtleDatePicker = ({
   value,
   suffix = true,
   suffixTooltip,
-  format: dateFormat,
   label,
   children,
   labelTooltip,
@@ -39,24 +36,35 @@ const SubtleDatePicker = ({
   const [active, setActive] = useState(false);
   const [blurred, setBlurred] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const { formatValue } = useDataFormat();
   const hasError = error || !!errorText;
-  const { showTime } = rest;
-  const dateFormattingString = useMemo(
-    () => getFormattingString(dateFormat, showTime),
-    [dateFormat, showTime],
+  const { showTime, valueFormatOptions } = rest;
+
+  // The same options ds-date-picker's own input uses, so the value reads identically whether the
+  // field is being edited or merely displayed. This used to be a hardcoded `dd-MM-yyyy` token
+  // pattern, which disagreed with the picker for every locale — `08-09-2026` against `8 Sept 2026`.
+  const displayOptions = useMemo(
+    () => ({ ...getDefaultDataTimeOptions(showTime), ...valueFormatOptions }),
+    [showTime, valueFormatOptions],
   );
-  const formatValue = useCallback(
-    (val: Date) => {
-      if (!val) {
-        return '';
-      }
-      return format(val, dateFormattingString);
-    },
-    [dateFormattingString],
+
+  const formatDisplayValue = useCallback(
+    (val: Date) => (val ? formatValue(val, displayOptions) : ''),
+    [formatValue, displayOptions],
   );
+
   const getDisplayText = useCallback((): string | undefined => {
-    return value && !!String(value).trim() ? formatValue(value) : placeholder;
-  }, [value, placeholder, formatValue]);
+    return value && String(value).trim()
+      ? formatDisplayValue(value as Date)
+      : placeholder;
+  }, [value, placeholder, formatDisplayValue]);
+
+  // The mask mirrors the shape of a real formatted date rather than a token pattern, so it stays
+  // in step with whatever the data-format config produces.
+  const maskSample = useMemo(
+    () => formatDisplayValue(new Date(2026, 10, 22, 22, 22)),
+    [formatDisplayValue],
+  );
 
   useEffect(() => {
     if (error) {
@@ -106,7 +114,6 @@ const SubtleDatePicker = ({
               error={error}
               errorText={errorText}
               autoFocus={!hasError}
-              format={dateFormat}
               onDropdownVisibleChange={(visible: boolean): void => {
                 setActive(visible);
                 setBlurred(!visible);
@@ -124,7 +131,7 @@ const SubtleDatePicker = ({
                 {getDisplayText()}
                 {!disabled && (
                   <MaskedDatePlaceholder>
-                    {replaceLettersWithUnderscore(dateFormattingString)}
+                    {replaceLettersWithUnderscore(maskSample)}
                   </MaskedDatePlaceholder>
                 )}
               </S.MainContent>

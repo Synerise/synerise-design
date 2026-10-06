@@ -5,7 +5,7 @@ import { fnsAddDays, fnsFormat } from '../fns';
 import DailyFilter from './Filters/DailyFilter/DailyFilter';
 import MonthlyFilter from './Filters/MonthlyFilter/MonthlyFilter';
 import WeeklyFilter from './Filters/WeeklyFilter/WeeklyFilter';
-import { type MonthlySelectValue } from './RangeFilter.types';
+import type { MonthlySelectValue } from './RangeFilter.types';
 
 const LONG_MONTH = new Date(0, 0, 1);
 

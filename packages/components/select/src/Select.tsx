@@ -1,10 +1,10 @@
 import React, {
   type ChangeEvent,
   type FocusEvent,
+  forwardRef,
   type KeyboardEvent,
   type ReactElement,
   type ReactNode,
-  forwardRef,
   useCallback,
   useEffect,
   useId,
@@ -19,19 +19,19 @@ import Icon, { AngleDownS, Close3M } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 import { getPopupContainer as defaultGetPopupContainer } from '@synerise/ds-utils';
 
-import { Option } from './Option';
-import * as S from './Select.styles';
-import {
-  type RawValueType,
-  type SelectOption,
-  type SelectProps,
-  type SelectValue,
-} from './Select.types';
 import { OptionList } from './components/OptionList';
 import { SelectorContent } from './components/SelectorContent';
 import { useSelectOptions } from './hooks/useSelectOptions';
+import { Option } from './Option';
+import * as S from './Select.styles';
+import type {
+  RawValueType,
+  SelectOption,
+  SelectProps,
+  SelectValue,
+} from './Select.types';
 import { findOption } from './utils/getOptionsFromChildren';
-import { DEFAULT_LIST_HEIGHT, cx, toArray } from './utils/helpers';
+import { cx, DEFAULT_LIST_HEIGHT, toArray } from './utils/helpers';
 
 /**
  * DS-native Select (antd-free). Single-select, `mode="multiple"` (chip selector),
@@ -190,6 +190,7 @@ const SelectInner = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
   };
 
   // On open, highlight the selected (or first enabled) option; drop it on close.
+  // biome-ignore lint/correctness/useExhaustiveDependencies: dependencies intentionally omitted
   useEffect(() => {
     if (!isOpen) {
       setActiveIndex(-1);
@@ -208,16 +209,15 @@ const SelectInner = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
       );
       return selected >= 0 ? selected : firstEnabledIndex();
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen]);
 
   // Re-anchor the highlight to the first match whenever filtering changes the list.
+  // biome-ignore lint/correctness/useExhaustiveDependencies: dependencies intentionally omitted
   useEffect(() => {
     if (!isOpen) {
       return;
     }
     setActiveIndex(firstEnabledIndex());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [effectiveQuery]);
 
   // Keeping the active option in view is `OptionList`'s job now: the list is
@@ -225,11 +225,11 @@ const SelectInner = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
 
   // Select-only mode has no search input, so honour `autoFocus` on the selector
   // itself — this also gives the selector focus so `onBlur` can fire on blur.
+  // biome-ignore lint/correctness/useExhaustiveDependencies: dependencies intentionally omitted
   useEffect(() => {
     if (autoFocus && !hasInput) {
       selectorRef.current?.focus();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const $size = size === 'large' ? 'large' : 'default';

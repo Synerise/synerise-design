@@ -1,6 +1,6 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import Badge from '@synerise/ds-badge';
 import { theme } from '@synerise/ds-core';
 import Icon, { Add3M } from '@synerise/ds-icon';
@@ -12,9 +12,9 @@ import {
   BOOLEAN_CONTROL,
   CLASSNAME_ARG_CONTROL,
   COLOR_CONTROL,
+  controlFromOptionsArray,
   STRING_CONTROL,
   STYLE_ARG_CONTROL,
-  controlFromOptionsArray,
 } from '../../utils';
 import { CompleteExample } from '../InformationCard/InformationCard.stories';
 import { TAG_COLOR } from './Tags.constants';

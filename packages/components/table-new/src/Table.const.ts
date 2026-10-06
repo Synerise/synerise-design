@@ -1,8 +1,8 @@
-import {
-  type OnSortFn,
-  type SelectionAll,
-  type SelectionInvert,
-  type StickyData,
+import type {
+  OnSortFn,
+  SelectionAll,
+  SelectionInvert,
+  StickyData,
 } from './Table.types';
 
 export const EXPANDED_ROW_PROPERTY = 'expandedChild';
@@ -27,6 +27,7 @@ export const INFINITE_LOADER_ITEM_HEIGHT = 64;
 export const DEFAULT_STICKY_VALUE: StickyData = {
   containerPaddingTop: 0,
   titleBarHeight: 0,
+  subHeaderHeight: 0,
   columnHeadersHeight: 0,
   isRevealed: false,
 };

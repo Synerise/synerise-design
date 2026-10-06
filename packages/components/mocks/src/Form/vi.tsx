@@ -1,6 +1,6 @@
 import React, { type ReactNode } from 'react';
 
-import type { EditListProps, EditableParam } from '@synerise/ds-form';
+import type { EditableParam, EditListProps } from '@synerise/ds-form';
 
 export type { EditableParam };
 

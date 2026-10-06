@@ -81,7 +81,7 @@ import { ControlledExpand } from './Tree/TreeTable.stories';
   </tbody>
 </table>
 
-`VirtualTable` doesn't support `expandedRowRender` for the same reason the legacy `@synerise/ds-table` doesn't: variable-height expanded content can't be measured against the virtualizer's fixed `cellHeight`. Use a plain `Table` if you need that.
+`VirtualTable` doesn't support `expandedRowRender` for the same reason the legacy antd-backed table did not: variable-height expanded content can't be measured against the virtualizer's fixed `cellHeight`. Use a plain `Table` if you need that.
 
 ## Pattern 1 — Detail row below the parent (`Table` only)
 

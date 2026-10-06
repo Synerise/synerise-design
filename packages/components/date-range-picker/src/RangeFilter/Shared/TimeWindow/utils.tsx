@@ -1,4 +1,3 @@
-// @ts-ignore
 import dayjs from 'dayjs';
 import flatten from 'lodash.flatten';
 import groupBy from 'lodash.groupby';
@@ -10,8 +9,8 @@ import {
   DEFAULT_RANGE_START,
   DEFAULT_TIME_FORMAT,
 } from '../../Filters/new/constants';
-import { type FilterDefinition } from '../../RangeFilter.types';
-import { type DateLimitMode } from './RangeFormContainer/RangeForm/RangeForm.types';
+import type { FilterDefinition } from '../../RangeFilter.types';
+import type { DateLimitMode } from './RangeFormContainer/RangeForm/RangeForm.types';
 
 const TODAY = new Date();
 

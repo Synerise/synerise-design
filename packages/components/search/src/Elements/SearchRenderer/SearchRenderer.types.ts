@@ -1,6 +1,6 @@
-import { type ReactElement } from 'react';
+import type { ReactElement } from 'react';
 
-import { type AnyObject } from '../../Search.types';
+import type { AnyObject } from '../../Search.types';
 
 export type SearchRendererProps = {
   title?: string;

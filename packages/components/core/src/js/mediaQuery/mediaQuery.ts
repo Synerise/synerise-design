@@ -1,7 +1,7 @@
 import {
+  css,
   type FlattenSimpleInterpolation,
   type SimpleInterpolation,
-  css,
 } from 'styled-components';
 
 import breakpoints, {
@@ -58,8 +58,9 @@ export const MEDIA_ONLY: BreakpointsType = (
     strings: TemplateStringsArray,
     ...interpolations: SimpleInterpolation[]
   ): FlattenSimpleInterpolation => css`
-    @media (min-width: ${breakpoints[label].min /
-      16}em) and (max-width: ${breakpoints[label].max / 16}em) {
+    @media (min-width: ${
+      breakpoints[label].min / 16
+    }em) and (max-width: ${breakpoints[label].max / 16}em) {
       ${css(strings, ...interpolations)};
     }
   `;

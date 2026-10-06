@@ -12,13 +12,13 @@ import Scrollbar from '@synerise/ds-scrollbar';
 import { DragOverlay, SortableContainer } from '@synerise/ds-sortable';
 import { useResizeObserver } from '@synerise/ds-utils';
 
-import { type Column } from '../ColumnManager.types';
+import type { Column } from '../ColumnManager.types';
 import type { ColumnManagerItemProps } from '../ColumnManagerItem/ColumManagerItem.types';
 import { ColumnManagerItem } from '../ColumnManagerItem/ColumnManagerItem';
 import { ColumnManagerSortableItem } from '../ColumnManagerSortableItem/ColumnManagerSortableItem';
 import type { ColumnManagerSortableItemProps } from '../ColumnManagerSortableItem/ColumnManagerSortableItem.types';
 import * as S from './ColumnManager.style';
-import { type ColumnManagerListProps } from './ColumnManagerList.types';
+import type { ColumnManagerListProps } from './ColumnManagerList.types';
 
 export const LIST_STYLE: CSSProperties = {
   overflowX: 'unset',

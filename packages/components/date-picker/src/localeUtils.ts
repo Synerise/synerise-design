@@ -1,6 +1,3 @@
-import MomentLocaleUtils from 'react-day-picker/moment';
-import type { LocaleUtils } from 'react-day-picker/types';
-
 const LOCALES = ['en', 'pl'];
 type Locale = (typeof LOCALES)[number];
 
@@ -108,8 +105,27 @@ function getFirstDayOfWeek(locale: string = DEFAULT_LOCALE): number {
   return FIRST_DAY[getValidLocale(locale)];
 }
 
-const localeUtils: LocaleUtils = {
-  ...MomentLocaleUtils,
+/**
+ * The locale helpers the calendar needs. Previously a `react-day-picker` v7 `LocaleUtils`
+ * object built by spreading `react-day-picker/moment`; v10 has no such concept, so the type is
+ * declared here and the moment-derived `formatDate` / `parseDate` / `getMonths` are gone. That
+ * spread was also the only thing pulling `moment` into this package, which never declared it.
+ *
+ * `DayPicker.tsx` adapts these into v10's `formatters` and `labels`.
+ */
+export type DateLocaleUtils = {
+  formatDay: (d: Date, format?: string, locale?: string) => string;
+  formatMonthTitle: (d: Date, locale?: string) => string;
+  formatWeekdayShort: (i: number, locale?: string) => string;
+  formatWeekdayLong: (weekday: number, locale?: string) => string;
+  getFirstDayOfWeek: (locale?: string) => number;
+};
+
+/**
+ * @deprecated Kept for backwards compatibility of the published surface. The calendar no longer
+ *   consumes this object directly.
+ */
+const localeUtils: DateLocaleUtils = {
   formatDay,
   formatMonthTitle,
   formatWeekdayShort,

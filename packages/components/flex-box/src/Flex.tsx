@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 
 import { StyledFlex } from './Flex.styles';
-import { type FlexProps } from './Flex.types';
+import type { FlexProps } from './Flex.types';
 
 export const Flex = forwardRef<HTMLElement, FlexProps>(
   ({ gap, ...rest }, ref) => (

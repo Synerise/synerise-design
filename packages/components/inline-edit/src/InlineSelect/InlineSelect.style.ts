@@ -1,10 +1,10 @@
 import styled, {
+  css,
   type FlattenInterpolation,
   type FlattenSimpleInterpolation,
-  css,
 } from 'styled-components';
 
-import { type ThemeProps } from '@synerise/ds-core';
+import type { ThemeProps } from '@synerise/ds-core';
 import { macro } from '@synerise/ds-typography';
 
 type InPlaceEditableInputContainerProps = {

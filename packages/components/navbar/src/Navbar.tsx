@@ -1,7 +1,7 @@
 import React from 'react';
 
 import * as S from './Navbar.styles';
-import { type NavbarProps } from './Navbar.types';
+import type { NavbarProps } from './Navbar.types';
 
 const Navbar = ({
   className,

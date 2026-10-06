@@ -1,17 +1,17 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React, { UIEvent, useState } from 'react';
 import { FixedSizeList } from 'react-window';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import List from '@synerise/ds-list';
 import Scrollbar, { ScrollbarProps } from '@synerise/ds-scrollbar';
 import Sortable from '@synerise/ds-sortable';
 
 import { fixedWrapper300 } from '../../utils';
 import {
-  INITIAL_DATA,
-  ItemType,
   getContent,
   getData,
+  INITIAL_DATA,
+  ItemType,
   renderItem,
 } from './Scrollbar.data';
 

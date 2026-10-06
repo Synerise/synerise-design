@@ -1,6 +1,6 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import type { BadgeProps } from '@synerise/ds-badge';
 import Icon, {
   AddM,

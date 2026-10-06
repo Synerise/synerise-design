@@ -1,7 +1,7 @@
 import React, { createRef } from 'react';
 import { act, fireEvent } from '@testing-library/react';
 
-import { renderWithProvider } from '@synerise/ds-core';
+import { renderWithProvider } from '@synerise/ds-core/testing';
 
 import Carousel from '../index';
 import { type CarouselRef } from '../Carousel.types';

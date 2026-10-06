@@ -1,10 +1,9 @@
+import type { ColumnDef } from '@tanstack/react-table';
 import React from 'react';
 
-import { type ColumnDef } from '@tanstack/react-table';
-
-import { SELECTION_COLUMN_ID } from '../Table.const';
-import { type TableTexts } from '../Table.types';
 import { TableRowSelection } from '../components/TableBody/TableRowSelection/TableRowSelection';
+import { SELECTION_COLUMN_ID } from '../Table.const';
+import type { TableTexts } from '../Table.types';
 
 export const processColumns = <TData extends object, TValue>(
   columns: ColumnDef<TData, TValue>[],

@@ -6,7 +6,7 @@ import ListItem, { ListWrapper } from '@synerise/ds-list-item';
 import Scrollbar from '@synerise/ds-scrollbar';
 
 import * as S from '../InformationCard.styles';
-import { type InformationCardActionsProps } from './InformationCardActions.types';
+import type { InformationCardActionsProps } from './InformationCardActions.types';
 
 const NAV_HEIGHT = 61;
 

@@ -53,6 +53,7 @@ Primary component. No `forwardRef`.
 | `onDeactivate` | `(stepId, conditionId) => void` | — | Fires when active field is blurred/cleared. |
 | `texts` | `Partial<ConditionTexts>` | see `useTranslations` | Override any label. Uses `react-intl` defaults. |
 | `autoClearCondition` | `boolean` | `false` | When `true`, changing subject/context/parameter clears downstream values. |
+| `shouldAutoOpenNextField` | `(change: ConditionFieldChange) => boolean` | — | Return `false` to suppress the active-field advance (and the row clearing that goes with it) for that change; only the matching `onChange*` still fires. |
 | `readOnly` | `boolean` | `false` | Disables all editing; hides add/remove/duplicate controls. |
 | `singleStepCondition` | `boolean` | — | Hides step CRUD and drag handle (single-step mode). |
 | `showActionAttribute` | `boolean` | — | Renders action-attribute selector after subject/context selection. |
@@ -176,7 +177,7 @@ Merges the `texts` prop with react-intl defaults. Requires `IntlProvider` in the
 ## Implementation notes
 
 - **Controlled-only** — the component holds no data state. All step and condition data lives in the parent. The component only manages UI state: which step/condition/field is currently active (`currentStepId`, `currentConditionId`, `currentField`).
-- **Active-field state machine** — selecting a subject auto-advances focus to `parameter` (or `actionAttribute` if `showActionAttribute`). Selecting a parameter advances to `operator`. Selecting an operator advances to `factor`. This is implemented via `setCurrentField` calls in `selectSubject`, `selectContext`, `selectParameter`, `selectOperator`.
+- **Active-field state machine** — selecting a subject auto-advances focus to `parameter` (or `actionAttribute` if `showActionAttribute`). Selecting a parameter advances to `operator`. Selecting an operator advances to `factor`. This is implemented via `setCurrentField` calls in `selectSubject`, `selectContext`, `selectParameter`, `selectOperator`. Hosts that update a value without a user picking it (an id swap, a migration) pass `shouldAutoOpenNextField` returning `false` so the row is left as it is.
 - **Drag is only enabled** when both `onChangeOrder` is provided AND `steps.length > 1`. The drag handle and `SortableContainer` are always rendered; the handle just has no effect without these.
 - **`autoClearCondition`** — when `true`, changing subject/context also fires `onChangeParameter`, `onChangeOperator`, `onChangeFactorValue` with `undefined` for all existing conditions, and removes all conditions beyond the first. This clears downstream values but the parent must still handle the callbacks to update its state.
 - **`hoverDisabled`** is also set automatically on steps that are not the currently active step (`currentStepId !== step.id`), creating a "focus" effect.

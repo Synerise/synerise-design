@@ -20,6 +20,7 @@ export const useDropdownVisibility = ({
     skipDuplicates.current = 0;
   }, [internalOpen]);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: dependencies intentionally omitted
   useEffect(() => {
     if (controlledComponent && open !== internalOpen) {
       if (skipDuplicates.current === 0) {
@@ -28,7 +29,6 @@ export const useDropdownVisibility = ({
       }
       setInternalOpen(open);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [controlledComponent, open]);
 
   const toggleOpen = useCallback(

@@ -2,7 +2,7 @@ import classnames from 'classnames';
 import React from 'react';
 
 import * as S from './Description.styles';
-import { type DescriptionProps } from './Description.types';
+import type { DescriptionProps } from './Description.types';
 
 const Description = ({
   type = 'table',

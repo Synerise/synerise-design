@@ -3,9 +3,9 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Text } from '@synerise/ds-typography';
 import { useResizeObserver } from '@synerise/ds-utils';
 
-import * as S from '../Slider.styles';
-import { type MarkArea, type SliderMarksProps } from '../Slider.types';
 import { useSliderContext } from '../context/SliderContext';
+import * as S from '../Slider.styles';
+import type { MarkArea, SliderMarksProps } from '../Slider.types';
 import { getTranslateX, isMarksObjType } from '../utils/Slider.utils';
 
 const HANDLE_HALF_WIDTH = 22;

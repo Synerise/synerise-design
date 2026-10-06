@@ -1,10 +1,10 @@
+import type { ColumnDef } from '@tanstack/react-table';
 import React, { useCallback, useMemo } from 'react';
 
 import Modal from '@synerise/ds-modal';
-import { type ColumnDef } from '@tanstack/react-table';
 
 import { VirtualTable } from '../../../../VirtualTable';
-import { type DataSourceType, type ModalProps } from './Modal.types';
+import type { DataSourceType, ModalProps } from './Modal.types';
 
 const DetailsModal = ({
   isOpen,

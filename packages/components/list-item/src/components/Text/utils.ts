@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 
-import { type AddonRenderer, type BasicItemProps } from '../../ListItem.types';
+import type { AddonRenderer, BasicItemProps } from '../../ListItem.types';
 
 export const renderAddon = (
   addon: ReactNode | AddonRenderer,

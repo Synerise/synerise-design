@@ -1,6 +1,6 @@
-import { type ReactText } from 'react';
+import type { ReactText } from 'react';
 
-import { type Delimiter, type NumberToFormatOptions } from '@synerise/ds-core';
+import type { Delimiter, NumberToFormatOptions } from '@synerise/ds-core';
 
 import {
   MAXIMUM_FRACTION_DIGITS,
@@ -41,7 +41,7 @@ export const formatNumber = (
   const numberResult = parseFloat(value);
   const notationDecimalChar =
     lastChar === NUMBER_DELIMITER ? notationDecimalDelimiter : '';
-  const zerosAtTheEnd = value.match(new RegExp('0+$'))?.[0];
+  const zerosAtTheEnd = value.match(/0+$/)?.[0];
   const zerosWithDecimalDelimiterAtTheEnd = value.match(
     new RegExp(`\\${NUMBER_DELIMITER}0+$`),
   )?.[0];

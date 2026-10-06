@@ -1,10 +1,10 @@
 import classnames from 'classnames';
 import React, {
   type FocusEvent,
+  forwardRef,
   type KeyboardEvent,
   type MouseEvent,
   type ReactNode,
-  forwardRef,
 } from 'react';
 
 import Icon, {
@@ -13,9 +13,10 @@ import Icon, {
   AngleUpS,
   CheckS,
 } from '@synerise/ds-icon';
-import { type WithHTMLAttributes } from '@synerise/ds-utils';
+import type { WithHTMLAttributes } from '@synerise/ds-utils';
 
-import { type ItemSize } from '../../ListItem.types';
+import type { ItemSize } from '../../ListItem.types';
+import { rendersDescription } from './ItemLabel.const';
 import * as S from './Text.styles';
 
 type ItemLabelProps = WithHTMLAttributes<
@@ -129,7 +130,7 @@ export const ItemLabel = forwardRef<HTMLDivElement, ItemLabelProps>(
           )}
           <S.Content className="ds-list-item-content">
             {content}
-            {description && size === 'large' && (
+            {description && rendersDescription(size) && (
               <S.Description>{description}</S.Description>
             )}
           </S.Content>

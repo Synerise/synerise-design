@@ -1,6 +1,5 @@
 import dayjs from 'dayjs';
 
-import { type UnitConfig } from '../Unit';
 import {
   AM,
   HOUR,
@@ -9,6 +8,7 @@ import {
   MAP_12_PM_TO_24_HOUR,
   PM,
 } from '../constants/timePicker.constants';
+import type { UnitConfig } from '../Unit';
 
 export const handleTimeChange = (
   value: Date | undefined,

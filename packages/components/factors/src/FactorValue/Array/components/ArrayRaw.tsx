@@ -8,10 +8,10 @@ import React, {
 
 import { useDelimiterEscape } from '@synerise/ds-utils';
 
-import { type ArrayValueElement } from '../../../Factors.types';
+import type { ArrayValueElement } from '../../../Factors.types';
 import { BACKTICK, COMMA } from '../Array.const';
 import * as S from '../Array.styles';
-import { type ArrayRawProps } from '../Array.types';
+import type { ArrayRawProps } from '../Array.types';
 import {
   arrayWithUUID,
   isArrayOfNumbersAsString,

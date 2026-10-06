@@ -1,8 +1,6 @@
 import range from 'lodash.range';
 import React from 'react';
-import { type WrappedComponentProps, injectIntl } from 'react-intl';
-
-import { legacyParse } from '@date-fns/upgrade/v2';
+import { injectIntl, type WrappedComponentProps } from 'react-intl';
 
 import {
   fnsAddYears,
@@ -14,14 +12,12 @@ import {
   fnsStartOfMonth,
 } from '../../fns';
 import fnsFormat from '../../format';
+import { toDateValue } from '../../toDateValue';
 import GridPicker from '../GridPicker/GridPicker';
-import { type Cell } from '../GridPicker/GridPicker.types';
+import type { Cell } from '../GridPicker/GridPicker.types';
 import Navbar from '../Navbar/Navbar';
 import YearPicker from '../YearPicker/YearPicker';
-import {
-  type MonthPickerProps,
-  type MonthPickerState,
-} from './MonthPicker.types';
+import type { MonthPickerProps, MonthPickerState } from './MonthPicker.types';
 
 function getInitialState(props: MonthPickerProps): MonthPickerState {
   return {
@@ -77,7 +73,7 @@ class MonthPicker extends React.PureComponent<
     const { min, max, value, intl, onChange } = this.props;
     const cells = getCells(cursor, min, max, intl?.locale);
     const valueCell = value
-      ? cells.find((cell) => fnsIsSameMonth(value, legacyParse(cell.key)))
+      ? cells.find((cell) => fnsIsSameMonth(value, toDateValue(cell.key)))
       : null;
     const selectedKey = valueCell ? valueCell.key : null;
     if (yearMode) {
@@ -92,6 +88,7 @@ class MonthPicker extends React.PureComponent<
     }
     return [
       <Navbar
+        singleStep
         onTitleClick={(): void => this.setState({ yearMode: true })}
         title={fnsFormat(cursor, 'yyyy')}
         onLongPrev={this.handleLongPrev}

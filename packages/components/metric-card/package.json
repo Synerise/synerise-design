@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-metric-card",
-  "version": "2.0.1",
+  "version": "2.0.6",
   "description": "MetricCard UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -48,9 +48,7 @@
     "@synerise/ds-panel": "workspace:^",
     "@synerise/ds-skeleton": "workspace:^",
     "@synerise/ds-tooltip": "workspace:^",
-    "@synerise/ds-typography": "workspace:^"
-  },
-  "devDependencies": {
+    "@synerise/ds-typography": "workspace:^",
     "@synerise/ds-utils": "workspace:^"
   },
   "peerDependencies": {

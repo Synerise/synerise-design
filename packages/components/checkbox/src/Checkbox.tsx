@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { type CheckboxProps } from './Checkbox.types';
+import type { CheckboxProps } from './Checkbox.types';
 import CheckboxGroup from './CheckboxGroup';
 import { CheckboxBase, CheckboxTristate } from './components';
 import { isTristateCheckbox } from './utils';

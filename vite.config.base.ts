@@ -14,6 +14,7 @@ import react from '@vitejs/plugin-react';
 
 import { getDsWorkspacePackages } from './scripts/vite/ds-workspace-map';
 import { ensureGeneratedSources } from './scripts/vite/ensure-generated-sources';
+import { stripPreloadHelperPlugin } from './scripts/vite/strip-preload-helper-plugin';
 import { stubLessImportsPlugin } from './scripts/vite/stub-less-plugin';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -82,6 +83,11 @@ function dsTestSourceRedirectPlugin(): Plugin {
         target = pkg.bareEntry;
       } else if (subpath === '/dist' || subpath.startsWith('/dist/')) {
         target = resolve(pkg.dir, `src${subpath.slice('/dist'.length)}`);
+      } else if (pkg.subpathEntries.has(subpath)) {
+        // A declared subpath export (e.g. @synerise/ds-core/testing). Left to the exports
+        // map it would load from dist while the rest of the package loads from src — two
+        // module instances of the same package, so two React contexts.
+        target = pkg.subpathEntries.get(subpath) as string;
       } else {
         return null;
       }
@@ -166,8 +172,6 @@ export const createViteConfig = (
     'prop-types',
     /^@synerise\/ds-/, // All design system packages
     'styled-components',
-    'antd',
-    /^antd\//, // Antd sub-imports
     /^lodash/,
     /^ramda/,
     '@floating-ui/react',
@@ -186,7 +190,6 @@ export const createViteConfig = (
     'react-window',
     'nanoid',
     'classnames',
-    /^rc-/, // All rc-* packages
     'react-scrollbars-custom',
     'react-perfect-scrollbar',
     'moment',
@@ -197,7 +200,6 @@ export const createViteConfig = (
     '@testing-library/dom',
     /^@testing-library\//,
     /^@formatjs\//,
-    /^@ant-design\//,
   ];
 
   const allExternal = [...defaultExternal, ...external];
@@ -306,6 +308,9 @@ export const createViteConfig = (
       externalizeDepPlugin(),
       // Stub LESS imports (we compile them separately)
       stubLessImportsPlugin(),
+      // Keep Vite's __vitePreload helper out of dist - it collides with the one a
+      // consuming app's own Vite injects, and no Vite consumer can bundle us with it
+      stripPreloadHelperPlugin(),
       // React plugin with styled-components support
       react({
         babel: {
@@ -410,5 +415,3 @@ export const createViteConfig = (
     ),
   });
 };
-
-export default createViteConfig;

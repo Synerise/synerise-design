@@ -3,6 +3,50 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-dropdown@2.1.2...@synerise/ds-dropdown@2.1.3) (2026-09-24)
+
+**Note:** Version bump only for package @synerise/ds-dropdown
+
+
+
+
+
+## [2.1.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-dropdown@2.1.1...@synerise/ds-dropdown@2.1.2) (2026-09-22)
+
+
+### Bug Fixes
+
+* **core:** move test helpers to a ./testing subpath export ([b38cd82](https://github.com/synerise/synerise-design/commit/b38cd82c956111d2331d5c1e0efd1935366f1139))
+
+
+
+
+
+## [2.1.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-dropdown@2.1.0...@synerise/ds-dropdown@2.1.1) (2026-09-18)
+
+
+### Bug Fixes
+
+* **dropdown:** clear the item-click close timer when the list unmounts ([07f32bb](https://github.com/synerise/synerise-design/commit/07f32bb9308955886b57739cfcb84f99f71914bc))
+
+
+
+
+
+# [2.1.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-dropdown@2.0.3...@synerise/ds-dropdown@2.1.0) (2026-09-16)
+
+### Features
+
+- **list-item:** add content-fitting size="auto" ([e269f0a](https://github.com/synerise/synerise-design/commit/e269f0a48ca7472f4766a50a957e22d7988c5e13))
+
+## [2.0.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-dropdown@2.0.2...@synerise/ds-dropdown@2.0.3) (2026-09-08)
+
+**Note:** Version bump only for package @synerise/ds-dropdown
+
+## [2.0.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-dropdown@2.0.1...@synerise/ds-dropdown@2.0.2) (2026-09-07)
+
+**Note:** Version bump only for package @synerise/ds-dropdown
+
 ## [2.0.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-dropdown@2.0.0...@synerise/ds-dropdown@2.0.1) (2026-09-02)
 
 **Note:** Version bump only for package @synerise/ds-dropdown

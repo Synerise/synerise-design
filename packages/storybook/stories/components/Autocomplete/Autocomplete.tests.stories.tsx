@@ -1,9 +1,9 @@
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
 
-import type { Meta, StoryObj } from '@storybook/react-vite';
-import Autocomplete from '@synerise/ds-autocomplete';
 import type { AutocompleteProps } from '@synerise/ds-autocomplete';
+import Autocomplete from '@synerise/ds-autocomplete';
 
 import { fixedWrapper200, fixedWrapper400 } from '../../utils';
 import {

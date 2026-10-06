@@ -3,7 +3,7 @@ import React from 'react';
 import Icon from '@synerise/ds-icon';
 import ListItem from '@synerise/ds-list-item';
 
-import { type SubjectItem } from '../Subject.types';
+import type { SubjectItem } from '../Subject.types';
 
 type Props = {
   item: SubjectItem;

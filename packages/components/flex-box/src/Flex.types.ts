@@ -1,4 +1,4 @@
-import { type FlexProps as RebassFlexProps } from '@rebass/grid';
+import type { FlexProps as RebassFlexProps } from '@rebass/grid';
 
 export type FlexProps = RebassFlexProps & {
   /**

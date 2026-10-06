@@ -1,14 +1,14 @@
+import { useMergeRefs } from '@floating-ui/react';
 import React, {
+  forwardRef,
   type ReactNode,
   type UIEvent,
-  forwardRef,
   useCallback,
   useRef,
   useState,
 } from 'react';
 
-import { useMergeRefs } from '@floating-ui/react';
-import { type WithHTMLAttributes, useResizeObserver } from '@synerise/ds-utils';
+import { useResizeObserver, type WithHTMLAttributes } from '@synerise/ds-utils';
 
 import * as S from './TableHorizontalScroll.styles';
 

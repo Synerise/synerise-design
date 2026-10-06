@@ -10,12 +10,12 @@ import React, {
 import * as S from './PanelResizer.styles';
 import { Resizer } from './Resizer';
 import {
-  type InitialVectorOptions,
   calculateLeftPanelHeight,
   calculateLeftPanelWidth,
   calculateRightPanelHeight,
   calculateRightPanelWidth,
   getInitialVector,
+  type InitialVectorOptions,
 } from './utils';
 
 type PanelsResizerProps = {
@@ -38,6 +38,7 @@ export const PanelsResizer = ({
   const [vector, setVector] = useState(0);
   const startClientXRef = useRef(0);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: dependencies intentionally omitted
   useEffect(() => {
     if (containerRef.current) {
       const containerWidth = isHorizontal
@@ -46,7 +47,6 @@ export const PanelsResizer = ({
       const initialVector = getInitialVector(initial, containerWidth);
       setVector(initialVector);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleMouseMove = useCallback(

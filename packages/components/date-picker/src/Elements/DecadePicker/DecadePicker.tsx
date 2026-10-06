@@ -1,16 +1,15 @@
 import range from 'lodash.range';
 import React from 'react';
 
-import { legacyParse } from '@date-fns/upgrade/v2';
-
 import { fnsAddYears, fnsGetYear, fnsSetYear } from '../../fns';
+import { toDateValue } from '../../toDateValue';
 import { getCenturyRange, getDecadeRange } from '../../utils';
 import GridPicker from '../GridPicker/GridPicker';
-import { type Cell } from '../GridPicker/GridPicker.types';
+import type { Cell } from '../GridPicker/GridPicker.types';
 import Navbar from '../Navbar/Navbar';
-import {
-  type DecadePickerProps,
-  type DecadePickerState,
+import type {
+  DecadePickerProps,
+  DecadePickerState,
 } from './DecadePicker.types';
 
 function getInitialState(props: DecadePickerProps): DecadePickerState {
@@ -76,7 +75,7 @@ export default class DecadePicker extends React.PureComponent<
     const valueCell = value
       ? cells.find((cell: Cell) => {
           const valueYear = fnsGetYear(value);
-          const minYear = fnsGetYear(legacyParse(cell.key));
+          const minYear = fnsGetYear(toDateValue(cell.key));
           const maxYear = minYear + 10;
           return valueYear >= minYear && valueYear < maxYear;
         })
@@ -97,6 +96,7 @@ export default class DecadePicker extends React.PureComponent<
     ];
     return [
       <Navbar
+        singleStep
         title={centuryRange.join('-')}
         onTitleClick={onTitleClick}
         onLongPrev={this.handleLongPrev}

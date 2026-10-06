@@ -7,7 +7,7 @@ import Icon, { CalendarM, ClockM } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 
 import * as S from './Footer.styles';
-import { type Props } from './Footer.types';
+import type { Props } from './Footer.types';
 
 const Footer: React.FC<Props> = ({
   text,

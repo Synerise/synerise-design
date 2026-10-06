@@ -5,7 +5,7 @@ import Icon, { ArrowLeftM } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 
 import * as S from './BackAction.styles';
-import { type Props } from './BackAction.types';
+import type { Props } from './BackAction.types';
 
 export const BackAction = ({
   label,

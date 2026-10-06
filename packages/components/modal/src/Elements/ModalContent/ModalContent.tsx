@@ -1,7 +1,7 @@
 import React, {
+  forwardRef,
   type KeyboardEvent,
   type MouseEvent,
-  forwardRef,
   useCallback,
   useEffect,
   useId,
@@ -11,15 +11,15 @@ import React, {
 } from 'react';
 
 import {
-  OverlayZIndexProvider,
   createOverlayCloseEvent,
+  OverlayZIndexProvider,
   registerOverlay,
   useResolvedOverlayZIndex,
 } from '@synerise/ds-core';
 import { useFocusTrap, useLatestRef } from '@synerise/ds-utils';
 
 import { SIZE_MAP } from '../../Modal.const';
-import { type ModalContentProps, type ModalRef } from '../../Modal.types';
+import type { ModalContentProps, ModalRef } from '../../Modal.types';
 import { ModalFooter } from '../ModalFooter';
 import { ModalTitle } from '../ModalTitle';
 import * as S from './ModalContent.styles';

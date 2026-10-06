@@ -1,21 +1,17 @@
-export { Table } from './Table';
-export { TreeTable } from './components/TreeTable/TreeTable';
-export { VirtualTable } from './VirtualTable';
+export type {
+  CellContext,
+  ColumnDef,
+  HeaderContext,
+  Row,
+} from '@tanstack/react-table';
 
 /** @deprecated  */
 export * as TableCell from './components/Cell';
 export * from './components/Cell';
-
-export * from './Table.types';
+export { TreeTable } from './components/TreeTable/TreeTable';
 export type { TreeTableProps } from './components/TreeTable/TreeTable.types';
-
+export { Table } from './Table';
 export * from './Table.const';
-
+export * from './Table.types';
 export { legacyColumnConfigAdapter } from './utils/legacyColumnConfigAdapter';
-
-export {
-  type ColumnDef,
-  type Row,
-  type CellContext,
-  type HeaderContext,
-} from '@tanstack/react-table';
+export { VirtualTable } from './VirtualTable';

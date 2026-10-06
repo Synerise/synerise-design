@@ -1,6 +1,6 @@
 import styled, {
-  type FlattenSimpleInterpolation,
   css,
+  type FlattenSimpleInterpolation,
 } from 'styled-components';
 
 import { Container } from '@synerise/ds-date-picker/dist/Elements/PickerInput/PickerInput.styles';
@@ -70,22 +70,13 @@ export const FactorInput = styled.div<{
 
     .ds-autocomplete {
       display: flex;
-      /* The de-antd autocomplete carries its width on .ds-autocomplete itself
-         (AutocompleteWrapper defaults to 200px when autoResize is unset) and no
-         longer renders an inner .ant-select. Force the wrapper to fill the
-         FactorValue slot — restores the master-era override that used to sit on
-         the inner .ant-select (width 100%). */
+      /* The autocomplete carries its width on .ds-autocomplete itself
+         (AutocompleteWrapper defaults to 200px when autoResize is unset), so
+         force the wrapper to fill the FactorValue slot. */
       width: 100%;
       > * {
         min-width: 0;
         flex-grow: 1;
-      }
-      .ant-select-selection-placeholder {
-        padding: 0;
-      }
-      .ant-select-selector {
-        border-radius: ${(props): string =>
-          props.withoutTypeSelector ? '3px' : '0 3px 3px 0'};
       }
     }
   }

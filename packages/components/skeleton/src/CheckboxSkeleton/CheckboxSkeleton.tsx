@@ -4,7 +4,7 @@ import { v4 as uuid } from 'uuid';
 import Checkbox from '@synerise/ds-checkbox';
 
 import * as S from './CheckboxSkeleton.styles';
-import { type CheckboxSkeletonProps } from './CheckboxSkeleton.types';
+import type { CheckboxSkeletonProps } from './CheckboxSkeleton.types';
 
 const CheckboxSkeleton = ({
   size = 'M',

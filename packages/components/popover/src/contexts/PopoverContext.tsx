@@ -1,6 +1,6 @@
-import { type Dispatch, type SetStateAction, createContext } from 'react';
+import { createContext, type Dispatch, type SetStateAction } from 'react';
 
-import { type UsePopoverReturn } from '../Popover.types';
+import type { UsePopoverReturn } from '../Popover.types';
 
 export type ContextType =
   | (UsePopoverReturn & {

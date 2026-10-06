@@ -114,7 +114,7 @@ Styles in `StepCard.styles.ts`. Key states:
 - `@synerise/ds-inline-alert` — `InlineAlert` for "Moved" success feedback
 - `@synerise/ds-icon` — `DragHandleM`
 - `@synerise/ds-typography` — `Title` for condition type label
-- `@synerise/ds-sortable` — `DragHandlePropType` (dev dependency only)
+- `@synerise/ds-sortable` — `DragHandlePropType`, imported by the published types
 - `react-intl` — i18n defaults in `useDefaultTexts` (peer dependency)
 
 ## Implementation notes

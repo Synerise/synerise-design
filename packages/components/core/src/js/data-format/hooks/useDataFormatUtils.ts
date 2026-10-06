@@ -1,5 +1,4 @@
 import dayjs, { type Dayjs } from 'dayjs';
-import moment, { type Moment } from 'moment';
 import { useCallback } from 'react';
 import { type IntlShape, useIntl } from 'react-intl';
 
@@ -22,12 +21,13 @@ import {
   WEEKDAY_LONG,
   WEEKDAY_SHORT,
 } from '../constants';
-import {
-  type CommonFormatOptions,
-  type DataFormatNotationType,
-  type DateToFormatOptions,
-  type Delimiter,
-  type NumberToFormatOptions,
+import type {
+  CommonFormatOptions,
+  DataFormatNotationType,
+  DateToFormatOptions,
+  Delimiter,
+  MomentLike,
+  NumberToFormatOptions,
 } from '../types';
 import {
   addPrefix,
@@ -63,7 +63,7 @@ export const useDataFormatUtils = (): {
     options?: DateToFormatOptions,
   ) => string;
   getFormattedDateFromMoment: (
-    value: Moment,
+    value: MomentLike,
     dateFormatIntl: IntlShape,
     timeFormatIntl: IntlShape,
     options?: DateToFormatOptions,
@@ -263,13 +263,15 @@ export const useDataFormatUtils = (): {
 
   const getFormattedDateFromMoment = useCallback(
     (
-      value: Moment,
+      value: MomentLike,
       dateFormatIntl: IntlShape,
       timeFormatIntl: IntlShape,
       options?: DateToFormatOptions,
     ): string => {
+      // A moment value carries its own `toDate()`, so the previous `moment(value)` wrapper was
+      // re-wrapping a moment in a moment to reach a method it already had.
       return getFormattedDate(
-        moment(value).toDate(),
+        value.toDate(),
         dateFormatIntl,
         timeFormatIntl,
         options,

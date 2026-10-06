@@ -1,6 +1,6 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React, { useState } from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import Slider, {
   AllocationSliderProps,
   AllocationVariant,
@@ -8,9 +8,9 @@ import Slider, {
 
 import {
   BOOLEAN_CONTROL,
+  fixedWrapper400,
   NUMBER_CONTROL,
   REACT_NODE_AS_STRING,
-  fixedWrapper400,
 } from '../../utils';
 import {
   ALLOCATION_CONFIG,

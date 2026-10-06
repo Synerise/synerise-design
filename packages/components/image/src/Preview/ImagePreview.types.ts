@@ -1,9 +1,9 @@
-import { type ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
-import {
-  type ImageSource,
-  type ImageTexts,
-  type InitialZoom,
+import type {
+  ImageSource,
+  ImageTexts,
+  InitialZoom,
 } from '../shared/Image.shared.types';
 
 export type ImagePreviewProps = {

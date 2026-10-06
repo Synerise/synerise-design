@@ -5,14 +5,19 @@ description: Migrate a design-system component off Ant Design to a DS-native sty
 
 ## Overview
 
+> ⚠️ **Retired — nothing left to de-antd.** The antd-removal initiative closed on 2026-09-03: `antd`
+> is gone from every `package.json` and every source file in this repo, and `no-restricted-imports`
+> now bans the import outright. The last three antd-backed packages (`ds-menu`, `ds-alert`,
+> `ds-table`) were retired by deletion rather than migration. This skill is kept only as a record of
+> the playbook — it has no remaining target here. Delete it once nobody needs the reference.
+
 Remove the `antd` dependency from one `@synerise/ds-*` component, replacing it with a DS-native
 implementation (styled-components + `@synerise/ds-core` tokens) while **preserving the visual look and
 the public API as closely as possible**. This skill is the distilled process from the first migrations
 (Badge, Typography) — follow it to shorten the cycle.
 
 Initiative context: `docs/adr/0001-remove-antd-dependency.md` (decision + tier order) and
-`docs/antd-migration-status.md` (per-component status). Both live on the `docs/antd-removal` branch.
-`ds-table` is out of scope.
+`docs/antd-migration-status.md` (per-component status, now closed out).
 
 ## Arguments
 
@@ -86,7 +91,7 @@ cd synerise-design1 && git checkout -q refactor/deantd-<comp> 2>/dev/null \
     will beat a plain prop block — wrap variant/checked overrides in `&&` (→ `0,2,0`) when they must win
     over a positional rule, and keep competing variant blocks (e.g. `$solid && $checked`) at the **same**
     `&&` level so source-order decides (later wins).
-  - **Inline SVG data-URIs:** double-quote the SVG attributes and wrap in `url('…')` (single) — prettier
+  - **Inline SVG data-URIs:** double-quote the SVG attributes and wrap in `url('…')` (single) — biome
     normalises CSS `url()` quotes to single inside `css\`\``, so `url("…")` around a single-quoted SVG
     gets reverted and the image silently drops (the checkbox tick bug). See [[reference_prerelease_yarn_stale_tgz_cache]] for the related re-pin gotcha.
   - Confirm afterwards: `rg "\.(ant|ds)-" <comp>/src/*.styles.* <comp>/src/**/*.styles.*` returns **no
@@ -143,7 +148,7 @@ add it under `dependencies` as `workspace:^`.
 cd synerise-design1
 pnpm --filter @synerise/ds-<comp> run types     # tsc --noEmit
 pnpm --filter @synerise/ds-<comp> test           # vitest
-pnpm exec eslint --fix packages/components/<comp>/src
+pnpm exec biome check --write packages/components/<comp>/src
 pnpm --filter @synerise/ds-<comp> build          # vite + dts
 rg "from 'antd'|import 'antd'|require\('antd'|~antd" packages/components/<comp>/src   # → empty
 rg "antd" packages/components/<comp>/package.json                                     # → empty
@@ -173,7 +178,7 @@ each refinement decision. Test behaviour via the kept class names (`.ant-<comp>-
 - **Switching branches can unlink a workspace dep** that only exists on this branch's `package.json` →
   re-run `pnpm install`, then rebuild the shared dep. Symptom: `Cannot find module '@synerise/ds-utils'`
   + cascading `any`/index-type errors.
-- The **lint-staged pre-commit hook reformats** files (eslint --fix + prettier) and folds the changes into
+- The **lint-staged pre-commit hook reformats** files (`biome check --write`) and folds the changes into
   the commit — re-Read files before further edits.
 
 ---
@@ -181,7 +186,7 @@ each refinement decision. Test behaviour via the kept class names (`.ant-<comp>-
 ## Phase 5 — Docs & stories (same branch)
 
 - Update the component `CLAUDE.md` + `README.md` (props table, removed-props note, structure).
-- Update **Storybook stories** that used removed props (they're eslint-ignored but must still compile for
+- Update **Storybook stories** that used removed props (they're not linted but must still compile for
   the storybook build) and any `*.figma.tsx` Code Connect mappings.
 - Update `docs/antd-migration-status.md` (on `docs/antd-removal`) — mark the component done + MR link.
 
@@ -236,7 +241,7 @@ change was that now-unnecessary migration.
 ## Phase 8 — Verify the pipeline (do NOT stop at push)
 
 Pushing is **not** "done". Poll the GitLab pipeline for the branch until it is green and fix anything it
-surfaces as part of this flow. Local `tsc`/vitest/eslint/build passing is necessary but **not sufficient** —
+surfaces as part of this flow. Local `tsc`/vitest/biome/build passing is necessary but **not sufficient** —
 only Chromatic runs the story `play` functions in a real browser.
 
 ```bash

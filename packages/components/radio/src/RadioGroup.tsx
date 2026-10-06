@@ -1,15 +1,15 @@
 import React, { useCallback, useMemo, useState } from 'react';
 
+import { RadioBase, RadioButton } from './components';
 import * as S from './Radio.styles';
-import {
-  type RadioChangeEvent,
-  type RadioChangeEventTarget,
-  type RadioGroupProps,
-  type RadioOptionType,
-  type RadioValueType,
+import type {
+  RadioChangeEvent,
+  RadioChangeEventTarget,
+  RadioGroupProps,
+  RadioOptionType,
+  RadioValueType,
 } from './Radio.types';
 import { RadioGroupContext, type RadioGroupContextValue } from './RadioContext';
-import { RadioBase, RadioButton } from './components';
 
 const cx = (...classes: (string | false | undefined)[]): string =>
   classes.filter(Boolean).join(' ');

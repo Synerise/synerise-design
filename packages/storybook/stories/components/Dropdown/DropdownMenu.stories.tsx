@@ -1,6 +1,6 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React, { forwardRef, useState } from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import Button, { Creator } from '@synerise/ds-button';
 import ButtonGroup from '@synerise/ds-button-group';
 import Checkbox from '@synerise/ds-checkbox';
@@ -14,18 +14,19 @@ import { getPopupContainer } from '@synerise/ds-utils';
 
 import {
   BOOLEAN_CONTROL,
-  NUMBER_CONTROL,
-  REACT_NODE_NO_CONTROL,
   centeredPaddedWrapper,
   controlFromOptionsArray,
   fixedWrapper800,
+  NUMBER_CONTROL,
   overflowTestWrapper,
+  REACT_NODE_NO_CONTROL,
 } from '../../utils';
 import { PLACEMENTS } from './Dropdown.data';
 import {
   BottomLeftWrapper,
   BottomRightWrapper,
   MENU_ITEMS,
+  MENU_ITEMS_MIXED_SIZES,
   MENU_ITEMS_MULTI_SELECT,
   MENU_ITEMS_PLAIN,
   PageWrapper,
@@ -279,5 +280,26 @@ export const CreatorTrigger: StoryObj<StoryType> = {
   args: {
     ...Simple.args,
     children: <Creator label="Open dropdown" />,
+  },
+};
+
+/**
+ * `size="auto"` rows next to `default` and `large` ones. Row heights are content-driven, so
+ * the menu measures each row rather than sizing it from `LIST_ITEM_SIZE_MAPPING` — the map's
+ * `auto` entry is only the 32px floor, and using it alone would overlap the wrapped rows.
+ */
+export const WithAutoSizeItems: StoryObj<StoryType> = {
+  args: {
+    open: true,
+    size: 'medium',
+    dataSource: MENU_ITEMS_MIXED_SIZES,
+  },
+};
+
+/** The same list virtualised — offsets must come from the measured heights. */
+export const WithAutoSizeItemsVirtualised: StoryObj<StoryType> = {
+  args: {
+    ...WithAutoSizeItems.args,
+    virtualised: true,
   },
 };

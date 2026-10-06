@@ -11,7 +11,7 @@ import { Input } from '@synerise/ds-input';
 import Tooltip from '@synerise/ds-tooltip';
 
 import * as S from '../../SubtleForm.styles';
-import { type SubtleInputProps } from './Input.types';
+import type { SubtleInputProps } from './Input.types';
 
 const SubtleInput = ({
   disabled,
@@ -79,7 +79,7 @@ const SubtleInput = ({
               $disabled={disabled}
             >
               <S.MainContent>
-                {value && !!value.trim() ? value : placeholder}
+                {value && value.trim() ? value : placeholder}
               </S.MainContent>
               {suffix && (
                 <S.Suffix>

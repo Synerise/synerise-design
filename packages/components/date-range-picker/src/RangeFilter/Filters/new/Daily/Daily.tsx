@@ -5,7 +5,7 @@ import { useIntl } from 'react-intl';
 import { getDefaultTexts } from '../../../../utils';
 import * as S from '../../../RangeFilter.styles';
 import { AddButton } from '../../../Shared';
-import { type DateLimitMode } from '../../../Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
+import type { DateLimitMode } from '../../../Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
 import RangeFormContainer from '../../../Shared/TimeWindow/RangeFormContainer/RangeFormContainer';
 import type { DateValue } from '../../../Shared/TimeWindow/RangeFormContainer/RangeFormContainer.types';
 import {
@@ -17,7 +17,7 @@ import {
   NOOP,
   RENDER_EMPTY_NODE_FN,
 } from '../constants';
-import { type DailyProps, type DailySchedule } from './Daily.types';
+import type { DailyProps, DailySchedule } from './Daily.types';
 
 const Daily = ({
   maxEntries = DEFAULT_MAX_ENTRIES,
@@ -64,7 +64,7 @@ const Daily = ({
   );
   const getDayValue = useCallback(
     (index?: number): DailySchedule => {
-      if (typeof index === 'number' && !!value[index]) {
+      if (typeof index === 'number' && value[index]) {
         return value[index];
       }
       return defaultDayValue;

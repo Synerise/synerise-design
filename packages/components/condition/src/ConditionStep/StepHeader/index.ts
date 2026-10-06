@@ -1,2 +1,2 @@
-export * from './StepHeader.types';
 export * from './StepHeader';
+export * from './StepHeader.types';

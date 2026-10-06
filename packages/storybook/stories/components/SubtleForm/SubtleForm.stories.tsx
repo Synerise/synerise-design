@@ -1,16 +1,15 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React, { useState } from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import InputNumber from '@synerise/ds-input-number';
 import Select, { SelectValue } from '@synerise/ds-select';
 import SubtleForm from '@synerise/ds-subtle-form';
-import { replaceLettersWithUnderscore } from '@synerise/ds-subtle-form/dist/Elements/DatePicker/utils';
 
 import {
   BOOLEAN_CONTROL,
   CLASSNAME_ARG_CONTROL,
-  REACT_NODE_AS_STRING,
   fixedWrapper300,
+  REACT_NODE_AS_STRING,
 } from '../../utils';
 import { Cities, renderLabel } from './SubtleForm.data';
 
@@ -120,12 +119,10 @@ export const SubtleFormDatePicker: Story = {
     const [value, setValue] = useState<Date>();
     const [open, setOpen] = useState(false);
 
-    const format = 'dd-MM-yyyy';
     return (
       <SubtleForm.DatePicker
         {...args}
         autoFocus
-        format={format}
         onApply={(val) => setValue(val)}
         onClear={() => {
           setValue(undefined);
@@ -140,7 +137,6 @@ export const SubtleFormDatePicker: Story = {
         activeProp={open}
         texts={
           {
-            inputPlaceholder: replaceLettersWithUnderscore(format),
             clearTooltip: 'Clear',
           } as any
         }

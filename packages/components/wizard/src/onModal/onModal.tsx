@@ -6,7 +6,7 @@ import Icon, { ArrowLeftCircleM } from '@synerise/ds-icon';
 import Modal from '@synerise/ds-modal';
 
 import * as S from '../Wizard.styles';
-import { type OnModalProps } from './onModal.types';
+import type { OnModalProps } from './onModal.types';
 
 const WizardOnModal = ({
   visible,
@@ -20,6 +20,7 @@ const WizardOnModal = ({
   texts,
   modalProps,
   stepButtonProps,
+  footerAction,
 }: OnModalProps) => {
   const intl = useIntl();
   const prevButtonProps = stepButtonProps?.prevButtonProps
@@ -66,8 +67,9 @@ const WizardOnModal = ({
             </S.ModalWizardButtonsInfix>
           )}
 
-          {(modalProps?.suffix || onNextStep) && (
+          {(modalProps?.suffix || footerAction || onNextStep) && (
             <S.ModalWizardButtonsSuffix>
+              {footerAction}
               {onNextStep && (
                 <Button {...nextButtonProps} onClick={onNextStep}>
                   {texts?.nextButtonLabel ||
@@ -77,7 +79,7 @@ const WizardOnModal = ({
                     })}
                 </Button>
               )}
-              {modalProps.suffix}
+              {modalProps?.suffix}
             </S.ModalWizardButtonsSuffix>
           )}
         </S.ModalWizardButtons>

@@ -3,8 +3,8 @@ import { useArgs } from 'storybook/preview-api';
 
 import { ObjectAvatar, UserAvatar } from '@synerise/ds-avatar';
 import Button from '@synerise/ds-button';
-import Card, { CardBadge } from '@synerise/ds-card';
 import type { CardProps } from '@synerise/ds-card';
+import Card, { CardBadge } from '@synerise/ds-card';
 import Icon, {
   AiSearchGreyM,
   AnalyticsGreyM,
@@ -221,14 +221,6 @@ export const CARD_CONTENT = (
     consequences, or one who avoids a pain that produces no resultant pleasure?
   </>
 );
-
-export const CARD_BACKGROUNDS = [
-  'white',
-  'white-shadow',
-  'grey',
-  'grey-shadow',
-  'outline',
-];
 
 export const CUSTOM_BADGES = {
   icon: (

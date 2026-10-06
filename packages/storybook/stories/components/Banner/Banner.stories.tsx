@@ -1,16 +1,16 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 import { fn } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import Banner, { BannerProps } from '@synerise/ds-banner';
 import Icon, { ProductLastSeenColor } from '@synerise/ds-icon';
 
 import {
   BOOLEAN_CONTROL,
-  NUMBER_CONTROL,
   controlFromOptionsArray,
   fixedWrapper1200,
   flexColumnWrapper,
+  NUMBER_CONTROL,
 } from '../../utils';
 import { SLIDES } from './Banner.data';
 

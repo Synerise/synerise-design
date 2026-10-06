@@ -10,7 +10,7 @@ import Icon from '@synerise/ds-icon';
 import InlineAlert, { type InlineAlertType } from '@synerise/ds-inline-alert';
 
 import * as S from './InformationCard.styles';
-import { type BadgeData } from './InformationCard.types';
+import type { BadgeData } from './InformationCard.types';
 
 export function buildInitialsBadge(name: string) {
   return <Initials name={name} />;

@@ -3,9 +3,9 @@ import React from 'react';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { SearchM } from '@synerise/ds-icon';
 
-import { type SourceType } from '../../IconPicker.types';
+import type { SourceType } from '../../IconPicker.types';
 import List from '../List/List';
-import { type OverlayType } from './Overlay.types';
+import type { OverlayType } from './Overlay.types';
 
 const Overlay = <Source extends SourceType>({
   value,

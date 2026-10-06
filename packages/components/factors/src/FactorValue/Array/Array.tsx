@@ -4,11 +4,11 @@ import { useTheme } from '@synerise/ds-core';
 import Icon, { EditS } from '@synerise/ds-icon';
 import { TagShape } from '@synerise/ds-tag';
 
-import {
-  type ArrayItemType,
-  type ArrayValueElement,
-  type FactorValueComponentProps,
-  type FactorValueType,
+import type {
+  ArrayItemType,
+  ArrayValueElement,
+  FactorValueComponentProps,
+  FactorValueType,
 } from '../../Factors.types';
 import * as S from './Array.styles';
 import { ArrayModal } from './components/ArrayModal';

@@ -1,10 +1,9 @@
+import { flexRender } from '@tanstack/react-table';
 import React from 'react';
 
-import { flexRender } from '@tanstack/react-table';
-
-import { type TableColumnsProps } from '../../Table.types';
 import { useStickyContext } from '../../contexts/StickyContext';
 import { useTableContext } from '../../contexts/TableContext';
+import type { TableColumnsProps } from '../../Table.types';
 import { getUnifiedColumnSizingStyle } from '../../utils/getUnifiedColumnSizingStyle';
 import { isSorted } from '../../utils/sort';
 import { TableColumnSorter } from './TableColumnSorter/TableColumnSorter';

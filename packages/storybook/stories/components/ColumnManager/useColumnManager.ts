@@ -10,6 +10,6 @@ export const useColumnManager = (visible?: boolean) => {
     columns,
     setColumns,
     columnManagerVisible,
-    setColumnManagerVisible
+    setColumnManagerVisible,
   };
 };

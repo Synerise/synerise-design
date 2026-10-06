@@ -1,11 +1,10 @@
+import type { Ranger } from '@tanstack/react-ranger';
 import React, {
+  createContext,
   type ReactNode,
   type RefObject,
-  createContext,
   useContext,
 } from 'react';
-
-import type { Ranger } from '@tanstack/react-ranger';
 
 interface SliderContextType {
   rangerInstance: Ranger<HTMLDivElement>;

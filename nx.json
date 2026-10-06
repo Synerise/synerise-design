@@ -46,7 +46,7 @@
             "dependsOn": [],
             "inputs": [
                 "default",
-                "{workspaceRoot}/eslint.config.mjs"
+                "{workspaceRoot}/biome.json"
             ]
         }
     },

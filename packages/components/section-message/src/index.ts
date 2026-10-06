@@ -1,14 +1,12 @@
 export { default } from './SectionMessage';
-
 export {
-  NumberWrapper,
   IconOrderWrapper,
+  NumberWrapper,
   OrderWrapper,
   Wrapper,
 } from './SectionMessage.styles';
-
 export type {
+  CustomColorType,
   SectionMessageProps,
   SectionType,
-  CustomColorType,
 } from './SectionMessage.types';

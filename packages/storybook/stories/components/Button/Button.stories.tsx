@@ -1,16 +1,16 @@
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 
-import type { Meta, StoryObj } from '@storybook/react-vite';
 import Avatar from '@synerise/ds-avatar';
-import Button from '@synerise/ds-button';
 import type { ButtonProps } from '@synerise/ds-button';
+import Button from '@synerise/ds-button';
 import Icon, { Add2S, AngleDownS, CheckS } from '@synerise/ds-icon';
 import { customColors } from '@synerise/ds-tokens/names';
 
 import {
   BOOLEAN_CONTROL,
-  CLASSNAME_ARG_CONTROL,
   buttonDecorator,
+  CLASSNAME_ARG_CONTROL,
   controlFromOptionsArray,
   reactNodeAsSelect,
 } from '../../utils';
@@ -20,6 +20,7 @@ import {
   Matrix,
   MatrixCell,
   MatrixColumn,
+  SINGLE_ICON_SIZES,
 } from './Button.constants';
 import { getModeLeft, getModeRight, getModeSplit } from './Button.data';
 
@@ -431,8 +432,9 @@ const MODES = [
     title: 'two-icons',
     children: (
       <>
-        <Icon component={<Add2S />} /> Label{' '}
-        <Icon component={<AngleDownS />} />{' '}
+        <Icon component={<Add2S />} /> Label <Icon
+          component={<AngleDownS />}
+        />{' '}
       </>
     ),
   },
@@ -506,4 +508,53 @@ export const ButtonMatrixFocus: Story = {
     pseudo: { focusVisible: true },
   },
   ...ButtonMatrix,
+};
+
+/**
+ * `mode="single-icon"` is square: the width tracks `size` just as the height does, and `block`
+ * stretches it like any other mode. Both were dead for years — the width rule outranked its own
+ * overrides in the cascade — and jsdom does not reproduce that cascade, so this story is the
+ * regression net (see `Components/Button/Tests`).
+ */
+export const SingleIconSizes: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<Button type="primary" mode="single-icon" size="small">
+  <Icon component={<AngleDownS />} />
+</Button>
+<Button type="primary" mode="single-icon">
+  <Icon component={<AngleDownS />} />
+</Button>
+<Button type="primary" mode="single-icon" size="large">
+  <Icon component={<AngleDownS />} />
+</Button>
+<Button type="primary" mode="single-icon" block>
+  <Icon component={<AngleDownS />} />
+</Button>`,
+      },
+    },
+  },
+  render: () => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+        {SINGLE_ICON_SIZES.map(({ size, label }) => (
+          <div key={label} style={{ textAlign: 'center' }}>
+            <Button type="primary" mode="single-icon" size={size}>
+              <Icon component={<AngleDownS />} />
+            </Button>
+            <div style={{ fontSize: 11, marginTop: 4 }}>{label}</div>
+          </div>
+        ))}
+      </div>
+      <div style={{ width: 240 }}>
+        <Button type="primary" mode="single-icon" block>
+          <Icon component={<AngleDownS />} />
+        </Button>
+        <div style={{ fontSize: 11, marginTop: 4 }}>
+          block (240px container)
+        </div>
+      </div>
+    </div>
+  ),
 };

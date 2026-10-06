@@ -1,4 +1,4 @@
-import { type FlattenSimpleInterpolation, css } from 'styled-components';
+import { css, type FlattenSimpleInterpolation } from 'styled-components';
 
 /**
  * Button variant styles — direct port of button.mixin.less to styled-components.
@@ -32,10 +32,12 @@ const buttonDisabled = (
 ) => css`
   &.disabled,
   &[disabled] {
-    ${applyOpacity &&
-    css`
+    ${
+      applyOpacity &&
+      css`
       opacity: var(--ds-buttons-disabled-opacity);
-    `}
+    `
+    }
     &,
     &:hover,
     &:focus-visible,

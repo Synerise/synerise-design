@@ -1,28 +1,29 @@
-import {
-  type CSSProperties,
-  type Dispatch,
-  type ReactNode,
-  type RefObject,
-  type SetStateAction,
+import type {
+  ArrowOptions,
+  AutoUpdateOptions,
+  Delay,
+  FlipOptions,
+  HideOptions,
+  OffsetOptions,
+  OpenChangeReason,
+  Placement,
+  ShiftOptions,
+  UseDismissProps,
+  UseFloatingReturn,
+  UseHoverProps,
+  UseInteractionsReturn,
+  UseListNavigationProps,
+  UseTransitionStylesProps,
+} from '@floating-ui/react';
+import type {
+  CSSProperties,
+  Dispatch,
+  ReactNode,
+  RefObject,
+  SetStateAction,
 } from 'react';
 
-import {
-  type ArrowOptions,
-  type AutoUpdateOptions,
-  type Delay,
-  type FlipOptions,
-  type OffsetOptions,
-  type OpenChangeReason,
-  type Placement,
-  type ShiftOptions,
-  type UseDismissProps,
-  type UseFloatingReturn,
-  type UseHoverProps,
-  type UseInteractionsReturn,
-  type UseListNavigationProps,
-  type UseTransitionStylesProps,
-} from '@floating-ui/react';
-import { type OverlayKind } from '@synerise/ds-core';
+import type { OverlayKind } from '@synerise/ds-core';
 
 export type PopoverProps = {
   children: ReactNode;
@@ -37,6 +38,7 @@ export type OffsetConfig = SharedMiddlewareConfig &
   Exclude<OffsetOptions, number>;
 export type FlipConfig = SharedMiddlewareConfig & FlipOptions;
 export type ShiftConfig = SharedMiddlewareConfig & ShiftOptions;
+export type HideConfig = SharedMiddlewareConfig & HideOptions;
 export type HoverConfig = Omit<UseHoverProps, 'enabled'>;
 export type DelayConfig = Delay;
 
@@ -57,6 +59,21 @@ export type PopoverOptions = {
   offsetConfig?: OffsetConfig;
   flipConfig?: FlipConfig;
   shiftConfig?: ShiftConfig;
+  /**
+   * Controls hiding the overlay while its anchor is not visible — scrolled out of the viewport, or
+   * clipped by a scrolling ancestor such as a table's sticky header parking itself.
+   *
+   * On by default. `autoUpdate` keeps the overlay glued to its anchor, so without this an overlay
+   * whose anchor scrolls away follows it off-screen and stays mounted: invisible, but still holding
+   * focus and swallowing clicks.
+   *
+   * It hides rather than closes, so state is kept — a half-filled form in a popover survives a
+   * scroll away and back. Set `{ enabled: false }` for an overlay that must stay visible regardless
+   * of its anchor.
+   *
+   * @default { enabled: true }
+   */
+  hideConfig?: HideConfig;
   hoverConfig?: HoverConfig;
   arrowConfig?: Omit<ArrowOptions, 'element'>;
   dismissConfig?: UseDismissProps;

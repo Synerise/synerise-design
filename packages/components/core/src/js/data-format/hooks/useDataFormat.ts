@@ -1,19 +1,27 @@
 import { isDayjs } from 'dayjs';
-import moment, { type Moment } from 'moment';
 import { useCallback, useMemo } from 'react';
 
 import { DATE_CONSTANTS_TARGET_FORMATS } from '../constants';
-import {
-  type Delimiter,
-  type OverloadFormatMultipleValues,
-  type OverloadFormatValue,
-  type OverloadGetConstants,
+import type {
+  Delimiter,
+  MomentLike,
+  OverloadFormatMultipleValues,
+  OverloadFormatValue,
+  OverloadGetConstants,
 } from '../types';
 import { getConstantDatesAndFormattingOptions } from '../utils';
 import { isValidDate } from '../utils/date.utils';
 import { useDataFormatConfig } from './useDataFormatConfig';
 import { useDataFormatIntls } from './useDataFormatIntls';
 import { useDataFormatUtils } from './useDataFormatUtils';
+
+/**
+ * A moment value, recognised by shape. A `Date` is excluded explicitly: it has no `toDate`, but the
+ * check is cheap insurance against a future subclass that adds one.
+ */
+const isMomentLike = (value: unknown): value is MomentLike =>
+  typeof (value as MomentLike | undefined)?.toDate === 'function' &&
+  !(value instanceof Date);
 
 export type UseDataFormatProps = {
   firstDayOfWeek: number;
@@ -59,21 +67,23 @@ export const useDataFormat = (): UseDataFormatProps => {
   );
 
   const formatValue = useCallback<OverloadFormatValue>(
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // biome-ignore lint/suspicious/noExplicitAny: upstream type is not expressible here
     (value: any, options?: any) => {
       let result = '';
 
-      if (value instanceof moment) {
-        result = getFormattedDateFromMoment(
-          value as Moment,
+      // dayjs is tested first, and the moment branch is `else if`, because both libraries expose
+      // `toDate()`. Recognising a moment structurally is what lets this package drop the moment
+      // dependency, but it means the two branches can no longer be independent `if`s — a dayjs
+      // value matches both shapes, and whichever ran last would win.
+      if (isDayjs(value)) {
+        result = getFormattedDateFromDayjs(
+          value,
           dateFormatIntl,
           timeFormatIntl,
           options,
         );
-      }
-
-      if (isDayjs(value)) {
-        result = getFormattedDateFromDayjs(
+      } else if (isMomentLike(value)) {
+        result = getFormattedDateFromMoment(
           value,
           dateFormatIntl,
           timeFormatIntl,
@@ -117,7 +127,7 @@ export const useDataFormat = (): UseDataFormatProps => {
   );
 
   const formatMultipleValues = useCallback<OverloadFormatMultipleValues>(
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // biome-ignore lint/suspicious/noExplicitAny: upstream type is not expressible here
     (values: any[], options?: any) => {
       return values.map((value) => formatValue(value, options));
     },

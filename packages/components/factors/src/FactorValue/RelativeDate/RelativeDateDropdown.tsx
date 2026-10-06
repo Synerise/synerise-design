@@ -5,11 +5,11 @@ import { InputGroup } from '@synerise/ds-input';
 import InputNumber from '@synerise/ds-input-number';
 import Select from '@synerise/ds-select';
 
-import {
-  type RelativeDateFactorTexts,
-  type RelativeDateUnit,
-  type RelativeDateValueType,
-  type RelativeTimeRelation,
+import type {
+  RelativeDateFactorTexts,
+  RelativeDateUnit,
+  RelativeDateValueType,
+  RelativeTimeRelation,
 } from '../../Factors.types';
 import {
   AFTER,

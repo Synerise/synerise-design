@@ -16,10 +16,10 @@ import { SIZER_STYLE, useAutosizeWidth } from '@synerise/ds-input';
 import Tooltip from '@synerise/ds-tooltip';
 
 import * as S from './Autocomplete.styles';
-import {
-  type AutocompleteInputHandle,
-  type AutocompleteOption,
-  type AutocompleteProps,
+import type {
+  AutocompleteInputHandle,
+  AutocompleteOption,
+  AutocompleteProps,
 } from './Autocomplete.types';
 import AutocompleteDropdown from './AutocompleteDropdown/AutocompleteDropdown';
 import { Option } from './Option';

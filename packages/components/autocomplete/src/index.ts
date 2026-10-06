@@ -7,8 +7,8 @@ import type { OptionProps } from './Option';
 
 export { default } from './Autocomplete';
 export type {
-  AutocompleteProps,
-  AutocompleteOption,
   AutocompleteInputHandle,
+  AutocompleteOption,
+  AutocompleteProps,
   OptionProps,
 };

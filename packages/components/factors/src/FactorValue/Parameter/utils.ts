@@ -1,10 +1,10 @@
-import { type ParameterGroup } from '../../Factors.types';
-import {
-  type DividerItem,
-  type DropdownItem,
-  type MixedDropdownItemProps,
-  type ParameterDropdownTitleProps,
-  type TitleItem,
+import type { ParameterGroup } from '../../Factors.types';
+import type {
+  DividerItem,
+  DropdownItem,
+  MixedDropdownItemProps,
+  ParameterDropdownTitleProps,
+  TitleItem,
 } from './Parameter.types';
 
 const NO_GROUP_NAME = 'NO_GROUP_NAME';

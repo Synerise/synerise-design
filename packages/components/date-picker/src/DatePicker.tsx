@@ -14,7 +14,6 @@ const DatePicker = ({
   autoFocus,
   disabled,
   texts,
-  format,
   valueFormatOptions,
   value,
   onApply,
@@ -92,7 +91,6 @@ const DatePicker = ({
             }
           : undefined
       }
-      format={format}
       valueFormatOptions={valueFormatOptions}
       onClear={handleClear}
       placeholder={allTexts.inputPlaceholder}

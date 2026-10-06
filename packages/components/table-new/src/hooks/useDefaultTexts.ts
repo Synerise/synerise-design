@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { useIntl } from 'react-intl';
 
-import { type TableTexts } from '../Table.types';
+import type { TableTexts } from '../Table.types';
 
 export const useDefaultTexts = (
   defaultTexts?: Partial<TableTexts>,

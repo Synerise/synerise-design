@@ -1,10 +1,11 @@
 import React from 'react';
-import Footer from '@synerise/ds-footer';
+
 import Button from '@synerise/ds-button';
+import Footer from '@synerise/ds-footer';
 import Icon, { AcademyM, ChatM, LifebuoyM } from '@synerise/ds-icon';
 
 export default () => (
-  <Footer style={{marginTop: '16px'}}>
+  <Footer style={{ marginTop: '16px' }}>
     <Button type="ghost" mode="icon-label">
       <Icon component={<AcademyM />} /> Help
     </Button>

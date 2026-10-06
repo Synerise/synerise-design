@@ -1,4 +1,5 @@
 import figma from '@figma/code-connect';
+
 import { CheckboxSkeleton } from '@synerise/ds-skeleton';
 
 import Checkbox from './Checkbox';

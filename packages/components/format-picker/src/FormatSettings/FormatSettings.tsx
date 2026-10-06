@@ -17,12 +17,9 @@ import Radio from '@synerise/ds-radio';
 import Tooltip from '@synerise/ds-tooltip';
 import { Title } from '@synerise/ds-typography';
 
-import {
-  type FormatPickerTexts,
-  type FormattingType,
-} from '../FomartPicker.types';
+import type { FormatPickerTexts, FormattingType } from '../FomartPicker.types';
 import * as S from './FormatSettings.styles';
-import { type FormatSettingsProps } from './FormatSettings.types';
+import type { FormatSettingsProps } from './FormatSettings.types';
 
 const DEFAULT_CURRENCIES_CONFIG = [
   {

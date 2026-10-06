@@ -1,7 +1,7 @@
-import {
-  type DataSource,
-  type FilterElement,
-  type ValueTypeForSource,
+import type {
+  DataSource,
+  FilterElement,
+  ValueTypeForSource,
 } from '../IconPicker.types';
 
 export const prepareItems = (

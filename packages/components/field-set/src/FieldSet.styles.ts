@@ -66,13 +66,15 @@ export const CollapsibleContent = styled.div<{
     css`
       ${props.shouldAnimate && 'transition: max-height 0.7s ease-in-out;'}
       overflow: hidden;
-      ${props.expanded
-        ? `
+      ${
+        props.expanded
+          ? `
     max-height: ${props.maxHeight || 9999}px;
     `
-        : `
+          : `
     max-height: 0;
-    `}
+    `
+      }
     `}
 `;
 export const CollapsibleContentInner = styled.div``;

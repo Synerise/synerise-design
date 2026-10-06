@@ -1,3 +1,4 @@
+import type { ColumnSizingState } from '@tanstack/react-table';
 import {
   type MutableRefObject,
   useCallback,
@@ -6,7 +7,6 @@ import {
 } from 'react';
 
 import { useDebounce, useResizeObserver } from '@synerise/ds-utils';
-import { type ColumnSizingState } from '@tanstack/react-table';
 
 import { calculatePixels } from '../utils/calculatePixels';
 

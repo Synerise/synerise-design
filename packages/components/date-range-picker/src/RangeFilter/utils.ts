@@ -2,18 +2,18 @@ import groupBy from 'lodash.groupby';
 import omit from 'lodash.omit';
 import range from 'lodash.range';
 
-import {
-  type DenormalizedFilter,
-  type FilterDefinition,
-  type FilterValue,
-  type MonthlyFilterDefinition,
-  type NormalizedFilter,
-  type NormalizedFilterBase,
-  type WeekFilter,
-  type WeeklyFilterDefinition,
-} from './RangeFilter.types';
-import { type SavedFilter } from './Shared/FilterDropdown/FilterDropdown.types';
 import { COUNTED_FROM_ENUM, DAYS_OF_PERIOD_ENUM, TYPES } from './constants';
+import type {
+  DenormalizedFilter,
+  FilterDefinition,
+  FilterValue,
+  MonthlyFilterDefinition,
+  NormalizedFilter,
+  NormalizedFilterBase,
+  WeekFilter,
+  WeeklyFilterDefinition,
+} from './RangeFilter.types';
+import type { SavedFilter } from './Shared/FilterDropdown/FilterDropdown.types';
 
 /*
  * Map field from components to datefilter schema
@@ -61,7 +61,7 @@ export const denormMapTimeSchema = (
 export const normalizeValue = ({
   type,
   definition,
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // biome-ignore lint/suspicious/noExplicitAny: upstream type is not expressible here
 }: FilterValue): NormalizedFilterBase | { rules: any } => {
   const result = { type, nestingType: 'IN_PLACE' };
   let days: unknown[];
@@ -88,7 +88,7 @@ export const normalizeValue = ({
             weeks: Object.entries(groupBy(days, 'week')).map(
               ([week, daysArray]) => ({
                 week: +week + 1,
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                // biome-ignore lint/suspicious/noExplicitAny: upstream type is not expressible here
                 days: daysArray.map((day: any) => {
                   const dayOfWeek = ((day.day - 1) % 7) + 1;
                   return {
@@ -143,7 +143,7 @@ export const createWeeklyRange = (days: NormalizedFilter[]) =>
 export const createMonthlyWeekDayRange = (rules: {
   weeks?: (NormalizedFilter & WeekFilter)[];
 }): MonthlyDayRange =>
-  // eslint-disable-next-line @typescript-eslint/no-empty-object-type
+  // biome-ignore lint/complexity/noBannedTypes: intentional empty shape
   range(0, 7 * 5 + 1).reduce((acc: {}, i: number) => {
     const weekStartIndex = Math.floor(i / 7);
     const week = weekStartIndex;
@@ -176,7 +176,7 @@ export type MonthlyDayRange = {
 export const createMonthlyDayRange = (rules: {
   days?: NormalizedFilter[];
 }): MonthlyDayRange =>
-  // eslint-disable-next-line @typescript-eslint/no-empty-object-type
+  // biome-ignore lint/complexity/noBannedTypes: intentional empty shape
   range(0, 32).reduce((acc: {}, i: number) => {
     const day = rules.days && rules.days.find((d) => d.day === i);
     return day
@@ -206,13 +206,13 @@ export const denormalizers: { [key: string]: Function } = {
         ? COUNTED_FROM_ENUM.ENDING
         : COUNTED_FROM_ENUM.BEGINNING,
 
-      // @ts-ignore
+      // @ts-expect-error
       definition: monthlyDenormalizers[value.type](value),
     }));
   },
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// biome-ignore lint/suspicious/noExplicitAny: upstream type is not expressible here
 export const validators: { [key: string]: (values: any) => boolean } = {
   [TYPES.DAILY]: (values: FilterValue) =>
     Boolean(!!values?.definition?.start && !!values?.definition?.stop),
@@ -221,9 +221,9 @@ export const validators: { [key: string]: (values: any) => boolean } = {
   [TYPES.MONTHLY]: (values: FilterValue<MonthlyFilterDefinition>) =>
     Boolean(
       values?.definition &&
-      !!Object.keys(values.definition) &&
-      // @ts-expect-error requires type refactor
-      Object.keys(values.definition[0].definition).length > 0,
+        !!Object.keys(values.definition) &&
+        // @ts-expect-error requires type refactor
+        Object.keys(values.definition[0].definition).length > 0,
     ),
 };
 

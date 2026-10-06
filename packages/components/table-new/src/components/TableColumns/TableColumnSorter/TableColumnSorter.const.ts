@@ -1,4 +1,4 @@
-import { type SortDirection } from '@tanstack/react-table';
+import type { SortDirection } from '@tanstack/react-table';
 
 export const ASCENDING: SortDirection = 'asc';
 export const DESCENDING: SortDirection = 'desc';

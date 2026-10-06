@@ -1,7 +1,7 @@
 import React from 'react';
 
 import * as S from './HoverableSuffix.styles';
-import { type HoverableSuffixProps } from './HoverableSuffix.types';
+import type { HoverableSuffixProps } from './HoverableSuffix.types';
 
 export const HoverableSuffix = ({
   hovered,

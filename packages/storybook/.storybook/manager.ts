@@ -1,9 +1,9 @@
-import {
-  type TagBadgeParameters,
-  defaultConfig,
-} from 'storybook-addon-tag-badges/manager-helpers';
 import { addons } from 'storybook/manager-api';
 import { create } from 'storybook/theming/create';
+import {
+  defaultConfig,
+  type TagBadgeParameters,
+} from 'storybook-addon-tag-badges/manager-helpers';
 
 import { theme } from '../../../packages/components/core/src/js/DSProvider/ThemeProvider/theme';
 // @ts-ignore

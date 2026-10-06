@@ -1,7 +1,7 @@
-import React, { type ReactNode, forwardRef, useEffect, useState } from 'react';
+import React, { forwardRef, type ReactNode, useEffect, useState } from 'react';
 
 import * as S from './BaseButton.styles';
-import { type BaseButtonProps } from './BaseButton.types';
+import type { BaseButtonProps } from './BaseButton.types';
 
 const sizeClassMap: Record<string, string> = {
   large: 'ant-btn-lg',
@@ -115,7 +115,7 @@ const BaseButton = forwardRef<
         download,
       };
       return (
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        // biome-ignore lint/suspicious/noExplicitAny: upstream type is not expressible here
         <S.Button {...(anchorProps as any)}>{wrapChildren(children)}</S.Button>
       );
     }

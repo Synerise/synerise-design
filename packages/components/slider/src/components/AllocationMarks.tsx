@@ -3,12 +3,12 @@ import { useIntl } from 'react-intl';
 
 import Tooltip from '@synerise/ds-tooltip';
 
-import {
-  type AllocationConfig,
-  type AllocationVariant,
-  type ColorMap,
-} from '../Slider.types';
 import { useSliderContext } from '../context/SliderContext';
+import type {
+  AllocationConfig,
+  AllocationVariant,
+  ColorMap,
+} from '../Slider.types';
 import * as S from './AllocationMarks.styles';
 
 type AllocationMarksProps = AllocationConfig & {

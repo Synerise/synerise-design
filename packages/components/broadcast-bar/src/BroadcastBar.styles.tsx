@@ -1,7 +1,7 @@
-import { type ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import styled, { css } from 'styled-components';
 
-import { type BroadcastBarType } from './BroadcastBar.types';
+import type { BroadcastBarType } from './BroadcastBar.types';
 
 const TYPE_TO_TOKEN_VARIANT: Record<BroadcastBarType, string> = {
   success: 'success',

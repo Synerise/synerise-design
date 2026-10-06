@@ -3,7 +3,7 @@ import { screen, fireEvent } from '@testing-library/react';
 
 
 import MetricCard from '../MetricCard';
-import { renderWithProvider } from '@synerise/ds-core';
+import { renderWithProvider } from '@synerise/ds-core/testing';
 
 describe('Section message component', () => {
 

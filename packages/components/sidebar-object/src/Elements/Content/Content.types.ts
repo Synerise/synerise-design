@@ -1,7 +1,7 @@
-import { type SubtleTextAreaProps } from '@synerise/ds-subtle-form';
+import type { SubtleTextAreaProps } from '@synerise/ds-subtle-form';
 
-import { type FolderItem } from '../../SidebarObject.types';
-import { type OverviewTexts } from '../Overview/Overview.types';
+import type { FolderItem } from '../../SidebarObject.types';
+import type { OverviewTexts } from '../Overview/Overview.types';
 
 export type ContentProps = {
   descriptionProps?: SubtleTextAreaProps;

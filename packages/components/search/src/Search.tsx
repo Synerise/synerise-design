@@ -3,6 +3,11 @@ import React, { type ReactNode, useEffect, useRef, useState } from 'react';
 import Scrollbar from '@synerise/ds-scrollbar';
 import { focusWithArrowKeys, useOnClickOutside } from '@synerise/ds-utils';
 
+import {
+  INPUT_EXPAND_ANIMATION_DURATION,
+  MENU_WIDTH_OFFSET,
+  SCROLLBAR_HEIGHT_OFFSET,
+} from './const';
 import { SearchInput } from './Elements';
 import SearchRenderer from './Elements/SearchRenderer/SearchRenderer';
 import {
@@ -17,11 +22,6 @@ import {
   type SearchProps,
   SelectResultDataKeys,
 } from './Search.types';
-import {
-  INPUT_EXPAND_ANIMATION_DURATION,
-  MENU_WIDTH_OFFSET,
-  SCROLLBAR_HEIGHT_OFFSET,
-} from './const';
 
 export function Search<
   T extends AnyObject,
@@ -347,11 +347,11 @@ export function Search<
   );
   const shouldRenderSuggestions = Boolean(
     suggestions &&
-    suggestionsDisplayProps &&
-    parameterValue &&
-    !isResultChosen &&
-    filteredSuggestions &&
-    hasSomeElement(filteredSuggestions),
+      suggestionsDisplayProps &&
+      parameterValue &&
+      !isResultChosen &&
+      filteredSuggestions &&
+      hasSomeElement(filteredSuggestions),
   );
 
   const renderInputWrapper = (): ReactNode => {

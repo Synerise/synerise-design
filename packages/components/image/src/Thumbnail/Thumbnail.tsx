@@ -12,7 +12,7 @@ import {
   SIZE_MAP,
 } from './Thumbnail.const';
 import * as S from './Thumbnail.styles';
-import { type ThumbnailProps } from './Thumbnail.types';
+import type { ThumbnailProps } from './Thumbnail.types';
 
 const Thumbnail = ({
   src,

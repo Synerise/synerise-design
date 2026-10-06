@@ -1,10 +1,10 @@
 import type React from 'react';
 
-import { type ObjectStringKeys } from '@synerise/ds-utils';
+import type { ObjectStringKeys } from '@synerise/ds-utils';
 
-import { type ShowMoreTexts } from '../LabelsWithShowMore.types';
+import type { ShowMoreTexts } from '../LabelsWithShowMore.types';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// biome-ignore lint/suspicious/noExplicitAny: upstream type is not expressible here
 export type DataSourceType = Record<string, any> & {
   key: React.ReactText;
 };

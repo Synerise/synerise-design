@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-image",
-  "version": "2.0.2",
+  "version": "2.0.7",
   "description": "Image UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -51,6 +51,7 @@
   "peerDependencies": {
     "@synerise/ds-core": "*",
     "react": ">=16.9.0 <= 18.3.1",
+    "react-dom": ">=16.9.0 <= 18.3.1",
     "react-intl": ">=3.12.0 <= 6.8",
     "styled-components": "^5.3.3",
     "vitest": "4"

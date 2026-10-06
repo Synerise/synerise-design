@@ -5,15 +5,15 @@ import React, { useEffect } from 'react';
 import InputNumber from '@synerise/ds-input-number';
 import Select from '@synerise/ds-select';
 
-import { type Texts } from '../../../../DateRangePicker.types';
 import {
   RANGES_MODE,
   RELATIVE_DURATION_MAX,
   RELATIVE_UNITS,
 } from '../../../../constants';
-import { type RelativeUnits } from '../../../../date.types';
+import type { Texts } from '../../../../DateRangePicker.types';
+import type { RelativeUnits } from '../../../../date.types';
 import * as S from '../../../RelativeRangePicker.styles';
-import { type Props } from './DurationField.types';
+import type { Props } from './DurationField.types';
 
 export const setDurationType = set(lensPath(['duration', 'type']));
 const DurationField = ({

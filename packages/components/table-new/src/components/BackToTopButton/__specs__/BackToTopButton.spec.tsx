@@ -1,6 +1,6 @@
 import React, { type MutableRefObject, useRef } from 'react';
 
-import { renderWithProvider } from '@synerise/ds-core';
+import { renderWithProvider } from '@synerise/ds-core/testing';
 import { act, fireEvent, screen } from '@testing-library/react';
 
 import { BackToTopButton } from '../BackToTopButton';

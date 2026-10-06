@@ -1,10 +1,9 @@
+import { DragOverlay, type DragStartEvent } from '@dnd-kit/core';
+import { restrictToParentElement } from '@dnd-kit/modifiers';
 import React, { useEffect, useMemo, useState } from 'react';
 import { v4 as uuid } from 'uuid';
 
-import { DragOverlay, type DragStartEvent } from '@dnd-kit/core';
-import { restrictToParentElement } from '@dnd-kit/modifiers';
-
-import { type BaseItem, type SortableProps } from './Sortable.types';
+import type { BaseItem, SortableProps } from './Sortable.types';
 import { SortableContainer } from './SortableContainer';
 import { SortableItem } from './SortableItem';
 

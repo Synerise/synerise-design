@@ -2,9 +2,9 @@ import React, { type ReactNode } from 'react';
 
 import Button from '@synerise/ds-button';
 
-import {
-  type ActionAreaWithCustomActionProps,
-  type ActionAreaWithStandardActionProps,
+import type {
+  ActionAreaWithCustomActionProps,
+  ActionAreaWithStandardActionProps,
 } from './ActionArea.types';
 
 const isCustomActionArea = (

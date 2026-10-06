@@ -3,7 +3,7 @@ import React from 'react';
 import Button from '@synerise/ds-button';
 
 import * as S from './AddItem.styles';
-import { type AddItemProps } from './AddItem.types';
+import type { AddItemProps } from './AddItem.types';
 
 const AddItemComponent = ({
   disabled,

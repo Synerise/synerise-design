@@ -1,13 +1,13 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import ProgressBar from '@synerise/ds-progress-bar';
 
 import {
   BOOLEAN_CONTROL,
+  fixedWrapper300,
   NUMBER_CONTROL,
   STRING_CONTROL,
-  fixedWrapper300,
 } from '../../utils';
 
 export default {

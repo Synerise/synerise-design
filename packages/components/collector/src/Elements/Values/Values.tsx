@@ -1,7 +1,7 @@
 import React from 'react';
 
 import * as S from '../../Collector.styles';
-import { type ValuesProps } from './Values.types';
+import type { ValuesProps } from './Values.types';
 
 const Values = ({
   values,

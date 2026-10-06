@@ -3,8 +3,8 @@ import { FormattedMessage } from 'react-intl';
 
 import Result from '@synerise/ds-result';
 
-import { type TableEmptyBodyProps } from '../../../Table.types';
 import { useTableContext } from '../../../contexts/TableContext';
+import type { TableEmptyBodyProps } from '../../../Table.types';
 import * as S from './TableEmptyBody.styles';
 
 export const TableEmptyBody = <TData, TValue>({

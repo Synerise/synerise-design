@@ -4,7 +4,7 @@ import Icon from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 
 import * as S from './IconTooltipCell.styles';
-import { type IconTooltipCellProps } from './IconTooltipCell.types';
+import type { IconTooltipCellProps } from './IconTooltipCell.types';
 
 const IconTooltipCell = ({
   label,

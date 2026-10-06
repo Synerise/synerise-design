@@ -1,19 +1,16 @@
+import { isValid as fnsIsValid, parseISO } from 'date-fns';
 import React, { useCallback, useMemo } from 'react';
-import { useIntl } from 'react-intl';
 
 import Button from '@synerise/ds-button';
 import { getDefaultDataTimeOptions, useDataFormat } from '@synerise/ds-core';
 import Icon, { ArrowRightS } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 
-import { type Texts } from '../DateRangePicker.types';
-import { isLifetime } from '../RelativeRangePicker/Elements/RangeDropdown/RangeDropdown';
 import * as CONST from '../constants';
-import fnsFormat from '../dateUtils/format';
-import getDateFromString from '../dateUtils/getDateFromString';
-import { toIsoStringWithoutZone } from '../utils';
+import type { Texts } from '../DateRangePicker.types';
+import { isLifetime } from '../RelativeRangePicker/Elements/RangeDropdown/RangeDropdown';
 import * as S from './Footer.styles';
-import { type Props } from './Footer.types';
+import type { Props } from './Footer.types';
 
 const Footer = ({
   canApply,
@@ -25,31 +22,31 @@ const Footer = ({
   message,
   texts,
   value,
-  format,
   valueFormatOptions,
   showTime,
   displayDateContainerClass = 'ds-date-range-picker-value',
   ...rest
 }: Props) => {
   const { formatValue } = useDataFormat();
-  const { locale } = useIntl();
-  const footerFormat =
-    format || (showTime ? 'MMM D, YYYY, HH:mm' : 'MMM D, YYYY');
 
   const footerDateToString = useCallback(
     (date: Date | string) => {
-      if (format || typeof date === 'string') {
-        return fnsFormat(getDateFromString(date), footerFormat, locale);
+      // Bounds arrive as either form, and both denote the same thing, so both take the same route.
+      // A string used to be run through a hardcoded moment-token pattern instead, which is what
+      // kept `@date-fns/upgrade`'s `convertTokens` alive and made the rendering depend on which
+      // form the caller happened to hold.
+      const parsed = typeof date === 'string' ? parseISO(date) : date;
+
+      if (!fnsIsValid(parsed)) {
+        return '';
       }
 
-      const parseDate = new Date(toIsoStringWithoutZone(date));
-
-      return formatValue(parseDate, {
+      return formatValue(parsed, {
         ...getDefaultDataTimeOptions(showTime),
         ...valueFormatOptions,
       });
     },
-    [footerFormat, format, formatValue, locale, valueFormatOptions, showTime],
+    [formatValue, valueFormatOptions, showTime],
   );
 
   const ChosenRange = useMemo(() => {
@@ -65,12 +62,12 @@ const Footer = ({
     }
     return (
       <S.ChosenRange className={displayDateContainerClass}>
-        {!!value && !!value.from
+        {value && value.from
           ? footerDateToString(value?.from)
           : texts.startDatePlaceholder}
         <S.InvisibleTextContent>{' – '}</S.InvisibleTextContent>
         <Icon component={<ArrowRightS />} />
-        {!!value && !!value.to
+        {value && value.to
           ? footerDateToString(value?.to)
           : texts.endDatePlaceholder}
       </S.ChosenRange>

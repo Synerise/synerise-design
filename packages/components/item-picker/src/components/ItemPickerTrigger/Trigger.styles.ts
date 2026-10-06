@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components';
 
-import { type ThemeProps } from '@synerise/ds-core';
+import type { ThemeProps } from '@synerise/ds-core';
 
-import { type ItemPickerSize } from '../ItemPickerLegacy/ItemPickerLegacy.types';
+import type { ItemPickerSize } from '../ItemPickerLegacy/ItemPickerLegacy.types';
 
 type TriggerWrapperProps = {
   opened: boolean;

@@ -1,4 +1,5 @@
 import React from 'react';
+
 import Radio from '@synerise/ds-radio';
 
 export const STEPS = [
@@ -59,8 +60,3 @@ export const STEPS = [
     ),
   },
 ];
-
-export const DEFAULT_STATE = {
-  activeStep: 0,
-  visible: false,
-};

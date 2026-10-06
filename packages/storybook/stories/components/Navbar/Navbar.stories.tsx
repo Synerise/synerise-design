@@ -1,6 +1,6 @@
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 
-import type { Meta, StoryObj } from '@storybook/react-vite';
 import { UserAvatar } from '@synerise/ds-avatar';
 import Button from '@synerise/ds-button';
 import Icon, {
@@ -16,9 +16,9 @@ import { customColors } from '@synerise/ds-tokens/names';
 
 import {
   CLASSNAME_ARG_CONTROL,
-  REACT_NODE_AS_STRING,
   centeredPaddedWrapper,
   controlFromOptionsArray,
+  REACT_NODE_AS_STRING,
   reactNodeAsSelect,
 } from '../../utils';
 

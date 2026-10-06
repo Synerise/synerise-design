@@ -3,11 +3,11 @@ import React from 'react';
 import InlineAlert from '@synerise/ds-inline-alert';
 import Panel from '@synerise/ds-panel';
 
-import * as S from './Estimation.styles';
-import type { EstimationProps } from './Estimation.types';
 import { EstimationCalculatedDate } from './components/EstimationCalculated';
 import { EstimationProgressBar } from './components/EstimationProgressBar';
 import { EstimationProgressBarSkeleton } from './components/EstimationProgressBarSkeleton';
+import * as S from './Estimation.styles';
+import type { EstimationProps } from './Estimation.types';
 import { useDefaultTexts } from './hooks/useDefaultTexts';
 
 const Estimation = ({

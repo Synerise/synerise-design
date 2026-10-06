@@ -13,7 +13,7 @@ import xml from 'highlight.js/lib/languages/xml';
 import React, { useCallback, useEffect, useRef } from 'react';
 
 import * as S from './Highlight.styles';
-import { type HighlightProps } from './Highlight.types';
+import type { HighlightProps } from './Highlight.types';
 
 const BUNDLED_LANGUAGES: Record<string, unknown> = {
   css,

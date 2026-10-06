@@ -9,8 +9,6 @@ import Dropdown from '@synerise/ds-dropdown';
 import Icon, { ClockM, Close3S } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 
-import * as S from './TimePicker.styles';
-import Unit, { type UnitConfig } from './Unit';
 import {
   AM,
   CLOCK_MODES,
@@ -21,10 +19,9 @@ import {
   PM,
   SECOND,
 } from './constants/timePicker.constants';
-import {
-  type ClockModes,
-  type TimePickerProps,
-} from './types/TimePicker.types';
+import * as S from './TimePicker.styles';
+import type { ClockModes, TimePickerProps } from './types/TimePicker.types';
+import Unit, { type UnitConfig } from './Unit';
 import {
   getClockModeFromDate,
   getOppositeClockMode,
@@ -84,6 +81,7 @@ const TimePicker = ({
     [timeFormat, is12HourClock],
   );
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: dependencies intentionally omitted
   const getTimeString = useCallback(
     (date: Date): string => {
       if (timeFormat) {
@@ -96,7 +94,6 @@ const TimePicker = ({
         ...valueFormatOptions,
       });
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     [timeFormat, timeFormatByClockMode, formatValue],
   );
 

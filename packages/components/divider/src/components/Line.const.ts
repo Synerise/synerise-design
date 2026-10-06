@@ -1,6 +1,6 @@
-import { type SVGAttributes } from 'react';
+import type { SVGAttributes } from 'react';
 
-import { type DividerType } from '../Divider.types';
+import type { DividerType } from '../Divider.types';
 
 export const SVG_PROPS: Record<
   DividerType,

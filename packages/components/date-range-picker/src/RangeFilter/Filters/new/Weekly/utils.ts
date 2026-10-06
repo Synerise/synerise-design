@@ -1,12 +1,12 @@
-import {
-  type DayKey,
-  type DayOptions,
+import type {
+  DayKey,
+  DayOptions,
 } from '../../../Shared/TimeWindow/TimeWindow.types';
 import { DEFAULT_MAX_ENTRIES } from '../constants';
-import {
-  type DayOfWeekIndex,
-  type WeeklySchedule,
-  type WeeklyScheduleDayValue,
+import type {
+  DayOfWeekIndex,
+  WeeklySchedule,
+  WeeklyScheduleDayValue,
 } from './Weekly.types';
 
 export const range = (start: number, stop: number): number[] => {

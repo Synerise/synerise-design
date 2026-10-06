@@ -1,7 +1,7 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 import { fn } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import Icon, { DragHandleM } from '@synerise/ds-icon';
 import Sortable, { SortableProps } from '@synerise/ds-sortable';
 

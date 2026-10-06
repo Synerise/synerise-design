@@ -5,9 +5,9 @@ import { useIntl } from 'react-intl';
 import Icon, { CopyClipboardM } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 
-import { type CopyProps } from './Copy.types';
+import type { CopyProps } from './Copy.types';
 import * as S from './DescriptionRow.styles';
-import { type RowTexts } from './DescriptionRow.types';
+import type { RowTexts } from './DescriptionRow.types';
 
 /**
  *  @deprecated it will receive no further updates and will be removed from future DS versions

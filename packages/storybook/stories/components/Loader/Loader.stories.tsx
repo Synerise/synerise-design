@@ -1,13 +1,13 @@
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 
-import type { Meta, StoryObj } from '@storybook/react-vite';
 import Loader from '@synerise/ds-loader';
 
 import {
   CLASSNAME_ARG_CONTROL,
-  REACT_NODE_AS_STRING,
   centeredPaddedWrapper,
   controlFromOptionsArray,
+  REACT_NODE_AS_STRING,
 } from '../../utils';
 import { COLOR_OPTIONS, fontSizes, formatter, iconSizes } from './Loader.data';
 

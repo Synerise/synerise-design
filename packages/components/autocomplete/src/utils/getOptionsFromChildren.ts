@@ -1,9 +1,9 @@
 import {
   Children,
   Fragment,
+  isValidElement,
   type ReactElement,
   type ReactNode,
-  isValidElement,
 } from 'react';
 
 import type { AutocompleteOption } from '../Autocomplete.types';

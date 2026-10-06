@@ -52,7 +52,7 @@ const Unit = ({
   }, [isFirstRender, unitContainerRef]);
 
   const scrollHandler = () => {
-    if (!!unitContainerRef && !!unitContainerRef.current) {
+    if (unitContainerRef && unitContainerRef.current) {
       const pixelsScrolled = unitContainerRef.current.scrollTop;
       const isScrollBetweenTwoCells = pixelsScrolled % CELL_HEIGHT !== 0;
 

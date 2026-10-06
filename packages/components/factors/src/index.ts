@@ -1,26 +1,25 @@
 export { default, FACTOR_TYPE_MAPPING as factorTypes } from './Factors';
-
 export {
   ALL_FACTOR_TYPES,
-  type FactorType,
   type DefinedFactorTypes,
+  type DynamicKeyValueType,
   type FactorsProps,
   type FactorsTexts,
-  type ParameterValueType,
-  type ParameterItem,
-  type ParameterGroup,
+  type FactorType,
+  type FactorTypeSelectorProps,
   type FactorValueComponentProps,
   /**
    * @deprecated, use FactorValueComponentProps type instead
    */
   type FactorValueComponentProps as InputProps,
-  type FactorValueType,
   type FactorValueProps,
-  type DynamicKeyValueType,
-  type FormulaValueType,
-  type FactorTypeSelectorProps,
+  type FactorValueType,
   type FormulaModalProps,
-  type TextModalProps,
+  type FormulaValueType,
   type ParameterDropdownProps,
+  type ParameterGroup,
+  type ParameterItem,
+  type ParameterValueType,
   type SelectedFactorType,
+  type TextModalProps,
 } from './Factors.types';

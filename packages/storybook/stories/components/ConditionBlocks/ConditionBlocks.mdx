@@ -1,0 +1,103 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+
+import * as ConditionGroupStories from './ConditionGroup.stories';
+import * as ConditionEntityStories from './ConditionEntity.stories';
+import * as ConditionRowsStories from './ConditionRows.stories';
+import * as ConditionRowStories from './ConditionRow.stories';
+import * as ConditionSlotStories from './ConditionSlot.stories';
+import * as ConditionConnectorStories from './ConditionConnector.stories';
+import * as ConditionTextSlotStories from './ConditionTextSlot.stories';
+import * as ConditionAddButtonStories from './ConditionAddButton.stories';
+import * as ConditionRemoveStories from './ConditionRemove.stories';
+
+<Meta title="Components/Filter/ConditionBlocks/Overview" />
+
+# Condition Blocks
+
+`@synerise/ds-condition-blocks` is a set of **presentational, composable primitives** for building
+filtering-condition layouts. Where `@synerise/ds-condition` bakes in one fixed structure
+(context → optional aggregate → rows of factor / operator / parameter), these blocks let the
+consuming app compose _any_ condition layout — including free-form, text-interleaved ones — while
+preserving ds-condition's **grow/shrink-within-bounds** sizing. All state and behaviour (menus,
+values, add/remove orchestration) live in the consuming app.
+
+See the **Examples** section for full layouts composed from these blocks (including a 1:1
+recreation of the ds-condition _Populated_ story), and the **Blocks** section for each primitive
+in isolation with interactive controls.
+
+## The sizing guarantee
+
+Three mechanisms keep controls stretching and shrinking within bounds without the row ever
+overflowing its parent:
+
+1. **`ConditionSlot` flex budgets** — `rigid` = `flex: 0 0`, `fill` = `flex: 30 1`,
+   `shrink` = `flex: 0 400`; pair `shrink` with a `minWidth` floor.
+2. **A `min-width: 0` cascade** — every level (`ConditionRows` → `ConditionRow` → `ConditionSlot`
+   → its child) is `min-width: 0`, so children can shrink below their intrinsic width.
+3. **A stretch-to-fit input** — the value input the implementation passes (`@synerise/ds-input`
+   with `autoResize.stretchToFit`) pins its `max-width` to the measured parent width.
+
+---
+
+## ConditionGroup
+
+Outermost wrapper: the entity chip on the left, its rows on the right. Forward its `ref` and pass
+the node as `getPopupContainer` to the enclosed dropdowns so their popovers share one stacking
+context.
+
+<Canvas of={ConditionGroupStories.Default} />
+
+## ConditionEntity
+
+The entity/context area at the start of a group — a flex row of one or more chip slots (12px
+gap by default) with an optional `errorMessage` below. The implementation renders the actual
+chip(s) inside (a `ds-button` in custom-color mode, or `ds-context-selector`).
+
+<Canvas of={ConditionEntityStories.Default} />
+
+## ConditionRows
+
+Vertical container for the rows (and the add button); fills the remaining width, stays
+shrinkable, and sets the inter-row gap (16px default).
+
+<Canvas of={ConditionRowsStories.Default} />
+
+## ConditionRow
+
+A single horizontal row of slots/text. Fills its parent but never overflows; `align="center"`
+supports text-interleaved layouts.
+
+<Canvas of={ConditionRowStories.Default} />
+
+## ConditionSlot
+
+The sizing wrapper for one control — `rigid` / `fill` / `shrink` presets (or explicit
+`grow`/`shrink`/`basis`/`minWidth`/`maxWidth`).
+
+<Canvas of={ConditionSlotStories.Presets} />
+
+## ConditionConnector
+
+The tree-line connector linking the entity chip to its rows and the add button.
+
+<Canvas of={ConditionConnectorStories.Default} />
+
+## ConditionTextSlot
+
+Inline, non-interactive text used to interleave plain copy with controls in a row.
+
+<Canvas of={ConditionTextSlotStories.Default} />
+
+## ConditionAddButton
+
+The add-condition action ("and where" / "Add another"). Pass the actual ghost button as
+children; `withConnector` hangs it off the row tree line.
+
+<Canvas of={ConditionAddButtonStories.Default} />
+
+## ConditionRemove
+
+The hover-revealed ✕ that removes a row. Place it inside the last `ConditionSlot`; it appears on
+row hover unless `revealOnRowHover={false}`.
+
+<Canvas of={ConditionRemoveStories.Default} />

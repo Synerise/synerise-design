@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 
-import { renderWithProvider } from '@synerise/ds-core';
+import { renderWithProvider } from '@synerise/ds-core/testing';
 import { fireEvent, screen, within } from '@testing-library/react';
 import { type ColumnDef } from '@tanstack/react-table';
 

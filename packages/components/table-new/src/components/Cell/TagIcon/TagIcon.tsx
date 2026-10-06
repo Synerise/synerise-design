@@ -1,7 +1,7 @@
 import React from 'react';
 
 import * as S from './TagIcon.styles';
-import { type TagIconProps } from './TagIcon.types';
+import type { TagIconProps } from './TagIcon.types';
 
 const TagIconCell = ({
   children,

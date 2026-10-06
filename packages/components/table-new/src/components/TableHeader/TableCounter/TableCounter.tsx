@@ -3,7 +3,7 @@ import React, { useMemo } from 'react';
 import { useDataFormat } from '@synerise/ds-core';
 
 import { TableSkeleton } from '../../../Table.styles';
-import { type TableCounterProps } from '../../../Table.types';
+import type { TableCounterProps } from '../../../Table.types';
 import * as S from './TableCounter.styles';
 
 export const TableCounter = <TData extends object, TValue>({

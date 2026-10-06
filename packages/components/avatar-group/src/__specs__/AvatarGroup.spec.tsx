@@ -1,5 +1,5 @@
 import React from 'react';
-import { renderWithProvider } from '@synerise/ds-core';
+import { renderWithProvider } from '@synerise/ds-core/testing';
 import AvatarGroup from './../AvatarGroup';
 import { type DataSource } from '../AvatarGroup.types';
 

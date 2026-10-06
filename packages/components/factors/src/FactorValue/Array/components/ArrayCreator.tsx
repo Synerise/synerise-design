@@ -5,7 +5,7 @@ import { Input } from '@synerise/ds-input';
 import InputNumber from '@synerise/ds-input-number';
 import Tooltip from '@synerise/ds-tooltip';
 
-import { type ArrayValueElement } from '../../../Factors.types';
+import type { ArrayValueElement } from '../../../Factors.types';
 import * as S from '../Array.styles';
 import type { ArrayCreatorProps, ArrayValueWithID } from '../Array.types';
 import { matchesSearchQuery } from '../Array.utils';

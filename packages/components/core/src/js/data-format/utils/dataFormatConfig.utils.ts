@@ -1,4 +1,4 @@
-import { type DataFormatConfig, type DataFormatNotationType } from '../types';
+import type { DataFormatConfig, DataFormatNotationType } from '../types';
 
 export const getDataFormatConfigFromNotation = (
   notation: DataFormatNotationType,

@@ -3,6 +3,47 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@2.3.1...@synerise/ds-core@2.3.2) (2026-09-22)
+
+
+### Bug Fixes
+
+* **core:** move test helpers to a ./testing subpath export ([b38cd82](https://github.com/synerise/synerise-design/commit/b38cd82c956111d2331d5c1e0efd1935366f1139))
+
+
+
+
+
+## [2.3.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@2.3.0...@synerise/ds-core@2.3.1) (2026-09-18)
+
+**Note:** Version bump only for package @synerise/ds-core
+
+
+
+
+
+# [2.3.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@2.2.0...@synerise/ds-core@2.3.0) (2026-09-10)
+
+### Features
+
+- **core:** applyTimezoneOffset returns a TZDate instead of an ISO string ([3a6993a](https://github.com/synerise/synerise-design/commit/3a6993ad05df547ff9cfc5ecf5d8fd124f456b9d))
+
+# [2.2.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@2.1.1...@synerise/ds-core@2.2.0) (2026-09-08)
+
+### Features
+
+- **core:** drop moment from ds-core and manageable-list ([e0dc6a5](https://github.com/synerise/synerise-design/commit/e0dc6a501a713ee80616471fe8e0901d8c133058))
+
+## [2.1.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@2.1.0...@synerise/ds-core@2.1.1) (2026-09-07)
+
+**Note:** Version bump only for package @synerise/ds-core
+
+# [2.1.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@2.0.0...@synerise/ds-core@2.1.0) (2026-09-05)
+
+### Features
+
+- **core:** move the timezone utilities onto @date-fns/tz and export them ([3d0d43b](https://github.com/synerise/synerise-design/commit/3d0d43b9dcc6ce2d07fdf45d329f82afcb4105fd))
+
 # [2.0.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@1.15.0...@synerise/ds-core@2.0.0) (2026-08-26)
 
 **Note:** Version bump only for package @synerise/ds-core

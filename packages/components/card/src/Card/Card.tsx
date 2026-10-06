@@ -6,7 +6,7 @@ import Icon from '@synerise/ds-icon';
 
 import { ANIMATION_DURATION } from '../constants';
 import * as S from './Card.styles';
-import { type CardProps } from './Card.types';
+import type { CardProps } from './Card.types';
 
 const Card = ({
   children,

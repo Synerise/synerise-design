@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
-import {
-  type CheckboxChangeEvent,
-  type CheckboxTristateChangeEvent,
-  type CheckboxTristateProps,
+import type {
+  CheckboxChangeEvent,
+  CheckboxTristateChangeEvent,
+  CheckboxTristateProps,
 } from '../Checkbox.types';
 import { checkedValue, nextCheckedValues } from '../utils';
 import { CheckboxBase } from './CheckboxBase';

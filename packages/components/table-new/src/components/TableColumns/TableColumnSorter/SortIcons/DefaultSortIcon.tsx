@@ -1,3 +1,4 @@
+import type { SortDirection } from '@tanstack/react-table';
 import React from 'react';
 
 import Icon, {
@@ -5,7 +6,6 @@ import Icon, {
   SortAscendingM,
   SortDescendingM,
 } from '@synerise/ds-icon';
-import { type SortDirection } from '@tanstack/react-table';
 
 import { ASCENDING, DESCENDING } from '../TableColumnSorter.const';
 

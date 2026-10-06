@@ -1,7 +1,7 @@
-import { type ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
-import { type TooltipProps } from '@synerise/ds-tooltip';
-import { type WithHTMLAttributes } from '@synerise/ds-utils';
+import type { TooltipProps } from '@synerise/ds-tooltip';
+import type { WithHTMLAttributes } from '@synerise/ds-utils';
 
 export type MetricCardProps = WithHTMLAttributes<
   HTMLDivElement,

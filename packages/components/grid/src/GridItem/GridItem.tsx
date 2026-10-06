@@ -1,14 +1,14 @@
 import React, { useContext, useMemo } from 'react';
 
-import {
-  type BreakpointKey,
-  type DimensionsWithBreakpoint,
+import type {
+  BreakpointKey,
+  DimensionsWithBreakpoint,
 } from '@synerise/ds-utils';
 
 import { DEFAULT_COLUMNS_NUMBER } from '../Grid.const';
 import { GridContext } from '../Grid.context';
 import * as S from '../Grid.styles';
-import { type GridItemProps } from '../Grid.types';
+import type { GridItemProps } from '../Grid.types';
 
 const BREAKPOINTS: BreakpointKey[] = ['xxl', 'xl', 'lg', 'md', 'sm', 'xs'];
 

@@ -1,18 +1,18 @@
-import {
-  type CSSProperties,
-  type ForwardRefExoticComponent,
-  type MouseEvent,
-  type ReactNode,
-  type RefAttributes,
+import type {
+  CSSProperties,
+  ForwardRefExoticComponent,
+  MouseEvent,
+  ReactNode,
+  RefAttributes,
 } from 'react';
 
-import { type ButtonProps } from '@synerise/ds-button';
-import {
-  type LegacyPopconfirmPlacement,
-  type PopoverOptions,
+import type { ButtonProps } from '@synerise/ds-button';
+import type {
+  LegacyPopconfirmPlacement,
+  PopoverOptions,
 } from '@synerise/ds-popover';
 
-import { type ConfirmMessageProps } from './ConfirmMessage/ConfirmMessage.types';
+import type { ConfirmMessageProps } from './ConfirmMessage/ConfirmMessage.types';
 
 export type PopconfirmTexts = Pick<
   PopconfirmProps,

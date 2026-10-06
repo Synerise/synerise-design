@@ -12,9 +12,9 @@ import Scrollbar from '@synerise/ds-scrollbar';
 import { SearchItems } from '@synerise/ds-search';
 
 import * as S from '../../Collector.styles';
-import { type CollectorValue } from '../../Collector.types';
+import type { CollectorValue } from '../../Collector.types';
 import NavigationHint from '../NavigationHint/NavigationHint';
-import { type OptionsDropdownProps } from './OptionsDropdown.types';
+import type { OptionsDropdownProps } from './OptionsDropdown.types';
 
 const getRowHeight = (size?: string) => {
   if (size === 'large') {

@@ -6,7 +6,7 @@ import Tabs, { type TabItem } from '@synerise/ds-tabs';
 import Header from './Elements/Header/Header';
 import { HeaderType } from './Elements/Header/Header.types';
 import * as S from './SidebarObject.style';
-import { type SidebarObjectProps } from './SidebarObject.types';
+import type { SidebarObjectProps } from './SidebarObject.types';
 
 const SidebarObject = ({
   avatar,

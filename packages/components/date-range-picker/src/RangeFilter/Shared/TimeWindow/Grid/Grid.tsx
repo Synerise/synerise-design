@@ -6,7 +6,7 @@ import { type Action, Header } from '../Header/Header';
 import * as S from '../TimeWindow.styles';
 import { HeaderWrapper } from '../TimeWindow.styles';
 import { reverseRange } from '../utils';
-import { type GridProps } from './Grid.types';
+import type { GridProps } from './Grid.types';
 
 const Grid: React.FC<GridProps> = ({
   keys,

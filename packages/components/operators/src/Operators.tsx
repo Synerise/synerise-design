@@ -8,17 +8,17 @@ import Tooltip from '@synerise/ds-tooltip';
 import { getPopupContainer } from '@synerise/ds-utils';
 
 import {
-  type OperatorsGroup,
-  type OperatorsItem,
-  type OperatorsProps,
-} from './Operator.types';
-import * as S from './Operators.style';
-import OperatorsDropdown from './OperatorsDropdown/OperatorsDropdown';
-import {
   DROPDOWN_HEIGHT,
   DROPDOWN_HEIGHT_BELOW_THRESHOLD,
   DROPDOWN_HEIGHT_THRESHOLD,
 } from './constants';
+import type {
+  OperatorsGroup,
+  OperatorsItem,
+  OperatorsProps,
+} from './Operator.types';
+import * as S from './Operators.style';
+import OperatorsDropdown from './OperatorsDropdown/OperatorsDropdown';
 
 const isOperatorItem = (
   item: OperatorsGroup | OperatorsItem,

@@ -1,6 +1,6 @@
 import type { CSSProperties, ReactNode } from 'react';
 
-import { type FormFieldCommonProps } from '@synerise/ds-form-field';
+import type { FormFieldCommonProps } from '@synerise/ds-form-field';
 
 export type InputGroupSize = 'large' | 'default' | 'small';
 

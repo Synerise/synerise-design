@@ -2,7 +2,7 @@ import React from 'react';
 
 import Description, { DescriptionRow } from '@synerise/ds-description';
 
-import { type ObjectSummaryProps } from './ObjectSummary.types';
+import type { ObjectSummaryProps } from './ObjectSummary.types';
 
 const ObjectSummary = ({ inputObject }: ObjectSummaryProps) => {
   const keys = Object.keys(inputObject) as Array<keyof typeof inputObject>;

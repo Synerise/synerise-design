@@ -1,7 +1,4 @@
-import {
-  type Placement,
-  type UseTransitionStylesProps,
-} from '@floating-ui/react';
+import type { Placement, UseTransitionStylesProps } from '@floating-ui/react';
 
 export const getTransitionConfig = ({
   placement,

@@ -1,3 +1,5 @@
+import React from 'react';
+
 import {
   AggregateM,
   ApiM,
@@ -9,7 +11,6 @@ import {
   VarTypeNumberM,
   VarTypeStringM,
 } from '@synerise/ds-icon';
-import React from 'react';
 
 export const CONTEXT_DEFAULT_GROUPS = [
   {
@@ -131,7 +132,12 @@ const segmentations = [
     icon: <SegmentM />,
     groupId: 'SEGMENTATIONS',
   })),
-  { name: MATCHING_SEARCH_QUERY, id: `segmentation_matching`, icon: <SegmentM />, groupId: 'SEGMENTATIONS' },
+  {
+    name: MATCHING_SEARCH_QUERY,
+    id: `segmentation_matching`,
+    icon: <SegmentM />,
+    groupId: 'SEGMENTATIONS',
+  },
 ];
 const tags = [
   ...[...Array(2000)].map((_, i) => ({
@@ -140,7 +146,12 @@ const tags = [
     icon: <TagM />,
     groupId: 'TAGS',
   })),
-  { name: MATCHING_SEARCH_QUERY, id: `tag_matching`, icon: <TagM />, groupId: 'TAGS' },
+  {
+    name: MATCHING_SEARCH_QUERY,
+    id: `tag_matching`,
+    icon: <TagM />,
+    groupId: 'TAGS',
+  },
 ];
 const attributes = [
   ...[...Array(2000)].map((_, i) => ({
@@ -149,7 +160,12 @@ const attributes = [
     icon: <VarTypeStringM />,
     groupId: 'ATTRIBUTES',
   })),
-  { name: MATCHING_SEARCH_QUERY, id: `attribute_matching`, icon: <VarTypeStringM />, groupId: 'ATTRIBUTES' },
+  {
+    name: MATCHING_SEARCH_QUERY,
+    id: `attribute_matching`,
+    icon: <VarTypeStringM />,
+    groupId: 'ATTRIBUTES',
+  },
 ];
 const expressions = [
   ...[...Array(2000)].map((_, i) => ({
@@ -158,7 +174,12 @@ const expressions = [
     icon: <ExpressionM />,
     groupId: 'EXPRESSIONS',
   })),
-  { name: MATCHING_SEARCH_QUERY, id: `expression_matching`, icon: <ExpressionM />, groupId: 'EXPRESSIONS' },
+  {
+    name: MATCHING_SEARCH_QUERY,
+    id: `expression_matching`,
+    icon: <ExpressionM />,
+    groupId: 'EXPRESSIONS',
+  },
 ];
 const aggregates = [
   ...[...Array(2000)].map((_, i) => ({
@@ -167,7 +188,12 @@ const aggregates = [
     icon: <AggregateM />,
     groupId: 'AGGREGATES',
   })),
-  { name: MATCHING_SEARCH_QUERY, id: `aggregate_matching`, icon: <AggregateM />, groupId: 'AGGREGATES' },
+  {
+    name: MATCHING_SEARCH_QUERY,
+    id: `aggregate_matching`,
+    icon: <AggregateM />,
+    groupId: 'AGGREGATES',
+  },
 ];
 const clientEvents = [
   ...[...Array(2000)].map((_, i) => ({
@@ -176,7 +202,12 @@ const clientEvents = [
     icon: <NotificationsM />,
     groupId: 'CLIENT_EVENTS',
   })),
-  { name: MATCHING_SEARCH_QUERY, id: `client_event_matching`, icon: <NotificationsM />, groupId: 'CLIENT_EVENTS' },
+  {
+    name: MATCHING_SEARCH_QUERY,
+    id: `client_event_matching`,
+    icon: <NotificationsM />,
+    groupId: 'CLIENT_EVENTS',
+  },
 ];
 const integrations = [...Array(2000)].map((_, i) => ({
   name: `Integration ${i}`,

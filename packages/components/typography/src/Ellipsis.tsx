@@ -8,7 +8,7 @@ import React, {
 } from 'react';
 
 import Tooltip, { type TooltipProps } from '@synerise/ds-tooltip';
-import { type DataAttributes } from '@synerise/ds-utils';
+import type { DataAttributes } from '@synerise/ds-utils';
 
 import { EllipsisText } from './CommonElements';
 

@@ -15,21 +15,21 @@ import {
   Placeholder,
 } from '@synerise/ds-logic';
 import Sortable from '@synerise/ds-sortable';
-import { type StepCardProps } from '@synerise/ds-step-card';
+import type { StepCardProps } from '@synerise/ds-step-card';
 import { NOOP, usePrevious } from '@synerise/ds-utils';
 
-import * as S from './Filter.styles';
-import {
-  type Expression,
-  type FilterProps,
-  type LogicType,
-  type StepType,
-} from './Filter.types';
 import {
   DraggableExpressionItem,
   ExpressionItem,
   type ExpressionItemProps,
 } from './components/ExpressionItem';
+import * as S from './Filter.styles';
+import type {
+  Expression,
+  FilterProps,
+  LogicType,
+  StepType,
+} from './Filter.types';
 import { isStepType } from './utils';
 
 const TRANSITION_DURATION = 0.5;
@@ -262,7 +262,7 @@ const Filter = ({
   );
 
   const getContextTypeTexts = useCallback(
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // biome-ignore lint/suspicious/noExplicitAny: upstream type is not expressible here
     (expression: any) => {
       const contextType = expression.expressionType;
       return {

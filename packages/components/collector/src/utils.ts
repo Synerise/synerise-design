@@ -1,7 +1,7 @@
 import isEqual from 'lodash.isequal';
 import type React from 'react';
 
-import { type CollectorValue } from './Collector.types';
+import type { CollectorValue } from './Collector.types';
 
 const INPUT_MIN_WIDTH = 150;
 

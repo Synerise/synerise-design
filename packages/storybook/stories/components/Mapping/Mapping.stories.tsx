@@ -1,14 +1,14 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React, { useState } from 'react';
 import { action } from 'storybook/actions';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import Button from '@synerise/ds-button';
 import Icon, { ArrowRightM, BlockM, ShowM } from '@synerise/ds-icon';
 import { Input } from '@synerise/ds-input';
 import Mapping, { MappingProps } from '@synerise/ds-mapping';
 import Select from '@synerise/ds-select';
 
-import { BOOLEAN_CONTROL, STRING_CONTROL, fixedWrapper588 } from '../../utils';
+import { BOOLEAN_CONTROL, fixedWrapper588, STRING_CONTROL } from '../../utils';
 import {
   CATALOG_ITEM_KEY,
   DATA_SOURCE,

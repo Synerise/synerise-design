@@ -1,7 +1,7 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 import { fn } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import { Multivalue } from '@synerise/ds-progress-bar';
 
 import { BOOLEAN_CONTROL, fixedWrapper300 } from '../../utils';

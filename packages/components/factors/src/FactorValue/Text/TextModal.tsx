@@ -3,7 +3,7 @@ import React from 'react';
 import { DSRawTextArea as Textarea } from '@synerise/ds-input';
 import ModalProxy from '@synerise/ds-modal';
 
-import { type TextModalProps } from '../../Factors.types';
+import type { TextModalProps } from '../../Factors.types';
 
 const TextModal: React.FC<TextModalProps> = ({
   value,

@@ -21,10 +21,10 @@ import type { ItemPickerListTexts } from '../../ItemPickerNew/types/itemPickerLi
 import {
   FIRST_PAGE,
   GET_ITEM_KEY,
+  ITEM_SIZE,
   ITEMS_PER_PAGE,
   ITEMS_PER_SECTION,
   ITEMS_PER_SECTION_IN_SEARCH,
-  ITEM_SIZE,
   SECOND_PAGE,
   SECTION_HEADER_HEIGHT,
 } from '../constants';
@@ -539,6 +539,7 @@ export const useItemsInSections = <
     searchByParamConfig,
   ]);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: dependencies intentionally omitted
   useEffect(() => {
     pageToLoad.current = FIRST_PAGE;
     metaRef.current = {};
@@ -554,7 +555,6 @@ export const useItemsInSections = <
       abortControllerRef.current?.abort();
       abortControllerRef.current = new AbortController();
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     activeSectionId,
     isFixedItemsList,

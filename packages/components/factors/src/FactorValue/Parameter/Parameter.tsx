@@ -7,10 +7,10 @@ import InformationCard, {
 } from '@synerise/ds-information-card';
 import { getPopupContainer } from '@synerise/ds-utils';
 
-import {
-  type FactorValueComponentProps,
-  type ParameterItem,
-  type ParameterValueType,
+import type {
+  FactorValueComponentProps,
+  ParameterItem,
+  ParameterValueType,
 } from '../../Factors.types';
 import {
   DROPDOWN_HEIGHT,
@@ -29,6 +29,7 @@ const ParameterInput = ({
   opened,
   preventAutoloadData,
   getPopupContainerOverride,
+  fluidMinWidth,
   onActivate,
   onDeactivate,
   readOnly = false,
@@ -76,18 +77,18 @@ const ParameterInput = ({
     onActivate && onActivate();
   }, [onParamsClick, onActivate]);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: dependencies intentionally omitted
   useEffect(() => {
     setDropdownVisible(Boolean(opened));
     if (opened) {
       onParamsClick && onParamsClick();
       onActivate && onActivate();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [opened]);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: dependencies intentionally omitted
   useEffect(() => {
     !preventAutoloadData && onParamsClick && onParamsClick();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const onDropdownVisibilityChange = useCallback(
@@ -116,7 +117,7 @@ const ParameterInput = ({
       readOnly={readOnly}
     >
       {parameterIcon && <Icon component={parameterIcon} />}
-      <Value>{parameterName}</Value>
+      <Value $fluidMinWidth={fluidMinWidth}>{parameterName}</Value>
       {!readOnly && <Icon component={<AngleDownS />} />}
     </ParameterButton>
   );

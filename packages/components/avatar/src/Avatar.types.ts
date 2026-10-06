@@ -6,8 +6,8 @@ import type {
 } from 'react';
 
 import type { BadgeStatus } from '@synerise/ds-badge';
-import { type TooltipProps } from '@synerise/ds-tooltip';
-import { type DataAttributes } from '@synerise/ds-utils';
+import type { TooltipProps } from '@synerise/ds-tooltip';
+import type { DataAttributes } from '@synerise/ds-utils';
 
 export type Color =
   | 'red'

@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 
 import * as S from '../Input.styles';
-import { type InputProps } from '../Input.types';
+import type { InputProps } from '../Input.types';
 
 type UseCounterLimitOptions = Pick<
   InputProps,

@@ -1,5 +1,5 @@
-import { type TooltipProps } from '@synerise/ds-tooltip';
-import { type WithHTMLAttributes } from '@synerise/ds-utils';
+import type { TooltipProps } from '@synerise/ds-tooltip';
+import type { WithHTMLAttributes } from '@synerise/ds-utils';
 
 export type BaseCopyableCellProps = {
   value: string;

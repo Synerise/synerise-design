@@ -1,5 +1,7 @@
-import fnsIsValid from 'date-fns/isValid';
-import fnsStartOfSecond from 'date-fns/startOfSecond';
+import {
+  isValid as fnsIsValid,
+  startOfSecond as fnsStartOfSecond,
+} from 'date-fns';
 import isUndefined from 'lodash.isundefined';
 import omitBy from 'lodash.omitby';
 import React, {
@@ -11,9 +13,16 @@ import React, {
 } from 'react';
 import { useIntl } from 'react-intl';
 
-import { legacyParse } from '@date-fns/upgrade/v2';
-
 import AddonCollapse from './AddonCollapse/AddonCollapse';
+import {
+  ABSOLUTE,
+  ABSOLUTE_PRESETS,
+  ALL_TIME,
+  CUSTOM_RANGE_KEY,
+  MODES,
+  RELATIVE,
+  RELATIVE_PRESETS,
+} from './constants';
 import {
   Addon,
   Container,
@@ -25,27 +34,19 @@ import type {
   DateRangePickerProps,
   Texts,
 } from './DateRangePicker.types';
+import type { DateFilter, DateRange, RelativeDateRange } from './date.types';
+import relativeToAbsolute from './dateUtils/relativeToAbsolute';
+import { toDateValue } from './dateUtils/toDateValue';
 import Footer from './Footer/Footer';
 import RangeFilter from './RangeFilter/RangeFilter';
-import {
-  type FilterDefinition,
-  type FilterValue,
+import type {
+  FilterDefinition,
+  FilterValue,
 } from './RangeFilter/RangeFilter.types';
 import RangeFilterStatus from './RangeFilter/Shared/RangeFilterStatus/RangeFilterStatus';
 import RangePicker from './RangePicker/RangePicker';
 import { isLifetime } from './RelativeRangePicker/Elements/RangeDropdown/RangeDropdown';
 import RelativeRangePicker from './RelativeRangePicker/RelativeRangePicker';
-import {
-  ABSOLUTE,
-  ABSOLUTE_PRESETS,
-  ALL_TIME,
-  CUSTOM_RANGE_KEY,
-  MODES,
-  RELATIVE,
-  RELATIVE_PRESETS,
-} from './constants';
-import type { DateFilter, DateRange, RelativeDateRange } from './date.types';
-import relativeToAbsolute from './dateUtils/relativeToAbsolute';
 import { getDefaultTexts, normalizeRange, toIsoString } from './utils';
 
 const isRelative = (dateRange: DateRange): dateRange is RelativeDateRange => {
@@ -99,7 +100,6 @@ export const RawDateRangePicker = ({
   showRelativePicker = true,
   showFilter,
   showTime,
-  format,
   valueFormatOptions,
   disabledDate,
   validate = (): { valid: boolean } => ({ valid: true }),
@@ -156,10 +156,10 @@ export const RawDateRangePicker = ({
       const newValue = normalizeRange({ ...range, filter: localValue.filter });
       if (isTruncateMs) {
         if (newValue.from !== undefined) {
-          newValue.from = fnsStartOfSecond(legacyParse(newValue.from));
+          newValue.from = fnsStartOfSecond(toDateValue(newValue.from));
         }
         if (newValue.to !== undefined) {
-          newValue.to = fnsStartOfSecond(legacyParse(newValue.to));
+          newValue.to = fnsStartOfSecond(toDateValue(newValue.to));
         }
       }
       if (
@@ -262,7 +262,7 @@ export const RawDateRangePicker = ({
 
   const addons = useMemo(() => {
     const result: AddonType[] = [];
-    if (showRelativePicker && !!relativeModes && relativeModes?.length > 0) {
+    if (showRelativePicker && relativeModes && relativeModes?.length > 0) {
       const addonKey = 'relative-picker';
       const rangeTranslationKey = localValue?.translationKey;
       result.push({
@@ -417,7 +417,6 @@ export const RawDateRangePicker = ({
           texts={allTexts}
           value={fullValue}
           showTime={showTime}
-          format={format}
           valueFormatOptions={valueFormatOptions}
           {...footerProps}
         />

@@ -528,7 +528,6 @@ These don't render UI on their own — they're tokens, helpers, mocks, or layout
 ### Visual UI packages — need Figma URLs (high priority for next batch)
 These look like real visual components that probably do have Figma counterparts and should be connected. Need URLs from designer:
 
-- **alert** — confirmation-style alert dialog
 - **block** — block-style container
 - **cascader** — cascading dropdown selector
 - **checkbox-tristate** — already covered logically via `Checkbox` with `tristate` prop in `Checkbox.figma.tsx`. Could remain unmapped at package level.
@@ -541,18 +540,16 @@ These look like real visual components that probably do have Figma counterparts 
 - **insight** — insight/recommendation card
 - **item-filter** — filter UI for item lists
 - **list** — generic List component (vs `list-item` which is the row)
-- **menu** — menu/dropdown content panel
 - **popover** — popover overlay (sibling to `tooltip` and `popconfirm`)
 - **sidebar-object** — sidebar object detail variant (sibling to `sidebar`)
 - **sortable** — sortable list/grid wrapper
 - **step-card** — card variant for step content
-- **table** — legacy Table (vs `table-new`)
 - **tray** — bottom tray/sheet overlay
 - **form** — form container with submission handling
 - **form-field** — `FormField` wrapper providing label/tooltip/description/error slots (used heavily by Input/Select/etc.)
 
 ### Suggested next actions
-- Ask designer for Figma node URLs for the "Visual UI packages" list (22 components). Many of these are likely already in the design library under existing categories.
+- Ask designer for Figma node URLs for the "Visual UI packages" list (19 components). Many of these are likely already in the design library under existing categories.
 - Confirm with designer that utility/layout/typography packages don't need Code Connect.
 - `checkbox-tristate` could simply be marked as covered-by-Checkbox and not need its own file.
 

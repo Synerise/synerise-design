@@ -4,8 +4,8 @@ import Icon, { InformationNoSearchResultL } from '@synerise/ds-icon';
 import { GroupItem, ListContextProvider } from '@synerise/ds-list-item';
 
 import * as S from '../ItemsRoll.styles';
-import { type ItemRollElement } from '../ItemsRoll.types';
-import { type ListProps } from './List.types';
+import type { ItemRollElement } from '../ItemsRoll.types';
+import type { ListProps } from './List.types';
 import ItemElement from './ListItem';
 
 const itemsInGroup = (

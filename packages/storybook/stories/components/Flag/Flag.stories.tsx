@@ -1,6 +1,6 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import DSFlag, { countryCodes } from '@synerise/ds-flag';
 
 import { FlagItem, FlagWrapper } from './Flag.stories.styles';

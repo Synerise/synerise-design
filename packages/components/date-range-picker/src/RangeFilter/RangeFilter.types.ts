@@ -1,20 +1,17 @@
 import type React from 'react';
-import { type IntlShape } from 'react-intl';
+import type { IntlShape } from 'react-intl';
 
-import {
-  type DateRangePickerProps,
-  type Texts,
-} from '../DateRangePicker.types';
-import { type SavedFilter } from './Shared/FilterDropdown/FilterDropdown.types';
-import {
-  type DateLimitMode,
-  type RangeDisplayMode,
-} from './Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
-import {
-  type COUNTED_FROM_ENUM,
-  type DAYS_OF_PERIOD_ENUM,
-  type RangeFilterType,
+import type { DateRangePickerProps, Texts } from '../DateRangePicker.types';
+import type {
+  COUNTED_FROM_ENUM,
+  DAYS_OF_PERIOD_ENUM,
+  RangeFilterType,
 } from './constants';
+import type { SavedFilter } from './Shared/FilterDropdown/FilterDropdown.types';
+import type {
+  DateLimitMode,
+  RangeDisplayMode,
+} from './Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
 
 export type FilterValue<T = FilterDefinition> = {
   definition?: Partial<T>;

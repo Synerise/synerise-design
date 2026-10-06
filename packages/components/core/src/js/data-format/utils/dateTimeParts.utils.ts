@@ -1,4 +1,4 @@
-import { type FormatDateOptions, type IntlShape } from 'react-intl';
+import type { FormatDateOptions, IntlShape } from 'react-intl';
 
 import {
   DEFAULT_FORMAT_DATE_OPTIONS,
@@ -16,7 +16,7 @@ import {
   WEEKDAY_LONG,
   WEEKDAY_SHORT,
 } from '../constants';
-import { type DateToFormatOptions, type Delimiter } from '../types';
+import type { DateToFormatOptions, Delimiter } from '../types';
 import { dateToIsoWithOffset } from './timeZone.utils';
 
 export const getDateParts = (

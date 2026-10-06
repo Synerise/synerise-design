@@ -1,6 +1,6 @@
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import React, { ReactNode } from 'react';
 
-import type { Meta, StoryObj } from '@storybook/react-vite';
 import EmptyStates, {
   EmptyStatesProps,
   EmptyStatesSize,
@@ -8,9 +8,9 @@ import EmptyStates, {
 
 import {
   CLASSNAME_ARG_CONTROL,
-  REACT_NODE_AS_STRING,
   centeredPaddedWrapper,
   controlFromOptionsArray,
+  REACT_NODE_AS_STRING,
   reactNodeAsSelect,
 } from '../../utils';
 import { BUTTON_OPTIONS, ICONS } from './EmptyStates.data';

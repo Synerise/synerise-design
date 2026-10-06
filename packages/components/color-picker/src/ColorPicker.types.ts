@@ -1,4 +1,4 @@
-import { type DropdownProps } from '@synerise/ds-dropdown';
+import type { DropdownProps } from '@synerise/ds-dropdown';
 import type { FormFieldCommonProps } from '@synerise/ds-form-field';
 import type { InputProps } from '@synerise/ds-input';
 
@@ -8,9 +8,9 @@ export type ColorHookType = {
 };
 
 export enum ColorPickerSize {
-  'S' = 136,
-  'M' = 168,
-  'L' = 200,
+  S = 136,
+  M = 168,
+  L = 200,
 }
 
 export type ColorPickerProps = {

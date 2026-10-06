@@ -3,7 +3,7 @@ import React from 'react';
 import { CSS, useSortable } from '@synerise/ds-sortable';
 
 import Item from './Item';
-import { type Props } from './Item.types';
+import type { Props } from './Item.types';
 
 export const DraggableItem = ({
   item,

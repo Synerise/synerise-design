@@ -1,9 +1,9 @@
 export { default } from './Condition';
-
 export type {
-  ConditionStepCrudActions,
+  ConditionFieldChange,
   ConditionProps,
   ConditionStep,
+  ConditionStepCrudActions,
   ConditionTexts,
   StepConditions,
 } from './Condition.types';

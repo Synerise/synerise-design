@@ -1,6 +1,6 @@
 import type { HTMLAttributes, ReactElement, ReactNode } from 'react';
 
-import { type CollapseProps } from './Collapse/Collapse.types';
+import type { CollapseProps } from './Collapse/Collapse.types';
 
 export type SidebarProps = CollapseProps & {
   children: ReactNode;

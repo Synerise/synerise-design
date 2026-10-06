@@ -1,3 +1,4 @@
+import { EditorContent, useEditor } from '@tiptap/react';
 import React, {
   forwardRef,
   useCallback,
@@ -10,8 +11,15 @@ import React, {
 import { FormFieldLabel } from '@synerise/ds-form-field';
 import Icon, { EditS } from '@synerise/ds-icon';
 import { useCombinedRefs, useOnClickOutside } from '@synerise/ds-utils';
-import { EditorContent, useEditor } from '@tiptap/react';
 
+import {
+  documentToMarkdown,
+  documentToTiptapJson,
+  markdownToDocument,
+  type RichTextDocument,
+  tiptapJsonToDocument,
+} from './blockModel';
+import { Toolbar } from './components';
 import * as S from './RichText.styles';
 import {
   ALL_TOOLBAR_FEATURES,
@@ -19,14 +27,6 @@ import {
   DEFAULT_TEXTS,
   type RichTextProps,
 } from './RichText.types';
-import {
-  type RichTextDocument,
-  documentToMarkdown,
-  documentToTiptapJson,
-  markdownToDocument,
-  tiptapJsonToDocument,
-} from './blockModel';
-import { Toolbar } from './components';
 import { getExtensions } from './utils';
 
 // Clicks inside portaled popovers (toolbar menus, link/image forms) must not

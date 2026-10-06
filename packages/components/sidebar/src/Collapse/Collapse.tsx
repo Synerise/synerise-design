@@ -1,17 +1,17 @@
 import classNames from 'classnames';
 import React, {
   Children,
-  type ReactElement,
   cloneElement,
   isValidElement,
+  type ReactElement,
   useState,
 } from 'react';
 
 import { CollapseRoot } from './Collapse.styles';
-import {
-  type CollapseKey,
-  type CollapsePanelProps,
-  type CollapseProps,
+import type {
+  CollapseKey,
+  CollapsePanelProps,
+  CollapseProps,
 } from './Collapse.types';
 
 const toKeyArray = (key?: CollapseKey | CollapseKey[]): string[] =>

@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-import { type ColorMap } from '../Slider.types';
+import type { ColorMap } from '../Slider.types';
 import { getDefaultColorMap } from '../utils/Slider.utils';
 
 export const useColorMap = (

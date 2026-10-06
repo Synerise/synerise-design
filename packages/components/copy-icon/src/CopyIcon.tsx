@@ -6,7 +6,7 @@ import Icon, { CopyClipboardM } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 
 import * as S from './CopyIcon.styles';
-import { type CopyIconProps, type CopyTooltipTexts } from './CopyIcon.types';
+import type { CopyIconProps, CopyTooltipTexts } from './CopyIcon.types';
 
 const CopyIcon = ({
   copyValue,

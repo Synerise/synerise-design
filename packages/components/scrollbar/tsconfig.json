@@ -17,8 +17,5 @@
     "rootDir": "src",
     "jsx": "preserve"
   },
-  "types": [
-    "resize-observer-browser"
-  ],
   "references": []
 }

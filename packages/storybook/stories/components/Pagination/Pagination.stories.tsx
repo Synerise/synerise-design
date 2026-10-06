@@ -1,12 +1,12 @@
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 
-import type { Meta, StoryObj } from '@storybook/react-vite';
 import Pagination from '@synerise/ds-pagination';
 
 import {
   CLASSNAME_ARG_CONTROL,
-  NUMBER_CONTROL,
   centeredPaddedWrapper,
+  NUMBER_CONTROL,
 } from '../../utils';
 
 export default {

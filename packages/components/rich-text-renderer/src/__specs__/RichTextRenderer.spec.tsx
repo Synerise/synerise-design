@@ -1,6 +1,6 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
-import { renderWithProvider } from '@synerise/ds-core';
+import { renderWithProvider } from '@synerise/ds-core/testing';
 import { describe, it, expect } from 'vitest';
 
 import type { RichTextDocument } from '@synerise/ds-rich-text';
@@ -100,7 +100,7 @@ describe('RichTextRenderer', () => {
             {
               type: 'text',
               text: 'evil',
-              // eslint-disable-next-line no-script-url
+              // biome-ignore lint/suspicious/noJavascriptUrl: placeholder href
               marks: [{ type: 'link', href: 'javascript:alert(1)' }],
             },
           ],

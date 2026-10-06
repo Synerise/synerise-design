@@ -5,7 +5,7 @@ import React, {
   useCallback,
 } from 'react';
 
-import { type WithHTMLAttributes } from '@synerise/ds-utils';
+import type { WithHTMLAttributes } from '@synerise/ds-utils';
 
 import * as S from './Text.styles';
 

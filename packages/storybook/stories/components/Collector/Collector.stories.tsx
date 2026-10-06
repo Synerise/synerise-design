@@ -1,8 +1,8 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import isEqual from 'lodash.isequal';
 import React, { useState } from 'react';
 import { fn } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import Button from '@synerise/ds-button';
 import Collector, {
   CollectorProps,
@@ -13,9 +13,9 @@ import Icon, { SnippetM } from '@synerise/ds-icon';
 import {
   BOOLEAN_CONTROL,
   CLASSNAME_ARG_CONTROL,
+  fixedWrapper588,
   REACT_NODE_AS_STRING,
   STRING_CONTROL,
-  fixedWrapper588,
 } from '../../utils';
 import { SUGGESTIONS, SUGGESTIONS_SAME_LABEL, TEXTS } from './Collector.const';
 import { HeaderWrapper } from './Collestor.styles';

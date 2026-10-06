@@ -1,6 +1,6 @@
-import { type HTMLAttributes, type ReactNode, type RefObject } from 'react';
+import type { HTMLAttributes, ReactNode, RefObject } from 'react';
 
-import { type DropdownProps } from '../../Dropdown.types';
+import type { DropdownProps } from '../../Dropdown.types';
 
 export type DropdownOverlayProps = Pick<
   DropdownProps,

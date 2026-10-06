@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { DEFAULT_CELL_HEIGHT } from '../../Table.const';
-import { type TableBodyProps } from '../../Table.types';
 import { useTableContext } from '../../contexts/TableContext';
+import { DEFAULT_CELL_HEIGHT } from '../../Table.const';
+import type { TableBodyProps } from '../../Table.types';
 import * as S from './TableBody.styles';
 import { TableEmptyBody } from './TableEmptyBody/TableEmptyBody';
 import { TableRow } from './TableRow/TableRow';

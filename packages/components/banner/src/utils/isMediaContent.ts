@@ -1,6 +1,6 @@
-import {
-  type BannerSlideMediaContentProps,
-  type BannerSlideTextContentProps,
+import type {
+  BannerSlideMediaContentProps,
+  BannerSlideTextContentProps,
 } from '../Banner.types';
 
 export const isMediaContent = (

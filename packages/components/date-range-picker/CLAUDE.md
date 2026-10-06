@@ -12,7 +12,7 @@ src/
   RawDateRangePicker.tsx    — core picker logic without popover
   date.types.ts             — DateRange, DateFilter, RelativeUnits, RangeKey
   constants.tsx             — MODES, COLUMNS, presets, POPOVER_*_CONFIG
-  utils.ts                  — normalizeRange, getDefaultTexts, toIsoString, DEFAULT_RANGE
+  utils.ts                  — normalizeRange, getDefaultTexts, DEFAULT_RANGE (toIsoString is re-exported from ds-core)
   fns.ts                    — re-exports / wrappers around date-fns
   RangePicker/              — absolute date picker (dual-month calendar)
   RelativeRangePicker/      — relative preset + custom range picker
@@ -20,7 +20,7 @@ src/
   Footer/                   — apply button + selected range summary
   RangeFilter/              — recurring schedule filters (Daily/Weekly/Monthly)
   AddonCollapse/            — collapsible section used by relative picker and filter
-  dateUtils/                — date utility functions (add, sub, format, startOf, endOf, …)
+  dateUtils/                — date utility functions (add, sub, startOf, endOf, toDateValue, …)
 ```
 
 ## Public exports
@@ -114,7 +114,7 @@ Re-export of `format` from `date-fns` — use for consistent date formatting acr
 
 ### `utils`
 
-Namespace export: `normalizeRange`, `toIsoString`, `toIsoStringWithoutZone`, `getDefaultTexts`, `DEFAULT_RANGE`, `START_OF`, `END_OF`.
+Namespace export: `normalizeRange`, `toIsoString` (re-exported from `@synerise/ds-core`), `toIsoStringWithoutZone`, `getDefaultTexts`, `DEFAULT_RANGE`, `START_OF`, `END_OF`.
 
 ### `CONST`
 
@@ -193,12 +193,15 @@ Addons (relative picker, filter) appear below the calendar and are toggled via `
 - All sub-components have co-located `*.styles.ts(x)` files
 - Uses `@synerise/ds-core` tokens — no hardcoded colour values
 - Popover overlay has `data-testid="ds-date-range-picker-overlay"` and class `ds-date-range-popover`
+- Each half of the panel is wrapped in `data-testid="date-range-picker-side-left"` / `-side-right` — the scope E2E suites use to reach the days and navigation of one side. The wrapper hosts whichever picker the side is in (day grid, month/year grid, or time picker), so the testid is stable across modes
 
 ## Key dependencies
 
-- `react-day-picker ^7` — calendar grid rendering inside `RangePicker`
+- `react-day-picker ^10` — calendar grid rendering inside `RangePicker` (see the v10 notes in `ds-date-picker`'s CLAUDE.md; day cells now contain a `<button class="DayPicker-Day-Button">`)
 - `@synerise/ds-popover` — floating popover (floating-ui underneath)
-- `date-fns ^2` + `date-fns-tz 1.1.4` — date arithmetic and timezone support
+- `date-fns ^4` — date arithmetic, imported **by name from the package root** (`import { addDays as fnsAddDays } from 'date-fns'`). v4 submodules are named-export-only, so the old `import fnsAddDays from 'date-fns/addDays'` form yields `undefined`
+- Loosely-typed date values are normalised by `dateUtils/toDateValue.ts`, which replaced `@date-fns/upgrade`'s `legacyParse`. Use it rather than `new Date` or `toDate`: a naive string must be read as *local* time, and only `parseISO` does that. Note `toDateValue(null)` is the **epoch**, which `isValid` accepts — preserved deliberately, since call sites are written around it
+- Timezone handling is not this package's: `toIsoString` is re-exported from `@synerise/ds-core`, which owns the wall-clock convention and the `@date-fns/tz` dependency behind it
 - `dayjs ^1.8` — used in parts of `RangeFilter`
 - `ramda ^0.27` — functional utilities in `RangeFilter`
 - `react-intl` — i18n (peer dependency via host app)
@@ -210,6 +213,7 @@ Addons (relative picker, filter) appear below the calendar and are toggled via `
 - `valueTransformer` is applied inside `RawDateRangePicker` before calling `onApply` — default transformer strips `ALL_TIME`-specific props.
 - `forceAbsolute` converts relative `DateRange` values to absolute bounds before emitting — useful when downstream systems don't understand relative types.
 - `RangePicker` (absolute calendar) is a class-based `PureComponent` — avoid passing new function references on every render to prevent unnecessary re-renders.
+- `getModifiers()` in `RangePicker/utils.ts` returns react-day-picker `Matcher`s keyed by modifier name; each key becomes a `DayPicker-Day--<key>` class. It normalises the `Date | string | null` range bounds to `Date`, which the v7 code did with casts.
 - `RelativeRangePicker` is also a class-based `PureComponent`.
 - The `SINCE` mode is a variant of relative dating anchored to a specific timestamp rather than "now".
 - `normalizeRange()` from `utils` converts relative ranges to absolute `Date` objects — used internally and safe to call from consuming code.

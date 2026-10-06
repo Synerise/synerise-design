@@ -3,7 +3,7 @@ import AnimateHeight from 'react-animate-height';
 
 import { useTexts } from '../../hooks/useTexts';
 import * as S from './ContentItem.styles';
-import { type ContentItemProps } from './ContentItem.types';
+import type { ContentItemProps } from './ContentItem.types';
 import { ContentItemHeader } from './ContentItemHeader';
 
 const ContentItemComponent = ({
@@ -37,11 +37,11 @@ const ContentItemComponent = ({
   const [isExpanded, setIsExpanded] = useState(expanded);
   const allTexts = useTexts(texts);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: dependencies intentionally omitted
   useEffect(() => {
     if (isExpanded !== expanded) {
       setIsExpanded(expanded);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [expanded]);
 
   return (

@@ -1,6 +1,6 @@
+import { Meta } from '@storybook/react-vite';
 import React from 'react';
 
-import { Meta } from '@storybook/react-vite';
 import AvatarGroup from '@synerise/ds-avatar-group';
 import Icon, { LockM, UserRemoveM } from '@synerise/ds-icon';
 import ListItem, { ListWrapper } from '@synerise/ds-list-item';

@@ -1,13 +1,11 @@
-import React, { useEffect, useMemo, useState } from 'react';
-
 import {
+  closestCenter,
   DndContext,
   type DragEndEvent,
   type DragStartEvent,
   KeyboardSensor,
   MouseSensor,
   PointerSensor,
-  closestCenter,
   useSensor,
   useSensors,
 } from '@dnd-kit/core';
@@ -16,18 +14,16 @@ import {
   restrictToVerticalAxis,
 } from '@dnd-kit/modifiers';
 import {
-  SortableContext,
   arrayMove,
   horizontalListSortingStrategy,
   rectSortingStrategy,
+  SortableContext,
   sortableKeyboardCoordinates,
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
+import React, { useEffect, useMemo, useState } from 'react';
 
-import {
-  type RawBaseItem,
-  type SortableContainerProps,
-} from './Sortable.types';
+import type { RawBaseItem, SortableContainerProps } from './Sortable.types';
 
 export const SortableContainer = <ItemType extends RawBaseItem>({
   items,

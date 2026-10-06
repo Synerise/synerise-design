@@ -1,14 +1,14 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React, { useState } from 'react';
 import { fn } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import { type BaseStarCellProps, StarCell } from '@synerise/ds-table-new';
 
 import {
   BOOLEAN_CONTROL,
+  fixedWrapper300,
   REACT_NODE_AS_STRING,
   REACT_NODE_NO_CONTROL,
-  fixedWrapper300,
 } from '../../../utils';
 
 const meta: Meta<BaseStarCellProps> = {

@@ -1,8 +1,8 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React, { useState } from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
-import CardSelect, { CardSelectGroup } from '@synerise/ds-card-select';
 import type { CardSelectGroupProps } from '@synerise/ds-card-select';
+import CardSelect, { CardSelectGroup } from '@synerise/ds-card-select';
 
 import { CLASSNAME_ARG_CONTROL, controlFromOptionsArray } from '../../utils';
 import { generateItems } from './CardSelect.data';

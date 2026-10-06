@@ -1,7 +1,3 @@
-import React from 'react';
-import { mockDateDecorator } from 'storybook-mock-date-decorator';
-import { configure } from 'storybook/test';
-
 import {
   Description,
   Primary,
@@ -10,6 +6,9 @@ import {
   Title,
 } from '@storybook/addon-docs/blocks';
 import { Preview } from '@storybook/react-vite';
+import React from 'react';
+import { configure } from 'storybook/test';
+
 import {
   DEFAULT_DATA_FORMAT_NOTATION,
   DSProvider,
@@ -69,7 +68,6 @@ const preview: Preview = {
     },
   },
   decorators: [
-    mockDateDecorator,
     (Story, storyContext) => {
       const selectedTheme = storyContext.globals.dsTheme || 'light';
 

@@ -61,8 +61,9 @@ export const Container = styled.div<{
       opacity: 1 !important;
       padding: 0;
 
-      ${props.isDragged && // dragged item - blue placeholder
-      css`
+      ${
+        props.isDragged && // dragged item - blue placeholder
+        css`
         height: 100px;
         ${DragPlaceholder}${DragPlaceholder} {
           visibility: visible;
@@ -73,10 +74,12 @@ export const Container = styled.div<{
           visibility: hidden;
           opacity: 0;
         }
-      `}
+      `
+      }
 
-      ${props.isDragOverlay && // grabbed item on top layer
-      css`
+      ${
+        props.isDragOverlay && // grabbed item on top layer
+        css`
         ${Content} {
           height: 76px;
           margin-bottom: 24px;
@@ -87,7 +90,8 @@ export const Container = styled.div<{
         ${RightSide} {
           display: none;
         }
-      `}
+      `
+      }
 
       ${DragIcon}${DragIcon} {
         visibility: visible;

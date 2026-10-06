@@ -94,8 +94,9 @@ export const EditorWrapper = styled.div<{
         }
       }
 
-      ${props.$animations
-        ? css`
+      ${
+        props.$animations
+          ? css`
             /* Match SubtleForm hover timing (0.1s ease-in, 0.2s delay). */
             transition:
               border-color 0.2s ease,
@@ -123,7 +124,7 @@ export const EditorWrapper = styled.div<{
               }
             }
           `
-        : css`
+          : css`
             /* Animations disabled: hovering only tints the background,
                instantly — content and placeholder stay put. */
             transition: border-color 0.2s ease;
@@ -131,7 +132,8 @@ export const EditorWrapper = styled.div<{
             ${SubtleSuffix} {
               transition: none;
             }
-          `};
+          `
+      };
     `};
 
   ${(props) =>
@@ -151,11 +153,13 @@ export const EditorWrapper = styled.div<{
     props.$hasError &&
     css`
       background: var(--ds-color-background-danger-subtle);
-      ${!props.$noBorder &&
-      css`
+      ${
+        !props.$noBorder &&
+        css`
         outline: 1px solid var(--ds-color-border-danger-default);
         outline-offset: -1px;
-      `};
+      `
+      };
     `};
 
   ${(props) =>

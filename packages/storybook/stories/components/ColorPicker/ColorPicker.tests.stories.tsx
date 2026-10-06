@@ -1,6 +1,6 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import { expect, userEvent, waitFor, within } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import ColorPicker from '@synerise/ds-color-picker';
 
 import { centeredPaddedWrapper } from '../../utils';

@@ -1,9 +1,9 @@
-import { type ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import styled, { type Keyframes, keyframes } from 'styled-components';
 
 import { UnorderedList } from '@synerise/ds-unordered-list/dist/Unordered-list.styles';
 
-import { type ToastType } from './Toast.types';
+import type { ToastType } from './Toast.types';
 
 const TYPE_TO_TOKEN_VARIANT: Record<ToastType, string> = {
   success: 'success',
@@ -49,7 +49,7 @@ export const closingAnimation = (): Keyframes => keyframes`
 
 export const AnimationContainer = styled.div<{ $show?: boolean }>`
   animation: ${(props): Keyframes =>
-      props.$show ? openingAnimation() : closingAnimation()}
+    props.$show ? openingAnimation() : closingAnimation()}
     0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 `;
 

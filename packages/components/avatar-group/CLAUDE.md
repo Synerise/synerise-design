@@ -53,7 +53,7 @@ Each item in the `dataSource` array. Extends `Omit<BadgeProps, 'children'>`:
 |-------|------|-------------|
 | `title` | `string \| ReactNode` | Modal header title |
 | `listTitle` | `string \| ReactNode` | Title shown above the VirtualTable |
-| `renderRowMenu` | `(record: DataSource) => JSX.Element` | Returns a `Menu` for the row actions dropdown |
+| `renderRowMenu` | `(record: DataSource) => JSX.Element` | Returns the row actions dropdown content — a `ListWrapper` of `ListItem`s |
 | `handleOk` | `() => void` | Primary action button handler |
 | `handleInvite` | `() => void` | Invite button handler |
 | `okText` | `string \| ReactNode` | Primary button label |
@@ -64,7 +64,7 @@ Each item in the `dataSource` array. Extends `Omit<BadgeProps, 'children'>`:
 
 ```tsx
 import AvatarGroup, { type DataSource, type GroupModalSettings } from '@synerise/ds-avatar-group';
-import Menu from '@synerise/ds-menu';
+import ListItem, { ListWrapper } from '@synerise/ds-list-item';
 
 const data = [
   {
@@ -105,9 +105,9 @@ const data = [
     handleOk: () => {},
     handleInvite: () => {},
     renderRowMenu: (record) => (
-      <Menu>
-        <Menu.Item onClick={() => {}}>Remove</Menu.Item>
-      </Menu>
+      <ListWrapper>
+        <ListItem onClick={() => {}}>Remove</ListItem>
+      </ListWrapper>
     ),
   }}
 />

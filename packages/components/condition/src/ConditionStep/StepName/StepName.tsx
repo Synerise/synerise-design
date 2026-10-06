@@ -1,7 +1,7 @@
 import React, { type ReactNode } from 'react';
 
 import * as S from '../../Condition.style';
-import { type ConditionTexts } from '../../Condition.types';
+import type { ConditionTexts } from '../../Condition.types';
 
 type StepNameProps = {
   texts: ConditionTexts;

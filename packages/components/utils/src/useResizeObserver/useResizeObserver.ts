@@ -25,9 +25,9 @@ const useResizeObserver = (
     }),
   ).current;
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: dependencies intentionally omitted
   const observe = useCallback(() => {
     elementRef.current && resizeObserver.observe(elementRef.current);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [resizeObserver]);
 
   const disconnect = useCallback(() => {
@@ -38,6 +38,7 @@ const useResizeObserver = (
     resizeHandler && resizeHandler(dimensions);
   }, [dimensions, resizeHandler]);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: dependencies intentionally omitted
   useEffect(() => {
     if (elementRef.current) {
       observe();
@@ -45,7 +46,6 @@ const useResizeObserver = (
     return () => {
       resizeObserver.disconnect();
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [resizeObserver, observe, disconnect]);
 
   return dimensions;

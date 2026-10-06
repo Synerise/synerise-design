@@ -4,7 +4,7 @@ import type { ListItemProps } from '@synerise/ds-list-item';
 import { SearchItems } from '@synerise/ds-search';
 
 import * as S from './SelectDropdown.style';
-import { type SelectDropdownProps } from './SelectDropdown.types';
+import type { SelectDropdownProps } from './SelectDropdown.types';
 
 const DEFAULT_ROW_HEIGHT = 32;
 const DEFAULT_VISIBLE_ROWS = 10;

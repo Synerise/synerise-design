@@ -1,8 +1,8 @@
-import { type ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
-import { type WithDisabledProp } from '../../../../RangeFilter.types';
-import { type TimeWindowTexts } from '../../TimeWindow.types';
-import { type RangeFormContainerProps } from '../RangeFormContainer.types';
+import type { WithDisabledProp } from '../../../../RangeFilter.types';
+import type { TimeWindowTexts } from '../../TimeWindow.types';
+import type { RangeFormContainerProps } from '../RangeFormContainer.types';
 
 export type DateLimitMode = 'Hour' | 'Range';
 export type RangeDisplayMode = 'timepicker' | 'slider';

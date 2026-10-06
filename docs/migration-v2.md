@@ -1,6 +1,6 @@
 # Migrating to Design System 2.0.0
 
-**Status:** in preparation · **Epic:** STOR-2321 (antd removal)
+**Status:** released · **Epic:** STOR-2321 (antd removal)
 
 Every published `@synerise/ds-*` package moves to `2.0.0` in a single release, including the
 `@synerise/design-system` umbrella. The jump marks the completion of the antd removal, not a
@@ -22,10 +22,10 @@ three still require:
 {
   "dependencies": {
     "@synerise/design-system": "^2.0.0",
-    // add only the ones you actually import:
-    "@synerise/ds-table": "^2.0.0",
-    "@synerise/ds-menu": "^2.0.0",
-    "@synerise/ds-alert": "^2.0.0",
+    // add only the ones you actually import — pin exactly, these no longer receive releases:
+    "@synerise/ds-table": "2.0.2",
+    "@synerise/ds-menu": "2.0.1",
+    "@synerise/ds-alert": "2.0.1",
     "antd": "4.24.16"
   }
 }
@@ -35,9 +35,11 @@ They were previously **phantom dependencies** in most apps — resolved only bec
 manager hoisted the umbrella's transitive deps to the root. Nothing warned you, and the build
 breaks the moment the umbrella stops shipping them.
 
-All three are marked `deprecated` on npm and will be **deleted from the repo** in a later
-release. The published `2.0.0` stays installable indefinitely, so nothing is stranded, but they
-receive no further work. Replacements:
+All three are marked `deprecated` on npm and their **source has now been deleted from the
+design-system repo**. The published versions — `@synerise/ds-table@2.0.2`,
+`@synerise/ds-menu@2.0.1`, `@synerise/ds-alert@2.0.1` — stay installable indefinitely, so nothing is
+stranded, but they receive **no further work of any kind**: no fixes, no releases, and no
+compatibility guarantees against future DS versions. Pin them exactly. Replacements:
 
 | Deprecated | Use instead |
 |---|---|

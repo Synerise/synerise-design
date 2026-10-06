@@ -3,7 +3,7 @@ import React, { forwardRef, useId, useRef } from 'react';
 
 import RawSwitch from './RawSwitch';
 import * as S from './Switch.styles';
-import { type Props } from './Switch.types';
+import type { Props } from './Switch.types';
 
 export { RawSwitch };
 

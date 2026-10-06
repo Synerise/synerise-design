@@ -1,9 +1,9 @@
+import { type ColumnDef } from '@tanstack/react-table';
 import React, { useState } from 'react';
 import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
 
 import { SearchInput } from '@synerise/ds-search';
 import { Table } from '@synerise/ds-table-new';
-import { type ColumnDef } from '@tanstack/react-table';
 
 import StoriesMeta from './Table.stories';
 

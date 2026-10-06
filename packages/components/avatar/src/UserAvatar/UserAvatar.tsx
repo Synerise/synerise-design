@@ -4,7 +4,7 @@ import Badge from '@synerise/ds-badge';
 import Icon, { UserM, UserS } from '@synerise/ds-icon';
 
 import Avatar from '../Avatar';
-import { type UserAvatarProps } from '../Avatar.types';
+import type { UserAvatarProps } from '../Avatar.types';
 import DefaultAvatarIcon, { TOTAL_DEFAULT_AVATARS } from '../DefaultAvatarIcon';
 import {
   addIconColor,

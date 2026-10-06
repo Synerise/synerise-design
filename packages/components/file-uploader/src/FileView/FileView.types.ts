@@ -1,6 +1,6 @@
-import { type DropzoneRootProps } from 'react-dropzone';
+import type { DropzoneRootProps } from 'react-dropzone';
 
-import { type ExtendedFile, type FileViewTexts } from '../FileUploader.types';
+import type { ExtendedFile, FileViewTexts } from '../FileUploader.types';
 
 export type FileViewProps = {
   data: ExtendedFile;

@@ -54,6 +54,8 @@ Modal-based wizard variant, attached as a static property on `Wizard`. Same prop
 |------|------|-------------|
 | `modalProps` | `ModalProps` | **Required.** Passed directly to `@synerise/ds-modal`. Also accepts `prefix`, `infix`, `suffix` (`ReactNode`) for custom footer slots |
 
+Footer slots render in this order: `modalProps.prefix` → Back button → `modalProps.infix` → `footerAction` → Next button → `modalProps.suffix`.
+
 ### `WizardProps`
 
 TypeScript type re-exported for consumers.
@@ -132,5 +134,6 @@ All styles are in `Wizard.styles.ts` and shared between `Wizard` and `WizardOnMo
 - **`headerInlineEdit` replaces `title`**: When `headerInlineEdit` is set, the `title` prop is silently ignored. The `headerAvatar` prop is only rendered when `headerInlineEdit` is also set.
 - **`footer` is deprecated**: Use `footerLeft` for left-side footer content. Both work simultaneously but `footer` maps to the same `FooterLeftSide` slot.
 - **`WizardOnModal` accesses non-standard `modalProps` keys**: The `prefix`, `infix`, and `suffix` keys on `modalProps` are extra fields used by `WizardOnModal`'s own footer layout — they are not standard `ModalProps` fields.
+- **`footerAction` sits before the next button in both variants**: In `Wizard` it renders in `FooterRightSide` ahead of the nav buttons; in `WizardOnModal` it renders in `ModalWizardButtonsSuffix` ahead of the Next button, so `modalProps.suffix` stays the outermost right-hand slot.
 - **Uses Vitest**: The package has `jest.config.js` and a `"test": "jest"` script — it has not been migrated to Vitest yet.
 - **`react-intl` is a peer dependency** (≥3.12.0 ≤6.8) — the component will throw at runtime without an IntlProvider in the tree.

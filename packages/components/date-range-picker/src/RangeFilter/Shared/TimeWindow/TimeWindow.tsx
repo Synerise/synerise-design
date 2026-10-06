@@ -1,11 +1,11 @@
 import dayjs from 'dayjs';
 import range from 'lodash.range';
 import React, {
+  createRef,
   type FC,
   type KeyboardEvent,
   PureComponent,
   type ReactNode,
-  createRef,
 } from 'react';
 import { FormattedMessage, injectIntl } from 'react-intl';
 
@@ -19,25 +19,25 @@ import {
 import AddButton from '../AddButton/AddButton';
 import SelectionCount from '../SelectionCount/SelectionCount';
 import SelectionHint from '../SelectionHint/SelectionHint';
-import Day from './Day/Day';
-import Grid from './Grid/Grid';
-import { type DateLimitMode } from './RangeFormContainer/RangeForm/RangeForm.types';
-import RangeFormContainer from './RangeFormContainer/RangeFormContainer';
-import type { DateValue } from './RangeFormContainer/RangeFormContainer.types';
-import * as S from './TimeWindow.styles';
-import {
-  type DayKey,
-  type DayOptions,
-  type State,
-  type TimeWindowProps,
-  type TimeWindowTexts,
-} from './TimeWindow.types';
 import {
   EU_NOTATION_MONTH_DAYS_INDEXES,
   EU_NOTATION_WEEK_DAYS_INDEXES,
   US_NOTATION_MONTH_DAYS_INDEXES,
   US_NOTATION_WEEK_DAYS_INDEXES,
 } from './constants/timeWindow.constants';
+import Day from './Day/Day';
+import Grid from './Grid/Grid';
+import type { DateLimitMode } from './RangeFormContainer/RangeForm/RangeForm.types';
+import RangeFormContainer from './RangeFormContainer/RangeFormContainer';
+import type { DateValue } from './RangeFormContainer/RangeFormContainer.types';
+import * as S from './TimeWindow.styles';
+import type {
+  DayKey,
+  DayOptions,
+  State,
+  TimeWindowProps,
+  TimeWindowTexts,
+} from './TimeWindow.types';
 import { getDateFromDayValue } from './utils';
 
 export const DEFAULT_LIMIT_MODE: DateLimitMode = 'Range';

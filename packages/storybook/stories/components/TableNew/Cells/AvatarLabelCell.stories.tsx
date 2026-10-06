@@ -1,7 +1,7 @@
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 import { fn } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import Avatar, { ObjectAvatar } from '@synerise/ds-avatar';
 import Icon, { EmailsListM, UserM } from '@synerise/ds-icon';
 import {
@@ -12,10 +12,10 @@ import {
 import { AVATAR_IMAGE } from '../../../constants';
 import {
   BOOLEAN_CONTROL,
+  fixedWrapper300,
   NUMBER_CONTROL,
   REACT_NODE_NO_CONTROL,
   STRING_CONTROL,
-  fixedWrapper300,
 } from '../../../utils';
 
 const meta: Meta<BaseAvatarLabelProps> = {
