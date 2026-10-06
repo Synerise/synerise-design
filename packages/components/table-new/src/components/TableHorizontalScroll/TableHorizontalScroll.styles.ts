@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-import { hexToRgba } from '@synerise/ds-utils';
-
 export const HorizontalScrollWrapper = styled.div<{
   nativeScrollbar?: boolean;
 }>`
@@ -19,8 +17,7 @@ export const LeftShadow = styled.div<{ offset: number }>`
   width: 10px;
   height: 100%;
   box-shadow: inset 10px 0 8px -8px
-    ${({ theme }) =>
-      hexToRgba(theme.tokens['--ds-color-border-base-strong'], 0.12)};
+    var(--ds-table-scroll-shadow);
 
   z-index: 10;
 `;
@@ -31,8 +28,7 @@ export const RightShadow = styled.div<{ offset: number }>`
   width: 10px;
   height: 100%;
   box-shadow: inset -10px 0 8px -8px
-    ${({ theme }) =>
-      hexToRgba(theme.tokens['--ds-color-border-base-strong'], 0.12)};
+    var(--ds-table-scroll-shadow);
 
   z-index: 10;
 `;
