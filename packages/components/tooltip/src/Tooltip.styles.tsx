@@ -56,10 +56,9 @@ export const TooltipKey = styled.div`
   min-width: 18px;
   height: 18px;
   padding: 0 4px;
-  /* key-cap: awaiting --ds-tooltip-key-{bg,border,shadow} upstream (audit UX 2026-07-21); kept on palette until they land */
-  background: ${(props) => props.theme.palette['grey-700']};
-  border-bottom: 1px solid ${(props) => props.theme.palette['grey-500']};
-  box-shadow: 0px 1px 8px rgba(35, 41, 54, 0.5);
+  background: var(--ds-shortcut-theme-dark-bg);
+  border-bottom: 1px solid var(--ds-shortcut-theme-dark-border);
+  box-shadow: var(--ds-shortcut-theme-dark-shadow);
   border-radius: 3px;
 `;
 

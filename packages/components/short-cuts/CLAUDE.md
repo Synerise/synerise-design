@@ -52,7 +52,7 @@ import { ArrowUpM } from '@synerise/ds-icon';
 
 ## Styling
 
-`ShortCuts.style.ts`. The `Wrapper` is a flex `div` centered on both axes. Padding and width are computed via `getPadding()` and `getWidth()` helper functions based on `size` and `isIcon`. Icon color is `white` for `dark` variant, `grey-600` for `light` variant (hardcoded via `theme.palette`, applied as `Icon` `color` prop). Font size is hardcoded `11px`. Box shadow opacity: `0.5` for dark, `0.08` for light.
+`ShortCuts.style.ts`. The `Wrapper` is a flex `div` centered on both axes. Padding and width are computed via `getPadding()` and `getWidth()` helper functions based on `size` and `isIcon`. Background, border, text colour and box-shadow come from `--ds-shortcut-theme-{light|dark}-{bg,border,text,shadow}` tokens (the `theme` name is the Figma variant, not the colour mode). Font size is hardcoded `11px`.
 
 ## Key dependencies
 
