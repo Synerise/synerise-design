@@ -85,7 +85,7 @@ function collectPaths(node, prefix, set) {
   }
   if (node != null && typeof node === 'object') {
     for (const [key, value] of Object.entries(node)) {
-      if (!key.startsWith('$')) collectPaths(value, [...prefix, key], set);
+      if (!key.startsWith('$')) { collectPaths(value, [...prefix, key], set); }
     }
   }
 }
@@ -96,7 +96,7 @@ function extractRefs(value) {
   const scan = (v) => {
     if (typeof v === 'string') {
       const matches = v.match(/\{([^}]+)\}/g);
-      if (matches) refs.push(...matches.map((s) => s.slice(1, -1)));
+      if (matches) { refs.push(...matches.map((s) => s.slice(1, -1))); }
     } else if (Array.isArray(v)) {
       v.forEach(scan);
     } else if (v != null && typeof v === 'object') {
@@ -137,7 +137,7 @@ const countLeaves = (node) => {
       return;
     }
     if (x != null && typeof x === 'object') {
-      for (const key of Object.keys(x)) if (!key.startsWith('$')) walk(x[key]);
+      for (const key of Object.keys(x)) { if (!key.startsWith('$')) { walk(x[key]); } }
     }
   };
   walk(node);
@@ -149,11 +149,11 @@ const countLeaves = (node) => {
 // token reference and, when it doesn't resolve, hard-fails the whole build. Descriptions are
 // documentation and are never emitted to CSS/JSON, so strip them from the docs before staging.
 const stripDescriptions = (node) => {
-  if (Array.isArray(node)) return node.map(stripDescriptions);
+  if (Array.isArray(node)) { return node.map(stripDescriptions); }
   if (node != null && typeof node === 'object') {
     const out = {};
     for (const [key, value] of Object.entries(node)) {
-      if (key === '$description') continue;
+      if (key === '$description') { continue; }
       out[key] = stripDescriptions(value);
     }
     return out;
@@ -175,11 +175,11 @@ function pruneUnresolvable(docs) {
   let current = docs;
   for (;;) {
     const defined = new Set();
-    for (const doc of current) collectPaths(doc, [], defined);
+    for (const doc of current) { collectPaths(doc, [], defined); }
     const next = current.map((doc) => dropUnresolvable(doc, defined) ?? {});
     const changed = next.some((doc, i) => countLeaves(doc) !== countLeaves(current[i]));
     current = next;
-    if (!changed) return current;
+    if (!changed) { return current; }
   }
 }
 
@@ -217,7 +217,7 @@ const ORDERED_DIR = 'tokens/semantic/ordered';
 // producing per-family SET tokens for all families in one theme-independent doc.
 function loadCustomColorFamilies() {
   const dir = resolve(ROOT, CUSTOM_COLOR_DIR);
-  if (!existsSync(dir)) return { doc: {}, families: [], shades: [] };
+  if (!existsSync(dir)) { return { doc: {}, families: [], shades: [] }; }
   const families = readdirSync(dir)
     .filter((f) => f.endsWith('.json'))
     .map((f) => f.replace(/\.json$/, ''))
@@ -228,7 +228,7 @@ function loadCustomColorFamilies() {
     const src = readJson(`${CUSTOM_COLOR_DIR}/${family}.json`);
     doc.color['custom-light'][family] = src.color?.custom ?? {};
     doc.color['custom-dark'][family] = src['color-dark']?.custom ?? {};
-    if (!shades.length) shades = Object.keys(src.color?.custom ?? {});
+    if (!shades.length) { shades = Object.keys(src.color?.custom ?? {}); }
   }
   return { doc, families, shades };
 }
@@ -261,7 +261,7 @@ function customSemanticTier(families, shades, themeName) {
 // card-tabs module tokens that chain through them — resolve instead of being pruned.
 function loadOrderedSlots() {
   const dir = resolve(ROOT, ORDERED_DIR);
-  if (!existsSync(dir)) return { doc: {}, slots: [] };
+  if (!existsSync(dir)) { return { doc: {}, slots: [] }; }
   const slots = readdirSync(dir)
     .filter((f) => /^order-\d+\.json$/.test(f))
     .map((f) => parseInt(f.match(/\d+/)[0], 10))
@@ -318,7 +318,6 @@ const TMP = resolve(ROOT, 'dist/.token-cache');
 mkdirSync(TMP, { recursive: true });
 
 for (const [themeName, cfg] of Object.entries(themes)) {
-  console.log(`\nBuilding theme: ${themeName}`);
 
   // Load every doc this theme needs: base sources (for reference resolution) + the theme's
   // semantic layer + the color-typed module subset. Prune unresolvable leaves across the
@@ -355,9 +354,6 @@ for (const [themeName, cfg] of Object.entries(themes)) {
     inputDocs.reduce((n, doc) => n + countLeaves(doc), 0) -
     pruned.reduce((n, doc) => n + countLeaves(doc), 0);
   if (droppedCount > 0) {
-    console.warn(
-      `  ⚠ pruned ${droppedCount} token(s) with unresolvable references (will be absent from ${themeName}.css)`,
-    );
   }
 
   const stage = (obj, name) => {
@@ -512,5 +508,3 @@ writeFileSync(
     `export declare const orderedBase: string[];\n` +
     `export declare const orderedHover: string[];\n`,
 );
-
-console.log('✓ Token build complete.');

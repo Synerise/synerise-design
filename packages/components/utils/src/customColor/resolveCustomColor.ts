@@ -1,6 +1,6 @@
 import { customColors } from '@synerise/ds-tokens/names';
 
-import { type CustomColorShade } from './customColor.types';
+import type { CustomColorShade } from './customColor.types';
 
 // True when the value is an already-resolved CSS colour — a `var()` token or a literal hex — so it
 // can be used verbatim rather than mapped from a palette key.
