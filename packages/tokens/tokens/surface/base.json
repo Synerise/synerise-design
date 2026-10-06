@@ -265,7 +265,7 @@
         },
         "shadow": {
           "$type": "boxShadow",
-          "$value": "{Shadows.Shadow 1{",
+          "$value": "{Shadows.Shadow 1}",
           "$description": "Raised elevation shadow — level 1"
         }
       }

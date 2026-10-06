@@ -32,6 +32,11 @@
           "$value": "{color-dark.grey.200}",
           "$description": "Hover state for muted background"
         },
+        "mutedActive": {
+          "$type": "color",
+          "$value": "{color-dark.grey.300}",
+          "$description": "Active or pressed state for muted background"
+        },
         "strong": {
           "$type": "color",
           "$value": "{color-dark.grey.400}",
@@ -139,6 +144,11 @@
           "$type": "color",
           "$value": "{color-dark.red.100}",
           "$description": "Hover state for subtle danger"
+        },
+        "subtleActive": {
+          "$type": "color",
+          "$value": "{color-dark.red.200}",
+          "$description": "Stronger subtle danger background - e.g. hover on a button in error state"
         },
         "solid": {
           "$type": "color",
@@ -427,13 +437,20 @@
         }
       },
       "ordered": {
-        "base": {
+        "default": {
           "$type": "color",
           "$value": "{color-dark.ordered.base}"
         },
-        "hover": {
+        "defaultHover": {
           "$type": "color",
           "$value": "{color-dark.ordered.hover}"
+        }
+      },
+      "ai": {
+        "solid": {
+          "$type": "color",
+          "$value": "{color-dark.cyan.600}",
+          "$description": "AI primary surface"
         }
       }
     },
@@ -458,6 +475,11 @@
           "$type": "color",
           "$value": "{color-dark.grey.400}",
           "$description": "Disabled text color"
+        },
+        "onSolid": {
+          "$type": "color",
+          "$value": "{color-dark.mono.00}",
+          "$description": "Text on solid backgrounds - default white"
         }
       },
       "brand": {
@@ -466,10 +488,15 @@
           "$value": "{color-dark.blue.600}",
           "$description": "Brand text color"
         },
-        "hover": {
+        "defaultHover": {
           "$type": "color",
           "$value": "{color-dark.blue.700}",
           "$description": "Hover state for brand text"
+        },
+        "onSolid": {
+          "$type": "color",
+          "$value": "{color-dark.mono.00}",
+          "$description": "Text on solid brand background"
         }
       },
       "success": {
@@ -477,6 +504,11 @@
           "$type": "color",
           "$value": "{color-dark.green.700}",
           "$description": "Success text color"
+        },
+        "onSolid": {
+          "$type": "color",
+          "$value": "{color-dark.mono.00}",
+          "$description": "Text on solid success background"
         }
       },
       "warning": {
@@ -484,6 +516,11 @@
           "$type": "color",
           "$value": "{color-dark.yellow.700}",
           "$description": "Warning text color"
+        },
+        "onSolid": {
+          "$type": "color",
+          "$value": "{color-dark.grey.800}",
+          "$description": "Text on solid warning background - dark for contrast"
         }
       },
       "danger": {
@@ -491,6 +528,11 @@
           "$type": "color",
           "$value": "{color-dark.red.600}",
           "$description": "Danger/error text color"
+        },
+        "onSolid": {
+          "$type": "color",
+          "$value": "{color-dark.mono.00}",
+          "$description": "Text on solid danger background"
         }
       },
       "neutral": {
@@ -498,48 +540,16 @@
           "$type": "color",
           "$value": "{color-dark.grey.500}",
           "$description": "Neutral text color"
-        }
-      },
-      "onSolid": {
-        "default": {
+        },
+        "onSolid": {
           "$type": "color",
           "$value": "{color-dark.mono.00}",
-          "$description": "Text on solid backgrounds - default white"
+          "$description": "Text on solid neutral background"
         },
-        "subtle": {
+        "onSolidSubtle": {
           "$type": "color",
           "$value": "{color-dark.grey.200}",
-          "$description": "Subtle text on solid backgrounds"
-        },
-        "brand": {
-          "$type": "color",
-          "$value": "{color-dark.mono.00}",
-          "$description": "Text on solid brand background"
-        },
-        "success": {
-          "$type": "color",
-          "$value": "{color-dark.mono.00}",
-          "$description": "Text on solid success background"
-        },
-        "warning": {
-          "$type": "color",
-          "$value": "{color-dark.grey.800}",
-          "$description": "Text on solid warning background - dark for contrast"
-        },
-        "danger": {
-          "$type": "color",
-          "$value": "{color-dark.mono.00}",
-          "$description": "Text on solid danger background"
-        },
-        "neutral": {
-          "$type": "color",
-          "$value": "{color-dark.mono.00}",
-          "$description": "Text on solid neutral background"
-        },
-        "custom": {
-          "$type": "color",
-          "$value": "{color-dark.mono.00}",
-          "$description": "Text on solid neutral background"
+          "$description": "Subtle text on a solid background, e.g. tooltip body text on neutral solid"
         }
       },
       "custom": {
@@ -547,6 +557,11 @@
           "$type": "color",
           "$value": "{color-dark.custom.600}",
           "$description": "Neutral text color"
+        },
+        "onSolid": {
+          "$type": "color",
+          "$value": "{color-dark.mono.00}",
+          "$description": "Text on solid neutral background"
         }
       },
       "entity": {
@@ -571,7 +586,7 @@
         }
       },
       "ordered": {
-        "base": {
+        "default": {
           "$type": "color",
           "$value": "{color-dark.ordered.base}"
         }
@@ -598,6 +613,11 @@
           "$type": "color",
           "$value": "{color-dark.grey.400}",
           "$description": "Disabled icon color"
+        },
+        "onSolid": {
+          "$type": "color",
+          "$value": "{color-dark.mono.00}",
+          "$description": "Icon on solid backgrounds - default white"
         }
       },
       "brand": {
@@ -605,6 +625,11 @@
           "$type": "color",
           "$value": "{color-dark.blue.600}",
           "$description": "Brand icon color"
+        },
+        "onSolid": {
+          "$type": "color",
+          "$value": "{color-dark.mono.00}",
+          "$description": "Icon on solid brand background"
         }
       },
       "success": {
@@ -612,6 +637,11 @@
           "$type": "color",
           "$value": "{color-dark.green.700}",
           "$description": "Success icon color"
+        },
+        "onSolid": {
+          "$type": "color",
+          "$value": "{color-dark.mono.00}",
+          "$description": "Icon on solid success background"
         }
       },
       "warning": {
@@ -619,6 +649,11 @@
           "$type": "color",
           "$value": "{color-dark.yellow.700}",
           "$description": "Warning icon color"
+        },
+        "onSolid": {
+          "$type": "color",
+          "$value": "{color-dark.grey.800}",
+          "$description": "Icon on solid warning background - dark for contrast"
         }
       },
       "danger": {
@@ -626,6 +661,16 @@
           "$type": "color",
           "$value": "{color-dark.red.600}",
           "$description": "Danger icon color"
+        },
+        "defaultHover": {
+          "$type": "color",
+          "$value": "{color-dark.red.500}",
+          "$description": "Hover state for danger icon - lighter red, e.g. delete or clear icon on hover"
+        },
+        "onSolid": {
+          "$type": "color",
+          "$value": "{color-dark.mono.00}",
+          "$description": "Icon on solid danger background"
         }
       },
       "neutral": {
@@ -633,35 +678,8 @@
           "$type": "color",
           "$value": "{color-dark.grey.500}",
           "$description": "Neutral icon color"
-        }
-      },
-      "onSolid": {
-        "default": {
-          "$type": "color",
-          "$value": "{color-dark.mono.00}",
-          "$description": "Icon on solid backgrounds - default white"
         },
-        "brand": {
-          "$type": "color",
-          "$value": "{color-dark.mono.00}",
-          "$description": "Icon on solid brand background"
-        },
-        "success": {
-          "$type": "color",
-          "$value": "{color-dark.mono.00}",
-          "$description": "Icon on solid success background"
-        },
-        "warning": {
-          "$type": "color",
-          "$value": "{color-dark.grey.800}",
-          "$description": "Icon on solid warning background - dark for contrast"
-        },
-        "danger": {
-          "$type": "color",
-          "$value": "{color-dark.mono.00}",
-          "$description": "Icon on solid danger background"
-        },
-        "neutral": {
+        "onSolid": {
           "$type": "color",
           "$value": "{color-dark.mono.00}",
           "$description": "Icon on solid neutral background"
@@ -693,6 +711,13 @@
           "$type": "color",
           "$value": "{color-dark.violet.600}",
           "$description": "Ikona Entity — dark mode"
+        }
+      },
+      "ai": {
+        "default": {
+          "$type": "color",
+          "$value": "{color-dark.mars.400}",
+          "$description": "AI accent icon color - mars.400, e.g. AI star icon"
         }
       }
     },
@@ -727,6 +752,11 @@
           "$type": "color",
           "$value": "{color-dark.grey.200}",
           "$description": "Disabled border color"
+        },
+        "onSolid": {
+          "$type": "color",
+          "$value": "{color-dark.mono.00}",
+          "$description": "Border or separator on a solid background, e.g. separators on navbar, white ring on badge"
         }
       },
       "brand": {
@@ -883,32 +913,6 @@
         }
       }
     },
-    "custom-color": {
-      "solid": {
-        "$type": "color",
-        "$value": "{color-dark.blue.600}",
-        "$description": "Custom color base (fallback)"
-      },
-      "hover": {
-        "$type": "color",
-        "$value": "{color-dark.blue.700}",
-        "$description": "Custom color hover (fallback)"
-      },
-      "active": {
-        "$type": "color",
-        "$value": "{color-dark.blue.800}",
-        "$description": "Custom color active (fallback)"
-      }
-    },
-    "ai": {
-      "primary": {
-        "solid": {
-          "$type": "color",
-          "$value": "{color-dark.cyan.600}",
-          "$description": "AI primary surface"
-        }
-      }
-    },
     "focus": {
       "base": {
         "default": {
@@ -918,6 +922,15 @@
         "strong": {
           "$type": "color",
           "$value": "{color-dark.blue.700}"
+        }
+      }
+    },
+    "gradient": {
+      "ai": {
+        "default": {
+          "$type": "color",
+          "$value": "linear-gradient(90deg, {color-dark.mars.500} 0%, {color-dark.purple.400} 100%)",
+          "$description": "AI accent gradient - mars.500 to purple.400, used for AI labels and decorative AI text"
         }
       }
     }
