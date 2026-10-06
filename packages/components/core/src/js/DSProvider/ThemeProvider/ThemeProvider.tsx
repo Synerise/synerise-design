@@ -5,7 +5,7 @@ import { tokens as darkTokens } from '@synerise/ds-tokens/dark';
 import { tokens as lightTokens } from '@synerise/ds-tokens/light';
 
 import { GlobalTokenStyles } from './GlobalTokenStyles';
-import dsTheme, { type ThemePropsVars, getColorsOrder } from './theme';
+import dsTheme, { getColorsOrder, type ThemePropsVars } from './theme';
 
 export type ThemeMode = 'light' | 'dark' | 'system';
 

@@ -1,14 +1,15 @@
+import { register } from '@tokens-studio/sd-transforms';
 import StyleDictionary from 'style-dictionary';
 import { outputReferencesTransformed } from 'style-dictionary/utils';
-import { register } from '@tokens-studio/sd-transforms';
+
 import {
+  existsSync,
+  mkdirSync,
+  readdirSync,
   readFileSync,
   writeFileSync,
-  mkdirSync,
-  existsSync,
-  readdirSync,
 } from 'node:fs';
-import { resolve, dirname } from 'node:path';
+import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -30,7 +31,8 @@ const INCLUDED_TYPES = new Set(['color', 'boxShadow', 'shadow', 'opacity']);
 
 StyleDictionary.registerFilter({
   name: 'includedTypes',
-  filter: (token) => INCLUDED_TYPES.has(token.$type) || INCLUDED_TYPES.has(token.type),
+  filter: (token) =>
+    INCLUDED_TYPES.has(token.$type) || INCLUDED_TYPES.has(token.type),
 });
 
 // ──────────────────────────────────────────────────────────────────────────────
@@ -52,7 +54,8 @@ const readJson = (p) => JSON.parse(readFileSync(resolve(ROOT, p), 'utf-8'));
 
 // DTCG leaf tokens are marked by a `$value` key. (A `value` key without `$` is a child
 // token literally named "value", e.g. progressbar.header.value — not a leaf marker.)
-const isLeaf = (node) => node != null && typeof node === 'object' && '$value' in node;
+const isLeaf = (node) =>
+  node != null && typeof node === 'object' && '$value' in node;
 
 // Keep only leaf tokens whose $type is in INCLUDED_TYPES; preserve group metadata
 // ($-prefixed keys) and prune empty groups.
@@ -68,7 +71,10 @@ function filterByType(node) {
         continue;
       }
       const kept = filterByType(value);
-      if (kept !== undefined && !(typeof kept === 'object' && Object.keys(kept).length === 0)) {
+      if (
+        kept !== undefined &&
+        !(typeof kept === 'object' && Object.keys(kept).length === 0)
+      ) {
         out[key] = kept;
       }
     }
@@ -85,7 +91,9 @@ function collectPaths(node, prefix, set) {
   }
   if (node != null && typeof node === 'object') {
     for (const [key, value] of Object.entries(node)) {
-      if (!key.startsWith('$')) { collectPaths(value, [...prefix, key], set); }
+      if (!key.startsWith('$')) {
+        collectPaths(value, [...prefix, key], set);
+      }
     }
   }
 }
@@ -96,7 +104,9 @@ function extractRefs(value) {
   const scan = (v) => {
     if (typeof v === 'string') {
       const matches = v.match(/\{([^}]+)\}/g);
-      if (matches) { refs.push(...matches.map((s) => s.slice(1, -1))); }
+      if (matches) {
+        refs.push(...matches.map((s) => s.slice(1, -1)));
+      }
     } else if (Array.isArray(v)) {
       v.forEach(scan);
     } else if (v != null && typeof v === 'object') {
@@ -110,7 +120,9 @@ function extractRefs(value) {
 // Drop leaf tokens whose references point to paths not present in `defined`; prune empties.
 function dropUnresolvable(node, defined) {
   if (isLeaf(node)) {
-    return extractRefs(node.$value).every((ref) => defined.has(ref)) ? node : undefined;
+    return extractRefs(node.$value).every((ref) => defined.has(ref))
+      ? node
+      : undefined;
   }
   if (node != null && typeof node === 'object') {
     const out = {};
@@ -120,7 +132,10 @@ function dropUnresolvable(node, defined) {
         continue;
       }
       const kept = dropUnresolvable(value, defined);
-      if (kept !== undefined && !(typeof kept === 'object' && Object.keys(kept).length === 0)) {
+      if (
+        kept !== undefined &&
+        !(typeof kept === 'object' && Object.keys(kept).length === 0)
+      ) {
         out[key] = kept;
       }
     }
@@ -137,7 +152,11 @@ const countLeaves = (node) => {
       return;
     }
     if (x != null && typeof x === 'object') {
-      for (const key of Object.keys(x)) { if (!key.startsWith('$')) { walk(x[key]); } }
+      for (const key of Object.keys(x)) {
+        if (!key.startsWith('$')) {
+          walk(x[key]);
+        }
+      }
     }
   };
   walk(node);
@@ -149,11 +168,15 @@ const countLeaves = (node) => {
 // token reference and, when it doesn't resolve, hard-fails the whole build. Descriptions are
 // documentation and are never emitted to CSS/JSON, so strip them from the docs before staging.
 const stripDescriptions = (node) => {
-  if (Array.isArray(node)) { return node.map(stripDescriptions); }
+  if (Array.isArray(node)) {
+    return node.map(stripDescriptions);
+  }
   if (node != null && typeof node === 'object') {
     const out = {};
     for (const [key, value] of Object.entries(node)) {
-      if (key === '$description') { continue; }
+      if (key === '$description') {
+        continue;
+      }
       out[key] = stripDescriptions(value);
     }
     return out;
@@ -175,11 +198,17 @@ function pruneUnresolvable(docs) {
   let current = docs;
   for (;;) {
     const defined = new Set();
-    for (const doc of current) { collectPaths(doc, [], defined); }
+    for (const doc of current) {
+      collectPaths(doc, [], defined);
+    }
     const next = current.map((doc) => dropUnresolvable(doc, defined) ?? {});
-    const changed = next.some((doc, i) => countLeaves(doc) !== countLeaves(current[i]));
+    const changed = next.some(
+      (doc, i) => countLeaves(doc) !== countLeaves(current[i]),
+    );
     current = next;
-    if (!changed) { return current; }
+    if (!changed) {
+      return current;
+    }
   }
 }
 
@@ -192,7 +221,9 @@ const candidateBaseSources = [
   'tokens/semantic/dimensions.json',
   'tokens/semantic/spacing.json',
 ];
-const baseSources = candidateBaseSources.filter((p) => existsSync(resolve(ROOT, p)));
+const baseSources = candidateBaseSources.filter((p) =>
+  existsSync(resolve(ROOT, p)),
+);
 
 const moduleBase = readJson('tokens/modules/base.json');
 
@@ -217,7 +248,9 @@ const ORDERED_DIR = 'tokens/semantic/ordered';
 // producing per-family SET tokens for all families in one theme-independent doc.
 function loadCustomColorFamilies() {
   const dir = resolve(ROOT, CUSTOM_COLOR_DIR);
-  if (!existsSync(dir)) { return { doc: {}, families: [], shades: [] }; }
+  if (!existsSync(dir)) {
+    return { doc: {}, families: [], shades: [] };
+  }
   const families = readdirSync(dir)
     .filter((f) => f.endsWith('.json'))
     .map((f) => f.replace(/\.json$/, ''))
@@ -228,7 +261,9 @@ function loadCustomColorFamilies() {
     const src = readJson(`${CUSTOM_COLOR_DIR}/${family}.json`);
     doc.color['custom-light'][family] = src.color?.custom ?? {};
     doc.color['custom-dark'][family] = src['color-dark']?.custom ?? {};
-    if (!shades.length) { shades = Object.keys(src.color?.custom ?? {}); }
+    if (!shades.length) {
+      shades = Object.keys(src.color?.custom ?? {});
+    }
   }
   return { doc, families, shades };
 }
@@ -261,7 +296,9 @@ function customSemanticTier(families, shades, themeName) {
 // card-tabs module tokens that chain through them — resolve instead of being pruned.
 function loadOrderedSlots() {
   const dir = resolve(ROOT, ORDERED_DIR);
-  if (!existsSync(dir)) { return { doc: {}, slots: [] }; }
+  if (!existsSync(dir)) {
+    return { doc: {}, slots: [] };
+  }
   const slots = readdirSync(dir)
     .filter((f) => /^order-\d+\.json$/.test(f))
     .map((f) => parseInt(f.match(/\d+/)[0], 10))
@@ -304,13 +341,19 @@ function orderedSemanticTier(slots, themeName) {
   return { color: { ordered } };
 }
 
-const { doc: customSetDoc, families: customFamilies, shades: customShades } =
-  loadCustomColorFamilies();
+const {
+  doc: customSetDoc,
+  families: customFamilies,
+  shades: customShades,
+} = loadCustomColorFamilies();
 const { doc: orderedSetDoc, slots: orderedSlots } = loadOrderedSlots();
 
 const themes = {
   light: { semantic: 'tokens/semantic/Light.json', selector: ':root' },
-  dark: { semantic: 'tokens/semantic/Dark.json', selector: '[data-ds-theme="dark"]' },
+  dark: {
+    semantic: 'tokens/semantic/Dark.json',
+    selector: '[data-ds-theme="dark"]',
+  },
 };
 
 // Staging dir for the derived color-only module sets (under gitignored dist/).
@@ -318,13 +361,16 @@ const TMP = resolve(ROOT, 'dist/.token-cache');
 mkdirSync(TMP, { recursive: true });
 
 for (const [themeName, cfg] of Object.entries(themes)) {
-
   // Load every doc this theme needs: base sources (for reference resolution) + the theme's
   // semantic layer + the color-typed module subset. Prune unresolvable leaves across the
   // whole set, then stage the pruned docs for Style Dictionary.
   const baseDocs = baseSources.map((p) => readJson(p));
   const semanticDoc = readJson(cfg.semantic);
-  const semanticCustom = customSemanticTier(customFamilies, customShades, themeName);
+  const semanticCustom = customSemanticTier(
+    customFamilies,
+    customShades,
+    themeName,
+  );
   const semanticOrdered = orderedSemanticTier(orderedSlots, themeName);
   const moduleColor = filterByType(moduleBase) ?? {};
 
@@ -373,7 +419,12 @@ for (const [themeName, cfg] of Object.entries(themes)) {
 
   const sd = new StyleDictionary({
     include: includePaths,
-    source: [semanticPath, customSemanticPath, orderedSemanticPath, modulesPath],
+    source: [
+      semanticPath,
+      customSemanticPath,
+      orderedSemanticPath,
+      modulesPath,
+    ],
     preprocessors: ['tokens-studio'],
     platforms: {
       css: {

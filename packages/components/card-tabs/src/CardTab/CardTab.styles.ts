@@ -423,14 +423,14 @@ export const CardTabContainer = styled.div<{
       background-image: linear-gradient(
         to right,
         ${({ active }) =>
-            active
-              ? 'var(--ds-card-tabs-variant-grey-text-active)'
-              : 'var(--ds-card-tabs-variant-grey-text-hover)'}
+          active
+            ? 'var(--ds-card-tabs-variant-grey-text-active)'
+            : 'var(--ds-card-tabs-variant-grey-text-hover)'}
           0%,
         ${({ active }) =>
-            active
-              ? 'var(--ds-card-tabs-variant-grey-text-active)'
-              : 'var(--ds-card-tabs-variant-grey-text-hover)'}
+          active
+            ? 'var(--ds-card-tabs-variant-grey-text-active)'
+            : 'var(--ds-card-tabs-variant-grey-text-hover)'}
           33%,
         rgba(255, 255, 255, 0) 34%,
         rgba(255, 255, 255, 0) 100%
