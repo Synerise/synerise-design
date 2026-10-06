@@ -102,19 +102,30 @@ Every component that could be migrated with the tokens available has been. What 
 sequencing problem — it is an **upstream authoring** problem, so the next move belongs in the
 design-tokens repo.
 
-**Upstream token gaps blocking the remaining 🚧 components** (deduplicated from the blocker column):
+**Upstream token gaps — all delivered or decided (design-tokens@4d78c204, 2026-10-05; applied 2026-10-06).**
+Nothing upstream blocks code any more. Source of truth: `UPSTREAM_GAPS_HANDOFF.md` in the design-tokens repo.
 
-| Gap | Blocks |
-|---|---|
-| `--ds-color-*-danger-hover` (red-500) | `factors` |
-| Grey/translucent **background** roles (grey-200/300 at alpha) | `subtle-form`, `file-uploader`, `inline-edit`, `table-new`, `rich-text` (hover tint) |
-| Shadow token for `0 1px 8px 0` with runtime alpha | `short-cuts` |
-| Opacity steps `0.1` / `0.3` (only `0.2`/`0.4` exist) | `skeleton` |
-| Key-cap tokens `--ds-tooltip-key-*` | `tooltip` |
-| Connector tokens | `condition` |
-| Categorical/variant icon+text tokens | `avatar`, `card-tabs` |
-| Gradient / stop tokens (decorative) | `rich-text` (AI gradient + icon), `button` |
-| Form counter role | `form-field` |
+| Gap | Resolution | Applied in |
+|---|---|---|
+| `icon-danger` hover (red-500) | `--ds-color-icon-danger-defaulthover` | `factors` |
+| Translucent grey/blue/red backgrounds | module tokens with alpha (`--ds-file-uploader-bg-*`, `--ds-subtle-form-bg-*`, `--ds-rich-text-bg-hover`, `--ds-table-scroll-shadow`, `--ds-inline-edit-icon-btn-bg-active`) | `file-uploader`, `subtle-form`, `rich-text`, `table-new`, `inline-edit` |
+| `0 1px 8px` shadow with alpha | `--ds-shortcut-theme-{light,dark}-shadow` | `short-cuts` |
+| Opacity steps 0.1 / 0.3 | `--ds-skeleton-pulse-opacity-min/max` | `skeleton` (`Dropdown`, `OrderedList`, `Checkbox`, `Avatar` keyframes) |
+| Key-cap tokens | reuse `--ds-shortcut-theme-dark-*` | `tooltip` |
+| Connector tokens | **no module token by decision**; semantic `--ds-color-border-base-strong` | `condition` |
+| Gradient / AI | `--ds-rich-text-ai-label-text`, `--ds-rich-text-ai-icon` | `rich-text` |
+| Form counter role | `--ds-form-field-text-counter` | `form-field` |
+| `button` leftovers | `--ds-buttons-error-*`, `--ds-button-creator-*` | `button` |
+| Categorical icon/text (avatar icon/text variants) | still a design decision, not a code blocker | `avatar` unchanged |
+
+**Intended visual shift (Chromatic):** `button` Creator `status="upload"` hover text blue-500 → blue-600.
+
+**Still open after this pass**
+- `button` split divider: the secondary `.pressed` / `:hover` blocks colour `.ds-icon::before` with `palette['blue-200']`. The handoff called them dead code, but `mode="split"` renders that `::before`, so they are live. Left in place pending a decision (delete = divider stays grey on hover/pressed, or request a token).
+- `skeleton/src/Skeleton.styles.ts` shimmer uses 0.1 → 0.4 → 0.1; the 0.4 midpoint has no token, so the keyframe stays literal.
+- `button` variants (`Button.variants.ts`) still build gradients and shadows from `palette`; no tokens were named upstream.
+- `file-uploader` (`FileView`, `FileViewAvatar`, `FileViewItem`) and `table-new` `TreeTable` still carry palette references.
+- 19 `*.typography` tokens point at `{typography.*}`, which does not exist in the token repo (upstream).
 
 **Deprecated — excluded (no tokens):** `alert`, `menu`, `table` are deprecated and slated for
 removal/replacement, so they will **not** be tokenised despite their high palette/opacity counts.
