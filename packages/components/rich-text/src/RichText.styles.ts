@@ -1,7 +1,5 @@
 import styled, { css, keyframes } from 'styled-components';
 
-import { hexToRgba } from '@synerise/ds-utils';
-
 // Height of the toolbar row that unmounts when subtle mode deactivates.
 const TOOLBAR_HEIGHT_PX = 44;
 
@@ -86,8 +84,7 @@ export const EditorWrapper = styled.div<{
       }
 
       &&:hover {
-        /* Kept on palette: runtime translucent tint — no baked --ds-color-background-translucent-* token. */
-        background: ${hexToRgba(props.theme.palette['grey-300'], 0.4)};
+        background: var(--ds-rich-text-bg-hover);
 
         ${SubtleSuffix} {
           opacity: 1;
@@ -431,12 +428,7 @@ export const Description = styled.div`
 `;
 
 export const AiGradientLabel = styled.span`
-  /* Kept on palette: decorative two-stop AI gradient — no gradient/stop tokens exist. */
-  background: linear-gradient(
-    90deg,
-    ${(props) => props.theme.palette['mars-500']} 0%,
-    ${(props) => props.theme.palette['purple-400']} 100%
-  );
+  background: var(--ds-rich-text-ai-label-text);
   /* Paint the glyphs with the gradient. text-fill-color wins over the
      button variant's "color: inherit", so no specificity battle. */
   -webkit-background-clip: text;

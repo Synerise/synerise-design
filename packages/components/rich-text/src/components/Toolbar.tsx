@@ -7,7 +7,6 @@ import React, {
 } from 'react';
 
 import Button from '@synerise/ds-button';
-import { useTheme } from '@synerise/ds-core';
 import Icon, {
   AddM,
   AiStarM,
@@ -166,7 +165,6 @@ export const Toolbar = ({
   onEditWithAI,
   editWithAIOptions,
 }: ToolbarProps) => {
-  const theme = useTheme();
   const [showLinkPopover, setShowLinkPopover] = useState(false);
   const [showImagePopover, setShowImagePopover] = useState(false);
   const [showBlockMenu, setShowBlockMenu] = useState(false);
@@ -905,7 +903,7 @@ export const Toolbar = ({
                 disabled={disabled}
                 icon={
                   <Icon
-                    color={theme.palette['mars-400']}
+                    color="var(--ds-rich-text-ai-icon)"
                     component={<AiStarM />}
                   />
                 }
