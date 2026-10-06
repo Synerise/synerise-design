@@ -2,7 +2,6 @@ import styled, { css, keyframes } from 'styled-components';
 
 import FormField from '@synerise/ds-form-field';
 import { TextareaWrapper } from '@synerise/ds-input/dist/Textarea/Textarea.styles';
-import { hexToRgba } from '@synerise/ds-utils';
 
 import { MaskedDatePlaceholder } from './Elements/DatePicker/DatePicker.styles';
 
@@ -122,7 +121,7 @@ export const Inactive = styled.div<{
     css`
       &:hover {
         padding: ${getFocusPadding({ hasSuffix: props.isSuffixVisible })};
-        background: ${hexToRgba(props.theme.palette['grey-300'], 0.4)};
+        background: var(--ds-subtle-form-bg-hover);
         ${MainContent} {
           ${props.$mask && `color: transparent;`}
           ${MaskedDatePlaceholder} {
@@ -215,13 +214,10 @@ export const Subtle = styled.div<{ $disabled?: boolean; hasError?: boolean }>`
     `}
 
   ${TextareaWrapper}:focus-within {
-    /* Kept on palette + hexToRgba: the subtle background tokens are opaque solids,
-       so tokenising here would drop the 40% translucency. Migrate once an
-       opacity-carrying background token exists. */
     ${(props) =>
       props.hasError
-        ? `background-color: ${hexToRgba(props.theme.palette['red-100'], 0.4)};`
-        : `background-color: ${hexToRgba(props.theme.palette['blue-100'], 0.4)};`}
+        ? `background-color: var(--ds-subtle-form-bg-error);`
+        : `background-color: var(--ds-subtle-form-bg-focus);`}
   }
 `;
 
