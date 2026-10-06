@@ -18,7 +18,7 @@ export const RemoveButton = styled.button.attrs({ type: 'button' })<{
   padding: 0;
   border: none;
   background: transparent;
-  color: ${({ theme }) => theme.palette['red-600']};
+  color: var(--ds-color-icon-danger-default);
   cursor: pointer;
   transition: all 0.3s ease;
 
@@ -41,6 +41,6 @@ export const RemoveButton = styled.button.attrs({ type: 'button' })<{
 
   &:disabled {
     cursor: not-allowed;
-    color: ${({ theme }) => theme.palette['grey-400']};
+    color: var(--ds-color-icon-base-disabled);
   }
 `;

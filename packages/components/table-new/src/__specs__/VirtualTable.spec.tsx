@@ -478,14 +478,21 @@ describe('VirtualTable', () => {
           />,
         );
 
-        const { backgroundColor } = getComputedStyle(
-          screen.getByTestId('ds-table-subheader'),
+        // jsdom cannot resolve `var()`, so a tokenised background computes to transparent. Read the
+        // rule styled-components injected instead and assert it paints with the surface token.
+        const classNames = Array.from(
+          screen.getByTestId('ds-table-subheader').classList,
+        );
+        const injectedCss = Array.from(document.querySelectorAll('style'))
+          .map((style) => style.textContent ?? '')
+          .join('');
+        const paintsWithSurfaceToken = classNames.some((className) =>
+          new RegExp(
+            `\\.${className}\\s*\\{[^}]*background:\\s*var\\(--ds-color-background-base-default\\)`,
+          ).test(injectedCss),
         );
 
-        // The transparent-colour comparison is the one that discriminates: jsdom reports an unstyled
-        // element as `rgba(0, 0, 0, 0)`, not as an empty string, so `not.toBe('')` would pass for a
-        // plain div.
-        expect(backgroundColor).not.toBe('rgba(0, 0, 0, 0)');
+        expect(paintsWithSurfaceToken).toBe(true);
       });
 
       it('layers below the title bar and above the column header row', () => {
