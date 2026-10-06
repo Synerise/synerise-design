@@ -47,8 +47,7 @@ export const Trigger: StyledInput = styled(Input)`
         fill: var(--ds-color-icon-danger-default);
       }
       &:hover svg {
-        /* ⚑ red-500 kept on palette — no --ds-color-icon-danger-hover token exists */
-        fill: ${(props) => props.theme.palette['red-500']};
+        fill: var(--ds-color-icon-danger-defaulthover);
       }
     }
     ${ChevronIcon} {
