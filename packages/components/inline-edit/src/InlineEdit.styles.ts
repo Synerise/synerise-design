@@ -89,7 +89,9 @@ export const IconWrapper = styled.div<
   div :active {
     border-radius: ${(props) => (props.customIcon ? '0px' : '24px')};
     background-color: ${(props) =>
-      props.customIcon ? undefined : props.theme.palette['grey-300']};
+      props.customIcon
+        ? undefined
+        : 'var(--ds-inline-edit-icon-btn-bg-active)'};
   }
 `;
 
