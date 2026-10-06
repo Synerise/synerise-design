@@ -49,4 +49,12 @@ describe('FormField component', () => {
       expect(screen.getByText(TOOLTIP_TEXT)).toBeInTheDocument(),
     );
   });
+
+  it('Should style right side with counter token', () => {
+    renderWithProvider(<FormField rightSide={RIGHT_SIDE_CONTENT}>{CHILDREN}</FormField>);
+    const css = Array.from(document.querySelectorAll('style'))
+      .map((el) => el.textContent)
+      .join('');
+    expect(css).toContain('var(--ds-form-field-text-counter)');
+  });
 });

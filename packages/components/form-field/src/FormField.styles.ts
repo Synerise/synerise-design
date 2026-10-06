@@ -60,5 +60,5 @@ export const RightSide = styled.div`
   font-weight: 500;
   flex: 1 0 auto;
   text-align: end;
-  color: var(--ds-color-text-neutral-default);
+  color: var(--ds-form-field-text-counter);
 `;
