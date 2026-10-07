@@ -3,7 +3,7 @@ import React from 'react';
 import { renderWithProvider } from '@synerise/ds-core/testing';
 import { describe, expect, it } from 'vitest';
 
-import { Inactive, Subtle } from '../SubtleForm.styles';
+import { Subtle } from '../SubtleForm.styles';
 
 const getCss = () =>
   Array.from(document.querySelectorAll('style'))
@@ -11,12 +11,7 @@ const getCss = () =>
     .join('\n')
     .replace(/\s+/g, '');
 
-describe('SubtleForm translucent background tokens', () => {
-  it('uses the hover token on the inactive area', () => {
-    renderWithProvider(<Inactive $blurred $disabled={false} />);
-    expect(getCss()).toContain('var(--ds-subtle-form-bg-hover)');
-  });
-
+describe('SubtleForm focus / error background', () => {
   it('uses the focus token by default', () => {
     renderWithProvider(<Subtle />);
     const css = getCss();

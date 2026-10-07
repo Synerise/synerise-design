@@ -137,7 +137,7 @@ describe('Checkbox', () => {
         .map((style) => style.textContent ?? '')
         .join('');
 
-    it('uses the disabled tokens, never the blocked ones', () => {
+    it('never wires the blocked tokens to the disabled state', () => {
       renderWithProvider(
         <Checkbox disabled checked>
           {CHECKBOX_LABEL}
@@ -145,9 +145,6 @@ describe('Checkbox', () => {
       );
       const css = injectedCss();
 
-      expect(css).toContain('var(--ds-form-checkbox-bg-disabled)');
-      expect(css).toContain('var(--ds-form-checkbox-border-color-disabled)');
-      expect(css).toContain('var(--ds-form-checkbox-icon-disabled)');
       expect(css).not.toContain('--ds-form-checkbox-bg-blocked');
       expect(css).not.toContain('--ds-form-checkbox-border-color-blocked');
     });

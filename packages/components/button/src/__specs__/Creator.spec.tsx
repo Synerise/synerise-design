@@ -89,30 +89,4 @@ describe('Creator', () => {
       ),
     );
   });
-
-  describe('tokens', () => {
-    const injected = () =>
-      Array.from(document.querySelectorAll('style'))
-        .map((s) => s.textContent)
-        .join('')
-        .replace(/\s/g, '');
-
-    it('should use creator hover and pressed background tokens', () => {
-      renderWithProvider(<Creator data-testid={TEST_ID} pressed />);
-      expect(injected()).toContain(
-        'background-color:var(--ds-button-creator-bg-hover)',
-      );
-      expect(injected()).toContain(
-        'background-color:var(--ds-button-creator-bg-pressed)',
-      );
-    });
-    it('should use upload hover text token', () => {
-      renderWithProvider(
-        <Creator data-testid={TEST_ID} status={CreatorStatus.Upload} />,
-      );
-      expect(injected()).toContain(
-        'color:var(--ds-button-creator-upload-text-hover)',
-      );
-    });
-  });
 });

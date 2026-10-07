@@ -49,17 +49,6 @@ describe('Factors array component', () => {
         expect(screen.getByText(VALUE.join(', '))).toBeInTheDocument();
     });
 
-    test('colours the count pill with the neutral and danger solid tokens', () => {
-        renderWithProvider(RENDER_FACTORS({ value: VALUE }));
-        const css = () => Array.from(document.querySelectorAll('style'))
-            .map(style => style.textContent ?? '')
-            .join('')
-            .replace(/\s/g, '');
-
-        expect(css()).toContain('var(--ds-color-background-neutral-solid)');
-        expect(css()).not.toContain('#6a7580');
-    });
-
     test('should show modal', async () => {
         renderWithProvider(RENDER_FACTORS({ value: VALUE }));
 

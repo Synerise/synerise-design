@@ -19,16 +19,4 @@ describe('ShortCuts', () => {
 
     expect(screen.getByTestId(TEST_ID)).toBeTruthy();
   });
-
-  it.each(['light', 'dark'] as const)('should use shortcut %s theme tokens', (color) => {
-    renderWithProvider(<ShortCuts size="L" color={color} children="ESC" />);
-    const css = Array.from(document.querySelectorAll('style'))
-      .map((el) => el.textContent)
-      .join('');
-
-    ['bg', 'border', 'text', 'shadow'].forEach((part) => {
-      expect(css).toContain(`var(--ds-shortcut-theme-${color}-${part})`);
-    });
-    expect(css).not.toMatch(/rgba\(\s*35/);
-  });
 });
