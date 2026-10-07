@@ -124,7 +124,7 @@ Nothing upstream blocks code any more. Source of truth: `UPSTREAM_GAPS_HANDOFF.m
 - `button` split divider: the secondary `.pressed` / `:hover` blocks colour `.ds-icon::before` with `palette['blue-200']`. The handoff called them dead code, but `mode="split"` renders that `::before`, so they are live. Left in place pending a decision (delete = divider stays grey on hover/pressed, or request a token).
 - `skeleton/src/Skeleton.styles.ts` shimmer uses 0.1 → 0.4 → 0.1; the 0.4 midpoint has no token, so the keyframe stays literal.
 - `button` variants (`Button.variants.ts`) still build gradients and shadows from `palette`; no tokens were named upstream.
-- `file-uploader` (`FileView`, `FileViewAvatar`, `FileViewItem`) and `table-new` `TreeTable` still carry palette references.
+- `table-new` `TreeTable` still carries a palette fallback in `levelBarColor`. (`file-uploader` is now palette-free: thumbnail backgrounds use `--ds-color-background-base-mutedhover`, the loader border follows `--ds-color-custom-<name>-600` via `resolveCustomColor`.)
 - 19 `*.typography` tokens point at `{typography.*}`, which does not exist in the token repo (upstream).
 
 **Deprecated — excluded (no tokens):** `alert`, `menu`, `table` are deprecated and slated for

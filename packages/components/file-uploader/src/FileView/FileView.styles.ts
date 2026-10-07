@@ -31,7 +31,7 @@ export const PreviewThumbnail = styled.img`
   margin: -4px -8px -4px -4px;
   border-radius: 3px;
   object-fit: contain;
-  background-color: ${(props) => props.theme.palette['grey-200']};
+  background-color: var(--ds-color-background-base-mutedhover);
 `;
 
 export const Info = styled.div<{ progress: boolean }>`

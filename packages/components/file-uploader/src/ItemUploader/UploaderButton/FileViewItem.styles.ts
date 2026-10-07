@@ -3,6 +3,7 @@ import styled, { keyframes } from 'styled-components';
 import { IconContainer } from '@synerise/ds-icon';
 import { Loader } from '@synerise/ds-loader/dist/Loader.styles';
 import { Label } from '@synerise/ds-typography';
+import { resolveCustomColor } from '@synerise/ds-utils';
 
 export const PreviewImage = styled.div`
   ${IconContainer} {
@@ -31,7 +32,8 @@ export const spinnerAnimation = keyframes`
   }
 `;
 export const SmallLoader = styled(Loader)`
-  border: 1px solid ${(props) => props.theme.palette[`${props.color}-600`]};
+  border: 1px solid ${(props) =>
+    resolveCustomColor(props.color, 'var(--ds-color-icon-neutral-default)')};
   border-top: 2px solid transparent;
   border-radius: 50%;
   animation: ${spinnerAnimation} 2s linear infinite;
@@ -43,7 +45,7 @@ export const PreviewThumbnail = styled.img`
   height: 20px;
   border-radius: 3px;
   object-fit: contain;
-  background-color: ${(props) => props.theme.palette['grey-200']};
+  background-color: var(--ds-color-background-base-mutedhover);
 `;
 
 export const PlaceholderImage = styled.div`
