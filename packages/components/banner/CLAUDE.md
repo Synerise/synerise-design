@@ -68,7 +68,7 @@ Each slide (`BannerSlideProps`) has three layout slots: `mainContent`, `leftSide
 |------|------|---------|-------------|
 | `title` | `ReactNode` | `undefined` | Slide heading (rendered as `<Title level={1}>`). |
 | `titlePrefix` | `ReactNode` | `undefined` | Icon or avatar shown left of the title text. |
-| `titleStatus` | `Pick<TagProps, 'textColor' \| 'color' \| 'name'>` | `undefined` | Status pill tag above the title. Falls back to `yellow-600` / `white` from `Banner.const.ts`. |
+| `titleStatus` | `Pick<TagProps, 'textColor' \| 'color' \| 'name'>` | `undefined` | Status pill tag above the title. Falls back to `--ds-color-custom-yellow-600` / `--ds-color-text-base-onsolid` from `Banner.const.ts`. |
 | `description` | `ReactNode` | `undefined` | Body text below the title. |
 | `buttons` | `ReactNode` | `undefined` | Action buttons rendered below description (wrapped in flex row). |
 
@@ -151,4 +151,4 @@ Merges react-intl formatted defaults (`DS.BANNER.EXPAND`, `DS.BANNER.COLLAPSE`, 
 - **`slides` are re-keyed** on every render via `uuid()` inside a `useMemo([slides])`, so mutating slide objects in place (without replacing the array) will not re-key them.
 - **Carousel CSS**: `ds-carousel` ships its own styling; `Banner.styles.ts` adds the layout tweaks via ds-carousel's `.ds-carousel` / `.ds-carousel-track` class hooks (no LESS side-effect import anymore).
 - `BannerSlide` memoizes each content area (`useMemo`) keyed to the content prop; position (`left | right | main`) and `hasMainContent` flag control flex-basis (240px fixed) vs flex-grow (1).
-- `titleStatus` defaults for colour (`yellow-600` / `white`) come from `Banner.const.ts` and are spread before the caller's overrides, so callers can override individual colour props.
+- `titleStatus` defaults for colour (`yellow-600` resolved through `resolveCustomColor`, plus `--ds-color-text-base-onsolid`) come from `Banner.const.ts`; `Tag` takes raw CSS, so the name is resolved there and are spread before the caller's overrides, so callers can override individual colour props.

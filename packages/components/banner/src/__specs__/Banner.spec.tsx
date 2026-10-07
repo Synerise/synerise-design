@@ -33,4 +33,25 @@ describe('Banner', () => {
     renderWithProvider(<Banner slides={SLIDES} />);
     expect(screen.getByTestId('banner-counter')).toBeInTheDocument();
   });
+  it('colours the default title status with theme-aware tokens', () => {
+    renderWithProvider(
+      <Banner
+        slides={[
+          {
+            mainContent: {
+              title: 'Title',
+              titleStatus: { name: 'New' },
+            },
+          },
+        ]}
+      />,
+    );
+    const css = Array.from(document.querySelectorAll('style'))
+      .map((style) => style.textContent ?? '')
+      .join('')
+      .replace(/\s/g, '');
+
+    expect(css).toContain('var(--ds-color-custom-yellow-600)');
+    expect(css).toContain('var(--ds-color-text-base-onsolid)');
+  });
 });

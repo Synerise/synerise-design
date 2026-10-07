@@ -21,7 +21,7 @@ git grep -nE "palette|hexToRgba|hexToRgbValues|rgba?\(|(^|[^&\w/-])#[0-9a-fA-F]{
 
 | Category | Lines | Where it matters |
 |---|---:|---|
-| 1. Static colour in styling code | 4 | tokenise or ask upstream — section 1 |
+| 1. Static colour in styling code | 3 | tokenise or ask upstream — section 1 |
 | 2. Dynamic `theme.palette[...]` lookups | ~25 | runtime colour props — section 2 |
 | 3. `rgba(…, 0)` gradient fade stops | 0 | **done** (all 17 now `transparent`) — section 3 |
 | 4. Legacy `theme.variable(s)` (not colours) | 17 | z-index and border-radius, not colour tokens — section 4 |
@@ -35,7 +35,6 @@ git grep -nE "palette|hexToRgba|hexToRgbValues|rgba?\(|(^|[^&\w/-])#[0-9a-fA-F]{
 | `button` | `Button.styles.tsx` (`splitDividerColor`) | `rgba(255, 255, 255, 0.15)` | Split divider for types on a solid fill (primary, danger, success, warning). `*-separator` tokens exist for those variants but equal the hover fills, not a white line; confirm intent (UX note 7) |
 | `scrollbar` | `Scrollbar.styles.tsx:41` | `rgba(255, 255, 255, 0.6)` | Light scrim over the track; no light-scrim token |
 | `slider` | `Slider.styles.ts:130` | `0 0 0 3px rgba(35, 138, 254, 0.25)` | Active-handle focus ring; needs a translucent focus-ring token (design-tokens follow-up) |
-| `banner` | `Banner.const.ts:4-5` | `palette['yellow-600']`, `palette.white` | Dynamic status-Tag defaults, exported constants, resolved at module scope. Move to `--ds-color-*` strings if the consumers accept `var()` |
 
 ## 2. Dynamic `theme.palette[...]` lookups
 
@@ -78,7 +77,7 @@ colour token; listed so they do not hide in the palette count.
 
 ## Suggested order
 
-1. 1:1 candidates that only need an existing token mapped: `banner` constants, `factors` pill default.
+1. 1:1 candidates that only need an existing token mapped: the `factors` count-pill default.
 2. Ask design-tokens for: grey-400 ripple tokens for tertiary / ghost variants (and a fix for the inverted danger hover/pressed tokens), split-divider-on-solid, translucent focus ring (slider), loading scrim (scrollbar), a grey-800 icon default (see note 6).
 3. Then retire `hexToRgba`, `theme.palette` and the `antd-legacy.less` leftovers.
 
