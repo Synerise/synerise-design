@@ -29,6 +29,7 @@
     "types": "lerna run types --stream  --concurrency 5",
     "check:circular-dependencies": "lerna run check:circular-dependencies",
     "check:no-package-test-config": "node scripts/check-no-package-test-config.mjs",
+    "check:token-references": "node scripts/check-token-references.mjs",
     "knip": "knip",
     "knip:ci": "knip --no-progress && knip --production --strict --include unlisted,unresolved --workspace '@synerise/ds-*' --no-progress",
     "figma:connect": "figma connect",

@@ -30,6 +30,7 @@
 - Test config lives **only** in the `test` block of the root `vite.config.base.ts`. Per-package
   `vitest.*.config.*` files are rejected by `pnpm check:no-package-test-config` in CI — they replace the
   base `test`/`resolve` blocks instead of merging, silently dropping `setupFiles` and the source resolution
+- `pnpm check:token-references` (after `pnpm build`, and in the CI build job) fails when a `var(--ds-*)` in component source names a custom property that no token defines or the component sets itself. jsdom cannot resolve `var()`, so a spec that only checks a token string appears in the CSS cannot catch a typo; this does
 - Specs resolve `@synerise/*` imports from the sibling package's **`src/`**, not its built `dist/`, so a
   cross-package change is visible without rebuilding the dependency (`dsTestSourceRedirectPlugin`)
 - Prerequisite: the generated sources (`pnpm run generate` — core theme variables, icon/flag/avatar SVGR
