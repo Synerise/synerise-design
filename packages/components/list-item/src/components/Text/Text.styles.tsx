@@ -415,7 +415,7 @@ export const DynamicLabelWrapper = styled.div<{ showAlternative?: boolean }>`
 export const Description = styled.div`
   text-overflow: ellipsis;
   overflow: hidden;
-  color: var(--ds-list-item-role-normal-description-default);
+  color: var(--ds-list-item-content-description-color);
   font-weight: normal;
   line-height: 1.39;
   font-size: 13px;

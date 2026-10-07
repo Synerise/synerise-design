@@ -13,5 +13,5 @@ export const MenuHeader = styled.div`
   letter-spacing: 0.1px;
 `;
 export const HeaderIconWrapper = styled.div`
-  color: var(--ds-list-item-icon-color);
+  color: var(--ds-color-icon-base-muted);
 `;
