@@ -49,7 +49,7 @@ direction is `resolveCustomColor` from `@synerise/ds-utils` (as button and file-
 
 | Package | Location | What |
 |---|---|---|
-| `button` | `Button.variants.ts` (~25 lines: 108, 207-208, 262-263, 318-319, 373-374, 428-429, 455, 480, 530, 614-628) and `Button.styles.tsx:172` | `getVariantStyles(type, theme.palette)` builds hover/pressed colours with `hexToRgbValues(p['…'])` at 0.2-0.4 alpha plus an `rgba(255, 90, 77, 0.2)` shadow. Needs per-variant translucent module tokens (none named upstream) |
+| `button` | `Button.variants.ts:194,300,354` and `Button.styles.tsx:172` | The tertiary, ghost-secondary and ghost-primary ripples: `rgba(hexToRgbValues(p['grey-400']), rippleAlpha(0.25, 0.35))`, i.e. grey-400 at 0.133. No token carries that alpha; needs `--ds-buttons-variant-{tertiary,ghost-secondary,ghost-primary}-ripple` upstream. Every other variant lookup (ripples, focus rings, disabled states, danger hover/pressed) moved to tokens on 2026-10-07 |
 | `card-tabs` | `CardTab.styles.ts:149,169,184,192,202,210,285,314,321,403` | `customColorOr(color, theme.palette[color])` and `theme.palette[getLighterColor(color)]`: the per-tab `color` prop fallback. Active colour already comes from the `ordered` set; this is the legacy named-colour path |
 | `dropdown` | `components/TextTrigger/TextTrigger.tsx:27` | `theme.palette[inactiveColor]`, a consumer-supplied key |
 | `factors` | `FactorValue/Array/Array.tsx:60` | `theme.palette['grey-600']`, default colour of the count pill |
@@ -85,5 +85,23 @@ colour token; listed so they do not hide in the palette count.
 ## Suggested order
 
 1. 1:1 candidates that only need an existing token mapped: `avatar` veil, `banner` constants, `factors` pill default.
-2. Ask design-tokens for: split-divider-on-solid, translucent focus ring (slider), scrim (scrollbar), shadow 0.05 (cascader), `broadcast-bar` tint, per-variant button translucent states, a grey-800 icon default.
+2. Ask design-tokens for: grey-400 ripple tokens for tertiary / ghost variants (and a fix for the inverted danger hover/pressed tokens), split-divider-on-solid, translucent focus ring (slider), scrim (scrollbar), shadow 0.05 (cascader), `broadcast-bar` tint, a grey-800 icon default.
 3. Then retire `hexToRgba`, `theme.palette` and the `antd-legacy.less` leftovers.
+
+## Notes for UX / design-tokens (button variants, 2026-10-07)
+
+1. **Danger hover/pressed tokens look inverted.** `--ds-buttons-variant-primary-danger-bg-hover` is #cf1413 (darker red) and
+   `-bg-active` is #f52922, identical to the default. Primary, success and warning go lighter on hover and darker on press.
+   Code now consumes the tokens as delivered, so light-mode danger buttons change: hover red-500 (#ff5a4d) becomes #cf1413,
+   pressed red-700 (#cf1413) becomes #f52922 (no pressed feedback against default). Please confirm the intent or swap the
+   two values (hover = red-500, active = red-700, as before).
+2. **Disabled primary, danger and success** now dim the whole button (solid disabled token plus 0.4 element opacity), as
+   secondary/tertiary/ghost/warning already did. The background looks the same; the white label is now also at 40% (it was solid
+   white on a 40% fill). Confirm this is the desired disabled look.
+3. **Success focus ring** moved from blue-700 to blue-600 (`--ds-buttons-variant-primary-success-border-focus`), matching the
+   danger and warning rings.
+4. **Ripple tokens wanted** for tertiary, ghost-secondary and ghost-primary: grey-400 at 13.3% (the press ripple composited over the
+   25% hover reaches the 35% pressed fill). Until they exist these three stay on `theme.palette`.
+5. **Removed:** the danger hover outer shadow (`0 2px 4px rgba(255,90,77,.2)`). It never rendered because the button's
+   `-webkit-mask-image` clips outer shadows to the border box, so there is no visual change. If design wants a danger hover
+   elevation it needs a different mechanism than `box-shadow` on the button.

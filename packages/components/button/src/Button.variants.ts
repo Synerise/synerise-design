@@ -19,25 +19,17 @@ const buttonColor = (color: string, background: string, border: string) => css`
   border-color: ${border};
 `;
 
-// `applyOpacity` = the variant's disabled colours are solid design tokens (secondary/tertiary/ghost),
-// so the disabled dimming comes from the separate `--ds-buttons-disabled-opacity` (0.4) — matching the
-// token intent ("same as default, opacity applied separately"). Solid-token variants pass `true`; the
-// primary/danger/success/warning variants bake 0.4 into their rgba() background instead, so they omit it
-// (applying element opacity on top would double-dim them).
+// Every variant's disabled colours are solid design tokens, so the dimming comes from the separate
+// `--ds-buttons-disabled-opacity` (0.4), matching the token intent ("same as default, opacity applied
+// separately"). Nothing bakes alpha into a background any more, so the opacity is always applied.
 const buttonDisabled = (
   color: string,
   background: string,
   border: string,
-  applyOpacity = false,
 ) => css`
   &.disabled,
   &[disabled] {
-    ${
-      applyOpacity &&
-      css`
-      opacity: var(--ds-buttons-disabled-opacity);
-    `
-    }
+    opacity: var(--ds-buttons-disabled-opacity);
     &,
     &:hover,
     &:focus-visible,
@@ -60,7 +52,7 @@ const buttonHover = (color: string, background: string, border: string) => css`
 // Variant definitions
 // ---------------------------------------------------------------------------
 
-const variantPrimary = (p: Palette) => css`
+const variantPrimary = () => css`
   ${buttonColor(
     'var(--ds-buttons-variant-primary-text-default)',
     'var(--ds-buttons-variant-primary-bg-default)',
@@ -68,7 +60,7 @@ const variantPrimary = (p: Palette) => css`
   )}
 
   .btn-focus {
-    box-shadow: inset 0 0 0 0px ${p['grey-300']};
+    box-shadow: inset 0 0 0 0 transparent;
   }
 
   &:hover {
@@ -100,17 +92,17 @@ const variantPrimary = (p: Palette) => css`
   }
 
   .btn-ripple {
-    background-color: ${p['blue-700']};
+    background-color: var(--ds-buttons-variant-primary-bg-active);
   }
 
   ${buttonDisabled(
-    p.white,
-    `rgba(${hexToRgbValues(p['blue-600'])}, 0.4)`,
-    'transparent',
+    'var(--ds-buttons-variant-primary-text-disabled)',
+    'var(--ds-buttons-variant-primary-bg-disabled)',
+    'var(--ds-buttons-variant-primary-border-disabled)',
   )}
 `;
 
-const variantDefault = (p: Palette) => css`
+const variantDefault = () => css`
   ${buttonColor(
     'var(--ds-buttons-variant-secondary-text-default)',
     'var(--ds-buttons-variant-secondary-bg-default)',
@@ -152,14 +144,13 @@ const variantDefault = (p: Palette) => css`
   }
 
   .btn-ripple {
-    background-color: ${p['grey-100']};
+    background-color: var(--ds-color-background-base-muted);
   }
 
   ${buttonDisabled(
     'var(--ds-buttons-variant-secondary-text-disabled)',
     'var(--ds-buttons-variant-secondary-bg-disabled)',
     'var(--ds-buttons-variant-secondary-border-disabled)',
-    true,
   )}
 `;
 
@@ -214,11 +205,10 @@ const variantTertiary = (p: Palette) => css`
     'var(--ds-buttons-variant-tertiary-text-disabled)',
     'var(--ds-buttons-variant-tertiary-bg-disabled)',
     'var(--ds-buttons-variant-tertiary-border-disabled)',
-    true,
   )}
 `;
 
-const variantTertiaryWhite = (p: Palette) => css`
+const variantTertiaryWhite = () => css`
   ${buttonColor(
     'var(--ds-buttons-variant-tertiary-white-text-default)',
     'var(--ds-buttons-variant-tertiary-white-bg-default)',
@@ -259,17 +249,13 @@ const variantTertiaryWhite = (p: Palette) => css`
   }
 
   .btn-ripple {
-    background-color: rgba(
-      ${hexToRgbValues(p['grey-300'])},
-      ${rippleAlpha(0.25, 0.1)}
-    );
+    background-color: var(--ds-buttons-variant-tertiary-white-bg-active);
   }
 
   ${buttonDisabled(
     'var(--ds-buttons-variant-tertiary-white-text-disabled)',
     'var(--ds-buttons-variant-tertiary-white-bg-disabled)',
     'var(--ds-buttons-variant-tertiary-white-border-disabled)',
-    true,
   )}
 `;
 
@@ -325,7 +311,6 @@ const variantGhost = (p: Palette) => css`
     'var(--ds-buttons-variant-ghost-secondary-text-disabled)',
     'var(--ds-buttons-variant-ghost-secondary-bg-disabled)',
     'var(--ds-buttons-variant-ghost-secondary-border-disabled)',
-    true,
   )}
 `;
 
@@ -380,11 +365,10 @@ const variantGhostPrimary = (p: Palette) => css`
     'var(--ds-buttons-variant-ghost-primary-text-disabled)',
     'var(--ds-buttons-variant-ghost-primary-bg-disabled)',
     'var(--ds-buttons-variant-ghost-primary-border-disabled)',
-    true,
   )}
 `;
 
-const variantGhostWhite = (p: Palette) => css`
+const variantGhostWhite = () => css`
   ${buttonColor(
     'var(--ds-buttons-variant-ghost-secondary-white-text-default)',
     'var(--ds-buttons-variant-ghost-secondary-white-bg-default)',
@@ -425,21 +409,17 @@ const variantGhostWhite = (p: Palette) => css`
   }
 
   .btn-ripple {
-    background-color: rgba(
-      ${hexToRgbValues(p['grey-500'])},
-      ${rippleAlpha(0.25, 0.1)}
-    );
+    background-color: var(--ds-buttons-variant-ghost-secondary-white-bg-active);
   }
 
   ${buttonDisabled(
     'var(--ds-buttons-variant-ghost-secondary-white-text-disabled)',
     'var(--ds-buttons-variant-ghost-secondary-white-bg-disabled)',
     'var(--ds-buttons-variant-ghost-secondary-white-border-disabled)',
-    true,
   )}
 `;
 
-const variantDanger = (p: Palette) => css`
+const variantDanger = () => css`
   ${buttonColor(
     'var(--ds-buttons-variant-primary-danger-text-default)',
     'var(--ds-buttons-variant-primary-danger-bg-default)',
@@ -451,8 +431,11 @@ const variantDanger = (p: Palette) => css`
   }
 
   &:hover {
-    ${buttonHover(p.white, p['red-500'], p['red-500'])}
-    box-shadow: 0 2px 4px 0 rgba(255, 90, 77, 0.2);
+    ${buttonHover(
+      'var(--ds-buttons-variant-primary-danger-text-hover)',
+      'var(--ds-buttons-variant-primary-danger-bg-hover)',
+      'var(--ds-buttons-variant-primary-danger-bg-hover)',
+    )}
   }
 
   &:focus-visible {
@@ -462,27 +445,31 @@ const variantDanger = (p: Palette) => css`
       'var(--ds-buttons-variant-primary-danger-border-focus)',
     )}
     .btn-focus {
-      box-shadow: inset 0 0 0 2px ${p['blue-600']};
+      box-shadow: inset 0 0 0 2px var(--ds-buttons-variant-primary-danger-border-focus);
     }
   }
 
   &.pressed,
   &.active {
-    ${buttonColor(p.white, p['red-700'], p['red-700'])}
+    ${buttonColor(
+      'var(--ds-buttons-variant-primary-danger-text-active)',
+      'var(--ds-buttons-variant-primary-danger-bg-active)',
+      'var(--ds-buttons-variant-primary-danger-bg-active)',
+    )}
   }
 
   .btn-ripple {
-    background-color: ${p['red-700']};
+    background-color: var(--ds-buttons-variant-primary-danger-bg-active);
   }
 
   ${buttonDisabled(
-    p.white,
-    `rgba(${hexToRgbValues(p['red-600'])}, 0.4)`,
-    'transparent',
+    'var(--ds-buttons-variant-primary-danger-text-disabled)',
+    'var(--ds-buttons-variant-primary-danger-bg-disabled)',
+    'var(--ds-buttons-variant-primary-danger-border-disabled)',
   )}
 `;
 
-const variantSuccess = (p: Palette) => css`
+const variantSuccess = () => css`
   ${buttonColor(
     'var(--ds-buttons-variant-primary-success-text-default)',
     'var(--ds-buttons-variant-primary-success-bg-default)',
@@ -508,7 +495,7 @@ const variantSuccess = (p: Palette) => css`
       'var(--ds-buttons-variant-primary-success-border-focus)',
     )}
     .btn-focus {
-      box-shadow: inset 0 0 0 2px ${p['blue-700']};
+      box-shadow: inset 0 0 0 2px var(--ds-buttons-variant-primary-success-border-focus);
     }
   }
 
@@ -522,17 +509,17 @@ const variantSuccess = (p: Palette) => css`
   }
 
   .btn-ripple {
-    background-color: ${p['green-700']};
+    background-color: var(--ds-buttons-variant-primary-success-bg-active);
   }
 
   ${buttonDisabled(
-    p.white,
-    `rgba(${hexToRgbValues(p['green-600'])}, 0.4)`,
-    'transparent',
+    'var(--ds-buttons-variant-primary-success-text-disabled)',
+    'var(--ds-buttons-variant-primary-success-bg-disabled)',
+    'var(--ds-buttons-variant-primary-success-border-disabled)',
   )}
 `;
 
-const variantWarning = (p: Palette) => css`
+const variantWarning = () => css`
   ${buttonColor(
     'var(--ds-buttons-variant-primary-warning-text-default)',
     'var(--ds-buttons-variant-primary-warning-bg-default)',
@@ -573,16 +560,13 @@ const variantWarning = (p: Palette) => css`
   }
 
   .btn-ripple {
-    background-color: ${p['yellow-700']};
+    background-color: var(--ds-buttons-variant-primary-warning-bg-active);
   }
 
-  /* Option A: adopt the solid disabled token + element-level --ds-buttons-disabled-opacity
-     (0.4), matching the token intent used by secondary/tertiary/ghost. */
   ${buttonDisabled(
     'var(--ds-buttons-variant-primary-warning-text-disabled)',
     'var(--ds-buttons-variant-primary-warning-bg-disabled)',
     'var(--ds-buttons-variant-primary-warning-border-disabled)',
-    true,
   )}
 `;
 
@@ -633,6 +617,9 @@ function hexToRgbValues(hex: string): string {
   return `${r}, ${g}, ${b}`;
 }
 
+// The tertiary, ghost-secondary and ghost-primary ripples are the only palette lookups left: their
+// colour is grey-400 at the derived alpha (0.25 hover -> 0.35 pressed = 0.133), a value no token
+// carries. They move to tokens once design-tokens defines per-variant ripple tokens.
 /**
  * Calculates the ripple alpha so that compositing ripple over the hover
  * background equals the pressed background (alpha compositing diff).
