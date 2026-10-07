@@ -52,11 +52,9 @@ export const IconCloseWrapper = styled.div<{ type?: BroadcastBarType }>`
   cursor: pointer;
   color: ${(props) => getColorIcon(props.type)};
 `;
-export const ButtonWrapper = styled.div<{ type?: BroadcastBarType }>`
+export const ButtonWrapper = styled.div`
   margin: 6px 8px;
-  border-radius: 3px;
   display: flex;
-  background-color: rgba(255, 255, 255, 0.2);
 `;
 export const ButtonCloseWrapper = styled.div`
   margin: 6px 8px;
