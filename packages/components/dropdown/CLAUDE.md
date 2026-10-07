@@ -109,7 +109,7 @@ Text label with rotating chevron — intended as a dropdown trigger.
 | `size` | `1 \| 2 \| 3 \| 4 \| 5 \| 6` | — | **Required.** Typography size level |
 | `expanded` | `boolean` | `undefined` | Controls arrow rotation (open state) |
 | `isDisabled` | `boolean` | `undefined` | Disables interactions |
-| `inactiveColor` | `string` | `grey-800` | Color when not hovered/focused |
+| `inactiveColor` | `string` | `grey-800` | Color when not hovered/focused. A custom-colour `family-shade` string (resolved through `resolveCustomColor` to `--ds-color-custom-*`) or an already-resolved `var(--ds-*)` / hex, passed through unchanged |
 | `onClick` | `() => void` | `undefined` | Click handler |
 | `onFocus` | `() => void` | `undefined` | Focus handler |
 
