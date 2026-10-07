@@ -21,7 +21,7 @@ git grep -nE "palette|hexToRgba|hexToRgbValues|rgba?\(|(^|[^&\w/-])#[0-9a-fA-F]{
 
 | Category | Lines | Where it matters |
 |---|---:|---|
-| 1. Static colour in styling code | 8 | tokenise or ask upstream — section 1 |
+| 1. Static colour in styling code | 4 | tokenise or ask upstream — section 1 |
 | 2. Dynamic `theme.palette[...]` lookups | ~25 | runtime colour props — section 2 |
 | 3. `rgba(…, 0)` gradient fade stops | 0 | **done** (all 17 now `transparent`) — section 3 |
 | 4. Legacy `theme.variable(s)` (not colours) | 17 | z-index and border-radius, not colour tokens — section 4 |
@@ -32,11 +32,7 @@ git grep -nE "palette|hexToRgba|hexToRgbValues|rgba?\(|(^|[^&\w/-])#[0-9a-fA-F]{
 
 | Package | Location | Value | Why it is left / next step |
 |---|---|---|---|
-| `avatar` | `Avatar.styles.tsx:207` | `background-color: #000` | Opacity-0 hover veil; could be `--ds-color-background-overlay-solid`, check dark mode intent |
-| `broadcast-bar` | `BroadcastBar.styles.tsx:59` | `rgba(255, 255, 255, 0.2)` | White-on-solid tint; no translucent-on-solid token. Candidate for a module token |
-| `button` | `Button.styles.tsx:389` | `rgba(255, 255, 255, 0.15)` | Split-button divider for primary-like types; the secondary/tertiary branch already uses `--ds-color-border-base-strong`. Needs a divider-on-solid token |
-| `button` | `Button.styles.tsx:217`, `:234` | `palette['blue-200']` | Split divider hover/pressed (secondary). **Live code** under `mode="split"`, not dead as the upstream handoff claims. Decision: delete (divider stays grey) or request a token |
-| `cascader` | `Cascader.styles.tsx:6`, `:15` | `0 16px 32px 0 rgba(35, 41, 54, 0.05)` | Shadow with alpha 0.05, differs from `--ds-shadows-shadow-2` (0.1). Needs a token or a visual sign-off to use shadow-2 |
+| `button` | `Button.styles.tsx` (`splitDividerColor`) | `rgba(255, 255, 255, 0.15)` | Split divider for types on a solid fill (primary, danger, success, warning). `*-separator` tokens exist for those variants but equal the hover fills, not a white line; confirm intent (UX note 7) |
 | `scrollbar` | `Scrollbar.styles.tsx:41` | `rgba(255, 255, 255, 0.6)` | Light scrim over the track; no light-scrim token |
 | `slider` | `Slider.styles.ts:130` | `0 0 0 3px rgba(35, 138, 254, 0.25)` | Active-handle focus ring; needs a translucent focus-ring token (design-tokens follow-up) |
 | `banner` | `Banner.const.ts:4-5` | `palette['yellow-600']`, `palette.white` | Dynamic status-Tag defaults, exported constants, resolved at module scope. Move to `--ds-color-*` strings if the consumers accept `var()` |
@@ -51,11 +47,9 @@ direction is `resolveCustomColor` from `@synerise/ds-utils` (as button and file-
 |---|---|---|
 | `button` | `Button.variants.ts:194,300,354` and `Button.styles.tsx:172` | The tertiary, ghost-secondary and ghost-primary ripples: `rgba(hexToRgbValues(p['grey-400']), rippleAlpha(0.25, 0.35))`, i.e. grey-400 at 0.133. No token carries that alpha; needs `--ds-buttons-variant-{tertiary,ghost-secondary,ghost-primary}-ripple` upstream. Every other variant lookup (ripples, focus rings, disabled states, danger hover/pressed) moved to tokens on 2026-10-07 |
 | `card-tabs` | `CardTab.styles.ts:149,169,184,192,202,210,285,314,321,403` | `customColorOr(color, theme.palette[color])` and `theme.palette[getLighterColor(color)]`: the per-tab `color` prop fallback. Active colour already comes from the `ordered` set; this is the legacy named-colour path |
-| `dropdown` | `components/TextTrigger/TextTrigger.tsx:27` | `theme.palette[inactiveColor]`, a consumer-supplied key |
 | `factors` | `FactorValue/Array/Array.tsx:60` | `theme.palette['grey-600']`, default colour of the count pill |
 | `table-new` | `components/TreeTable/TreeTable.styles.ts:31,37,61` | palette passed in as the last-resort fallback of `levelBarColor` after `resolveCustomColor` |
 | `icon` | `Icon.styles.ts:41-42` | `theme.palette[DEFAULT_COLOR_TOKEN]` (`grey-800`) for large/xlarge default. Gap: no semantic icon token for grey-800 (icon family stops at `icon-base-default`, grey-600) |
-| `utils` | `selectColorByLetter/selectColorByLetter.ts:14,19,28` | `theme.palette[colorString]` for letter-based avatar colours |
 | `utils` | `hexToRgba/hexToRgba.ts` (+ export in `index.ts:5`) | The helper itself. Retire once the last `hexToRgba` consumer is gone (only `button` variants and downstream apps) |
 | `core` | `js/DSProvider/ThemeProvider/theme.ts:13,83` | The `theme.palette` object itself (`vars.colors`), the source for every lookup above. Removed only when all of the above are |
 
@@ -84,8 +78,8 @@ colour token; listed so they do not hide in the palette count.
 
 ## Suggested order
 
-1. 1:1 candidates that only need an existing token mapped: `avatar` veil, `banner` constants, `factors` pill default.
-2. Ask design-tokens for: grey-400 ripple tokens for tertiary / ghost variants (and a fix for the inverted danger hover/pressed tokens), split-divider-on-solid, translucent focus ring (slider), scrim (scrollbar), shadow 0.05 (cascader), `broadcast-bar` tint, a grey-800 icon default.
+1. 1:1 candidates that only need an existing token mapped: `banner` constants, `factors` pill default.
+2. Ask design-tokens for: grey-400 ripple tokens for tertiary / ghost variants (and a fix for the inverted danger hover/pressed tokens), split-divider-on-solid, translucent focus ring (slider), loading scrim (scrollbar), a grey-800 icon default (see note 6).
 3. Then retire `hexToRgba`, `theme.palette` and the `antd-legacy.less` leftovers.
 
 ## Notes for UX / design-tokens (button variants, 2026-10-07)
@@ -105,3 +99,28 @@ colour token; listed so they do not hide in the palette count.
 5. **Removed:** the danger hover outer shadow (`0 2px 4px rgba(255,90,77,.2)`). It never rendered because the button's
    `-webkit-mask-image` clips outer shadows to the border box, so there is no visual change. If design wants a danger hover
    elevation it needs a different mechanism than `box-shadow` on the button.
+6. **Large / extra-large icon default colour (grey-800) has no token.** `Icon.styles.ts` gives the large and xlarge icon sets a
+   darker default than the M set (`DEFAULT_COLOR_TOKEN = 'grey-800'`), but the semantic icon family tops out at
+   `--ds-color-icon-base-default` (grey-600). Needs a strong/emphasis default icon token (e.g. `icon.base.strong`); until then
+   this stays a `theme.palette` lookup in `icon`.
+7. **Split button divider.**
+   - Secondary: the divider now matches the button's own border per state. Rest uses `--ds-buttons-variant-secondary-separator`
+     (same value as the border), hover uses `--ds-buttons-variant-secondary-border-hover` (#8bcaff), pressed uses
+     `--ds-color-border-brand-strong` (#8bcaff). Hover and pressed were blue-200 (#bce1ff), so they shift one step to blue-300.
+     Pressed uses the semantic token because `--ds-buttons-variant-secondary-border-active` is transparent, while the pressed
+     ring itself is brand-strong. Confirm the divider should stay visible when pressed.
+   - Tertiary: divider stays `--ds-color-border-base-strong` (#dbe0e3); `--ds-buttons-variant-tertiary-separator` is #e9edee.
+     Confirm which is intended.
+   - Types on a solid fill (primary, danger, success, warning): the divider is white at 15%. `--ds-buttons-variant-primary-separator`
+     (#238afe), `-danger-` (#cf1413), `-success-` (#76dc25) and `-warning-` (#ffc300) exist but are the hover fills, which would be
+     a different look. Confirm whether the white line stays or the tokens are the intended divider.
+8. **Scrollbar loading veil.** `Scrollbar.styles.tsx` covers the content with `rgba(255, 255, 255, 0.6)` while loading. There is no
+   light-scrim / loading-overlay token; it would also need a dark-mode counterpart.
+9. **Slider active-handle focus ring.** `Slider.styles.ts:130` draws `0 0 0 3px rgba(35, 138, 254, 0.25)` (blue-500 at 25%) around the
+   dragged handle. Needs a translucent focus-ring token. (The scrollbar has no such ring; if a scrollbar focus ring was meant, it is not
+   in the source today.)
+10. **FYI, applied without a token request:**
+    - Cascader: the elevation moved from the input and results wrappers to the outer `.ds-cascader` element and uses
+      `--ds-shadows-shadow-2`. Light-mode alpha goes from 0.05 to 0.10, so the shadow is stronger.
+    - Broadcast bar: the button wrapper no longer has its translucent white background or 3px radius.
+    - Avatar hover/press veil uses `--ds-color-background-overlay-solid` instead of black, so it lightens instead of darkening in dark mode.

@@ -121,7 +121,7 @@ Nothing upstream blocks code any more. Source of truth: `UPSTREAM_GAPS_HANDOFF.m
 **Intended visual shift (Chromatic):** `button` Creator `status="upload"` hover text blue-500 → blue-600.
 
 **Still open after this pass**
-- `button` split divider: the secondary `.pressed` / `:hover` blocks colour `.ds-icon::before` with `palette['blue-200']`. The handoff called them dead code, but `mode="split"` renders that `::before`, so they are live. Left in place pending a decision (delete = divider stays grey on hover/pressed, or request a token).
+- `button` split divider: secondary now follows the border tokens per state (2026-10-07; hover/pressed blue-200 → blue-300). Types on a solid fill still use `rgba(255, 255, 255, 0.15)`; `*-separator` tokens exist but equal the hover fills, so the intent is queued with UX (see `TOKENISATION_REMAINING.md`).
 - `skeleton/src/Skeleton.styles.ts` shimmer uses 0.1 → 0.4 → 0.1; the 0.4 midpoint has no token, so the keyframe stays literal.
 - `button` variants (`Button.variants.ts`) still build gradients and shadows from `palette`; no tokens were named upstream.
 - `table-new` `TreeTable` still carries a palette fallback in `levelBarColor`. (`file-uploader` is now palette-free: thumbnail backgrounds use `--ds-color-background-base-mutedhover`, the loader border follows `--ds-color-custom-<name>-600` via `resolveCustomColor`.)
@@ -160,16 +160,16 @@ an upstream definition (see the blocker column). The next move is upstream in th
 | badge | module | ✅ | — |
 | banner | semantic | ✅ | — |
 | block | semantic | ✅ | — |
-| broadcast-bar | module | ✅ | — |
+| broadcast-bar | module | ✅ | button wrapper background/radius dropped (2026-10-07) |
 | button-expander | module | ✅ | — |
 | button-group | module | ✅ | — |
-| button | module | 🚧 | partial (refactor/button-tokens) — statics → module/semantic (blue-100→bg-brand-subtlehover, blue-300→border-brand-strong, blue-600→focus-base-default, grey-300→border-base-strong, grey-500→text-neutral-default, red-600→text-danger-default, white→buttons-custom-color-text-*/onsolid/bg-base-default) + `customColor`/`iconColor` → ds-utils `resolveCustomColor` + Expander focus keyframe. Error state → `--ds-buttons-error-*`, Creator → `--ds-button-creator-*` (2026-10-06; ⚑ Creator upload hover blue-500→blue-600 intended). Variants → tokens (2026-10-07; danger hover/pressed adopted as delivered, flagged to UX; disabled primary/danger/success use `*-disabled` + element opacity). Left: blue-200 split-divider bg (live under `mode="split"`, not dead code), three grey-400 ripples (tertiary/ghost; no ripple token), `rgba(255,255,255,0.15)` split divider |
+| button | module | 🚧 | partial (refactor/button-tokens) — statics → module/semantic (blue-100→bg-brand-subtlehover, blue-300→border-brand-strong, blue-600→focus-base-default, grey-300→border-base-strong, grey-500→text-neutral-default, red-600→text-danger-default, white→buttons-custom-color-text-*/onsolid/bg-base-default) + `customColor`/`iconColor` → ds-utils `resolveCustomColor` + Expander focus keyframe. Error state → `--ds-buttons-error-*`, Creator → `--ds-button-creator-*` (2026-10-06; ⚑ Creator upload hover blue-500→blue-600 intended). Variants → tokens (2026-10-07; danger hover/pressed adopted as delivered, flagged to UX; disabled primary/danger/success use `*-disabled` + element opacity). Secondary split divider → border tokens per state. Left: three grey-400 ripples (tertiary/ghost; no ripple token), `rgba(255,255,255,0.15)` divider on solid types |
 | buttons | module | ✅ | — |
 | card | module | ✅ | — |
 | card-select | module | ✅ | — |
 | card-tabs | module | ✅ | fully on `--ds-card-tabs-variant-*` module tokens (bg/border/text/icon/tag/dot/handler/shadow/opacity), threading grey/white by `greyBackground`; per-tab active colour from the `ordered` categorical set (order-1..21); `grey-100` pressed → semantic base-muted. ⚑ invalid-hover/pressed bg now `validateactivehover` (darker). Kept: dynamic `color`-prop lookups + decorative caret gradients. `svg{fill}` still explicit token (currentColor cleanup deferred) |
 | carousel | semantic | ✅ | — |
-| cascader | semantic | ✅ | — |
+| cascader | semantic | ✅ | elevation on the outer `.ds-cascader` via `--ds-shadows-shadow-2` (2026-10-07) |
 | checkbox | module | ✅ | disabled on `*-disabled` tokens, tick on `icon-*` tokens (2026-10-06); `blocked` is a separate Figma state, not wired |
 | code-area | module (form) | ✅ | — |
 | code-snippet | module | ✅ | .less = font-face only |
@@ -324,7 +324,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | button-group | 0 | No | 0 | 0 | :white_check_mark: tokenised (2026-07-24) — split separators → **buttons** module per-variant `separator`; tertiary disabled label → buttons module; error outline/ring → semantic `border-danger-default`; description → `text-base-muted`; ButtonDivider → **divider** module. ⚑ separators adopt UX per-variant colours + 2× grey-500→grey-600 |
 | card-tabs | 68 | No | 2 | 4 | High palette count |
 | carousel | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-20 pass); new DS component, not in original audit |
-| cascader | 34 | No | 5 | 10 | :white_check_mark: tokenised — semantic (2026-07-23); greys→text/icon/bg/border-base, blue-600→brand (text/icon/border), green-600→icon-success, white→bg-base-default, rgba(255,255,255,0)→transparent; box-shadow rgba(35,41,54,.05) left (shadow, α≠shadow-2) |
+| cascader | 34 | No | 5 | 10 | :white_check_mark: tokenised — semantic (2026-07-23); greys→text/icon/bg/border-base, blue-600→brand (text/icon/border), green-600→icon-success, white→bg-base-default, rgba(255,255,255,0)→transparent; box-shadow now `--ds-shadows-shadow-2` on the outer `.ds-cascader` (2026-10-07) |
 | [checkbox](#checkbox--radio) | 0 | No | 4 | 1 | :white_check_mark: fully tokenised — focus/indeterminate/hover → `--ds-form-checkbox-*`; indeterminate-hover fill blue-500 → semantic `background-brand-solidhover` (exact); check icons = currentColor SVG |
 | code-area | 6 | No | 1 | 1 | :construction: field surface + error text → `--ds-form-*` (2026-07-20); Monaco constants (CSS-var constraint) + fullscreen deferred |
 | code-snippet | 14 | No¹ | 0 | 2 | :white_check_mark: fully tokenised (2026-07-23) — chrome→--ds-code-snippet-surface/copy, syntax→--ds-code-snippet-syntax-*, inline→--ds-code-snippet-inlinecode-*. ¹`.less` = font-face only |
@@ -340,7 +340,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | date-picker | 56 | No | 1 | 0 | :construction: trigger field → `--ds-form-*` + clear icon → icon-danger (2026-07-20); overlay/calendar deferred |
 | date-range-picker | 43 | No | 2 | 7 | :construction: trigger field → `--ds-form-*` + danger icons (2026-07-20); overlay/calendar deferred |
 | drawer | 3 | No | 1 | 0 | :white_check_mark: tokenised (2026-07-24) — de-antd'd (`.less` removed); body/header-border → semantic, shadow → `shadow-2`; ⚑ mask grey-800@0.2 → `overlay-default` (grey-900@0.5) |
-| dropdown | 20 | No | 1 | 1 | :white_check_mark: tokenised (2026-07-23) — bottom-action icon/text/bg/border + brand hover, back-action label/icon text, search-icon → semantic; TextTrigger `inactiveColor` kept dynamic |
+| dropdown | 20 | No | 1 | 1 | :white_check_mark: tokenised (2026-07-23) — bottom-action icon/text/bg/border + brand hover, back-action label/icon text, search-icon → semantic; TextTrigger `inactiveColor` → `resolveCustomColor` (2026-10-07) |
 | editable-items-list | 0 | No | 0 | 0 | :white_check_mark: hardcoded add-icon `blue-600` removed — icon inherits ds-button (`mode: icon-label`) (2026-07-20) |
 | emoji-picker | 0 | No | 0 | 0 | :white_check_mark: tokenised — search-icon `grey-600` removed — inherits default (2026-07-20); `EmojiList` category header `grey-500` → semantic `text-neutral-default` (exact) |
 | empty-states | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-20 pass) |
