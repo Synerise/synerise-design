@@ -102,5 +102,21 @@ describe('Button', () => {
         'background-color:var(--ds-buttons-variant-primary-success-bg-active)',
       );
     });
+
+    it('secondary split divider follows the border tokens per state', () => {
+      renderWithProvider(
+        <Button type="secondary" mode="split">
+          Click ME!
+        </Button>,
+      );
+      const css = injectedCss();
+
+      [
+        'background-color:var(--ds-buttons-variant-secondary-separator)',
+        'background-color:var(--ds-buttons-variant-secondary-border-hover)',
+        'background-color:var(--ds-color-border-brand-strong)',
+      ].forEach((decl) => expect(css).toContain(decl));
+      expect(css).not.toContain('#bce1ff');
+    });
   });
 });

@@ -20,6 +20,19 @@ const rippleInitialSize = 20;
 
 const splitTypes = ['secondary', 'tertiary'];
 
+// The secondary split divider is the same colour as the button's own border in that state: its
+// separator token at rest (identical to the border-default value; hover and pressed override it
+// below with the border token). Tertiary keeps the strong base border; every other type sits on a
+// solid fill and uses a translucent white line (see the UX note in TOKENISATION_REMAINING.md).
+const splitDividerColor = (type: string): string => {
+  if (type === 'secondary') {
+    return 'var(--ds-buttons-variant-secondary-separator)';
+  }
+  return splitTypes.includes(type)
+    ? 'var(--ds-color-border-base-strong)'
+    : 'rgba(255, 255, 255, 0.15)';
+};
+
 // Resolve a categorical `customColor`/`iconColor` family ('red', 'blue', …) to its reversible,
 // theme-aware custom-colour token at `shade`: a bare family maps to that shade, an explicit hex/var
 // passes through, an unmapped value falls back to the default red family (the `color` default).
@@ -213,8 +226,7 @@ export const StyledButton = styled(BaseButton)<StyledButtonProps>`
           box-shadow: inset 0 0 0 1px var(--ds-color-border-brand-strong);
         }
         ${ButtonLabel} > .ds-icon:before {
-          background-color: ${(props): string =>
-            props.theme.palette['blue-200']};
+          background-color: var(--ds-color-border-brand-strong);
         }
       }
       &:focus-visible:not(.pressed) {
@@ -230,8 +242,7 @@ export const StyledButton = styled(BaseButton)<StyledButtonProps>`
           box-shadow: inset 0 0 0 1px var(--ds-color-border-brand-strong);
         }
         ${ButtonLabel} > .ds-icon:before {
-          background-color: ${(props): string =>
-            props.theme.palette['blue-200']};
+          background-color: var(--ds-buttons-variant-secondary-border-hover);
         }
       }
     }
@@ -384,11 +395,7 @@ export const StyledButton = styled(BaseButton)<StyledButtonProps>`
             position: relative;
             &:before {
               content: '';
-              background-color: ${
-                !splitTypes.includes(props.type)
-                  ? `rgba(255, 255, 255, 0.15);`
-                  : 'var(--ds-color-border-base-strong)'
-              };
+              background-color: ${splitDividerColor(props.type)};
               top: ${props.size === 'large' ? '-12px' : '-4px'};
               height: ${props.size === 'large' ? '48px' : '32px'};
               width: 1px;
