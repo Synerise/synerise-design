@@ -204,7 +204,7 @@ export const StyledAvatar = styled(AvatarBase)<ExtraAvatarProps>`
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: #000;
+      background-color: var(--ds-color-background-overlay-solid);
       opacity: 0;
       border-radius: inherit;
     }

@@ -111,4 +111,17 @@ describe('Avatar', () => {
 
     expect(container.querySelector('.ds-avatar')).toBeTruthy();
   });
+
+  it('paints the hover/press veil with the overlay token, not a literal black', () => {
+    renderWithProvider(<Avatar onClick={() => {}}>AA</Avatar>);
+    const css = Array.from(document.querySelectorAll('style'))
+      .map((style) => style.textContent ?? '')
+      .join('')
+      .replace(/\s/g, '');
+
+    expect(css).toContain(
+      'background-color:var(--ds-color-background-overlay-solid)',
+    );
+    expect(css).not.toContain('background-color:#000');
+  });
 });
