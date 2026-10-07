@@ -125,6 +125,7 @@ Nothing upstream blocks code any more. Source of truth: `UPSTREAM_GAPS_HANDOFF.m
 - `skeleton/src/Skeleton.styles.ts` shimmer uses 0.1 → 0.4 → 0.1; the 0.4 midpoint has no token, so the keyframe stays literal.
 - `button` variants (`Button.variants.ts`) still build gradients and shadows from `palette`; no tokens were named upstream.
 - `table-new` `TreeTable` still carries a palette fallback in `levelBarColor`. (`file-uploader` is now palette-free: thumbnail backgrounds use `--ds-color-background-base-mutedhover`, the loader border follows `--ds-color-custom-<name>-600` via `resolveCustomColor`.)
+- The flat list of every remaining palette / hex / rgba usage lives in `TOKENISATION_REMAINING.md`.
 - 19 `*.typography` tokens point at `{typography.*}`, which does not exist in the token repo (upstream).
 
 **Retired:** `alert`, `menu` and `table` were deleted on master (`c02e6aa6ff`, "retire ds-menu, ds-alert and ds-table") and are no longer tracked.
