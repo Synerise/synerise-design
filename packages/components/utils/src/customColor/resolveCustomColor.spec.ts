@@ -59,3 +59,53 @@ describe('resolveCustomColor', () => {
     expect(resolveCustomColor('white', FB)).toBe(FB);
   });
 });
+
+describe('resolveCustomColor without a fallback', () => {
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  it('returns undefined for empty, unknown and unresolved values (the declaration is dropped)', () => {
+    vi.spyOn(console, 'warn').mockImplementation(() => {});
+
+    expect(resolveCustomColor(undefined)).toBeUndefined();
+    expect(resolveCustomColor('')).toBeUndefined();
+    expect(resolveCustomColor('bleu-600')).toBeUndefined();
+    expect(resolveCustomColor('blue-650-x')).toBeUndefined();
+  });
+
+  it('still resolves valid names and honours passthrough', () => {
+    expect(resolveCustomColor('blue-600')).toBe('var(--ds-color-custom-blue-600)');
+    expect(resolveCustomColor('#abc', undefined, { passthroughResolved: true })).toBe(
+      '#abc',
+    );
+  });
+});
+
+describe('resolveCustomColor warning', () => {
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  it('warns once per unresolved non-CSS value', () => {
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
+
+    resolveCustomColor('typo-600');
+    resolveCustomColor('typo-600');
+
+    expect(warn).toHaveBeenCalledTimes(1);
+    expect(warn.mock.calls[0][0]).toContain('typo-600');
+  });
+
+  it('stays quiet for valid names, empty values and plain CSS colours', () => {
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
+
+    resolveCustomColor('blue-600');
+    resolveCustomColor(undefined);
+    resolveCustomColor('#abc');
+    resolveCustomColor('rgb(1, 2, 3)');
+    resolveCustomColor('transparent');
+
+    expect(warn).not.toHaveBeenCalled();
+  });
+});

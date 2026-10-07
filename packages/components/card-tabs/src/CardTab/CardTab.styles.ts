@@ -6,7 +6,6 @@ import { macro } from '@synerise/ds-typography';
 import {
   customColorOr,
   getColor,
-  getLighterColor,
   orderedBaseOr,
   orderedHoverOr,
 } from '../utils';
@@ -145,10 +144,7 @@ export const CardTabContainer = styled.div<{
       return 'var(--ds-card-tabs-variant-grey-bg-validateactive)';
     }
     if (active) {
-      return orderedBaseOr(
-        customColorOr(color, theme.palette[`${color}`]),
-        orderIndex,
-      );
+      return orderedBaseOr(customColorOr(color), orderIndex);
     }
     if (greyBackground) {
       return 'var(--ds-card-tabs-variant-white-bg-default)';
@@ -165,10 +161,7 @@ export const CardTabContainer = styled.div<{
     }
     return getColor(
       active,
-      orderedBaseOr(
-        customColorOr(color, theme.palette[`${color}`]),
-        orderIndex,
-      ),
+      orderedBaseOr(customColorOr(color), orderIndex),
       'var(--ds-card-tabs-variant-grey-border-default)',
     );
   }};
@@ -180,36 +173,24 @@ export const CardTabContainer = styled.div<{
       getColor(
         active,
         'var(--ds-card-tabs-variant-grey-tag-bg-active)',
-        orderedBaseOr(
-          customColorOr(color, theme.palette[`${color}`]),
-          orderIndex,
-        ),
+        orderedBaseOr(customColorOr(color), orderIndex),
       )};
     color: ${({ theme, active, color, orderIndex }) =>
       getColor(
         active,
-        orderedBaseOr(
-          customColorOr(color, theme.palette[`${color}`]),
-          orderIndex,
-        ),
+        orderedBaseOr(customColorOr(color), orderIndex),
         'var(--ds-card-tabs-variant-grey-tag-text-default)',
       )};
   }
   ${CardDot} {
     background-color: ${({ theme, active, color, invalid, orderIndex }) => {
       if (active && invalid) {
-        return orderedBaseOr(
-          customColorOr(color, theme.palette[`${color}`]),
-          orderIndex,
-        );
+        return orderedBaseOr(customColorOr(color), orderIndex);
       }
       return getColor(
         active,
         'transparent',
-        orderedBaseOr(
-          customColorOr(color, theme.palette[`${color}`]),
-          orderIndex,
-        ),
+        orderedBaseOr(customColorOr(color), orderIndex),
       );
     }};
   }
@@ -279,14 +260,7 @@ export const CardTabContainer = styled.div<{
         return 'var(--ds-card-tabs-variant-grey-bg-validateactivehover)';
       }
       if (active) {
-        return orderedHoverOr(
-          customColorOr(
-            color,
-            theme.palette[`${getLighterColor(color)}`],
-            -100,
-          ),
-          orderIndex,
-        );
+        return orderedHoverOr(customColorOr(color, -100), orderIndex);
       }
       if (greyBackground && !active) {
         return 'var(--ds-card-tabs-variant-white-bg-hover)';
@@ -310,17 +284,11 @@ export const CardTabContainer = styled.div<{
         if (active) {
           return 'var(--ds-card-tabs-variant-grey-tag-bg-active)';
         }
-        return orderedBaseOr(
-          customColorOr(color, theme.palette[`${color}`]),
-          orderIndex,
-        );
+        return orderedBaseOr(customColorOr(color), orderIndex);
       }};
       color: ${({ theme, active, color, orderIndex }) => {
         if (active) {
-          return orderedBaseOr(
-            customColorOr(color, theme.palette[`${color}`]),
-            orderIndex,
-          );
+          return orderedBaseOr(customColorOr(color), orderIndex);
         }
         return 'var(--ds-card-tabs-variant-grey-tag-text-default)';
       }};
@@ -397,14 +365,7 @@ export const CardTabContainer = styled.div<{
         return 'var(--ds-card-tabs-variant-grey-bg-validateactivehover)';
       }
       if (active) {
-        return orderedHoverOr(
-          customColorOr(
-            color,
-            theme.palette[`${getLighterColor(color)}`],
-            -100,
-          ),
-          orderIndex,
-        );
+        return orderedHoverOr(customColorOr(color, -100), orderIndex);
       }
       if (greyBackground && !active) {
         return 'var(--ds-card-tabs-variant-white-bg-default)';

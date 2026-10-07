@@ -44,8 +44,6 @@ direction is `resolveCustomColor` from `@synerise/ds-utils` (as button and file-
 | Package | Location | What |
 |---|---|---|
 | `button` | `Button.variants.ts:194,300,354` and `Button.styles.tsx:172` | The tertiary, ghost-secondary and ghost-primary ripples: `rgba(hexToRgbValues(p['grey-400']), rippleAlpha(0.25, 0.35))`, i.e. grey-400 at 0.133. No token carries that alpha; needs `--ds-buttons-variant-{tertiary,ghost-secondary,ghost-primary}-ripple` upstream. |
-| `card-tabs` | `CardTab.styles.ts:149,169,184,192,202,210,285,314,321,403` | `customColorOr(color, theme.palette[color])` and `theme.palette[getLighterColor(color)]`: the per-tab `color` prop fallback. Active colour already comes from the `ordered` set; this is the legacy named-colour path |
-| `table-new` | `components/TreeTable/TreeTable.styles.ts:31,37,61` | palette passed in as the last-resort fallback of `levelBarColor` after `resolveCustomColor` |
 | `icon` | `Icon.styles.ts:41-42` | `theme.palette[DEFAULT_COLOR_TOKEN]` (`grey-800`) for large/xlarge default. Gap: no semantic icon token for grey-800 (icon family stops at `icon-base-default`, grey-600) |
 | `utils` | `hexToRgba/hexToRgba.ts` (+ export in `index.ts:5`) | The helper itself. Retire once the last `hexToRgba` consumer is gone (only `button` variants and downstream apps) |
 | `core` | `js/DSProvider/ThemeProvider/theme.ts:13,83` | The `theme.palette` object itself (`vars.colors`), the source for every lookup above. Removed only when all of the above are |

@@ -124,7 +124,7 @@ Nothing upstream blocks code any more. Source of truth: `UPSTREAM_GAPS_HANDOFF.m
 - `button` split divider: secondary now follows the border tokens per state (2026-10-07; hover/pressed blue-200 → blue-300). Types on a solid fill still use `rgba(255, 255, 255, 0.15)`; `*-separator` tokens exist but equal the hover fills, so the intent is queued with UX (see `TOKENISATION_REMAINING.md`).
 - `skeleton/src/Skeleton.styles.ts` shimmer uses 0.1 → 0.4 → 0.1; the 0.4 midpoint has no token, so the keyframe stays literal.
 - `button` variants (`Button.variants.ts`) still build gradients and shadows from `palette`; no tokens were named upstream.
-- `table-new` `TreeTable` still carries a palette fallback in `levelBarColor`. (`file-uploader` is now palette-free: thumbnail backgrounds use `--ds-color-background-base-mutedhover`, the loader border follows `--ds-color-custom-<name>-600` via `resolveCustomColor`.)
+- `resolveCustomColor` no longer needs `theme.palette` as a fallback: its `fallback` is optional (unresolved → `undefined`, the declaration is dropped, as an unknown palette key did before) and it warns once on a value that is neither a custom colour nor CSS. `card-tabs` and `table-new` `TreeTable` no longer read `theme.palette`.
 - The flat list of every remaining palette / hex / rgba usage lives in `TOKENISATION_REMAINING.md`.
 - 19 `*.typography` tokens point at `{typography.*}`, which does not exist in the token repo (upstream).
 
@@ -167,7 +167,7 @@ an upstream definition (see the blocker column). The next move is upstream in th
 | buttons | module | ✅ | — |
 | card | module | ✅ | — |
 | card-select | module | ✅ | — |
-| card-tabs | module | ✅ | fully on `--ds-card-tabs-variant-*` module tokens (bg/border/text/icon/tag/dot/handler/shadow/opacity), threading grey/white by `greyBackground`; per-tab active colour from the `ordered` categorical set (order-1..21); `grey-100` pressed → semantic base-muted. ⚑ invalid-hover/pressed bg now `validateactivehover` (darker). Kept: dynamic `color`-prop lookups + decorative caret gradients. `svg{fill}` still explicit token (currentColor cleanup deferred) |
+| card-tabs | module | ✅ | fully on `--ds-card-tabs-variant-*` module tokens (bg/border/text/icon/tag/dot/handler/shadow/opacity), threading grey/white by `greyBackground`; per-tab active colour from the `ordered` categorical set (order-1..21); `grey-100` pressed → semantic base-muted. ⚑ invalid-hover/pressed bg now `validateactivehover` (darker). Explicit `color` prop resolves through `customColorOr` → `resolveCustomColor` (no `theme.palette` fallback; an out-of-set string drops the declaration). Kept: decorative caret gradients. `svg{fill}` still explicit token (currentColor cleanup deferred) |
 | carousel | semantic | ✅ | — |
 | cascader | semantic | ✅ | elevation on the outer `.ds-cascader` via `--ds-shadows-shadow-2` (2026-10-07) |
 | checkbox | module | ✅ | disabled on `*-disabled` tokens, tick on `icon-*` tokens (2026-10-06); `blocked` is a separate Figma state, not wired |
@@ -256,7 +256,7 @@ an upstream definition (see the blocker column). The next move is upstream in th
 | subject | semantic | ✅ | — |
 | subtle-form | module | ✅ | hover/focus/error → `--ds-subtle-form-bg-*` (2026-10-06) |
 | switch | module | ✅ | — |
-| table-new | semantic | 🚧 | colours tokenised → semantic; scroll shadow colour → `--ds-table-scroll-shadow` (2026-10-06, colour only; offsets stay in the styles); WIP: feature in active dev; kept dynamic: runtime tree-level/child-row palette fallback (`TreeTable`) |
+| table-new | semantic | 🚧 | colours tokenised → semantic; scroll shadow colour → `--ds-table-scroll-shadow` (2026-10-06, colour only; offsets stay in the styles); WIP: feature in active dev; `TreeTable` level bars resolve through `resolveCustomColor` only (no palette fallback) |
 | tabs | module | ✅ | ⚑ focus text/icon blue-500 → `--ds-color-focus-base-default` (blue-600, darker) |
 | tag | module | ✅ | — |
 | tags | module (tag) | ✅ | — |
