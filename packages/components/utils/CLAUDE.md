@@ -14,7 +14,7 @@ src/
  toCamelCase/ — kebab/snake_case → camelCase
  escapeRegEx/ (regex/) — escape special regex chars in a string
  getInitials/ — extract initials from first/last name (NOT exported from index.ts)
- selectColorByLetter/ — map letter → ds-core palette colour
+ selectColorByLetter/ — map letter → custom-colour token
  customColor/ — map a custom-colour name/name-shade string → reversible token + shared colour types
  renderWithHighlight/ — wrap a substring match in a highlight <span>
  doubleClickListener/ — factory for single/double click disambiguation
@@ -60,8 +60,8 @@ Converts kebab-case and snake_case strings to camelCase. Strips non-alphanumeric
 Escapes all regex special characters in a string for safe use in `new RegExp(..)`.
 
 #### `selectColorByLetter(letter?: string, forAvatar?: boolean): Color`
-Maps a letter to a design-system palette colour. Uses `latinize` to normalise accented characters.
-- `forAvatar = false` (default) → returns a `theme.palette` hex string
+Maps a letter to a design-system custom colour. Uses `latinize` to normalise accented characters.
+- `forAvatar = false` (default) → returns the `var(--ds-color-custom-<family>-500)` token via `resolveCustomColor`
 - `forAvatar = true` → returns `{ color: string; hue: string }` (split on `-`)
 - Falls back to `'orange-500'` when `letter` is undefined or not a string.
 
@@ -234,7 +234,6 @@ Consumers: `ds-select`, `ds-dropdown`, `ds-item-picker`, `ds-context-selector`. 
 
 - `uuid` — used by `useStableId` for UUID generation
 - `latinize` — used by `selectColorByLetter` to normalise accented letters
-- `@synerise/ds-core` — `theme.palette` used by `selectColorByLetter`
 
 ## Implementation notes
 

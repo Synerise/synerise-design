@@ -1,7 +1,8 @@
 import latinize from 'latinize';
 
-import { theme } from '@synerise/ds-core';
 import { customColorNames } from '@synerise/ds-tokens/names';
+
+import { resolveCustomColor } from '../customColor';
 
 export type ColorByLetter = {
   [index: string]: string;
@@ -25,7 +26,7 @@ export const colorByLetter = getColorByLetter();
 
 export function getColor(colorString: string, forAvatar: boolean): Color {
   if (!forAvatar) {
-    return theme.palette[colorString];
+    return resolveCustomColor(colorString, 'var(--ds-color-custom-orange-500)');
   }
   return {
     color: colorString.split('-')[0],

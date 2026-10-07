@@ -1,14 +1,13 @@
-import { theme } from '@synerise/ds-core';
 import selectColorByLetter, { palette } from './selectColorByLetter';
 
 describe('selectColorByLetter', () => {
   it('should return correct color for the given letter', () => {
-    expect(selectColorByLetter()).toBe(theme.palette['orange-500']);
-    expect(selectColorByLetter('*')).toBe(theme.palette['orange-500']);
+    expect(selectColorByLetter()).toBe('var(--ds-color-custom-orange-500)');
+    expect(selectColorByLetter('*')).toBe('var(--ds-color-custom-orange-500)');
 
     for (let i = 0; i <= 25; i += 1) {
       expect(selectColorByLetter(String.fromCharCode(i + 65))).toBe(
-        theme.palette[`${palette[i % palette.length]}-500`]
+        `var(--ds-color-custom-${palette[i % palette.length]}-500)`
       );
     }
   });
