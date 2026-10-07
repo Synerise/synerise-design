@@ -18,7 +18,7 @@ export const ItemsList = styled.div<{ contentHeight?: number }>`
     max-height: 300px;
   }
   &[data-keyboard-nav='true'] .ds-context-item:focus > div {
-    box-shadow: inset 0 0 0 2px ${(props) => props.theme.palette['blue-600']};
+    box-shadow: inset 0 0 0 2px var(--ds-color-focus-base-default);
   }
   ${(props) =>
     props.contentHeight !== undefined && `height: ${props.contentHeight}px;`}

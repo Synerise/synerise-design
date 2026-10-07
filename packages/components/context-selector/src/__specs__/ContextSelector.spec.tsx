@@ -156,4 +156,16 @@ describe('Context selector component', () => {
       'background-color:var(--ds-buttons-error-bg-default)',
     );
   });
+
+  test('Should paint the keyboard-focus ring with the focus token', () => {
+    renderWithProvider(RENDER_CONTEXT_SELECTOR({}));
+    const injectedCss = Array.from(document.querySelectorAll('style'))
+      .map((s) => s.textContent)
+      .join('')
+      .replace(/\s/g, '');
+    // whitespace is stripped above: `inset 0 0 0 2px` collapses to `inset0002px`
+    expect(injectedCss).toContain(
+      'box-shadow:inset0002pxvar(--ds-color-focus-base-default)',
+    );
+  });
 });
