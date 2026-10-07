@@ -48,7 +48,7 @@ export const Separator = styled.hr`
   background-image: linear-gradient(
     to right,
     var(--ds-color-border-base-strong) 33%,
-    rgba(255, 255, 255, 0) 0%
+    transparent 0%
   );
   background-repeat: repeat-x;
   background-size: 4px 1px;

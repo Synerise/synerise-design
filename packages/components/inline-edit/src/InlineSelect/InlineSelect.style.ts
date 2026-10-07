@@ -43,7 +43,7 @@ const applyDotsOnError = (
   props: ThemeProps & InPlaceEditableInputContainerProps,
 ): string => {
   if (props.error) {
-    return `background-image: linear-gradient(to right, ${applyColor(props)} 20%, rgba(255, 255, 255, 0) 10%);
+    return `background-image: linear-gradient(to right, ${applyColor(props)} 20%, transparent 10%);
   background-color: transparent;
   background-position: bottom left;
   background-size: 5px 1px;
@@ -126,7 +126,7 @@ export const InPlaceEditableInputContainer = styled.div<InPlaceEditableInputCont
           background-image: linear-gradient(
             to right,
             ${applyColor(props)} 20%,
-            rgba(255, 255, 255, 0) 10%
+            transparent 10%
           );
           input {
             color: transparent;

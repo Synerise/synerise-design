@@ -42,7 +42,7 @@ export const ItemTagList = styled.div`
     width: 20px;
     background: linear-gradient(
       90deg,
-      rgba(0, 0, 0, 0) 0%,
+      transparent 0%,
       var(--ds-color-background-base-default) 100%
     );
   }

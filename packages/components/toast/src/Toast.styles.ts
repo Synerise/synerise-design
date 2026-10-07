@@ -105,7 +105,7 @@ export const NumberWrapper = styled.div`
     background-image: linear-gradient(
       to right,
       var(--ds-color-text-base-disabled) 20%,
-      rgba(255, 255, 255, 0) 10%
+      transparent 10%
     );
     background-color: transparent;
     background-position: bottom left;
@@ -214,7 +214,7 @@ export const Container = styled.div<{
       background-image: linear-gradient(
         to right,
         var(--ds-color-text-base-muted) 20%,
-        rgba(255, 255, 255, 0) 10%
+        transparent 10%
       );
       color: var(--ds-color-text-base-muted);
     }

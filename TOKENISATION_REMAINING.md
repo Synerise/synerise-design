@@ -23,7 +23,7 @@ git grep -nE "palette|hexToRgba|hexToRgbValues|rgba?\(|(^|[^&\w/-])#[0-9a-fA-F]{
 |---|---:|---|
 | 1. Static colour in styling code | 8 | tokenise or ask upstream — section 1 |
 | 2. Dynamic `theme.palette[...]` lookups | ~25 | runtime colour props — section 2 |
-| 3. `rgba(…, 0)` gradient fade stops | 17 | decorative, one design decision — section 3 |
+| 3. `rgba(…, 0)` gradient fade stops | 0 | **done** (all 17 now `transparent`) — section 3 |
 | 4. Legacy `theme.variable(s)` (not colours) | 17 | z-index and border-radius, not colour tokens — section 4 |
 | 5. Intentional literals (artwork, theme source) | ~1,400 | `icon`, `flag`, `core` — section 5 |
 | Storybook stories (not shipped) | 39 in 15 files | out of scope here |
@@ -59,21 +59,12 @@ direction is `resolveCustomColor` from `@synerise/ds-utils` (as button and file-
 | `utils` | `hexToRgba/hexToRgba.ts` (+ export in `index.ts:5`) | The helper itself. Retire once the last `hexToRgba` consumer is gone (only `button` variants and downstream apps) |
 | `core` | `js/DSProvider/ThemeProvider/theme.ts:13,83` | The `theme.palette` object itself (`vars.colors`), the source for every lookup above. Removed only when all of the above are |
 
-## 3. `rgba(…, 0)` gradient fade stops
+## 3. `rgba(…, 0)` gradient fade stops — done
 
-`linear-gradient(to right, <colour> …, rgba(255, 255, 255, 0))` ends. A white fully-transparent stop is a
-fade target, not a visible colour, but on a dark surface it can tint the fade edge. Fix is one decision
-(use `transparent`, or the surface colour at alpha 0) applied to all of them.
-
-| Package | Locations |
-|---|---|
-| `card-tabs` | `CardTab.styles.ts:60,61,435,436` |
-| `collector` | `Collector.styles.ts:79,97` |
-| `inline-edit` | `InlineEdit.styles.ts:49,115,138`, `InlineSelect/InlineSelect.style.ts:46,129` |
-| `manageable-list` | `Item/Item.styles.ts:45` (`rgba(0, 0, 0, 0)`) |
-| `section-message` | `SectionMessage.styles.tsx:168,191` |
-| `tags` | `components/AddTags/AddTags.styles.ts:51` |
-| `toast` | `Toast.styles.ts:108,217` |
+All 17 fully transparent gradient ends (`rgba(255, 255, 255, 0)` and `rgba(0, 0, 0, 0)`) were replaced with
+`transparent` on 2026-10-07, so a fade no longer carries a hard-coded white or black stop on dark surfaces.
+Touched: `card-tabs` (`CardTab.styles.ts`), `collector`, `inline-edit` (`InlineEdit` and `InlineSelect`),
+`manageable-list` (`Item.styles.ts`), `section-message`, `tags` (`AddTags.styles.ts`), `toast`.
 
 ## 4. Legacy `theme.variable(s)` (not colours)
 
@@ -93,7 +84,6 @@ colour token; listed so they do not hide in the palette count.
 
 ## Suggested order
 
-1. Decide the fade-stop convention (section 3): one change, 17 lines, no token needed.
-2. 1:1 candidates that only need an existing token mapped: `avatar` veil, `banner` constants, `factors` pill default.
-3. Ask design-tokens for: split-divider-on-solid, translucent focus ring (slider), scrim (scrollbar), shadow 0.05 (cascader), `broadcast-bar` tint, per-variant button translucent states, a grey-800 icon default.
-4. Then retire `hexToRgba`, `theme.palette` and the `antd-legacy.less` leftovers.
+1. 1:1 candidates that only need an existing token mapped: `avatar` veil, `banner` constants, `factors` pill default.
+2. Ask design-tokens for: split-divider-on-solid, translucent focus ring (slider), scrim (scrollbar), shadow 0.05 (cascader), `broadcast-bar` tint, per-variant button translucent states, a grey-800 icon default.
+3. Then retire `hexToRgba`, `theme.palette` and the `antd-legacy.less` leftovers.

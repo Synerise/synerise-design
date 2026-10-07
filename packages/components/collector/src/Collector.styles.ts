@@ -76,7 +76,7 @@ export const MainContent = styled.div<{
     ${gradientOverlayStyles()}
     background-image: ${(props) => `-webkit-linear-gradient( left,
     ${props.focus ? 'var(--ds-form-field-bg-focus)' : 'var(--ds-form-field-bg-default)'} 0%,
-    rgba(255,255,255,0) 100%
+    transparent 100%
   )`};
   }
 `;
@@ -94,7 +94,7 @@ export const RightSide = styled.div<{
     ${gradientOverlayStyles()}
     background-image: ${(props) => `-webkit-linear-gradient( right,
     ${props.focus ? 'var(--ds-form-field-bg-focus)' : 'var(--ds-form-field-bg-default)'} 0%,
-    rgba(255,255,255,0) 100%
+    transparent 100%
   )`};
     position: absolute;
     left: -102px;

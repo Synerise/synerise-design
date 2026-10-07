@@ -57,8 +57,8 @@ export const CardTabLabel = styled.span`
         to right,
         var(--ds-color-text-brand-default) 0%,
         var(--ds-color-text-brand-default) 33%,
-        rgba(255, 255, 255, 0) 34%,
-        rgba(255, 255, 255, 0) 100%
+        transparent 34%,
+        transparent 100%
       );
     }
   }
@@ -432,8 +432,8 @@ export const CardTabContainer = styled.div<{
             ? 'var(--ds-card-tabs-variant-grey-text-active)'
             : 'var(--ds-card-tabs-variant-grey-text-hover)'}
           33%,
-        rgba(255, 255, 255, 0) 34%,
-        rgba(255, 255, 255, 0) 100%
+        transparent 34%,
+        transparent 100%
       ) !important;
     }
   }
