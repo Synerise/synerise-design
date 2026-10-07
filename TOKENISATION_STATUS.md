@@ -194,7 +194,7 @@ an upstream definition (see the blocker column). The next move is upstream in th
 | emoji-picker | semantic | ✅ | — |
 | empty-states | semantic | ✅ | — |
 | estimation | module | ✅ | — |
-| factors | module | ✅ | danger hovers → `--ds-color-icon-danger-defaulthover` (2026-10-06); count-pill default `grey-600` stays a dynamic palette lookup |
+| factors | module | ✅ | danger hovers → `--ds-color-icon-danger-defaulthover` (2026-10-06); count-pill default → `--ds-color-background-neutral-solid` (2026-10-07, grey-600→grey-700); no `theme.palette` left |
 | field-set | semantic | ✅ | — |
 | file-uploader | module | ✅ | — (hover/pressed → `--ds-file-uploader-bg-*`; thumbnails → `base-mutedhover`; loader border via `resolveCustomColor`; no `theme.palette` left) |
 | filter | semantic | ✅ | — |
@@ -345,7 +345,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | emoji-picker | 0 | No | 0 | 0 | :white_check_mark: tokenised — search-icon `grey-600` removed — inherits default (2026-07-20); `EmojiList` category header `grey-500` → semantic `text-neutral-default` (exact) |
 | empty-states | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-20 pass) |
 | estimation | 0 | No | 0 | 0 | :white_check_mark: tokenised (2026-07-21); skeleton bar → progressbar module token, dot ring → semantic; per-entry dot fill stays dynamic |
-| factors | 16 | No | 2 | 0 | :construction: (2026-07-23) type-selector bg/check-icon, array delete-icon + count-pill danger bg/onsolid text, relative-date clear + dropdown-footer/icons, parameter + search text, text-modal brand → semantic; count-pill default grey-600 bg kept dynamic; red-500 danger hovers → `--ds-color-icon-danger-defaulthover` (2026-10-06) |
+| factors | 16 | No | 2 | 0 | :construction: (2026-07-23) type-selector bg/check-icon, array delete-icon + count-pill danger bg/onsolid text, relative-date clear + dropdown-footer/icons, parameter + search text, text-modal brand → semantic; count-pill default → `--ds-color-background-neutral-solid` (2026-10-07); red-500 danger hovers → `--ds-color-icon-danger-defaulthover` (2026-10-06) |
 | field-set | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-20 pass) |
 | file-uploader | 152 | No | 0 | 7 | :white_check_mark: tokenised — semantic (2026-07-23); hover/pressed translucent → `--ds-file-uploader-bg-*`, thumbnail grey-200 → `--ds-color-background-base-mutedhover`, loader `${color}-600` → `resolveCustomColor` (2026-10-06) |
 | filter | 3 | No | 0 | 1 | :white_check_mark: tokenised — semantic (2026-07-23); placeholder bg→brand-subtle, border→border-brand, title→text-base-default |

@@ -1,6 +1,5 @@
 import React, { useMemo, useState } from 'react';
 
-import { useTheme } from '@synerise/ds-core';
 import Icon, { EditS } from '@synerise/ds-icon';
 import { TagShape } from '@synerise/ds-tag';
 
@@ -50,14 +49,12 @@ export const Array = <ItemType extends ArrayItemType>({
     setIsVisible(false);
     onDeactivate && onDeactivate();
   };
-  const theme = useTheme();
-
   const tagProps = {
     asPill: true,
     name: `${(arrayValue as ArrayValueElement<ItemType>[]).length}`,
     color: error
       ? 'var(--ds-color-background-danger-solid)'
-      : theme.palette['grey-600'],
+      : 'var(--ds-color-background-neutral-solid)',
     textColor: 'var(--ds-color-text-base-onsolid)',
     shape: TagShape.DEFAULT_ROUND,
   };

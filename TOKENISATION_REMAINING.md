@@ -46,7 +46,6 @@ direction is `resolveCustomColor` from `@synerise/ds-utils` (as button and file-
 |---|---|---|
 | `button` | `Button.variants.ts:194,300,354` and `Button.styles.tsx:172` | The tertiary, ghost-secondary and ghost-primary ripples: `rgba(hexToRgbValues(p['grey-400']), rippleAlpha(0.25, 0.35))`, i.e. grey-400 at 0.133. No token carries that alpha; needs `--ds-buttons-variant-{tertiary,ghost-secondary,ghost-primary}-ripple` upstream. Every other variant lookup (ripples, focus rings, disabled states, danger hover/pressed) moved to tokens on 2026-10-07 |
 | `card-tabs` | `CardTab.styles.ts:149,169,184,192,202,210,285,314,321,403` | `customColorOr(color, theme.palette[color])` and `theme.palette[getLighterColor(color)]`: the per-tab `color` prop fallback. Active colour already comes from the `ordered` set; this is the legacy named-colour path |
-| `factors` | `FactorValue/Array/Array.tsx:60` | `theme.palette['grey-600']`, default colour of the count pill |
 | `table-new` | `components/TreeTable/TreeTable.styles.ts:31,37,61` | palette passed in as the last-resort fallback of `levelBarColor` after `resolveCustomColor` |
 | `icon` | `Icon.styles.ts:41-42` | `theme.palette[DEFAULT_COLOR_TOKEN]` (`grey-800`) for large/xlarge default. Gap: no semantic icon token for grey-800 (icon family stops at `icon-base-default`, grey-600) |
 | `utils` | `hexToRgba/hexToRgba.ts` (+ export in `index.ts:5`) | The helper itself. Retire once the last `hexToRgba` consumer is gone (only `button` variants and downstream apps) |
@@ -77,9 +76,8 @@ colour token; listed so they do not hide in the palette count.
 
 ## Suggested order
 
-1. 1:1 candidates that only need an existing token mapped: the `factors` count-pill default.
-2. Ask design-tokens for: grey-400 ripple tokens for tertiary / ghost variants (and a fix for the inverted danger hover/pressed tokens), split-divider-on-solid, translucent focus ring (slider), loading scrim (scrollbar), a grey-800 icon default (see note 6).
-3. Then retire `hexToRgba`, `theme.palette` and the `antd-legacy.less` leftovers.
+1. Ask design-tokens for: grey-400 ripple tokens for tertiary / ghost variants (and a fix for the inverted danger hover/pressed tokens), split-divider-on-solid, translucent focus ring (slider), loading scrim (scrollbar), a grey-800 icon default (see note 6).
+2. Then retire `hexToRgba`, `theme.palette` and the `antd-legacy.less` leftovers.
 
 ## Notes for UX / design-tokens (button variants, 2026-10-07)
 
@@ -122,4 +120,6 @@ colour token; listed so they do not hide in the palette count.
     - Cascader: the elevation moved from the input and results wrappers to the outer `.ds-cascader` element and uses
       `--ds-shadows-shadow-2`. Light-mode alpha goes from 0.05 to 0.10, so the shadow is stronger.
     - Broadcast bar: the button wrapper no longer has its translucent white background or 3px radius.
+    - Factors count pill: default colour is `--ds-color-background-neutral-solid` (grey-700) instead of grey-600, the neutral counterpart of the
+      danger-solid error pill. One shade darker in light mode.
     - Avatar hover/press veil uses `--ds-color-background-overlay-solid` instead of black, so it lightens instead of darkening in dark mode.
