@@ -4,7 +4,7 @@ import { type IntlShape, useIntl } from 'react-intl';
 import Button from '@synerise/ds-button';
 import ButtonGroup from '@synerise/ds-button-group';
 import Checkbox from '@synerise/ds-checkbox';
-import Dropdown from '@synerise/ds-dropdown';
+import { DropdownMenu } from '@synerise/ds-dropdown';
 import Icon, {
   AngleDownS,
   Coin2M,
@@ -39,6 +39,23 @@ const DEFAULT_CURRENCIES_CONFIG = [
     label: 'Yen (JP)',
   },
 ];
+
+/** Rows shown before the currency list starts scrolling. */
+const CURRENCY_LIST_VISIBLE_ITEMS = 7;
+
+type CurrencyMenuItem = { text: string; currency: string };
+
+/**
+ * The menu's default matcher only reads the label; a currency is just as often typed by its ISO code
+ * (PLN, GBP, USD), so both are searched.
+ */
+const currencyMatchesQuery = (item: CurrencyMenuItem, query: string) => {
+  const needle = query.toLocaleLowerCase();
+  return (
+    item.text.toLocaleLowerCase().includes(needle) ||
+    item.currency.toLocaleLowerCase().includes(needle)
+  );
+};
 
 const getFormattingTypes = (
   intl: IntlShape,
@@ -77,10 +94,6 @@ const FormatSettings = ({
 }: FormatSettingsProps) => {
   const intl = useIntl();
 
-  const handleSelectCurrency = (currency: string) => {
-    onCurrencyChange(currency);
-  };
-
   const handleDecreaseFixedLength = useCallback(() => {
     if (format.fixedLength > 0) {
       onFixedLengthChange(format.fixedLength - 1);
@@ -100,6 +113,28 @@ const FormatSettings = ({
       (currency) => currency.currency === format.currency,
     );
   }, [currenciesConfig, format]);
+
+  // `text` is what the menu's search matches on, so the label goes there rather than in `children`.
+  const currencyItems = useMemo(
+    () =>
+      currenciesConfig.map(({ currency, label }) => ({
+        key: currency,
+        text: label,
+        currency,
+        suffixel: (
+          <S.CurrencyExample>
+            {`${text.currencyMenuItemPrefix} ${getFormattedValue({ currency })}`}
+          </S.CurrencyExample>
+        ),
+        onClick: () => onCurrencyChange(currency),
+      })),
+    [
+      currenciesConfig,
+      getFormattedValue,
+      onCurrencyChange,
+      text.currencyMenuItemPrefix,
+    ],
+  );
 
   return (
     <S.FormatSettingsContainer data-testid="ds-format-picker-overlay">
@@ -159,36 +194,23 @@ const FormatSettings = ({
         </S.FormatSettings>
         <S.FormatOptions>
           {format.dataFormat === 'cash' && (
-            <Dropdown
-              trigger={['click']}
+            <DropdownMenu
+              dataSource={currencyItems}
+              maxVisibleItems={CURRENCY_LIST_VISIBLE_ITEMS}
+              withSearch
+              itemMatchesSearchQuery={currencyMatchesQuery}
               disabled={disabled}
-              hideOnItemClick
               popoverProps={{
                 testId: 'format-picker-settings',
               }}
               asChild
               size="match-trigger"
-              overlay={
-                <S.DropdownWrapper>
-                  {currenciesConfig.map(({ currency, label }) => (
-                    <S.ListItem
-                      key={currency}
-                      suffixel={`${text.currencyMenuItemPrefix} ${getFormattedValue({ currency })}`}
-                      onClick={() => {
-                        handleSelectCurrency(currency);
-                      }}
-                    >
-                      {label}
-                    </S.ListItem>
-                  ))}
-                </S.DropdownWrapper>
-              }
             >
               <S.DropdownTrigger data-testid="ds-format-picker-currency-trigger">
                 <S.DropdownValue>{selectedCurrency?.label}</S.DropdownValue>
                 <Icon component={<AngleDownS />} />
               </S.DropdownTrigger>
-            </Dropdown>
+            </DropdownMenu>
           )}
           <Checkbox
             onChange={(event) => onUseSeparatorChange(event.target.checked)}

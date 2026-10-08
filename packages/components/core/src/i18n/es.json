@@ -419,7 +419,9 @@
       "SET-DEFAULT": "Establecer por defecto",
       "USE-SEPARATOR": "Usar separador de miles",
       "COMPACT-NUMBERS": "Usar formato compacto de números",
-      "EG": "p. ej."
+      "EG": "p. ej.",
+      "PLACEHOLDER": "Establecer formato",
+      "CLEAR": "Borrar"
     },
     "COMPLETED-WITHIN": {
       "INTERVAL": "Intervalo",

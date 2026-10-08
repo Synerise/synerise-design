@@ -6,11 +6,12 @@
 
 ```
 src/
- FormatPicker.tsx — main component; trigger button + Dropdown shell
+ FormatPicker.tsx — main component; trigger button + Dropdown shell + optional clear icon
+ FormatPicker.styles.ts — trigger / clear-icon layout
  FomartPicker.types.ts — all types (NOTE: filename typo: Fomart vs Format)
  index.ts — public exports
  FormatSettings/
- FormatSettings.tsx — dropdown overlay: format buttons, currency picker, checkboxes, footer
+ FormatSettings.tsx — dropdown overlay: format buttons, currency menu (DropdownMenu), checkboxes, footer
  FormatSettings.types.ts — FormatSettingsProps (internal)
  FormatSettings.styles.ts — all styled components for the settings panel
  __specs__/
@@ -37,6 +38,8 @@ src/
 | `buttonType` | `string` | `'tertiary'` | Ant Design / DS button type for the trigger button |
 | `disabled` | `boolean` | — | Disables the trigger button and all controls inside the panel |
 | `maxFixedLength` | `number` | — | Upper bound for decimal places (increment is blocked when reached) |
+| `isEmpty` | `boolean` | `false` | No format chosen yet: trigger shows `texts.placeholder`; the panel still edits `format` |
+| `onClear` | `() => void` | — | If provided, renders a red `Close3S` clear icon (tooltip and `aria-label` `texts.clear`) in the trigger while a format is set and the picker is enabled |
 
 ### `FormatPickerProps`
 
@@ -56,7 +59,7 @@ Shape of the `format` prop:
 
 ### `FormatPickerTexts` (i18n defaults)
 
-All fields are `ReactNode` except `currencyMenuItemPrefix` which is `string`.
+All fields are `ReactNode` except `currencyMenuItemPrefix` and `clear`, which are `string`.
 
 | Key | Default |
 |-----|---------|
@@ -69,6 +72,8 @@ All fields are `ReactNode` except `currencyMenuItemPrefix` which is `string`.
 | `useSeparator` | `'Use 1000 separator'` |
 | `compactNumbers` | `'Use compact numbers'` |
 | `currencyMenuItemPrefix` | `'e.g.'` |
+| `placeholder` | `'Set format'` |
+| `clear` | `'Clear'` |
 
 ### `CurrencyConfig`
 
@@ -104,24 +109,24 @@ const [format, setFormat] = useState<FormattingValue>({
 
 `FormatSettings.styles.ts` — all styles for the dropdown panel. Uses `theme.palette` tokens (`white`, `grey-050`, `grey-100`, `grey-300`, `grey-500`, `grey-700`). Hardcoded `min-width: 268px` for the panel container.
 
-> **Note:** `SuffixWrapper` is imported from `@synerise/ds-list-item/dist/components/Text/Text.styles` — a fragile deep/internal path.
-
 ## Key dependencies
 
-- `@synerise/ds-dropdown` — wraps the whole component as a click-triggered dropdown overlay
+- `@synerise/ds-dropdown` — wraps the whole component as a click-triggered dropdown overlay; its `DropdownMenu` renders the currency list
 - `@synerise/ds-core` (`useDataFormat`) — `formatValue` utility that applies `NumberToFormatOptions`; requires `DSProvider` in the tree
 - `react-intl` — i18n for all labels; requires `IntlProvider` (supplied by `DSProvider`)
 - `@synerise/ds-button` + `@synerise/ds-button-group` — format-type buttons and decimal-place controls
 - `@synerise/ds-checkbox` — separator and compact-numbers checkboxes
 - `@synerise/ds-radio` — wraps the button-group for format-type selection (value binding)
-- `@synerise/ds-list-item` — currency dropdown rows
+- `@synerise/ds-list-item` — dev-only: the currency-list spec reads the row height from `LIST_ITEM_SIZE_MAPPING`
 
 ## Implementation notes
 
-- **Trigger button label** is always `"{texts.format} {getFormattedValue()}"` — e.g. `"Format 19,000.70"`. The `value` prop is purely for display.
+- **Trigger button label** is `"{texts.format} {getFormattedValue()}"` — e.g. `"Format 19,000.70"` — or `texts.placeholder` while `isEmpty`. The `value` prop is purely for display.
+- **Clear icon** follows `ds-completed-within`: a ghost `single-icon` button absolutely positioned at the trigger's right edge (`FormatPicker.styles.ts`), the trigger padded by 32px so the label never runs under it.
 - **`onFormattedValueChange`** fires via `useEffect` on every change to `format` or `value`; it is not fired on user interaction directly.
 - **`onSetDefault` is optional** — when omitted, the footer (grey bar with "Set default" button) is not rendered at all.
 - **`currenciesConfig` default** is `DEFAULT_CURRENCIES_CONFIG` defined in `FormatSettings.tsx`: USD, EUR, PLN, JPY. Not exported.
+- **Currency list** is a `DropdownMenu` (`@synerise/ds-dropdown`): it shows `CURRENCY_LIST_VISIBLE_ITEMS` (7) rows and scrolls the rest, and always carries the menu's built-in search. `currencyMatchesQuery` matches the label **and** the ISO code (`PLN`, `GBP`…), case-insensitively; "No results" is the menu's empty state. Each row's `suffixel` is the `currencyMenuItemPrefix` + example value.
 - **`CurrencyType` is typed as `string`** (not a union of specific codes). The README's `USD | EUR | PLN | JPY` is only the default config list, not a type constraint.
 - **Filename typo** — the types file is `FomartPicker.types.ts` (missing `t`). The import in `index.ts` matches the typo, so it works, but it should be fixed.
 - **Uses Vitest**.

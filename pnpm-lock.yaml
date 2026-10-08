@@ -2526,9 +2526,6 @@ importers:
       '@synerise/ds-icon':
         specifier: workspace:^
         version: link:../icon
-      '@synerise/ds-list-item':
-        specifier: workspace:^
-        version: link:../list-item
       '@synerise/ds-radio':
         specifier: workspace:^
         version: link:../radio
@@ -2553,6 +2550,10 @@ importers:
       vitest:
         specifier: '4'
         version: 4.1.1(@types/node@22.19.7)(@vitest/browser-playwright@4.1.1)(jsdom@24.1.3(supports-color@5.5.0))(vite@7.3.1(@types/node@22.19.7)(jiti@2.7.0)(less@3.11.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.9.1))
+    devDependencies:
+      '@synerise/ds-list-item':
+        specifier: workspace:^
+        version: link:../list-item
 
   packages/components/grid:
     dependencies:

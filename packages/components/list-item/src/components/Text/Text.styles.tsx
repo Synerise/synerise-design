@@ -42,6 +42,14 @@ export const SuffixWrapper = styled.div<{
   display: flex;
   order: 10;
   justify-content: flex-end;
+  /* The label (Content) is the flex item that gives way — it has 'min-width: 0' and an
+     ellipsis. Without this the suffix shares the squeeze and a text suffix wraps onto a
+     second line next to a long label. */
+  flex-shrink: 0;
+  /* The gap between label and suffix otherwise comes only from Inner's flexible spacer,
+     which collapses to nothing once the label truncates, leaving the ellipsis touching
+     the suffix. */
+  margin-left: 8px;
   transition: opacity ${TRANSITION_FN};
   ${(props) => (props.visible ? visibleElementStyle() : hiddenElementStyle())};
 `;

@@ -424,7 +424,9 @@
       "SET-DEFAULT": "Set default",
       "USE-SEPARATOR": "Use thousands separator",
       "COMPACT-NUMBERS": "Use compact numbers",
-      "EG": "e.g."
+      "EG": "e.g.",
+      "PLACEHOLDER": "Set format",
+      "CLEAR": "Clear"
     },
     "COMPLETED-WITHIN": {
       "INTERVAL": "Interval",

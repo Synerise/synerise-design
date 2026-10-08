@@ -353,7 +353,9 @@
       "CASH": "Gotówkowy",
       "SET-DEFAULT": "Ustaw domyślny",
       "USE-SEPARATOR": "Użyj separatora dla tysięcy",
-      "COMPACT-NUMBERS": "Użyj skrócony format liczb"
+      "COMPACT-NUMBERS": "Użyj skrócony format liczb",
+      "PLACEHOLDER": "Ustaw format",
+      "CLEAR": "Wyczyść"
     },
     "ICON-PICKER": {
       "NO-RESULTS": "Brak wyników"

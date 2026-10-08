@@ -2,8 +2,6 @@ import styled from 'styled-components';
 
 import Button, { type StyledButton } from '@synerise/ds-button';
 import ButtonGroup from '@synerise/ds-button-group';
-import DSListItem, { type StyledListItem } from '@synerise/ds-list-item';
-import { SuffixWrapper } from '@synerise/ds-list-item/dist/components/Text/Text.styles';
 
 export const FormatSettingsContainer = styled.div`
   display: flex;
@@ -77,24 +75,9 @@ export const DropdownValue = styled.span`
   color: ${(props) => props.theme.palette['grey-700']};
 `;
 
-export const DropdownWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  width: 100%;
-  padding: 8px;
-  background: ${(props) => props.theme.palette.white};
-`;
-
-export const ListItem: StyledListItem = styled(DSListItem)`
-  font-weight: 500;
-  width: 100%;
-  color: ${(props) => props.theme.palette['grey-700']};
-  ${SuffixWrapper} {
-    color: ${(props) => props.theme.palette['grey-500']};
-    font-weight: 400;
-  }
+export const CurrencyExample = styled.span`
+  color: ${(props) => props.theme.palette['grey-500']};
+  font-weight: 400;
 `;
 
 export const FixedLengthButton: StyledButton = styled(Button)`

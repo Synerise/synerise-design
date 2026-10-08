@@ -138,6 +138,20 @@ describe('ListItem', () => {
       const suffix = screen.getByTestId('list-item-suffix');
       expect(suffix).toBeVisible();
     });
+
+    // jsdom performs no layout, so this asserts the *declared* CSS. The label is the
+    // element that truncates (`min-width: 0` + ellipsis); the suffix slot must keep its
+    // width, or a text suffix next to a long label wraps onto a second line.
+    it('should not let the suffix shrink next to a long label', () => {
+      renderWithProvider(
+        <ListItem suffixel={<span>e.g. 19 001 BAM</span>}>
+          Bosnia and Herzegovina konvertibilna marka
+        </ListItem>,
+      );
+      const suffix = screen.getByTestId('list-item-suffix');
+      expect(suffix).toHaveStyle('flex-shrink: 0');
+      expect(suffix).toHaveStyle('margin-left: 8px');
+    });
   });
 
   describe('checked state', () => {
