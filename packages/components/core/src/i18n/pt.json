@@ -421,7 +421,9 @@
       "SET-DEFAULT": "Definir padrão",
       "USE-SEPARATOR": "Usar milhares de separadores",
       "COMPACT-NUMBERS": "Usar números compactos",
-      "EG": "ex."
+      "EG": "ex.",
+      "PLACEHOLDER": "Definir formato",
+      "CLEAR": "Limpar"
     },
     "COMPLETED-WITHIN": {
       "INTERVAL": "Intervalo",

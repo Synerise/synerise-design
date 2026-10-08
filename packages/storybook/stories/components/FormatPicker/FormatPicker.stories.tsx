@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react-vite';
-import React from 'react';
+import React, { useState } from 'react';
 import { useArgs } from 'storybook/preview-api';
 import { fn } from 'storybook/test';
 
@@ -21,6 +21,53 @@ const DEFAULT_FORMAT: FormatPickerProps['format'] = {
   fixedLength: 1,
   compactNumbers: false,
 };
+
+const MANY_CURRENCIES: FormatPickerProps['currenciesConfig'] = [
+  // Long names first: the example value must stay on one line next to them.
+  ['AWG', 'Aruban florin'],
+  ['AZN', 'Azerbaijani manat'],
+  ['BAM', 'Bosnia and Herzegovina konvertibilna marka'],
+  ['BBD', 'Barbadian dollar'],
+  ['XCD', 'East Caribbean dollar'],
+  ['USD', 'Dollar (US)'],
+  ['EUR', 'Euro (EU)'],
+  ['PLN', 'Złoty (PL)'],
+  ['JPY', 'Yen (JP)'],
+  ['GBP', 'Pound (GB)'],
+  ['CHF', 'Franc (CH)'],
+  ['CZK', 'Koruna (CZ)'],
+  ['SEK', 'Krona (SE)'],
+  ['NOK', 'Krone (NO)'],
+  ['DKK', 'Krone (DK)'],
+  ['HUF', 'Forint (HU)'],
+  ['RON', 'Leu (RO)'],
+  ['BGN', 'Lev (BG)'],
+  ['ISK', 'Króna (IS)'],
+  ['TRY', 'Lira (TR)'],
+  ['UAH', 'Hryvnia (UA)'],
+  ['CNY', 'Yuan (CN)'],
+  ['HKD', 'Dollar (HK)'],
+  ['SGD', 'Dollar (SG)'],
+  ['KRW', 'Won (KR)'],
+  ['INR', 'Rupee (IN)'],
+  ['AUD', 'Dollar (AU)'],
+  ['NZD', 'Dollar (NZ)'],
+  ['CAD', 'Dollar (CA)'],
+  ['MXN', 'Peso (MX)'],
+  ['BRL', 'Real (BR)'],
+  ['ARS', 'Peso (AR)'],
+  ['CLP', 'Peso (CL)'],
+  ['COP', 'Peso (CO)'],
+  ['ZAR', 'Rand (ZA)'],
+  ['EGP', 'Pound (EG)'],
+  ['AED', 'Dirham (AE)'],
+  ['SAR', 'Riyal (SA)'],
+  ['ILS', 'Shekel (IL)'],
+  ['THB', 'Baht (TH)'],
+  ['MYR', 'Ringgit (MY)'],
+  ['IDR', 'Rupiah (ID)'],
+  ['PHP', 'Peso (PH)'],
+].map(([currency, label]) => ({ currency, label }));
 
 export default {
   title: 'Components/Pickers/FormatPicker',
@@ -135,5 +182,47 @@ export const AllTypes: Story = {
         />
       </div>
     );
+  },
+};
+
+// No format chosen yet: the trigger shows the placeholder; picking anything sets a value, after which
+// the clear icon brings the placeholder back (an optional per-row setting that inherits a default).
+export const EmptyWithClear: Story = {
+  render: (args) => {
+    const [format, setFormat] = useState<
+      FormatPickerProps['format'] | undefined
+    >(undefined);
+    const current = format ?? DEFAULT_FORMAT;
+    const update = (partial: Partial<FormatPickerProps['format']>) =>
+      setFormat({ ...current, ...partial });
+    return (
+      <FormatPicker
+        {...args}
+        format={current}
+        isEmpty={!format}
+        value={19000.7}
+        onDataFormatChange={(dataFormat) => update({ dataFormat })}
+        onCurrencyChange={(currency) => update({ currency })}
+        onUseSeparatorChange={(useSeparator) => update({ useSeparator })}
+        onCompactNumbersChange={(compactNumbers) => update({ compactNumbers })}
+        onFixedLengthChange={(fixedLength) => update({ fixedLength })}
+        onSetDefault={() => setFormat(DEFAULT_FORMAT)}
+        onClear={() => setFormat(undefined)}
+      />
+    );
+  },
+};
+
+export const WithClear: Story = {
+  args: {
+    onClear: fn(),
+  },
+};
+
+// Dozens of currencies: the menu shows seven rows and scrolls the rest; the search matches labels and ISO codes.
+export const ManyCurrencies: Story = {
+  args: {
+    format: { ...DEFAULT_FORMAT, dataFormat: 'cash' },
+    currenciesConfig: MANY_CURRENCIES,
   },
 };

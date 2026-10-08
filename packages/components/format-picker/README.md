@@ -49,10 +49,12 @@ import FormatPicker from '@synerise/ds-format-picker'
 | onSetDefault           | If provided, renders a "Set default" footer button     | `() => void`                                | -               |
 | onFormattedValueChange | Called whenever the formatted display value changes    | `(formattedValue: string) => void`          | -               |
 | text                   | Override any subset of UI labels                       | `Partial<FormatPickerTexts>`                | -               |
-| currenciesConfig       | Custom currency list for the cash dropdown             | `CurrencyConfig[]`                          | USD/EUR/PLN/JPY |
+| currenciesConfig       | Custom currency list for the cash dropdown; scrolls past 7 entries, searchable by label or ISO code | `CurrencyConfig[]` | USD/EUR/PLN/JPY |
 | buttonType             | DS button type for the trigger button                  | `string`                                    | `'tertiary'`    |
 | disabled               | Disables the trigger and all panel controls            | `boolean`                                   | -               |
 | maxFixedLength         | Upper bound for decimal places                         | `number`                                    | -               |
+| isEmpty                | No format chosen yet: the trigger shows `texts.placeholder`; the panel still edits `format` | `boolean` | `false` |
+| onClear                | If provided, renders a clear icon in the trigger while a format is set | `() => void` | - |
 
 ### Texts
 
@@ -67,6 +69,8 @@ import FormatPicker from '@synerise/ds-format-picker'
 | useSeparator   | Use 1000 separator checkbox label | `string \| ReactNode` | `Use 1000 separator` |
 | compactNumbers         | Compact numbers checkbox label                         | `string \| ReactNode`    | `Use compact numbers`  |
 | currencyMenuItemPrefix | Prefix shown before the example value in currency rows | `string`                 | `'e.g.'`               |
+| placeholder            | Trigger label while `isEmpty`                          | `string \| ReactNode`    | `Set format`           |
+| clear                  | Tooltip and accessible name of the clear icon          | `string`                 | `Clear`                |
 
 ### FormattingValue
 
