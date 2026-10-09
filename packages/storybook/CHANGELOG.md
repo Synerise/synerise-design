@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.63.0](https://github.com/Synerise/synerise-design/compare/storybook@1.62.1...storybook@1.63.0) (2026-10-09)
+
+
+### Features
+
+* **format-picker:** placeholder and clear action ([8475163](https://github.com/Synerise/synerise-design/commit/8475163f9dbd02c1d60e3aaca30aa7ec3f49df78))
+
+
+
+
+
 ## [1.62.1](https://github.com/Synerise/synerise-design/compare/storybook@1.62.0...storybook@1.62.1) (2026-09-24)
 
 

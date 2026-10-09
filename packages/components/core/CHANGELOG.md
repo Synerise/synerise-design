@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.4.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@2.3.2...@synerise/ds-core@2.4.0) (2026-10-09)
+
+
+### Features
+
+* **format-picker:** placeholder and clear action ([8475163](https://github.com/synerise/synerise-design/commit/8475163f9dbd02c1d60e3aaca30aa7ec3f49df78))
+
+
+
+
+
 ## [2.3.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@2.3.1...@synerise/ds-core@2.3.2) (2026-09-22)
 
 

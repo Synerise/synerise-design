@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-format-picker@2.0.7...@synerise/ds-format-picker@2.1.0) (2026-10-09)
+
+
+### Features
+
+* **format-picker:** placeholder and clear action ([8475163](https://github.com/Synerise/synerise-design/commit/8475163f9dbd02c1d60e3aaca30aa7ec3f49df78))
+
+
+
+
+
 ## [2.0.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-format-picker@2.0.6...@synerise/ds-format-picker@2.0.7) (2026-09-24)
 
 **Note:** Version bump only for package @synerise/ds-format-picker
