@@ -50,10 +50,19 @@ import { Flex, Box } from '@synerise/ds-flex-box';
 ## Key dependencies
 
 - `@rebass/grid ^6` — provides `Flex` and `Box` styled-components
+- `@types/rebass__grid` — **devDependency on purpose, do not promote it to a dependency.** It is
+  stale: it describes an older `@rebass/grid` prop set (`space`, `width`, `fontSize`, `color`,
+  `flex`, `order`, `alignSelf`), while the installed 6.1.0 composes
+  `space + color + layout + typography + flexbox` onto `Box` (and `Flex` is `Box` + `display:flex`).
+  The types therefore reject props that work at runtime — `minWidth`, `maxWidth`, `height`, and any
+  flexbox prop on `Box`. Shipping them to consumers broke ~97 call sites in `portal-ui-bridge`.
+  Consumers get no `Box`/`Flex` prop types as a result, which is the status quo until
+  `refactor/flex-box-drop-rebass` (synerise-design!3946) replaces `@rebass/grid` with a first-party
+  typed prop table.
 - `styled-components ^5` (peer) — rendering engine for `@rebass/grid`
 
 ## Implementation notes
 
 - This package adds **no logic** — all behaviour comes from `@rebass/grid`. Refer to [rebass docs](https://rebassjs.org/grid) for the full prop API.
-- Uses **Jest** (not Vitest) — `jest.config.js` present; package predates the Vitest migration.
+- Uses **Vitest**, like every other component package; there is no `jest.config.js`.
 - `styled-system` values: numbers map to theme space scale; fractions map to percentage widths (e.g., `width={1/2}` → `50%`).

@@ -69,6 +69,17 @@ const config: KnipConfig = {
       // Optional peers, imported only by the `./testing` entry that consumers opt into
       ignoreDependencies: ['@testing-library/react', 'vitest'],
     }),
+    'packages/components/flex-box': component({
+      // The published d.ts re-exports `BoxProps` from `@rebass/grid`, so the --production --strict
+      // pass sees `@types/rebass__grid` as unlisted. It stays a devDependency on purpose: it is
+      // stale, describing an older @rebass/grid prop set, while the installed 6.1.0 composes
+      // space+color+layout+typography+flexbox onto Box. Shipping it as a dependency pushed types
+      // onto consumers that reject working props (minWidth, maxWidth, height, flexbox on Box) and
+      // broke ~97 call sites in portal-ui-bridge. Drop this when !3946 removes @rebass/grid.
+      // The first pass reports this entry as an unneeded "configuration hint" because only the
+      // production pass reads dist/. Removing it on that advice fails CI. Keep it.
+      ignoreDependencies: ['@types/rebass__grid'],
+    }),
     'packages/components/design-system': component({
       // Meta-package: installing it installs every component, so its dependencies are the product
       ignoreDependencies: [/^@synerise\//],
