@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-flex-box@2.0.3...@synerise/ds-flex-box@2.0.4) (2026-10-12)
+
+
+### Bug Fixes
+
+* **flex-box:** keep @types/rebass__grid a devDependency ([ff5500d](https://github.com/Synerise/synerise-design/commit/ff5500d08e250f036ee032121398b8bae72c9b5c))
+
+
+
+
+
 ## [2.0.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-flex-box@2.0.2...@synerise/ds-flex-box@2.0.3) (2026-10-09)
 
 **Note:** Version bump only for package @synerise/ds-flex-box
