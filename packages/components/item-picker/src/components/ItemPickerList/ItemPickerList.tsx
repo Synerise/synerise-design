@@ -219,11 +219,16 @@ const ItemPickerListInner = <
     [mergedItemsList],
   );
 
-  /** Row identity, so a measured height follows its row through filtering. */
+  /**
+   * Row identity, so a measured height follows its row through filtering and folder changes.
+   * Folders and items carry an `id`; only rows without any id fall back to their position.
+   */
   const rowKeys = useMemo<Key[]>(
     () =>
       mergedItemsList.map((item, index) =>
-        isTitle(item) ? `title-${index}` : (item.itemKey ?? item.key ?? index),
+        isTitle(item)
+          ? `title-${index}`
+          : (item.itemKey ?? item.key ?? item.id ?? `row-${index}`),
       ),
     [mergedItemsList],
   );
@@ -240,6 +245,7 @@ const ItemPickerListInner = <
       dataSource: mergedItemsList,
       classNames,
       getItemSize,
+      getEstimatedItemSize,
       measureRow,
       texts: allTexts,
       infiniteScroll: {
@@ -252,6 +258,7 @@ const ItemPickerListInner = <
       mergedItemsList,
       classNames,
       getItemSize,
+      getEstimatedItemSize,
       measureRow,
       allTexts,
       isLoadingMore,

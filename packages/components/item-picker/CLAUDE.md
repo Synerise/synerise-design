@@ -315,6 +315,7 @@ import { ItemPickerList } from '@synerise/ds-item-picker';
 - **AbortController**: each `loadItems` call gets a fresh `AbortController`; the previous one is aborted on re-trigger (section change, search, refresh).
 - **Search action trigger**: typing `/` into the search bar activates the global actions list (`listActions = searchQuery === '/'`).
 - **Infinite scroll**: only active for `ItemLoaderConfig` items in `LIST_ITEMS` render mode. Pages are tracked via `pageToLoad.current`; deduplication relies on the caller returning accurate `total`.
+- **Measured row heights**: rows report real heights through `useMeasuredRowHeights` (`@synerise/ds-utils`). Each row's floor is its **estimate** (`getMeasuredRowStyle(style, getEstimatedItemSize(index))`), never react-window's `style.height`, so a row measures shorter again when its key last stood for a taller row. Row keys are `itemKey ?? key ?? id`, falling back to the position only for rows with no id at all.
 - **Section/folder rendering modes** (`renderMode.ts`):
  - `LIST_ITEMS` — flat list
  - `LIST_ITEMS_IN_SECTIONS` — items grouped under section headers
@@ -324,6 +325,6 @@ import { ItemPickerList } from '@synerise/ds-item-picker';
 - **`isObjectDeleted` prop** (on `ItemPickerNew`, `ItemPickerLegacy`, and the shared `Trigger`) flags a selected item that no longer exists. When `true`, `Trigger.styles` renders `ValueText` in `red-600` and skips the grey-600 `Prefix` icon override so the deleted state reads visually. It only affects the selected-value display — it has no effect while showing the placeholder.
 - **Several `ItemPickerTriggerProps` fields are `@deprecated`**: `clear`, `changeButtonLabel`, `clearConfirmTitle`, `yesText`, `noText` — move to `texts` object.
 - **`Props` alias** in `Trigger.types.ts` is marked `@deprecated`; use `ItemPickerTriggerProps`.
-- **Tests use Jest** (`jest.config.js` present); the package has not been migrated to Vitest.
+- **Tests use Vitest** (`vitest run`); the root `@testing-library/user-event` is v10, so there is no `userEvent.hover` — a `ds-tooltip` cannot be opened from these specs.
 - The search-bar `searchPlaceholder` in `ItemPickerNew` must be overridden via `texts.searchPlaceholder` (not a top-level prop), unlike `ItemPickerLegacy` where it is a direct prop.
 - `ItemPickerList` generates a unique per-instance CSS class via `uuid()` on mount; `focusWithArrowKeys` from `@synerise/ds-utils` uses this class for keyboard navigation.

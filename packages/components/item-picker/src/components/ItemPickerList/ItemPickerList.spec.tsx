@@ -49,6 +49,36 @@ const DATA_SOURCE = [...new Array(50)].map((i, k) => ({
   sectionId: k % 2 ? 'SECTION-A' : 'SECTION-B',
 }));
 
+/**
+ * jsdom lays nothing out, so rows report a height the way a browser would: a "Tall" row's
+ * content is 64px, any other 32px, and the row's own `min-height` still applies.
+ */
+const mockRowHeights = () => {
+  const original = Object.getOwnPropertyDescriptor(
+    HTMLElement.prototype,
+    'offsetHeight',
+  );
+  Object.defineProperty(HTMLElement.prototype, 'offsetHeight', {
+    configurable: true,
+    get(this: HTMLElement) {
+      if (this.style.position !== 'absolute') {
+        return 0;
+      }
+      const contentHeight = this.textContent?.includes('Tall') ? 64 : 32;
+      return Math.max(parseFloat(this.style.minHeight) || 0, contentHeight);
+    },
+  });
+  return () => {
+    if (original) {
+      Object.defineProperty(HTMLElement.prototype, 'offsetHeight', original);
+    }
+  };
+};
+
+const rowTop = (text: string) =>
+  (screen.getByText(text).closest('[style*="absolute"]') as HTMLElement).style
+    .top;
+
 describe('ItemPickerList', () => {
   beforeEach(() => {
     Element.prototype.scrollTo = vi.fn();
@@ -129,6 +159,47 @@ describe('ItemPickerList', () => {
     await waitFor(() => expect(screen.getByText('Item 2')).toBeInTheDocument());
   });
   
+  describe('measured row heights', () => {
+    let restoreRowHeights: () => void;
+    beforeEach(() => {
+      restoreRowHeights = mockRowHeights();
+    });
+    afterEach(() => {
+      restoreRowHeights();
+    });
+
+    it('should lay rows out at their measured heights', async () => {
+      renderWithProvider(
+        <ItemPickerList
+          onItemSelect={vi.fn()}
+          items={[{ text: 'Tall 1' }, { text: 'Tall 2' }]}
+        />,
+      );
+      // The "Items" title (32px) and one tall row (64px) above.
+      await waitFor(() => expect(rowTop('Tall 2')).toBe('96px'));
+    });
+
+    it('should let a row shrink when its key stood for a taller row before', async () => {
+      // Keyless rows are identified by position, so the short rows inherit the tall rows'
+      // measurements — exactly what going back from a folder of tall rows does.
+      const { rerender } = renderWithProvider(
+        <ItemPickerList
+          onItemSelect={vi.fn()}
+          items={[{ text: 'Tall 1' }, { text: 'Tall 2' }]}
+        />,
+      );
+      await waitFor(() => expect(rowTop('Tall 2')).toBe('96px'));
+
+      rerender(
+        <ItemPickerList
+          onItemSelect={vi.fn()}
+          items={[{ text: 'Short 1' }, { text: 'Short 2' }]}
+        />,
+      );
+      await waitFor(() => expect(rowTop('Short 2')).toBe('64px'));
+    });
+  });
+
   it('should render basic search if no actions', async () => {
     const onItemSelect = vi.fn();
     renderWithProvider(

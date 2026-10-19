@@ -1,9 +1,11 @@
 import {
+  type CSSProperties,
   type Key,
   type RefObject,
   useCallback,
   useEffect,
   useLayoutEffect,
+  useMemo,
   useRef,
   useState,
 } from 'react';
@@ -28,7 +30,11 @@ export type UseMeasuredRowHeightsOptions<
   RowKey extends Key = Key,
   List extends VariableSizeListLike = VariableSizeListLike,
 > = {
-  /** Row identity per index. Measurements are keyed by this, so they survive filtering. */
+  /**
+   * Row identity per index. Measurements are keyed by this, so they survive filtering. A
+   * key repeated within the list (one item shown both as a recent and in its section, say)
+   * is told apart by its occurrence, so each row still keeps a height of its own.
+   */
   keys: readonly RowKey[];
   /**
    * An existing list ref to drive instead of the hook's own. Pass one when something above
@@ -69,6 +75,35 @@ export type UseMeasuredRowHeightsResult<
 };
 
 /**
+ * Two rows under one key would share one cache entry and overwrite each other's height on
+ * every commit, so a repeated key is suffixed with its occurrence number. The first
+ * occurrence keeps the key as given; later ones stay stable while the order does.
+ */
+const toUniqueKeys = (keys: readonly Key[]): Key[] => {
+  const occurrences = new Map<Key, number>();
+  return keys.map((key) => {
+    const seen = occurrences.get(key) ?? 0;
+    occurrences.set(key, seen + 1);
+    return seen ? `${String(key)}\u0000${seen}` : key;
+  });
+};
+
+/**
+ * The style for a measured row's outer element. react-window's offset stays on it, the
+ * height follows the content, and `minHeight` keeps the row at least as tall as it was
+ * estimated.
+ *
+ * Pass the row's *estimate* as `minHeight`, never react-window's `style.height`: that one
+ * comes from the cache, so a row pinned to it can never measure shorter than it once did.
+ * A row whose key once stood for a taller one (an index key after the list changed, a
+ * label that wrapped in a narrower container) would then keep the stale height for good.
+ */
+export const getMeasuredRowStyle = (
+  style: CSSProperties,
+  minHeight: number,
+): CSSProperties => ({ ...style, height: 'auto', minHeight });
+
+/**
  * Lets a `VariableSizeList` honour content-driven row heights instead of a constant map:
  * rows report what they actually measure, and the list re-lays out around them.
  *
@@ -97,25 +132,26 @@ export const useMeasuredRowHeights = <
 >): UseMeasuredRowHeightsResult<List> => {
   const ownListRef = useRef<List>(null);
   const listRef = externalListRef ?? ownListRef;
-  const sizeCacheRef = useRef(new Map<RowKey, number>());
+  const sizeCacheRef = useRef(new Map<Key, number>());
+  const rowKeys = useMemo(() => toUniqueKeys(keys), [keys]);
   /** Lowest index measured since the last flush, or null when nothing is pending. */
   const pendingResetIndexRef = useRef<number | null>(null);
   const [measurementVersion, setMeasurementVersion] = useState(0);
 
   const getItemSize = useCallback(
     (index: number): number => {
-      const key = keys[index];
+      const key = rowKeys[index];
       if (key === undefined) {
         return estimate(index);
       }
       return sizeCacheRef.current.get(key) ?? estimate(index);
     },
-    [keys, estimate],
+    [rowKeys, estimate],
   );
 
   const measureRow = useCallback(
     (index: number, height: number): void => {
-      const key = keys[index];
+      const key = rowKeys[index];
       // A zero height means "not laid out" (jsdom, display: none) — keep the estimate.
       if (key === undefined || !height) {
         return;
@@ -132,7 +168,7 @@ export const useMeasuredRowHeights = <
       );
       listRef.current?.resetAfterIndex(index);
     },
-    [keys],
+    [rowKeys],
   );
 
   /**
@@ -176,7 +212,7 @@ export const useMeasuredRowHeights = <
   useEffect(() => {
     const cache = sizeCacheRef.current;
     if (cache.size > maxCachedRows) {
-      const live = new Set(keys);
+      const live = new Set(rowKeys);
       cache.forEach((_height, key) => {
         if (!live.has(key)) {
           cache.delete(key);
@@ -186,14 +222,15 @@ export const useMeasuredRowHeights = <
     // Not forced: the rows re-render with the new row set anyway, and each one that
     // measures a different height invalidates from its own index.
     listRef.current?.resetAfterIndex(0, false);
-  }, [keys, maxCachedRows]);
+  }, [rowKeys, maxCachedRows]);
 
   return { listRef, getItemSize, measureRow, measurementVersion };
 };
 
 /**
  * The row half of {@link useMeasuredRowHeights}: returns a ref to put on the row's outer
- * element, and reports its height on every commit and whenever it later changes.
+ * element, and reports its height on every commit and whenever it later changes. Style
+ * that element with {@link getMeasuredRowStyle}.
  *
  * The `ResizeObserver` is what covers content that settles after the first paint — an
  * image, a font swap, a narrower container wrapping a label. Without it such a row never

@@ -29,6 +29,7 @@ import {
   focusWithArrowKeys,
   getActiveTabGroup,
   getGroupName,
+  getMeasuredRowStyle,
   useMeasuredRow,
   useMeasuredRowHeights,
   useSearchResults,
@@ -85,6 +86,7 @@ const VirtualizedRow = ({
   style: CSSProperties;
   data: {
     items: DropdownItemProps[];
+    getEstimatedItemSize: (index: number) => number;
     measureRow: (index: number, height: number) => void;
   };
 }) => {
@@ -93,9 +95,9 @@ const VirtualizedRow = ({
   /**
    * react-window's offset moves onto this wrapper so the row inside is free to be taller
    * than the estimate — `menuItemHeight="auto"` rows are sized by their content. The
-   * inline `height` becomes a floor; without that the absolute height would pin them back.
+   * estimate is the floor, so a row also measures shorter again once its content does.
    */
-  const rowStyle = { ...style, height: 'auto', minHeight: style.height };
+  const rowStyle = getMeasuredRowStyle(style, data.getEstimatedItemSize(index));
 
   if (item && isDivider(item)) {
     return (
@@ -454,8 +456,8 @@ const ContextSelectorDropdown = ({
   });
 
   const itemData = useMemo(
-    () => ({ items: activeItems, measureRow }),
-    [activeItems, measureRow],
+    () => ({ items: activeItems, getEstimatedItemSize, measureRow }),
+    [activeItems, getEstimatedItemSize, measureRow],
   );
 
   const handleSearch = useCallback(

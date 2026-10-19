@@ -15,7 +15,11 @@ import {
   type ListItemProps,
 } from '@synerise/ds-list-item';
 import Scrollbar from '@synerise/ds-scrollbar';
-import { useMeasuredRow, useMeasuredRowHeights } from '@synerise/ds-utils';
+import {
+  getMeasuredRowStyle,
+  useMeasuredRow,
+  useMeasuredRowHeights,
+} from '@synerise/ds-utils';
 
 import { MAX_VISIBLE_ITEMS, SCROLLBAR_OFFSET } from '../../Dropdown.const';
 import * as S from './DropdownMenuList.styles';
@@ -33,6 +37,7 @@ const CLOSE_DELAY = 10;
 type RowData<ItemType extends ListItemProps> = {
   dataSource: ItemType[];
   onItemClick: () => void;
+  getEstimatedItemSize: (index: number) => number;
   measureRow: (index: number, height: number) => void;
 };
 
@@ -48,14 +53,14 @@ const DropdownRow = <ItemType extends ListItemProps>({
   style,
   data,
 }: ListChildComponentProps<RowData<ItemType>>) => {
-  const { dataSource, onItemClick, measureRow } = data;
+  const { dataSource, onItemClick, getEstimatedItemSize, measureRow } = data;
   const item = dataSource[index];
   const rowRef = useMeasuredRow<HTMLDivElement>(index, measureRow);
 
   return (
     <div
       ref={rowRef}
-      style={{ ...style, height: 'auto', minHeight: style.height }}
+      style={getMeasuredRowStyle(style, getEstimatedItemSize(index))}
     >
       {item.type === itemTypes.DIVIDER ? (
         <S.DropdownMenuListItem {...item} />
@@ -164,8 +169,13 @@ export const DropdownMenuList = <ItemType extends ListItemProps>({
   }, [dataSource, getItemSize, maxVisibleItems, measurementVersion]);
 
   const itemData = useMemo<RowData<ItemType>>(
-    () => ({ dataSource, onItemClick: handleItemClick, measureRow }),
-    [dataSource, handleItemClick, measureRow],
+    () => ({
+      dataSource,
+      onItemClick: handleItemClick,
+      getEstimatedItemSize,
+      measureRow,
+    }),
+    [dataSource, handleItemClick, getEstimatedItemSize, measureRow],
   );
 
   return (

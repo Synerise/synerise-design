@@ -17,7 +17,11 @@ import { type ListChildComponentProps, VariableSizeList } from 'react-window';
 
 import Loader from '@synerise/ds-loader';
 import Scrollbar from '@synerise/ds-scrollbar';
-import { useMeasuredRow, useMeasuredRowHeights } from '@synerise/ds-utils';
+import {
+  getMeasuredRowStyle,
+  useMeasuredRow,
+  useMeasuredRowHeights,
+} from '@synerise/ds-utils';
 
 import * as S from '../Select.styles';
 import type { RawValueType, SelectOption } from '../Select.types';
@@ -62,6 +66,7 @@ type RowData = {
   optionDomId: (index: number) => string;
   onOptionActivate: (index: number) => void;
   onOptionSelect: (option: SelectOption) => void;
+  estimateRowHeight: (index: number) => number;
   measureRow: (index: number, height: number) => void;
 };
 
@@ -85,6 +90,7 @@ const OptionRow = memo(
       optionDomId,
       onOptionActivate,
       onOptionSelect,
+      estimateRowHeight,
       measureRow,
     } = data;
     const option = options[index];
@@ -107,7 +113,7 @@ const OptionRow = memo(
         // Presentational for the same reason as `PresentationDiv`: this wrapper
         // sits between the listbox and its option and must not own the row.
         role="presentation"
-        style={{ ...style, height: 'auto', minHeight: style.height }}
+        style={getMeasuredRowStyle(style, estimateRowHeight(index))}
       >
         <S.OptionItem
           id={optionDomId(index)}
@@ -255,6 +261,7 @@ export const OptionList = ({
       optionDomId,
       onOptionActivate,
       onOptionSelect,
+      estimateRowHeight,
       measureRow,
     }),
     [
@@ -264,6 +271,7 @@ export const OptionList = ({
       optionDomId,
       onOptionActivate,
       onOptionSelect,
+      estimateRowHeight,
       measureRow,
     ],
   );
