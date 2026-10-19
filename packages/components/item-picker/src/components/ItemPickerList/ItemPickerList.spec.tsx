@@ -159,6 +159,93 @@ describe('ItemPickerList', () => {
     await waitFor(() => expect(screen.getByText('Item 2')).toBeInTheDocument());
   });
   
+  describe('section tooltips', () => {
+    it('should show an info icon next to the title of a section with a tooltip', () => {
+      renderWithProvider(
+        <ItemPickerList
+          onItemSelect={vi.fn()}
+          sections={[{ ...SECTIONS[0], tooltip: 'About section A' }, SECTIONS[1]]}
+          items={DATA_SOURCE}
+        />,
+      );
+      // Opening the tooltip is ds-tooltip's own behaviour; here only its placement matters.
+      expect(screen.getAllByTestId('title-tooltip-icon')).toHaveLength(1);
+      expect(
+        screen
+          .getByText('section A')
+          .closest('[style*="absolute"]')
+          ?.querySelector('[data-testid="title-tooltip-icon"]'),
+      ).toBeInTheDocument();
+    });
+
+    it('should put a folder tooltip on the title row, not on the folder row', () => {
+      renderWithProvider(
+        <ItemPickerList
+          onItemSelect={vi.fn()}
+          sections={[
+            {
+              ...SECTION_WITH_FOLDERS[0],
+              tooltip: 'About the section',
+              folders: [
+                { id: 'SECTION-A', text: 'folder A', tooltip: 'About folder A' },
+                { id: 'SECTION-B', text: 'folder B' },
+              ],
+            },
+          ]}
+          items={DATA_SOURCE}
+        />,
+      );
+      // The section's title row carries its tooltip; the folder A row opens the folder.
+      expect(screen.getAllByTestId('title-tooltip-icon')).toHaveLength(1);
+      expect(
+        screen
+          .getByText('Section with folders')
+          .closest('[style*="absolute"]')
+          ?.querySelector('[data-testid="title-tooltip-icon"]'),
+      ).toBeInTheDocument();
+    });
+
+    it("should show the folder's tooltip on its title when listing folders' items", async () => {
+      renderWithProvider(
+        <ItemPickerList
+          onItemSelect={vi.fn()}
+          sections={[
+            {
+              id: 'SECTION-WITH-FOLDERS',
+              text: 'Section with folders',
+              folders: [
+                {
+                  id: 'PARENT',
+                  text: 'parent folder',
+                  folders: [
+                    {
+                      id: 'SECTION-A',
+                      text: 'folder A',
+                      tooltip: 'About folder A',
+                    },
+                    { id: 'SECTION-B', text: 'folder B' },
+                  ],
+                },
+              ],
+            },
+          ]}
+          items={DATA_SOURCE}
+        />,
+      );
+      // Inside the parent folder, each child folder lists its items under its own title.
+      fireEvent.click(screen.getByText('parent folder'));
+      await waitFor(() =>
+        expect(screen.getAllByTestId('title-tooltip-icon')).toHaveLength(1),
+      );
+      expect(
+        screen
+          .getByText('folder A')
+          .closest('[style*="absolute"]')
+          ?.querySelector('[data-testid="title-tooltip-icon"]'),
+      ).toBeInTheDocument();
+    });
+  });
+
   describe('measured row heights', () => {
     let restoreRowHeights: () => void;
     beforeEach(() => {

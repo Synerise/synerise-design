@@ -1,3 +1,5 @@
+import type { ReactNode } from 'react';
+
 import type { InformationCardProps } from '@synerise/ds-information-card';
 import type { ListItemProps } from '@synerise/ds-list-item';
 
@@ -21,6 +23,8 @@ export type InheritedFromListItem = Pick<
 export type BaseSectionType = InheritedFromListItem & {
   text: string;
   id: string | number;
+  /** Explains the section: an info icon with this tooltip follows the section's title row. */
+  tooltip?: ReactNode;
   texts?: Partial<
     Pick<
       ItemPickerListTexts,

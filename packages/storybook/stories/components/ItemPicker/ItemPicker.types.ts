@@ -56,12 +56,14 @@ export type ItemType =
 export type SectionType = {
   id: string;
   text: string;
+  tooltip?: string;
   folders?: SectionType[];
 };
 
 export type NestedSectionType = {
   id: string;
   text: string;
+  tooltip?: string;
   folders?: NestedSectionType[];
 };
 

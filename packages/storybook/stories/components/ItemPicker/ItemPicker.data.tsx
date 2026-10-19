@@ -629,6 +629,35 @@ export const SECTIONS_WITH_NESTED_FOLDERS: NestedSectionType[] = [
   },
 ];
 
+export const SECTIONS_WITH_NESTED_FOLDERS_AND_TOOLTIPS: NestedSectionType[] = [
+  {
+    id: 'ANALYTICS',
+    text: 'Analytics',
+    folders: [
+      {
+        id: 'ATTRIBUTES',
+        text: 'Attributes',
+        folders: [
+          {
+            id: 'ATTRIBUTES-READY-TO-USE',
+            text: 'Ready to use',
+            tooltip: 'Attributes you can add without any further configuration',
+          },
+          {
+            id: 'ATTRIBUTES-CONFIGURABLE',
+            text: 'Configurable',
+            tooltip: 'Attributes that need extra configuration once added',
+          },
+        ],
+      },
+      {
+        id: 'FUNNELS',
+        text: 'Funnels',
+      },
+    ],
+  },
+];
+
 export const SECTIONS = [
   {
     id: 'SEGMENTATIONS',

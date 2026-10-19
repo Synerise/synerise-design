@@ -145,6 +145,20 @@ export const Title = styled.div`
   padding: 8px 12px;
 `;
 
+// The path text stays in one element, so the separator's spaces are not trimmed as flex items.
+export const TitleWithTooltip = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+// The negative margin keeps the 24px icon inside the title's 16px line: the row stays as
+// tall as a title without one, which is what its height estimate assumes.
+export const TitleTooltipIcon = styled.div`
+  display: flex;
+  margin: -4px 0;
+  color: ${(props): string => props.theme.palette['grey-400']};
+`;
+
 export const SectionTitleWrapper = styled.div``;
 
 export const InfiniteLoaderItemWrapper = styled.div``;

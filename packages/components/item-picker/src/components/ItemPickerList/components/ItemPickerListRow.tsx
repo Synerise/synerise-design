@@ -4,7 +4,9 @@ import React, {
   useCallback,
 } from 'react';
 
+import Icon, { InfoFillS } from '@synerise/ds-icon';
 import ListItem, { type ListItemProps } from '@synerise/ds-list-item';
+import Tooltip from '@synerise/ds-tooltip';
 import { getMeasuredRowStyle, useMeasuredRow } from '@synerise/ds-utils';
 
 import type { ItemPickerListTexts } from '../../ItemPickerNew/types/itemPickerListTexts.types';
@@ -85,7 +87,24 @@ export const ItemPickerListRow = ({
   if (isTitle(listItem)) {
     return (
       <div ref={rowRef} style={rowStyle}>
-        <S.Title>{listItem.text}</S.Title>
+        <S.Title>
+          {listItem.tooltip ? (
+            <S.TitleWithTooltip>
+              <span>{listItem.text}</span>
+              <Tooltip type="default" trigger="hover" title={listItem.tooltip}>
+                <S.TitleTooltipIcon>
+                  <Icon
+                    size={24}
+                    component={<InfoFillS />}
+                    data-testid="title-tooltip-icon"
+                  />
+                </S.TitleTooltipIcon>
+              </Tooltip>
+            </S.TitleWithTooltip>
+          ) : (
+            listItem.text
+          )}
+        </S.Title>
       </div>
     );
   }

@@ -700,6 +700,7 @@ export const useItemsInSections = <
             return getItems({
               items: itemsInFolder,
               titlePath: folder.titles,
+              titleTooltip: folder.tooltip,
               texts,
               searchQuery,
               maxItems: itemsLimitPerSection,

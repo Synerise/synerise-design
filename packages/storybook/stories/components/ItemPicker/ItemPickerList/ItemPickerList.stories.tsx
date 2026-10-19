@@ -21,6 +21,7 @@ import {
   SECTIONS,
   SECTIONS_WITH_FOLDERS,
   SECTIONS_WITH_NESTED_FOLDERS,
+  SECTIONS_WITH_NESTED_FOLDERS_AND_TOOLTIPS,
 } from '../ItemPicker.data';
 import type {
   ItemType,
@@ -200,6 +201,14 @@ export const SectionsAndNestedFolders: StoryObj<StoryPropsOverlay> = {
   args: {
     items: ITEMS_IN_SECTIONS_NESTED,
     sections: SECTIONS_WITH_NESTED_FOLDERS,
+  },
+};
+
+/** Open "Attributes": each child folder's title row carries its tooltip as an info icon. */
+export const NestedFoldersWithTooltips: StoryObj<StoryPropsOverlay> = {
+  args: {
+    items: ITEMS_IN_SECTIONS_NESTED,
+    sections: SECTIONS_WITH_NESTED_FOLDERS_AND_TOOLTIPS,
   },
 };
 

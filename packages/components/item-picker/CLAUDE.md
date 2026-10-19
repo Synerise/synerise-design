@@ -199,7 +199,7 @@ The standalone trigger button, exported for custom dropdown implementations.
 | `ItemSelectHandler` | `onItemSelect` callback type |
 | `ItemPickerListAPI` | Ref handle type |
 | `BaseItemType` | Minimum item shape |
-| `BaseSectionType` | Minimum section shape |
+| `BaseSectionType` | Minimum section shape; optional `tooltip` puts an info icon with that tooltip on the section's title row |
 | `BaseSectionTypeWithFolders` | Section with optional `folders` tree |
 | `ItemPickerListTexts` | All 23 localisation text keys |
 | `Action` | Union of action types |
@@ -249,7 +249,7 @@ const loaderConfig: ItemLoaderConfig<MyItem> = {
  isNewVersion
  items={loaderConfig}
  sections={[
- { id: 'seg', text: 'Segmentations', folders: [{ id: 'f1', text: 'Folder A' }] },
+ { id: 'seg', text: 'Segmentations', folders: [{ id: 'f1', text: 'Folder A', tooltip: 'What Folder A holds' }] },
  ]}
  onSectionChange={(section) => console.log('navigated to', section)}
  onChange={handleChange}
@@ -315,6 +315,7 @@ import { ItemPickerList } from '@synerise/ds-item-picker';
 - **AbortController**: each `loadItems` call gets a fresh `AbortController`; the previous one is aborted on re-trigger (section change, search, refresh).
 - **Search action trigger**: typing `/` into the search bar activates the global actions list (`listActions = searchQuery === '/'`).
 - **Infinite scroll**: only active for `ItemLoaderConfig` items in `LIST_ITEMS` render mode. Pages are tracked via `pageToLoad.current`; deduplication relies on the caller returning accurate `total`.
+- **Section tooltips**: a section's `tooltip` renders on its **title row** only (an `InfoFillS` icon in `ds-tooltip`), never on the folder row that opens it. Top-level section titles take it in `LIST_FOLDERS_IN_SECTIONS`; a folder's title (or title path, e.g. "Attributes - Ready to use") takes it when its items are listed under it. The icon sits in a negative-margin wrapper so the title stays as tall as its `ITEM_SIZE.title` estimate.
 - **Measured row heights**: rows report real heights through `useMeasuredRowHeights` (`@synerise/ds-utils`). Each row's floor is its **estimate** (`getMeasuredRowStyle(style, getEstimatedItemSize(index))`), never react-window's `style.height`, so a row measures shorter again when its key last stood for a taller row. Row keys are `itemKey ?? key ?? id`, falling back to the position only for rows with no id at all.
 - **Section/folder rendering modes** (`renderMode.ts`):
  - `LIST_ITEMS` — flat list

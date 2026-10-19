@@ -1,4 +1,4 @@
-import type { Ref } from 'react';
+import type { ReactNode, Ref } from 'react';
 
 import type { ListItemProps } from '@synerise/ds-list-item';
 
@@ -20,6 +20,7 @@ export type ItemSelectHandler<
 
 export type TitleListItemProps = Omit<ListItemProps, 'type'> & {
   type: 'title';
+  tooltip?: ReactNode;
 };
 
 export type ItemPickerListAPI = {
