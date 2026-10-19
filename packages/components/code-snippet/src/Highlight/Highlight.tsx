@@ -73,7 +73,7 @@ const Highlight = ({ languages, style, children }: HighlightProps) => {
 
   useEffect(() => {
     manageHighlight();
-  }, [manageHighlight]);
+  }, [manageHighlight, children]);
 
   return (
     <S.Highlight ref={elementRef} style={style}>
