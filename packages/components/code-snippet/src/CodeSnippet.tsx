@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { DEFAULT_LANGUAGES } from './CodeSnippet.constants';
 import {
   type CodeSnippetProps,
   CodeSnippetType,
@@ -12,7 +13,7 @@ import './style/index.less';
 
 const CodeSnippet = ({
   type = CodeSnippetType.INLINE,
-  languages = ['javascript', 'typescript', 'json'],
+  languages = DEFAULT_LANGUAGES,
   children = '',
   colorSyntax = false,
   fontSize = FontSize.SMALL,

@@ -4,6 +4,7 @@ import AnimateHeight from 'react-animate-height';
 import Icon, { ArrowDownCircleM, DuplicateS } from '@synerise/ds-icon';
 import Scrollbar from '@synerise/ds-scrollbar';
 
+import { DEFAULT_LANGUAGES } from '../../CodeSnippet.constants';
 import type { CodeSnippetProps } from '../../CodeSnippet.types';
 import Highlight from '../../Highlight/Highlight';
 import {
@@ -15,7 +16,7 @@ import * as S from './MultiCode.styles';
 const ANIMATE_HEIGHT_TIME = 300;
 
 const MultiCode: React.FC<CodeSnippetProps> = ({
-  languages = ['javascript', 'typescript', 'json'],
+  languages = DEFAULT_LANGUAGES,
   children = '',
   className,
   colorSyntax = false,
