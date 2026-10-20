@@ -96,29 +96,17 @@ export const StyledTable = styled.table<{ $tableLayoutAuto?: boolean }>`
 
   ${(props) => css`
     @keyframes ds-table-row-highlight {
-      0% {
-        background-color: transparent;
-      }
-      5% {
-        background-color: var(
-          --ds-highlight-color,
-          ${props.theme.palette['blue-050']}
-        );
-      }
+      5%,
       30% {
         background-color: var(
           --ds-highlight-color,
           ${props.theme.palette['blue-050']}
         );
       }
-      100% {
-        background-color: transparent;
-      }
     }
   `}
 
   tr.ds-table-row-highlight td {
-    transition: background 0.3s ease-in-out;
     animation: ds-table-row-highlight var(--ds-highlight-duration, 600ms)
       ease-in-out forwards;
   }

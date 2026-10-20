@@ -13,7 +13,7 @@ Temporarily highlight a row to draw attention to it -- for example, when returni
 - Zero React re-renders -- pure CSS animation triggered by DOM class manipulation
 - Multiple rows can be highlighted simultaneously
 - Re-highlighting the same row restarts the animation
-- Duration configurable per call (default 2000ms)
+- Duration configurable per call (default 600ms)
 - Available on both `Table` (via `tableRef`) and `VirtualTable` (added to existing `tableRef`)
 
 ## Example
@@ -92,8 +92,8 @@ highlightRow(rowKey: string, options?: HighlightOptions): void
     <tr>
       <td><code>options.duration</code></td>
       <td><code>number</code></td>
-      <td><code>2000</code></td>
-      <td>Duration of the highlight in milliseconds. The highlight holds at full intensity for 70% of the duration, then fades out over the remaining 30%.</td>
+      <td><code>600</code></td>
+      <td>Duration of the highlight in milliseconds. The highlight fades in over the first 5%, holds until 30%, then fades out over the remaining 70%.</td>
     </tr>
   </tbody>
 </table>
@@ -107,8 +107,12 @@ The implementation bypasses React entirely for maximum performance:
 3. Forces a DOM reflow so the browser sees the class removal
 4. Adds the `ds-table-row-highlight` class with a CSS custom property for duration
 5. A CSS `@keyframes` animation runs on the row's `<td>` elements:
-   - 0-70%: holds the highlight color (`--ds-highlight-color`, default `#e6f4ff`)
-   - 70-100%: fades to transparent
+   - 0-5%: fades in to the highlight color (`--ds-highlight-color`, default `blue-050`)
+   - 5-30%: holds the highlight color
+   - 30-100%: fades back to the cell's own background
+   - The keyframes deliberately omit `0%` / `100%`, so the browser uses each cell's own opaque background
+     as the start and end color. Pinned (`meta.fixed`) cells therefore never turn see-through, and child,
+     hovered and sorted cells end on their real color
 6. On `animationend`, the class is automatically removed
 
 This approach means:
