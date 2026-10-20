@@ -161,10 +161,31 @@ import Condition from '@synerise/ds-condition'
 
 | Property   | Description                | Type                                         | Default |
 | ---------- | -------------------------- | -------------------------------------------- | ------- |
-| factor?    | Factors selector options   | [FactorsProps](/docs/components/factors)     | -       |
+| factor?    | Factors selector options. Also accepts `withCustomFactor` and `fillSpace` (see below) | [FactorsProps](/docs/components/factors) | -       |
 | id         | Id condition row           | React.ReactText                              | -       |
 | operator?  | Operators selector options | [OperatorsProps](/docs/components/operators) | -       |
 | parameter? | Parameter selector options | [FactorsProps](/docs/components/factors)     | -       |
+
+#### Factor width
+
+By default every factor text input sizes itself to its content, using the
+`autoResize` defaults this component injects (`inputProps`). Set
+`factor.fillSpace` on a single row to make that row's value field take all the
+width the row can give it instead — useful for parameters whose values are long
+(URLs, for example), where the field would otherwise start narrow and stay
+narrow while the row has free space.
+
+```tsx
+conditions: [
+  { id, parameter, operator, factor: { ...factor, fillSpace: true } },
+];
+```
+
+It is a per-row opt-in, not a Condition-wide setting, and it suppresses that
+row's `autoResize` default. It applies to the text factor types (`autocomplete`
+and `default`); other types (date, number, array…) size themselves and ignore
+it. The row must also have room to give: the factor cell only grows when it is
+the last selector in the row, which is the normal case.
 
 #### Selectors appereance rules
 

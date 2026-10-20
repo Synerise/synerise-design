@@ -27,6 +27,13 @@ export type StepConditions = {
   operator?: Omit<OperatorsProps, 'onChange'>;
   factor?: Omit<FactorsProps, 'onChangeValue' | 'setSelectedFactorType'> & {
     withCustomFactor?: ReactNode;
+    /**
+     * Let the factor value fill the whole width the row can give it, instead
+     * of sizing to its content. Suppresses the row's `autoResize` default and
+     * lets the factor cell's contents grow. Applies to the text factor types
+     * (`autocomplete` and `default`) — other types size themselves.
+     */
+    fillSpace?: boolean;
   };
 };
 

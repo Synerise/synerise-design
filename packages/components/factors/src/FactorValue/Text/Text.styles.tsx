@@ -17,6 +17,11 @@ export const InputWrapper = styled.div`
 
     > * {
       min-width: 0;
+      /* Mirrors what FactorInput already does for the autocomplete: let the
+         input grow into the slot when an ancestor offers one. Inert on its
+         own — flex-grow does not affect max-content, so nothing widens unless
+         something above actually grows. */
+      flex-grow: 1;
     }
   }
 `;
