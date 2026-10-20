@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.5](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@2.1.4...@synerise/ds-select@2.1.5) (2026-10-20)
+
+
+### Bug Fixes
+
+* **utils:** let measured list rows shrink back to their content ([f04903d](https://github.com/synerise/synerise-design/commit/f04903dc40ddbec33850946045c02f914569aeb7))
+
+
+
+
+
 ## [2.1.4](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@2.1.3...@synerise/ds-select@2.1.4) (2026-10-09)
 
 **Note:** Version bump only for package @synerise/ds-select

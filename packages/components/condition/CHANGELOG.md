@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@2.0.10...@synerise/ds-condition@2.1.0) (2026-10-20)
+
+
+### Features
+
+* **condition:** add factor fillSpace to stretch a row's value field ([4638259](https://github.com/Synerise/synerise-design/commit/4638259191d08d64194b1b13543d586d3cb15792))
+
+
+
+
+
 ## [2.0.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@2.0.9...@synerise/ds-condition@2.0.10) (2026-10-09)
 
 **Note:** Version bump only for package @synerise/ds-condition

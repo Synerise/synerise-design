@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@2.1.4...@synerise/ds-item-picker@2.2.0) (2026-10-20)
+
+
+### Bug Fixes
+
+* **utils:** let measured list rows shrink back to their content ([f04903d](https://github.com/Synerise/synerise-design/commit/f04903dc40ddbec33850946045c02f914569aeb7))
+
+
+### Features
+
+* **item-picker:** info tooltip on section title rows ([ed8fb07](https://github.com/Synerise/synerise-design/commit/ed8fb0722e094c32e3ac5af2370cbb070db9f402))
+
+
+
+
+
 ## [2.1.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@2.1.3...@synerise/ds-item-picker@2.1.4) (2026-10-09)
 
 **Note:** Version bump only for package @synerise/ds-item-picker

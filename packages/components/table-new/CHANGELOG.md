@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-table-new@2.1.4...@synerise/ds-table-new@2.1.5) (2026-10-20)
+
+
+### Bug Fixes
+
+* **table-new:** keep pinned cells opaque during row highlight fade ([dee1fed](https://github.com/Synerise/synerise-design/commit/dee1fed827595c265c58ba70fa3412eb2cf75cdf))
+
+
+
+
+
 ## [2.1.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-table-new@2.1.3...@synerise/ds-table-new@2.1.4) (2026-10-09)
 
 **Note:** Version bump only for package @synerise/ds-table-new

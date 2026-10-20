@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@2.2.2...@synerise/ds-factors@2.3.0) (2026-10-20)
+
+
+### Features
+
+* **condition:** add factor fillSpace to stretch a row's value field ([4638259](https://github.com/Synerise/synerise-design/commit/4638259191d08d64194b1b13543d586d3cb15792))
+
+
+
+
+
 ## [2.2.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@2.2.1...@synerise/ds-factors@2.2.2) (2026-10-09)
 
 **Note:** Version bump only for package @synerise/ds-factors

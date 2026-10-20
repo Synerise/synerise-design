@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@2.2.0...@synerise/ds-utils@2.2.1) (2026-10-20)
+
+
+### Bug Fixes
+
+* **utils:** let measured list rows shrink back to their content ([f04903d](https://github.com/synerise/synerise-design/commit/f04903dc40ddbec33850946045c02f914569aeb7))
+
+
+
+
+
 # [2.2.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@2.1.1...@synerise/ds-utils@2.2.0) (2026-09-22)
 
 

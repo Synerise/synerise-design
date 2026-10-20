@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.64.0](https://github.com/Synerise/synerise-design/compare/storybook@1.63.1...storybook@1.64.0) (2026-10-20)
+
+
+### Bug Fixes
+
+* **table-new:** keep pinned cells opaque during row highlight fade ([dee1fed](https://github.com/Synerise/synerise-design/commit/dee1fed827595c265c58ba70fa3412eb2cf75cdf))
+
+
+### Features
+
+* **condition:** add factor fillSpace to stretch a row's value field ([4638259](https://github.com/Synerise/synerise-design/commit/4638259191d08d64194b1b13543d586d3cb15792))
+* **item-picker:** info tooltip on section title rows ([ed8fb07](https://github.com/Synerise/synerise-design/commit/ed8fb0722e094c32e3ac5af2370cbb070db9f402))
+
+
+
+
+
 ## [1.63.1](https://github.com/Synerise/synerise-design/compare/storybook@1.63.0...storybook@1.63.1) (2026-10-12)
 
 **Note:** Version bump only for package storybook
