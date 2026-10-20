@@ -4,8 +4,10 @@ import React, {
   useCallback,
 } from 'react';
 
+import Icon, { InfoFillS } from '@synerise/ds-icon';
 import ListItem, { type ListItemProps } from '@synerise/ds-list-item';
-import { useMeasuredRow } from '@synerise/ds-utils';
+import Tooltip from '@synerise/ds-tooltip';
+import { getMeasuredRowStyle, useMeasuredRow } from '@synerise/ds-utils';
 
 import type { ItemPickerListTexts } from '../../ItemPickerNew/types/itemPickerListTexts.types';
 import * as S from '../ItemPickerList.styles';
@@ -22,6 +24,7 @@ export type ItemPickerListRowProps = {
     dataSource: Array<ListItemProps | TitleListItemProps>;
     classNames: string;
     getItemSize: (index: number) => number;
+    getEstimatedItemSize: (index: number) => number;
     measureRow: (index: number, height: number) => void;
     texts: ItemPickerListTexts;
     infiniteScroll?: {
@@ -39,6 +42,7 @@ export const ItemPickerListRow = ({
     dataSource,
     classNames,
     getItemSize,
+    getEstimatedItemSize,
     measureRow,
     infiniteScroll,
     texts,
@@ -48,10 +52,10 @@ export const ItemPickerListRow = ({
   const rowRef = useMeasuredRow<HTMLDivElement>(index, measureRow);
   /**
    * react-window's offset moves onto this wrapper so the row inside is free to be taller
-   * than the estimate — `size="auto"` rows are sized by their content. The inline `height`
-   * becomes a floor; without that the absolute height would pin a tall row back.
+   * than the estimate — `size="auto"` rows are sized by their content. The estimate is the
+   * floor, so a row also measures shorter again once its content does.
    */
-  const rowStyle = { ...style, height: 'auto', minHeight: style.height };
+  const rowStyle = getMeasuredRowStyle(style, getEstimatedItemSize(index));
   const lastItemHeight = getItemSize(dataSource.length - 1);
   const infiniteLoaderItem = useCallback(() => {
     if (infiniteScroll) {
@@ -83,7 +87,24 @@ export const ItemPickerListRow = ({
   if (isTitle(listItem)) {
     return (
       <div ref={rowRef} style={rowStyle}>
-        <S.Title>{listItem.text}</S.Title>
+        <S.Title>
+          {listItem.tooltip ? (
+            <S.TitleWithTooltip>
+              <span>{listItem.text}</span>
+              <Tooltip type="default" trigger="hover" title={listItem.tooltip}>
+                <S.TitleTooltipIcon>
+                  <Icon
+                    size={24}
+                    component={<InfoFillS />}
+                    data-testid="title-tooltip-icon"
+                  />
+                </S.TitleTooltipIcon>
+              </Tooltip>
+            </S.TitleWithTooltip>
+          ) : (
+            listItem.text
+          )}
+        </S.Title>
       </div>
     );
   }

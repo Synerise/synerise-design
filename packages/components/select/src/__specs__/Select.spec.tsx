@@ -1152,13 +1152,18 @@ describe('Select (windowed row measurement)', () => {
     heights = { Alpha: TALL_ROW, Beta: ESTIMATE, Gamma: ESTIMATE };
 
     // Only the row wrappers measure; everything else keeps jsdom's 0, which
-    // `measureRow` reads as "not laid out" and ignores.
+    // `measureRow` reads as "not laid out" and ignores. A laid-out row is never
+    // shorter than its own `min-height`, as in a browser.
     overrideLayoutProp('offsetHeight', function offsetHeight(this: HTMLElement) {
       const child = this.firstElementChild;
       if (child?.getAttribute('data-testid') !== 'select-option') {
         return 0;
       }
-      return heights[child.textContent ?? ''] ?? 0;
+      const contentHeight = heights[child.textContent ?? ''];
+      if (contentHeight === undefined) {
+        return 0;
+      }
+      return Math.max(parseFloat(this.style.minHeight) || 0, contentHeight);
     });
 
     vi.stubGlobal(
@@ -1199,10 +1204,10 @@ describe('Select (windowed row measurement)', () => {
       <Select defaultOpen listItemHeight={ESTIMATE} options={OPTIONS} />,
     );
 
-    // Alpha renders taller than the estimate, so it claims its own height…
-    expect(rowFor('Alpha').style.minHeight).toBe(`${TALL_ROW}px`);
+    // Every row is floored at the estimate; Alpha's content makes it taller than that…
+    expect(rowFor('Alpha').style.minHeight).toBe(`${ESTIMATE}px`);
     expect(rowFor('Beta').style.minHeight).toBe(`${ESTIMATE}px`);
-    // …and pushes what follows down instead of being overlapped by it.
+    // …and it pushes what follows down instead of being overlapped by it.
     expect(rowFor('Alpha').style.top).toBe('0px');
     expect(rowFor('Beta').style.top).toBe(`${TALL_ROW}px`);
     expect(rowFor('Gamma').style.top).toBe(`${TALL_ROW + ESTIMATE}px`);
@@ -1219,8 +1224,23 @@ describe('Select (windowed row measurement)', () => {
     heights.Beta = TALL_ROW;
     resizeAll();
 
-    expect(rowFor('Beta').style.minHeight).toBe(`${TALL_ROW}px`);
     expect(rowFor('Gamma').style.top).toBe(`${TALL_ROW * 2}px`);
+  });
+
+  it('lets a measured row shrink again once its content does', () => {
+    renderWithProvider(
+      <Select defaultOpen listItemHeight={ESTIMATE} options={OPTIONS} />,
+    );
+
+    expect(rowFor('Beta').style.top).toBe(`${TALL_ROW}px`);
+
+    // Alpha's label stops wrapping (a wider container): its row must not keep the old height.
+    heights.Alpha = ESTIMATE;
+    resizeAll();
+
+    expect(rowFor('Alpha').style.minHeight).toBe(`${ESTIMATE}px`);
+    expect(rowFor('Beta').style.top).toBe(`${ESTIMATE}px`);
+    expect(rowFor('Gamma').style.top).toBe(`${ESTIMATE * 2}px`);
   });
 
   it('sizes rows it cannot measure from listItemHeight, and re-sizes on change', () => {
@@ -1238,7 +1258,7 @@ describe('Select (windowed row measurement)', () => {
 
     // The unmeasured rows follow the new estimate; Alpha keeps its real height.
     expect(rowFor('Beta').style.minHeight).toBe('48px');
-    expect(rowFor('Alpha').style.minHeight).toBe(`${TALL_ROW}px`);
+    expect(rowFor('Beta').style.top).toBe(`${TALL_ROW}px`);
     expect(rowFor('Gamma').style.top).toBe(`${TALL_ROW + 48}px`);
   });
 });

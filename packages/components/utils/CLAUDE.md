@@ -189,13 +189,13 @@ Traps keyboard focus within a container element. When `active` is `true`, saves 
 #### `useMeasuredRowHeights<RowKey, List>({ keys, estimate, estimateVersion?, listRef?, maxCachedRows? })`
 Lets a `react-window` `VariableSizeList` honour **content-driven** row heights instead of a constant px map. Returns `{ listRef, getItemSize, measureRow, measurementVersion }`. Pair with `useMeasuredRow(index, measureRow)` on each row, which returns a ref and reports `offsetHeight` on every commit and via a `ResizeObserver` (for content that settles after first paint — an image, a font swap, a narrower container wrapping a label).
 
-- `keys` — row identity per index. Measurements are cached against these, not indices, so filtering a list down and back keeps them usable.
+- `keys` — row identity per index. Measurements are cached against these, not indices, so filtering a list down and back keeps them usable. A key repeated within one list gets its occurrence number appended internally, so two rows sharing a key never overwrite each other's height.
 - `estimate(index)` — height for a row that has not reported one yet. Memoise it.
 - `estimateVersion` — a change clears **every** measurement (they were taken against an estimate that no longer applies). Leave it out when only the row set changes; pruning on every keystroke would discard exactly the measurements a narrowing search is about to need.
 - `listRef` — an existing ref to drive instead of the hook's own. Needed when something declared *above* the hook call reads the ref, which happens whenever `keys` depends on late-declared state.
 - `measurementVersion` — bumped once per settled batch. Put it in the deps of anything derived from `getItemSize` **outside** the list (a total content height, say): `resetAfterIndex` re-renders the list, not its parent.
 
-The row must put react-window's offset on a wrapper styled `height: auto; min-height: <the offset height>` — react-window's own inline `height` would otherwise pin a tall row back to the estimate.
+The row must put react-window's offset on a wrapper styled with `getMeasuredRowStyle(style, estimate(index))`: `height: auto` with the row's **estimate** as `min-height`. react-window's own inline `height` would otherwise pin a tall row back to the estimate. Never use `style.height` as the floor: it comes from the cache, so a row pinned to it can never measure shorter than it once did, and a key that once stood for a taller row keeps the stale height for good.
 
 Three subtleties it encapsulates, all of them expensive to rediscover:
 1. react-window memoises row offsets, so a measured height only lands once `resetAfterIndex` drops that memo.
@@ -203,6 +203,9 @@ Three subtleties it encapsulates, all of them expensive to rediscover:
 3. A zero measured height means "not laid out" (jsdom, `display: none`) and must not overwrite the estimate.
 
 Consumers: `ds-select`, `ds-dropdown`, `ds-item-picker`, `ds-context-selector`. Typed structurally over the list, so this package needs no `react-window` dependency.
+
+#### `getMeasuredRowStyle(style: CSSProperties, minHeight: number): CSSProperties`
+The outer style for a row measured by `useMeasuredRow`: react-window's `style` with `height: 'auto'` and the given `minHeight`. Pass the row's estimate, not `style.height` (see above).
 
 #### `useTraceUpdate(props: Record<string, unknown>): void`
 **Development debugging tool.** Logs changed props to `console.log` on each render. Do not use in production code.

@@ -14,12 +14,14 @@ import type { TitleListItemProps } from '../ItemPickerList.types';
 import { createTitleFromTitlePath } from '../utils';
 
 export const getFolderItem = (
-  item: ListItemProps,
+  item: ListItemProps & Pick<BaseSectionType, 'tooltip'>,
   onClick: ListItemProps['onClick'],
 ): ListItemProps => {
+  // A section's tooltip belongs to its title row, not to the row that opens it.
+  const { tooltip: _sectionTooltip, ...folder } = item;
   return {
     prefixel: <Icon component={<FolderM />} />,
-    ...item,
+    ...folder,
     onClick,
   };
 };
@@ -35,10 +37,14 @@ export const getShowMoreItem = (
   };
 };
 
-export const getTitleItem = (titleText: ReactNode): TitleListItemProps => {
+export const getTitleItem = (
+  titleText: ReactNode,
+  tooltip?: ReactNode,
+): TitleListItemProps => {
   return {
     type: 'title',
     text: titleText,
+    tooltip,
   };
 };
 
@@ -110,6 +116,7 @@ export const getItems = <ItemType extends BaseItemType>({
   items,
   texts,
   titlePath,
+  titleTooltip,
   searchQuery,
   isSelected,
   handleItemSelect,
@@ -120,6 +127,8 @@ export const getItems = <ItemType extends BaseItemType>({
 }: {
   items?: ItemType[];
   titlePath?: ReactNode[];
+  /** Tooltip of the folder the items belong to, shown on the `titlePath` title row. */
+  titleTooltip?: ReactNode;
   texts: ItemPickerListTexts;
   isSelected: (item: ItemType) => boolean;
   handleItemSelect?: (item: ItemType) => void;
@@ -130,7 +139,7 @@ export const getItems = <ItemType extends BaseItemType>({
   isSearchParam: boolean;
 }) => {
   const sectionTitle = titlePath
-    ? [getTitleItem(createTitleFromTitlePath(titlePath))]
+    ? [getTitleItem(createTitleFromTitlePath(titlePath), titleTooltip)]
     : getItemsSectionTitle(texts, showItemsSectionLabel, searchQuery);
 
   const results = items?.length
@@ -176,7 +185,7 @@ export const getFolderItems = <
         (itemsArray, section) => {
           const folderItemsWithTitle = section.folders?.length
             ? [
-                getTitleItem(section.text),
+                getTitleItem(section.text, section.tooltip),
                 ...section.folders.map((folder) =>
                   getFolderItem(folder, () => handleSectionChange(folder)),
                 ),

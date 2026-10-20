@@ -1,6 +1,9 @@
 import { renderHook } from '@testing-library/react';
 
-import { useMeasuredRowHeights } from '../useMeasuredRowHeights';
+import {
+  getMeasuredRowStyle,
+  useMeasuredRowHeights,
+} from '../useMeasuredRowHeights';
 
 /** Stands in for react-window's `VariableSizeList`. */
 const createList = () => ({ resetAfterIndex: vi.fn() });
@@ -160,5 +163,51 @@ describe('useMeasuredRowHeights', () => {
     const { result } = setup(['a'], () => 32, 32);
     result.current.measureRow(0, 84);
     expect(result.current.getItemSize(0)).toBe(84);
+  });
+
+  describe('repeated keys', () => {
+    it('should keep a separate height for each row sharing a key', () => {
+      // One item listed twice — as a recent without its description, and in its section with one.
+      const { result } = setup(['a', 'b', 'a']);
+      result.current.measureRow(0, 32);
+      result.current.measureRow(2, 56);
+      expect(result.current.getItemSize(0)).toBe(32);
+      expect(result.current.getItemSize(2)).toBe(56);
+    });
+
+    it('should settle when both rows re-report their heights', () => {
+      // With a shared entry each row would overwrite the other on every commit, forever.
+      const { result, list } = setup(['a', 'a']);
+      result.current.measureRow(0, 32);
+      result.current.measureRow(1, 56);
+      list.resetAfterIndex.mockClear();
+      result.current.measureRow(0, 32);
+      result.current.measureRow(1, 56);
+      expect(list.resetAfterIndex).not.toHaveBeenCalled();
+    });
+
+    it('should keep the first occurrence under the key as given', () => {
+      const { result, rerender } = setup(['a', 'a']);
+      result.current.measureRow(0, 84);
+      rerender({ keys: ['a'] });
+      expect(result.current.getItemSize(0)).toBe(84);
+    });
+  });
+});
+
+describe('getMeasuredRowStyle', () => {
+  it("should keep react-window's offset and let the content set the height", () => {
+    expect(
+      getMeasuredRowStyle(
+        { position: 'absolute', top: 64, height: 120, width: '100%' },
+        32,
+      ),
+    ).toEqual({
+      position: 'absolute',
+      top: 64,
+      height: 'auto',
+      width: '100%',
+      minHeight: 32,
+    });
   });
 });
