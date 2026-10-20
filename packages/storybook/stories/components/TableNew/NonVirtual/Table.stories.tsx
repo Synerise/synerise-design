@@ -1,4 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react-vite';
+import { type ColumnDef } from '@tanstack/react-table';
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 
 import Button from '@synerise/ds-button';
@@ -814,6 +815,64 @@ export const WithRowHighlight: StoryObj<typeof Table> = {
 };`,
       },
     },
+  },
+};
+
+type PinnedHighlightRow = (typeof DATA_SOURCE)[number];
+
+const PINNED_HIGHLIGHT_COLUMNS: ColumnDef<PinnedHighlightRow, unknown>[] = [
+  {
+    accessorKey: 'name',
+    id: 'name',
+    header: 'Name',
+    size: 220,
+    meta: { fixed: 'left' },
+  },
+  { accessorKey: 'city', id: 'city', header: 'City', size: 260 },
+  { accessorKey: 'address', id: 'address', header: 'Address', size: 320 },
+  {
+    accessorKey: 'transactionType',
+    id: 'transactionType',
+    header: 'Type',
+    size: 260,
+  },
+  { accessorKey: 'number', id: 'number', header: 'Amount', size: 260 },
+  {
+    accessorKey: 'unavailable',
+    id: 'unavailable',
+    header: 'Status',
+    size: 160,
+    cell: (info) => (info.getValue() ? 'Unavailable' : 'Available'),
+    meta: { fixed: 'right' },
+  },
+];
+
+export const WithRowHighlightPinnedColumns: StoryObj<typeof Table> = {
+  render: (args) => {
+    const tableRef = useRef<TableRef>(null);
+
+    return (
+      <Flex flexDirection="column">
+        <Box mb={16}>
+          <Button
+            onClick={() =>
+              tableRef.current?.highlightRow('2', { duration: 3000 })
+            }
+          >
+            Highlight row 2 (3s)
+          </Button>
+        </Box>
+        <Box style={{ maxWidth: 720 }}>
+          <Table {...args} tableRef={tableRef} />
+        </Box>
+      </Flex>
+    );
+  },
+  args: {
+    data: DATA_SOURCE,
+    columns: PINNED_HIGHLIGHT_COLUMNS,
+    title: 'Row highlight with pinned columns',
+    rowKey: 'key',
   },
 };
 
