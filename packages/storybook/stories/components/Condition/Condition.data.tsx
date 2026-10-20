@@ -581,6 +581,22 @@ export const STEPS_POPULATED = [
   },
 ];
 
+/**
+ * Opts the first (text) row into fill-space only. The rows after it are an
+ * identical text row, a number row and a date row, so one snapshot shows the
+ * opt-in row stretching while every other factor keeps its natural width.
+ */
+export const STEPS_POPULATED_FILL_SPACE = STEPS_POPULATED.map((step) => ({
+  ...step,
+  conditions: step.conditions.map((condition, index) => ({
+    ...condition,
+    factor: {
+      ...condition.factor,
+      fillSpace: index === 0,
+    },
+  })),
+}));
+
 export const STEPS_POPULATED_PARAMETER_ERRORS = STEPS_POPULATED.map((step) => ({
   ...step,
   conditions: step.conditions.map((condition) => ({

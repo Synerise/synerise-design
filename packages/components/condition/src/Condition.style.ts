@@ -271,8 +271,26 @@ export const ConditionParameterWrapper = styled(ConditionWrapper)`
 export const ConditionOperatorWrapper = styled(ConditionWrapper)`
   flex: 0 0 auto;
 `;
-export const ConditionFactorWrapper = styled(ConditionWrapper)`
+export const ConditionFactorWrapper = styled(ConditionWrapper)<{
+  $fillSpace?: boolean;
+}>`
   flex: 30 1 auto;
+
+  /* The cell itself already grows (it is :last-of-type, see ConditionRow
+     below), but once a remove trigger is present the cell is a flex container
+     and the control inside it — ds-input's OuterWrapper, the element ds-factors
+     renders as its root — defaults to flex-grow: 0 and shrink-wraps to
+     max-content, so the growth stops there and the extra width stays empty.
+     Only the rows that asked for it get this, so every other factor type keeps
+     its natural width. */
+  ${(props) =>
+    Boolean(props.$fillSpace) &&
+    css`
+      > *:not(${RemoveIconWrapper}) {
+        flex-grow: 1;
+        min-width: 0;
+      }
+    `}
 `;
 
 export const ConditionRows = styled.div`

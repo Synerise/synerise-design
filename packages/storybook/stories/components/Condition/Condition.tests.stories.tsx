@@ -14,6 +14,7 @@ import {
   STEPS_POPULATED_ACTION_ATTRIBUTE,
   STEPS_POPULATED_CONTEXT_ERROR,
   STEPS_POPULATED_FACTOR_ERRORS,
+  STEPS_POPULATED_FILL_SPACE,
   STEPS_POPULATED_OPERATOR_ERRORS,
   STEPS_POPULATED_PARAMETER_ERRORS,
   SUBJECT_ITEMS,
@@ -34,6 +35,18 @@ export const Populated: ConditionStory = {
   args: {
     maxConditionsLength: undefined,
     steps: STEPS_POPULATED,
+  },
+};
+
+/**
+ * Only the first row opts into `factor.fillSpace`: its value field should span
+ * the width left over in the row, while the rows below it — an identical text
+ * factor, a number and a date — keep sizing to their content.
+ */
+export const FactorFillsRow: ConditionStory = {
+  args: {
+    maxConditionsLength: undefined,
+    steps: STEPS_POPULATED_FILL_SPACE,
   },
 };
 

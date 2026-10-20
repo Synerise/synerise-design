@@ -93,7 +93,7 @@ Shape of each element in `ConditionStep.conditions`:
 | `id` | `ReactText` | Unique condition id. |
 | `parameter` | `Omit<FactorsProps, 'onChangeValue'>?` | Rendered when provided. |
 | `operator` | `Omit<OperatorsProps, 'onChange'>?` | Rendered when `parameter.value` is set (or when `parameter` is absent). |
-| `factor` | `Omit<FactorsProps, 'onChangeValue' \| 'setSelectedFactorType'> & { withCustomFactor?: ReactNode }?` | Rendered only when `operator.value` is set. |
+| `factor` | `Omit<FactorsProps, 'onChangeValue' \| 'setSelectedFactorType'> & { withCustomFactor?: ReactNode; fillSpace?: boolean }?` | Rendered only when `operator.value` is set. `fillSpace` makes this row's value field take the width the row can give it — see below. |
 
 ### `ConditionTexts` (type)
 
@@ -182,5 +182,9 @@ Merges the `texts` prop with react-intl defaults. Requires `IntlProvider` in the
 - **`autoClearCondition`** — when `true`, changing subject/context also fires `onChangeParameter`, `onChangeOperator`, `onChangeFactorValue` with `undefined` for all existing conditions, and removes all conditions beyond the first. This clears downstream values but the parent must still handle the callbacks to update its state.
 - **`hoverDisabled`** is also set automatically on steps that are not the currently active step (`currentStepId !== step.id`), creating a "focus" effect.
 - **`renderAddStep`** is hidden in `readOnly` mode; `addStep` button is also skipped when `addStep` prop is absent.
+- **`factor.fillSpace`** — a per-row opt-in that makes the value field fill the row instead of sizing to its content. Two halves, both needed:
+  1. `ConditionRow` rebuilds that row's `inputProps` as `{ ...inputProps, autoResize: undefined }`. With `autoResize` falsy, ds-autocomplete's `InputContainer` becomes `width: 100%` and the autosize hook never renders its sizer, so it never writes the inline `width` that would otherwise pin the field to the typed text. (This has to happen in `ConditionRow`: `inputProps` is passed *after* `{...conditionFactorProps}`, so a per-row `factor.inputProps` is clobbered by the Condition-level one.)
+  2. `ConditionFactorWrapper` gets `$fillSpace`, which grows its children. The cell itself already grows (`:last-of-type` in `ConditionRow`), but once a remove trigger is present the cell is a flex container and ds-factors' root — ds-input's `OuterWrapper` — sits at `flex-grow: 0` and shrink-wraps to max-content, so without this the extra width just stays empty. Measured: cell 560px, `OuterWrapper` 204px before; 528px after.
+  The wrapper also carries a stable `ds-conditions-factor-fill-space` class for tests and consumers. Applies to the text factor types only — date/number/array set their own `autoResize` inside ds-factors, where the row-level suppression cannot reach.
 - **`data-popup-container`** attribute is on the root `S.Condition` element — used as the default popup container by nested dropdowns.
 - **`IntlProvider` required** — `useTranslations` calls `useIntl()`. If the app does not wrap with `IntlProvider`, this will throw. Provide `texts` prop with all keys as a workaround if needed.

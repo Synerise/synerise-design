@@ -27,6 +27,8 @@ export type ConditionRowProps = Pick<
   conditionOperator?: Omit<OperatorsProps, 'onChange'>;
   conditionFactor?: Omit<FactorsProps, 'onChangeValue'> & {
     withCustomFactor?: ReactNode;
+    /** See `StepConditions['factor']` in Condition.types. */
+    fillSpace?: boolean;
   };
   conditionsNumber: number;
   stepId: ReactText;

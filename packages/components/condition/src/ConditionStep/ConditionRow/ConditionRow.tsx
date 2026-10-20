@@ -102,9 +102,20 @@ export const ConditionRow = ({
     lastConditionWrapper = 'parameter';
   }
 
+  const fillSpace = Boolean(conditionFactor?.fillSpace);
+
+  // A fill-space row is sized by the layout, not by its content, so the
+  // autosize defaults this row inherits have to go: the autosize hook writes
+  // an inline width that would otherwise pin the field to the typed text.
+  const factorInputProps = useMemo(
+    () => (fillSpace ? { ...inputProps, autoResize: undefined } : inputProps),
+    [fillSpace, inputProps],
+  );
+
   const conditionFactorProps = useMemo(() => {
     return {
       ...conditionFactor,
+      fillSpace: undefined,
       parameters: conditionFactor?.parameters && {
         ...conditionFactor.parameters,
         selectedButtonColored:
@@ -215,7 +226,11 @@ export const ConditionRow = ({
           {renderConditionFactorWrapper && (
             <S.ConditionFactorWrapper
               data-testid="condition-factor-wrapper"
+              className={
+                fillSpace ? 'ds-conditions-factor-fill-space' : undefined
+              }
               withRemoveTrigger={lastConditionWrapper === 'factor'}
+              $fillSpace={fillSpace}
             >
               {conditionFactor?.withCustomFactor || (
                 <Factors
@@ -234,7 +249,7 @@ export const ConditionRow = ({
                   }
                   factorValueExtraProps={factorValueExtraProps}
                   {...conditionFactorProps}
-                  inputProps={inputProps}
+                  inputProps={factorInputProps}
                   getPopupContainerOverride={
                     getPopupContainerOverride || getPopupContainer
                   }

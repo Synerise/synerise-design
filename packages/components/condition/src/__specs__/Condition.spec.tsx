@@ -173,6 +173,25 @@ const RENDER_CONDITIONS = (props?: Partial<ConditionProps>) => {
   return <Condition {...DEFAULT_PROPS()} {...props} />;
 };
 
+/**
+ * Two rows whose factor actually renders (it needs an operator value), with
+ * fill-space opted in on the second one only.
+ */
+const getFillSpaceSteps = (): ConditionStep[] => {
+  const [step] = getSteps(1, 2);
+
+  return [
+    {
+      ...step,
+      conditions: step.conditions.map((condition, index) => ({
+        ...condition,
+        operator: { ...condition.operator, value: OPERATORS_ITEMS[0] },
+        factor: { ...condition.factor, fillSpace: index === 1 },
+      })),
+    },
+  ];
+};
+
 describe('Condition component', () => {
   test('Should render', () => {
     const { container } = renderWithProvider(RENDER_CONDITIONS());
@@ -699,6 +718,36 @@ describe('Condition component', () => {
     expect(
       await screen.findByText('TEST_SELECTED_ITEM_SUBTITLE'),
     ).toBeInTheDocument();
+  });
+
+  /**
+   * jsdom has no layout, so these assert the two things the row actually
+   * controls — the opt-in marker the fill styling hangs off, and the
+   * suppression of the autosize defaults. That the field then visually spans
+   * the row is a Chromatic/browser concern, not a jsdom one.
+   */
+  describe('factor fill space', () => {
+    test('Should mark only the row that opted in', () => {
+      renderWithProvider(RENDER_CONDITIONS({ steps: getFillSpaceSteps() }));
+
+      const [plain, filling] = screen.getAllByTestId(
+        'condition-factor-wrapper',
+      );
+
+      expect(plain).not.toHaveClass('ds-conditions-factor-fill-space');
+      expect(filling).toHaveClass('ds-conditions-factor-fill-space');
+    });
+
+    test('Should not autosize the factor input of a fill-space row', () => {
+      renderWithProvider(RENDER_CONDITIONS({ steps: getFillSpaceSteps() }));
+
+      const [plain, filling] = screen.getAllByTestId('input-autosize-input');
+
+      // The autosize hook writes the measured width inline; with autoResize
+      // suppressed it never runs, so the field is sized by CSS instead.
+      expect(plain.style.width).not.toBe('');
+      expect(filling.style.width).toBe('');
+    });
   });
 });
 
