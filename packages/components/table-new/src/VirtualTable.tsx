@@ -179,61 +179,45 @@ export const VirtualTable = <TData extends object, TValue>({
   });
 
   // retain scrollPosition after loading prev page
-  const [firstItem, setFirstItem] = useState<TData>();
-  const updateFirstItem = useCallback(
-    (findFirstItem: (item: TData) => boolean): void => {
-      const prevFirstItemIndex = data.findIndex(findFirstItem);
+  const prevDataRef = useRef(data);
+  useEffect(() => {
+    const prevData = prevDataRef.current;
+    prevDataRef.current = data;
 
-      if (prevFirstItemIndex >= 0) {
-        rowVirtualizer.scrollToIndex(prevFirstItemIndex, {
+    const prependedCount = data.length - prevData.length;
+    if (!infiniteScroll?.prevPage || !prevData.length || prependedCount <= 0) {
+      return;
+    }
+
+    const getIdentity = (item: TData): unknown => {
+      if (typeof rowKey === 'function') {
+        return rowKey(item);
+      }
+      return rowKey === undefined
+        ? JSON.stringify(item)
+        : item[rowKey as keyof TData];
+    };
+
+    try {
+      // A prepended page leaves every previously loaded row in place after the
+      // new ones. A re-sort, search or refetch replaces the rows, and following
+      // the old first row to its new index would jump the viewport instead.
+      const isPrepend =
+        getIdentity(data[prependedCount]) === getIdentity(prevData[0]) &&
+        getIdentity(data[data.length - 1]) ===
+          getIdentity(prevData[prevData.length - 1]);
+
+      if (isPrepend) {
+        rowVirtualizer.scrollToIndex(prependedCount, {
           align: 'start',
           behavior: 'auto',
         });
-      }
-      setFirstItem(data[0]);
-    },
-    [data, rowVirtualizer],
-  );
-
-  useEffect(() => {
-    try {
-      if (!infiniteScroll?.prevPage || data.length === 0) {
-        return;
-      }
-      if (!firstItem) {
-        setFirstItem(data[0]);
-        return;
-      }
-      if (rowKey === undefined) {
-        const firstItemStringified = JSON.stringify(firstItem);
-        if (JSON.stringify(data[0]) !== firstItemStringified) {
-          updateFirstItem(
-            (item) => JSON.stringify(item) === firstItemStringified,
-          );
-        }
-        return;
-      }
-      if (typeof rowKey === 'string') {
-        if (
-          data[0][rowKey as keyof TData] !== firstItem[rowKey as keyof TData]
-        ) {
-          updateFirstItem(
-            (item) =>
-              item[rowKey as keyof TData] === firstItem[rowKey as keyof TData],
-          );
-        }
-        return;
-      }
-      if (typeof rowKey === 'function') {
-        if (rowKey(data[0]) !== rowKey(firstItem)) {
-          updateFirstItem((item) => rowKey(item) === rowKey(firstItem));
-        }
       }
     } catch (_error) {
       // biome-ignore lint/suspicious/noConsole: deliberate developer-facing log
       console.warn('Cannot find first item');
     }
-  }, [data, firstItem, infiniteScroll?.prevPage, rowKey, updateFirstItem]);
+  }, [data, infiniteScroll?.prevPage, rowKey, rowVirtualizer]);
 
   useEffect(() => {
     if (rowVirtualizer && infiniteScroll?.prevPage?.hasMore) {
