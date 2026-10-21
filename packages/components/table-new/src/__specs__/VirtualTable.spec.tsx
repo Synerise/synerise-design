@@ -3,8 +3,9 @@ import React from 'react';
 import { renderWithProvider } from '@synerise/ds-core/testing';
 import { fireEvent, screen, within } from '@testing-library/react';
 
+import { DEFAULT_CELL_HEIGHT } from '../Table.const';
 import { VirtualTable } from '../VirtualTable';
-import { COLUMNS, DATA, SORTABLE_COLUMNS } from './data';
+import { COLUMNS, DATA, type DataType, SORTABLE_COLUMNS } from './data';
 
 describe('VirtualTable', () => {
   beforeEach(() => {
@@ -264,6 +265,94 @@ describe('VirtualTable', () => {
       );
 
       expect(screen.getByTestId('ds-table-container')).toBeInTheDocument();
+    });
+
+    describe('scroll retention when data changes', () => {
+      const INFINITE_SCROLL_WITH_PREV_PAGE = {
+        hasMore: true,
+        hasError: false,
+        isLoading: false,
+        prevPage: { hasMore: false, hasError: false, isLoading: false },
+        onScrollTopReach: vi.fn(),
+      };
+      const rows = (keys: string[]): DataType[] =>
+        keys.map((key) => ({
+          key,
+          name: `Name ${key}`,
+          age: 30,
+          address: `Address ${key}`,
+        }));
+
+      const originalScrollTo = Element.prototype.scrollTo;
+      const scrollTo = vi.fn();
+
+      beforeEach(() => {
+        Element.prototype.scrollTo = scrollTo;
+      });
+      afterEach(() => {
+        Element.prototype.scrollTo = originalScrollTo;
+        scrollTo.mockReset();
+      });
+
+      const renderWithData = (initialData: DataType[]) => {
+        const { rerender } = renderWithProvider(
+          <VirtualTable
+            data={initialData}
+            columns={COLUMNS}
+            rowKey="key"
+            stickyHeader
+            infiniteScroll={INFINITE_SCROLL_WITH_PREV_PAGE}
+          />,
+        );
+        scrollTo.mockClear();
+
+        return (nextData: DataType[]) =>
+          rerender(
+            <VirtualTable
+              data={nextData}
+              columns={COLUMNS}
+              rowKey="key"
+              stickyHeader
+              infiniteScroll={INFINITE_SCROLL_WITH_PREV_PAGE}
+            />,
+          );
+      };
+
+      it('scrolls back to the previously first row when a previous page is prepended', () => {
+        const setData = renderWithData(rows(['3', '4', '5', '6']));
+
+        setData(rows(['1', '2', '3', '4', '5', '6']));
+
+        expect(scrollTo).toHaveBeenCalledWith(
+          expect.objectContaining({ top: 2 * (DEFAULT_CELL_HEIGHT + 1) }),
+        );
+      });
+
+      it('does not scroll when the same rows are re-sorted', () => {
+        // Z-A -> A-Z: the old first row lands at index 3, which the prepend restore used to
+        // treat as "3 rows were loaded above" and jump to
+        const setData = renderWithData(rows(['4', '5', '6', '1', '2', '3']));
+
+        setData(rows(['1', '2', '3', '4', '5', '6']));
+
+        expect(scrollTo).not.toHaveBeenCalled();
+      });
+
+      it('does not scroll when a search or filter replaces the rows', () => {
+        const setData = renderWithData(rows(['4', '5', '6']));
+
+        setData(rows(['1', '2', '4', '7']));
+
+        expect(scrollTo).not.toHaveBeenCalled();
+      });
+
+      it('does not scroll when the old first row sits after new rows but the tail changed', () => {
+        const setData = renderWithData(rows(['3', '4', '5']));
+
+        setData(rows(['1', '2', '3', '9', '8']));
+
+        expect(scrollTo).not.toHaveBeenCalled();
+      });
     });
   });
 
