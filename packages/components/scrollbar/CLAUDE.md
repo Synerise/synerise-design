@@ -109,7 +109,7 @@ Two layers of styling:
 2. **Less overrides** (`style/scrollbar.mixin.less`) — patches PerfectScrollbar's `.ps__rail-*` and `.ps__thumb-*` classes. The `.large-size` class (applied via `classnames` in `VirtualScrollbar`) activates the wide blue thumb variant.
 
 **Token usage:**
-- Default thumb: `grey-300` / `grey-500` (hover)
+- Default thumb: `grey-300` / `grey-500` (hover). In both variants the thumb element spans the full 11 px rail so it is easy to grab, and only a 3 px bar is painted by its `::before`
 - Large thumb: `blue-050` / `blue-100` (hover), `grey-300` border / `grey-400` border (hover)
 - Loading spinner in `Scrollbar.styles`: `grey-600`; in `DnDScrollbar.styles`: `blue-600`
 
