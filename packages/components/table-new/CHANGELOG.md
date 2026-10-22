@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-table-new@2.1.5...@synerise/ds-table-new@2.1.6) (2026-10-22)
+
+
+### Bug Fixes
+
+* **table-new:** only restore scroll position when a previous page is prepended ([7552f1d](https://github.com/Synerise/synerise-design/commit/7552f1d433ac33d1831e2b0fc2c30cd1768806ed))
+
+
+
+
+
 ## [2.1.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-table-new@2.1.4...@synerise/ds-table-new@2.1.5) (2026-10-20)
 
 

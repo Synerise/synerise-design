@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-scrollbar@2.0.7...@synerise/ds-scrollbar@2.0.8) (2026-10-22)
+
+
+### Bug Fixes
+
+* **scrollbar:** widen thumb hit area to the full rail width ([df915fc](https://github.com/Synerise/synerise-design/commit/df915fc79b099ac0ad731996f910ee5a02dab89d))
+
+
+
+
+
 ## [2.0.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-scrollbar@2.0.6...@synerise/ds-scrollbar@2.0.7) (2026-10-20)
 
 **Note:** Version bump only for package @synerise/ds-scrollbar
