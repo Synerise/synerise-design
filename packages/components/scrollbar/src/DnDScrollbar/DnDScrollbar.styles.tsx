@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 
 import type { OverscrollBehavior } from '../Scrollbar.types';
 
@@ -35,28 +35,44 @@ export const ScrollbarWrapper = styled.div<{
 `;
 
 export const ThumbVertical = styled.div<{ largeSize?: boolean }>`
-  width: ${(props) => (props.largeSize ? '16px' : '3px')};
-  background-color: ${(props) =>
-    props.largeSize
-      ? props.theme.palette['blue-050']
-      : props.theme.palette['grey-300']};
-  border-radius: 3px;
-  right: ${(props) => (props.largeSize ? '0' : '4px')};
   position: absolute;
-  border: ${(props) =>
-    props.largeSize ? `1px solid ${props.theme.palette['grey-300']}` : 'none'};
 
-  &:hover,
-  &:active {
-    background-color: ${(props) =>
-      props.largeSize
-        ? props.theme.palette['blue-100']
-        : props.theme.palette['grey-500']};
-    border: ${(props) =>
-      props.largeSize
-        ? `1px solid ${props.theme.palette['grey-400']}`
-        : 'none'};
-  }
+  ${(props) =>
+    props.largeSize
+      ? css`
+          right: 4px;
+          width: 16px;
+          background-color: ${props.theme.palette['blue-050']};
+          border-radius: 3px;
+          border: 1px solid ${props.theme.palette['grey-300']};
+
+          &:hover,
+          &:active {
+            background-color: ${props.theme.palette['blue-100']};
+            border: 1px solid ${props.theme.palette['grey-400']};
+          }
+        `
+      : css`
+          right: 0;
+          width: 11px;
+          background-color: transparent;
+
+          &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 4px;
+            width: 3px;
+            border-radius: 3px;
+            background-color: ${props.theme.palette['grey-300']};
+          }
+
+          &:hover::before,
+          &:active::before {
+            background-color: ${props.theme.palette['grey-500']};
+          }
+        `}
 `;
 
 export const ScrollbarTrackWrapper = styled.div<{ largeSize?: boolean }>`
@@ -71,30 +87,22 @@ export const ScrollbarTrackWrapper = styled.div<{ largeSize?: boolean }>`
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
 
-  ${ThumbVertical} {
-    width: ${(props) => (props.largeSize ? '16px' : '3px')};
-    background-color: ${(props) =>
-      props.largeSize
-        ? props.theme.palette['blue-050']
-        : props.theme.palette['grey-300']};
-    border: ${(props) =>
-      props.largeSize
-        ? `1px solid ${props.theme.palette['grey-300']}`
-        : 'none'};
-  }
+  ${(props) =>
+    props.largeSize &&
+    css`
+      &:hover ${ThumbVertical} {
+        background-color: ${props.theme.palette['blue-100']};
+        border: 1px solid ${props.theme.palette['grey-400']};
+      }
+    `}
 
-  &:hover {
-    ${ThumbVertical} {
-      background-color: ${(props) =>
-        props.largeSize
-          ? props.theme.palette['blue-100']
-          : props.theme.palette['grey-500']};
-      border: ${(props) =>
-        props.largeSize
-          ? `1px solid ${props.theme.palette['grey-400']}`
-          : 'none'};
-    }
-  }
+  ${(props) =>
+    !props.largeSize &&
+    css`
+      &:hover ${ThumbVertical}::before {
+        background-color: ${props.theme.palette['grey-500']};
+      }
+    `}
 `;
 
 export const TrackVertical = styled.div`

@@ -227,6 +227,7 @@ export const DnDScrollbar = ({
         <S.TrackVertical ref={scrollTrackRef} onClick={handleTrackClick} />
         <S.ThumbVertical
           ref={scrollThumbRef}
+          largeSize={largeSize}
           onMouseDown={handleThumbMousedown}
           style={{ height: `${thumbHeight}px` }}
         />
