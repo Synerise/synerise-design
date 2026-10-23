@@ -111,7 +111,7 @@ do not fail the whole run.
 |---|---|
 | `Frontend/synerise-design` | project **1171** |
 | `Frontend/portal-ui-bridge` (puib) | project **1098**, default `master`, **pnpm** / `pnpm-lock.yaml` |
-| `Frontend/portal-next` | project **1244**, default `master`, **yarn 1** / `yarn.lock` |
+| `Frontend/portal-next` | project **1244**, default `master`, **pnpm 11** / `pnpm-lock.yaml` |
 | `core/portal-ui` (deployment shell) | project **793** |
 | Publish registry | public npm (by CI) |
 | Consumer install registry | `https://nexus.snrinternal.com/repository/npm-release` |
@@ -124,7 +124,8 @@ automation, and no credential is stored for it. This skill creates **no Jira tic
 description carries a `STOR-NNNN` id, carry it through to the changelog as **plain reference text**; never
 fetch it. If the user wants a Jira record, produce Markdown for them to paste.
 
-**Package managers differ per consumer and have changed before** (puib moved yarn → pnpm). Treat the
+**Package managers differ per consumer and have changed before** (both moved yarn → pnpm, on different
+pnpm majors). Treat the
 table as a hint and confirm from `packageManager` and the lockfile on disk — see Step 12.
 
 **Locating clones.** Confirm each clone's remote before operating on it
@@ -485,8 +486,10 @@ bash scripts/notify-teams.sh --webhook-env TEAMS_RELEASES_WEBHOOK \
    done < /tmp/pkgs.txt
    ```
 
-   Do not run `upgrade:ds` until this prints nothing. Installing early produces the silent failure in
-   Step 12.
+   Do not run `upgrade:ds` until this prints nothing — `ERR_PNPM_NO_MATCHING_VERSION` from Nexus, or a
+   transitive range quietly keeping the previous version. A full fill-in has taken ~5 min, and each
+   `npm view` against Nexus takes ~3 s, so one pass over 100+ packages is itself several minutes: run
+   the loop in the background.
 
 ### Step 11 — Picking a working copy
 
@@ -529,7 +532,8 @@ conflict with a branch they are still working on.
 
 ### Step 12 — Upgrade the DS packages
 
-⚠️ **The two repos use different package managers. Check before running anything:**
+⚠️ **The two repos run different pnpm majors and different `upgrade:ds` scripts. Check before running
+anything:**
 
 ```bash
 python3 -c "import json;d=json.load(open('package.json'));print(d.get('packageManager'), '|', d['scripts'].get('upgrade:ds'))"
@@ -538,11 +542,12 @@ ls pnpm-lock.yaml yarn.lock 2>/dev/null
 
 | Repo | Manager | Lockfile | `upgrade:ds` does |
 |---|---|---|---|
-| puib | **pnpm** (`pnpm@10.x`) | `pnpm-lock.yaml` | `ncu` → `pnpm install` → `pnpm dedupe` |
-| portal-next | **yarn 1** | `yarn.lock` | `ncu` only — **never installs** |
+| puib | **pnpm 10** (`pnpm@10.x`) | `pnpm-lock.yaml` | `scripts/upgrade-ds.mjs`: `ncu` → drop `@synerise` lock entries → `pnpm install` → URL-pin integrity check → `check-ds-singletons` |
+| portal-next | **pnpm 11** (`pnpm@11.x`) | `pnpm-lock.yaml` | `ncu -p pnpm -f "@synerise/ds-*" -u` only — **never installs** |
 
-puib migrated off yarn; do not assume either repo's tooling from the other, and re-read this table each
-release rather than trusting it — it has changed before.
+Both repos migrated off yarn at different times; do not assume either repo's tooling from the other, and
+re-read this table each release rather than trusting it — it has changed more than once. When
+`upgrade:ds` is a script file, read it before running it.
 
 ```bash
 git checkout master && git pull --ff-only
@@ -550,22 +555,32 @@ git checkout -b chore/ds-release-<YYYY-MM-DD>
 ```
 
 **`ncu` lives in devDependencies, so a fresh worktree needs a baseline install first** (`pnpm install
---frozen-lockfile` or `yarn install --frozen-lockfile`). Confirm `git status` is clean afterwards, so
-anything that follows is attributable to the upgrade.
+--frozen-lockfile`). Run it in the main clone too — a long-lived clone's `node_modules` can lag its own
+lockfile (puib's held `ds-scrollbar` 2.0.6 against a lockfile on 2.0.7). Confirm `git status` is clean
+afterwards, so anything that follows is attributable to the upgrade.
 
-⚠️ **`upgrade:ds` fails silently in both repos. Never trust its exit code.**
+⚠️ **Never trust `upgrade:ds`'s exit code in either repo — in opposite directions.**
 
-- **puib:** `ncu … && (echo "$out" | grep -q '→' && pnpm install && pnpm dedupe || true)`. The trailing
-  `|| true` swallows install failures. Worse, on a **re-run** `ncu` finds nothing to do (the failed first
-  run already wrote the bumps into `package.json`), so `grep -q '→'` fails and the install is **skipped
-  entirely** — leaving a bumped `package.json` with an untouched lockfile.
-- **portal-next:** `upgrade:ds` is only `ncu -f "@synerise/ds-*" -u`. Follow it with:
+- **puib:** `scripts/upgrade-ds.mjs` does the scoped re-resolve itself (no `pnpm dedupe` — it once pulled
+  `vite` back to 6.0.3 and broke every test job) and fails loudly. But its last step runs
+  `check-ds-singletons`, which locally **exits 1 on false positives** from nested git worktrees under
+  `.claude/worktrees/` (each has its own `node_modules`). Split the paths before believing it:
 
   ```bash
-  yarn install
-  npx --yes yarn-deduplicate --scopes @synerise --strategy highest yarn.lock
-  yarn install
+  node scripts/check-ds-singletons.mjs --json > /tmp/singletons.json
+  python3 -c "
+  import json;d=json.load(open('/tmp/singletons.json'))
+  p=lambda x: x if isinstance(x,str) else x.get('path')
+  print('real offenders:', [p(x) for x in d['offending'] if '.claude/worktrees/' not in p(x)])
+  print('real nested:',    [p(x) for x in d['nested']    if '.claude/worktrees/' not in p(x)])"
   ```
+
+  Expect 0 real offenders and exactly the allowlisted Chromatic-pinned nested copies (3 in
+  `packages/apps/ai` at the time of writing). CI's clean checkout never sees the worktrees.
+- **portal-next:** `upgrade:ds` is only `ncu`, so it exits 0 having installed nothing. Follow it with the
+  scoped re-resolve from *pnpm keeps a satisfying resolution* below (drop `@synerise/ds-*` lock entries,
+  skipping `https://` keys), then `pnpm install --no-frozen-lockfile`. pnpm 11 exempts `@synerise/*`
+  from `minimumReleaseAge` in `pnpm-workspace.yaml`, so a same-day release installs.
 
   Its `@synerise/ds-*` filter does not match `@synerise/design-system` — harmless where portal-next does
   not depend on the meta package, but check.
@@ -576,8 +591,10 @@ anything that follows is attributable to the upgrade.
 survive an upgrade and silently hold packages back — **check all three every release**:
 
 ```bash
-# 1. resolutions / overrides — ncu never touches these
+# 1. resolutions / overrides — ncu never touches these. pnpm reads overrides from
+#    pnpm-workspace.yaml (pnpm 11 reads them nowhere else), so check both places
 python3 -c "import json;d=json.load(open('package.json'));print({k:v for k,v in d.get('resolutions',{}).items() if 'synerise' in k})"
+grep -nE '^\s+"?@synerise/' pnpm-workspace.yaml
 
 # 2. URL / tarball deps anywhere in the workspace (chromatic .tgz, file:.yalc, -alpha.N)
 git grep -nE "chromatic\.com|\.tgz|file:\.yalc|-alpha\." -- '**/package.json' 'package.json'
@@ -597,12 +614,11 @@ this release. Do not replace such a pin without asking — it may be deliberate.
 **Verify explicitly, by inspection, not exit code:**
 
 ```bash
-grep -cE "Couldn't find any versions" <install log>   # must be 0
-grep -c "dedupe" <install log>                         # puib: confirm dedupe actually ran
-git -C <clone> status --short                          # expect package.json + the repo's lockfile
+grep -ciE "ERR_PNPM|Couldn't find any versions" <install log>   # must be 0
+git -C <clone> status --short                                   # expect package.json + pnpm-lock.yaml
 ```
 
-If the install was skipped or errored, run install / dedupe / install by hand.
+If the install was skipped or errored, run the scoped re-resolve and install by hand.
 
 #### Confirm the diff is DS-only
 
@@ -636,8 +652,10 @@ for label,s in (('ADDED',new-old),('REMOVED',old-new)):
 EOF
 ```
 
-**Nothing non-`@synerise` should be ADDED.** Removals are expected — `pnpm dedupe` collapses duplicates
-and drops orphans. Before accepting a removal, prove it is one of those two and not a downgrade, by
+**Nothing non-`@synerise` should be ADDED.** With the scoped re-resolve the healthy result is an exact
+1:1 swap of `@synerise` keys and no non-`@synerise` change at all (2.1.5: puib 102↔102, portal-next
+61↔61). A non-`@synerise` removal means something wider ran — a `pnpm dedupe` collapses duplicates and
+drops orphans. Before accepting a removal, prove it is one of those two and not a downgrade, by
 reading the *importer specifier*, which is what actually constrains resolution:
 
 ```bash
@@ -777,7 +795,7 @@ pipeline. Tell the user the branch is ready in each repo with the new versions i
 **If NOT:**
 
 ```bash
-git add package.json <lockfile>      # pnpm-lock.yaml (puib) / yarn.lock (portal-next) — NEVER `git add -A`
+git add package.json pnpm-lock.yaml      # both repos — NEVER `git add -A`
 git commit -m "chore: ds release <YYYY-MM-DD>"
 git push -u origin chore/ds-release-<YYYY-MM-DD>
 ```
