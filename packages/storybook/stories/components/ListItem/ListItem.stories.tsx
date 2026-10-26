@@ -20,6 +20,7 @@ import { RawSwitch } from '@synerise/ds-switch';
 import Tag, { TagShape } from '@synerise/ds-tag';
 
 import { AVATAR_IMAGE } from '../../constants/images';
+import { VISIBLE_TAG_SHAPES } from '../../constants/tagShapes';
 import {
   BOOLEAN_CONTROL,
   CLASSNAME_ARG_CONTROL,
@@ -444,7 +445,7 @@ export const WithTag: StoryObj<ListItemProps & { tagShape?: TagShape }> = {
   },
   argTypes: {
     tagShape: {
-      ...controlFromOptionsArray('select', Object.values(TagShape)),
+      ...controlFromOptionsArray('select', VISIBLE_TAG_SHAPES),
       table: {
         category: 'Tag props',
       },
