@@ -18,7 +18,7 @@ import type { TabsProps } from '@synerise/ds-tabs';
  * - `large` — 1044px
  * - `extraLarge` — 1280px
  * - `fullSize` — 100% width
- * - `fullScreen` — 100%, `fixed`-positioned, covering the viewport
+ * - `fullScreen` — `fixed`-positioned, inset 24px from every viewport edge
  */
 export type ModalSize =
   | 'small'

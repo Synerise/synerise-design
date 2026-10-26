@@ -18,7 +18,7 @@ src/
     BottomBar.tsx          — syntax select + fullscreen button + custom footer slot
     ContentAbove.tsx       — label + top counter row
     ContentBelow.tsx       — description + additional description + bottom counter + error text
-    FullscreenHeader.tsx   — header bar shown only in fullscreen mode
+    FullscreenHeader.tsx   — header bar shown only in fullscreen mode; ghost single-icon close button, same as Modal's
     AriaContainer.tsx      — attaches monaco's ARIA container element to the DOM
     index.ts               — re-exports all components
   utils/
@@ -48,9 +48,9 @@ Generic component: `CodeArea<SyntaxName extends CodeAreaSyntax = CodeAreaSyntax>
 | `syntaxOptions` | `CodeAreaSyntaxOption<SyntaxName>[]` | `undefined` | Available languages. Syntax select renders in BottomBar when `length > 1` and not `readOnly`. |
 | `allowFullscreen` | `boolean` | `undefined` | Shows the fullscreen button in BottomBar. |
 | `readOnly` | `boolean` | `undefined` | Monaco `readOnly` + `domReadOnly`; grey background; cursor hidden. |
-| `noBorder` | `boolean` | `undefined` | Removes the 1px border from the editor wrapper. |
+| `noBorder` | `boolean` | `undefined` | Removes the 1px border from the editor wrapper. Always on in fullscreen. |
 | `height` | `string \| number` | `undefined` | Height of the wrapper. When unset, `EditorInnerWrapper` defaults to `295px`. |
-| `zIndex` | `string \| number` | `undefined` | `z-index` of the fullscreen overlay. Defaults to `theme.variables['zindex-modal']`. |
+| `zIndex` | `string \| number` | `undefined` | `z-index` of the fullscreen overlay and its `FullscreenMask` backdrop. Defaults to `theme.variables['zindex-modal']`. |
 | `tooltip` | `ReactNode` | `undefined` | Tooltip content shown next to the label. |
 | `tooltipProps` | `TooltipProps` | `undefined` | Full tooltip configuration (merged with `tooltip`). |
 | `style` | `CSSProperties` | `undefined` | Inline styles on the outermost wrapper. |
@@ -74,7 +74,7 @@ Generic component: `CodeArea<SyntaxName extends CodeAreaSyntax = CodeAreaSyntax>
 | Key | Default (react-intl) |
 |-----|----------------------|
 | `fullscreen` | `'Fullscreen'` (`DS.CODE-AREA.FULLSCREEN`) |
-| `closeFullscreen` | `'Close fullscreen'` (`DS.CODE-AREA.CLOSE-FULLSCREEN`) |
+| `closeFullscreen` | `'Close fullscreen'` (`DS.CODE-AREA.CLOSE-FULLSCREEN`) — `aria-label` of the icon-only close button; a non-string value falls back to this default |
 | `fullscreenTitle` | `'Fullscreen editor'` (`DS.CODE-AREA.FULLSCREEN-TITLE`) |
 
 ### `CodeAreaSyntaxOption<SyntaxName>` (type)
@@ -127,7 +127,7 @@ type Syntax = 'json' | 'javascript';
 
 ## Implementation notes
 
-- **Fullscreen uses `createPortal`**: when `isFullscreen=true`, a second `<CodeAreaEditor>` is mounted via portal into `getPopupContainer(wrapperRef.current)`. The in-place editor remains mounted with `isFullscreen={false}` always. This means two Monaco instances exist simultaneously during fullscreen.
+- **Fullscreen uses `createPortal`**: when `isFullscreen=true`, a second `<CodeAreaEditor>` is mounted via portal into `getPopupContainer(wrapperRef.current)`. The in-place editor remains mounted with `isFullscreen={false}` always. This means two Monaco instances exist simultaneously during fullscreen. The portal also renders a `FullscreenMask` backdrop; the fullscreen editor is inset 24px from every viewport edge, matching `Modal size="fullScreen"`. In fullscreen the editor is always borderless and spans the full width of that frame (no body padding); only the header and the text row below the editor (`ContentBelow`) keep a 24px side inset. The header title has no icon.
 - **`onFullscreenChange` receives the old state**: `onFullscreenChange && onFullscreenChange(isFullscreen)` is called before `setIsFullscreen` — the callback gets the value *before* the toggle (likely a bug).
 - **Counter hard-limit**: when `value.length > counter.limit`, `CodeAreaEditorRaw` triggers `'undo'` on the Monaco instance directly. The `onChange` callback is not called for over-limit input.
 - **`isValid` logic**: `isValid` starts as `true`, is set to `false` when `errorText` is truthy (via `useEffect`), and is also set to `false` when Monaco reports markers (lint/parse errors). Both paths independently drive the error state.

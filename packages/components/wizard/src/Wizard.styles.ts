@@ -1,12 +1,26 @@
 import styled from 'styled-components';
 
-export const WizardWrapper = styled.div`
+export const WizardMask = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  right: 0;
+  bottom: 0;
   z-index: 1500;
+  background: ${(props) => props.theme.palette['grey-800']};
+  opacity: 0.2;
+`;
+
+export const WizardWrapper = styled.div`
+  position: fixed;
+  top: 24px;
+  left: 24px;
+  right: 24px;
+  bottom: 24px;
+  z-index: 1500;
+  overflow: hidden;
+  border-radius: 3px;
+  box-shadow: ${(props) => props.theme.variables['box-shadow-2']};
   background-color: ${(props): string => props.theme.palette.white};
 
   && .ds-layout__header {
@@ -129,7 +143,7 @@ export const WizardFooter = styled.div`
   padding: 24px;
   background-color: ${(props) => props.theme.palette.white};
   border-top: 1px solid ${(props) => props.theme.palette['grey-200']};
-  position: fixed;
+  position: absolute;
   bottom: 0;
   left: 0;
   & > * {

@@ -169,7 +169,7 @@ export const CodeAreaEditor = forwardRef<HTMLDivElement, CodeAreaEditorProps>(
             isBottomBarShowing={isBottomBarShowing}
             isSyntaxSelectVisible={isSyntaxSelectVisible}
             isValid={isValid}
-            noBorder={noBorder}
+            noBorder={isFullscreen || noBorder}
           />
           <ContentBelow
             ref={contentBelowRef}

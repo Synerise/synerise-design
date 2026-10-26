@@ -75,34 +75,37 @@ const Wizard = ({
   const editableTitle = headerInlineEdit !== undefined;
 
   return visible ? (
-    <S.WizardWrapper className={classnames(className, 'ds-wizard')}>
-      <Layout
-        fullPage
-        header={
-          <PageHeader
-            inlineEdit={headerInlineEdit}
-            avatar={editableTitle && headerAvatar}
-            title={!editableTitle && title}
-            onClose={onClose}
-            rightSide={
-              <S.WizardHeader withHeaderAction={!!headerAction}>
-                {stepper && <S.WizardStepper>{stepper}</S.WizardStepper>}
-                {headerAction && (
-                  <S.WizardHeaderAction>{headerAction}</S.WizardHeaderAction>
-                )}
-              </S.WizardHeader>
-            }
-          />
-        }
-      >
-        <S.WizardContainer withFooter={hasFooter}>
-          <S.WizardContent contentWidth={contentWidth}>
-            {children}
-            {!navigationInFooter && navButtons && (
-              <S.WizardButtons>{navButtons}</S.WizardButtons>
-            )}
-          </S.WizardContent>
-        </S.WizardContainer>
+    <>
+      <S.WizardMask />
+      <S.WizardWrapper className={classnames(className, 'ds-wizard')}>
+        <Layout
+          fullPage
+          header={
+            <PageHeader
+              inlineEdit={headerInlineEdit}
+              avatar={editableTitle && headerAvatar}
+              title={!editableTitle && title}
+              onClose={onClose}
+              rightSide={
+                <S.WizardHeader withHeaderAction={!!headerAction}>
+                  {stepper && <S.WizardStepper>{stepper}</S.WizardStepper>}
+                  {headerAction && (
+                    <S.WizardHeaderAction>{headerAction}</S.WizardHeaderAction>
+                  )}
+                </S.WizardHeader>
+              }
+            />
+          }
+        >
+          <S.WizardContainer withFooter={hasFooter}>
+            <S.WizardContent contentWidth={contentWidth}>
+              {children}
+              {!navigationInFooter && navButtons && (
+                <S.WizardButtons>{navButtons}</S.WizardButtons>
+              )}
+            </S.WizardContent>
+          </S.WizardContainer>
+        </Layout>
         {hasFooter && (
           <S.WizardFooter>
             {(footerLeft || footer) && (
@@ -115,8 +118,8 @@ const Wizard = ({
             )}
           </S.WizardFooter>
         )}
-      </Layout>
-    </S.WizardWrapper>
+      </S.WizardWrapper>
+    </>
   ) : null;
 };
 

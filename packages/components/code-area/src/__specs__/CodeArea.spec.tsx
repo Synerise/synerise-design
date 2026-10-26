@@ -162,10 +162,135 @@ describe('CodeArea', () => {
 
     userEvent.click(button);
 
-    expect(await screen.findByText(TEXTS.closeFullscreen)).toBeInTheDocument();
+    expect(
+      await screen.findByRole('button', { name: TEXTS.closeFullscreen }),
+    ).toBeInTheDocument();
     expect(await screen.findByText(FULLSCREEN_LABEL)).toBeInTheDocument();
 
     expect(onFullscreenChange).toHaveBeenCalledTimes(1);
+  });
+
+  it('should inset the fullscreen editor 24px from every viewport edge', async () => {
+    renderWithProvider(
+      <div data-popup-container>
+        <CodeArea
+          currentSyntax={SYNTAX}
+          allowFullscreen
+          texts={TEXTS}
+        />
+      </div>,
+    );
+
+    userEvent.click(screen.getByText(TEXTS.fullscreen));
+
+    let fullscreenWrapper = (
+      await screen.findByRole('button', { name: TEXTS.closeFullscreen })
+    ).parentElement;
+    while (
+      fullscreenWrapper &&
+      getComputedStyle(fullscreenWrapper).position !== 'fixed'
+    ) {
+      fullscreenWrapper = fullscreenWrapper.parentElement;
+    }
+
+    expect(fullscreenWrapper).toHaveStyle({
+      top: '24px',
+      left: '24px',
+      right: '24px',
+      bottom: '24px',
+    });
+  });
+
+  it('should render the close fullscreen button icon-only, labelled by texts.closeFullscreen', async () => {
+    renderWithProvider(
+      <div data-popup-container>
+        <CodeArea currentSyntax={SYNTAX} allowFullscreen texts={TEXTS} />
+      </div>,
+    );
+
+    userEvent.click(screen.getByText(TEXTS.fullscreen));
+
+    const closeButton = await screen.findByRole('button', {
+      name: TEXTS.closeFullscreen,
+    });
+    expect(closeButton).toHaveTextContent('');
+  });
+
+  it('should fall back to the default close fullscreen label when texts are not strings', async () => {
+    renderWithProvider(
+      <div data-popup-container>
+        <CodeArea
+          currentSyntax={SYNTAX}
+          allowFullscreen
+          texts={{ ...TEXTS, closeFullscreen: <span>custom</span> }}
+        />
+      </div>,
+    );
+
+    userEvent.click(screen.getByText(TEXTS.fullscreen));
+
+    expect(
+      await screen.findByRole('button', { name: 'Close fullscreen' }),
+    ).toBeInTheDocument();
+  });
+
+  it('should exit fullscreen when the close button is clicked', async () => {
+    renderWithProvider(
+      <div data-popup-container>
+        <CodeArea currentSyntax={SYNTAX} allowFullscreen texts={TEXTS} />
+      </div>,
+    );
+
+    userEvent.click(screen.getByText(TEXTS.fullscreen));
+    userEvent.click(
+      await screen.findByRole('button', { name: TEXTS.closeFullscreen }),
+    );
+
+    await waitFor(() =>
+      expect(
+        screen.queryByRole('button', { name: TEXTS.closeFullscreen }),
+      ).not.toBeInTheDocument(),
+    );
+  });
+
+  it('should render the fullscreen editor without a border or side padding', async () => {
+    renderWithProvider(
+      <div data-popup-container>
+        <CodeArea currentSyntax={SYNTAX} allowFullscreen texts={TEXTS} />
+      </div>,
+    );
+
+    userEvent.click(screen.getByText(TEXTS.fullscreen));
+    await screen.findByRole('button', { name: TEXTS.closeFullscreen });
+
+    const [, fullscreenBelow] = screen.getAllByTestId('code-area-below');
+    const fullscreenEditor = fullscreenBelow.parentElement?.firstElementChild;
+    const fullscreenContent = fullscreenBelow.parentElement;
+
+    const editorStyle = getComputedStyle(fullscreenEditor as Element);
+    const contentStyle = getComputedStyle(fullscreenContent as Element);
+    expect(editorStyle.borderTopStyle).not.toBe('solid');
+    expect(editorStyle.borderBottomStyle).not.toBe('solid');
+    expect(contentStyle.marginLeft).not.toBe('24px');
+    expect(contentStyle.marginRight).not.toBe('24px');
+  });
+
+  it('should render the fullscreen title without an icon', async () => {
+    renderWithProvider(
+      <div data-popup-container>
+        <CodeArea
+          currentSyntax={SYNTAX}
+          fullscreenLabel={FULLSCREEN_LABEL}
+          allowFullscreen
+          texts={TEXTS}
+        />
+      </div>,
+    );
+
+    userEvent.click(screen.getByText(TEXTS.fullscreen));
+
+    const title = await screen.findByRole('heading', { name: FULLSCREEN_LABEL });
+    expect(title.querySelector('svg')).toBeNull();
   });
 
   it('should render CodeArea with placeholder', () => {
