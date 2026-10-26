@@ -41,14 +41,15 @@ src/
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `onApply` | `(date?: Date) => void` | _(required)_ | Called when user clicks Apply or selects a quick pick. Closes the dropdown. |
-| `value` | `Date` | `undefined` | Controlled date value. |
+| `value` | `Date \| string` | `undefined` | Controlled date value. A `string` is parsed as an ISO 8601 datetime (e.g. `'2024-02-02T14:20:00+02:00'`). |
+| `timeZone` | `true \| string` | `undefined` | Opts into timezone-aware mode: `onApply` / `onValueChange` then emit a **`TZDate`** carrying the resolved zone instead of a plain `Date`. `true` uses the provider's `timeZone`; a string (e.g. `'Asia/Tokyo'`) overrides it. |
 | `showTime` | `boolean` | `false` | Enables the time picker panel (user can switch between date and time modes). |
 | `disabled` | `boolean` | `undefined` | Disables input and prevents dropdown opening. |
 | `readOnly` | `boolean` | `undefined` | Renders only the input trigger; no dropdown is rendered at all. |
 | `autoFocus` | `boolean` | `undefined` | Opens the dropdown on mount. |
 | `allowClear` | `boolean` | `true` | Shows the clear (✕) button on the input. |
 | `onClear` | `() => void` | `undefined` | Called when user clicks the clear button. |
-| `onValueChange` | `(date?: Date) => void` | `undefined` | Called on every date/time change (including before Apply). |
+| `onValueChange` | `(date?: ValueType) => void` | `undefined` | Called on every date/time change (including before Apply). |
 | `onDropdownVisibleChange` | `(visible: boolean) => void` | `undefined` | Called when the dropdown opens or closes. |
 | `disabledDates` | `(date?: Date) => boolean` | `undefined` | Returns `true` for dates that should not be selectable. |
 | `disabledHours` | `number[]` | `[]` | Hour values disabled in the time picker. |
@@ -84,7 +85,8 @@ Low-level calendar sub-elements. Exported for advanced composition. See their `.
 
 | Export | Description |
 |--------|-------------|
-| `DatePickerProps` | Full props interface |
+| `DatePickerProps<ValueType>` | Full props interface, generic over `Date \| string` (default: `Date`) |
+| `BaseDatePickerProps` | Non-generic base props (without `value`, `onApply`, `onValueChange`) |
 | `QuickPick` | `{ label: ReactNode; value: Date }` |
 | `Texts` | `{ apply, now, inputPlaceholder, clearTooltip, quickPicks }` — all `ReactNode` except `inputPlaceholder: string` |
 
@@ -93,7 +95,7 @@ Low-level calendar sub-elements. Exported for advanced composition. See their `.
 ```tsx
 import DatePicker from '@synerise/ds-date-picker';
 
-// Controlled
+// Controlled (Date mode — default, backwards-compatible)
 const [date, setDate] = useState<Date | undefined>(undefined);
 
 <DatePicker
@@ -101,6 +103,18 @@ const [date, setDate] = useState<Date | undefined>(undefined);
   onApply={(d) => setDate(d)}
   onClear={() => setDate(undefined)}
 />
+
+// Timezone-aware usage -- `val` is a TZDate: the real instant plus the zone it was read in,
+// so the call site picks its own wire format rather than being handed one.
+<DatePicker
+  value={isoDate}
+  onApply={(val) => save(val && new Date(val.getTime()).toISOString())} // '...Z'
+  showTime
+  timeZone
+/>
+
+// Specific timezone override (ignores provider timezone)
+<DatePicker value={isoDate} onApply={setDate} showTime timeZone="Asia/Tokyo" />
 
 // With time picker
 <DatePicker
@@ -135,6 +149,27 @@ import { RawDatePicker } from '@synerise/ds-date-picker';
 
 ## Implementation notes
 
+- **No `ValueType` generic.** `value` takes a `Date` or an ISO string; what comes back is always a
+  `Date`. The two used to share one type parameter, so a consumer holding a `Date` had to declare
+  its output as `string` — unsatisfiable in practice, and every call site suppressed the error
+  rather than obeying it.
+- **`timeZone`:** opts into timezone-aware mode. `onApply` / `onValueChange` then emit
+  a **`TZDate`** — a `Date` subclass carrying the resolved zone — instead of a plain `Date`. `true`
+  resolves the provider's `timeZone` from `react-intl`; a string names an IANA zone directly. The
+  "Now" button uses the current time in that zone. Note `TZDate.toISOString()` returns the *offset*
+  form (`…+09:00`), not `Z`; for a `Z` instant use `new Date(value.getTime()).toISOString()`.
+- **Without the prop the value passes through untouched** — a plain `Date`, never a `TZDate`. That
+  passthrough is deliberate and pinned by a spec: widening it would silently change what every
+  consumer that serializes the value sends, with no compiler error.
+- **The circled "today" comes from the `today` prop, not from react-day-picker.** v10 computes the
+  `today` modifier from its own `dateLib.today()`, which is the *browser's* date; a workspace far
+  enough east or west is on a different calendar day at the same instant, so the circle landed on
+  the wrong cell. `RawDatePicker` passes `today={this.getNowDate()}`, which resolves through the
+  `timeZone` prop and falls back to `new Date()` without it. `ds-date-range-picker` was never
+  affected — it supplies its own `today` modifier from `getNow(timeZone)`.
+- **The trigger is gated on the same prop.** `DatePicker` sets `PickerInput`'s `isInstantValue`
+  from `Boolean(timeZone)`, not from `typeof value === 'string'` — inferring it from the runtime
+  type would re-render every string-valued consumer in the provider timezone without them asking.
 - **`onApply` is required** — `DatePickerProps` has `onApply: (date?: Date) => void` without `?`.
 - **`RawDatePicker` is a class component** — wrapped with `react-intl` legacy `injectIntl` HOC, not `useIntl`. It reads `this.props.intl` internally. The deprecated `intl` prop on `DatePickerProps` was a way to pass a custom `IntlShape` in older usage — now ignored.
 - **`readOnly` short-circuits the Dropdown** — when `readOnly={true}`, the component renders only the `PickerInput` (or `renderTrigger` output) with no calendar attached.

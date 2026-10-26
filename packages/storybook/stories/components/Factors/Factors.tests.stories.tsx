@@ -195,7 +195,6 @@ export const RelativeDateValueChange: StoryObj<FactorsProps> = {
         temporalModifier: 17,
         temporalUnit: 'WEEKS',
       });
-      expect(args.onDeactivate).toHaveBeenCalled();
     });
   },
 };

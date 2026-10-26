@@ -1,0 +1,49 @@
+import { ArgTypes, Meta, Canvas } from '@storybook/addon-docs/blocks';
+import * as DatePickerStories from './DatePicker.stories';
+
+<Meta of={DatePickerStories} />
+
+# DatePicker
+
+Single-date picker with a dropdown calendar, optional time picker, quick-pick presets, and a formatted text input trigger.
+Built on `react-day-picker` v7 and `date-fns` 2. Requires a `react-intl` `IntlProvider` in the component tree.
+
+`value` takes a `Date` or an ISO 8601 string; `onApply` always hands back a `Date`.
+With `timeZone` set, that `Date` is a `TZDate` carrying the resolved timezone.
+
+`onApply` is **required** -- it fires when the user clicks Apply or selects a quick pick, and closes the dropdown.
+
+## Default
+
+Basic date picker with no time selection.
+
+<Canvas of={DatePickerStories.Default} sourceState="shown" />
+
+## With Time
+
+Enable the time picker panel via `showTime`. The user can switch between date and time modes within the dropdown.
+
+<Canvas of={DatePickerStories.WithTime} />
+
+## Timezone-Aware Mode
+
+With `timeZone` set, `onApply` emits a `TZDate` — the real instant plus the zone it was read in — so the consumer chooses its own wire format instead of being handed one.
+Set `timeZone={true}` to use the provider's timezone from `react-intl`, or pass an IANA timezone string (e.g. `"Asia/Tokyo"`) to override.
+
+<Canvas of={DatePickerStories.WithProviderTimezonePopulated} />
+
+## Quick Picks
+
+Preset date buttons rendered in a left column beside the calendar. Combine with `hideNow` and `useStartOfDay` for a clean preset-driven experience.
+
+<Canvas of={DatePickerStories.WithQuickPicks} />
+
+## Prefix and Suffix
+
+Use `prefixel` and `suffixel` to add content before and after the date value in the input trigger.
+
+<Canvas of={DatePickerStories.PrefixAndSuffix} />
+
+## API Reference
+
+<ArgTypes of={DatePickerStories} />

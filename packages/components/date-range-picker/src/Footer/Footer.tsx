@@ -8,6 +8,10 @@ import Tooltip from '@synerise/ds-tooltip';
 
 import * as CONST from '../constants';
 import type { Texts } from '../DateRangePicker.types';
+import {
+  getDateToDisplay,
+  getFormatOptionsToDisplay,
+} from '../dateUtils/displayDate';
 import { isLifetime } from '../RelativeRangePicker/Elements/RangeDropdown/RangeDropdown';
 import * as S from './Footer.styles';
 import type { Props } from './Footer.types';
@@ -24,6 +28,7 @@ const Footer = ({
   value,
   valueFormatOptions,
   showTime,
+  timeZone,
   displayDateContainerClass = 'ds-date-range-picker-value',
   ...rest
 }: Props) => {
@@ -31,22 +36,27 @@ const Footer = ({
 
   const footerDateToString = useCallback(
     (date: Date | string) => {
-      // Bounds arrive as either form, and both denote the same thing, so both take the same route.
-      // A string used to be run through a hardcoded moment-token pattern instead, which is what
-      // kept `@date-fns/upgrade`'s `convertTokens` alive and made the rendering depend on which
-      // form the caller happened to hold.
+      // Bounds arrive as either form and both denote the same thing, so both take the same
+      // route. A string used to be run through a hardcoded moment-token pattern instead, which
+      // is what kept `@date-fns/upgrade`'s `convertTokens` alive.
       const parsed = typeof date === 'string' ? parseISO(date) : date;
 
       if (!fnsIsValid(parsed)) {
         return '';
       }
 
-      return formatValue(parsed, {
-        ...getDefaultDataTimeOptions(showTime),
-        ...valueFormatOptions,
-      });
+      return formatValue(
+        getDateToDisplay(parsed, timeZone),
+        getFormatOptionsToDisplay(
+          {
+            ...getDefaultDataTimeOptions(showTime),
+            ...valueFormatOptions,
+          },
+          timeZone,
+        ),
+      );
     },
-    [formatValue, valueFormatOptions, showTime],
+    [formatValue, showTime, timeZone, valueFormatOptions],
   );
 
   const ChosenRange = useMemo(() => {
@@ -61,15 +71,22 @@ const Footer = ({
       );
     }
     return (
-      <S.ChosenRange className={displayDateContainerClass}>
-        {value && value.from
-          ? footerDateToString(value?.from)
-          : texts.startDatePlaceholder}
+      <S.ChosenRange
+        className={displayDateContainerClass}
+        data-testid="ds-date-range-picker-footer"
+      >
+        <span>
+          {value && value.from
+            ? footerDateToString(value?.from)
+            : texts.startDatePlaceholder}
+        </span>
         <S.InvisibleTextContent>{' – '}</S.InvisibleTextContent>
         <Icon component={<ArrowRightS />} />
-        {value && value.to
-          ? footerDateToString(value?.to)
-          : texts.endDatePlaceholder}
+        <span>
+          {value && value.to
+            ? footerDateToString(value?.to)
+            : texts.endDatePlaceholder}
+        </span>
       </S.ChosenRange>
     );
   }, [value, texts, displayDateContainerClass, footerDateToString]);

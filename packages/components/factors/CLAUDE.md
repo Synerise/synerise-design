@@ -69,7 +69,8 @@ src/
 | `formulaEditor` | `ReactNode` | — | Content rendered inside the formula editor modal |
 | `texts` | `DeepPartial<FactorsTexts>` | — | Override any subset of i18n strings |
 | `factorKey` | `ReactText` | — | Unique key for the factor instance; used to reset state on remount |
-| `inputProps` | `Partial<Omit<InputProps, 'value' \| 'onChange' \| ..>>` | — | Extra props forwarded to text inputs |
+| `inputProps` | `Partial<Omit<InputProps, 'value' \| 'onChange' \| ...>>` | — | Extra props forwarded to text inputs |
+| `timeZone` | `true \| string` | — | Passed through to the `Date` **and** `DateRange` factor value inputs. Opts into timezone-aware values: the picker emits a `TZDate` carrying the resolved zone. When `true`, uses the provider's `timeZone`; when a string (e.g. `'Asia/Tokyo'`), uses that specific timezone. |
 | `readOnly` | `boolean` | — | Disables all interaction |
 
 #### `parameters` shape

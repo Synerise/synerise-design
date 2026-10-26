@@ -1,6 +1,13 @@
-import React from 'react';
+import React, { type ReactElement } from 'react';
 import type { Modifiers } from 'react-day-picker';
 import { injectIntl, type WrappedComponentProps } from 'react-intl';
+
+import {
+  applyTimezoneOffset,
+  currentTimeInTimezone,
+  getTimeZone,
+  getValueAsLocalDate,
+} from '@synerise/ds-core';
 
 import * as S from '../DatePicker.styles';
 import type { State, Texts } from '../DatePicker.types';
@@ -41,11 +48,17 @@ class RawDatePicker extends React.Component<
 
   constructor(props: RawDatePickerProps & WrappedComponentProps) {
     super(props);
+    const { value, timeZone, intl } = props;
 
+    const resolvedTimeZone = getTimeZone(timeZone, intl);
     this.state = {
       mode: 'date',
-      month: fnsStartOfMonth(props.value || new Date()),
-      value: props.value,
+      month: fnsStartOfMonth(
+        props.value ? getValueAsLocalDate(value, resolvedTimeZone) : new Date(),
+      ),
+      value: props.value
+        ? getValueAsLocalDate(value, resolvedTimeZone)
+        : undefined,
       changed: false,
       enteredTo: undefined,
       texts: this.getTexts(),
@@ -60,12 +73,15 @@ class RawDatePicker extends React.Component<
   getSnapshotBeforeUpdate(
     prevProps: Readonly<RawDatePickerProps & WrappedComponentProps>,
   ): null {
-    const { value } = this.props;
+    const { value, timeZone, intl } = this.props;
     const { mode } = this.state;
+    const resolvedTimeZone = getTimeZone(timeZone, intl);
     if (prevProps?.value !== value) {
+      const valueAsDate =
+        (value && getValueAsLocalDate(value, resolvedTimeZone)) || undefined;
       this.setState({
-        value,
-        month: fnsStartOfMonth(value || new Date()),
+        value: valueAsDate,
+        month: fnsStartOfMonth(valueAsDate || new Date()),
         changed: true,
         mode: value === undefined ? 'date' : mode,
       });
@@ -74,9 +90,9 @@ class RawDatePicker extends React.Component<
   }
 
   handleChange = (value: Date | undefined): void => {
-    const { onValueChange } = this.props;
+    const { onValueChange, timeZone, intl } = this.props;
     this.setState({ value, changed: true });
-    onValueChange && onValueChange(value);
+    onValueChange && onValueChange(applyTimezoneOffset(value, timeZone, intl));
   };
 
   handleDayMouseEnter = (day: Date): void => this.setState({ enteredTo: day });
@@ -85,24 +101,30 @@ class RawDatePicker extends React.Component<
 
   handleDayClick = (day: Date, modifiers: Modifiers): void => {
     const { value } = this.state;
-    const { useStartOfDay, useEndOfDay, showTime } = this.props;
+    const { useStartOfDay, useEndOfDay, showTime, timeZone, intl } = this.props;
 
     if (modifiers.disabled) {
       return;
     }
-
+    const resolvedTimeZone = getTimeZone(timeZone, intl);
+    const now = resolvedTimeZone
+      ? currentTimeInTimezone(resolvedTimeZone)
+      : new Date();
     // Carrying the time of day forward is what the three setters below do: they rewrite the
     // calendar fields of the existing value and leave its local clock alone, which is correct
     // across a DST boundary because local fields are what a wall clock means.
     //
-    // `value` rather than `isChanged && value`: the old guard fell back to `new Date()` on the
-    // first click of a picker that already had a value, throwing that value's time away — and
+    // `value` rather than `isChanged && value`: the old guard fell back to "now" on the first
+    // click of a picker that already had a value, throwing that value's time away — and
     // `handleChange` then put it back by re-deriving it from a seconds difference. That
     // round-trip is what `changeDayWithHoursPreserved` existed for, and it assumed every
     // calendar day is 86400s, so any pair of dates straddling a DST transition came out an hour
     // wrong. Starting from `value` makes the round-trip unnecessary rather than fixing its
     // arithmetic.
-    let nextDateWithCurrentTime = value || new Date();
+    //
+    // The fallback is the provider's clock rather than the browser's when `timeZone` resolved to
+    // one, so a picker opened with no value starts on the provider's day.
+    let nextDateWithCurrentTime = value || now;
     nextDateWithCurrentTime = fnsSetYear(
       nextDateWithCurrentTime,
       day.getFullYear(),
@@ -128,18 +150,26 @@ class RawDatePicker extends React.Component<
 
   handleModeSwitch = (mode: string): void => this.setState({ mode });
 
+  getNowDate = (): Date => {
+    const { timeZone, intl } = this.props;
+    const resolvedTimeZone = getTimeZone(timeZone, intl);
+    return resolvedTimeZone
+      ? currentTimeInTimezone(resolvedTimeZone)
+      : new Date();
+  };
+
   handleApply = (date: Date | undefined): void => {
-    const { onApply } = this.props;
+    const { onApply, timeZone, intl } = this.props;
     if (!onApply) {
       return;
     }
     const { value } = this.state;
 
     if (date instanceof Date) {
-      onApply(date);
+      onApply(applyTimezoneOffset(date, timeZone, intl));
       this.setState({ value: date });
     } else {
-      onApply(value);
+      onApply(applyTimezoneOffset(value, timeZone, intl));
     }
     this.handleModeSwitch('date');
   };
@@ -198,6 +228,7 @@ class RawDatePicker extends React.Component<
       <DayPicker
         fixedWeeks
         showOutsideDays
+        today={this.getNowDate()}
         canChangeMonth={false}
         disabledDays={disabledDates}
         selectedDays={selectedDays}
@@ -226,8 +257,13 @@ class RawDatePicker extends React.Component<
 
   renderTimePicker = (): React.ReactNode => {
     const { value } = this.state;
-    const { disabledHours, disabledMinutes, disabledSeconds, disabledDates } =
-      this.props;
+    const {
+      disabledHours,
+      disabledMinutes,
+      disabledSeconds,
+      disabledDates,
+      timeZone,
+    } = this.props;
     const prevDay = fnsAddDays(toDateValue(value), -1);
     const nextDay = fnsAddDays(toDateValue(value), 1);
     const inactivePrev = disabledDates ? disabledDates(prevDay) : false;
@@ -235,6 +271,7 @@ class RawDatePicker extends React.Component<
     return (
       <TimePicker
         value={value}
+        timeZone={timeZone}
         onChange={this.handleChange}
         disabledHours={disabledHours}
         disabledMinutes={disabledMinutes}
@@ -299,10 +336,13 @@ class RawDatePicker extends React.Component<
           }
           texts={texts}
           hideNow={hideNow}
+          getNowDate={this.getNowDate}
         />
       </S.Container>
     );
   }
 }
 
-export default injectIntl(RawDatePicker);
+export default injectIntl(RawDatePicker) as (
+  props: RawDatePickerProps,
+) => ReactElement;

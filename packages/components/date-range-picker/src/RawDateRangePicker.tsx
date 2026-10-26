@@ -13,6 +13,12 @@ import React, {
 } from 'react';
 import { useIntl } from 'react-intl';
 
+import {
+  applyTimezoneOffset,
+  getTimeZone,
+  toIsoString,
+} from '@synerise/ds-core';
+
 import AddonCollapse from './AddonCollapse/AddonCollapse';
 import {
   ABSOLUTE,
@@ -47,7 +53,30 @@ import RangeFilterStatus from './RangeFilter/Shared/RangeFilterStatus/RangeFilte
 import RangePicker from './RangePicker/RangePicker';
 import { isLifetime } from './RelativeRangePicker/Elements/RangeDropdown/RangeDropdown';
 import RelativeRangePicker from './RelativeRangePicker/RelativeRangePicker';
-import { getDefaultTexts, normalizeRange, toIsoString } from './utils';
+import { getDefaultTexts, normalizeLocalRange, normalizeRange } from './utils';
+
+/**
+ * Inside the panel a `Date` holds the wall clock of the provider timezone in its local
+ * fields (`toIsoString` is the encoder of that convention, `getValueAsLocalDate` the
+ * decoder). Anything leaving the component has to be re-anchored to a real instant first,
+ * otherwise a consumer feeding the value straight back in — or reading it as a timestamp —
+ * is off by the browser-to-provider timezone delta.
+ */
+const toEmittedLimit = (
+  limit: DateRange['from'],
+  timeZone?: string,
+  asZonedDate?: boolean,
+): Date | string | undefined => {
+  if (!(limit instanceof Date)) {
+    return undefined;
+  }
+  // With the `timeZone` prop set the caller has opted into zone-aware values, so emit a `TZDate`
+  // — the instant plus the zone — and let them project it. Without it, keep the offset-carrying
+  // string every existing consumer already receives.
+  return asZonedDate
+    ? applyTimezoneOffset(limit, timeZone, undefined)
+    : toIsoString(limit, timeZone);
+};
 
 const isRelative = (dateRange: DateRange): dateRange is RelativeDateRange => {
   const isLegacyCustom =
@@ -126,19 +155,32 @@ export const RawDateRangePicker = ({
   onApply,
   texts,
   value,
+  timeZone: timeZoneProp,
 }: Omit<DateRangePickerProps, 'placement'>) => {
-  const [localValue, setLocalValue] = useState(normalizeRange(value));
+  const intl = useIntl();
+  // Two zones, because the two halves of this component do not default alike.
+  //
+  // `timeZone` is the zone the panel *works in* — decoding incoming bounds, resolving relative
+  // ranges, rendering the calendar. It is `undefined` without the prop, which is what routes
+  // every one of those through the legacy browser-clock path a consumer sees today.
+  //
+  // `encodeTimeZone` is the zone `toIsoString` stamps on the way out. It keeps falling back to
+  // the provider's zone because that fallback is already master's behaviour: handing
+  // `toIsoString` an `undefined` would take its `timeZone = 'UTC'` default and emit `+00:00`,
+  // moving every saved instant by the provider's offset.
+  const resolvedTimeZone = getTimeZone(timeZoneProp, intl);
+  const emitZonedDates = Boolean(timeZoneProp);
+  const timeZone = resolvedTimeZone;
+  const encodeTimeZone = resolvedTimeZone ?? intl.timeZone;
+  const [localValue, setLocalValue] = useState(normalizeRange(value, timeZone));
   const [mode, setMode] = useState(MODES.DATE);
   const [visibleAddonKey, setVisibleAddonKey] = useState<string | undefined>(
     'relative-picker',
   );
 
-  const intl = useIntl();
-  const { timeZone } = intl;
-
   useEffect(() => {
-    setLocalValue(normalizeRange(value));
-  }, [value]);
+    setLocalValue(normalizeRange(value, timeZone));
+  }, [value, timeZone]);
 
   const allTexts = useMemo(() => {
     return getDefaultTexts(intl, false, texts);
@@ -153,7 +195,10 @@ export const RawDateRangePicker = ({
         return;
       }
 
-      const newValue = normalizeRange({ ...range, filter: localValue.filter });
+      const newValue = normalizeLocalRange(
+        { ...range, filter: localValue.filter },
+        timeZone,
+      );
       if (isTruncateMs) {
         if (newValue.from !== undefined) {
           newValue.from = fnsStartOfSecond(toDateValue(newValue.from));
@@ -175,9 +220,48 @@ export const RawDateRangePicker = ({
       // transformation has to take place here, because `key` property might get omitted by valueTransformer
       const legacyValue = valueTransformer?.(newValue) ?? newValue;
       setLocalValue({ ...legacyValue, translationKey: range?.translationKey });
-      onValueChange && onValueChange(legacyValue);
+      // Opted in, the bounds are re-anchored with the same encoding as `onApply`, so a
+      // consumer can read them as timestamps or feed them straight back in as `value`;
+      // handing out the panel's internal wall-clock dates would drift by the timezone delta.
+      // Opted out, they are the plain local dates this callback has always emitted.
+      onValueChange &&
+        onValueChange(
+          timeZoneProp
+            ? {
+                ...legacyValue,
+                ...(legacyValue.from
+                  ? {
+                      from: toEmittedLimit(
+                        legacyValue.from,
+                        encodeTimeZone,
+                        emitZonedDates,
+                      ),
+                    }
+                  : {}),
+                ...(legacyValue.to
+                  ? {
+                      to: toEmittedLimit(
+                        legacyValue.to,
+                        encodeTimeZone,
+                        emitZonedDates,
+                      ),
+                    }
+                  : {}),
+              }
+            : legacyValue,
+        );
     },
-    [isTruncateMs, mode, localValue.filter, onValueChange, valueTransformer],
+    [
+      isTruncateMs,
+      mode,
+      localValue.filter,
+      onValueChange,
+      timeZone,
+      timeZoneProp,
+      encodeTimeZone,
+      emitZonedDates,
+      valueTransformer,
+    ],
   );
 
   const handleAddonCollapse = useCallback(
@@ -209,10 +293,25 @@ export const RawDateRangePicker = ({
 
   const handleApply = useCallback(() => {
     if (forceAbsolute && localValue.type === RELATIVE) {
+      // Resolved on the panel's clock, then emitted with the same encoding as a plain absolute
+      // apply. Opted out, the bounds stay the plain local dates this path has always emitted.
+      // `type` is not part of that gate: `relativeToAbsolute` already returns `ABSOLUTE` and
+      // spreading it is what makes this path absolute at all.
+      const resolved = relativeToAbsolute(localValue, timeZone);
       onApply &&
         onApply({
           ...localValue,
-          ...relativeToAbsolute(localValue),
+          ...resolved,
+          ...(timeZoneProp
+            ? {
+                from: toEmittedLimit(
+                  resolved.from,
+                  encodeTimeZone,
+                  emitZonedDates,
+                ),
+                to: toEmittedLimit(resolved.to, encodeTimeZone, emitZonedDates),
+              }
+            : {}),
         });
       return;
     }
@@ -225,19 +324,27 @@ export const RawDateRangePicker = ({
       const valueToEmit = {
         ...localValue,
         from:
-          localValue.type === ABSOLUTE && localValue.from instanceof Date
-            ? toIsoString(localValue.from, timeZone)
+          localValue.type === ABSOLUTE
+            ? toEmittedLimit(localValue.from, encodeTimeZone, emitZonedDates)
             : undefined,
         to:
-          localValue.type === ABSOLUTE && localValue.to instanceof Date
-            ? toIsoString(localValue.to, timeZone)
+          localValue.type === ABSOLUTE
+            ? toEmittedLimit(localValue.to, encodeTimeZone, emitZonedDates)
             : undefined,
         type: localValue.type,
       } as DateRange;
 
       onApply(valueToEmit);
     }
-  }, [forceAbsolute, timeZone, localValue, onApply]);
+  }, [
+    forceAbsolute,
+    timeZone,
+    timeZoneProp,
+    encodeTimeZone,
+    emitZonedDates,
+    localValue,
+    onApply,
+  ]);
 
   const handleSwitchMode = useCallback(() => {
     const updatedMode = mode === MODES.TIME ? MODES.DATE : MODES.TIME;
@@ -250,7 +357,7 @@ export const RawDateRangePicker = ({
       localValue.type === 'RELATIVE' &&
       (!localValue.from || !localValue.to)
     ) {
-      const { to, from } = normalizeRange(localValue);
+      const { to, from } = normalizeLocalRange(localValue, timeZone);
       return {
         ...localValue,
         from,
@@ -258,7 +365,7 @@ export const RawDateRangePicker = ({
       };
     }
     return localValue;
-  }, [localValue]);
+  }, [localValue, timeZone]);
 
   const addons = useMemo(() => {
     const result: AddonType[] = [];
@@ -280,6 +387,7 @@ export const RawDateRangePicker = ({
                 rangeUnits={rangeUnits}
                 showCustomRange={showCustomRange}
                 valueTransformer={valueTransformer}
+                timeZone={timeZone}
               />
             }
             expanded={addonKey === visibleAddonKey}
@@ -322,6 +430,7 @@ export const RawDateRangePicker = ({
     showRelativePicker,
     relativeModes,
     showFilter,
+    timeZone,
     localValue,
     relativeFuture,
     relativePast,
@@ -383,7 +492,8 @@ export const RawDateRangePicker = ({
       <Container className={containerClass}>
         <RangePicker
           showNowButton={showNowButton}
-          value={normalizeRange(localValue)}
+          timeZone={timeZone}
+          value={normalizeLocalRange(localValue, timeZone)}
           onChange={handleRangeChange}
           mode={mode}
           disabledDate={disabledDate}
@@ -418,6 +528,7 @@ export const RawDateRangePicker = ({
           value={fullValue}
           showTime={showTime}
           valueFormatOptions={valueFormatOptions}
+          timeZone={timeZone}
           {...footerProps}
         />
       </Container>

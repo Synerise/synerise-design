@@ -131,6 +131,7 @@ import Factors from '@synerise/ds-factors'
 | relativeDateProps         | Customise relative date display and available units                                       | { triggerValueFormatter?: (value) => string; availableUnits?: RelativeDateUnit[] } | -       |
 | autoResize                | Auto-resize behaviour for text inputs                                                     | AutoResizeProp                                                                   | -         |
 | inputProps                | Extra props forwarded to text inputs                                                      | Partial<InputProps>                                                              | -         |
+| timeZone     | Passed to the Date and DateRange factor inputs. Opts into timezone-aware values (picker emits a `TZDate`). `true` = provider TZ; string = specific IANA TZ | `true` / `string` | -         |
 | readOnly                  | Disables all interaction                                                                  | boolean                                                                          | -         |
 | factorKey                 | Unique key for the factor instance; used to reset state on remount                        | ReactText                                                                        | -         |
 | texts                     | Translations object (deep partial — any subset can be overridden)                         | DeepPartial<FactorsTexts>                                                        | -         |

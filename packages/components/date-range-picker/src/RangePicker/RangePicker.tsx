@@ -33,7 +33,12 @@ import Tooltip from '@synerise/ds-tooltip';
 import { ABSOLUTE, COLUMNS, MODES } from '../constants';
 import type { AbsoluteDateRange, RelativeDateRange } from '../date.types';
 import ADD from '../dateUtils/add';
+import {
+  getDateToDisplay,
+  getFormatOptionsToDisplay,
+} from '../dateUtils/displayDate';
 import getDateFromString from '../dateUtils/getDateFromString';
+import { getNow } from '../dateUtils/getNow';
 import { toDateValue } from '../dateUtils/toDateValue';
 import {
   fnsAddDays,
@@ -101,12 +106,13 @@ class RangePicker extends PureComponent<Props & WithDataFormatProps, State> {
     super(props);
     this.state = {
       enteredTo: null,
-      ...getSidesState(props.value),
+      ...getSidesState(props.value, undefined, getNow(props.timeZone)),
     };
   }
 
   getSnapshotBeforeUpdate(prevProps: Readonly<Props>): null {
-    const { value, forceAdjacentMonths, startAlwaysOnTheLeft } = this.props;
+    const { value, forceAdjacentMonths, startAlwaysOnTheLeft, timeZone } =
+      this.props;
     const { jumpToStartAndEnd = true } = this.props;
     const { left, right } = this.state;
     const toDateChanged = !!value?.to && value?.to !== prevProps?.value?.to;
@@ -126,7 +132,9 @@ class RangePicker extends PureComponent<Props & WithDataFormatProps, State> {
       forceAdjacentMonths !== prevProps.forceAdjacentMonths
     ) {
       if (startAlwaysOnTheLeft) {
-        this.setState(getSidesState(value, forceAdjacentMonths));
+        this.setState(
+          getSidesState(value, forceAdjacentMonths, getNow(timeZone)),
+        );
       }
     }
     if (jumpToStartAndEnd && (fromDateChanged || toDateChanged)) {
@@ -136,7 +144,9 @@ class RangePicker extends PureComponent<Props & WithDataFormatProps, State> {
       );
       const isStartVisible = startOnLeft || startOnRight;
       if (!isStartVisible) {
-        this.setState(getSidesState(value, forceAdjacentMonths));
+        this.setState(
+          getSidesState(value, forceAdjacentMonths, getNow(timeZone)),
+        );
         return null;
       }
       const endOnRight = fnsIsSameMonth(
@@ -145,7 +155,9 @@ class RangePicker extends PureComponent<Props & WithDataFormatProps, State> {
       );
       const isEndVisible = endOnLeft || endOnRight;
       if (!isEndVisible) {
-        this.setState(getSidesState(value, forceAdjacentMonths));
+        this.setState(
+          getSidesState(value, forceAdjacentMonths, getNow(timeZone)),
+        );
         return null;
       }
     }
@@ -251,13 +263,19 @@ class RangePicker extends PureComponent<Props & WithDataFormatProps, State> {
 
   renderDay = (day: Date): ReactNode => {
     const text = day.getDate();
-    const { value, intl, formatValue } = this.props;
+    const { value, intl, formatValue, timeZone } = this.props;
 
     const formatDate = (date: Date | string): string => {
       if (typeof date === 'string') {
         return fnsFormat(toDateValue(date), TOOLTIP_FORMAT, intl.locale);
       }
-      return formatValue(date, { ...getDefaultDataTimeOptions(true) });
+      return formatValue(
+        getDateToDisplay(date, timeZone),
+        getFormatOptionsToDisplay(
+          { ...getDefaultDataTimeOptions(true) },
+          timeZone,
+        ),
+      );
     };
 
     const { from, to } = value;
@@ -335,13 +353,14 @@ class RangePicker extends PureComponent<Props & WithDataFormatProps, State> {
   };
 
   renderDatePicker = (side: SideType): ReactNode => {
-    const { value, disabledDate, forceAdjacentMonths } = this.props;
+    const { value, disabledDate, forceAdjacentMonths, timeZone } = this.props;
     const { enteredTo, left, right, [side]: sideState } = this.state;
     const { from, to, type } = value;
     const modifiers = getModifiers(
       fnsIsValid(from) ? from : null,
       fnsIsValid(to) ? to : null,
       enteredTo,
+      getNow(timeZone),
     );
     // v10's `Matcher` accepts a `Date` and a `{ from, to }` range, which is what v7 was being
     // handed all along — only untyped. Bounds are coerced because they may still be strings.
@@ -387,7 +406,7 @@ class RangePicker extends PureComponent<Props & WithDataFormatProps, State> {
   };
 
   renderTimePicker = (side: SideType): ReactNode => {
-    const { value, is12HoursClock } = this.props;
+    const { value, is12HoursClock, timeZone } = this.props;
     const { from, to } = value;
     if (!from || !to) {
       return null;
@@ -398,6 +417,7 @@ class RangePicker extends PureComponent<Props & WithDataFormatProps, State> {
         return (
           <TimePicker
             key={`time-picker-${side}`}
+            timeZone={timeZone}
             value={getDateFromString(from)}
             onChange={this.handleFromTimeChange}
             disabledHours={getDisabledTimeOptions(
@@ -438,6 +458,7 @@ class RangePicker extends PureComponent<Props & WithDataFormatProps, State> {
         return (
           <TimePicker
             key={`time-picker-${side}`}
+            timeZone={timeZone}
             value={getDateFromString(to)}
             onChange={this.handleToTimeChange}
             disabledHours={getDisabledTimeOptions(
@@ -506,6 +527,7 @@ class RangePicker extends PureComponent<Props & WithDataFormatProps, State> {
       dateOnly,
       onSwitchMode,
       texts,
+      timeZone,
     } = this.props;
     const { showNowButton = true } = this.props;
     return (
@@ -528,7 +550,7 @@ class RangePicker extends PureComponent<Props & WithDataFormatProps, State> {
           {showNowButton && (
             <Range
               onClick={({ currentTarget }: UIEvent): void => {
-                const now = new Date();
+                const now = getNow(timeZone);
                 const literallyNow: AbsoluteDateRange = {
                   ...value,
                   translationKey: 'now',

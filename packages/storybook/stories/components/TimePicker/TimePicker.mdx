@@ -1,0 +1,51 @@
+import { ArgTypes, Meta, Canvas } from '@storybook/addon-docs/blocks';
+import * as TimePickerStories from './TimePicker.stories';
+
+<Meta of={TimePickerStories} />
+
+# TimePicker
+
+A dropdown-based time picker that renders scrollable hour/minute/second columns with optional 12-hour AM/PM clock support. The component is generic: `TimePicker<ValueType extends Date | string = Date>`.
+
+## Quick overview
+
+- Import `TimePicker` (default export) from `@synerise/ds-time-picker`
+- Controlled-only component -- `onChange` is **required**
+- Renders scrollable columns for hour, minute, and second (configurable via `units` prop)
+- Supports 12-hour AM/PM clock mode (auto-detected from `DSProvider` or via `use12HourClock`)
+- **Timezone-aware mode** via `timeZone` -- when enabled, `onChange` hands back a `TZDate` carrying the resolved zone instead of a plain `Date`
+- `raw` mode renders the time panel directly without an input or dropdown wrapper
+
+## Basic example
+
+<Canvas of={TimePickerStories.Default} sourceState="shown" />
+
+## Timezone-aware mode
+
+When `timeZone` is set, `onChange` emits a `TZDate` -- the real instant plus the zone it was read in -- so the consumer picks its own wire format. Set it to `true` to use the provider's timezone, or pass an IANA timezone string (e.g. `'Asia/Tokyo'`) for a specific override.
+
+<Canvas of={TimePickerStories.WithProviderTimezonePopulated} sourceState="shown" />
+
+## Raw mode
+
+Set `raw` to render only the time panel without an input field or dropdown chrome. Useful for embedding the picker inline.
+
+<Canvas of={TimePickerStories.Raw} sourceState="shown" />
+
+## Always open
+
+Use `alwaysOpen` to keep the dropdown permanently visible. The clear button replaces the clock icon whenever a value is set.
+
+<Canvas of={TimePickerStories.OpenAlways} sourceState="shown" />
+
+## API reference
+
+<ArgTypes of={TimePickerStories} />
+
+## Notes and tips
+
+- **`onChange` is required** -- this is a breaking change from previous versions where it was optional. All consumers must provide an `onChange` handler.
+- **`onChange` fires twice per interaction** -- once when a cell is clicked and once when the dropdown closes.
+- **Controlled-only** -- there is no uncontrolled mode. `onChange` is the only way to update the displayed time.
+- **`disabledHours` with AM/PM** -- use sentinel `-1` (`DISABLE_CLOCK_MODE_HOUR`) to disable the entire PM toggle; combine `12` and `-1` to disable AM.
+- **`timeFormat` and `use12HourClock` are deprecated** -- use `valueFormatOptions` and `DSProvider::dataFormatConfig` respectively.

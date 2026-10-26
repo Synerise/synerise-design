@@ -13,6 +13,12 @@ export interface RangePickerProps extends WrappedComponentProps {
   onSwitchMode?: () => void;
   texts: Texts;
   forceAdjacentMonths?: boolean;
+  /**
+   * The zone the `timeZone` prop resolved to, or `undefined` when it was not set. Passed down
+   * rather than read from `intl` here, so a consumer that has not opted in keeps the browser
+   * clock it renders on today.
+   */
+  timeZone?: string;
   showCustomRange?: boolean;
   showNowButton?: boolean;
   startAlwaysOnTheLeft?: boolean;

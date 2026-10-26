@@ -5,9 +5,10 @@ import * as CONST from '../constants';
 import { CUSTOM_RANGE_KEY, RANGES_MODE } from '../constants';
 import type { RelativeMode } from '../DateRangePicker.types';
 import type { DateRange, RelativeDateRange } from '../date.types';
+import { getNow } from '../dateUtils/getNow';
 import getRelativePresetForRange from '../dateUtils/getRelativePresetForRange';
 import { fnsIsAfter } from '../fns';
-import { DEFAULT_RANGE, normalizeRange } from '../utils';
+import { DEFAULT_RANGE, normalizeLocalRange, normalizeRange } from '../utils';
 import CustomRangeForm from './Elements/CustomRangeForm/CustomRangeForm';
 import RangeButtons from './Elements/RangeButtons/RangeButtons';
 import RangeDropdown from './Elements/RangeDropdown/RangeDropdown';
@@ -44,7 +45,7 @@ class RelativeRangePicker extends React.PureComponent<
       currentGroup: getCurrentGroupFromProps(props),
       future: props.future || false,
       past: props.past || true,
-      sinceTimestamp: new Date(),
+      sinceTimestamp: getNow(props.timeZone),
     };
   }
 
@@ -86,7 +87,7 @@ class RelativeRangePicker extends React.PureComponent<
       this.setState({
         currentGroup: mode,
         lastCustomRange: undefined,
-        sinceTimestamp: new Date(),
+        sinceTimestamp: getNow(this.props.timeZone),
       });
       const { onChange } = this.props;
       onChange(DEFAULT_RANGE);
@@ -125,17 +126,20 @@ class RelativeRangePicker extends React.PureComponent<
 
   onChange = (value: DateRange): void => {
     const { currentGroup } = this.state;
-    const { onChange } = this.props;
+    const { onChange, timeZone } = this.props;
     const isSince = currentGroup === RANGES_MODE.SINCE;
     const isFuture = isSince
       ? value.future
-      : value.timestamp && fnsIsAfter(value.timestamp, new Date()); // FIXME since past/future
+      : value.timestamp && fnsIsAfter(value.timestamp, getNow(timeZone)); // FIXME since past/future
     const changes = {
       ...setFuture(currentGroup === RANGES_MODE.FUTURE || isFuture, value),
       type: 'RELATIVE',
     };
-    // biome-ignore lint/suspicious/noExplicitAny: upstream type is not expressible here
-    const resultRange = normalizeRange(updatePresetKey(changes) as any);
+    const resultRange = normalizeLocalRange(
+      // biome-ignore lint/suspicious/noExplicitAny: upstream type is not expressible here
+      updatePresetKey(changes) as any,
+      timeZone,
+    );
     if (resultRange?.translationKey === CUSTOM_RANGE_KEY) {
       this.setState({ lastCustomRange: resultRange as RelativeDateRange });
     }
@@ -191,7 +195,7 @@ class RelativeRangePicker extends React.PureComponent<
 
   renderCustomRangeForm = (): React.ReactNode => {
     const { currentRange, currentGroup, sinceTimestamp } = this.state;
-    const { ranges, texts, relativeModes, rangeUnits } = this.props;
+    const { ranges, texts, relativeModes, rangeUnits, timeZone } = this.props;
     return (
       <CustomRangeForm
         handleModeChange={this.onModeChange}
@@ -206,6 +210,7 @@ class RelativeRangePicker extends React.PureComponent<
         relativeModes={relativeModes || []}
         texts={texts}
         rangeUnits={rangeUnits}
+        timeZone={timeZone}
       />
     );
   };

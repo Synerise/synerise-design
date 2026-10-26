@@ -9,6 +9,8 @@ export type TimestampRangeProps = {
   timestamp?: Date | undefined;
   texts: Texts;
   getValueOnReset?: (value?: Date) => RelativeDateRange | Date | undefined;
+  /** Resolved `timeZone` prop, or `undefined` when it was not set. See `dateUtils/getNow`. */
+  timeZone?: string;
 };
 
 /**

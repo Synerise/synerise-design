@@ -34,12 +34,14 @@ const DatePicker = ({
   allowClear = true,
   overlayHTMLAttributes,
   triggerHTMLAttributes,
+  timeZone,
   ...rest
 }: DatePickerProps) => {
   const [dropVisible, setDropVisible] = useState(autoFocus || false);
   const [selectedDate, setSelectedDate] = useState(value);
 
   const intl = useIntl();
+
   const allTexts = getDefaultTexts(intl, texts);
 
   useEffect(() => {
@@ -76,13 +78,20 @@ const DatePicker = ({
     onClear && onClear();
   }, [onClear]);
 
+  const pickerInputValue = selectedDate ? new Date(selectedDate) : selectedDate;
+  // Only an opted-in consumer hands in a real instant. Inferring this from `typeof value ===
+  // 'string'` would re-render every existing string-valued consumer in the provider timezone
+  // without them asking for it.
+  const isInstantValue = Boolean(timeZone) && typeof selectedDate === 'string';
+
   const trigger = renderTrigger?.() || (
     <PickerInput
       {...inputProps}
       disabled={disabled}
-      allowClear={allowClear}
       autoFocus={!disabled && autoFocus}
-      value={selectedDate}
+      allowClear={allowClear}
+      value={pickerInputValue}
+      isInstantValue={isInstantValue}
       showTime={showTime}
       onClick={
         !readOnly
@@ -116,6 +125,7 @@ const DatePicker = ({
         >
           <RawDatePicker
             {...rest}
+            timeZone={timeZone}
             showTime={showTime}
             texts={allTexts}
             onApply={onApplyCallback}

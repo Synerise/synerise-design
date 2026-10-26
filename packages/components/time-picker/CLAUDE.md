@@ -28,8 +28,9 @@ src/
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `value` | `Date` | — | Controlled selected time value |
-| `onChange` | `(value: Date \| undefined, timeString: string) => void` | — | Fired on unit select and on dropdown close |
+| `value` | `Date \| string` | — | Controlled selected time value. A `string` is parsed as an ISO 8601 datetime (e.g. `'2024-02-02T14:20:00+02:00'`). |
+| `onChange` | `(value: Date \| undefined, timeString: string) => void` | — | **Required.** Fired on unit select and on dropdown close. |
+| `timeZone` | `boolean \| string` | — | Opts into timezone-aware values: `onChange` emits a **`TZDate`** carrying the resolved zone instead of a plain `Date`. `true` uses the provider's `timeZone`; a string (e.g. `'Asia/Tokyo'`) overrides it. |
 | `units` | `dayjs.UnitType[]` | `['hour', 'minute', 'second']` | Which columns to render |
 | `placeholder` | `string` | i18n `DS.TIME-PICKER.PLACEHOLDER` | Input placeholder text |
 | `placement` | `'topLeft' \| 'topCenter' \| 'topRight' \| 'bottomLeft' \| 'bottomCenter' \| 'bottomRight'` | `'bottomLeft'` | Dropdown placement |
@@ -68,7 +69,7 @@ src/
 
 ### Named type exports
 - `ClockModes` — `'AM' | 'PM'`
-- `TimePickerProps` — full props interface (re-exported for consumer typing)
+- `TimePickerProps` — full props interface
 
 ## Usage patterns
 
@@ -78,6 +79,13 @@ import TimePicker from '@synerise/ds-time-picker';
 // Basic controlled usage
 const [time, setTime] = React.useState<Date | undefined>(undefined);
 <TimePicker value={time} onChange={(date) => setTime(date)} />
+
+// Timezone-aware usage -- `onChange` hands back a TZDate carrying the resolved zone
+const [isoTime, setIsoTime] = React.useState<string | undefined>('2024-02-02T14:20:00+02:00');
+<TimePicker value={isoTime} onChange={(val) => setIsoTime(val)} timeZone />
+
+// Specific timezone override (ignores provider timezone)
+<TimePicker value={isoTime} onChange={(val) => setIsoTime(val)} timeZone="Asia/Tokyo" />
 
 // Render just the panel (no input)
 <TimePicker value={time} onChange={(date) => setTime(date)} raw />
@@ -125,9 +133,25 @@ All visual elements use styled-components tokens (no hardcoded colours). Key sty
 ## Implementation notes
 
 - **12-hour clock detection:** `use12HourClock` prop overrides, otherwise read from `useDataFormat().is12HoursClock`.
+- **`onChange` is required** — the prop is no longer optional. All consumers must provide an `onChange` handler. This is a **breaking change** from previous versions where `onChange` was optional.
+- **No `ValueType` generic.** `value` takes a `Date` or an ISO string; `onChange` always hands back
+  a `Date`. The two used to share one type parameter, which forced a consumer holding a `Date` to
+  declare its output as `string`.
+- **`timeZone`:** opts into timezone-aware values. `onChange` then emits a **`TZDate`** — a `Date`
+  subclass carrying the resolved zone — rather than a plain `Date`. `true` resolves the provider's
+  `timeZone` from `react-intl`; a string names an IANA zone directly. Same contract as
+  `ds-date-picker` and `ds-date-range-picker`. Note `TZDate.toISOString()` returns the *offset*
+  form (`…+09:00`), not `Z`; for a `Z` instant use `new Date(value.getTime()).toISOString()`.
+- **Without the prop the value passes through as a plain `Date`**, never a `TZDate` — pinned by a
+  spec, since widening it would silently change what consumers serialize with no compiler error.
+- **Rendering is gated on the same prop, not on `intl.timeZone`.** `getTimeString` re-anchors and
+  forces `applyTimeZoneOffset` only when `timeZone` resolved to something; a zone on the provider
+  alone changes nothing, because every unmigrated consumer already has one. It also names
+  `timeZone` in the format options rather than relying on the config's — with a *string* prop the
+  resolved zone is not the provider's, and the re-anchor and the projection have to agree.
 - **Controlled-only value:** There is no uncontrolled mode. `onChange` is the only way to update the displayed time.
 - **`onChange` fires twice per interaction:** once when a cell is clicked (immediate) and once when the dropdown closes (`onVisibleChange`).
 - **`disabledHours` with AM/PM:** Use sentinel `-1` (`DISABLE_CLOCK_MODE_HOUR`) to disable the entire PM toggle. Use `12` (`HOUR_12`) combined with `-1` to disable the AM toggle.
 - **Scroll snap in `Unit`:** The `Unit` component auto-scrolls to the selected cell and snaps free-scrolling to the nearest 32 px cell boundary via a debounced scroll handler.
-- **Test runner:** Jest (not Vitest) — `jest.config.js` is present at the package root.
+- **Test runner:** Vitest. Timezone-specific tests are run under multiple TZ env variables (UTC, America/New_York, Europe/Warsaw) via `pnpm test:timezones`.
 - **`timeFormat` / `use12HourClock`:** Both props are deprecated in favour of `valueFormatOptions` and `DSProvider::dataFormatConfig` respectively.

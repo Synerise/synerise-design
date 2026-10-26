@@ -1,5 +1,4 @@
 import React, { useCallback } from 'react';
-import { useIntl } from 'react-intl';
 
 import DateRangePicker, {
   type DateFilter,
@@ -18,9 +17,8 @@ const DateRangeInput = ({
   onDeactivate,
   allowClear,
   readOnly = false,
+  timeZone,
 }: FactorValueComponentProps) => {
-  const intl = useIntl();
-
   const changeHandler = useCallback(
     (date: Partial<DateFilter> | undefined) => {
       onChange(date);
@@ -39,7 +37,6 @@ const DateRangeInput = ({
 
   return (
     <DateRangePicker
-      intl={intl}
       onApply={changeHandler}
       showTime
       getPopupContainer={getPopupContainerOverride || getPopupContainer}
@@ -56,6 +53,7 @@ const DateRangeInput = ({
       filterValueSelectionModes={['Range']}
       rangePickerInputProps={{ readOnly, error, allowClear }}
       readOnly={readOnly}
+      timeZone={timeZone}
     />
   );
 };

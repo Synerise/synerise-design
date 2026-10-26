@@ -34,7 +34,6 @@ import {
 } from '../fns';
 import type { State } from './RangePicker.types';
 
-const NOW = new Date();
 const HOURS_GRANULARITY = 'HOURS';
 
 const getAmOrPmFromDate = (date: Date): ClockModes => {
@@ -142,9 +141,12 @@ export const getDisabledTimeOptions = (
 export const getSidesState = (
   value: DateRange,
   forceAdjacentMonths?: boolean,
+  // Which month the calendars open on when there is no value yet — the provider's current
+  // month, which near midnight is not always the browser's.
+  today: Date = new Date(),
 ): State => {
   const from = fnsStartOfMonth(
-    fnsIsValid(value.from) ? toDateValue(value.from) : new Date(),
+    fnsIsValid(value.from) ? toDateValue(value.from) : today,
   );
   let to = fnsIsValid(value.to) ? fnsStartOfMonth(toDateValue(value.to)) : from;
   if (fnsIsSameMonth(from, to)) {
@@ -177,6 +179,10 @@ export const getModifiers = (
   from: NullableDateLimit | undefined,
   to: NullableDateLimit | undefined,
   enteredTo: NullableDateLimit | undefined,
+  // Which day gets circled as "today". Passed in rather than captured here, so it follows the
+  // provider timezone (where the day can differ from the browser's) and is re-read on every
+  // render instead of being frozen at module load.
+  today: Date = new Date(),
 ): Record<string, Matcher | undefined> => {
   const isSelecting = from && !to && enteredTo;
   const enteredStart = isSelecting
@@ -200,7 +206,7 @@ export const getModifiers = (
     start: toDate(startModifier),
     end: toDate(endModifier),
     entered: typeof entered === 'function' ? entered : toDate(entered),
-    today: NOW,
+    today,
     'entered-start': toDate(enteredStart),
     'entered-end': toDate(enteredEnd),
     'initial-entered': !endModifier ? toDate(startModifier) : undefined,

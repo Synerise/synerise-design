@@ -1,6 +1,11 @@
 import React from 'react';
+import { useIntl } from 'react-intl';
 
-import { getDefaultDataTimeOptions, useDataFormat } from '@synerise/ds-core';
+import {
+  applyTimezoneOffset,
+  getDefaultDataTimeOptions,
+  useDataFormat,
+} from '@synerise/ds-core';
 import DSTimePicker from '@synerise/ds-time-picker';
 
 import Navbar from '../Navbar/Navbar';
@@ -17,14 +22,26 @@ const TimePicker = ({
   onChange,
   onShortNext,
   onShortPrev,
+  timeZone,
 }: TimePickerProps) => {
   const { is12HoursClock, formatValue } = useDataFormat();
-  const navbarDate = formatValue(value, {
+  const intl = useIntl();
+
+  const valueInTimezone =
+    timeZone && applyTimezoneOffset(value, timeZone, intl);
+  const localisedDate1 = valueInTimezone ? new Date(valueInTimezone) : value;
+
+  // `localisedDate1` is a real instant re-anchored in the timezone resolved above.
+  // formatValue only projects an instant into the provider timezone when
+  // `applyTimeZoneOffset` is set, and that defaults to `false` in DataFormatConfig —
+  // force it here instead of inheriting it, or the navbar date drifts by the
+  // browser-to-provider timezone delta.
+  const navbarDate = formatValue(localisedDate1, {
     ...getDefaultDataTimeOptions(),
     targetFormat: 'date',
     month: 'short',
+    ...(valueInTimezone && intl.timeZone ? { applyTimeZoneOffset: true } : {}),
   });
-
   return (
     <>
       {!!value && (

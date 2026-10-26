@@ -1,0 +1,73 @@
+import { ArgTypes, Meta, Canvas } from '@storybook/addon-docs/blocks';
+import * as DateRangePickerStories from './DateRangePicker.stories';
+
+<Meta of={DateRangePickerStories} />
+
+# DateRangePicker
+
+A full-featured date range selector supporting absolute ranges, relative presets, custom relative ranges, time selection, and recurring schedule filters (daily/weekly/monthly) — wrapped in a floating popover.
+
+## Quick overview
+
+- Default import: `DateRangePicker` — popover-wrapped picker with trigger input
+- Named export: `RawDateRangePicker` — panel without popover, for embedding in custom containers
+- Three panel modes: **DATE** (absolute dual-month calendar), **TIME** (time-of-day picker), **FILTER** (recurring schedule)
+- Relative picker addon supports `PAST`, `FUTURE`, and `SINCE` modes
+- Requires a `react-intl` `IntlProvider` ancestor (translations loaded automatically; pass `texts` for overrides)
+- **Timezone support:** When `DSProvider` / `IntlProvider` has a `timeZone` configured, the picker automatically converts and displays values in that timezone — no extra props needed
+- `utils.toIsoString` is re-exported from `@synerise/ds-core` — same name and signature, corrected offset arithmetic for zones that are not a whole number of hours ahead of UTC
+
+## Default
+
+The standard configuration with relative picker, time selection, and filter enabled.
+
+<Canvas of={DateRangePickerStories.Default} sourceState="shown" />
+
+## Without popover
+
+Use `RawDateRangePicker` to render the picker panel directly without the popover wrapper. Useful when embedding in a custom layout.
+
+<Canvas of={DateRangePickerStories.WithoutPopover} sourceState="shown" />
+
+## With default value
+
+Pre-populate the picker with an absolute date range.
+
+<Canvas of={DateRangePickerStories.WithDefaultValue} sourceState="shown" />
+
+## Custom trigger
+
+Replace the default `RangePickerInput` trigger with a custom element using the `popoverTrigger` prop.
+
+<Canvas of={DateRangePickerStories.CustomTrigger} sourceState="shown" />
+
+## Date filter options
+
+Enable the recurring schedule filter section with configurable value selection modes (`Hour`, `Range`).
+
+<Canvas of={DateRangePickerStories.DateFilterOptions} sourceState="shown" />
+
+---
+
+## API reference
+
+### `DateRangePicker`
+
+<ArgTypes of={DateRangePickerStories} />
+
+### `RawDateRangePicker`
+
+Same API as `DateRangePicker` but renders the picker panel directly without the popover wrapper. Use when embedding the panel in a custom container.
+
+---
+
+## Timezone support
+
+When a `timeZone` is configured on the `react-intl` provider (via `DSProvider`), the picker automatically converts ISO string values with timezone offsets to the provider's timezone for display, and emits values with the correct timezone offset in `onApply`. This is transparent — no extra props are needed on the component itself.
+
+## Notes
+
+- `disabled` and `readOnly` both suppress the popover entirely — only the trigger element renders.
+- `valueTransformer` is applied before calling `onApply` — the default transformer strips `ALL_TIME`-specific props.
+- `forceAbsolute` converts relative values to absolute bounds before emitting — useful when downstream systems do not understand relative types.
+- The `SINCE` mode is a variant of relative dating anchored to a specific timestamp rather than "now".

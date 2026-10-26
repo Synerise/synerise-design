@@ -8,6 +8,7 @@ import React, {
 } from 'react';
 import { useIntl } from 'react-intl';
 
+import { getTimeZone } from '@synerise/ds-core';
 import { getPlacement, Popover, PopoverContent } from '@synerise/ds-popover';
 
 import {
@@ -42,8 +43,12 @@ const DateRangePicker = forwardRef<HTMLDivElement, DateRangePickerProps>(
       readOnly = false,
       disabled,
       getPopupContainer,
+      timeZone: timeZoneProp,
     } = props;
     const intl = useIntl();
+    // Resolved the same way as in `RawDateRangePicker`, and `undefined` without the prop, so
+    // the trigger keeps formatting on the browser clock until a consumer opts in.
+    const resolvedTimeZone = getTimeZone(timeZoneProp, intl);
     const selectedRange = value || defaultValue;
     const [popupVisible, setPopupVisible] = useState(false);
     const [selectedDate, setSelectedDate] = useState(selectedRange);
@@ -95,6 +100,7 @@ const DateRangePicker = forwardRef<HTMLDivElement, DateRangePickerProps>(
           valueFormatOptions={valueFormatOptions}
           onChange={onApplyCallback}
           active={inputActive}
+          timeZone={resolvedTimeZone}
           {...rangePickerInputProps}
           readOnly={readOnly}
           disabled={disabled}

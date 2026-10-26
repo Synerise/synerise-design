@@ -1,6 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react-vite';
 import React, { useState } from 'react';
-import { useArgs } from 'storybook/preview-api';
 import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
 
 import Button from '@synerise/ds-button';
@@ -10,18 +9,8 @@ import Factors, {
   FactorValueComponentProps,
   ParameterValueType,
 } from '@synerise/ds-factors';
-import Icon, {
-  CalculatorM,
-  EditM,
-  ParagraphM,
-  SegmentM,
-  VarTypeStringM,
-} from '@synerise/ds-icon';
-import ItemPicker, {
-  BaseItemType,
-  ItemPickerPropsNew,
-} from '@synerise/ds-item-picker';
-import { ListItemProps } from '@synerise/ds-list-item';
+import Icon, { EditM, VarTypeStringM } from '@synerise/ds-icon';
+import ItemPicker, { ItemPickerPropsNew } from '@synerise/ds-item-picker';
 
 import {
   BOOLEAN_CONTROL,
@@ -42,7 +31,7 @@ import {
 const FactorsMeta = {
   title: 'Components/Filter/Factors',
   component: Factors,
-  tags: ['autodocs'],
+
   decorators: [fixedWrapper300],
   parameters: {
     layout: 'centered',
@@ -53,27 +42,39 @@ const FactorsMeta = {
     },
   },
   render: (args) => {
-    const [{ value, selectedFactorType }, updateArgs] = useArgs();
+    const [opened, setOpened] = useState(args.opened);
+    const [value, setValue] = useState(args.value);
+    const [selectedFactorType, setSelectedFactorType] = useState(
+      args.selectedFactorType,
+    );
+
     const handleSelectFactorType = (factorType) => {
-      updateArgs({
-        value: '',
-        selectedFactorType: factorType,
-      });
+      setSelectedFactorType(factorType);
       args.setSelectedFactorType?.(factorType);
     };
     const handleChangeValue = (newValue) => {
-      console.log('factor value changed', newValue);
-      updateArgs({ value: newValue });
+      setValue(newValue);
       args.onChangeValue?.(newValue);
+    };
+    const handleActivate = () => {
+      setOpened(true);
+      args.onActivate?.();
+    };
+    const handleDeactivate = () => {
+      setOpened(false);
+      args.onDeactivate?.();
     };
     return (
       <div data-popup-container>
         <Factors
           {...args}
+          opened={opened}
           value={value}
           onChangeValue={handleChangeValue}
           setSelectedFactorType={handleSelectFactorType}
           selectedFactorType={selectedFactorType}
+          onActivate={handleActivate}
+          onDeactivate={handleDeactivate}
         />
       </div>
     );
@@ -96,6 +97,11 @@ const FactorsMeta = {
     error: BOOLEAN_CONTROL,
     withoutTypeSelector: BOOLEAN_CONTROL,
     selectedFactorType: controlFromOptionsArray('select', ALL_FACTOR_TYPES),
+    timeZone: {
+      ...BOOLEAN_CONTROL,
+      description:
+        'Passed to the Date factor input. Enables timezone-aware date picking. `true` uses the provider timezone; a string uses a specific IANA timezone.',
+    },
   },
   args: {
     onActivate: fn(),
@@ -121,7 +127,20 @@ export default FactorsMeta;
 
 type Story = StoryObj<FactorsProps>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<Factors
+  selectedFactorType="text"
+  value=""
+  onChangeValue={handleChange}
+  defaultFactorType="text"
+/>`,
+      },
+    },
+  },
+};
 
 export const ParameterTypeRenderEmptyGroups: Story = {
   args: {
@@ -134,6 +153,24 @@ export const ParameterTypeRenderEmptyGroups: Story = {
       groups: FACTORS_GROUPS,
       items: FACTORS_ITEMS,
       renderEmptyGroups: true,
+    },
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<Factors
+  selectedFactorType="parameter"
+  value={selectedParameter}
+  onChangeValue={handleChange}
+  parameters={{
+    buttonLabel: 'Parameter',
+    buttonIcon: <VarTypeStringM />,
+    groups: groups,
+    items: items,
+    renderEmptyGroups: true,
+  }}
+/>`,
+      },
     },
   },
 };
@@ -150,6 +187,23 @@ export const ParameterType: Story = {
       items: FACTORS_ITEMS,
     },
   },
+  parameters: {
+    docs: {
+      source: {
+        code: `<Factors
+  selectedFactorType="parameter"
+  value={selectedParameter}
+  onChangeValue={handleChange}
+  parameters={{
+    buttonLabel: 'Parameter',
+    buttonIcon: <VarTypeStringM />,
+    groups: groups,
+    items: items,
+  }}
+/>`,
+      },
+    },
+  },
 };
 
 export const RelativeDate: Story = {
@@ -162,6 +216,20 @@ export const RelativeDate: Story = {
     },
     relativeDateProps: {
       availableUnits: ['HOURS', 'DAYS', 'WEEKS', 'MONTHS'],
+    },
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<Factors
+  selectedFactorType="relativeDate"
+  value={{ temporalUnit: 'HOURS', temporalModifier: -10 }}
+  onChangeValue={handleChange}
+  relativeDateProps={{
+    availableUnits: ['HOURS', 'DAYS', 'WEEKS', 'MONTHS'],
+  }}
+/>`,
+      },
     },
   },
 };
@@ -274,6 +342,20 @@ export const CustomisedParameterType: Story = {
       items: FACTORS_ITEMS,
     },
   },
+  parameters: {
+    docs: {
+      source: {
+        code: `<Factors
+  selectedFactorType="parameter"
+  value={selectedParameter}
+  onChangeValue={handleChange}
+  customFactorValueComponents={{
+    parameter: { component: CustomParameterInput },
+  }}
+/>`,
+      },
+    },
+  },
 };
 
 export const ParameterTypeSearch: Story = {
@@ -288,6 +370,23 @@ export const ParameterTypeSearch: Story = {
       items: [...FACTORS_ITEMS, ...FACTORS_ITEMS_ADDITONAL_DATA],
     },
   },
+  parameters: {
+    docs: {
+      source: {
+        code: `<Factors
+  selectedFactorType="parameter"
+  value={selectedParameter}
+  onChangeValue={handleChange}
+  parameters={{
+    buttonLabel: 'Parameter',
+    buttonIcon: <VarTypeStringM />,
+    groups: groups,
+    items: items,
+  }}
+/>`,
+      },
+    },
+  },
 };
 
 export const ArrayString: Story = {
@@ -296,6 +395,17 @@ export const ArrayString: Story = {
     selectedFactorType: 'array',
     value: ['item A', 'item B'],
     opened: true,
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<Factors
+  selectedFactorType="array"
+  value={['item A', 'item B']}
+  onChangeValue={handleChange}
+/>`,
+      },
+    },
   },
 };
 
@@ -308,6 +418,18 @@ export const ArrayNumeric: Story = {
     arrayProps: {
       itemType: 'number',
       limit: 20,
+    },
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<Factors
+  selectedFactorType="array"
+  value={[123, 345, 789]}
+  onChangeValue={handleChange}
+  arrayProps={{ itemType: 'number', limit: 20 }}
+/>`,
+      },
     },
   },
 };

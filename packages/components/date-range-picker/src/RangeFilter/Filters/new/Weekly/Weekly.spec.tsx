@@ -2,7 +2,6 @@ import React from 'react';
 
 import { renderWithProvider } from '@synerise/ds-core/testing';
 import { fireEvent, screen, within } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 
 import Weekly from './Weekly';
 import { WEEKLY_SCHEDULE_TEST_DATA, ERROR_MESSAGE } from '../filters.spec.constants';

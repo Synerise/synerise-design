@@ -12,6 +12,12 @@ import type { Texts } from '../DateRangePicker.types';
 import type { DateFilter, DateRange } from '../date.types';
 
 export type RangePickerInputProps = {
+  /**
+   * The zone the `timeZone` prop resolved to, or `undefined` when it was not set. Read from a
+   * prop rather than `intl`, so a consumer that has not opted in keeps rendering the way it
+   * does today.
+   */
+  timeZone?: string;
   size?: 'large' | 'default' | 'small';
   valueFormatOptions?: DateToFormatOptions;
   showTime?: boolean;

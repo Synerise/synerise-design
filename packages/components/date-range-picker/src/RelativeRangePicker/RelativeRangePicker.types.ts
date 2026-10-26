@@ -19,6 +19,8 @@ export type RelativeRangePickerProps = {
   past?: boolean;
   since?: boolean;
   intl: IntlShape;
+  /** Resolved `timeZone` prop, or `undefined` when it was not set. See `dateUtils/getNow`. */
+  timeZone?: string;
   texts: Texts;
   relativeModes?: RelativeMode[];
   rangeUnits: DateRangePickerProps['rangeUnits'];

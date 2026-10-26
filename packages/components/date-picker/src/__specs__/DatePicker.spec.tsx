@@ -28,7 +28,8 @@ describe('RawDatePicker', () => {
     );
     expect(element).toBeTruthy();
   });
-  it('should validate all days visible after render', async () => {
+
+  it('should validate all days visible after render', () => {
     const validator = vi.fn();
     renderWithProvider(
       <RawDatePicker
@@ -380,7 +381,7 @@ describe('RawDatePicker', () => {
   it('Should render quick picks', async () => {
     const QUICK_PICK = {
       label: 'QUICK_PICK_1',
-      value: new Date(2010,0,10)
+      value: new Date(2010, 0, 10)
     }
     const onValueChange = vi.fn()
     renderWithProvider(

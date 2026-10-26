@@ -1,12 +1,10 @@
 import React from 'react';
 
 import { renderWithProvider } from '@synerise/ds-core/testing';
-import { fireEvent, prettyDOM, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { screen } from '@testing-library/react';
 
 import Daily from './Daily';
-import { DAILY_FILTER_VALUE, DAILY_SCHEDULE_TEST_DATA, ERROR_MESSAGE } from '../filters.spec.constants';
-import { DEFAULT_RANGE_END, DEFAULT_RANGE_START } from '../constants';
+import {  DAILY_SCHEDULE_TEST_DATA, ERROR_MESSAGE } from '../filters.spec.constants';
 
 
 afterEach(() => {

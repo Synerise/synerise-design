@@ -128,6 +128,7 @@ const Factors = ({
   arrayProps,
   readOnly,
   factorValueExtraProps,
+  timeZone,
   uncontrolledComponent = false,
 }: FactorsProps) => {
   const allTexts = useTexts(texts);
@@ -209,6 +210,7 @@ const Factors = ({
         error={error}
         allowClear={allowClear}
         readOnly={readOnly}
+        timeZone={timeZone}
         factorValueExtraProps={factorValueExtraProps}
         uncontrolledComponent={uncontrolledComponent}
       />

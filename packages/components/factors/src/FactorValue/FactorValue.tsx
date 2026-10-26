@@ -27,6 +27,7 @@ const FactorValue = ({
   inputProps,
   allowClear,
   readOnly = false,
+  timeZone,
   relativeDateProps,
   arrayProps,
   factorValueExtraProps,
@@ -66,6 +67,7 @@ const FactorValue = ({
         error={error}
         allowClear={allowClear}
         readOnly={readOnly}
+        timeZone={timeZone}
         inputProps={inputProps}
         fluidMinWidth={fluidMinWidth}
         factorValueExtraProps={factorValueExtraProps}
@@ -98,6 +100,7 @@ const FactorValue = ({
     error,
     allowClear,
     readOnly,
+    timeZone,
     relativeDateProps,
     factorValueExtraProps,
     uncontrolledComponent,

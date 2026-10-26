@@ -20,7 +20,6 @@ type Story = StoryObj<TimePickerProps>;
 export default {
   component: TimePicker,
   title: 'Components/Pickers/TimePicker',
-  tags: ['autodocs'],
   parameters: {
     layout: 'fullscreen',
   },
@@ -68,21 +67,104 @@ export default {
     valueFormatOptions: { control: false }, // DateToFormatOptions;
 
     errorText: REACT_NODE_AS_STRING,
+    timeZone: {
+      description:
+        'Enables timezone-aware mode. `true` uses the provider timezone; a string (e.g. `"Asia/Tokyo"`) uses a specific IANA timezone. Only available when `ValueType = string`.',
+      control: { type: 'text' },
+    },
   },
   args: {},
 } as Meta<TimePickerProps>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<TimePicker onChange={handleChange} />`,
+      },
+    },
+  },
+};
+
+export const WithProviderTimezone: StoryObj<TimePickerProps<string>> = {
+  argTypes: {
+    timeZone: BOOLEAN_CONTROL,
+  },
+  args: {
+    timeZone: true,
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<TimePicker onChange={handleChange} timeZone />`,
+      },
+    },
+  },
+};
+
+export const WithProviderTimezonePopulated: StoryObj<TimePickerProps<string>> =
+  {
+    argTypes: {
+      value: STRING_CONTROL,
+      timeZone: BOOLEAN_CONTROL,
+    },
+    args: {
+      timeZone: true,
+      value: '2024-02-02T14:20:00Z',
+    },
+    parameters: {
+      docs: {
+        source: {
+          code: `<TimePicker
+  value="2024-02-02T14:20:00Z"
+  onChange={handleChange}
+  timeZone
+/>`,
+        },
+      },
+    },
+  };
+
+export const WithSpecificTimezone: StoryObj<TimePickerProps<string>> = {
+  argTypes: {
+    value: STRING_CONTROL,
+    timeZone: STRING_CONTROL,
+  },
+  args: {
+    timeZone: 'Asia/Tokyo',
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<TimePicker onChange={handleChange} timeZone="Asia/Tokyo" />`,
+      },
+    },
+  },
+};
 
 export const Raw: Story = {
   args: {
     raw: true,
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<TimePicker onChange={handleChange} raw />`,
+      },
+    },
   },
 };
 
 export const OpenAlways: Story = {
   args: {
     alwaysOpen: true,
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<TimePicker onChange={handleChange} alwaysOpen />`,
+      },
+    },
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement.parentElement!);
@@ -92,6 +174,13 @@ export const OpenAlways: Story = {
 export const OpenByDefault: Story = {
   args: {
     defaultOpen: true,
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<TimePicker onChange={handleChange} defaultOpen />`,
+      },
+    },
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement.parentElement!);
