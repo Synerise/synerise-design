@@ -79,17 +79,17 @@ export const ModalContainer = styled.div<{
       ? css`
           && {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            top: 24px;
+            left: 24px;
+            right: 24px;
+            bottom: 24px;
+            width: auto;
             margin: 0;
             max-width: none;
             padding: 0;
 
             display: flex;
             flex-direction: column;
-            height: 100%;
 
             ${ModalBody} {
               flex: 1 1 100%;

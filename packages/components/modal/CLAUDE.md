@@ -42,7 +42,7 @@ src/
 | `open` | `boolean` | `false` | Whether the modal is visible |
 | `destroyOnClose` | `boolean` | `false` | When true, unmounts children on close. When false, keeps mounted but hidden |
 | `title` | `ReactNode` | — | Modal header title |
-| `size` | `ModalSize` | — | Predefined width: `small` (520px), `medium` (792px), `large` (1044px), `extraLarge` (1280px), `fullSize` (100%), `fullScreen` (100% fixed) |
+| `size` | `ModalSize` | — | Predefined width: `small` (520px), `medium` (792px), `large` (1044px), `extraLarge` (1280px), `fullSize` (100%), `fullScreen` (fixed, 24px gutter on every side) |
 | `bodyBackground` | `'white' \| 'grey'` | `'white'` | Background colour of the modal body |
 | `blank` | `boolean` | — | Strips header/footer chrome; shows only a close button if `onCancel` is provided |
 | `closable` | `boolean` | `true` | Whether the close button is shown (gated in ModalContent before reaching ModalTitle) |
@@ -168,7 +168,7 @@ document.body (portal target)
 - **Close button:** Rendered by `ModalTitle` when `onCancel` is provided and `closable !== false`. `closable` is evaluated in `ModalContent` which gates `onCancel` before passing to `ModalTitle`.
 - **Title render condition:** Header renders when at least one of `title`, `description`, `headerTabProps` is truthy. `headerBottomBar` renders independently.
 - **Footer render logic:** `footer={null}` suppresses entirely. Explicit `footer` value overrides auto-generated `ModalFooter`. Omitted `footer` renders the default.
-- **`fullScreen`** positions the modal `fixed` covering the viewport; body scrolls via `overflow: scroll`.
+- **`fullScreen`** positions the modal `fixed`, inset 24px from every viewport edge so the mask shows around it; body scrolls via `overflow: scroll`.
 - **`maxViewportHeight`** anchors the modal to the bottom of the viewport (sheet-style), not the centre.
 - **Async handlers:** Both `onOk` and `onCancel` can return `Promise`. `onCancel` awaits the promise then calls `closeModal()`. `onOk` resolves then calls `closeModal()` only if the handler was detected as promise-returning via `'then' in onOk`.
 - **Nested-modal stacking:** `ModalContent` resolves its z-index through `useResolvedOverlayZIndex` from `@synerise/ds-core` and re-publishes the result to its whole subtree via `OverlayZIndexProvider`, so a modal opened from inside another modal renders above it without either side coordinating. This cannot be left to DOM order: every modal portals to `document.body` and React commits the **innermost** portal first, so a nested modal ends up *before* its parent in the document. The provider wraps `ModalRoot` rather than just `children`, so a modal passed through `prefix` / `footer` / `headerActions` stacks too. An explicit `zIndex` always wins and is not clamped; derived values are clamped just below `zindex-dropdown` so a modal can never cover a dropdown, select, popconfirm or tooltip opened inside it. `showModal()` renders at `DSProvider` level, outside any modal's React subtree, so it never derives — pass `zIndex` there if it must stack. See "Overlay z-index" in `@synerise/ds-core`'s CLAUDE.md.

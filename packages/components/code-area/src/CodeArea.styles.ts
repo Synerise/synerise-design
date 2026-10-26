@@ -68,14 +68,30 @@ export const EditorWrapper = styled.div<{
 `;
 
 export const FullscreenHeaderTitle = styled(Title)`
-  display: flex;
-  gap: 16px;
-  align-items: center;
   margin-bottom: 0;
 `;
 
 export const FullscreenHeader = styled(FlexRow)`
   padding: 16px 24px;
+`;
+
+export const ContentBelow = styled(FlexRow)<{ isEmpty?: boolean }>`
+  ${(props) => !props.isEmpty && `margin-top: 8px;`}
+  align-items: flex-start;
+`;
+
+export const FullscreenMask = styled.div<{ zIndex?: number | string }>`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: ${(props) =>
+    props.zIndex !== undefined
+      ? props.zIndex
+      : props.theme.variables['zindex-modal']};
+  background: ${(props) => props.theme.palette['grey-800']};
+  opacity: 0.2;
 `;
 
 export const CodeAreaWrapper = styled.div<{
@@ -89,21 +105,26 @@ export const CodeAreaWrapper = styled.div<{
     if (props.isFullscreen) {
       return css`
         position: fixed;
-        width: 100vw;
-        height: 100vh;
+        top: 24px;
+        left: 24px;
+        right: 24px;
+        bottom: 24px;
         z-index: ${
           props.zIndex !== undefined
             ? props.zIndex
             : props.theme.variables['zindex-modal']
         };
-        left: 0;
-        top: 0;
         background: ${props.theme.palette.white};
+        border-radius: 3px;
+        box-shadow: ${props.theme.variables['box-shadow-2']};
         ${EditorInnerWrapper} {
-          height: calc(100vh - ${props.requiredSpace}px);
+          height: calc(100vh - 48px - ${props.requiredSpace}px);
         }
-        ${CodeAreaContent} {
-          margin: 0 24px;
+        ${ContentBelow} {
+          padding: 0 24px;
+        }
+        ${ContentBelow}:not(:empty) {
+          padding-bottom: 16px;
         }
       `;
     }
@@ -148,10 +169,6 @@ export const AdditionalDescription = styled.div`
   margin-bottom: 8px;
 `;
 
-export const ContentBelow = styled(FlexRow)<{ isEmpty?: boolean }>`
-  ${(props) => !props.isEmpty && `margin-top: 8px;`}
-  align-items: flex-start;
-`;
 export const ContentAbove = styled(FlexRow)`
   margin-bottom: 8px;
   flex: 0 0 auto;

@@ -65,7 +65,7 @@ const syntaxOptions = [
 | texts                       | customise displayed texts                                      | `CodeAreaTexts`                                         | -       |
 | getPopupContainer           | customise where fullscreen layer is rendered into              | getPopupContainer (@synerise/ds-utils)                  | -       |
 | placeholder                 | placeholder content                                            | `ReactNode`                                             | -       |
-| noBorder                    | remove border from wrapper                                     | `boolean`                                               | -       |
+| noBorder                    | remove border from wrapper (always on in fullscreen)           | `boolean`                                               | -       |
 | height                      | height of the editor wrapper                                   | `string \| number`                                      | `295px` |
 | zIndex                      | z-index of the fullscreen overlay                              | `string \| number`                                      | `zindex-modal` token |
 
@@ -76,7 +76,7 @@ Customisable user-facing labels
 | Property        | Description                                         | Type        | Default |
 | --------------- | --------------------------------------------------- | ----------- | ------- |
 | fullscreen      | fullscreen button label                             | `ReactNode` | -       |
-| closeFullscreen | close fullscreen button label                       | `ReactNode` | -       |
+| closeFullscreen | `aria-label` of the icon-only close fullscreen button (strings only; other nodes fall back to the default) | `ReactNode` | -       |
 | fullscreenTitle | used in fullscreen mode if no `label` prop provided | `ReactNode` | -       |
 
 ### CodeAreaSyntaxOption

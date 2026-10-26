@@ -33,6 +33,18 @@ describe('Modal', () => {
     expect(modalDialog).not.toBeInTheDocument();
   });
 
+  it('should inset a fullScreen modal 24px from every viewport edge', () => {
+    renderWithProvider(<Modal title={titleMock} size="fullScreen" open />);
+
+    expect(screen.getByRole('dialog')).toHaveStyle({
+      position: 'fixed',
+      top: '24px',
+      left: '24px',
+      right: '24px',
+      bottom: '24px',
+    });
+  });
+
   it('should render title, description, and blank correctly', () => {
     renderWithProvider(
       <Modal title={titleMock} description={descriptionMock} open />,

@@ -31,6 +31,20 @@ describe('Wizard component', () => {
     expect(screen.getByText(TITLE)).toBeTruthy();
   });
 
+  it('should inset the wizard 24px from every viewport edge', () => {
+    const { container } = renderWithProvider(
+      <Wizard title={TITLE} visible={true} onClose={vi.fn()} />,
+    );
+
+    expect(container.querySelector('.ds-wizard')).toHaveStyle({
+      position: 'fixed',
+      top: '24px',
+      left: '24px',
+      right: '24px',
+      bottom: '24px',
+    });
+  });
+
   it('should render footer', () => {
     const handleClose = vi.fn();
     renderWithProvider(
@@ -43,6 +57,19 @@ describe('Wizard component', () => {
     );
 
     expect(screen.getByText(FOOTER)).toBeTruthy();
+  });
+
+  it('should render the footer outside the scrolling layout', () => {
+    renderWithProvider(
+      <Wizard
+        title={TITLE}
+        visible={true}
+        onClose={vi.fn()}
+        footerLeft={FOOTER}
+      />,
+    );
+
+    expect(screen.getByText(FOOTER).closest('.ds-layout')).toBeNull();
   });
 
   it('should render header action', () => {

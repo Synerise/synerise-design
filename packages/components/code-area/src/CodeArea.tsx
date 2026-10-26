@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom';
 
 import { getPopupContainer as defaultGetPopupContainer } from '@synerise/ds-utils';
 
+import * as S from './CodeArea.styles';
 import type { CodeAreaProps } from './CodeArea.types';
 import { CodeAreaEditor } from './components';
 
@@ -31,11 +32,14 @@ const CodeArea = ({
       {wrapperRef.current &&
         isFullscreen &&
         createPortal(
-          <CodeAreaEditor
-            {...codeAreaProps}
-            toggleFullscreen={toggleFullscreen}
-            isFullscreen={isFullscreen}
-          />,
+          <>
+            <S.FullscreenMask zIndex={codeAreaProps.zIndex} />
+            <CodeAreaEditor
+              {...codeAreaProps}
+              toggleFullscreen={toggleFullscreen}
+              isFullscreen={isFullscreen}
+            />
+          </>,
           getPopupContainer(wrapperRef.current),
         )}
     </>
