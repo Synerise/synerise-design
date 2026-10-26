@@ -234,11 +234,11 @@ const Trigger = forwardRef<HTMLDivElement, ItemPickerTriggerProps>(
     );
 
     return informationCardTooltipProps ? (
-      <span>
+      <S.InformationCardTriggerWrapper>
         <InformationCardTooltip ref={ref} {...informationCardTooltipProps}>
           {renderedTrigger}
         </InformationCardTooltip>
-      </span>
+      </S.InformationCardTriggerWrapper>
     ) : (
       renderedTrigger
     );

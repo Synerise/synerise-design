@@ -1,5 +1,6 @@
 import debounce from 'lodash.debounce';
 import React, {
+  type ComponentType,
   forwardRef,
   type Key,
   type KeyboardEvent as ReactKeyboardEvent,
@@ -12,7 +13,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import type { VariableSizeList } from 'react-window';
+import type { ListChildComponentProps, VariableSizeList } from 'react-window';
 import { v4 as uuid } from 'uuid';
 
 import { useTheme } from '@synerise/ds-core';
@@ -53,6 +54,10 @@ import { useItemsInSections, useListHeight } from './hooks';
 import * as S from './ItemPickerList.styles';
 import type { ItemPickerListRef } from './ItemPickerList.types';
 import { findSectionById, isNavKey, isTitle } from './utils';
+
+// Must stay a stable component: an inline renderer remounts every row on each render.
+// The cast restores the `data` type the styled `VariableSizeList` loses.
+const ListRow = ItemPickerListRow as ComponentType<ListChildComponentProps>;
 
 const ItemPickerListInner = <
   ItemType extends BaseItemType,
@@ -139,6 +144,7 @@ const ItemPickerListInner = <
     isLoadingMoreError,
     isLoading: isLoadingItems,
     isLoadedAll,
+    isSinglePage,
     isLoadingError,
     handleScrollEndReach,
     refreshItems,
@@ -202,6 +208,8 @@ const ItemPickerListInner = <
 
   const handleKeyDown = (event: ReactKeyboardEvent) => {
     if (isNavKey(event)) {
+      // Inside a Dropdown its own list navigation would move the focus a second time.
+      event.stopPropagation();
       focusWithArrowKeys(event, classNames.split(' ')[1], () => {
         focusSearchInput();
       });
@@ -248,11 +256,13 @@ const ItemPickerListInner = <
       getEstimatedItemSize,
       measureRow,
       texts: allTexts,
-      infiniteScroll: {
-        isLoading: isLoadingMore,
-        hasMore: !isLoadedAll,
-        hasError: isLoadingMoreError,
-      },
+      infiniteScroll: isSinglePage
+        ? undefined
+        : {
+            isLoading: isLoadingMore,
+            hasMore: !isLoadedAll,
+            hasError: isLoadingMoreError,
+          },
     }),
     [
       mergedItemsList,
@@ -263,6 +273,7 @@ const ItemPickerListInner = <
       allTexts,
       isLoadingMore,
       isLoadedAll,
+      isSinglePage,
       isLoadingMoreError,
     ],
   );
@@ -398,9 +409,7 @@ const ItemPickerListInner = <
                   style={LIST_STYLE}
                   ref={listRef}
                 >
-                  {(props) =>
-                    ItemPickerListRow(props as ItemPickerListRowProps)
-                  }
+                  {ListRow}
                 </S.StyledList>
               </ListContextProvider>
             </S.ScrollContent>

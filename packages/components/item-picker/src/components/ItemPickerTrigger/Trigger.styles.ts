@@ -128,6 +128,12 @@ export const Trigger = styled.div<{ size: ItemPickerSize }>`
   font-weight: ${(props) => (props.size === 'small' ? '400' : '500')};
 `;
 
+export const InformationCardTriggerWrapper = styled.span`
+  display: block;
+  width: 100%;
+  min-width: 0;
+`;
+
 export const TriggerWrapper = styled.div<TriggerWrapperProps>`
   width: 100%;
   display: flex;

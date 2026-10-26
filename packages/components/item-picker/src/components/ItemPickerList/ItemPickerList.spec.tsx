@@ -1,9 +1,10 @@
 import React from 'react';
 
-import { renderWithProvider } from '@synerise/ds-core/testing';
+import { renderWithProvider, sleep } from '@synerise/ds-core/testing';
 import { fireEvent, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
+import type { LoaderProps } from '../ItemPickerNew/ItemPickerNew.types';
 import { ItemPickerList } from './ItemPickerList';
 
 const FLAT_DATA_SOURCE = [...new Array(50)].map((i, k) => ({
@@ -89,6 +90,123 @@ describe('ItemPickerList', () => {
       <ItemPickerList onItemSelect={onItemSelect} items={FLAT_DATA_SOURCE} />,
     );
     expect(screen.getByText('Item 2')).toBeInTheDocument();
+  });
+  it('keeps the same row nodes when the parent re-renders', () => {
+    const onItemSelect = vi.fn();
+    const { rerender } = renderWithProvider(
+      <ItemPickerList
+        onItemSelect={onItemSelect}
+        items={FLAT_DATA_SOURCE}
+        scrollbarProps={{}}
+      />,
+    );
+    const rowBefore = screen.getByText('Item 2');
+
+    rerender(
+      <ItemPickerList
+        onItemSelect={onItemSelect}
+        items={FLAT_DATA_SOURCE}
+        scrollbarProps={{}}
+      />,
+    );
+
+    expect(screen.getByText('Item 2')).toBe(rowBefore);
+  });
+  it('does not show the error state for a load it cancelled itself', async () => {
+    const loadItems = vi.fn(
+      ({ searchQuery, abortController }: LoaderProps) =>
+        new Promise<{ items: typeof FLAT_DATA_SOURCE; total: number }>(
+          (resolve, reject) => {
+            const timeout = setTimeout(() => {
+              const matching = FLAT_DATA_SOURCE.filter((item) =>
+                item.text.includes(searchQuery ?? ''),
+              );
+              resolve({ items: matching, total: matching.length });
+            }, 500);
+            abortController?.signal.addEventListener('abort', () => {
+              clearTimeout(timeout);
+              reject(new DOMException('Aborted', 'AbortError'));
+            });
+          },
+        ),
+    );
+    renderWithProvider(
+      <ItemPickerList
+        texts={{ basicSearchPlaceholder: 'SEARCH' }}
+        onItemSelect={vi.fn()}
+        items={{ loadItems }}
+      />,
+    );
+    await screen.findByText('Item 2', {}, { timeout: 2000 });
+
+    const input = screen.getByPlaceholderText('SEARCH');
+    await userEvent.type(input, 'Item 1');
+    await sleep(400);
+    await userEvent.type(input, '0');
+
+    await screen.findByText('Item 10', {}, { timeout: 2000 });
+    expect(screen.queryByText('Items can`t be loaded')).not.toBeInTheDocument();
+  });
+  it('does not page or close with "All items loaded" when everything fits on the first page', async () => {
+    const loadedItems = FLAT_DATA_SOURCE.slice(0, 2);
+    const loadItems = vi.fn(async ({ page }: LoaderProps) => ({
+      items: page === 0 ? loadedItems : [],
+      total: loadedItems.length,
+    }));
+    renderWithProvider(
+      <ItemPickerList onItemSelect={vi.fn()} items={{ loadItems }} />,
+    );
+    await screen.findByText('Item 2');
+    await sleep(500);
+
+    expect(loadItems).toHaveBeenCalledTimes(1);
+    expect(screen.queryByText('All items loaded')).not.toBeInTheDocument();
+  });
+  it('measures a title against its own height, not the large row that stood at its index', async () => {
+    // jsdom has no layout: a row is as tall as its content (50px for a large row, 32px otherwise)
+    // or its min-height floor, whichever is taller.
+    const offsetHeight = Object.getOwnPropertyDescriptor(
+      HTMLElement.prototype,
+      'offsetHeight',
+    );
+    Object.defineProperty(HTMLElement.prototype, 'offsetHeight', {
+      configurable: true,
+      get(this: HTMLElement) {
+        const content = this.querySelector('[data-row-size="large"]') ? 50 : 32;
+        return Math.max(parseFloat(this.style.minHeight) || 0, content);
+      },
+    });
+    try {
+      const largeItems = FLAT_DATA_SOURCE.slice(0, 6).map((item) => ({
+        ...item,
+        size: 'large' as const,
+        prefixel: <span data-row-size="large" />,
+      }));
+      renderWithProvider(
+        <ItemPickerList
+          texts={{ basicSearchPlaceholder: 'SEARCH' }}
+          onItemSelect={vi.fn()}
+          recents={FLAT_DATA_SOURCE.slice(10, 13)}
+          items={largeItems}
+        />,
+      );
+      const titleFloor = () =>
+        screen.getByText('Items').closest<HTMLElement>('[style*="min-height"]')
+          ?.style.minHeight;
+      expect(titleFloor()).toBe('32px');
+
+      const search = screen.getByPlaceholderText('SEARCH');
+      await userEvent.type(search, 'Item');
+      await screen.findByText('Results');
+      await userEvent.clear(search);
+      await screen.findByText('Items');
+
+      expect(titleFloor()).toBe('32px');
+    } finally {
+      if (offsetHeight) {
+        Object.defineProperty(HTMLElement.prototype, 'offsetHeight', offsetHeight);
+      }
+    }
   });
   it('should render recents', async () => {
     const onItemSelect = vi.fn();
