@@ -51,10 +51,12 @@
     "@synerise/ds-table-new": "workspace:^",
     "@synerise/ds-tooltip": "workspace:^"
   },
+  "devDependencies": {
+    "vitest": "4"
+  },
   "peerDependencies": {
     "@synerise/ds-core": "*",
     "react": ">=16.9.0 <= 18.3.1",
-    "styled-components": "^5.3.3",
-    "vitest": "4"
+    "styled-components": "^5.3.3"
   }
 }

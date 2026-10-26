@@ -48,12 +48,14 @@
     "@synerise/ds-result": "workspace:^",
     "@synerise/ds-scrollbar": "workspace:^",
     "@synerise/ds-utils": "workspace:^",
-    "uuid": "^8.3.2"
+    "uuid": "^11.1.1"
+  },
+  "devDependencies": {
+    "vitest": "4"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
     "react": ">=16.9.0 <= 18.3.1",
-    "styled-components": "^5.3.3",
-    "vitest": "4"
+    "styled-components": "^5.3.3"
   }
 }

@@ -55,7 +55,7 @@
     "date-fns": "^4.1.0",
     "lodash.range": "^3.2.0",
     "react-day-picker": "^10.0.1",
-    "uuid": "^8.3.2"
+    "uuid": "^11.1.1"
   },
   "devDependencies": {
     "@types/lodash.range": "^3.2.9",
