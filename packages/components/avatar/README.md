@@ -62,10 +62,10 @@ We divide avatars into three types. Every type has its own use case. If a custom
 
 ```
 <div style={{ 'display': 'flex', 'justifyContent': 'space-between' }}>
-    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@test.pl'}} shape="square" size="medium" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
-    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@test.pl'}} shape="cirlce" size="medium" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
-    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@test.pl'}} src="https://www.w3schools.com/howto/img_avatar.png" size="large" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
-    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@test.pl'}} src="https://www.w3schools.com/howto/img_avatar.png" shape="square" size="extraLarge" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
+    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@example.com'}} shape="square" size="medium" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
+    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@example.com'}} shape="cirlce" size="medium" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
+    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@example.com'}} src="https://www.w3schools.com/howto/img_avatar.png" size="large" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
+    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@example.com'}} src="https://www.w3schools.com/howto/img_avatar.png" shape="square" size="extraLarge" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
 </div>
 ```
 
@@ -84,10 +84,10 @@ We can present avatars as a single entity or in a group.
 
 ```
 <div style={{ 'display': 'flex', 'justifyContent': 'space-between' }}>
-    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@test.pl'}} size="small" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
-    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@test.pl'}} size="medium" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
-    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@test.pl'}} size="large" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
-    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@test.pl'}} size="extraLarge" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
+    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@example.com'}} size="small" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
+    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@example.com'}} size="medium" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
+    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@example.com'}} size="large" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
+    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@example.com'}} size="extraLarge" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
 </div>
 ```
 
@@ -96,10 +96,10 @@ We can present avatars as a single entity or in a group.
 ```
 import Icon, { FileM } from "@synerise/ds-icon";
 <div style={{ 'display': 'flex', 'justifyContent': 'space-between' }}>
-    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@test.pl'}} shape="square" size="medium" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
-    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@test.pl'}} shape="cirlce" size="medium" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
-    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@test.pl'}} iconComponent={<Icon component={<FileM />} color={"white"} />} size="large" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
-    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@test.pl'}} src="https://www.w3schools.com/howto/img_avatar.png" shape="square" size="extraLarge" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
+    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@example.com'}} shape="square" size="medium" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
+    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@example.com'}} shape="cirlce" size="medium" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
+    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@example.com'}} iconComponent={<Icon component={<FileM />} color={"white"} />} size="large" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
+    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@example.com'}} src="https://www.w3schools.com/howto/img_avatar.png" shape="square" size="extraLarge" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
 </div>
 ```
 

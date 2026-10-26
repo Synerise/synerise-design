@@ -6,7 +6,7 @@ import { type DataSource } from '../AvatarGroup.types';
 const groupAvatars: DataSource[] = [
   {
     avatarProps: {
-      tooltip: { name: 'Kamil Kowalski', email: 'k.kowalski@gmail.com' },
+      tooltip: { name: 'Kamil Kowalski', email: 'k.kowalski@example.com' },
       backgroundColor: 'blue',
       backgroundColorHue: '600',
     },
@@ -14,12 +14,12 @@ const groupAvatars: DataSource[] = [
     status: 'active',
     firstname: 'Kamil',
     lastname: 'Kowalski',
-    email: 'k.kowalski@gmail.com',
+    email: 'k.kowalski@example.com',
     id: 0
   },
   {
     avatarProps: {
-      tooltip: { name: 'Adam Staszewski', email: 'adam.staszewski@test.pl' },
+      tooltip: { name: 'Adam Staszewski', email: 'adam.staszewski@example.com' },
       backgroundColor: 'green',
       backgroundColorHue: '600',
     },
@@ -27,12 +27,12 @@ const groupAvatars: DataSource[] = [
     status: 'inactive',
     firstname: 'Adam',
     lastname: 'Staszewski',
-    email: 'adam.staszewski@test.pl',
+    email: 'adam.staszewski@example.com',
     id: 1
   },
   {
     avatarProps: {
-      tooltip: { name: 'Jan Nowak', email: 'jan@nowak.com.pl' },
+      tooltip: { name: 'Jan Nowak', email: 'jan.nowak@example.com' },
       backgroundColor: 'orange',
       backgroundColorHue: '600',
     },
@@ -40,12 +40,12 @@ const groupAvatars: DataSource[] = [
     status: 'blocked',
     firstname: 'Jan',
     lastname: 'Nowak',
-    email: 'jan@nowak.com.pl',
+    email: 'jan.nowak@example.com',
     id: 2
   },
   {
     avatarProps: {
-      tooltip: { name: 'Jan Nowak', email: 'jan@nowak.com.pl' },
+      tooltip: { name: 'Jan Nowak', email: 'jan.nowak@example.com' },
       backgroundColor: 'red',
       backgroundColorHue: '600',
     },
@@ -53,12 +53,12 @@ const groupAvatars: DataSource[] = [
     status: 'active',
     firstname: 'Jan',
     lastname: 'Nowak',
-    email: 'jan@nowak.com.pl',
+    email: 'jan.nowak@example.com',
     id: 3
   },
   {
     avatarProps: {
-      tooltip: { name: 'Jan Nowak', email: 'jan@nowak.com.pl' },
+      tooltip: { name: 'Jan Nowak', email: 'jan.nowak@example.com' },
       backgroundColor: 'violet',
       backgroundColorHue: '600',
     },
@@ -66,7 +66,7 @@ const groupAvatars: DataSource[] = [
     status: 'inactive',
     firstname: 'Jan',
     lastname: 'Nowak',
-    email: 'jan@nowak.com.pl',
+    email: 'jan.nowak@example.com',
     id: 4
   },
   {
@@ -84,7 +84,7 @@ const groupAvatars: DataSource[] = [
   },
   {
     avatarProps: {
-      tooltip: { name: 'Kamil Kowalski', email: 'k.kowalski@gmail.com' },
+      tooltip: { name: 'Kamil Kowalski', email: 'k.kowalski@example.com' },
       backgroundColor: 'blue',
       backgroundColorHue: '600',
     },
@@ -92,12 +92,12 @@ const groupAvatars: DataSource[] = [
     status: 'active',
     firstname: 'Kamil',
     lastname: 'Kowalski',
-    email: 'k.kowalski@gmail.com',
+    email: 'k.kowalski@example.com',
     id: 6
   },
   {
     avatarProps: {
-      tooltip: { name: 'Adam Staszewski', email: 'adam.staszewski@test.pl' },
+      tooltip: { name: 'Adam Staszewski', email: 'adam.staszewski@example.com' },
       backgroundColor: 'green',
       backgroundColorHue: '600',
     },
@@ -105,12 +105,12 @@ const groupAvatars: DataSource[] = [
     status: 'inactive',
     firstname: 'Adam',
     lastname: 'Staszewski',
-    email: 'adam.staszewski@test.pl',
+    email: 'adam.staszewski@example.com',
     id: 7
   },
   {
     avatarProps: {
-      tooltip: { name: 'Jan Nowak', email: 'jan@nowak.com.pl' },
+      tooltip: { name: 'Jan Nowak', email: 'jan.nowak@example.com' },
       backgroundColor: 'orange',
       backgroundColorHue: '600',
     },
@@ -118,12 +118,12 @@ const groupAvatars: DataSource[] = [
     status: 'blocked',
     firstname: 'Jan',
     lastname: 'Nowak',
-    email: 'jan@nowak.com.pl',
+    email: 'jan.nowak@example.com',
     id: 8
   },
   {
     avatarProps: {
-      tooltip: { name: 'Jan Nowak', email: 'jan@nowak.com.pl' },
+      tooltip: { name: 'Jan Nowak', email: 'jan.nowak@example.com' },
       backgroundColor: 'red',
       backgroundColorHue: '600',
     },
@@ -131,12 +131,12 @@ const groupAvatars: DataSource[] = [
     status: 'active',
     firstname: 'Jan',
     lastname: 'Nowak',
-    email: 'jan@nowak.com.pl',
+    email: 'jan.nowak@example.com',
     id: 9
   },
   {
     avatarProps: {
-      tooltip: { name: 'Jan Nowak', email: 'jan@nowak.com.pl' },
+      tooltip: { name: 'Jan Nowak', email: 'jan.nowak@example.com' },
       backgroundColor: 'violet',
       backgroundColorHue: '600',
     },
@@ -144,7 +144,7 @@ const groupAvatars: DataSource[] = [
     status: 'inactive',
     firstname: 'Jan',
     lastname: 'Nowak',
-    email: 'jan@nowak.com.pl',
+    email: 'jan.nowak@example.com',
     id: 10
   },
   {

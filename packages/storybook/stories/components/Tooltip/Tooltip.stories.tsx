@@ -179,7 +179,7 @@ const lastName = 'Nowak';
 export const AvatarWithTooltip: Story = {
   args: {
     title: `${firstName} ${lastName}`,
-    description: 'jan.nowak@gmail.com',
+    description: 'jan.nowak@example.com',
   },
   render: (args) => {
     const user = { firstName, lastName };

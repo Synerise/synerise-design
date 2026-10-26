@@ -8,7 +8,7 @@ for the decision and rationale.
 **Audit date:** 2026-06-08 · scope: `packages/components/*/src` · `ds-table` excluded.
 **Last updated:** 2026-09-03 · ✅ **The initiative is closed — `antd` is gone from the repo.** Every tier is merged to master: Tiers 1, 2, 2.5, Tier 3 (`drawer`, `list`, `select`), `core` (STOR-2341, MR 1 = JS !3901, MR 2 = CSS !3903), Tier 0 and the stale peerDeps (STOR-2342). The final step — deleting `menu`, `alert` and `table` (step 2 of the retirement plan below) — has landed, and with it the root `antd` dependency, the `rc-trigger`/`rc-util` resolutions, the antd/`rc-*`/`@ant-design/*` Rollup externals, the antd `no-restricted-imports` rule (now a flat ban on `antd`) and the antd warning filter in the Vitest setup. No `package.json` in the repo declares `antd`, and no source file imports it. Consumer-facing notes: `docs/migration-v2.md`.
 
-**Playbook:** use the **`deantd-component`** skill (`.claude/skills/deantd-component/`) for the
+**Playbook:** use the **`deantd-component`** skill (a DS team skill from `synerise-claude-mesh`) for the
 per-component process (API audit → DS-native reimplementation → verify → consumer migration → MR).
 
 ## Jira
