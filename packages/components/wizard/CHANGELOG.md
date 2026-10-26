@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-wizard@2.0.10...@synerise/ds-wizard@2.1.0) (2026-10-26)
+
+
+### Bug Fixes
+
+* drop vitest peer dependency and bump vulnerable runtime deps ([2467d36](https://github.com/Synerise/synerise-design/commit/2467d3606aa97141a3a2d80c3ef396e78bee285c))
+
+
+### Features
+
+* 24px gutter around fullscreen modal, code-area and wizard ([3931816](https://github.com/Synerise/synerise-design/commit/3931816398831f9a647b6ea2dbd26cb415af926c))
+
+
+
+
+
 ## [2.0.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-wizard@2.0.9...@synerise/ds-wizard@2.0.10) (2026-10-22)
 
 **Note:** Version bump only for package @synerise/ds-wizard

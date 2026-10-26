@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.5](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@2.1.4...@synerise/ds-button@2.1.5) (2026-10-26)
+
+
+### Bug Fixes
+
+* drop vitest peer dependency and bump vulnerable runtime deps ([2467d36](https://github.com/synerise/synerise-design/commit/2467d3606aa97141a3a2d80c3ef396e78bee285c))
+
+
+
+
+
 ## [2.1.4](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@2.1.3...@synerise/ds-button@2.1.4) (2026-10-22)
 
 **Note:** Version bump only for package @synerise/ds-button

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@2.2.2...@synerise/ds-icon@2.2.3) (2026-10-26)
+
+
+### Bug Fixes
+
+* drop vitest peer dependency and bump vulnerable runtime deps ([2467d36](https://github.com/Synerise/synerise-design/commit/2467d3606aa97141a3a2d80c3ef396e78bee285c))
+
+
+
+
+
 ## [2.2.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@2.2.1...@synerise/ds-icon@2.2.2) (2026-10-20)
 
 **Note:** Version bump only for package @synerise/ds-icon

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-snippet@2.0.9...@synerise/ds-code-snippet@2.0.10) (2026-10-26)
+
+
+### Bug Fixes
+
+* add explicit .js to extensionless bare subpath imports ([b38cba6](https://github.com/Synerise/synerise-design/commit/b38cba6bae5c5aa10276e714bb6fb67c479bbde6))
+
+
+
+
+
 ## [2.0.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-snippet@2.0.8...@synerise/ds-code-snippet@2.0.9) (2026-10-22)
 
 **Note:** Version bump only for package @synerise/ds-code-snippet

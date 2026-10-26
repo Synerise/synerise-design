@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.65.0](https://github.com/Synerise/synerise-design/compare/storybook@1.64.1...storybook@1.65.0) (2026-10-26)
+
+
+### Bug Fixes
+
+* remove per-render random keys and guard against them with a Biome plugin ([fcea7c5](https://github.com/Synerise/synerise-design/commit/fcea7c5d60b80c28cbbd191bfa2792379782a0e8))
+
+
+### Features
+
+* **table-new:** render expandedRowRender content in VirtualTable ([321df8c](https://github.com/Synerise/synerise-design/commit/321df8cd48cb110d538ab02847e52db381596816))
+
+
+
+
+
 ## [1.64.1](https://github.com/Synerise/synerise-design/compare/storybook@1.64.0...storybook@1.64.1) (2026-10-22)
 
 **Note:** Version bump only for package storybook

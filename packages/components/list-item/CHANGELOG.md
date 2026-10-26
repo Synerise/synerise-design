@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-list-item@2.2.2...@synerise/ds-list-item@2.2.3) (2026-10-26)
+
+
+### Bug Fixes
+
+* remove per-render random keys and guard against them with a Biome plugin ([fcea7c5](https://github.com/Synerise/synerise-design/commit/fcea7c5d60b80c28cbbd191bfa2792379782a0e8))
+
+
+
+
+
 ## [2.2.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-list-item@2.2.1...@synerise/ds-list-item@2.2.2) (2026-10-22)
 
 **Note:** Version bump only for package @synerise/ds-list-item

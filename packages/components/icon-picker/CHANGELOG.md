@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon-picker@2.0.10...@synerise/ds-icon-picker@2.0.11) (2026-10-26)
+
+
+### Bug Fixes
+
+* drop vitest peer dependency and bump vulnerable runtime deps ([2467d36](https://github.com/Synerise/synerise-design/commit/2467d3606aa97141a3a2d80c3ef396e78bee285c))
+
+
+
+
+
 ## [2.0.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon-picker@2.0.9...@synerise/ds-icon-picker@2.0.10) (2026-10-22)
 
 **Note:** Version bump only for package @synerise/ds-icon-picker

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-table-new@2.1.6...@synerise/ds-table-new@2.2.0) (2026-10-26)
+
+
+### Features
+
+* **table-new:** render expandedRowRender content in VirtualTable ([321df8c](https://github.com/Synerise/synerise-design/commit/321df8cd48cb110d538ab02847e52db381596816))
+
+
+
+
+
 ## [2.1.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-table-new@2.1.5...@synerise/ds-table-new@2.1.6) (2026-10-22)
 
 

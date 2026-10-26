@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@2.2.1...@synerise/ds-item-picker@2.2.2) (2026-10-26)
+
+
+### Bug Fixes
+
+* drop vitest peer dependency and bump vulnerable runtime deps ([2467d36](https://github.com/Synerise/synerise-design/commit/2467d3606aa97141a3a2d80c3ef396e78bee285c))
+* **item-picker:** fix list bugs found while prototyping the mixed list variant ([8104f7a](https://github.com/Synerise/synerise-design/commit/8104f7a535dd96982971a9c962f41d162a5f5114))
+* remove per-render random keys and guard against them with a Biome plugin ([fcea7c5](https://github.com/Synerise/synerise-design/commit/fcea7c5d60b80c28cbbd191bfa2792379782a0e8))
+
+
+
+
+
 ## [2.2.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@2.2.0...@synerise/ds-item-picker@2.2.1) (2026-10-22)
 
 **Note:** Version bump only for package @synerise/ds-item-picker

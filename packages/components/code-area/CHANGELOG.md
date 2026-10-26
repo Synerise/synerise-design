@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-area@2.0.10...@synerise/ds-code-area@2.1.0) (2026-10-26)
+
+
+### Features
+
+* 24px gutter around fullscreen modal, code-area and wizard ([3931816](https://github.com/Synerise/synerise-design/commit/3931816398831f9a647b6ea2dbd26cb415af926c))
+
+
+
+
+
 ## [2.0.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-area@2.0.9...@synerise/ds-code-area@2.0.10) (2026-10-22)
 
 **Note:** Version bump only for package @synerise/ds-code-area

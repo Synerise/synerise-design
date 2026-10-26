@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@2.1.7...@synerise/ds-date-range-picker@2.1.8) (2026-10-26)
+
+
+### Bug Fixes
+
+* add explicit .js to extensionless bare subpath imports ([b38cba6](https://github.com/Synerise/synerise-design/commit/b38cba6bae5c5aa10276e714bb6fb67c479bbde6))
+* drop vitest peer dependency and bump vulnerable runtime deps ([2467d36](https://github.com/Synerise/synerise-design/commit/2467d3606aa97141a3a2d80c3ef396e78bee285c))
+* remove per-render random keys and guard against them with a Biome plugin ([fcea7c5](https://github.com/Synerise/synerise-design/commit/fcea7c5d60b80c28cbbd191bfa2792379782a0e8))
+
+
+
+
+
 ## [2.1.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@2.1.6...@synerise/ds-date-range-picker@2.1.7) (2026-10-22)
 
 **Note:** Version bump only for package @synerise/ds-date-range-picker
