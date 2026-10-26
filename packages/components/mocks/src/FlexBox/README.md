@@ -10,7 +10,7 @@ vi.mock('@synerise/ds-flex-box', async () => {
 ```
 
 > `flexBoxMockFactory` is async — it uses `vi.importActual` to preserve the original
-> module's side effects (`@rebass/grid` / styled-components initialization).
+> module's styled-components initialization.
 
 ## Jest
 

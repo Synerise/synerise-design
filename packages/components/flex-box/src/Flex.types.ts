@@ -1,6 +1,7 @@
-import type { FlexProps as RebassFlexProps } from '@rebass/grid';
+import type { BoxProps, BoxStyleProps } from './Box.types';
+import type { ResponsiveStyleValue } from './styleProps';
 
-export type FlexProps = RebassFlexProps & {
+export type FlexStyleProps = BoxStyleProps & {
   /**
    * CSS `gap` between flex items.
    *
@@ -11,5 +12,8 @@ export type FlexProps = RebassFlexProps & {
    *
    * Omit to leave the property unset.
    */
-  gap?: number | string;
+  gap?: ResponsiveStyleValue<string | number>;
 };
+
+/** `Flex`'s full prop surface: `Box`'s props plus `gap`. */
+export type FlexProps = BoxProps & Pick<FlexStyleProps, 'gap'>;

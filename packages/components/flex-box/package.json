@@ -41,16 +41,12 @@
     "*.less"
   ],
   "types": "dist/index.d.ts",
-  "dependencies": {
-    "@rebass/grid": "^6.1.0"
-  },
   "peerDependencies": {
     "@synerise/ds-core": "*",
     "react": ">=16.9.0 <= 18.3.1",
     "styled-components": "^5.3.3"
   },
   "devDependencies": {
-    "@types/rebass__grid": "^6.0.14",
     "vitest": "4"
   }
 }
