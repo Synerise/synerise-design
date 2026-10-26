@@ -27,6 +27,7 @@ import type { StickyData, VirtualTableProps } from './Table.types';
 import { getDefaultSkeletonColumns } from './utils/getDefaultSkeletonColumns';
 import { getInfiniteScrollPadding } from './utils/getInfiniteScrollPadding';
 import { getIsRevealed } from './utils/getIsRevealed';
+import { isItemAboveScrollViewport } from './utils/isItemAboveScrollViewport';
 import { processColumns } from './utils/processColumns';
 
 export const VirtualTable = <TData extends object, TValue>({
@@ -177,6 +178,25 @@ export const VirtualTable = <TData extends object, TValue>({
     overscan: 15,
     paddingEnd: getInfiniteScrollPadding(infiniteScroll),
   });
+  // Without this, expanding a visible row near the top of the viewport scrolls it away.
+  rowVirtualizer.shouldAdjustScrollPositionOnItemSizeChange = (
+    item,
+    _delta,
+    instance,
+  ) => {
+    const bodyElement = tableOuterRef.current?.querySelector('.ds-table-body');
+    if (!bodyElement || !instance.scrollElement) {
+      return false;
+    }
+    return isItemAboveScrollViewport({
+      itemStart: item.start,
+      bodyElement,
+      scrollElement: instance.scrollElement,
+      rowOffset: infiniteScroll?.prevPage?.hasMore
+        ? INFINITE_LOADER_ITEM_HEIGHT
+        : 0,
+    });
+  };
 
   // retain scrollPosition after loading prev page
   const prevDataRef = useRef(data);

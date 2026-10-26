@@ -4,6 +4,7 @@ import React, { memo, useCallback } from 'react';
 import Tooltip from '@synerise/ds-tooltip';
 
 import { useTableContext } from '../../../contexts/TableContext';
+import { useExpandedRowMeasure } from '../../../hooks/useExpandedRowMeasure';
 import { INFINITE_LOADER_ITEM_HEIGHT } from '../../../Table.const';
 import type { TableRowVirtualProps } from '../../../Table.types';
 import { isSorted } from '../../../utils/sort';
@@ -22,7 +23,7 @@ const TableRowVirtualInner = <TData extends object>({
   onRowClick,
   getRowProps,
   getRowTooltipProps,
-  isExpanded: _isExpanded,
+  isExpanded,
   isParentExpanded,
   expandable,
 }: TableRowVirtualProps<TData>) => {
@@ -138,6 +139,32 @@ const TableRowVirtualInner = <TData extends object>({
 
   const canExpand =
     !expandable?.rowExpandable || expandable.rowExpandable(row.original);
+
+  const measuresExpandedContent = !!expandable?.expandedRowRender;
+  const expandedContent =
+    expandable?.expandedRowRender && isVisible && isExpanded && canExpand
+      ? expandable.expandedRowRender(
+          row.original,
+          row.index,
+          row.depth,
+          isExpanded,
+        )
+      : null;
+  const { rowRef, contentRef, rowHeight } = useExpandedRowMeasure({
+    index: virtual.index,
+    enabled: measuresExpandedContent,
+    hasExpandedContent: expandedContent !== null,
+    initialRowHeight: cellHeight + 1,
+  });
+
+  let rowHeightStyle: string | undefined = `${virtual.size}px`;
+  if (!isVisible) {
+    rowHeightStyle = '0px';
+  } else if (measuresExpandedContent) {
+    // virtual.size includes the expanded content below the row
+    rowHeightStyle = undefined;
+  }
+
   const togglesOnRowClick = !!expandable?.expandRowByClick && canExpand;
 
   const mergedOnClick =
@@ -171,12 +198,12 @@ const TableRowVirtualInner = <TData extends object>({
           ? `ds-table-row ${restCustomRowProps.className}`
           : 'ds-table-row'
       }
-      ref={rowVirtualizer?.measureElement}
+      ref={measuresExpandedContent ? rowRef : rowVirtualizer?.measureElement}
       style={{
         ...customStyle,
         position: 'absolute',
         top: `${top}px`,
-        height: `${isVisible ? virtual.size : 0}px`,
+        height: rowHeightStyle,
         left: 0,
         right: 0,
       }}
@@ -195,6 +222,24 @@ const TableRowVirtualInner = <TData extends object>({
         <Tooltip {...rowTooltipProps}>{virtualRowContent}</Tooltip>
       ) : (
         virtualRowContent
+      )}
+      {expandedContent !== null && (
+        <S.VirtualExpandedContentRow
+          ref={contentRef}
+          data-key={`${row.id}-expanded`}
+          data-row-expanded-content="true"
+          role="row"
+          style={{
+            position: 'absolute',
+            top: `${top + rowHeight}px`,
+            left: 0,
+            right: 0,
+          }}
+        >
+          <S.VirtualExpandedContentCell colSpan={row.getVisibleCells().length}>
+            {expandedContent}
+          </S.VirtualExpandedContentCell>
+        </S.VirtualExpandedContentRow>
       )}
       {isLast && renderLoaderRow('BOTTOM')}
     </>

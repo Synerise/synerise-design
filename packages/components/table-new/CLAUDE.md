@@ -49,10 +49,12 @@ Configured via the `expandable` prop on `Table` / `VirtualTable`. Mirrors the le
 | --- | --- |
 | `childrenColumnName` | Property on a row containing child rows. Default `'children'`. |
 | `expandedRowKeys` | Controlled set of expanded row keys. Omit to use uncontrolled mode (TanStack manages state internally). |
-| `expandedRowRender(record, index, indent, expanded)` | Renders custom content as an extra `<tr>` directly below an expanded parent row. Cell spans every visible column. **`Table` only** — `VirtualTable` ignores this (variable-height rows not integrated with virtualizer). |
+| `expandedRowRender(record, index, indent, expanded)` | Renders custom content as an extra `<tr>` directly below an expanded parent row. Cell spans every visible column. In `VirtualTable` the parent row and the content row share one virtual item, sized by `useExpandedRowMeasure` (ResizeObserver on both rows → `rowVirtualizer.resizeItem`). |
 | `expandRowByClick` | Clicking anywhere on a row toggles its expansion. Composes with `onRowClick` / `getRowProps` onClick — call `event.preventDefault()` from those handlers to suppress. |
 | `rowExpandable(record)` | Returns `false` to mark a row as non-expandable. Hides the `TreeTable` expander icon and suppresses `expandRowByClick` for that row. |
 | `onExpand(expanded, record)` | Notifies when a row's expansion changes via `expandRowByClick`. Required in controlled mode (`expandedRowKeys` set) so the consumer can update their source of truth. |
+
+`VirtualTable` overrides the virtualizer's `shouldAdjustScrollPositionOnItemSizeChange` with `isItemAboveScrollViewport`: item offsets are relative to the table body, so the default check treated rows under the title bar/header band as above the viewport and scrolled them away when they resized.
 
 `TreeTable` additionally accepts `rowExpandable` as a top-level prop (its expansion API is hoisted — see `TreeTable.types.ts`).
 
@@ -103,6 +105,7 @@ src/
     useDefaultTexts.ts    -- i18n text defaults
     useInfiniteScroll.ts  -- infinite scroll scroll-to-index logic
     useRowKey.ts          -- row key resolution (function or property name)
+    useExpandedRowMeasure.ts -- sizes a virtual item as data row + expandedRowRender content row
     useScrollSync.ts      -- horizontal scroll synchronization
   components/
     BaseTable/            -- shared table shell (header + columns + body + pagination)

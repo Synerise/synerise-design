@@ -68,9 +68,6 @@ export const TableBody = <TData extends object, TValue>({
     >
       {rowVirtualizer && virtualItems.length
         ? // Virtualized: place spacer and absolutely-positioned rows.
-          // Note: `expandedRowRender` is not honored in virtual mode because
-          // variable-height expanded rows are not yet integrated with the
-          // virtualizer's size estimation.
           virtualItems.map((virtual) => {
             const row = allRows[virtual.index];
             return (
