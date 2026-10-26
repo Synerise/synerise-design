@@ -1,12 +1,10 @@
 image: docker.nexus.snrinternal.com/synerise/base-build-images:nodejs24
 
 variables:
-  APP: ds-docs
   NODE_OPTIONS: --max-old-space-size=4096
-  GITOPS: 'true'
-  MODULE: 'documentation'
-  LIBRARY_PIPELINE: 'NO'
-  APP_NAME_OVERRIDE: ds-docs
+  # Requests for every job that does not set its own
+  KUBERNETES_CPU_REQUEST: 500m
+  KUBERNETES_MEMORY_REQUEST: 512Mi
   NPM_REGISTRY: https://nexus.snrinternal.com/repository/npm-release/
   # Every job below runs only on `merge_request_event` or on the default branch, so without this
   # opt-in nothing is tested before merge. `core/gitlab_templates` (included at `ref: master`, so
@@ -68,14 +66,13 @@ stages:
   - build
   - ai-review
   - deploy
-  - k8s-deploy-stg
-  - k8s-deploy-prod
 
 include:
   - template: Code-Quality.gitlab-ci.yml
-  - project: 'Core/gitlab_templates'
+  # workflow:rules (the merge request gate above, auto-cancel) and job defaults (retry, interruptible)
+  - project: 'core/gitlab_templates'
     ref: master
-    file: '/ai_deploy_kapitan.yml'
+    file: '/pipeline/defaults.yml'
   - project: 'core/gitlab_templates'
     ref: master
     file: '/pipeline/ai-review.yml'
@@ -359,75 +356,11 @@ notify_release:
         --text "${DS_VER} and ${COUNT} packages are published and available to install / upgrade from the registry." \
         --collapsible-section "📦 Show published versions (${COUNT})|${SECTION}" \
         --button "Pipeline=${CI_PIPELINE_URL}" \
-        --button "Public Storybook=https://design.synerise.com/storybook-static/"
+        --button "Public Storybook=https://design.synerise.com/"
 
-build_storybook:
-  stage: build
-  needs: ['build_packages']
-  cache:
-    - key:
-        files:
-        - pnpm-lock.yaml
-        prefix: v11
-      paths:
-        - .pnpm-store
-        - .pnpm-cache
-      policy: pull
-  rules:
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-  before_script:
-    - !reference [.install_pnpm]
-  script:
-    - pnpm install --frozen-lockfile --offline
-    - pnpm build-storybook
-    - mv packages/storybook/storybook-static/ packages/docs-site/storybook-static
-  artifacts:
-    paths:
-      - packages/docs-site
-    expire_in: 1h
-    when: on_success
-
-deploy_storybook:
-  image: docker.nexus.snrinternal.com/docker:stable
-  stage: deploy
-  needs: ['build_storybook']
-  rules:
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-  script:
-    - SANITY_BRANCH=$CI_COMMIT_REF_SLUG
-    - echo "Sanitized branch name ${SANITY_BRANCH}"
-    - echo "${SNR_DOCKER_REGISTRY_PASSWORD}" | docker login "${SNR_DOCKER_REGISTRY_HOST}" --username "${SNR_DOCKER_REGISTRY_USERNAME}" --password-stdin
-    - echo "${SNR_DOCKER_REGISTRY_PASSWORD}" | docker login "${SNR_DOCKER_REGISTRY_GLOBAL_HOST}" --username "${SNR_DOCKER_REGISTRY_USERNAME}" --password-stdin
-    - cd packages/docs-site
-    - pwd
-    - docker build -t ds-docs .
-    - echo "Push commit image"
-
-    - docker tag ds-docs $SNR_DOCKER_REGISTRY_HOST/synerise/ds-docs:"$SANITY_BRANCH"-"${CI_COMMIT_SHA}"
-    - docker push $SNR_DOCKER_REGISTRY_HOST/synerise/ds-docs:"$SANITY_BRANCH"-"${CI_COMMIT_SHA}"
-    - echo "Image pushed to remote repository from branch ${CI_COMMIT_REF_NAME}"
-
-    - docker tag ds-docs $SNR_DOCKER_REGISTRY_HOST/synerise/ds-docs:"$SANITY_BRANCH"-latest
-    - docker push $SNR_DOCKER_REGISTRY_HOST/synerise/ds-docs:"$SANITY_BRANCH"-latest
-    - echo "Image pushed to remote repository from branch ${CI_COMMIT_REF_NAME} for commit ${CI_COMMIT_SHA}"
-
-k8s-prod-gitops:
-  extends: .autodeploy-template
-  stage: k8s-deploy-prod
-  environment:
-    name: prod
-  when: manual
-  only:
-    refs:
-      - master
-    variables:
-      - $LIBRARY_PIPELINE == "NO" && $GITOPS == "true"
-  parallel:
-    matrix:
-      - ENV: g001-misc1
-        AUTODEPLOY_TAG: $CI_COMMIT_REF_SLUG-$CI_COMMIT_SHA
-
-
+# design.synerise.com serves this project's Chromatic build of master, so this job is the public
+# Storybook's deploy: it runs on each release and must not fail quietly there. Other master commits
+# leave it to be played, and an unplayed manual job must not block their pipelines.
 chromatic_publish_baseline:
   stage: deploy
   needs: ['build_packages']
@@ -440,7 +373,6 @@ chromatic_publish_baseline:
         - .pnpm-store
         - .pnpm-cache
       policy: pull
-  allow_failure: true
   variables:
     PUBLISH_TITLE: "build: publish"
   rules:
@@ -448,6 +380,7 @@ chromatic_publish_baseline:
       when: on_success
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
       when: manual
+      allow_failure: true
   before_script:
     - !reference [.install_pnpm]
   script:
