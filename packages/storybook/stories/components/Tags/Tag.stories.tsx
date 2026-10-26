@@ -8,6 +8,7 @@ import InformationCard from '@synerise/ds-information-card';
 import Tag, { TagProps, TagShape } from '@synerise/ds-tag';
 import { getColorText } from '@synerise/ds-tag/dist/Tag.styles';
 
+import { VISIBLE_TAG_SHAPES } from '../../constants/tagShapes';
 import {
   BOOLEAN_CONTROL,
   CLASSNAME_ARG_CONTROL,
@@ -40,7 +41,7 @@ const TagMeta = {
     id: STRING_CONTROL,
     image: STRING_CONTROL,
     shape: {
-      ...controlFromOptionsArray('select', Object.values(TagShape)),
+      ...controlFromOptionsArray('select', VISIBLE_TAG_SHAPES),
       mapping: TagShape,
     },
     removable: BOOLEAN_CONTROL,
@@ -60,8 +61,8 @@ export const AllTagShapes: Story = {
   render: ({ name, ...args }) => {
     return (
       <>
-        {Object.values(TagShape).map((shape) => (
-          <div>
+        {VISIBLE_TAG_SHAPES.map((shape) => (
+          <div key={shape}>
             <Tag
               {...args}
               name={getTagNameForShape(shape, name)}

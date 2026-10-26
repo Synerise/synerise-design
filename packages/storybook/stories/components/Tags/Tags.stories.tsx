@@ -9,6 +9,7 @@ import Icon, { ExternalLinkM } from '@synerise/ds-icon';
 import type { TagProps, TagsProps } from '@synerise/ds-tags';
 import Tags, { TagShape } from '@synerise/ds-tags';
 
+import { VISIBLE_TAG_SHAPES } from '../../constants/tagShapes';
 import {
   BOOLEAN_CONTROL,
   CLASSNAME_ARG_CONTROL,
@@ -47,7 +48,7 @@ const TagsMeta = {
   },
   argTypes: {
     tagShape: {
-      ...controlFromOptionsArray('select', Object.values(TagShape)),
+      ...controlFromOptionsArray('select', VISIBLE_TAG_SHAPES),
       mapping: TagShape,
     },
     asPill: BOOLEAN_CONTROL,
@@ -83,7 +84,7 @@ const TagsMeta = {
     maxVisibleTags: NUMBER_CONTROL,
   },
   args: {
-    tagShape: TagShape[0],
+    tagShape: TagShape.DEFAULT_ROUND,
     texts: TAG_TEXTS,
     title: 'Tags:',
     dropdownFooter: (
