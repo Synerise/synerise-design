@@ -492,9 +492,6 @@ All the rules from "Cross-cutting parser learnings" above continue to bite. Most
 - **Rule #7 (no `null`)** — broke Modal once.
 - **Cross-package imports** — Some components (BroadcastBar uses Button, ButtonGroup uses Button) need explicit `import X from '@synerise/ds-X';` from sibling packages, which works because `figma.config.json` now walks `src/**/*.tsx` globally.
 
-### Token rotation reminder
-Multiple Figma access tokens have appeared in the conversation transcript across batches. After this batch is committed, rotate the active token at https://www.figma.com/developers/api with both `file_code_connect:write` + `file_content:read` scopes.
-
 ---
 
 ## Components without Code Connect (`.figma.tsx`) yet

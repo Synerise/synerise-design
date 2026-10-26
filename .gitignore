@@ -71,6 +71,11 @@ bundle.crt
 .claude/logs/
 .claude/tmp/
 .claude/skills/*/config.json
+# DS team skills installed by /synerise-sync from synerise-claude-mesh — internal, never commit
+.claude/skills/ds-release/
+.claude/skills/push-mr/
+.claude/skills/pack-timezones/
+.claude/skills/deantd-component/
 
 # Secrets
 *.pem

@@ -27,7 +27,7 @@ import { STATUSES } from '../Badge/constants';
 import { backgroundColors, shapes, sizes } from './constants';
 
 const commonArgs = {
-  tooltip: { title: 'Silvia Jobs', description: 'silvia.jobs@gmail.com' },
+  tooltip: { title: 'Silvia Jobs', description: 'silvia.jobs@example.com' },
   useImage: true,
 };
 type AvatarStoryType = AvatarProps & {
@@ -116,7 +116,7 @@ export const UserAvatar: StoryObj<UserAvatarProps> = {
     user: {
       firstName: 'Silvia',
       lastName: 'Jobs',
-      email: 'silvia.jobs@gmail.com',
+      email: 'silvia.jobs@example.com',
       avatarId: '1234',
     },
   },
