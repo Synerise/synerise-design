@@ -132,6 +132,7 @@ export const useItemsInSections = <
   const [isLoadingMoreError, setIsLoadingMoreError] = useState(false);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const [isLoadedAll, setIsLoadedAll] = useState(false);
+  const [isSinglePage, setIsSinglePage] = useState(false);
   const [refreshTrigger, setRefreshTrigger] = useState<number>();
 
   const [currentItems, setCurrentItems] = useState<ItemType[]>(() => {
@@ -410,16 +411,22 @@ export const useItemsInSections = <
 
     const currentRequestId = crypto.randomUUID();
     requestIdRef.current = currentRequestId;
+    const abortController = abortControllerRef.current;
 
     if (listRenderingMode === RENDER_MODES.LIST_ITEMS) {
       try {
-        const { items: fetchedItems, meta } = await items.loadItems({
+        const limit = items.limitPerPage || ITEMS_PER_PAGE;
+        const {
+          items: fetchedItems,
+          total,
+          meta,
+        } = await items.loadItems({
           page: FIRST_PAGE,
           searchQuery,
           sectionId: activeSectionIdWithFallback,
-          limit: items.limitPerPage || ITEMS_PER_PAGE,
+          limit,
           meta: undefined,
-          abortController: abortControllerRef.current,
+          abortController,
           searchKey: searchByParamConfig?.paramKey,
           searchInItem,
         });
@@ -428,6 +435,10 @@ export const useItemsInSections = <
         }
         setIsLoading(false);
         pageToLoad.current = FIRST_PAGE + 1;
+        if (total <= limit) {
+          setIsLoadedAll(true);
+          setIsSinglePage(true);
+        }
         metaRef.current[activeSectionIdWithFallback] = meta;
         onLoadedData?.({
           sectionId: activeSectionIdWithFallback,
@@ -437,9 +448,14 @@ export const useItemsInSections = <
         setIsInitialDataLoaded(true);
         setCurrentItems(fetchedItems);
       } catch (_event) {
+        if (currentRequestId !== requestIdRef.current) {
+          return;
+        }
         setIsLoading(false);
         setIsInitialDataLoaded(true);
-        setIsLoadingError(true);
+        if (!abortController?.signal.aborted) {
+          setIsLoadingError(true);
+        }
       }
       return;
     }
@@ -544,6 +560,7 @@ export const useItemsInSections = <
     pageToLoad.current = FIRST_PAGE;
     metaRef.current = {};
     setIsLoadedAll(false);
+    setIsSinglePage(false);
     setIsLoadingMore(false);
     sectionTotals.current = {};
     if (!isFixedItemsList) {
@@ -595,6 +612,8 @@ export const useItemsInSections = <
         return;
       }
       setIsLoadingMore(true);
+      const pageRequestId = requestIdRef.current;
+      const isStale = () => pageRequestId !== requestIdRef.current;
       items
         .loadItems({
           page: pageToLoad.current,
@@ -602,10 +621,14 @@ export const useItemsInSections = <
           searchQuery,
           sectionId: activeSectionIdWithFallback,
           meta: metaRef.current[activeSectionIdWithFallback],
+          abortController: abortControllerRef.current,
           searchKey: searchByParamConfig?.paramKey,
           searchInItem,
         })
         .then(({ items: fetchedItems, total, meta }) => {
+          if (isStale()) {
+            return;
+          }
           sectionTotals.current[activeSectionIdWithFallback] = total;
           metaRef.current[activeSectionIdWithFallback] = meta;
           setIsLoadingMore(false);
@@ -620,6 +643,9 @@ export const useItemsInSections = <
           setCurrentItems([...currentItems, ...fetchedItems]);
         })
         .catch(() => {
+          if (isStale()) {
+            return;
+          }
           setIsLoadingMore(false);
           setIsLoadingMoreError(true);
         });
@@ -768,6 +794,7 @@ export const useItemsInSections = <
     pageToLoad.current = FIRST_PAGE;
     metaRef.current = {};
     setIsLoadedAll(false);
+    setIsSinglePage(false);
     setIsLoadingMore(false);
     sectionTotals.current = {};
     abortControllerRef.current?.abort();
@@ -787,6 +814,7 @@ export const useItemsInSections = <
     isLoading: isLoading || !isInitialDataLoaded,
     isLoadingMore,
     isLoadedAll,
+    isSinglePage,
     handleScrollEndReach,
     refreshItems,
     isLoadingError,

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { screen, fireEvent } from '@testing-library/react';
+import { act, screen, fireEvent } from '@testing-library/react';
 import Icon, { LaptopM, MobileM, UserM } from '@synerise/ds-icon';
 import { renderWithProvider } from '@synerise/ds-core/testing';
 import Avatar from '@synerise/ds-avatar';
@@ -342,4 +342,50 @@ describe('ItemPickerNew component', () => {
     it.todo('should call onYReachEnd function');
     it.todo('should shows loading state');
     it.todo('should highlight labels based on searchBarProps.value');
+});
+
+describe('ItemPickerNew trigger with an information card', () => {
+  it('keeps the trigger at the full width of the field', () => {
+    renderWithProvider(
+      <ItemPickerNew
+        isNewVersion
+        items={DATA_SOURCE}
+        selectedItem={DATA_SOURCE[0]}
+        placeholder="Select"
+        triggerProps={{
+          informationCardTooltipProps: {
+            informationCardProps: { title: 'iPhone R' },
+          },
+        }}
+      />,
+    );
+
+    const cardTrigger = screen.getByTestId('popover-information-card-trigger');
+    expect(cardTrigger.parentElement).toHaveStyle({ width: '100%' });
+  });
+});
+
+describe('ItemPickerNew keyboard', () => {
+  beforeEach(() => {
+    Element.prototype.scrollTo = vi.fn();
+  });
+
+  it('moves to the first row with ↓ from the search, after rows had the focus', async () => {
+    renderWithProvider(<ItemPickerNew {...SHARED_PROPS} />);
+    fireEvent.click(screen.getByText(PLACEHOLDER));
+    const search = await screen.findByPlaceholderText(SEARCH_PLACEHOLDER);
+    const pressDown = () =>
+      fireEvent.keyDown(document.activeElement as Element, { key: 'ArrowDown' });
+
+    act(() => search.focus());
+    pressDown();
+    pressDown();
+    pressDown();
+    expect(document.activeElement).toHaveTextContent(DATA_SOURCE[2].text);
+
+    act(() => search.focus());
+    pressDown();
+
+    expect(document.activeElement).toHaveTextContent(DATA_SOURCE[0].text);
+  });
 });
