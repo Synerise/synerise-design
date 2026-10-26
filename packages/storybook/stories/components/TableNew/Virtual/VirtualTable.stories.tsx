@@ -1,9 +1,10 @@
 import { Meta, StoryObj } from '@storybook/react-vite';
 import { type ColumnDef } from '@tanstack/react-table';
-import React from 'react';
+import React, { useState } from 'react';
 import { fn } from 'storybook/test';
 
 import { Expander } from '@synerise/ds-button';
+import { Box, Flex } from '@synerise/ds-flex-box';
 import {
   SELECTION_ALL,
   SELECTION_INVERT,
@@ -540,6 +541,140 @@ export const WithBuiltInSearch: StoryObj<VirtualTableProps> = {
     selections: [SELECTION_ALL, SELECTION_INVERT],
   }}
 />`,
+      },
+    },
+  },
+};
+
+type ExpandedRowRenderRow = (typeof DATA_SOURCE_FULL)[number];
+
+const ExpandedRowDetails = ({ record }: { record: ExpandedRowRenderRow }) => (
+  <Box p={16}>
+    <Flex flexDirection="column">
+      <strong>{record.name}</strong>
+      <span>Address: {record.address}</span>
+      {Number(record.key) % 2 === 0 && (
+        <>
+          <span>Country: {record.country}</span>
+          <span>Age: {record.age}</span>
+          <span>Status: {record.status}</span>
+        </>
+      )}
+    </Flex>
+  </Box>
+);
+
+export const ExpandedRowRender: StoryObj<VirtualTableProps> = {
+  render: (args) => {
+    const [expandedRowKeys, setExpandedRowKeys] = useState<string[]>([]);
+    const toggle = (key: string) =>
+      setExpandedRowKeys((prev) =>
+        prev.includes(key) ? prev.filter((k) => k !== key) : [...prev, key],
+      );
+
+    const columns: ColumnDef<ExpandedRowRenderRow, unknown>[] = [
+      {
+        accessorKey: 'name',
+        id: 'name',
+        header: 'Name',
+        size: 260,
+        meta: { fixed: 'left' },
+      },
+      { accessorKey: 'address', id: 'address', header: 'Address', size: 320 },
+      { accessorKey: 'age', id: 'age', header: 'Age', size: 160 },
+      { accessorKey: 'status', id: 'status', header: 'Status', size: 200 },
+      {
+        id: 'expander',
+        header: '',
+        size: 72,
+        meta: { fixed: 'right' },
+        cell: (info) => {
+          const key = String(info.row.original.key);
+          return (
+            <TableCell.ActionCell>
+              <Expander
+                expanded={expandedRowKeys.includes(key)}
+                onClick={(event) => {
+                  event.stopPropagation();
+                  toggle(key);
+                }}
+              />
+            </TableCell.ActionCell>
+          );
+        },
+      },
+    ];
+
+    return (
+      <VirtualTable
+        {...args}
+        columns={columns}
+        expandable={{
+          expandedRowKeys,
+          expandedRowRender: (record) => (
+            <ExpandedRowDetails record={record as ExpandedRowRenderRow} />
+          ),
+        }}
+      />
+    );
+  },
+  args: {
+    data: DATA_SOURCE_FULL,
+    title: 'Expand rows to reveal details',
+    stickyHeader: true,
+    maxHeight: 500,
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `const MyList = () => {
+  const [expandedRowKeys, setExpandedRowKeys] = useState<string[]>([]);
+  const toggle = (key: string) =>
+    setExpandedRowKeys((prev) =>
+      prev.includes(key) ? prev.filter((k) => k !== key) : [...prev, key],
+    );
+
+  const columns = [
+    { accessorKey: 'name', id: 'name', header: 'Name', size: 260, meta: { fixed: 'left' } },
+    { accessorKey: 'address', id: 'address', header: 'Address', size: 320 },
+    {
+      id: 'expander',
+      header: '',
+      size: 72,
+      meta: { fixed: 'right' },
+      cell: (info) => (
+        <TableCell.ActionCell>
+          <Expander
+            expanded={expandedRowKeys.includes(info.row.original.key)}
+            onClick={(event) => {
+              event.stopPropagation();
+              toggle(info.row.original.key);
+            }}
+          />
+        </TableCell.ActionCell>
+      ),
+    },
+  ];
+
+  // Expanded content may have any height: the virtualizer measures the row
+  // together with the content below it.
+  return (
+    <VirtualTable
+      data={data}
+      columns={columns}
+      stickyHeader
+      maxHeight={500}
+      expandable={{
+        expandedRowKeys,
+        expandedRowRender: (record) => (
+          <Box p={16}>
+            <strong>{record.name}</strong>
+          </Box>
+        ),
+      }}
+    />
+  );
+};`,
       },
     },
   },

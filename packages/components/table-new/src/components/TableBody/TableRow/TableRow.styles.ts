@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 
 import { commonRowStyles } from '../../../Table.styles';
+import { ExpandedContentCell, ExpandedContentRow } from '../TableBody.styles';
 import { Td } from '../TableCell/TableCell.styles';
 
 export const Tr = styled.tr<{ isChild?: boolean }>`
@@ -58,3 +59,9 @@ export const VirtualRow = styled.tr<{ isChild?: boolean; isVisible?: boolean }>`
     }
   }
 `;
+
+export const VirtualExpandedContentRow = styled(ExpandedContentRow)`
+  ${commonRowStyles}
+`;
+
+export const VirtualExpandedContentCell = ExpandedContentCell;

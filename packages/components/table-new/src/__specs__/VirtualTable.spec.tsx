@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { renderWithProvider } from '@synerise/ds-core/testing';
-import { fireEvent, screen, within } from '@testing-library/react';
+import { act, fireEvent, screen, within } from '@testing-library/react';
 
 import { DEFAULT_CELL_HEIGHT } from '../Table.const';
 import { VirtualTable } from '../VirtualTable';
@@ -669,6 +669,390 @@ describe('VirtualTable', () => {
           );
         } finally {
           window.ResizeObserver = original;
+        }
+      });
+    });
+  });
+
+  describe('expandedRowRender', () => {
+    const ROW_HEIGHT = 50;
+    const CONTENT_HEIGHT = 120;
+
+    const VIEWPORT_HEIGHT = 600;
+
+    const getRow = (index: number) =>
+      document.querySelector<HTMLElement>(`tr[data-row-index="${index}"]`);
+
+    // jsdom has no layout, so without a viewport height the virtualizer yields no items and
+    // VirtualTable falls back to the non-virtual body.
+    const mockHeights = (contentHeight: number) =>
+      function (this: HTMLElement) {
+        if (this.dataset.rowExpandedContent === 'true') {
+          return contentHeight;
+        }
+        return this.dataset.rowIndex !== undefined
+          ? ROW_HEIGHT
+          : VIEWPORT_HEIGHT;
+      };
+
+    let offsetHeight: ReturnType<typeof vi.spyOn>;
+
+    beforeEach(() => {
+      offsetHeight = vi
+        .spyOn(HTMLElement.prototype, 'offsetHeight', 'get')
+        .mockImplementation(mockHeights(CONTENT_HEIGHT));
+    });
+
+    afterEach(() => {
+      offsetHeight.mockRestore();
+    });
+
+    it('renders expanded content row below an expanded parent', () => {
+      renderWithProvider(
+        <VirtualTable
+          data={DATA}
+          columns={COLUMNS}
+          expandable={{
+            expandedRowKeys: ['1'],
+            expandedRowRender: (record) => (
+              <div data-testid="expanded-detail">Detail: {record.name}</div>
+            ),
+          }}
+        />,
+      );
+
+      expect(getRow(0)?.style.position).toBe('absolute');
+      expect(screen.getByTestId('expanded-detail')).toHaveTextContent(
+        'Detail: Mike',
+      );
+      expect(
+        screen
+          .getByTestId('expanded-detail')
+          .closest('[data-row-expanded-content="true"]'),
+      ).toHaveAttribute('data-key', '1-expanded');
+    });
+
+    it('does not render expanded content for non-expanded rows', () => {
+      renderWithProvider(
+        <VirtualTable
+          data={DATA}
+          columns={COLUMNS}
+          expandable={{
+            expandedRowKeys: [],
+            expandedRowRender: () => <div data-testid="expanded-detail" />,
+          }}
+        />,
+      );
+
+      expect(screen.queryByTestId('expanded-detail')).not.toBeInTheDocument();
+    });
+
+    it('expanded content cell spans every visible column', () => {
+      renderWithProvider(
+        <VirtualTable
+          data={DATA}
+          columns={COLUMNS}
+          expandable={{
+            expandedRowKeys: ['1'],
+            expandedRowRender: () => <div>detail</div>,
+          }}
+        />,
+      );
+
+      const cell = document.querySelector(
+        '[data-row-expanded-content="true"] td',
+      );
+      expect(cell).toHaveAttribute('colspan', String(COLUMNS.length));
+    });
+
+    it('suppresses expanded content when rowExpandable returns false', () => {
+      renderWithProvider(
+        <VirtualTable
+          data={DATA}
+          columns={COLUMNS}
+          expandable={{
+            expandedRowKeys: ['1'],
+            expandedRowRender: () => <div data-testid="detail">detail</div>,
+            rowExpandable: (record) => record.key !== '1',
+          }}
+        />,
+      );
+
+      expect(screen.queryByTestId('detail')).not.toBeInTheDocument();
+    });
+
+    describe('row measurement', () => {
+      const renderTable = (expandedRowKeys: string[]) => (
+        <VirtualTable
+          data={DATA}
+          columns={COLUMNS}
+          expandable={{
+            expandedRowKeys,
+            expandedRowRender: () => <div>detail</div>,
+          }}
+        />
+      );
+
+      it('places the content row directly below its parent row', () => {
+        renderWithProvider(renderTable(['1']));
+
+        const content = document.querySelector<HTMLElement>(
+          '[data-row-expanded-content="true"]',
+        );
+        expect(content?.style.top).toBe(`${ROW_HEIGHT}px`);
+      });
+
+      it('pushes the following rows down by the content height', () => {
+        renderWithProvider(renderTable(['1']));
+
+        expect(getRow(1)?.style.top).toBe(`${ROW_HEIGHT + CONTENT_HEIGHT}px`);
+        expect(getRow(2)?.style.top).toBe(
+          `${2 * ROW_HEIGHT + CONTENT_HEIGHT}px`,
+        );
+      });
+
+      it('restores the row height when the row collapses', () => {
+        const { rerender } = renderWithProvider(renderTable(['1']));
+
+        rerender(renderTable([]));
+
+        expect(getRow(1)?.style.top).toBe(`${ROW_HEIGHT}px`);
+      });
+
+      it('re-measures when the expanded content resizes', () => {
+        const observers: Array<{
+          callback: ResizeObserverCallback;
+          targets: Element[];
+        }> = [];
+        const original = window.ResizeObserver;
+        window.ResizeObserver = class {
+          private entry: { callback: ResizeObserverCallback; targets: Element[] };
+          constructor(callback: ResizeObserverCallback) {
+            this.entry = { callback, targets: [] };
+            observers.push(this.entry);
+          }
+          observe(target: Element) {
+            this.entry.targets.push(target);
+          }
+          unobserve() {}
+          disconnect() {
+            this.entry.targets = [];
+          }
+        } as unknown as typeof ResizeObserver;
+
+        try {
+          renderWithProvider(renderTable(['1']));
+          const content = document.querySelector<HTMLElement>(
+            '[data-row-expanded-content="true"]',
+          );
+          const observer = observers.find((entry) =>
+            entry.targets.includes(content as Element),
+          );
+          expect(observer).toBeDefined();
+
+          offsetHeight.mockImplementation(mockHeights(CONTENT_HEIGHT * 2));
+          act(() => {
+            observer?.callback([], {} as ResizeObserver);
+          });
+
+          expect(getRow(1)?.style.top).toBe(
+            `${ROW_HEIGHT + CONTENT_HEIGHT * 2}px`,
+          );
+        } finally {
+          window.ResizeObserver = original;
+        }
+      });
+    });
+
+    describe('toggling', () => {
+      it('expandRowByClick toggles the content row without expandedRowKeys', () => {
+        const onExpand = vi.fn();
+        renderWithProvider(
+          <VirtualTable
+            data={DATA}
+            columns={COLUMNS}
+            expandable={{
+              expandRowByClick: true,
+              onExpand,
+              expandedRowRender: (record) => (
+                <div data-testid="detail">{record.name}</div>
+              ),
+            }}
+          />,
+        );
+
+        fireEvent.click(getRow(0) as HTMLElement);
+
+        expect(screen.getByTestId('detail')).toHaveTextContent('Mike');
+        expect(onExpand).toHaveBeenLastCalledWith(true, DATA[0]);
+        expect(getRow(1)?.style.top).toBe(`${ROW_HEIGHT + CONTENT_HEIGHT}px`);
+
+        fireEvent.click(getRow(0) as HTMLElement);
+
+        expect(screen.queryByTestId('detail')).not.toBeInTheDocument();
+        expect(onExpand).toHaveBeenLastCalledWith(false, DATA[0]);
+        expect(getRow(1)?.style.top).toBe(`${ROW_HEIGHT}px`);
+      });
+
+      it('expandRowByClick does nothing for a row rowExpandable rejects', () => {
+        const onExpand = vi.fn();
+        renderWithProvider(
+          <VirtualTable
+            data={DATA}
+            columns={COLUMNS}
+            expandable={{
+              expandRowByClick: true,
+              onExpand,
+              rowExpandable: (record) => record.key !== '1',
+              expandedRowRender: () => <div data-testid="detail" />,
+            }}
+          />,
+        );
+
+        fireEvent.click(getRow(0) as HTMLElement);
+
+        expect(screen.queryByTestId('detail')).not.toBeInTheDocument();
+        expect(onExpand).not.toHaveBeenCalled();
+      });
+
+      it('a cell calling row.toggleExpanded() reveals the content row', () => {
+        const columns: typeof COLUMNS = [
+          ...COLUMNS,
+          {
+            id: 'expander',
+            header: '',
+            cell: ({ row }) => (
+              <button type="button" onClick={() => row.toggleExpanded()}>
+                toggle {row.original.key}
+              </button>
+            ),
+          },
+        ];
+        renderWithProvider(
+          <VirtualTable
+            data={DATA}
+            columns={columns}
+            expandable={{
+              expandedRowRender: (record) => (
+                <div data-testid="detail">{record.name}</div>
+              ),
+            }}
+          />,
+        );
+
+        fireEvent.click(screen.getByRole('button', { name: 'toggle 2' }));
+
+        expect(screen.getByTestId('detail')).toHaveTextContent('John');
+        expect(getRow(2)?.style.top).toBe(
+          `${2 * ROW_HEIGHT + CONTENT_HEIGHT}px`,
+        );
+      });
+    });
+
+    describe('scroll compensation when a row resizes', () => {
+      // Past row 1's body-relative start, so the virtualizer's default check would treat row 1
+      // as above the viewport wherever the body actually sits.
+      const SCROLL_TOP = 2 * ROW_HEIGHT;
+      // Where the body sits relative to the top of the scroll viewport. Negative means it has
+      // been scrolled past; row 1 starts ROW_HEIGHT below the body's top.
+      let bodyTop: number;
+      let scrollTo: ReturnType<typeof vi.fn>;
+      let originalScrollTo: typeof HTMLElement.prototype.scrollTo;
+      let boundingRect: ReturnType<typeof vi.spyOn>;
+      let scrollTop: ReturnType<typeof vi.spyOn>;
+
+      beforeEach(() => {
+        bodyTop = 0;
+        originalScrollTo = HTMLElement.prototype.scrollTo;
+        scrollTo = vi.fn();
+        HTMLElement.prototype.scrollTo =
+          scrollTo as unknown as typeof HTMLElement.prototype.scrollTo;
+        boundingRect = vi
+          .spyOn(HTMLElement.prototype, 'getBoundingClientRect')
+          .mockImplementation(function (this: HTMLElement) {
+            const top = this.classList.contains('ds-table-body') ? bodyTop : 0;
+            return { top, bottom: top, left: 0, right: 0, width: 0, height: 0 } as DOMRect;
+          });
+        scrollTop = vi
+          .spyOn(Element.prototype, 'scrollTop', 'get')
+          .mockReturnValue(SCROLL_TOP);
+      });
+
+      afterEach(() => {
+        HTMLElement.prototype.scrollTo = originalScrollTo;
+        boundingRect.mockRestore();
+        scrollTop.mockRestore();
+      });
+
+      const renderTable = (
+        expandedRowKeys: string[],
+        infiniteScroll?: React.ComponentProps<typeof VirtualTable>['infiniteScroll'],
+      ) => (
+        <VirtualTable
+          data={DATA}
+          columns={COLUMNS}
+          infiniteScroll={infiniteScroll}
+          expandable={{
+            expandedRowKeys,
+            expandedRowRender: () => <div>detail</div>,
+          }}
+        />
+      );
+
+      // Mounts with the body at the viewport top, so the rows' first measurements cause no
+      // compensation, then moves the body and expands row 1.
+      const expandRowOne = (
+        bodyTopOnExpand: number,
+        infiniteScroll?: React.ComponentProps<typeof VirtualTable>['infiniteScroll'],
+      ) => {
+        const { rerender } = renderWithProvider(renderTable([], infiniteScroll));
+        scrollTo.mockClear();
+        bodyTop = bodyTopOnExpand;
+        rerender(renderTable(['2'], infiniteScroll));
+      };
+
+      it('scrolls by the size change when the row starts above the viewport', () => {
+        expandRowOne(-(ROW_HEIGHT + 10));
+
+        expect(scrollTo).toHaveBeenCalledWith(
+          expect.objectContaining({ top: SCROLL_TOP + CONTENT_HEIGHT }),
+        );
+      });
+
+      it('keeps the scroll position when the row is visible below the content preceding the body', () => {
+        expandRowOne(-(ROW_HEIGHT - 10));
+
+        expect(scrollTo).not.toHaveBeenCalled();
+      });
+
+      it('counts the top infinite-loader row in the row position', () => {
+        expandRowOne(-(ROW_HEIGHT + 10), {
+          hasMore: true,
+          hasError: false,
+          isLoading: false,
+          prevPage: { hasMore: true, hasError: false, isLoading: false },
+          onScrollTopReach: vi.fn(),
+        });
+
+        expect(scrollTo).not.toHaveBeenCalled();
+      });
+
+      it('never scrolls when the table body cannot be found', () => {
+        const originalQuerySelector = Element.prototype.querySelector;
+        const querySelector = vi
+          .spyOn(Element.prototype, 'querySelector')
+          .mockImplementation(function (this: Element, selector: string) {
+            return selector === '.ds-table-body'
+              ? null
+              : originalQuerySelector.call(this, selector);
+          });
+
+        try {
+          expandRowOne(-(ROW_HEIGHT + 10));
+
+          expect(scrollTo).not.toHaveBeenCalled();
+        } finally {
+          querySelector.mockRestore();
         }
       });
     });

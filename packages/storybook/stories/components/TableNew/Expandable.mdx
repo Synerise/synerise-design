@@ -3,7 +3,10 @@ import {
   ExpandedRowRender,
   ExpandedRowRenderWithRowExpandable,
 } from './NonVirtual/Table.stories';
-import { ExpandableRows } from './Virtual/VirtualTable.stories';
+import {
+  ExpandableRows,
+  ExpandedRowRender as VirtualExpandedRowRender,
+} from './Virtual/VirtualTable.stories';
 import { ControlledExpand } from './Tree/TreeTable.stories';
 
 <Meta title="Components/TableNew/Expandable rows" />
@@ -12,7 +15,7 @@ import { ControlledExpand } from './Tree/TreeTable.stories';
 
 `@synerise/ds-table-new` has three distinct expandable patterns. They are not interchangeable — each fits a different data shape and UX intent.
 
-1. **Detail row below the parent** — flat rows that reveal arbitrary inline content (chart, form, summary). Configured via `expandable.expandedRowRender`. **`Table` only.**
+1. **Detail row below the parent** — flat rows that reveal arbitrary inline content (chart, form, summary). Configured via `expandable.expandedRowRender`. **`Table` and `VirtualTable`.**
 2. **Hierarchical child rows** — data already has a `children` array; expanded parents reveal their child rows in the same column layout. Configured via `expandable.childrenColumnName` + `expandedRowKeys`. **`Table` and `VirtualTable`.**
 3. **Tree view with built-in expander UI** — same hierarchical model as #2, but rendered with indent guides and a managed expand button. Use the dedicated **`TreeTable`** component.
 
@@ -33,7 +36,7 @@ import { ControlledExpand } from './Tree/TreeTable.stories';
     <tr>
       <td><code>expandable.expandedRowRender</code> (detail row)</td>
       <td>✅</td>
-      <td>❌ (fixed-height virtualization)</td>
+      <td>✅</td>
       <td>❌ (config stripped)</td>
     </tr>
     <tr>
@@ -81,9 +84,7 @@ import { ControlledExpand } from './Tree/TreeTable.stories';
   </tbody>
 </table>
 
-`VirtualTable` doesn't support `expandedRowRender` for the same reason the legacy antd-backed table did not: variable-height expanded content can't be measured against the virtualizer's fixed `cellHeight`. Use a plain `Table` if you need that.
-
-## Pattern 1 — Detail row below the parent (`Table` only)
+## Pattern 1 — Detail row below the parent (`Table` & `VirtualTable`)
 
 Reveals an arbitrary `ReactNode` directly under each expanded parent row. The new row is a single `<td colSpan>` spanning every visible column, so the rendered node owns its own layout.
 
@@ -124,6 +125,12 @@ import { Table } from '@synerise/ds-table-new';
 
 <Canvas of={ExpandedRowRenderWithRowExpandable} sourceState="shown" />
 
+### In a `VirtualTable`
+
+The same `expandable` config works on `VirtualTable`. The detail row may have any height, and may change height after it renders — the virtualizer measures the parent row together with the detail row below it, so the rows that follow move down to make room.
+
+<Canvas of={VirtualExpandedRowRender} sourceState="shown" />
+
 ### Controlled vs uncontrolled
 
 Two modes:
@@ -155,12 +162,14 @@ const [expandedKeys, setExpandedKeys] = useState<string[]>([]);
 If you render an `Expander` button inside a cell **and** also set `expandRowByClick: true`, the button click bubbles to the row. Both paths fire toggle, cancelling each other (no-op). Fix: `event.stopPropagation()` in the button's `onClick`.
 
 ```tsx
+// inside a column's `cell: ({ row }) => …`
 <TableCell.ActionCell>
   <Button.Expander
-    expanded={isExpanded}
+    expanded={row.getIsExpanded()}
     onClick={(event) => {
       event.stopPropagation();
-      toggleExpanded();
+      // uncontrolled; in controlled mode update `expandedRowKeys` instead
+      row.toggleExpanded();
     }}
   />
 </TableCell.ActionCell>
@@ -252,7 +261,7 @@ These all live under the `expandable` prop on `Table` / `VirtualTable`.
       <td><code>expandedRowRender</code></td>
       <td><code>(record, index, indent, expanded) =&gt; ReactNode</code></td>
       <td>Custom content rendered in an extra <code>&lt;tr&gt;</code> directly below an expanded parent row. Cell spans every visible column.</td>
-      <td><code>Table</code> only</td>
+      <td><code>Table</code>, <code>VirtualTable</code></td>
     </tr>
     <tr>
       <td><code>expandRowByClick</code></td>
@@ -277,7 +286,6 @@ These all live under the `expandable` prop on `Table` / `VirtualTable`.
 
 ## Choosing a pattern
 
-- Flat rows + arbitrary inline detail content → **Pattern 1** (`Table` + `expandedRowRender`).
+- Flat rows + arbitrary inline detail content → **Pattern 1** (`Table` or `VirtualTable` + `expandedRowRender`).
 - Hierarchical data of the same row shape, large dataset → **Pattern 2** with `VirtualTable`.
 - Hierarchical data, small/medium dataset, want indent guides for free → **Pattern 3** (`TreeTable`).
-- Need both inline detail content AND virtualization → currently unsupported; either denormalize the detail data into a separate flat list or switch to a paginated `Table`.

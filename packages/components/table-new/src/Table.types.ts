@@ -104,10 +104,8 @@ export type Expandable<TData> = {
    * Render custom content directly below an expanded parent row.
    * Result is wrapped in an extra `<tr>` containing a single `<td>` that
    * spans every visible column (including the selection column when enabled).
-   *
-   * Currently honored by `Table` (non-virtual). `VirtualTable` ignores this
-   * prop because variable-height expanded rows require dynamic virtualization
-   * sizing not yet implemented.
+   * In `VirtualTable` the content may have any height; the row is measured
+   * together with it.
    *
    * Signature mirrors antd 4 / legacy `@synerise/ds-table`:
    * `(record, index, indent, expanded) => ReactNode`.
