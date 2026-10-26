@@ -2402,9 +2402,6 @@ importers:
 
   packages/components/flex-box:
     dependencies:
-      '@rebass/grid':
-        specifier: ^6.1.0
-        version: 6.1.0
       '@synerise/ds-core':
         specifier: '*'
         version: link:../core
@@ -2415,9 +2412,6 @@ importers:
         specifier: ^5.3.3
         version: 5.3.11(@babel/core@7.29.0(supports-color@5.5.0))(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)
     devDependencies:
-      '@types/rebass__grid':
-        specifier: ^6.0.14
-        version: 6.0.14
       vitest:
         specifier: '4'
         version: 4.1.12(@types/node@22.19.7)(@vitest/browser-playwright@4.1.12)(jsdom@24.1.3(supports-color@5.5.0))(vite@7.3.7(@types/node@22.19.7)(jiti@2.7.0)(less@3.11.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.9.1))
@@ -7327,9 +7321,6 @@ packages:
   '@popperjs/core@2.11.8':
     resolution: {integrity: sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==}
 
-  '@rebass/grid@6.1.0':
-    resolution: {integrity: sha512-0UbW75JgIB7b7moMYgl+rBsHAIt/Nt+/ntUrBqkdbalMuGH6q3qfLW5i79uE3rrY0iLlkcmY7w6mOo56FzCJsg==}
-
   '@remirror/core-constants@3.0.0':
     resolution: {integrity: sha512-42aWfPrimMfDKDi4YegyS7x+/0tlzaqwPQCULLanv3DMIlu96KTJR0fM5isWX2UViOqlGnX6YFgqWepcX+XMNg==}
 
@@ -7676,50 +7667,6 @@ packages:
         optional: true
       typescript:
         optional: true
-
-  '@styled-system/background@5.1.2':
-    resolution: {integrity: sha512-jtwH2C/U6ssuGSvwTN3ri/IyjdHb8W9X/g8Y0JLcrH02G+BW3OS8kZdHphF1/YyRklnrKrBT2ngwGUK6aqqV3A==}
-
-  '@styled-system/border@5.1.5':
-    resolution: {integrity: sha512-JvddhNrnhGigtzWRCVuAHepniyVi6hBlimxWDVAdcTuk7aRn9BYJUwfHslURtwYFsF5FoEs8Zmr1oZq2M1AP0A==}
-
-  '@styled-system/color@5.1.2':
-    resolution: {integrity: sha512-1kCkeKDZkt4GYkuFNKc7vJQMcOmTl3bJY3YBUs7fCNM6mMYJeT1pViQ2LwBSBJytj3AB0o4IdLBoepgSgGl5MA==}
-
-  '@styled-system/core@5.1.2':
-    resolution: {integrity: sha512-XclBDdNIy7OPOsN4HBsawG2eiWfCcuFt6gxKn1x4QfMIgeO6TOlA2pZZ5GWZtIhCUqEPTgIBta6JXsGyCkLBYw==}
-
-  '@styled-system/css@5.1.5':
-    resolution: {integrity: sha512-XkORZdS5kypzcBotAMPBoeckDs9aSZVkvrAlq5K3xP8IMAUek+x2O4NtwoSgkYkWWzVBu6DGdFZLR790QWGG+A==}
-
-  '@styled-system/flexbox@5.1.2':
-    resolution: {integrity: sha512-6hHV52+eUk654Y1J2v77B8iLeBNtc+SA3R4necsu2VVinSD7+XY5PCCEzBFaWs42dtOEDIa2lMrgL0YBC01mDQ==}
-
-  '@styled-system/grid@5.1.2':
-    resolution: {integrity: sha512-K3YiV1KyHHzgdNuNlaw8oW2ktMuGga99o1e/NAfTEi5Zsa7JXxzwEnVSDSBdJC+z6R8WYTCYRQC6bkVFcvdTeg==}
-
-  '@styled-system/layout@5.1.2':
-    resolution: {integrity: sha512-wUhkMBqSeacPFhoE9S6UF3fsMEKFv91gF4AdDWp0Aym1yeMPpqz9l9qS/6vjSsDPF7zOb5cOKC3tcKKOMuDCPw==}
-
-  '@styled-system/position@5.1.2':
-    resolution: {integrity: sha512-60IZfMXEOOZe3l1mCu6sj/2NAyUmES2kR9Kzp7s2D3P4qKsZWxD1Se1+wJvevb+1TP+ZMkGPEYYXRyU8M1aF5A==}
-
-  '@styled-system/prop-types@5.1.5':
-    resolution: {integrity: sha512-D/0d0ltp8QGhwrRifivQeIdoKkQDpFIGi98DXdpRXOaJStYXLx6aBSfS/YYIijbF1nZs1hWlAgXxYvDhCxHLSA==}
-    peerDependencies:
-      styled-system: ^5.0.0-8
-
-  '@styled-system/shadow@5.1.2':
-    resolution: {integrity: sha512-wqniqYb7XuZM7K7C0d1Euxc4eGtqEe/lvM0WjuAFsQVImiq6KGT7s7is+0bNI8O4Dwg27jyu4Lfqo/oIQXNzAg==}
-
-  '@styled-system/space@5.1.2':
-    resolution: {integrity: sha512-+zzYpR8uvfhcAbaPXhH8QgDAV//flxqxSjHiS9cDFQQUSznXMQmxJegbhcdEF7/eNnJgHeIXv1jmny78kipgBA==}
-
-  '@styled-system/typography@5.1.2':
-    resolution: {integrity: sha512-BxbVUnN8N7hJ4aaPOd7wEsudeT7CxarR+2hns8XCX1zp0DFfbWw4xYa/olA0oQaqx7F1hzDg+eRaGzAJbF+jOg==}
-
-  '@styled-system/variant@5.1.5':
-    resolution: {integrity: sha512-Yn8hXAFoWIro8+Q5J8YJd/mP85Teiut3fsGVR9CAxwgNfIAiqlYxsk5iHU7VHJks/0KjL4ATSjmbtCDC/4l1qw==}
 
   '@svgr/babel-plugin-add-jsx-attribute@8.0.0':
     resolution: {integrity: sha512-b9MIk7yhdS1pMCZM8VeNfUlSKVRhsHZNMl5O9SfaX0l0t5wjdgu4IDzGB8bpnGBBOjGST3rRFVsaaEtI4W6f7g==}
@@ -8325,9 +8272,6 @@ packages:
   '@types/react@18.3.17':
     resolution: {integrity: sha512-opAQ5no6LqJNo9TqnxBKsgnkIYHozW9KSTlFVoSUJYh1Fl/sswkEoqIugRSm7tbh6pABtYjGAjW+GOS23j8qbw==}
 
-  '@types/rebass__grid@6.0.14':
-    resolution: {integrity: sha512-WJq0KHIxzXoqxQYT4W8CYYrKQ6+cLa/oegAO+o7f7bxHNShDMjiGYM84+AAk4rFrkAyNeb5FZmlL0w7PGpS3/w==}
-
   '@types/resolve@1.20.6':
     resolution: {integrity: sha512-A4STmOXPhMUtHH+S6ymgE2GiBSMqf4oTvcQZMcHzokuTLVYzXTB8ttjcgxOVaAp2lGwEdzZ0J+cRbbeevQj1UQ==}
 
@@ -8336,9 +8280,6 @@ packages:
 
   '@types/styled-components@5.1.27':
     resolution: {integrity: sha512-oY9c1SdztRRF0QDQdwXEenfAjGN4WGUkaMpx5hvdTbYYqw01qoY2GrHi+kAR6SVofynzD6KbGoF5ITP0zh5pvg==}
-
-  '@types/styled-system@5.1.25':
-    resolution: {integrity: sha512-B1oyjE4oeAbVnkigcB0WqU2gPFuTwLV/KkLa/uJZWFB9JWVKq1Fs0QwodZXZ9Sq6cb9ngY4kDqRY/dictIchjA==}
 
   '@types/use-sync-external-store@0.0.6':
     resolution: {integrity: sha512-zFDAD+tlpf2r4asuHEj0XH6pY6i0g5NeAHPn+15wk3BV6JA69eERFXC1gyGThDkVa1zCyKr5jox1+2LbV/AMLg==}
@@ -12691,9 +12632,6 @@ packages:
       react-dom: 18.3.1
       styled-components: ^4.1.3
 
-  styled-system@5.1.5:
-    resolution: {integrity: sha512-7VoD0o2R3RKzOzPK0jYrVnS8iJdfkKsQJNiLRDjikOpQVqQHns/DXWaPZOH4tIKkhAT7I6wIsy9FWTWh2X3q+A==}
-
   stylus-lookup@6.1.0:
     resolution: {integrity: sha512-5QSwgxAzXPMN+yugy61C60PhoANdItfdjSEZR8siFwz7yL9jTmV0UBKDCfn3K8GkGB4g0Y9py7vTCX8rFu4/pQ==}
     engines: {node: '>=18'}
@@ -15049,11 +14987,6 @@ snapshots:
 
   '@popperjs/core@2.11.8': {}
 
-  '@rebass/grid@6.1.0':
-    dependencies:
-      '@styled-system/prop-types': 5.1.5(styled-system@5.1.5)
-      styled-system: 5.1.5
-
   '@remirror/core-constants@3.0.0': {}
 
   '@rolldown/pluginutils@1.0.0-rc.3': {}
@@ -15358,62 +15291,6 @@ snapshots:
       typescript: 5.9.3
     transitivePeerDependencies:
       - supports-color
-
-  '@styled-system/background@5.1.2':
-    dependencies:
-      '@styled-system/core': 5.1.2
-
-  '@styled-system/border@5.1.5':
-    dependencies:
-      '@styled-system/core': 5.1.2
-
-  '@styled-system/color@5.1.2':
-    dependencies:
-      '@styled-system/core': 5.1.2
-
-  '@styled-system/core@5.1.2':
-    dependencies:
-      object-assign: 4.1.1
-
-  '@styled-system/css@5.1.5': {}
-
-  '@styled-system/flexbox@5.1.2':
-    dependencies:
-      '@styled-system/core': 5.1.2
-
-  '@styled-system/grid@5.1.2':
-    dependencies:
-      '@styled-system/core': 5.1.2
-
-  '@styled-system/layout@5.1.2':
-    dependencies:
-      '@styled-system/core': 5.1.2
-
-  '@styled-system/position@5.1.2':
-    dependencies:
-      '@styled-system/core': 5.1.2
-
-  '@styled-system/prop-types@5.1.5(styled-system@5.1.5)':
-    dependencies:
-      prop-types: 15.8.1
-      styled-system: 5.1.5
-
-  '@styled-system/shadow@5.1.2':
-    dependencies:
-      '@styled-system/core': 5.1.2
-
-  '@styled-system/space@5.1.2':
-    dependencies:
-      '@styled-system/core': 5.1.2
-
-  '@styled-system/typography@5.1.2':
-    dependencies:
-      '@styled-system/core': 5.1.2
-
-  '@styled-system/variant@5.1.5':
-    dependencies:
-      '@styled-system/core': 5.1.2
-      '@styled-system/css': 5.1.5
 
   '@svgr/babel-plugin-add-jsx-attribute@8.0.0(@babel/core@7.29.0(supports-color@8.1.1))':
     dependencies:
@@ -16045,11 +15922,6 @@ snapshots:
       '@types/prop-types': 15.7.15
       csstype: 3.2.3
 
-  '@types/rebass__grid@6.0.14':
-    dependencies:
-      '@types/react': 18.3.17
-      '@types/styled-system': 5.1.25
-
   '@types/resolve@1.20.6': {}
 
   '@types/semver-utils@1.1.3': {}
@@ -16058,10 +15930,6 @@ snapshots:
     dependencies:
       '@types/hoist-non-react-statics': 3.3.7(@types/react@18.3.17)
       '@types/react': 18.3.17
-      csstype: 3.2.3
-
-  '@types/styled-system@5.1.25':
-    dependencies:
       csstype: 3.2.3
 
   '@types/use-sync-external-store@0.0.6': {}
@@ -21204,22 +21072,6 @@ snapshots:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
       styled-components: 5.3.11(@babel/core@7.29.0(supports-color@5.5.0))(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)
-
-  styled-system@5.1.5:
-    dependencies:
-      '@styled-system/background': 5.1.2
-      '@styled-system/border': 5.1.5
-      '@styled-system/color': 5.1.2
-      '@styled-system/core': 5.1.2
-      '@styled-system/flexbox': 5.1.2
-      '@styled-system/grid': 5.1.2
-      '@styled-system/layout': 5.1.2
-      '@styled-system/position': 5.1.2
-      '@styled-system/shadow': 5.1.2
-      '@styled-system/space': 5.1.2
-      '@styled-system/typography': 5.1.2
-      '@styled-system/variant': 5.1.5
-      object-assign: 4.1.1
 
   stylus-lookup@6.1.0:
     dependencies:

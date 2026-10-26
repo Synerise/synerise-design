@@ -38,7 +38,7 @@ export type { PanelProps } from './Panel.types';
 | `className` | `string` | `undefined` | CSS class applied to the outer wrapper div |
 | `style` | `React.CSSProperties` | `undefined` | Inline styles applied to the outer wrapper div |
 | `ref` | `React.Ref<HTMLDivElement>` | — | Forwarded to the outer wrapper div |
-| _(all `BoxProps`)_ | — | — | Space, layout, and color props from `@rebass/grid` (e.g. `p`, `m`, `width`, `display`, `alignItems`, …); `p` defaults to `8` via `DEFAULT_PADDING`. Note: `label` is omitted from `BoxProps` since `BaseLabelProps` provides it. |
+| _(all `BoxProps`)_ | — | — | Space, layout, and color props from `@synerise/ds-flex-box` (e.g. `p`, `m`, `width`, `display`, `alignItems`, …); `p` defaults to `8` via `DEFAULT_PADDING`. Note: `label` is omitted from `BoxProps` since `BaseLabelProps` provides it. |
 
 ## Usage patterns
 
@@ -73,7 +73,7 @@ const ref = React.createRef<HTMLDivElement>();
 ## Styling
 
 - The outer element is a plain `div` that receives `ref`, `className`, and `style`.
-- `PanelWrapper` extends `Box` from `@synerise/ds-flex-box` (which re-exports `@rebass/grid`), so all `styled-system` space/layout props work.
+- `PanelWrapper` extends `Box` from `@synerise/ds-flex-box`, so all its space/layout style props work. Note `p={8}` resolves through `theme.space`, which has no index 8, so it falls back to `8px`.
 - `Label` extends `FormFieldLabel` from `@synerise/ds-form-field` with `margin-bottom: 8px`.
 - Background is always `theme.palette.white`.
 - `greyBackground` toggles between a border and a box-shadow — it does **not** change the background colour despite its name.

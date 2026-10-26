@@ -43,4 +43,4 @@ import Panel from '@synerise/ds-panel'
 
 The component uses `forwardRef` — pass a `ref` to access the outer `div` element.
 
-**Note:** Panel also accepts all `BoxProps` from `@synerise/ds-flex-box` (via `@rebass/grid`), including:
+**Note:** Panel also accepts all `BoxProps` from `@synerise/ds-flex-box`, including:
