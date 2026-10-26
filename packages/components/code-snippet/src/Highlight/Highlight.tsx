@@ -1,15 +1,15 @@
 // @ts-expect-error — no type declarations
-import hljs from 'highlight.js/lib/core';
+import hljs from 'highlight.js/lib/core.js';
 // @ts-expect-error — no type declarations
-import css from 'highlight.js/lib/languages/css';
+import css from 'highlight.js/lib/languages/css.js';
 // @ts-expect-error — no type declarations
-import javascript from 'highlight.js/lib/languages/javascript';
+import javascript from 'highlight.js/lib/languages/javascript.js';
 // @ts-expect-error — no type declarations
-import json from 'highlight.js/lib/languages/json';
+import json from 'highlight.js/lib/languages/json.js';
 // @ts-expect-error — no type declarations
-import typescript from 'highlight.js/lib/languages/typescript';
+import typescript from 'highlight.js/lib/languages/typescript.js';
 // @ts-expect-error — no type declarations
-import xml from 'highlight.js/lib/languages/xml';
+import xml from 'highlight.js/lib/languages/xml.js';
 import React, { useCallback, useEffect, useRef } from 'react';
 
 import * as S from './Highlight.styles';
@@ -55,7 +55,7 @@ const Highlight = ({ languages, style, children }: HighlightProps) => {
         unbundled.map(async (language) => {
           try {
             const module = await import(
-              /* @vite-ignore */ `highlight.js/lib/languages/${language}`
+              /* @vite-ignore */ `highlight.js/lib/languages/${language}.js`
             );
             hljs.registerLanguage(language, module.default);
             registeredLanguages.add(language);
