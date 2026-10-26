@@ -159,8 +159,6 @@ Resolve credentials and the skill config first (above), then ask **all** run par
      `canary-beta`, `canary`, `qa-ds`, `qa-ds2`, `qa-ds3`, `dev-ds`, or none. Canary envs additionally
      need a deploy tag and a manual GitOps job; the `qa-*`/`dev-*` branches deploy on push.
    - **portal-next** → create a `-test.N` tag from the release branch and monitor its pipeline? Yes/No.
-4. **Has the manual `k8s-prod-gitops` (g001-misc1) job been played?** Gates whether the Teams card carries
-   the stale-Storybook caveat (Step 9). Ask only if you will post to Teams.
 
 Deploying is outward-facing and touches shared QA environments — the answers here are the authorization
 for Phase 4. Confirm the publish itself separately in Step 2.
@@ -366,7 +364,7 @@ Build the body as a JSON array at `/tmp/ds-release-card-<DD-MM-YYYY>.json`, then
 (`A`=added, `M`=updated, `D`=removed). Resolve each file's Storybook title: `*.stories.tsx` → CSF
 `title:`; `*.mdx` with `<Meta title="…"/>` → that string; `*.mdx` with `<Meta of={X}/>` → the title of the
 `*.stories.tsx` it imports. Title → id: lowercase, every run of non-`[a-z0-9]` → one `-`, trimmed, then
-`--overview`. URL: `https://design.synerise.com/storybook-static/?path=/docs/<id>--overview`. Examples:
+`--overview`. URL: `https://design.synerise.com/?path=/docs/<id>--overview`. Examples:
 `Components/Modal` → `components-modal--overview`; `Components/TableNew/Expandable rows` →
 `components-tablenew-expandable-rows--overview`.
 
@@ -382,10 +380,11 @@ Say which fallback you used in the report, since a missing overview page is usua
 
 **Verify every id against the live index** rather than trusting the transform — it also confirms removals
 and re-titles actually shipped. Note the index reflects the *currently deployed* Storybook, so stories
-added by this release will legitimately be absent until the prod gitops deploy runs:
+added by this release will legitimately be absent until the publish pipeline's `chromatic_publish_baseline`
+finishes:
 
 ```bash
-curl -sS https://design.synerise.com/storybook-static/index.json | python3 -c "..."   # check the `entries` keys
+curl -sS https://design.synerise.com/index.json | python3 -c "..."   # check the `entries` keys
 ```
 
 **9b — Two-audience content.** A **Summary** for product owners (one plain-language, impact-first bullet
@@ -394,20 +393,19 @@ details** for FE devs (per package an Accent sub-header
 `@synerise/ds-<name> · <old> → <new> · 🐛 fix` / `✨ feat` / `🔧 refactor`, then bullets with a one-line
 note, the `synerise-design!NNNN` ref, any `STOR-NNNN`, and the 9a doc link).
 
-**9c — Storybook freshness.** The public Storybook only refreshes after the **manual** `k8s-prod-gitops`
-(g001-misc1) job on the publish pipeline; `deploy_storybook` succeeding is *not* enough.
+**9c — Storybook freshness.** `design.synerise.com` serves the Chromatic build of `master`, which the
+publish pipeline's `chromatic_publish_baseline` job pushes automatically after `build_packages`.
 
-⚠️ **Re-check the job immediately before building the card — do not rely on the Step 0 answer.** The user
-often plays it *during* the run, which makes a caveat posted minutes later simply wrong, and the card
-cannot be edited once sent:
+⚠️ **Check the job immediately before building the card.** It usually finishes during the run, which
+makes a caveat decided earlier simply wrong, and the card cannot be edited once sent:
 
 ```
 GET /projects/1171/pipelines/<publish-pipeline-id>/jobs
-# find the job named k8s-prod-gitops: [g001-misc1, …]; status "manual" = unplayed, "success" = played
+# find the job named chromatic_publish_baseline; "success" = live, "created"/"pending"/"running" = not yet
 ```
 
-Only if it is still unplayed, add `⚠️ Storybook links go live once the prod gitops deploy is played.`
-under the meta line.
+Only if it has not succeeded, add `⚠️ Storybook links go live once the Chromatic master build finishes.`
+under the meta line. If it **failed**, say so in the report instead — the public Storybook did not update.
 
 **9d — Render + post.** Mark detail containers `"_truncatable": true` so the script can shrink a card over
 Teams' ~28KB limit (it drops them bottom-up).
@@ -438,7 +436,7 @@ tables (hence the FactSet) and no backtick code (use **bold** for prop names).
     "text": "49 packages · 2 MRs · ✅ all patch-level · ⚠️ still breaking for consumers · [Full notes in the GitLab release](<url>)" },
   { "type": "ActionSet", "spacing": "Medium", "actions": [
     { "type": "Action.OpenUrl", "title": "GitLab release", "url": "<release url>" },
-    { "type": "Action.OpenUrl", "title": "Public Storybook", "url": "https://design.synerise.com/storybook-static/" },
+    { "type": "Action.OpenUrl", "title": "Public Storybook", "url": "https://design.synerise.com/" },
     { "type": "Action.OpenUrl", "title": "Compare 2.0.3 → 2.0.4", "url": "<compare url>" } ] },
   { "type": "Container", "style": "good", "separator": true, "spacing": "ExtraLarge", "items": [
     { "type": "TextBlock", "weight": "Bolder", "size": "Large", "text": "📝 Summary", "wrap": true },

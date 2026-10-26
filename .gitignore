@@ -46,6 +46,8 @@ jspm_packages
 
 .vscode
 storybook-static
+# Redirect pages for the old design.synerise.com/storybook-static/ URLs, not a build output
+!/packages/storybook/public/storybook-static/
 .npmrc
 .DS_Store
 .idea
