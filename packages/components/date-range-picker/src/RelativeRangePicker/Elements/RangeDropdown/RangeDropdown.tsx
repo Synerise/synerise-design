@@ -1,5 +1,5 @@
 import isEqual from 'lodash.isequal';
-import find from 'ramda/src/find';
+import find from 'ramda/src/find.js';
 import React, { useCallback, useRef, useState } from 'react';
 
 import { theme } from '@synerise/ds-core';

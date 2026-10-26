@@ -1,5 +1,5 @@
-import lensPath from 'ramda/src/lensPath';
-import set from 'ramda/src/set';
+import lensPath from 'ramda/src/lensPath.js';
+import set from 'ramda/src/set.js';
 import React, { useEffect } from 'react';
 
 import InputNumber from '@synerise/ds-input-number';

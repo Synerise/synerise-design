@@ -1,5 +1,5 @@
-import lensPath from 'ramda/src/lensPath';
-import set from 'ramda/src/set';
+import lensPath from 'ramda/src/lensPath.js';
+import set from 'ramda/src/set.js';
 import React from 'react';
 
 import { RANGES_MODE } from '../../../constants';
