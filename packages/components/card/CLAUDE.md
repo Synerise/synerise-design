@@ -146,7 +146,6 @@ import Card, { CardGroup, CardBadge, CardSummary } from '@synerise/ds-card';
 
 - `react-animate-height` — animates `children` and `staticContent` show/hide (300ms). The `children` area fades in via a `.card-animation` CSS class that targets `.rah-static--height-auto`.
 - `react-visibility-sensor` — wraps `headerSideChildren` to detect when the header leaves the viewport; powers `showSideChildrenWhenHeaderHidden`.
-- `uuid` — used in `CardSummaryItem` to key `summaryObjects` elements that lack a `.key`.
 
 ## Implementation notes
 

@@ -1,0 +1,26 @@
+language js
+
+// A `key` that evaluates to a fresh value on every render makes React remount the element on
+// every parent re-render. A remount between mousedown and mouseup swallows the click (STOR-2365).
+// Only direct calls are visible here: an id minted in useMemo([items]) and then used as a key has
+// the same effect but needs review, not lint.
+`key={$value}` where {
+  $value <: contains or {
+    `uuid($_)`,
+    `v4($_)`,
+    `uuidv4($_)`,
+    `generateUuid($_)`,
+    `nanoid($_)`,
+    `uniqueId($_)`,
+    `$_.uniqueId($_)`,
+    `randomUUID()`,
+    `$_.randomUUID()`,
+    `Math.random()`,
+    `Date.now()`
+  },
+  register_diagnostic(
+    span = $value,
+    message = "This key is a new value on every render, so React remounts the element each time and can swallow clicks (STOR-2365). Derive the key from the item's data, or mint an id once per mount with useStableId from @synerise/ds-utils.",
+    severity = "error"
+  )
+}

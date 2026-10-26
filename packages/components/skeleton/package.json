@@ -43,7 +43,7 @@
   "types": "dist/index.d.ts",
   "dependencies": {
     "@synerise/ds-checkbox": "workspace:^",
-    "uuid": "^11.1.1"
+    "@synerise/ds-utils": "workspace:^"
   },
   "devDependencies": {
     "vitest": "4"

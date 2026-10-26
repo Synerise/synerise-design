@@ -1,7 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 import { useArgs } from 'storybook/preview-api';
-import { v4 as uuid } from 'uuid';
 
 import Button from '@synerise/ds-button';
 import { theme } from '@synerise/ds-core';
@@ -124,7 +123,7 @@ export const WithAddButton: Story = {
         maxHeight={200}
         onCreate={(name) => {
           const tag = {
-            id: uuid(),
+            id: crypto.randomUUID(),
             name,
             color: theme.palette['grey-200'],
           };

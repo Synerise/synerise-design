@@ -1,5 +1,6 @@
 import range from 'lodash.range';
-import { v4 as uuid } from 'uuid';
+
+import { generateUuid } from '@synerise/ds-utils';
 
 import { fnsAddDays, fnsFormat } from '../fns';
 import DailyFilter from './Filters/DailyFilter/DailyFilter';
@@ -57,7 +58,7 @@ export const DEFAULT_COUNTED_FROM: MonthlySelectValue<COUNTED_FROM_ENUM>[] = [
   },
 ];
 
-export const defaultId = uuid();
+export const defaultId = generateUuid();
 
 export const TYPES_DATA = {
   MONTHLY: {

@@ -1,5 +1,6 @@
 export { default as doubleClickListener } from './doubleClickListener/doubleClickListener';
 export { default as focusWithArrowKeys } from './focusWithArrowKeys/focusWithArrowKeys';
+export { generateUuid } from './generateUuid/generateUuid';
 export * from './getPopupContainer';
 export { default as hexToRgba } from './hexToRgba/hexToRgba';
 export * from './omitKeys/omitKeys';

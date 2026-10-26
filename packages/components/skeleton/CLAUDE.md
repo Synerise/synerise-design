@@ -109,7 +109,6 @@ All components share `BackgroundGradient` from `Skeleton.styles.ts` — a grey-t
 ## Key dependencies
 
 - `@synerise/ds-checkbox` — `CheckboxSkeleton` renders a real `Checkbox` (unchecked, non-interactive) beside the bars
-- `uuid` — generates unique `id` per skeleton bar for stable keys
 
 ## Implementation notes
 

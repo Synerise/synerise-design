@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
-import { v4 as uuid } from 'uuid';
+
+import { generateUuid } from '@synerise/ds-utils';
 
 import * as S from './ProgressBar.styles';
 import type { ProgressProps } from './ProgressBar.types';
@@ -20,7 +21,7 @@ const ProgressBar = ({
   ...rest
 }: ProgressProps) => {
   const tiles = useMemo(
-    () => Array.from({ length: steps }, () => ({ id: uuid() })),
+    () => Array.from({ length: steps }, () => ({ id: generateUuid() })),
     [steps],
   );
   const tileWidthRatio = MAX_PERCENT / steps;

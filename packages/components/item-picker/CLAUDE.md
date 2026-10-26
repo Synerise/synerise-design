@@ -303,7 +303,6 @@ import { ItemPickerList } from '@synerise/ds-item-picker';
 | `@synerise/ds-popconfirm` | Clear-confirmation dialog |
 | `@synerise/ds-information-card` | Optional info tooltip on trigger |
 | `lodash.debounce` | 300 ms debounce on search query |
-| `uuid` | Unique class-name per list instance (used by `focusWithArrowKeys`) |
 | `react-intl` | All default text strings |
 
 ---
@@ -328,4 +327,4 @@ import { ItemPickerList } from '@synerise/ds-item-picker';
 - **`Props` alias** in `Trigger.types.ts` is marked `@deprecated`; use `ItemPickerTriggerProps`.
 - **Tests use Vitest** (`vitest run`); the root `@testing-library/user-event` is v10, so there is no `userEvent.hover` — a `ds-tooltip` cannot be opened from these specs.
 - The search-bar `searchPlaceholder` in `ItemPickerNew` must be overridden via `texts.searchPlaceholder` (not a top-level prop), unlike `ItemPickerLegacy` where it is a direct prop.
-- `ItemPickerList` generates a unique per-instance CSS class via `uuid()` on mount; `focusWithArrowKeys` from `@synerise/ds-utils` uses this class for keyboard navigation.
+- `ItemPickerList` generates a unique per-instance CSS class via `generateUuid()` on mount; `focusWithArrowKeys` from `@synerise/ds-utils` uses this class for keyboard navigation.

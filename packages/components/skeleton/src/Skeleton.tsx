@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
-import { v4 as uuid } from 'uuid';
+
+import { generateUuid } from '@synerise/ds-utils';
 
 import * as S from './Skeleton.styles';
 import type { SkeletonProps } from './Skeleton.types';
@@ -12,7 +13,10 @@ const Skeleton = ({
   className,
 }: SkeletonProps) => {
   const tiles = useMemo(
-    () => Array.from({ length: numberOfSkeletons }, () => ({ id: uuid() })),
+    () =>
+      Array.from({ length: numberOfSkeletons }, () => ({
+        id: generateUuid(),
+      })),
     [numberOfSkeletons],
   );
   return (

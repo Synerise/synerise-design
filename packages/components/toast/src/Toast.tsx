@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useMemo } from 'react';
 import toast from 'react-hot-toast';
-import { v4 as uuid } from 'uuid';
 
 import Icon, { AngleDownS, CloseM } from '@synerise/ds-icon';
+import { generateUuid } from '@synerise/ds-utils';
 
 import { ICONS } from './constants';
 import * as S from './Toast.styles';
@@ -119,7 +119,7 @@ export const showToast = (
   props: ShowToastProps,
   options?: ToastCustomisationOptions,
 ) => {
-  const toastId = props.toastId || `toast-${uuid()}`;
+  const toastId = props.toastId || `toast-${generateUuid()}`;
   return toast.custom(
     (t) => <Toast {...props} toastId={toastId} type={type} show={t.visible} />,
     {

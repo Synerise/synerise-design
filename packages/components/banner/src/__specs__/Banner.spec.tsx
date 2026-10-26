@@ -33,4 +33,21 @@ describe('Banner', () => {
     renderWithProvider(<Banner slides={SLIDES} />);
     expect(screen.getByTestId('banner-counter')).toBeInTheDocument();
   });
+  it('should not remount slides or counter dots when the parent re-renders', () => {
+    // Spread into a fresh array on purpose: an inline `slides` prop has a new identity per render.
+    const { rerender } = renderWithProvider(<Banner slides={[...SLIDES]} />);
+    const slideContent = screen.getAllByText(SLIDE_CONTENT);
+    const dots = Array.from(screen.getByTestId('banner-counter').children);
+
+    rerender(<Banner slides={[...SLIDES]} />);
+
+    screen.getAllByText(SLIDE_CONTENT).forEach((node, index) => {
+      expect(node).toBe(slideContent[index]);
+    });
+    Array.from(screen.getByTestId('banner-counter').children).forEach(
+      (node, index) => {
+        expect(node).toBe(dots[index]);
+      },
+    );
+  });
 });

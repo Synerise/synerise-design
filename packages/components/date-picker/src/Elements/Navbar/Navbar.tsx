@@ -1,5 +1,4 @@
 import React from 'react';
-import { v4 as uuid } from 'uuid';
 
 import Icon, {
   AngleLeftS,
@@ -29,12 +28,10 @@ const Navbar: React.FC<NavbarProps> = (props: NavbarProps) => {
   return (
     <S.Container className="ds-date-picker-nav">
       <S.ArrowContainer>
-        {/* regenerating keys after every render to prevent from render lags on Chrome 84 */}
         {onLongPrev && !hidePrev ? (
           <S.NavButton
             data-testid="datapicker-long-prev"
             disabled={inactivePrev}
-            key={uuid()}
             mode="single-icon"
             role="button"
             type="ghost"
@@ -52,7 +49,6 @@ const Navbar: React.FC<NavbarProps> = (props: NavbarProps) => {
             <S.NavButton
               data-testid="datapicker-short-prev"
               disabled={inactivePrev}
-              key={uuid()}
               mode="single-icon"
               role="button"
               type="ghost"
@@ -73,7 +69,6 @@ const Navbar: React.FC<NavbarProps> = (props: NavbarProps) => {
             <S.NavButton
               data-testid="datapicker-short-next"
               disabled={inactiveNext}
-              key={uuid()}
               mode="single-icon"
               role="button"
               type="ghost"
@@ -88,7 +83,6 @@ const Navbar: React.FC<NavbarProps> = (props: NavbarProps) => {
           <S.NavButton
             data-testid="datapicker-long-next"
             disabled={inactiveNext}
-            key={uuid()}
             mode="single-icon"
             role="button"
             type="ghost"

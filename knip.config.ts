@@ -40,6 +40,9 @@ const config: KnipConfig = {
     // Code Connect sources: `@ts-nocheck`, never built or published, and read by the figma CLI
     // from the workspace. Listing what they import would add cycles (checkbox <-> skeleton).
     '**/*.figma.tsx',
+    // Lint fixtures for the Biome plugins: scripts/check-biome-plugins.mjs lints them from a temp
+    // copy, nothing imports them, and they import packages (uuid, nanoid) the repo does not install.
+    'config/biome/__fixtures__/**',
     ...(isProduction ? NON_PRODUCTION : []),
   ],
   ignoreDependencies: [

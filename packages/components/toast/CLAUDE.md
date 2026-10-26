@@ -54,7 +54,7 @@ Extends `WithHTMLAttributes<HTMLDivElement, ..>` — all standard div props are 
 | `props` | `ShowToastProps` | All `ToastProps` except `type` and `show` |
 | `options` | `ToastCustomisationOptions` | Subset of react-hot-toast `ToastOptions`: `duration`, `position`, `id`, `removeDelay`, `className`, `style` |
 
-Returns the `toastId` string. If `props.toastId` is not provided a `uuid` is generated.
+Returns the `toastId` string. If `props.toastId` is not provided one is generated with `generateUuid()` from `@synerise/ds-utils`.
 
 ### Static shortcut methods on `Toast`
 | Method | Maps to type |
@@ -122,7 +122,6 @@ import Toast from '@synerise/ds-toast';
 
 ## Key dependencies
 - `react-hot-toast ^2.5.2` — Toaster and imperative toast API
-- `uuid ^8.3.2` — Auto-generates `toastId` when not provided
 - `@synerise/ds-icon` — `Check3M`, `WarningFillM`, `InfoFillM`, `AngleDownS`, `CloseM`
 - `@synerise/ds-unordered-list` — style import for list layout inside expanded content
 - `@synerise/ds-core` (peer) — theme tokens; `DSProvider` embeds the Toaster via `TOASTER_DEFAULTS`

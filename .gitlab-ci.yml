@@ -95,6 +95,7 @@ install:
     - pnpm install --frozen-lockfile
     - pnpm lint:ci
     - pnpm check:no-package-test-config
+    - pnpm check:biome-plugins
     - rm -f .npmrc
   cache:
     key:

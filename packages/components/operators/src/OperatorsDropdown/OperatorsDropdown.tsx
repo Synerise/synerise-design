@@ -5,7 +5,6 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import { v4 as uuid } from 'uuid';
 
 import { theme } from '@synerise/ds-core';
 import Dropdown from '@synerise/ds-dropdown';
@@ -13,7 +12,7 @@ import Icon, { SearchM } from '@synerise/ds-icon';
 import Result from '@synerise/ds-result';
 import Scrollbar from '@synerise/ds-scrollbar';
 import Tabs from '@synerise/ds-tabs';
-import { focusWithArrowKeys } from '@synerise/ds-utils';
+import { focusWithArrowKeys, generateUuid } from '@synerise/ds-utils';
 
 import {
   DEFAULT_TAB_INDEX,
@@ -59,7 +58,7 @@ const OperatorsDropdown = ({
   }, [groups, value]);
 
   const classNames = useMemo(() => {
-    return `ds-operator-item ds-operator-item-${uuid()}`;
+    return `ds-operator-item ds-operator-item-${generateUuid()}`;
   }, []);
 
   const renderGroupedItems = useCallback(

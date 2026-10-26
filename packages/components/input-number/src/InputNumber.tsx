@@ -7,7 +7,6 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import { v4 as uuid } from 'uuid';
 
 import { useDataFormat } from '@synerise/ds-core';
 import FormField from '@synerise/ds-form-field';
@@ -16,6 +15,7 @@ import {
   useAutosizeWidth,
   useStretchToFit,
 } from '@synerise/ds-input';
+import { generateUuid } from '@synerise/ds-utils';
 
 import { useStepper } from './hooks/useStepper';
 import * as S from './InputNumber.styles';
@@ -93,7 +93,7 @@ const InputNumber = ({
   const inputRef = useRef<HTMLInputElement>(null);
   const scrollLeftRef = useRef(0);
 
-  const id = useMemo(() => idProp ?? uuid(), [idProp]);
+  const id = useMemo(() => idProp ?? generateUuid(), [idProp]);
   const showError = Boolean(error || errorText);
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: dependencies intentionally omitted

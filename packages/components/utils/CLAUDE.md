@@ -19,6 +19,7 @@ src/
  doubleClickListener/ — factory for single/double click disambiguation
  focusWithArrowKeys/ — keyboard arrow-key focus navigation helper
  omitKeys/ — remove named keys from a plain object
+ generateUuid/ — RFC 4122 v4 UUID that also works outside secure contexts
  getPopupContainer/ — Ant Design getPopupContainer helper
 
   # Hooks
@@ -33,7 +34,7 @@ src/
   useElementInView/                 — IntersectionObserver: is element visible?
   useOverscrollBlock/               — prevent horizontal overscroll on a container
   useScrollContain/                 — block wheel event propagation out of a container
-  useStableId/                      — stable UUID for component lifetime (via uuid v4)
+  useStableId/                      — stable UUID for component lifetime (via generateUuid)
   useLatestRef/                     — always-current ref to a changing value
   useSearchResults/                 — filtered+sorted search results from grouped item lists
   useKeyboardShortcuts/             — document-level keydown handler map
@@ -57,6 +58,9 @@ Converts kebab-case and snake_case strings to camelCase. Strips non-alphanumeric
 
 #### `escapeRegEx(s: string): string`
 Escapes all regex special characters in a string for safe use in `new RegExp(..)`.
+
+#### `generateUuid(): string`
+Returns an RFC 4122 version 4 UUID. Uses `crypto.randomUUID()` when it exists; it only does in secure contexts (https, localhost), so on plain http the UUID is built from `crypto.getRandomValues()`, with `Math.random()` as a last resort for runtimes without `crypto`. Use it instead of calling `crypto.randomUUID()` directly in component code. Fine for DOM ids and keys; not for secrets. Every call returns a new value, so never use it directly as a React `key` (the `no-random-jsx-key` Biome rule rejects that).
 
 #### `selectColorByLetter(letter?: string, forAvatar?: boolean): Color`
 Maps a letter to a design-system palette colour. Uses `latinize` to normalise accented characters.
@@ -145,7 +149,7 @@ Attach the returned `ref` to a scroll container. On `mouseenter` sets `document.
 Attach the returned `ref` to a container. Blocks `wheel` events from propagating or scrolling the page (calls `stopPropagation` + `preventDefault`).
 
 #### `useStableId(): string`
-Returns a UUID (`uuid` v4) that is stable for the lifetime of the component. Generated synchronously on first render, never regenerated on re-renders.
+Returns a UUID (`generateUuid()`) that is stable for the lifetime of the component. Generated synchronously on first render, never regenerated on re-renders.
 
 #### `useLatestRef<T>(value: T): MutableRefObject<T>`
 Stores `value` in a ref and syncs it in a `useEffect`. Use to read the latest value of a prop/state in a callback without adding it to `useCallback`'s dependency array.
@@ -228,7 +232,6 @@ The outer style for a row measured by `useMeasuredRow`: react-window's `style` w
 
 ## Key dependencies
 
-- `uuid` — used by `useStableId` for UUID generation
 - `latinize` — used by `selectColorByLetter` to normalise accented letters
 - `@synerise/ds-core` — `theme.palette` used by `selectColorByLetter`
 

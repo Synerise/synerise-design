@@ -1,5 +1,4 @@
 import React, { createRef, useState } from 'react';
-import { v4 as uuid } from 'uuid';
 
 import Button from '@synerise/ds-button';
 import CompletedWithin, { PeriodValue } from '@synerise/ds-completed-within';
@@ -285,9 +284,9 @@ export const useFilterHandlers = ({
         ...expressions,
         {
           ...expressionDuplicate,
-          id: uuid(),
+          id: crypto.randomUUID(),
           logic: expressionDuplicate.logic
-            ? { ...expressionDuplicate.logic, id: uuid() }
+            ? { ...expressionDuplicate.logic, id: crypto.randomUUID() }
             : undefined,
         },
       ]);

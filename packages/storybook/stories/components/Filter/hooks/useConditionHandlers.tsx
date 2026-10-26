@@ -1,5 +1,4 @@
 import { ReactText, useCallback, useState } from 'react';
-import { v4 as uuid } from 'uuid';
 
 import { ConditionStep } from '@synerise/ds-condition';
 import { ContextGroup, ContextItem } from '@synerise/ds-context-selector';
@@ -187,7 +186,10 @@ export const useConditionHandlers = (
 
   const addStepCondition = useCallback(
     (stepId: ReactText) => {
-      const newCondition = { ...DEFAULT_CONDITION_ROW(), id: uuid() };
+      const newCondition = {
+        ...DEFAULT_CONDITION_ROW(),
+        id: crypto.randomUUID(),
+      };
       onChange(
         steps.map((step) => {
           if (step.id === stepId) {
@@ -248,7 +250,8 @@ export const useConditionHandlers = (
   const duplicateStep = useCallback(
     (stepId) => {
       const duplicatedStep = steps.find((step) => step.id === stepId);
-      duplicatedStep && onChange([...steps, { ...duplicatedStep, id: uuid() }]);
+      duplicatedStep &&
+        onChange([...steps, { ...duplicatedStep, id: crypto.randomUUID() }]);
     },
     [onChange, steps],
   );

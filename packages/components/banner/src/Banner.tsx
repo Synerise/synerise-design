@@ -1,5 +1,4 @@
-import React, { useMemo, useState } from 'react';
-import { v4 as uuid } from 'uuid';
+import React, { useState } from 'react';
 
 import Button from '@synerise/ds-button';
 import Icon, { CloseM } from '@synerise/ds-icon';
@@ -30,10 +29,6 @@ const Banner = ({
   const { bannerRef, handleDotClick, handleNextClick, handlePrevClick } =
     useCarousel();
   const allTexts = useTexts(texts);
-
-  const slidesWithUUID = useMemo(() => {
-    return slides.map((slide) => ({ ...slide, id: uuid() }));
-  }, [slides]);
 
   const handleBeforeChange = (from: number, to: number) => {
     setCurrentIndex(to);
@@ -73,8 +68,8 @@ const Banner = ({
             effect={transitionEffect}
             dots={false}
           >
-            {slidesWithUUID.map((slide) => (
-              <BannerSlide {...slide} key={slide.id} />
+            {slides.map((slide, index) => (
+              <BannerSlide {...slide} key={slide.id ?? index} />
             ))}
           </S.BannerSlides>
           {slides.length > 1 && (
@@ -83,7 +78,7 @@ const Banner = ({
               onNextClick={handleNextClick}
               onDotClick={handleDotClick}
               currentIndex={currentIndex}
-              slides={slidesWithUUID}
+              slides={slides}
             />
           )}
         </>

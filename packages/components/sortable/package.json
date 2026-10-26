@@ -46,8 +46,7 @@
     "@dnd-kit/modifiers": "^7.0.0",
     "@dnd-kit/sortable": "^8.0.0",
     "@dnd-kit/utilities": "^3.2.2",
-    "@synerise/ds-utils": "workspace:^",
-    "uuid": "^11.1.1"
+    "@synerise/ds-utils": "workspace:^"
   },
   "devDependencies": {
     "vitest": "4"

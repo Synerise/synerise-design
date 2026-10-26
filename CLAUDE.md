@@ -10,6 +10,13 @@
 - **Biome** for lint + format + import order (80 char lines, single quotes, 2-space indent).
   `pnpm lint` / `pnpm lint:fix` / `pnpm format` / `pnpm check` — `pnpm lint:ci` is the CI gate.
   Suppress a rule with `// biome-ignore lint/<group>/<rule>: <reason>` (the reason is mandatory)
+- Custom lint rules are GritQL plugins in `config/biome/plugins/`, registered in `biome.json` and
+  tested against `config/biome/__fixtures__/` by `pnpm check:biome-plugins` (CI `install` job).
+  `no-random-jsx-key` rejects a `key` built from `uuid()`/`Math.random()`/`Date.now()` and similar
+  (STOR-2365); suppress with `// biome-ignore lint/plugin/no-random-jsx-key: <reason>`
+- Never call `crypto.randomUUID()` (or any `crypto` API) directly in a component package — use
+  `generateUuid()` from `@synerise/ds-utils`. The DS is published publicly, and `crypto.randomUUID`
+  only exists in secure contexts, so it is `undefined` for any consumer served over plain http
 - **knip** keeps every `package.json` in sync with its imports (`pnpm build && pnpm knip`; `pnpm knip:ci`
   gates CI after the build). A runtime import must be declared in the package's **own** manifest — the
   root one does not count — and anything the published `d.ts` imports belongs in `dependencies`, not

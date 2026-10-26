@@ -12,8 +12,6 @@ import { type RelativeMode } from './DateRangePicker.types';
 import DateRangePicker from './DateRangePicker';
 import { type SavedFilter } from './RangeFilter/Shared/FilterDropdown/FilterDropdown.types';
 
-
-vi.mock('uuid', () => ({ v4: () => Math.floor(Math.random() * 999999999).toString() }));
 const DAILY_FILTER = {
   from: '00:00:00.000',
   to: '23:59:59.999',

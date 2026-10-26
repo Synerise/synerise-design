@@ -11,7 +11,6 @@ import React, {
   useState,
 } from 'react';
 import { VariableSizeList } from 'react-window';
-import { v4 as uuid } from 'uuid';
 
 import { theme } from '@synerise/ds-core';
 import Divider from '@synerise/ds-divider';
@@ -27,6 +26,7 @@ import Scrollbar from '@synerise/ds-scrollbar';
 import Tabs from '@synerise/ds-tabs';
 import {
   focusWithArrowKeys,
+  generateUuid,
   getActiveTabGroup,
   getGroupName,
   getMeasuredRowStyle,
@@ -162,7 +162,7 @@ const ContextSelectorDropdown = ({
   const [topSectionHeight, setTopSectionHeight] = useState(0);
   const [isKeyboardNav, setIsKeyboardNav] = useState(false);
   const classNames = useMemo(() => {
-    return `ds-context-item ds-context-item-${uuid()}`;
+    return `ds-context-item ds-context-item-${generateUuid()}`;
   }, []);
 
   const resetList = useCallback(() => {

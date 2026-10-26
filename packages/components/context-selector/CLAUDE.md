@@ -173,7 +173,6 @@ Merges i18n defaults (via `react-intl` `useIntl`) with caller-provided `Partial<
 - `@synerise/ds-tabs` — tab bar when `groups.length > 1`
 - `@synerise/ds-utils` — `useSearchResults` (client-side search), `focusWithArrowKeys`, `getClosest`
 - `react-intl` — i18n for default text labels (peer requirement via `useTexts`)
-- `uuid` — generates unique CSS class names for keyboard focus management in the list
 
 ## Implementation notes
 
@@ -183,5 +182,5 @@ Merges i18n defaults (via `react-intl` `useIntl`) with caller-provided `Partial<
 - **Viewport height adaptation** — a `resize` event listener adjusts dropdown height: `< 900px` → 350px, otherwise 420px. Override via `dropdownDimensionsConfig`.
 - **`maxSearchResultsInGroup`** — hard-coded default of `4` inside `ContextSelectorDropdown`; not exposed through `ContextProps`.
 - **Sub-group navigation resets on select** — selecting any item clears `activeGroup` and resets `activeTab` to the `defaultGroup` index.
-- **`uuid` per render instance** — a unique CSS class is generated once per `ContextSelectorDropdown` mount and used for keyboard arrow-key focus management between search input and list items.
+- **Unique class per instance** — a unique CSS class (`generateUuid()` from `@synerise/ds-utils`) is generated once per `ContextSelectorDropdown` mount and used for keyboard arrow-key focus management between search input and list items.
 - **`@ts-expect-error` in groupByGroupName** — `groupName` is not on the `ContextGroup` type but is used at runtime when items are merged with their group names for the "Recent / All" split view.

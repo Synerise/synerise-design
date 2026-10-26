@@ -1,10 +1,10 @@
 import cloneDeep from 'lodash.clonedeep';
 import React from 'react';
 import { injectIntl } from 'react-intl';
-import { v4 as uuid } from 'uuid';
 
 import Button from '@synerise/ds-button';
 import ButtonGroup from '@synerise/ds-button-group';
+import { generateUuid } from '@synerise/ds-utils';
 
 import type {
   Translations,
@@ -106,7 +106,7 @@ class RangeFilter extends React.PureComponent<
       ...currentFilter,
       type: activeType,
       name: filterName,
-      id: uuid(),
+      id: generateUuid(),
     };
     const filterWithUniqueName = addSuffixToDuplicate(filterList, filter);
     onFilterSave && onFilterSave([...filterList, filterWithUniqueName]);

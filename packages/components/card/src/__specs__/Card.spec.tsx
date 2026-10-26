@@ -4,7 +4,7 @@ import { ObjectAvatar } from '@synerise/ds-avatar';
 import { renderWithProvider } from '@synerise/ds-core/testing';
 import { screen, waitFor } from '@testing-library/react';
 
-import Card from '../index';
+import Card, { CardSummary } from '../index';
 
 describe('Card', () => {
   it('should render', function () {
@@ -99,5 +99,31 @@ describe('Card', () => {
       <Card withHeader avatar={<ObjectAvatar />} />,
     );
     expect(container.querySelector('.ds-avatar')).toBeTruthy();
+  });
+
+  it('should not remount summary objects when the parent re-renders', () => {
+    // Inline elements on purpose: a parent re-render hands down new element identities.
+    const renderSummary = () => (
+      <CardSummary
+        items={[
+          {
+            key: 'item',
+            value: 'Value',
+            summaryObjects: [
+              <span key="keyed">Keyed object</span>,
+              <span>Unkeyed object</span>,
+            ],
+          },
+        ]}
+      />
+    );
+    const { rerender } = renderWithProvider(renderSummary());
+    const keyed = screen.getByText('Keyed object').parentElement;
+    const unkeyed = screen.getByText('Unkeyed object').parentElement;
+
+    rerender(renderSummary());
+
+    expect(screen.getByText('Keyed object').parentElement).toBe(keyed);
+    expect(screen.getByText('Unkeyed object').parentElement).toBe(unkeyed);
   });
 });

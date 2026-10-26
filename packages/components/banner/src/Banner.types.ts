@@ -59,7 +59,7 @@ export type BannerSlideTextContentProps = {
 export type BannerSlideMediaContentProps = { media?: ReactNode };
 
 export type BannerCounterProps = {
-  slides: Array<BannerSlideProps & { id: string }>;
+  slides: BannerSlideProps[];
   currentIndex: number;
   onDotClick: (index: number) => void;
   onNextClick: () => void;

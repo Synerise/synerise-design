@@ -293,7 +293,6 @@ Styles live in `Input.styles.tsx` using `@synerise/ds-core` theme tokens. Error 
 - `@synerise/ds-form-field` — `FormField` wrapper providing label, tooltip, description, errorText slots
 - `@floating-ui/react` — `useMergeRefs` for combining forwarded ref with internal wrapper ref
 - `@synerise/ds-utils` — `useResizeObserver` for `stretchToFit` auto-resize
-- `uuid` — generates a stable `id` per instance for `<label htmlFor>` association
 - `react-intl` — default `showText`/`hideText` strings in `PasswordInput`
 
 ## Implementation notes

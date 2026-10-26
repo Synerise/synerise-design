@@ -1,6 +1,5 @@
 import React from 'react';
 import { fn } from 'storybook/test';
-import { v4 as uuid } from 'uuid';
 
 import type { ConditionStep, StepConditions } from '@synerise/ds-condition';
 import type { ContextGroup, ContextItem } from '@synerise/ds-context-selector';
@@ -42,7 +41,7 @@ export const CONDITION_TEXTS = {
 };
 
 export const DEFAULT_CONDITION_ROW = (): StepConditions => ({
-  id: uuid(),
+  id: crypto.randomUUID(),
   parameter: {
     ...DEFAULT_PARAMETER_VALUE,
   },
@@ -172,7 +171,7 @@ export const DEFAULT_CONTEXT_VALUE = {
 export const DEFAULT_STEP = (
   subject?: ContextItem | ContextGroup,
 ): ConditionStep => ({
-  id: uuid(),
+  id: crypto.randomUUID(),
   stepName: '',
   context: {
     ...DEFAULT_CONTEXT_VALUE,

@@ -137,7 +137,6 @@ All styles in `*.styles.ts` files. Use `theme.palette` tokens for backgrounds; `
 
 ## Key dependencies
 
-- `uuid` (`v4`) — generates stable tile keys in `ProgressBar`; new IDs created on every `steps` change
 - `@synerise/ds-form-field` — `FormFieldLabel` re-used for the label element in both `ProgressBar` and `ProgressTiles`
 - `@synerise/ds-tooltip` — wraps each `Multivalue` bar segment for optional tooltips
 - `@synerise/ds-utils` — `WithHTMLAttributes` utility type

@@ -14,7 +14,6 @@ import React, {
   useState,
 } from 'react';
 import type { ListChildComponentProps, VariableSizeList } from 'react-window';
-import { v4 as uuid } from 'uuid';
 
 import { useTheme } from '@synerise/ds-core';
 import Dropdown from '@synerise/ds-dropdown';
@@ -23,6 +22,7 @@ import { itemSizes, ListContextProvider } from '@synerise/ds-list-item';
 import { Text } from '@synerise/ds-typography';
 import {
   focusWithArrowKeys,
+  generateUuid,
   useCombinedRefs,
   useKeyboardShortcuts,
   useMeasuredRowHeights,
@@ -124,7 +124,7 @@ const ItemPickerListInner = <
     }, 300),
   ).current;
   const classNames = useMemo(
-    () => `ds-item-picker-dropdown ds-item-picker-dropdown-${uuid()}`,
+    () => `ds-item-picker-dropdown ds-item-picker-dropdown-${generateUuid()}`,
     [],
   );
 

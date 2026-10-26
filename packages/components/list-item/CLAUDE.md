@@ -12,7 +12,7 @@ src/
  Danger/Danger.tsx — renders DangerItem styled variant
  Divider/Divider.tsx — renders ds-divider with side margin + dashed
  Header/Header.tsx — section header row with optional tooltip icon
- Select/Select.tsx — select-style row (uuid key bug present)
+ Select/Select.tsx — select-style row
  Text/Text.tsx — default variant; all interactive logic lives here
  Text/ItemLabel.tsx — rendered <div role="menuitem"> with prefix/suffix/check slots
  Text/DynamicLabel.tsx — swaps normal label for copiedLabel via CSS transition
@@ -185,7 +185,6 @@ import ListItem, { ListWrapper, ListContextProvider, useListContext } from '@syn
 - **`size="auto"` + `renderHoverTooltip`** — `S.Wrapper` gets `height: 100%` in a tooltip, so an auto row overflows a *fixed-height* parent rather than growing it. Give it a parent that can grow.
 - **`size="auto"` + `copyable`** — `DynamicLabel` swaps only the label, not the description, so a wrapped title briefly collapses to the one-line "Copied!" and the row shrinks and regrows.
 - **`checked` in `Text` type** — renders a `CheckS` icon in the suffix slot. In `select` type, the styled component handles its own checked appearance independently via `S.SelectItem`.
-- **`Select.tsx` bug** — `uuid()` is called as the `key` prop on every render, generating a new key on each re-render, causing unnecessary unmount/remount cycles. (TODO comment present in source.)
 - **`copyable` boolean legacy** — when `copyable` is a plain `boolean`, it requires `copyValue` (deprecated string prop) to be set separately. Use the object form `copyable: { copyValue: '..' }` instead.
 - **`useTemporaryLabel` missing cleanup** — the `useEffect` in `useTemporaryLabel` runs on every render (no dependency array), creating a new `setTimeout` on each render. This is a bug: it resets the timer unnecessarily when other state changes.
 - **`GroupItem` uses `items?.map(ListItem)`** — passes `ListItemProps` objects directly as React elements via `.map(Component)`. This relies on all `ListItemProps` being valid props AND each item object having a `key` property (which is typed as optional). Missing `key` will produce React warnings.

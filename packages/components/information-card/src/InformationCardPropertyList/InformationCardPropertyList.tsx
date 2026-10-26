@@ -1,5 +1,4 @@
-import React, { useMemo } from 'react';
-import { v4 as uuid } from 'uuid';
+import React from 'react';
 
 import * as S from '../InformationCard.styles';
 import type {
@@ -16,19 +15,15 @@ const isDivider = (
 export const InformationCardPropertyList = ({
   items,
 }: InformationCardPropertyListProps) => {
-  const itemsWithIDs = useMemo(
-    () => items?.map((item) => ({ id: uuid(), ...item })),
-    [items],
-  );
   return (
     <S.InformationCardPropertyListWrapper data-testid="information-card-property-list">
-      {itemsWithIDs?.map((item: InformationCardPropertyItem) => {
+      {items?.map((item: InformationCardPropertyItem, index) => {
         if (isDivider(item)) {
-          return <S.Divider dashed key={item.id} />;
+          return <S.Divider dashed key={item.id ?? index} />;
         }
         const { label, value, id } = item;
         return (
-          <S.InformationCardPropertyItem key={id}>
+          <S.InformationCardPropertyItem key={id ?? index}>
             {label && (
               <S.InformationCardPropertyItemLabel>
                 {label}:

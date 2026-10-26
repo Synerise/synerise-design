@@ -8,9 +8,9 @@ import React, {
   useState,
 } from 'react';
 import { useIntl } from 'react-intl';
-import { v4 as uuid } from 'uuid';
 
 import { useDataFormat } from '@synerise/ds-core';
+import { generateUuid } from '@synerise/ds-utils';
 
 import { getDefaultTexts } from '../../../../utils';
 import {
@@ -406,7 +406,7 @@ const Monthly = ({
     const restOfScheduleObject = guid ? value[guid] : EMPTY_OBJECT;
     const updatedSchedule = {
       ...value,
-      [guid || uuid()]: {
+      [guid || generateUuid()]: {
         ...restOfScheduleObject,
         ...updatedDay,
       },
