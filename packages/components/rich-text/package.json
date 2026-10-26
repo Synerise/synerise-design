@@ -60,7 +60,7 @@
     "@tiptap/pm": "^2.11.0",
     "@tiptap/react": "^2.11.0",
     "@tiptap/starter-kit": "^2.11.0",
-    "markdown-it": "14.1.0"
+    "markdown-it": "^14.3.3"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
