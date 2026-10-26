@@ -1,0 +1,56 @@
+import { ArgTypes, Meta, Canvas } from '@storybook/addon-docs/blocks';
+import * as FactorsStories from './Factors.stories';
+
+<Meta of={FactorsStories} />
+
+# Factors
+
+A polymorphic input component that renders different input UIs based on a selected factor type,
+with an optional type-switcher dropdown.
+
+## Key features
+
+- **10 built-in types:** text, number, date, dateRange, relativeDate, parameter, contextParameter, formula, dynamicKey, array
+- **Type-switcher dropdown** lets users change the factor type at runtime (hide it with `withoutTypeSelector`)
+- **`timeZone` prop** passed to both the Date and Date-range factor inputs for timezone-aware picking
+- **Customisable** via `customFactorValueComponents` — override the rendered component for any built-in type
+
+## Examples
+
+### Default (text)
+
+<Canvas of={FactorsStories.Default} sourceState="shown" />
+
+### Parameter type
+
+Renders a grouped, searchable parameter selector.
+
+<Canvas of={FactorsStories.ParameterType} />
+
+### Relative date
+
+Offset-based date input with configurable available units.
+
+<Canvas of={FactorsStories.RelativeDate} />
+
+### Array (string)
+
+Multi-value string input with a creator, raw paste, and collector modes.
+
+<Canvas of={FactorsStories.ArrayString} />
+
+### Customised parameter type
+
+Override the default parameter input with a custom component via `customFactorValueComponents`.
+
+<Canvas of={FactorsStories.CustomisedParameterType} />
+
+### All types showcase
+
+Every built-in factor type rendered side by side.
+
+<Canvas of={FactorsStories.AllTypes} />
+
+## API reference
+
+<ArgTypes of={FactorsStories} />

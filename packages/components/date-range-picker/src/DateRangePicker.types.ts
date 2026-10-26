@@ -22,7 +22,7 @@ import type { RangePickerInputProps } from './RangePickerInput/RangePickerInput.
 
 export type DateRangePickerProps = {
   /**
-   * @deprecated use `valueFormatOptions` instead
+   * @deprecated - not used, this prop will be dropped in v1.x
    */
   intl?: IntlShape;
   /**
@@ -38,6 +38,13 @@ export type DateRangePickerProps = {
   forceAbsolute?: boolean;
   footerProps?: Partial<FooterProps>;
   onValueChange?: (value: Partial<DateFilter> | undefined) => void;
+  /**
+   * Opts into timezone-aware values: the emitted `from` / `to` become `TZDate`s carrying the
+   * resolved zone instead of offset-carrying ISO strings, and the panel works in that zone.
+   * `true` uses the provider's `timeZone`; a string names an IANA zone directly. Omitted, the
+   * component behaves exactly as before — provider zone, ISO strings out.
+   */
+  timeZone?: boolean | string;
   onApply: (value: Partial<DateFilter> | undefined) => void;
   onVisibleChange?: (visible: boolean) => void;
   onFilterSave?: (filters: SavedFilter[]) => void;

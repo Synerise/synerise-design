@@ -22,6 +22,8 @@ export type Props = {
   texts: Texts;
   relativeModes: RelativeMode[];
   rangeUnits: DateRangePickerProps['rangeUnits'];
+  /** Resolved `timeZone` prop, or `undefined` when it was not set. See `dateUtils/getNow`. */
+  timeZone?: string;
 };
 
 export type FieldProps = {

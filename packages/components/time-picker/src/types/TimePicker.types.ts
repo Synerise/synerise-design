@@ -14,7 +14,20 @@ export type TimePickerDisabledUnits = {
   disabledHours?: number[];
 };
 
-export type TimePickerProps = TimePickerDisabledUnits & {
+/**
+ * `value` takes a `Date` or an ISO string; `onChange` always hands back a `Date`.
+ *
+ * With `timeZone` set that `Date` is a `TZDate` carrying the resolved zone — the same contract
+ * as `ds-date-picker`. Input and output used to share one `ValueType` parameter, which forced a
+ * consumer holding a `Date` to declare its output as `string`.
+ */
+type ValueRelatedProps = {
+  onChange?: (date: Date | undefined, timeString: string) => void;
+  value?: Date | string;
+  timeZone?: boolean | string;
+};
+
+export type TimePickerProps = ValueRelatedProps & {
   alwaysOpen?: boolean;
   className?: string;
   clearTooltip?: string | ReactNode;
@@ -28,7 +41,6 @@ export type TimePickerProps = TimePickerDisabledUnits & {
     >
   >;
   inputProps?: Partial<InputProps>;
-  onChange?: (value: Date | undefined, timeString: string) => void;
   onClockModeChange?: (mode: string) => void;
   overlayClassName?: string;
   placeholder?: string;
@@ -51,6 +63,5 @@ export type TimePickerProps = TimePickerDisabledUnits & {
    */
   use12HourClock?: boolean;
   valueFormatOptions?: DateToFormatOptions;
-  value?: Date;
   errorText?: ReactNode;
-};
+} & TimePickerDisabledUnits;

@@ -10,11 +10,21 @@ import Icon, { ArrowRightS, CalendarM, Close3S } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 
 import type { Texts } from '../DateRangePicker.types';
-import type { DateRange, NullableDateLimit } from '../date.types';
+import type { DateLimit, DateRange, NullableDateLimit } from '../date.types';
+import {
+  getDateToDisplay,
+  getFormatOptionsToDisplay,
+} from '../dateUtils/displayDate';
 import { isLifetime } from '../RelativeRangePicker/Elements/RangeDropdown/RangeDropdown';
 import { normalizeRange } from '../utils';
 import * as S from './RangePickerInput.styles';
 import type { RangePickerInputProps } from './RangePickerInput.types';
+
+const isDateLimit = (
+  dateLimit: DateLimit | NullableDateLimit | undefined,
+): dateLimit is DateLimit => {
+  return dateLimit !== undefined && dateLimit !== null;
+};
 
 const RangePickerInput = ({
   value,
@@ -37,11 +47,14 @@ const RangePickerInput = ({
   error,
   errorText,
   preferRelativeDesc = false,
+  timeZone,
 }: RangePickerInputProps) => {
   const theme = useTheme();
   const { formatValue } = useDataFormat();
 
-  const dateRangeValue = value ? normalizeRange(value as DateRange) : value;
+  const dateRangeValue = value
+    ? normalizeRange(value as DateRange, timeZone)
+    : value;
   const [hovered, setHovered] = useState(false);
   const showError = error || !!errorText;
   const hasValue = dateRangeValue?.from && dateRangeValue?.to;
@@ -58,20 +71,30 @@ const RangePickerInput = ({
   );
 
   const getText = useCallback(
-    (dateToDisplay?: NullableDateLimit): string => {
-      const dateValue = dateToDisplay ? new Date(dateToDisplay) : new Date();
-      return formatValue(dateValue, {
-        ...getDefaultDataTimeOptions(showTime),
-        ...valueFormatOptions,
-      });
+    (dateToDisplay: DateLimit): string => {
+      const date =
+        typeof dateToDisplay === 'string'
+          ? new Date(dateToDisplay)
+          : dateToDisplay;
+      return formatValue(
+        getDateToDisplay(date, timeZone),
+        getFormatOptionsToDisplay(
+          {
+            ...getDefaultDataTimeOptions(showTime),
+            ...valueFormatOptions,
+          },
+          timeZone,
+        ),
+      );
     },
-    [showTime, formatValue, valueFormatOptions],
+    [timeZone, formatValue, showTime, valueFormatOptions],
   );
 
   const renderFromDate = useCallback(() => {
-    const isFromDateDefined = dateRangeValue && dateRangeValue.from;
+    const isFromDateDefined =
+      dateRangeValue && isDateLimit(dateRangeValue.from);
     const text =
-      dateRangeValue && isFromDateDefined ? (
+      dateRangeValue && isDateLimit(dateRangeValue.from) ? (
         <S.DateValue>{getText(dateRangeValue.from)}</S.DateValue>
       ) : (
         texts?.startDatePlaceholder
@@ -90,7 +113,7 @@ const RangePickerInput = ({
     const isFromDateDefined = dateRangeValue && dateRangeValue.from;
 
     const text =
-      isEndDateDefined && dateRangeValue ? (
+      dateRangeValue && isDateLimit(dateRangeValue.to) ? (
         <S.DateValue>{getText(dateRangeValue.to)}</S.DateValue>
       ) : (
         texts?.endDatePlaceholder

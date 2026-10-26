@@ -10,6 +10,7 @@ import type {
   RelativeDateRange,
   RelativeUnits,
 } from '../../../date.types';
+import { getNow } from '../../../dateUtils/getNow';
 import { DEFAULT_RANGE } from '../../../utils';
 import * as S from '../../RelativeRangePicker.styles';
 import TimestampDuration from './TimestampDuration/TimestampDuration';
@@ -20,14 +21,9 @@ const TimestampRange: React.FC<Props> = ({
   handleChange,
   texts,
   onTimestampChange,
-  getValueOnReset = (): RelativeDateRange => ({
-    ...DEFAULT_RANGE,
-    type: 'RELATIVE',
-    offset: { type: 'SINCE', value: new Date() as any as number },
-    duration: { type: 'DAYS', value: 30 },
-    translationKey: CUSTOM_RANGE_KEY,
-  }),
+  getValueOnReset,
   timestamp,
+  timeZone,
 }: Props) => {
   const [durationModifier, setDurationModifier] = React.useState<
     typeof DURATION_MODIFIERS.LAST | typeof DURATION_MODIFIERS.NEXT
@@ -41,6 +37,20 @@ const TimestampRange: React.FC<Props> = ({
   const [error, setError] = React.useState<boolean>(!timestamp);
   const intl = useIntl();
   const allTexts = getDefaultTexts(intl, texts);
+  // The SINCE anchor defaults to "now" on the provider's clock, so clearing the timestamp
+  // lands on the provider's day rather than the browser's.
+  const getResetValue = React.useCallback(
+    () =>
+      getValueOnReset?.() ??
+      ({
+        ...DEFAULT_RANGE,
+        type: 'RELATIVE',
+        offset: { type: 'SINCE', value: getNow(timeZone) as any as number },
+        duration: { type: 'DAYS', value: 30 },
+        translationKey: CUSTOM_RANGE_KEY,
+      } as RelativeDateRange),
+    [getValueOnReset, timeZone],
+  );
   React.useEffect(() => {
     setError(!timestamp);
   }, [timestamp]);
@@ -77,13 +87,13 @@ const TimestampRange: React.FC<Props> = ({
           value={timestamp}
           onValueChange={(value): void => {
             setError(!value);
-            onTimestampChange && onTimestampChange(value);
+            onTimestampChange && onTimestampChange(value as Date);
           }}
           onApply={(date): void => {
-            onTimestampChange && onTimestampChange(date);
+            onTimestampChange && onTimestampChange(date as Date);
           }}
           onClear={(): void => {
-            onTimestampChange && onTimestampChange(getValueOnReset() as any); // FIXME cannot reselect date after clearing
+            onTimestampChange && onTimestampChange(getResetValue() as any); // FIXME cannot reselect date after clearing
           }}
           dropdownProps={{
             getPopupContainer: (node): HTMLElement =>

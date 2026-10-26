@@ -26,6 +26,7 @@ const CustomRangeForm = ({
   handleTimestampChange,
   timestamp,
   relativeModes,
+  timeZone,
 }: Props) => {
   const isSinceModeEnable = currentGroup === RANGES_MODE.SINCE;
   const renderOffsetColumn = (): React.ReactNode => {
@@ -67,6 +68,7 @@ const CustomRangeForm = ({
           onTimestampChange={handleTimestampChange}
           timestamp={timestamp}
           texts={texts}
+          timeZone={timeZone}
         />
       </S.RangeFormColumn>
     );

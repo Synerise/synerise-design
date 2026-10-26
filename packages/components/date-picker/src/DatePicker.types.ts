@@ -11,10 +11,10 @@ export type QuickPick = {
   value: Date;
 };
 
-export type DatePickerProps = {
+export type BaseDatePickerProps = {
   autoFocus?: boolean;
   disabled?: boolean;
-  disabledDates?: (date?: Date) => boolean;
+
   disabledHours?: number[];
   disabledMinutes?: number[];
   disabledSeconds?: number[];
@@ -24,10 +24,8 @@ export type DatePickerProps = {
    * @deprecated - will be dropped in 1.0
    */
   intl?: IntlShape;
-  onApply: (date?: Date) => void;
   onClear?: () => void;
   onDropdownVisibleChange?: (visible: boolean) => void;
-  onValueChange?: (date?: Date) => void;
   allowClear?: boolean;
   error?: boolean;
   errorText?: ReactNode;
@@ -43,16 +41,35 @@ export type DatePickerProps = {
   showTime?: boolean;
   texts?: Partial<Texts>;
   renderTrigger?: () => ReactElement;
-  value?: Date;
   useStartOfDay?: boolean;
   useEndOfDay?: boolean;
   hideNow?: boolean;
   quickPicks?: QuickPick[];
   readOnly?: boolean;
   inputProps?: Pick<InputProps, 'autoResize'>;
+  disabledDates?: (date?: Date) => boolean;
   overlayHTMLAttributes?: HTMLAttributes<HTMLDivElement> & DataAttributes;
   triggerHTMLAttributes?: HTMLAttributes<HTMLDivElement> & DataAttributes;
 };
+
+/**
+ * `value` takes either shape — a `Date`, or an ISO string, which `toDateValue` parses.
+ *
+ * What comes back out is always a `Date`. Without `timeZone` it is the plain `Date`
+ * the picker was handed; with it, a `TZDate` carrying the resolved zone, which is a `Date`
+ * subclass and so needs no separate type. Input and output used to be tied to one `ValueType`
+ * parameter, which forced a consumer holding a `Date` to also declare its output as `string` —
+ * unsatisfiable in practice, and every call site suppressed the error instead of obeying it.
+ */
+type ValueRelatedProps = {
+  onApply: (date?: Date) => void;
+  value?: Date | string;
+  onValueChange?: (date?: Date) => void;
+  timeZone?: true | string;
+};
+
+export type DatePickerProps = ValueRelatedProps & BaseDatePickerProps;
+
 // @deprecated - use DatePickerProps instead
 export type Props = DatePickerProps;
 

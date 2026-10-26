@@ -13,6 +13,12 @@ import type { DateLocaleUtils } from '../../localeUtils';
  */
 export type DayPickerProps = {
   month: Date;
+  /**
+   * Which day gets the `today` modifier. Without it react-day-picker uses its own
+   * `dateLib.today()`, which is the *browser's* date — a workspace far enough east or west
+   * circles the wrong day. Forwarded to the v10 picker through `...rest`.
+   */
+  today?: Date;
   className?: string;
   onMonthChange?: (month: Date) => void;
   onMonthNameClick?: () => void;

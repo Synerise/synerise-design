@@ -9,4 +9,5 @@ export type TimePickerProps = {
   inactiveNext?: boolean;
   onShortNext?: () => void;
   onShortPrev?: () => void;
+  timeZone?: true | string;
 };

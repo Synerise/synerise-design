@@ -16,39 +16,36 @@ describe('TimePicker', () => {
   const CONTAINER_TESTID = 'tp-container';
   const INPUT_TESTID = 'tp-input';
   const OVERLAY_CONTAINER_TESTID = 'tp-overlay-container';
+  const handleChange = vi.fn()
 
   beforeEach(() => {
     Element.prototype.scrollTo = vi.fn();
   });
 
   it('should render without any props', () => {
-    renderWithProvider(<TimePicker />);
+    renderWithProvider(<TimePicker onChange={handleChange} />);
 
     expect(screen.getByTestId(CONTAINER_TESTID)).toBeInTheDocument();
   });
 
   it('should render opened by default', async () => {
-    renderWithProvider(<TimePicker defaultOpen />);
+    renderWithProvider(<TimePicker onChange={handleChange} defaultOpen />);
 
-    const overlayContainer = await screen.findByTestId(
-      OVERLAY_CONTAINER_TESTID,
-    );
+    const overlayContainer = await screen.findByTestId(OVERLAY_CONTAINER_TESTID);
     expect(overlayContainer).toBeInTheDocument();
   });
 
   it('should render overlay after clicking on input', async () => {
-    renderWithProvider(<TimePicker />);
+    renderWithProvider(<TimePicker onChange={handleChange} />);
 
     const input = screen.getByTestId(INPUT_TESTID);
     userEvent.click(input);
 
-    expect(
-      await screen.findByTestId(OVERLAY_CONTAINER_TESTID),
-    ).toBeInTheDocument();
+    await waitFor(() => expect(screen.queryByTestId(OVERLAY_CONTAINER_TESTID)).toBeTruthy());
   });
 
   it('should not open overlay if disabled', () => {
-    renderWithProvider(<TimePicker disabled />);
+    renderWithProvider(<TimePicker onChange={handleChange} disabled />);
 
     const input = screen.getByTestId(INPUT_TESTID);
     userEvent.click(input);
@@ -59,7 +56,7 @@ describe('TimePicker', () => {
   });
 
   it('should overlay close on blur', () => {
-    renderWithProvider(<TimePicker disabled />);
+    renderWithProvider(<TimePicker onChange={handleChange} disabled />);
 
     const input = screen.getByTestId(INPUT_TESTID);
     fireEvent.blur(input);
@@ -70,7 +67,7 @@ describe('TimePicker', () => {
   });
 
   it('should overlay stay open on blur if alwaysOpen is passed', async () => {
-    renderWithProvider(<TimePicker alwaysOpen />);
+    renderWithProvider(<TimePicker onChange={handleChange} alwaysOpen />);
 
     const input = await screen.findByTestId(INPUT_TESTID);
     userEvent.click(input);
@@ -96,11 +93,7 @@ describe('TimePicker', () => {
   });
 
   it('should render open on focus and show buttons for hours, minutes and seconds', async () => {
-    renderWithProvider(
-      <TimePicker placeholder="Select time" />,
-      {},
-      { notation: 'EU' },
-    );
+    renderWithProvider(<TimePicker onChange={handleChange} placeholder="Select time" />, {}, { notation: "EU" });
     const input = screen.getByPlaceholderText('Select time');
     let hours: NodeListOf<HTMLButtonElement>;
     let minutes: NodeListOf<HTMLButtonElement>;
@@ -126,7 +119,7 @@ describe('TimePicker', () => {
 
   it('should render with value as placeholder', async () => {
     renderWithProvider(
-      <TimePicker
+      <TimePicker onChange={handleChange}
         placeholder="Select time"
         alwaysOpen
         value={dayjs('12-04-2020 10:24:52', 'DD-MM-YYYY HH:mm:ss').toDate()}
@@ -139,7 +132,7 @@ describe('TimePicker', () => {
 
   it('should render with valueFormatOptions', async () => {
     renderWithProvider(
-      <TimePicker
+      <TimePicker onChange={handleChange}
         placeholder="Select time"
         alwaysOpen
         valueFormatOptions={{ minute: undefined, second: undefined }}
@@ -155,14 +148,9 @@ describe('TimePicker', () => {
 
   it('should render correct value for 12 hour clock', async () => {
     const getTimerPickerInputValue = (timeString: string, index) => {
-      const date = dayjs(
-        `12-04-2020 ${timeString}`,
-        'DD-MM-YYYY HH:mm:ss',
-      ).toDate();
-      renderWithProvider(<TimePicker value={date} />, {}, { notation: 'US' });
-      const input = screen.getAllByTestId(INPUT_TESTID)[
-        index
-      ] as HTMLInputElement;
+      const date = dayjs(`12-04-2020 ${timeString}`, 'DD-MM-YYYY HH:mm:ss').toDate();
+      renderWithProvider(<TimePicker onChange={handleChange} value={date} />, {}, { notation: 'US' });
+      const input = screen.getAllByTestId(INPUT_TESTID)[index] as HTMLInputElement;
       return normalizeSpaces(input.value);
     };
 

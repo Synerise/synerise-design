@@ -150,7 +150,6 @@ describe('Factors component', () => {
     );
 
     userEvent.click(screen.getByText('Parameter'));
-
     await waitFor(() => expect(handleActivate).toBeCalled());
     userEvent.click(document.body);
 

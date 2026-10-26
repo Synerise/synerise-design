@@ -229,6 +229,7 @@ export type FactorsProps = {
   arrayProps?: ArrayProps;
   textType?: 'autocomplete' | 'expansible' | 'default';
   autoResize?: AutoResizeProp;
+  timeZone?: true | string;
   relativeDateProps?: {
     triggerValueFormatter?: (value: RelativeDateValueType) => string;
     availableUnits?: RelativeDateUnit[];
@@ -320,6 +321,7 @@ export type FactorValueProps = Pick<
   | 'readOnly'
   | 'relativeDateProps'
   | 'arrayProps'
+  | 'timeZone'
   | 'factorValueExtraProps'
   | 'fluidMinWidth'
   | 'uncontrolledComponent'
@@ -345,6 +347,7 @@ export type FactorValueComponentProps = Pick<
   | 'autoResize'
   | 'readOnly'
   | 'arrayProps'
+  | 'timeZone'
   | 'factorValueExtraProps'
   | 'fluidMinWidth'
   | 'uncontrolledComponent'

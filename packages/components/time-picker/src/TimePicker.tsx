@@ -4,7 +4,14 @@ import range from 'lodash.range';
 import React, { Fragment, useCallback, useMemo, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
-import { useDataFormat } from '@synerise/ds-core';
+import {
+  applyTimezoneOffset,
+  currentTimeInTimezone,
+  getLocalDateInTimeZone,
+  getTimeZone,
+  toIsoString,
+  useDataFormat,
+} from '@synerise/ds-core';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { ClockM, Close3S } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
@@ -33,11 +40,11 @@ dayjs.extend(customParseFormatPlugin);
 const defaultUnits = [HOUR, MINUTE, SECOND] as dayjs.UnitType[];
 
 const TimePicker = ({
-  placement,
+  placement = 'bottomLeft',
   placeholder,
-  trigger,
+  trigger = ['click'],
   value,
-  units,
+  units = defaultUnits,
   defaultOpen,
   onChange,
   containerStyle = {},
@@ -62,12 +69,33 @@ const TimePicker = ({
   raw,
   onClockModeChange,
   errorText,
+  timeZone,
 }: TimePickerProps) => {
   const { formatValue, is12HoursClock: is12HoursClockFromDataFormat } =
     useDataFormat();
-  const [open, setOpen] = useState<boolean>(defaultOpen || false);
+  const [open, setOpen] = useState(defaultOpen || false);
 
-  const { formatMessage } = useIntl();
+  const intl = useIntl();
+  const { formatMessage } = intl;
+
+  // `undefined` without the `timeZone` prop, which is what keeps every path below on the
+  // browser clock a consumer without the prop sees today.
+  const resolvedTimeZone = getTimeZone(timeZone, intl);
+
+  const valueAsDate = useMemo(() => {
+    if (value instanceof Date || value === undefined) {
+      return value;
+    }
+    return resolvedTimeZone
+      ? getLocalDateInTimeZone(value, resolvedTimeZone)
+      : new Date(value);
+  }, [value, resolvedTimeZone]);
+
+  const now = useMemo(
+    () =>
+      resolvedTimeZone ? currentTimeInTimezone(resolvedTimeZone) : new Date(),
+    [resolvedTimeZone],
+  );
 
   const is12HourClock: boolean = useMemo(() => {
     if (use12HourClock === undefined) {
@@ -87,14 +115,38 @@ const TimePicker = ({
       if (timeFormat) {
         return dayjs(date).format(timeFormatByClockMode);
       }
-
-      return formatValue(date, {
-        targetFormat: 'time',
-        second: 'numeric',
-        ...valueFormatOptions,
-      });
+      // Opted in, `date` holds the wall clock of the resolved timezone in its local fields, so
+      // displaying it means re-anchoring it to a real instant and asking formatValue to project
+      // that instant back into the same timezone. `applyTimeZoneOffset` is forced because the
+      // two steps are only correct together; it defaults to `false` in DataFormatConfig, and
+      // inheriting it would drift the value by the browser-to-provider delta.
+      //
+      // Gated on the resolved prop rather than on `intl.timeZone`: the ambient zone is set for
+      // every consumer in a portal, and reading it here would re-render every existing time
+      // picker in the new convention without anyone opting in.
+      return formatValue(
+        resolvedTimeZone ? new Date(toIsoString(date, resolvedTimeZone)) : date,
+        {
+          targetFormat: 'time',
+          second: 'numeric',
+          ...valueFormatOptions,
+          // `timeZone` is named as well as the flag: `formatValue` otherwise projects into the
+          // zone on the consumer's `DataFormatConfig`, which is the provider's. The two steps
+          // have to agree, and with a string `timeZone` prop the resolved zone is not the
+          // provider's.
+          ...(resolvedTimeZone
+            ? { applyTimeZoneOffset: true, timeZone: resolvedTimeZone }
+            : {}),
+        },
+      );
     },
-    [timeFormat, timeFormatByClockMode, formatValue],
+    [
+      timeFormat,
+      resolvedTimeZone,
+      formatValue,
+      valueFormatOptions,
+      timeFormatByClockMode,
+    ],
   );
 
   const unitConfig: UnitConfig[] = [
@@ -123,24 +175,35 @@ const TimePicker = ({
     (u) => availableUnits && availableUnits.includes(u.unit),
   );
 
+  // Same contract as `ds-date-picker`: without `timeZone` the value passes through as the plain
+  // `Date` it already is; with it, `applyTimezoneOffset` returns a `TZDate` carrying the resolved
+  // zone, so the consumer picks its own wire format instead of being handed a string.
+  const getDateToEmit = (date: Date): Date | undefined =>
+    applyTimezoneOffset(date, timeZone, intl);
+
   const onVisibleChange = (visible: boolean): void => {
     setOpen(visible);
+    // Fired even with nothing selected, which is what this has always done — a consumer may be
+    // using the close event to clear. `getTimeString` is only reachable with a value.
     !visible &&
       onChange &&
-      onChange(value as Date, getTimeString(value as Date));
+      onChange(
+        valueAsDate && getDateToEmit(valueAsDate),
+        valueAsDate ? getTimeString(valueAsDate) : '',
+      );
   };
 
   const handleChange = (
     unit: dayjs.UnitType | undefined,
     newValue: number | undefined,
     clockModeChanged = false,
-  ): void => {
-    let clockMode = getClockModeFromDate(value);
+  ) => {
+    let clockMode = getClockModeFromDate(valueAsDate || now);
     if (clockModeChanged) {
       clockMode = getOppositeClockMode(clockMode);
     }
     const newDate = handleTimeChange(
-      value,
+      valueAsDate,
       unit,
       newValue,
       clockModeChanged,
@@ -148,7 +211,7 @@ const TimePicker = ({
       clockMode,
       unitConfig,
     );
-    onChange && onChange(newDate, getTimeString(newDate));
+    onChange && onChange(getDateToEmit(newDate), getTimeString(newDate));
   };
 
   const toggleClockModeChange = (): void => {
@@ -157,7 +220,7 @@ const TimePicker = ({
 
   const isAmOrPmModeDisabled = useCallback(
     (mode: ClockModes): boolean => {
-      const clockMode = getClockModeFromDate(value);
+      const clockMode = getClockModeFromDate(valueAsDate || now);
       if (!is12HourClock) {
         return false;
       }
@@ -179,13 +242,13 @@ const TimePicker = ({
       }
       return false;
     },
-    [value, disabledHours, is12HourClock],
+    [valueAsDate, now, is12HourClock, disabledHours],
   );
 
   const renderClockSwitch = () => {
-    const currentClockMode = getClockModeFromDate(value);
+    const currentClockMode = getClockModeFromDate(valueAsDate || now);
     return (
-      <S.Unit>
+      <S.Unit data-testid="ds-time-picker-unit-meridiem">
         {Object.values(CLOCK_MODES).map((mode) => (
           <S.Cell
             key={mode}
@@ -198,7 +261,11 @@ const TimePicker = ({
             }}
             disabled={isAmOrPmModeDisabled(mode)}
           >
-            <S.CellText>{mode}</S.CellText>
+            <S.CellText
+              {...(currentClockMode === mode ? { 'data-selected': true } : {})}
+            >
+              {mode}
+            </S.CellText>
           </S.Cell>
         ))}
       </S.Unit>
@@ -214,7 +281,7 @@ const TimePicker = ({
           {}
           <Unit
             {...u}
-            value={value}
+            value={valueAsDate}
             onSelect={(newValue): void => handleChange(u.unit, newValue)}
             use12HourClock={is12HourClock}
           />
@@ -228,8 +295,7 @@ const TimePicker = ({
     </S.OverlayContainer>
   );
 
-  const localValue = value;
-  const dateString = localValue && getTimeString(localValue);
+  const dateString = valueAsDate && getTimeString(valueAsDate);
 
   const clear = useCallback(() => {
     setOpen(false);
@@ -256,11 +322,11 @@ const TimePicker = ({
   }, [open, dateString, clear, clearTooltip, alwaysOpen, disabled]);
 
   const placeholderValue = useMemo((): string => {
-    if (value) {
-      return getTimeString(value);
+    if (valueAsDate) {
+      return getTimeString(valueAsDate);
     }
     return placeholder || formatMessage({ id: 'DS.TIME-PICKER.PLACEHOLDER' });
-  }, [placeholder, formatMessage, value, getTimeString]);
+  }, [valueAsDate, placeholder, formatMessage, getTimeString]);
 
   if (raw) {
     return overlay;
@@ -296,12 +362,6 @@ const TimePicker = ({
       </Dropdown>
     </S.Container>
   );
-};
-
-TimePicker.defaultProps = {
-  placement: 'bottomLeft',
-  trigger: ['click'],
-  units: defaultUnits,
 };
 
 export default TimePicker;

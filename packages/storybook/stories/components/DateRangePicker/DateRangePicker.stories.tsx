@@ -1,13 +1,12 @@
 import { Meta, StoryObj } from '@storybook/react-vite';
 import React, { useState } from 'react';
-import { injectIntl } from 'react-intl';
 import { fn } from 'storybook/test';
 import styled from 'styled-components';
 
 import Button from '@synerise/ds-button';
-import type { DateRangePickerProps } from '@synerise/ds-date-range-picker';
 import DateRangePicker, {
   CONST,
+  type DateRangePickerProps,
   RawDateRangePicker,
   utils,
 } from '@synerise/ds-date-range-picker';
@@ -25,9 +24,10 @@ import { ABSOLUTE_RANGE, RANGE_WITH_START_DATE, TEXTS } from './constants';
 export default {
   title: 'Components/Pickers/DateRangePicker',
   component: DateRangePicker,
-  tags: ['autodocs'],
+
   parameters: {
     layout: 'fullscreen',
+    date: new Date('March 10, 2021 10:00:00'),
   },
   decorators: [centeredPaddedWrapper],
   render: ({ relativeModes, ...args }) => {
@@ -64,6 +64,19 @@ export default {
 type Story = StoryObj<DateRangePickerProps>;
 
 export const Default: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<DateRangePicker
+  onApply={handleApply}
+  showTime
+  showRelativePicker
+  showFilter
+  relativeModes={['PAST', 'FUTURE', 'SINCE']}
+/>`,
+      },
+    },
+  },
   args: {
     showRelativePicker: true,
     relativeModes: ['PAST', 'FUTURE', 'SINCE'],
@@ -76,10 +89,22 @@ export const WithoutPopover: Story = {
   parameters: {
     mockingDate: new Date('March 10, 2021 10:00:00'),
     layout: 'centered',
+    docs: {
+      source: {
+        code: `<RawDateRangePicker
+  onApply={handleApply}
+  showTime
+  showRelativePicker
+  showFilter
+  disableAbsoluteTimepickerInRelative
+  relativeModes={['PAST']}
+  texts={texts}
+/>`,
+      },
+    },
   },
   render: (args) => {
-    const Picker = injectIntl(RawDateRangePicker);
-    return <Picker texts={TEXTS} {...args} />;
+    return <RawDateRangePicker texts={TEXTS} {...args} />;
   },
   args: {
     showRelativePicker: true,
@@ -95,6 +120,15 @@ export const RelativePickerOptions: Story = {
     controls: {
       include: Object.keys(relativeArgTypes),
     },
+    docs: {
+      source: {
+        code: `<DateRangePicker
+  onApply={handleApply}
+  showRelativePicker
+  relativeModes={['PAST', 'FUTURE', 'SINCE']}
+/>`,
+      },
+    },
   },
   args: {
     showRelativePicker: true,
@@ -106,6 +140,11 @@ export const GeneralOptions: Story = {
   parameters: {
     controls: {
       include: Object.keys(generalArgTypes),
+    },
+    docs: {
+      source: {
+        code: `<DateRangePicker onApply={handleApply} showTime showNowButton />`,
+      },
     },
   },
   args: {
@@ -119,6 +158,11 @@ export const DatePickerOptions: Story = {
     controls: {
       include: Object.keys(datePickerArgTypes),
     },
+    docs: {
+      source: {
+        code: `<DateRangePicker onApply={handleApply} showTime showNowButton />`,
+      },
+    },
   },
   args: {
     showNowButton: true,
@@ -131,6 +175,15 @@ export const DateFilterOptions: Story = {
     controls: {
       include: Object.keys(filterArgTypes),
     },
+    docs: {
+      source: {
+        code: `<DateRangePicker
+  onApply={handleApply}
+  showFilter
+  filterValueSelectionModes={['Hour', 'Range']}
+/>`,
+      },
+    },
   },
   args: {
     showFilter: true,
@@ -139,12 +192,39 @@ export const DateFilterOptions: Story = {
 };
 
 export const WithDefaultValue: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<DateRangePicker
+  onApply={handleApply}
+  value={{
+    type: 'ABSOLUTE',
+    from: '2020-08-18T22:00:00.000Z',
+    to: '2020-08-28T22:00:00.000Z',
+  }}
+/>`,
+      },
+    },
+  },
   args: {
     value: ABSOLUTE_RANGE,
   },
 };
 
 export const WithStartDate: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<DateRangePicker
+  onApply={handleApply}
+  value={{
+    type: 'ABSOLUTE',
+    from: '2020-08-18T22:00:00.000Z',
+  }}
+/>`,
+      },
+    },
+  },
   args: {
     value: RANGE_WITH_START_DATE,
   },
@@ -153,6 +233,19 @@ export const WithStartDate: Story = {
 export const CustomTrigger: Story = {
   parameters: {
     layout: 'centered',
+    docs: {
+      source: {
+        code: `<DateRangePicker
+  onApply={handleApply}
+  showTime
+  popoverTrigger={
+    <Tooltip description="Custom tooltip">
+      <Button>Custom trigger</Button>
+    </Tooltip>
+  }
+/>`,
+      },
+    },
   },
   render: (args) => {
     const [tooltipVisible, setTooltipVisible] = useState(false);
@@ -197,7 +290,6 @@ export const RelativeRangePresets: Story = {
       }
     `;
     const presets = [...CONST.RELATIVE_PRESETS, ...CONST.ABSOLUTE_PRESETS];
-    const now = new Date();
     const dateStr = (date?: Date) => {
       try {
         return JSON.stringify(

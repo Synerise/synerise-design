@@ -12,6 +12,9 @@ import {
 import type { FilterDefinition } from '../../RangeFilter.types';
 import type { DateLimitMode } from './RangeFormContainer/RangeForm/RangeForm.types';
 
+// Only a carrier for the date part of a time-of-day string — a recurring schedule has no
+// calendar day, and only the time is ever read back. Deliberately fixed rather than read per
+// call, so every window in one filter is built on the same day even across midnight.
 const TODAY = new Date();
 
 export const getDateFromDayValue = (

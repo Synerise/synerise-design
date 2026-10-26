@@ -19,6 +19,7 @@ const DateInput = ({
   allowClear,
   readOnly = false,
   getPopupContainerOverride,
+  timeZone,
   uncontrolledComponent,
 }: FactorValueComponentProps) => {
   const [localValue, setLocalValue] = useState<FactorsProps['value']>(value);
@@ -30,16 +31,18 @@ const DateInput = ({
   }, [value, uncontrolledComponent]);
 
   const changeHandler = useCallback(
-    (date: Date | undefined) => {
+    (date: Date | string | undefined) => {
       onChange(date);
     },
     [onChange],
   );
 
-  const localValueAsDate = useMemo(
-    () => (localValue ? new Date(String(localValue)) : undefined),
-    [localValue],
-  );
+  const localValueAsDate = useMemo(() => {
+    if (typeof localValue === 'string' || localValue instanceof Date) {
+      return localValue;
+    }
+    return localValue ? new Date(String(localValue)) : undefined;
+  }, [localValue]);
 
   const handleClear = useCallback(() => {
     onChange(undefined);
@@ -63,6 +66,7 @@ const DateInput = ({
       error={error}
       readOnly={readOnly}
       allowClear={allowClear}
+      timeZone={timeZone}
       autoFocus={opened}
       inputProps={{ autoResize: { minWidth: '123px' } }}
       onDropdownVisibleChange={handleOpenChange}

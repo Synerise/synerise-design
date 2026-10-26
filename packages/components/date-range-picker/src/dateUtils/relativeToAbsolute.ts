@@ -1,5 +1,7 @@
 import { max as fnsMax, min as fnsMin } from 'date-fns';
 
+import { currentTimeInTimezone } from '@synerise/ds-core';
+
 import type { DateFilter, RelativeDateRange } from '../date.types';
 import ADD from './add';
 import END_OF from './endOf';
@@ -15,9 +17,15 @@ export type Relative =
   | 'MONTHS'
   | 'YEARS';
 
-const relativeToAbsolute = (range: RelativeDateRange): DateFilter => {
+const relativeToAbsolute = (
+  range: RelativeDateRange,
+  timeZone?: string,
+): DateFilter => {
   const { future, offset, duration } = range;
-  const now = new Date();
+  // Resolved against the provider's clock when there is one, so the bounds land on the
+  // provider's day. `currentTimeInTimezone` returns it as a wall-clock date, the convention
+  // the START_OF / END_OF arithmetic below works in.
+  const now = timeZone ? currentTimeInTimezone(timeZone) : new Date();
   let left;
   let right;
 

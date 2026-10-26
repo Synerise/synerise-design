@@ -2,6 +2,8 @@ import { max as fnsMax, min as fnsMin } from 'date-fns';
 import omit from 'lodash.omit';
 import type { IntlShape } from 'react-intl';
 
+import { currentTimeInTimezone, getValueAsLocalDate } from '@synerise/ds-core';
+
 import { ABSOLUTE, CUSTOM_RANGE_KEY, RELATIVE } from './constants';
 import type { Texts } from './DateRangePicker.types';
 import type { DateRange } from './date.types';
@@ -22,6 +24,16 @@ export { toIsoString } from '@synerise/ds-core';
 
 export { END_OF, START_OF };
 
+/**
+ * Legacy decode, kept verbatim for the path with no `timeZone` prop.
+ *
+ * It strips a `±hh:mm` suffix and re-reads the remainder as a browser-local wall clock, so the
+ * offset is discarded rather than honoured. That is wrong in general — a `Z`-terminated string
+ * or a `Date` does not match the anchored pattern at all and is read as a real instant, landing
+ * in the browser's zone rather than the provider's. It is nonetheless what every current consumer
+ * is calibrated against, and it round-trips this picker's own output losslessly, so opting out of
+ * `timeZone` has to keep getting exactly this.
+ */
 const rmvTZOffset = (dateString: string | Date) => {
   const date = dateString.toString();
   const finalDate = date.replace(/[+-]\d\d:\d\d$/, '');
@@ -37,13 +49,25 @@ export function toIsoStringWithoutZone(date: Date) {
   )}:${pad(date.getSeconds())}`;
 }
 
-export const normalizeRange = (range: DateRange): DateRange => {
+const decodeLimit = (limit: string | Date, timeZone?: string): Date =>
+  timeZone
+    ? getValueAsLocalDate(limit, timeZone)
+    : new Date(rmvTZOffset(limit));
+
+export const normalizeRange = (
+  range: DateRange,
+  timeZone?: string,
+): DateRange => {
   if (!range || !range.type) {
     return { type: ABSOLUTE, from: undefined };
   }
   if (range.type === RELATIVE) {
     const { future, offset, duration } = range;
-    const now = new Date();
+    // A relative range is resolved against "now" — on the provider's clock when there is one,
+    // so TODAY / YESTERDAY / LAST_MONTH mean the provider's day rather than the browser's.
+    // `currentTimeInTimezone` returns that clock as a wall-clock date, which is the convention
+    // the START_OF / END_OF arithmetic below (and the rest of the picker) works in.
+    const now = timeZone ? currentTimeInTimezone(timeZone) : new Date();
     let left;
     let right;
 
@@ -114,8 +138,11 @@ export const normalizeRange = (range: DateRange): DateRange => {
     omit(dateRange, ['offset', 'duration', 'future']) as DateRange;
   const absoluteRange = {
     ...dropNonAbsolute(range),
-    from: range.from ? new Date(rmvTZOffset(range?.from)) : undefined,
-    to: range.to ? new Date(rmvTZOffset(range?.to)) : undefined,
+    // Absent a timezone this is the legacy decode, byte for byte — see `rmvTZOffset`. A
+    // timezone is only ever passed down from a `timeZone` prop, so a consumer that does not
+    // set one cannot observe the new decode.
+    from: range.from ? decodeLimit(range.from, timeZone) : undefined,
+    to: range.to ? decodeLimit(range.to, timeZone) : undefined,
   };
 
   if (!keys.includes('from') && !keys.includes('to')) {
@@ -124,6 +151,19 @@ export const normalizeRange = (range: DateRange): DateRange => {
 
   return absoluteRange;
 };
+
+/**
+ * `normalizeRange` for values that are already in the panel's wall-clock convention.
+ *
+ * The provider timezone is then only useful for resolving a relative range against "now" —
+ * handing it to the absolute branch would re-decode bounds that are already wall clock (a
+ * `Date` there is read as a real instant), shifting them by the browser-to-provider delta.
+ */
+export const normalizeLocalRange = (
+  range: DateRange,
+  timeZone?: string,
+): DateRange =>
+  normalizeRange(range, range?.type === RELATIVE ? timeZone : undefined);
 
 const getIntlMessage = (
   textMessageId: string,

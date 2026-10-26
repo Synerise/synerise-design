@@ -8,5 +8,10 @@ export type SubtleDatePickerProps = {
   activeProp?: boolean;
   placeholder?: string;
   children?: ReactNode;
+  /**
+   * `ds-date-picker` also accepts an ISO string here, but this component formats the value
+   * itself for its inactive view, so it takes a `Date` only.
+   */
+  value?: Date;
 } & SubtleFieldProps &
-  DsDatePickerProps;
+  Omit<DsDatePickerProps, 'value'>;

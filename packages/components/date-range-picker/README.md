@@ -180,3 +180,54 @@ const value = {
 ### Undocumented props
 
 - min in `MonthlyFilter` - controls minimal amount of entires in monthly filter, disable with `undefined`, default is `1`
+
+## Timezone support
+
+Timezone handling is **opt-in, behind the `timeZone` prop**. Set it and the picker:
+
+- decodes incoming `from`/`to` by their own offset and displays them in the resolved timezone
+- resolves relative ranges, the circled "today" and the "Now" button on that timezone's clock
+- emits `from`/`to` as **`TZDate`**s carrying the instant and the zone
+
+`true` resolves to the provider's `timeZone`; a string names an IANA zone directly. Display then
+does not depend on `dataFormatConfig.applyTimeZoneOffset` — the picker asks for that projection
+itself.
+
+### Without the prop
+
+Behaviour is unchanged from before the prop existed, and a `timeZone` on the provider does **not**
+switch it on. That is deliberate: every unmigrated consumer already sits under an `IntlProvider`
+carrying a zone, so reading it would re-base all of them at once.
+
+Specifically, without the prop:
+
+- incoming bounds are decoded by stripping a `±hh:mm` suffix and reading the rest as a **browser**
+  wall clock — the offset is discarded, not honoured. A `Z`-terminated string or a `Date` does not
+  match that pattern at all and is read as a real instant in the browser's zone.
+- the calendar, the trigger and the footer render on the browser clock, and formatting is
+  whatever `dataFormatConfig` does with it
+- `onApply` still emits offset-carrying **ISO strings**, with the offset taken from the provider's
+  timezone — that half was always zone-aware and stays so
+
+The first point is a bug; `timeZone` is how it is fixed. Migrating a consumer means adding the
+prop and updating whatever reads `onApply`, since the bounds change from strings to `TZDate`s.
+
+### The `value` contract
+
+A day selected in the calendar spans `00:00:00`–`23:59:59` **of the provider's timezone**, so
+the two ends of a one-day range are different instants than the OS-local day would be. Read the
+calendar day back in the provider timezone (`utcToZonedTime` or `getValueAsLocalDate` from
+`@synerise/ds-core`) — reading local fields of the emitted instant moves a full-day range to the
+neighbouring day.
+
+`value.from` / `value.to` accept both forms:
+
+| Form | Interpretation |
+|---|---|
+| ISO string (`'2026-08-11T00:00:00+09:00'`) | Decoded by its own offset. Preferred — it is unambiguous and it is what the component emits. |
+| `Date` | A **real instant**, projected into the provider timezone for display. `new Date(emittedIsoString)` is therefore safe; a `Date` built from local calendar fields (e.g. `startOfDay(new Date())`) means "that instant", not "that day in the provider timezone". |
+
+## Breaking changes
+
+- **`utils.toIsoString` now re-exports the `@synerise/ds-core` implementation.** The name and signature are unchanged, but the offset arithmetic is corrected: zones that are not a whole number of hours ahead of UTC (`+05:30`, `+09:30`, `+05:45`, `+12:45`, `-03:30`) previously encoded with `:00` minutes, and the offset was read off the date's UTC fields rather than the wall clock it carries, which picked the wrong side of a DST transition.
+- **`normalizeRange` signature changed:** Now accepts an optional second parameter `timeZone?: string`.

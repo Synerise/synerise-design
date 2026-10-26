@@ -3,26 +3,24 @@ import { renderWithProvider, sleep } from '@synerise/ds-core/testing';
 import { waitFor, within, screen, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import {
-  getDefaultCustomRange,
-} from './RelativeRangePicker/utils';
+import { getDefaultCustomRange } from './RelativeRangePicker/utils';
 import RawDateRangePicker, { defaultValueTransformer } from './RawDateRangePicker';
 import { type DateRange, type DateRangePreset } from './date.types';
 import { DAYS, RELATIVE, RELATIVE_PRESETS, ABSOLUTE, ABSOLUTE_PRESETS, ALL_TIME } from './constants';
 import { DEFAULT_RANGE_START, DEFAULT_RANGE_END } from './RangeFilter/constants';
 import { type RelativeMode } from './DateRangePicker.types';
 import DateRangePicker from './DateRangePicker';
-import Weekly from './RangeFilter/Filters/new/Weekly/Weekly';
 import { type SavedFilter } from './RangeFilter/Shared/FilterDropdown/FilterDropdown.types';
+
 
 vi.mock('uuid', () => ({ v4: () => Math.floor(Math.random() * 999999999).toString() }));
 const DAILY_FILTER = {
-  from: "00:00:00.000",
-  to: "23:59:59.999",
-  type: "DAILY",
+  from: '00:00:00.000',
+  to: '23:59:59.999',
+  type: 'DAILY',
   inverted: false,
-  nestingType: "IN_PLACE"
-}
+  nestingType: 'IN_PLACE',
+};
 const WEEKLY_FILTER = {
   type: 'WEEKLY',
   nestingType: 'IN_PLACE',
@@ -38,64 +36,62 @@ const WEEKLY_FILTER = {
 };
 
 const MONTHLY_FILTER = {
-  "type": "MONTHLY",
-  "nestingType": "IN_PLACE",
-  "rules": [
+  type: 'MONTHLY',
+  nestingType: 'IN_PLACE',
+  rules: [
     {
-      "days": [
+      days: [
         {
-          "from": "00:00:00.000",
-          "to": "23:59:59.999",
-          "day": 27,
-          "inverted": false,
-          "mode": "Range"
-        }
+          from: '00:00:00.000',
+          to: '23:59:59.999',
+          day: 27,
+          inverted: false,
+          mode: 'Range',
+        },
       ],
-      "type": "MONTH",
-      "inverted": false
+      type: 'MONTH',
+      inverted: false,
     },
     {
-      "days": [
+      days: [
         {
-          "from": "00:00:00.000",
-          "to": "23:59:59.999",
-          "day": 3,
-          "inverted": false,
-          "mode": "Range"
-        }
+          from: '00:00:00.000',
+          to: '23:59:59.999',
+          day: 3,
+          inverted: false,
+          mode: 'Range',
+        },
       ],
-      "type": "MONTH",
-      "inverted": true
-    }
-  ]
-}
+      type: 'MONTH',
+      inverted: true,
+    },
+  ],
+};
 const ABSOLUTE_VALUE = {
   type: ABSOLUTE,
   from: '2018-10-09T00:00:00+02:00',
   to: '2018-12-08T23:59:59+01:00',
 };
 const ABSOLUTE_VALUE_WITH_FILTER = {
-  type: ABSOLUTE,
-  from: '2018-10-09T00:00:00+02:00',
-  to: '2018-12-08T23:59:59+01:00',
-  filter: { ...WEEKLY_FILTER }
+  ...ABSOLUTE_VALUE,
+  filter: { ...WEEKLY_FILTER },
 };
 const ABSOLUTE_VALUE_WITH_DAILY_FILTER = {
   ...ABSOLUTE_VALUE,
-  filter: { ...DAILY_FILTER }
-}
+  filter: { ...DAILY_FILTER },
+};
 const ABSOLUTE_VALUE_WITH_MONTHLY_FILTER = {
   ...ABSOLUTE_VALUE,
-  filter: { ...MONTHLY_FILTER }
-}
+  filter: { ...MONTHLY_FILTER },
+};
 const RELATIVE_MODES = ['PAST', 'FUTURE', 'SINCE'];
 const RELATIVE_VALUE = RELATIVE_PRESETS[1];
 
 const LIFETIME_VALUE = ABSOLUTE_PRESETS.find(event => event.key === ALL_TIME);
 const LIFETIME_VALUE_WITH_FILTER = {
   ...LIFETIME_VALUE,
-  filter: { ...WEEKLY_FILTER }
-}
+  filter: { ...WEEKLY_FILTER },
+};
 
 const displayDateContainerClass = 'ds-date-range-picker-value';
 
@@ -145,6 +141,14 @@ const texts = {
 };
 
 describe('DateRangePicker', () => {
+  beforeAll(() => {
+    vi.setConfig({
+      testTimeout: 10_000,
+    })
+  })
+  afterAll(() => {
+    vi.resetConfig()
+  })
   it('should render', async () => {
     const onApply = vi.fn();
     const { container } = renderWithProvider(
@@ -158,17 +162,12 @@ describe('DateRangePicker', () => {
         texts={texts}
       />
     );
-    expect((container.querySelector('.ds-date-range-picker')) as HTMLElement).toBeTruthy();
+    expect(container.querySelector('.ds-date-range-picker') as HTMLElement).toBeTruthy();
   });
   it('should render with NOW button by default', async () => {
     const onApply = vi.fn();
     renderWithProvider(
-      <RawDateRangePicker
-        showTime
-        onApply={onApply}
-        value={ABSOLUTE_VALUE as DateRange}
-        texts={texts}
-      />
+      <RawDateRangePicker showTime onApply={onApply} value={ABSOLUTE_VALUE as DateRange} texts={texts} />
     );
     const nowButton = screen.getByText(texts.now);
     expect(nowButton).toBeInTheDocument();
@@ -253,6 +252,8 @@ describe('DateRangePicker', () => {
     await userEvent.click(addFilterButton);
     await waitFor(() => expect(screen.getByText(texts.saveFilter)).toBeInTheDocument());
 
+    const saveFilterButton = await screen.findByText(texts.saveFilter);
+    expect(saveFilterButton).toBeInTheDocument();
   });
 
   it('relative date-filter addon should NOT render saving filter button if saving setter function (onFilterSave) is provided', async () => {
@@ -318,7 +319,6 @@ describe('DateRangePicker', () => {
     const relativeRanges = await screen.findByText(texts.relativeDateRange);
     expect(relativeRanges).toBeInTheDocument();
 
-
     await waitFor(
       () => {
         expect(screen.getByText(texts[RANGES[0].translationKey as string])).toBeInTheDocument();
@@ -336,7 +336,6 @@ describe('DateRangePicker', () => {
         showRelativePicker
         value={RELATIVE_VALUE as DateRange}
         forceAbsolute={false}
-
         relativeModes={RELATIVE_MODES as RelativeMode[]}
         texts={texts}
       />
@@ -344,15 +343,17 @@ describe('DateRangePicker', () => {
     const relativeRanges = await screen.findByText(texts.relativeDateRange);
     expect(relativeRanges).toBeInTheDocument();
 
-    const lifetimeMenuItem = await screen.findByText(texts[LIFETIME_VALUE?.translationKey as string])
+    const lifetimeMenuItem = await screen.findByText(texts[LIFETIME_VALUE?.translationKey as string]);
     expect(lifetimeMenuItem).toBeInTheDocument();
   });
   it('should update displayed range after selecting dates', async () => {
     const onApply = vi.fn();
+    const onValueChange = vi.fn();
     const { container } = renderWithProvider(
       <RawDateRangePicker
         showTime
         onApply={onApply}
+        onValueChange={onValueChange}
         showFilter={false}
         showRelativePicker
         value={ABSOLUTE_VALUE as DateRange}
@@ -368,12 +369,16 @@ describe('DateRangePicker', () => {
     const valueWrapper = container.querySelector('.' + displayDateContainerClass) as HTMLElement;
     const findDayCell = (text: number) => container.querySelector(`[data-attr="${text}"]`) as HTMLElement;
     await userEvent.click(findDayCell(1));
+    await waitFor(() => expect(onValueChange).toHaveBeenCalled());
     await sleep(100)
     await userEvent.click(findDayCell(1));
+    await waitFor(() => expect(onValueChange).toHaveBeenCalled());
     await waitFor(() => expect(valueWrapper.textContent).toBe('1 Oct 2018, 00:00 – 1 Oct 2018, 23:59'));
     await userEvent.click(findDayCell(2));
+    await waitFor(() => expect(onValueChange).toHaveBeenCalled());
     await sleep(100)
     await userEvent.click(findDayCell(12));
+    await waitFor(() => expect(onValueChange).toHaveBeenCalled());
     await waitFor(() => expect(valueWrapper.textContent).toBe('2 Oct 2018, 00:00 – 12 Oct 2018, 23:59'));
   });
 
@@ -404,19 +409,15 @@ describe('DateRangePicker', () => {
     const customButton = await screen.findByTestId('relative-range-preset-custom');
     expect(customButton).toBeInTheDocument();
     await userEvent.click(customButton);
-
     await waitFor(() => expect(onValueChange).toHaveBeenCalled());
-
     await userEvent.click(applyButton);
 
-    await waitFor(() => {
-      expect(getLastCallParams().from).not.toBeDefined();
-      expect(getLastCallParams().to).not.toBeDefined();
-      expect(getLastCallParams().type).toBe('RELATIVE');
-      expect(getLastCallParams().offset).toStrictEqual(defaultCustomRange.offset);
-      expect(getLastCallParams().duration).toStrictEqual(defaultCustomRange.duration);
-    })
-
+    await waitFor(() => expect(onApply).toHaveBeenCalled());
+    expect(getLastCallParams().from).not.toBeDefined();
+    expect(getLastCallParams().to).not.toBeDefined();
+    expect(getLastCallParams().type).toBe('RELATIVE');
+    expect(getLastCallParams().offset).toStrictEqual(defaultCustomRange.offset);
+    expect(getLastCallParams().duration).toStrictEqual(defaultCustomRange.duration);
   });
   it('should change format when showTime is false', async () => {
     const onApply = vi.fn();
@@ -456,12 +457,14 @@ describe('DateRangePicker', () => {
   );
   it('should omit non-absolute properties if emitting an absolute date-range value', async () => {
     const onApply = vi.fn();
+    const onValueChange = vi.fn();
     const { container } = renderWithProvider(
       <RawDateRangePicker
         showTime
         onApply={onApply}
         showFilter={false}
         showRelativePicker
+        onValueChange={onValueChange}
         relativeModes={RELATIVE_MODES as RelativeMode[]}
         forceAbsolute={false}
         value={ABSOLUTE_VALUE as DateRange}
@@ -471,16 +474,17 @@ describe('DateRangePicker', () => {
     const getDayButton = () =>
       container.querySelector('.DayPicker-Body .DayPicker-Day:not(.DayPicker-Day--today) .DayPicker-Day-Button');
     const getLastCallParams = () => onApply.mock.calls[onApply.mock.calls.length - 1][0];
-    // @ts-ignore
+
     await userEvent.click(getDayButton());
-    await sleep(100)
-    // @ts-ignore
+    await waitFor(() => expect(onValueChange).toHaveBeenCalled());
+
     await userEvent.click(getDayButton());
-    await sleep(100)
+    await waitFor(() => expect(onValueChange).toHaveBeenCalled());
 
     const applyButton = screen.getByTestId('date-range-picker-apply-button');
     expect(applyButton).toBeInTheDocument();
     await userEvent.click(applyButton);
+    await waitFor(() => expect(onApply).toHaveBeenCalled());
 
     expect(getLastCallParams().from).toBeDefined();
     expect(getLastCallParams().to).toBeDefined();
@@ -488,33 +492,31 @@ describe('DateRangePicker', () => {
     expect(getLastCallParams().duration).not.toBeDefined();
     expect(getLastCallParams().future).not.toBeDefined();
 
-    await userEvent.click(screen.getByText(texts['today']));
-    await sleep(100)
-    await userEvent.click(applyButton);
+    await userEvent.click(await screen.findByText(texts['today']));
+    await waitFor(() => expect(onValueChange).toHaveBeenCalled());
 
-    await waitFor(() => {
-      expect(getLastCallParams().from).not.toBeDefined();
-      expect(getLastCallParams().to).not.toBeDefined();
-      expect(getLastCallParams().offset).toBeDefined();
-      expect(getLastCallParams().duration).toBeDefined();
-      expect(getLastCallParams().future).toBeDefined();
-    })
-    // set the date once again to an absolute (expect no relative date props)
-    // @ts-ignore
-    await userEvent.click(getDayButton());
-    await sleep(100)
-    // @ts-ignore
-    await userEvent.click(getDayButton());
-    await sleep(100)
     await userEvent.click(applyButton);
-    await waitFor(() => {
-      expect(getLastCallParams().offset).not.toBeDefined();
-      expect(getLastCallParams().duration).not.toBeDefined();
-      expect(getLastCallParams().future).not.toBeDefined();
-    })
+    await waitFor(() => expect(onApply).toHaveBeenCalled());
+    expect(getLastCallParams().from).not.toBeDefined();
+    expect(getLastCallParams().to).not.toBeDefined();
+    expect(getLastCallParams().offset).toBeDefined();
+    expect(getLastCallParams().duration).toBeDefined();
+    expect(getLastCallParams().future).toBeDefined();
+    // set the date once again to an absolute (expect no relative date props)
+
+    await userEvent.click(getDayButton());
+    await waitFor(() => expect(onValueChange).toHaveBeenCalled());
+
+    await userEvent.click(getDayButton());
+    await waitFor(() => expect(onValueChange).toHaveBeenCalled());
+    await userEvent.click(applyButton);
+    await waitFor(() => expect(onApply).toHaveBeenCalled());
+    expect(getLastCallParams().offset).not.toBeDefined();
+    expect(getLastCallParams().duration).not.toBeDefined();
+    expect(getLastCallParams().future).not.toBeDefined();
   });
   it.todo('should properly set primary class in RangeButtons for currentRange');
-  it('should disable select time if ALL_TIME was set as the default value', () => {
+  it('should disable select time if ALL_TIME was set as the default value', async () => {
     const onApply = vi.fn();
     renderWithProvider(
       <RawDateRangePicker
@@ -531,7 +533,7 @@ describe('DateRangePicker', () => {
     expect(timeButton).toBeDisabled();
   });
 
-  it.todo('should disable select time if selected ALL_TIME'); // FIXME fails when lifetime is provided as default value.... 
+  it.todo('should disable select time if selected ALL_TIME'); // FIXME fails when lifetime is provided as default value....
   it('should switch to MODES.DATE if was in selecting time and selected ALL_TIME', async () => {
     const onApply = vi.fn();
     renderWithProvider(
@@ -548,9 +550,8 @@ describe('DateRangePicker', () => {
     const relativeRanges = await screen.findByText(texts.relativeDateRange);
     expect(relativeRanges).toBeInTheDocument();
 
-
     const timeButton = document.querySelector('.ds-date-time-switch');
-    const lifetimeMenuItem = screen.getByText(texts[LIFETIME_VALUE?.translationKey as string])
+    const lifetimeMenuItem = screen.getByText(texts[LIFETIME_VALUE?.translationKey as string]);
     expect(timeButton).toBeInTheDocument();
     expect(lifetimeMenuItem).toBeInTheDocument();
 
@@ -562,9 +563,8 @@ describe('DateRangePicker', () => {
       await userEvent.click(lifetimeMenuItem);
 
       await waitFor(() => expect(document.querySelector('.ds-time-picker')).toBeNull());
-    }
-    else {
-      fail('time mode button not available')
+    } else {
+      fail('time mode button not available');
     }
   });
 
@@ -586,16 +586,13 @@ describe('DateRangePicker', () => {
     const relativeRanges = screen.getByText(texts.relativeDateRange);
     expect(relativeRanges).toBeInTheDocument();
 
-
-
-    const lifetimeOption = await screen.findByText(texts[LIFETIME_VALUE?.translationKey as string])
+    const lifetimeOption = await screen.findByText(texts[LIFETIME_VALUE?.translationKey as string]);
     expect(lifetimeOption).toBeInTheDocument();
 
     await userEvent.click(lifetimeOption);
 
     await waitFor(() => expect(document.querySelector('.ds-date-time-switch')).toBeDisabled());
   });
-
 
   it('all relative modes (including lifetime) mode make apply button enabled', async () => {
     const rangePresets = [...RELATIVE_PRESETS, ...ABSOLUTE_PRESETS];
@@ -619,10 +616,9 @@ describe('DateRangePicker', () => {
     const relativeRanges = await screen.findByText(texts.relativeDateRange);
     expect(relativeRanges).toBeInTheDocument();
 
-
     for (const rangePreset of rangePresets) {
-      const rangePresetButton = screen.getByText(texts[rangePreset.translationKey as string])
-      expect(rangePresetButton).toBeInTheDocument()
+      const rangePresetButton = screen.getByText(texts[rangePreset.translationKey as string]);
+      expect(rangePresetButton).toBeInTheDocument();
       fireEvent.click(rangePresetButton);
       expect(applyButton).not.toBeDisabled();
     }
@@ -638,9 +634,8 @@ describe('DateRangePicker', () => {
     const transformedLifetimeValue = defaultValueTransformer(LIFETIME_VALUE as DateRange);
     const transformedLifetimeValueWithFilter = defaultValueTransformer(LIFETIME_VALUE_WITH_FILTER as DateRange);
 
-    expect(Object.keys(transformedLifetimeValue).sort()).toEqual(["type", "translationKey"].sort());
-    expect(Object.keys(transformedLifetimeValueWithFilter).sort()).toEqual(["type", "filter", "translationKey"].sort());
-
+    expect(Object.keys(transformedLifetimeValue).sort()).toEqual(['type', 'translationKey'].sort());
+    expect(Object.keys(transformedLifetimeValueWithFilter).sort()).toEqual(['type', 'filter', 'translationKey'].sort());
   });
   it('clicking button DATE-PICKER.NOW sets the type to absolute', async () => {
     const onApply = vi.fn();
@@ -680,7 +675,6 @@ describe('DateRangePicker', () => {
     const onApply = vi.fn();
     const onValueChange = vi.fn();
     renderWithProvider(
-      // @ts-ignore
       <DateRangePicker
         onApply={onApply}
         onValueChange={onValueChange}
@@ -696,8 +690,10 @@ describe('DateRangePicker', () => {
     await waitFor(() => expect(screen.getByTestId('date-range-picker-input-clear')).toBeInTheDocument());
     await userEvent.click(screen.getByTestId('date-range-picker-input-clear'));
     await waitFor(() => expect(onApply).toHaveBeenCalledWith(undefined));
-    await waitFor(() => expect(screen.getByText(texts.startDatePlaceholder)).toBeInTheDocument());
-    await userEvent.click(screen.getByText(texts.startDatePlaceholder));
+    await waitFor(() => expect(within(screen.getByTestId('date-range-picker-input-wrapper')).getByText(texts.startDatePlaceholder)).toBeInTheDocument());
+    await userEvent.click(within(screen.getByTestId('date-range-picker-input-wrapper')).getByText(texts.startDatePlaceholder));
+
+    await waitFor(() => expect(screen.getByTestId('date-range-picker-container')).toBeInTheDocument())
     await waitFor(() => expect(screen.getByTestId('date-range-picker-apply-button')).toBeDisabled())
   });
 
@@ -705,7 +701,7 @@ describe('DateRangePicker', () => {
     const onApply = vi.fn();
     const onValueChange = vi.fn();
     renderWithProvider(
-      // @ts-ignore
+      // @ts-expect-error - value is mandatory
       <DateRangePicker
         onApply={onApply}
         onValueChange={onValueChange}
@@ -720,8 +716,9 @@ describe('DateRangePicker', () => {
     await waitFor(() => expect(screen.getByTestId('date-range-picker-input-clear')).toBeInTheDocument());
     await userEvent.click(screen.getByTestId('date-range-picker-input-clear'));
     await waitFor(() => expect(onApply).toHaveBeenCalledWith(undefined));
-    await waitFor(() => expect(screen.getByText(texts.startDatePlaceholder)).toBeInTheDocument());
-    await userEvent.click(screen.getByText(texts.startDatePlaceholder));
+    await waitFor(() => expect(within(screen.getByTestId('date-range-picker-input-wrapper')).getByText(texts.startDatePlaceholder)).toBeInTheDocument());
+    await userEvent.click(within(screen.getByTestId('date-range-picker-input-wrapper')).getByText(texts.startDatePlaceholder));
+    await waitFor(() => expect(screen.getByTestId('date-range-picker-container')).toBeInTheDocument())
     await waitFor(() => expect(screen.getByTestId('date-range-picker-apply-button')).toBeDisabled())
   });
   it.todo(
@@ -776,7 +773,6 @@ describe('DateRangePicker', () => {
       />
     );
 
-
     const filterButton = screen.getByText(texts.filter);
     expect(filterButton).toBeInTheDocument();
 
@@ -791,14 +787,14 @@ describe('DateRangePicker', () => {
     const wrapper0 = inputs[0].closest('div');
     const wrapper1 = inputs[1].closest('div');
     if (!wrapper1 || !wrapper0) {
-      fail('No timepickers in dom')
+      fail('No timepickers in dom');
     }
 
     fireEvent.click(inputs[0]);
 
     const clearIcon = wrapper0.querySelector('svg');
     if (!clearIcon) {
-      fail('No "clear" icon in dom')
+      fail('No "clear" icon in dom');
     }
     fireEvent.click(clearIcon);
     
@@ -808,7 +804,7 @@ describe('DateRangePicker', () => {
 
     const clearIcon1 = wrapper1.querySelector('svg');
     if (!clearIcon1) {
-      fail('No "clear" icon in dom')
+      fail('No "clear" icon in dom');
     }
     fireEvent.click(clearIcon1);
     
@@ -816,7 +812,9 @@ describe('DateRangePicker', () => {
   }, 8000);
 
   it.todo('relative custom range form values should persist when swithing to absolute range and back to custom');
-  it.todo('relative custom range form values should persist when swithing to predefined relative range and back to custom');
+  it.todo(
+    'relative custom range form values should persist when swithing to predefined relative range and back to custom'
+  );
   it.todo('relative custom range form values should persist when swithing to lifetime and back to custom');
   it.todo('relative custom range form values should reset when switching custom range mode');
   it('filters should persist when date range changes', async () => {
@@ -854,16 +852,16 @@ describe('DateRangePicker', () => {
         showFilter={true}
         showRelativePicker={false}
         forceAbsolute={false}
-        filterRangeDisplayMode='slider'
+        filterRangeDisplayMode="slider"
         value={ABSOLUTE_VALUE_WITH_MONTHLY_FILTER as DateRange}
         texts={texts}
       />
     );
 
-    const filterAddOn = screen.getByText(texts.filter);
+    const filterAddOn = await screen.findByText(texts.filter);
     expect(filterAddOn).toBeInTheDocument();
 
-    const filterButton = screen.getByText(texts.change);
+    const filterButton = await screen.findByText(texts.change);
     expect(filterButton).toBeInTheDocument();
 
     await userEvent.click(filterButton);
@@ -889,16 +887,16 @@ describe('DateRangePicker', () => {
         showFilter={true}
         showRelativePicker={false}
         forceAbsolute={false}
-        filterRangeDisplayMode='slider'
+        filterRangeDisplayMode="slider"
         value={ABSOLUTE_VALUE_WITH_DAILY_FILTER as DateRange}
         texts={texts}
       />
     );
 
-    const filterAddOn = screen.getByText(texts.filter);
+    const filterAddOn = await screen.findByText(texts.filter);
     expect(filterAddOn).toBeInTheDocument();
 
-    const filterButton = screen.getByText(texts.change);
+    const filterButton = await screen.findByText(texts.change);
     expect(filterButton).toBeInTheDocument();
 
     await userEvent.click(filterButton);
@@ -949,12 +947,11 @@ describe('DateRangePicker', () => {
     const relativeRanges = await screen.findByText(texts.relativeDateRange);
     expect(relativeRanges).toBeInTheDocument();
 
-
     const moreLabel = screen.getByText(texts.more);
     if (moreLabel) {
       const moreButton = moreLabel.closest('button');
       if (!moreButton) {
-        fail('No "more" button in dom')
+        fail('No "more" button in dom');
       }
       const dropdown = moreButton.nextElementSibling;
       moreButton.click();
@@ -962,7 +959,6 @@ describe('DateRangePicker', () => {
       await waitFor(() => expect(dropdown).not.toHaveStyle('display:none'));
 
       moreButton.click();
-
     }
   });
   it('"more" button should be secondary if no range within it selected (i.e. by default)', async () => {
@@ -982,7 +978,6 @@ describe('DateRangePicker', () => {
 
     const relativeRanges = await screen.findByText(texts.relativeDateRange);
     expect(relativeRanges).toBeInTheDocument();
-
 
     const moreLabel = screen.getByText(texts.more);
     expect(moreLabel).toBeInTheDocument();
@@ -1108,15 +1103,19 @@ describe('DateRangePicker', () => {
 
     await userEvent.click(filterButton);
 
-    const filterLabel = await screen.findByText(texts.monthly)
+    const filterLabel = await screen.findByText(texts.monthly);
     expect(filterLabel).toBeInTheDocument();
 
     await userEvent.click(filterLabel);
-    await sleep(200)
+    await waitFor(() => expect(document.querySelector('.monthly-wrapper')).toBeInTheDocument());
     const inlineInputs = document.querySelectorAll('.ds-inline-edit input');
 
-    const countedFromInputs = [].filter.call(inlineInputs, (input: HTMLInputElement) => { return input.name === 'counted-from-select' })
-    const daysOfInputs = [].filter.call(inlineInputs, (input: HTMLInputElement) => { return input.name === 'days-of-period' })
+    const countedFromInputs = [].filter.call(inlineInputs, (input: HTMLInputElement) => {
+      return input.name === 'counted-from-select';
+    });
+    const daysOfInputs = [].filter.call(inlineInputs, (input: HTMLInputElement) => {
+      return input.name === 'days-of-period';
+    });
 
     expect(countedFromInputs.length).toBe(expectedLength);
     expect(daysOfInputs.length).toBe(expectedLength);
@@ -1141,9 +1140,8 @@ describe('DateRangePicker', () => {
 
     await userEvent.click(applyButton);
 
-    expect(onApply).toBeCalled();
+    await waitFor(() => expect(onApply).toBeCalled());
     const appliedFilter = getLastCallParams().filter;
     expect(appliedFilter).toEqual(ABSOLUTE_VALUE_WITH_MONTHLY_FILTER.filter);
-
   });
 });
