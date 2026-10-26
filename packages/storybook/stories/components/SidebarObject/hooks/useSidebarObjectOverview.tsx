@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { action } from 'storybook/actions';
 import { fn } from 'storybook/test';
-import { v4 as uuid } from 'uuid';
 
 import { theme } from '@synerise/ds-core';
 import Overview from '@synerise/ds-sidebar-object/dist/Elements/Overview/Overview';
@@ -38,7 +37,7 @@ export const useSidebarObjectOverview = (allTags) => {
       }}
       onCreate={(name) => {
         const tag = {
-          id: uuid(),
+          id: crypto.randomUUID(),
           name,
           color: theme.palette['grey-200'],
         };

@@ -1,6 +1,5 @@
 import React from 'react';
 import { action } from 'storybook/actions';
-import { v4 as uuid } from 'uuid';
 
 import { ObjectAvatar } from '@synerise/ds-avatar';
 import { theme } from '@synerise/ds-core';
@@ -33,7 +32,7 @@ const infocard = (title: string, type: string) => () => (
 const hundredItems = Array.from(Array(100).keys());
 
 export const ITEMS_100 = hundredItems.map((key) => ({
-  id: uuid(),
+  id: crypto.randomUUID(),
   text: `${TEXT}-${key}`,
   renderHoverTooltip: infocard(`${TEXT}-${key}`, 'Item'),
 }));
@@ -41,7 +40,7 @@ export const ITEMS_100 = hundredItems.map((key) => ({
 const LARGE = 'large' as const;
 
 export const ITEMS_LARGE = hundredItems.map((key) => ({
-  id: uuid(),
+  id: crypto.randomUUID(),
   size: LARGE,
   prefixel: (
     <ObjectAvatar iconComponent={<Icon component={<ExpressionM />} />} />
@@ -52,7 +51,7 @@ export const ITEMS_LARGE = hundredItems.map((key) => ({
 
 const tenParams = Array.from(Array(13).keys()).map((key) => ({
   group: 'Parameter',
-  id: uuid(),
+  id: crypto.randomUUID(),
   text: `Parameter-${key}`,
   prefixel: (
     <Tooltip title="Parameter">
@@ -70,7 +69,7 @@ const tenParams = Array.from(Array(13).keys()).map((key) => ({
 
 const tenAggregates = Array.from(Array(25).keys()).map((key) => ({
   group: 'Aggregate',
-  id: uuid(),
+  id: crypto.randomUUID(),
   text: `Aggregate-${key}`,
   prefixel: (
     <Tooltip title="Aggregate">
@@ -88,7 +87,7 @@ const tenAggregates = Array.from(Array(25).keys()).map((key) => ({
 
 const tenExpressions = Array.from(Array(6).keys()).map((key) => ({
   group: 'Expression',
-  id: uuid(),
+  id: crypto.randomUUID(),
   text: `Expression-${key}`,
   prefixel: (
     <Tooltip title="Expression">
@@ -111,7 +110,7 @@ export const GROUPED_ITEMS = {
 
 export const ACTIONS = [
   {
-    id: uuid(),
+    id: crypto.randomUUID(),
     onClick: action('OnImportClick'),
     text: 'Import',
     prefixel: (
@@ -119,7 +118,7 @@ export const ACTIONS = [
     ),
   },
   {
-    id: uuid(),
+    id: crypto.randomUUID(),
     onClick: action('OnExportClick'),
     text: 'Export',
     prefixel: (

@@ -154,3 +154,42 @@ describe('Information card tooltip', () => {
   });
 });
 
+describe('Information card lists', () => {
+  it('should not remount property list and summary rows when the parent re-renders', () => {
+    // Inline arrays on purpose: a parent re-render hands down new `items` identities.
+    const renderCard = () => (
+      <InformationCard
+        title={sampleTitle}
+        subtitle={sampleSubtitle}
+        propertyListItems={[
+          { label: 'Property', value: 'Property value' },
+          { type: 'divider' },
+        ]}
+        summaryItems={[
+          { label: 'Summary label', icon: null },
+          { label: 'Tooltip label', icon: null, tooltip: 'Tooltip' },
+        ]}
+      />
+    );
+    const { rerender } = renderWithProvider(renderCard());
+    const rows = ['Property value', 'Summary label', 'Tooltip label'].map(
+      (text) => screen.getByText(text),
+    );
+    const divider = within(
+      screen.getByTestId('information-card-property-list'),
+    ).getByRole('separator');
+
+    rerender(renderCard());
+
+    ['Property value', 'Summary label', 'Tooltip label'].forEach(
+      (text, index) => {
+        expect(screen.getByText(text)).toBe(rows[index]);
+      },
+    );
+    expect(
+      within(screen.getByTestId('information-card-property-list')).getByRole(
+        'separator',
+      ),
+    ).toBe(divider);
+  });
+});

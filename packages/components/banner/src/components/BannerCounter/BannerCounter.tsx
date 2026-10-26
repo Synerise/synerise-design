@@ -20,7 +20,7 @@ export const BannerCounter = ({
       </Button>
       {slides.map((slide, index) => (
         <S.BannerCounterDot
-          key={slide.id}
+          key={slide.id ?? index}
           active={index === currentIndex}
           onClick={() => onDotClick(index)}
         />

@@ -1,11 +1,10 @@
 import React from 'react';
-import { v4 as uuid } from 'uuid';
 
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { SearchM } from '@synerise/ds-icon';
 import Result from '@synerise/ds-result';
 import Scrollbar from '@synerise/ds-scrollbar';
-import { focusWithArrowKeys } from '@synerise/ds-utils';
+import { focusWithArrowKeys, generateUuid } from '@synerise/ds-utils';
 
 import type { SubjectItem, SubjectListProps } from '../Subject.types';
 import * as S from './SubjectList.styles';
@@ -21,7 +20,7 @@ const SubjectList: React.FC<SubjectListProps> = ({
   const overlayRef = React.useRef<HTMLDivElement>(null);
   const [searchInputCanBeFocused, setSearchInputFocus] = React.useState(true);
   const classNames = React.useMemo(() => {
-    return `ds-subject-item ds-subject-item-${uuid()}`;
+    return `ds-subject-item ds-subject-item-${generateUuid()}`;
   }, []);
 
   const renderItems = React.useMemo(() => {

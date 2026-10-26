@@ -104,7 +104,6 @@ import type { OperatorsItem, OperatorsGroup } from '@synerise/ds-operators';
 - `@synerise/ds-scrollbar` — scrollable item list inside the dropdown
 - `@synerise/ds-result` — empty/no-results state inside the dropdown
 - `react-intl` — i18n for default text values; requires `IntlProvider` in the tree
-- `uuid` — generates unique keys for group items
 
 ## Implementation notes
 

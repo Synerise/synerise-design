@@ -46,8 +46,7 @@
     "@synerise/ds-tooltip": "workspace:^",
     "@synerise/ds-utils": "workspace:^",
     "classnames": "^2.3.2",
-    "csstype": "^2.6.9",
-    "uuid": "^11.1.1"
+    "csstype": "^2.6.9"
   },
   "devDependencies": {
     "@testing-library/user-event": "^14.6.1",

@@ -111,7 +111,6 @@ All styling lives in `InputNumber.styles.tsx` as DS-native styled-components dri
 - `@synerise/ds-input` — `AutosizeWrapper` + `AutoResizeProp` type
 - `@synerise/ds-core` — `useDataFormat` hook (locale-aware number formatting), `NumberToFormatOptions`, `ThemeProps`
 - `@synerise/ds-utils` — `useResizeObserver` (for `stretchToFit` autosize) + `PassthroughAttributes` type
-- `uuid` — generates stable `id` for label `htmlFor` association
 
 ## Implementation notes
 

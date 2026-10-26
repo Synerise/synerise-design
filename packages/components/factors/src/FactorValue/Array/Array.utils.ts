@@ -1,4 +1,4 @@
-import { v4 as uuid } from 'uuid';
+import { generateUuid } from '@synerise/ds-utils';
 
 import type { ArrayValueElement } from '../../Factors.types';
 import type { ArrayValueWithID } from './Array.types';
@@ -17,7 +17,7 @@ export const arrayWithUUID = <ItemType extends 'string' | 'number'>(
 ): ArrayValueWithID<ItemType>[] => {
   return items.map((item) => ({
     value: item,
-    id: uuid(),
+    id: generateUuid(),
   }));
 };
 

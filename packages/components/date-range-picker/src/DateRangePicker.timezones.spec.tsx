@@ -11,7 +11,6 @@ import { ABSOLUTE, RELATIVE_PRESETS } from './constants';
 import DateRangePicker from './DateRangePicker';
 
 const SYSTEM_NOW = '2024-03-01T00:00:00';
-vi.mock('uuid', () => ({ v4: () => Math.floor(Math.random() * 999999999).toString() }));
 
 type TestCase = {
   id: string;

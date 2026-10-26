@@ -1,5 +1,3 @@
-import { v4 as uuid } from 'uuid';
-
 import type { ConditionStep } from '@synerise/ds-condition';
 import type { ContextGroup, ContextItem } from '@synerise/ds-context-selector';
 import { DateRange, fnsFormat, utils } from '@synerise/ds-date-range-picker';
@@ -37,14 +35,14 @@ export const DEFAULT_EXPRESSION = (
   subject?: ContextItem | ContextGroup,
 ): ExpressionWithSteps => ({
   type: 'STEP' as const,
-  id: uuid(),
+  id: crypto.randomUUID(),
   data: {
     name: '',
     matching: true,
   },
   logic: {
     type: 'LOGIC' as const,
-    id: uuid(),
+    id: crypto.randomUUID(),
     data: {
       value: 'AND',
     },

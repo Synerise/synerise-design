@@ -1,11 +1,11 @@
 import React, { PureComponent, type ReactNode, type ReactText } from 'react';
 import { FormattedMessage, injectIntl } from 'react-intl';
-import { v4 as uuid } from 'uuid';
 
 import Button from '@synerise/ds-button';
 import { theme } from '@synerise/ds-core';
 import { ContentItem } from '@synerise/ds-manageable-list';
 import Tag, { TagShape } from '@synerise/ds-tag';
+import { generateUuid } from '@synerise/ds-utils';
 
 import { getDefaultTexts } from '../../../utils';
 import {
@@ -51,7 +51,7 @@ class MonthlyFilter extends PureComponent<
   };
 
   handleAddRow = () => {
-    const id = uuid();
+    const id = generateUuid();
     const { value, countedFromPeriods, daysOfPeriods } = this.props;
     const defaultPeriod = (daysOfPeriods || DEFAULT_DAYS_OF_PERIODS)[0].value;
     const defaultPeriodType = (countedFromPeriods || DEFAULT_COUNTED_FROM)[0]

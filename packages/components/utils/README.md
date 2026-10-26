@@ -7,6 +7,7 @@ List of utils:
 - focusWithArrowKeys,
 - getInitials (not exported from package index),
 - escapeRegEx,
+- generateUuid,
 - hexToRgba,
 - omitKeys,
 - renderWithHighlight,

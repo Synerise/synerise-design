@@ -1,7 +1,8 @@
 import { DragOverlay, type DragStartEvent } from '@dnd-kit/core';
 import { restrictToParentElement } from '@dnd-kit/modifiers';
 import React, { useEffect, useMemo, useState } from 'react';
-import { v4 as uuid } from 'uuid';
+
+import { generateUuid } from '@synerise/ds-utils';
 
 import type { BaseItem, SortableProps } from './Sortable.types';
 import { SortableContainer } from './SortableContainer';
@@ -16,7 +17,7 @@ export const Sortable = <ItemType extends BaseItem>({
 }: SortableProps<ItemType>) => {
   const [order, setOrder] = useState<Array<ItemType>>(items);
   const [activeItem, setActiveItem] = useState<ItemType | undefined>();
-  const sortableId = useMemo(() => uuid(), []);
+  const sortableId = useMemo(() => generateUuid(), []);
 
   const handleDragEnd = () => {
     setActiveItem(undefined);

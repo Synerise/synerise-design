@@ -11,10 +11,10 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import { v4 as uuid } from 'uuid';
 
 import FormField from '@synerise/ds-form-field';
 import Icon, { CloseS } from '@synerise/ds-icon';
+import { generateUuid } from '@synerise/ds-utils';
 
 import {
   SIZER_STYLE,
@@ -72,7 +72,7 @@ export const Input = forwardRef<HTMLDivElement, InputProps>(
     },
     forwardedRef,
   ) => {
-    const id = useMemo(() => uuid(), []);
+    const id = useMemo(() => generateUuid(), []);
     const charCount = getCharCount(inputProps.value, counterLimit);
     const expandableTextAreaRef = useRef<HTMLTextAreaElement | null>(null);
     const [expanded, setExpanded] = useState(false);

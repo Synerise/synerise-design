@@ -129,7 +129,6 @@ import Banner from '@synerise/ds-banner';
 
 - `@synerise/ds-carousel` (`Carousel`) — the underlying carousel/slideshow engine; `BannerSlides` is a styled `Carousel`; navigation is driven via `CarouselRef` (`.goTo`, `.next`, `.prev`)
 - `react-intl` — **required peer dependency** used in `useTexts` for default i18n strings; app must be wrapped in `IntlProvider`
-- `uuid` — generates a stable `id` per slide on each `slides` prop change (via `useMemo`) to use as React keys
 - `@synerise/ds-tag` — renders `titleStatus` pill with `asPill` + `TagShape.SMALL_SQUARE`
 - `@synerise/ds-typography` (`Title`, `Text`) — used for slide title and header bar text
 
@@ -148,7 +147,7 @@ Merges react-intl formatted defaults (`DS.BANNER.EXPAND`, `DS.BANNER.COLLAPSE`, 
 - **Slide counter** only renders when `slides.length > 1`.
 - **Close button vs expandable header**: if `expandable` is set, the close button is rendered *inside* the `BannerHeader`; otherwise it floats absolutely in the top-right corner (`position: absolute; right: 8px; top: 8px; z-index: 10`).
 - **Expand/collapse state** is local — `isExpanded` in `expandable` is only the *initial* value. After mount the state is owned by `Banner`.
-- **`slides` are re-keyed** on every render via `uuid()` inside a `useMemo([slides])`, so mutating slide objects in place (without replacing the array) will not re-key them.
+- **Slide keys** — slides and counter dots are keyed by `slide.id`, falling back to the slide's index. Pass an `id` per slide if slides can be reordered.
 - **Carousel CSS**: `ds-carousel` ships its own styling; `Banner.styles.ts` adds the layout tweaks via ds-carousel's `.ds-carousel` / `.ds-carousel-track` class hooks (no LESS side-effect import anymore).
 - `BannerSlide` memoizes each content area (`useMemo`) keyed to the content prop; position (`left | right | main`) and `hasMainContent` flag control flex-basis (240px fixed) vs flex-grow (1).
 - `titleStatus` defaults for colour (`yellow-600` / `white`) come from `Banner.const.ts` and are spread before the caller's overrides, so callers can override individual colour props.

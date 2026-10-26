@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { v4 as uuid } from 'uuid';
 
 import Collector, { type CollectorValue } from '@synerise/ds-collector';
+import { generateUuid } from '@synerise/ds-utils';
 
 import { COMMA } from '../Array.const';
 import * as S from '../Array.styles';
@@ -70,7 +70,7 @@ export const ArrayCollector = <ItemType extends 'string' | 'number'>({
       value: sanitiseValues(`${text}`),
       type: itemType,
       hasError: itemType === 'number' && !isNumberAsString(`${text}`),
-      id: uuid(),
+      id: generateUuid(),
     };
   };
 

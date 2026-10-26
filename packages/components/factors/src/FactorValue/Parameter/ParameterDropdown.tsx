@@ -7,7 +7,6 @@ import React, {
   useState,
 } from 'react';
 import type { VariableSizeList } from 'react-window';
-import { v4 as uuid } from 'uuid';
 
 import { useTheme } from '@synerise/ds-core';
 import Divider from '@synerise/ds-divider';
@@ -19,6 +18,7 @@ import Scrollbar from '@synerise/ds-scrollbar';
 import Tabs from '@synerise/ds-tabs';
 import {
   focusWithArrowKeys,
+  generateUuid,
   getClosest,
   getGroupName,
   useOnClickOutside,
@@ -78,7 +78,7 @@ const ParameterDropdown = ({
   const [searchInputCanBeFocused, setSearchInputFocus] = useState(true);
 
   const classNames = useMemo(() => {
-    return `ds-parameter-item ds-parameter-item-${uuid()}`;
+    return `ds-parameter-item ds-parameter-item-${generateUuid()}`;
   }, []);
 
   useOnClickOutside(overlayRef, (event) => {

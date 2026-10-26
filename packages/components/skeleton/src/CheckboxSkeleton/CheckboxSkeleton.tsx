@@ -1,7 +1,7 @@
 import React, { memo, useMemo } from 'react';
-import { v4 as uuid } from 'uuid';
 
 import Checkbox from '@synerise/ds-checkbox';
+import { generateUuid } from '@synerise/ds-utils';
 
 import * as S from './CheckboxSkeleton.styles';
 import type { CheckboxSkeletonProps } from './CheckboxSkeleton.types';
@@ -12,7 +12,10 @@ const CheckboxSkeleton = ({
   className,
 }: CheckboxSkeletonProps) => {
   const tiles = useMemo(
-    () => Array.from({ length: numberOfSkeletons }, () => ({ id: uuid() })),
+    () =>
+      Array.from({ length: numberOfSkeletons }, () => ({
+        id: generateUuid(),
+      })),
     [numberOfSkeletons],
   );
   return (

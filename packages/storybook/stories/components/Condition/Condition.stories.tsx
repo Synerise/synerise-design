@@ -1,7 +1,6 @@
 import React, { ReactText, useState } from 'react';
 import { action } from 'storybook/actions';
 import { fn } from 'storybook/test';
-import { v4 as uuid } from 'uuid';
 
 import Button from '@synerise/ds-button';
 import Condition, { ConditionStep } from '@synerise/ds-condition';
@@ -254,7 +253,10 @@ export default {
     };
 
     const handleAddCondition = (stepId: ReactText) => {
-      const newCondition = { ...DEFAULT_CONDITION_ROW(), id: uuid() };
+      const newCondition = {
+        ...DEFAULT_CONDITION_ROW(),
+        id: crypto.randomUUID(),
+      };
       setSteps(
         steps.map((step) => {
           return step.id === stepId
@@ -311,7 +313,7 @@ export default {
     const handleDuplicateStep = (stepId: ReactText) => {
       const stepToDuplicate = steps.find((step) => step.id === stepId);
       if (stepToDuplicate) {
-        setSteps([...steps, { ...stepToDuplicate, id: uuid() }]);
+        setSteps([...steps, { ...stepToDuplicate, id: crypto.randomUUID() }]);
       }
       args.duplicateStep?.(stepId);
     };

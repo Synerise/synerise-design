@@ -64,8 +64,7 @@
     "@synerise/ds-typography": "workspace:^",
     "@synerise/ds-utils": "workspace:^",
     "lodash.debounce": "^4.0.8",
-    "react-window": "^1.8.11",
-    "uuid": "^11.1.1"
+    "react-window": "^1.8.11"
   },
   "devDependencies": {
     "@types/lodash.debounce": "^4.0.9",

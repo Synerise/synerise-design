@@ -48,8 +48,7 @@
     "@synerise/ds-typography": "workspace:^",
     "@synerise/ds-utils": "workspace:^",
     "react-animate-height": "^2.0.23",
-    "react-visibility-sensor": "^5.1.1",
-    "uuid": "^11.1.1"
+    "react-visibility-sensor": "^5.1.1"
   },
   "devDependencies": {
     "vitest": "4"

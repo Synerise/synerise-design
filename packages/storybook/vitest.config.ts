@@ -28,7 +28,6 @@ export default defineConfig({
       'dayjs',
       'dayjs/**',
       'moment',
-      'uuid',
       'copy-to-clipboard',
       'react-window',
       '@faker-js/faker',

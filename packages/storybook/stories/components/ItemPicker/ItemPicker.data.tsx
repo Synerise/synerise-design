@@ -1,7 +1,6 @@
 import { faker } from '@faker-js/faker';
 import React, { type MouseEvent } from 'react';
 import { action } from 'storybook/actions';
-import { v4 as uuid } from 'uuid';
 
 import Icon, {
   Add3M,
@@ -192,7 +191,7 @@ export const MIXED_SIZE_DATA_SOURCE: ItemType[] = [
 
 const segmentationItem = (index: number): SegmentationType => {
   const itemData = {
-    key: uuid(),
+    key: crypto.randomUUID(),
     itemType: 'segmentation' as const,
     text: `Segmentation ${index + 1}`,
     sectionId: 'SEGMENTATIONS',
@@ -214,7 +213,7 @@ const attributeItem = (
   sectionId: string,
 ): AttributeType => {
   const itemData = {
-    key: uuid(),
+    key: crypto.randomUUID(),
     itemType: 'attribute' as const,
     text: `Attribute ${itemNameSuffix} ${index + 1}`,
     sectionId,
@@ -233,7 +232,7 @@ const attributeItem = (
 
 const funnelItem = (index: number): FunnelType => {
   const itemData = {
-    key: uuid(),
+    key: crypto.randomUUID(),
     itemType: 'funnel' as const,
     text: `Funnel ${index + 1}`,
     sectionId: 'FUNNELS',
@@ -251,7 +250,7 @@ const funnelItem = (index: number): FunnelType => {
 
 const folderItem = (index: number): FolderType => {
   const itemData = {
-    key: uuid(),
+    key: crypto.randomUUID(),
     itemType: 'folder' as const,
     text: `Folder with a very long name that will get clipped with ellipsis ${index + 1}`,
     sectionId: 'FOLDERS',

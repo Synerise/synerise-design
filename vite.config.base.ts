@@ -181,7 +181,6 @@ export const createViteConfig = (
     'date-fns-tz',
     'react-intl',
     /^react-intl\//,
-    'uuid',
     'flat',
     'color',
     'highlight.js',

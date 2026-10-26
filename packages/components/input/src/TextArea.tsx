@@ -5,9 +5,9 @@ import React, {
   useMemo,
   useRef,
 } from 'react';
-import { v4 as uuid } from 'uuid';
 
 import FormField from '@synerise/ds-form-field';
+import { generateUuid } from '@synerise/ds-utils';
 
 import { ElementIcons } from './components/ElementIcons';
 import { useElementFocus } from './hooks';
@@ -37,7 +37,7 @@ export const TextArea = ({
   renderCustomCounter,
   ...antdTextareaProps
 }: TextareaProps) => {
-  const id = useMemo(() => uuid(), []);
+  const id = useMemo(() => generateUuid(), []);
   const charCount = getCharCount(antdTextareaProps.value, counterLimit);
   const hasErrorMessage = Boolean(errorText);
 

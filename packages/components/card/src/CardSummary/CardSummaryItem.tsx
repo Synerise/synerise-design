@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import AnimateHeight from 'react-animate-height';
-import { v4 as uuid } from 'uuid';
 
 import { AngleDownS } from '@synerise/ds-icon';
 
@@ -55,10 +54,10 @@ export const CardSummaryItem = ({
           height={isOpen ? 'auto' : 0}
         >
           <S.CardSummaryItemObjects direction={summaryObjectsDirection}>
-            {summaryObjects?.map((object) => (
+            {summaryObjects?.map((object, index) => (
               <S.CardSummaryItemObject
                 direction={summaryObjectsDirection}
-                key={object.key || uuid()}
+                key={object.key ?? index}
               >
                 {object}
               </S.CardSummaryItemObject>

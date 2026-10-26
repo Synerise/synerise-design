@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { itemSizes } from '@synerise/ds-list-item';
+import { generateUuid } from '@synerise/ds-utils';
 
 import type {
   ItemLoaderMeta,
@@ -409,7 +410,7 @@ export const useItemsInSections = <
     setIsLoading(true);
     setIsLoadingError(false);
 
-    const currentRequestId = crypto.randomUUID();
+    const currentRequestId = generateUuid();
     requestIdRef.current = currentRequestId;
     const abortController = abortControllerRef.current;
 

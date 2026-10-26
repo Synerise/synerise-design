@@ -1,5 +1,4 @@
-import React, { useMemo } from 'react';
-import { v4 as uuid } from 'uuid';
+import React from 'react';
 
 import Tooltip from '@synerise/ds-tooltip';
 
@@ -9,28 +8,27 @@ import type { InformationCardSummaryProps } from './InformationCardSummary.types
 export const InformationCardSummary = ({
   items,
 }: InformationCardSummaryProps) => {
-  const itemsWithIDs = useMemo(
-    () => items?.map((item) => ({ id: uuid(), ...item })),
-    [items],
-  );
   return (
     <>
       <S.InformationCardSummaryWrapper data-testid="information-card-summary">
-        {itemsWithIDs?.map(({ icon, label, tooltip, tooltipProps, id }) => {
-          const item = (
-            <S.InformationCardSummaryItem key={id}>
-              {icon && <div>{icon}</div>}
-              {label && <div>{label}</div>}
-            </S.InformationCardSummaryItem>
-          );
-          return tooltip ? (
-            <Tooltip title={tooltip} {...tooltipProps}>
-              {item}
-            </Tooltip>
-          ) : (
-            item
-          );
-        })}
+        {items?.map(
+          ({ icon, label, tooltip, tooltipProps, id, key }, index) => {
+            const itemKey = key ?? id ?? index;
+            const item = (
+              <S.InformationCardSummaryItem key={itemKey}>
+                {icon && <div>{icon}</div>}
+                {label && <div>{label}</div>}
+              </S.InformationCardSummaryItem>
+            );
+            return tooltip ? (
+              <Tooltip key={itemKey} title={tooltip} {...tooltipProps}>
+                {item}
+              </Tooltip>
+            ) : (
+              item
+            );
+          },
+        )}
       </S.InformationCardSummaryWrapper>
     </>
   );
