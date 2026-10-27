@@ -202,6 +202,48 @@ run_tests:
     - ls -l packages/components/core
     - pnpm test:ci
 
+# Runs every story's `play` function in Chromium. Stories that only assert behaviour skip their
+# Chromatic snapshot, so this job is their only coverage and must not be allowed to fail.
+storybook_interaction_tests:
+  stage: test
+  needs: ['build_packages']
+  variables:
+    KUBERNETES_CPU_REQUEST: 4
+    KUBERNETES_MEMORY_REQUEST: 16Gi
+    KUBERNETES_MEMORY_LIMIT: 22Gi
+    PLAYWRIGHT_BROWSERS_PATH: $CI_PROJECT_DIR/.playwright-browsers
+  cache:
+    - key:
+        files:
+        - pnpm-lock.yaml
+        prefix: v11
+      paths:
+        - .pnpm-store
+        - .pnpm-cache
+      policy: pull
+    - key:
+        files:
+        - pnpm-lock.yaml
+        prefix: playwright
+      paths:
+        - .playwright-browsers
+      policy: pull-push
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+  before_script:
+    - !reference [.install_pnpm]
+  script:
+    - pnpm install --frozen-lockfile --offline
+    # playwright is only a transitive dependency of @vitest/browser-playwright, so it has no bin
+    # shim. Its own CLI installs the browser build matching the locked version.
+    - node node_modules/.pnpm/playwright@*/node_modules/playwright/cli.js install --with-deps chromium
+    - (cd packages/storybook; pnpm test-storybook --reporter=default --reporter=junit --outputFile.junit=junit.xml)
+  artifacts:
+    when: always
+    reports:
+      junit: packages/storybook/junit.xml
+  interruptible: true
+
 chromatic_publish:
   stage: test
   needs: ['build_packages']
@@ -222,11 +264,37 @@ chromatic_publish:
         - .pnpm-store
         - .pnpm-cache
       policy: pull
+    # Chromatic treats a second build of a commit that already has one as a full rebuild and
+    # re-captures every story at full price, even with 0 changed files. The diagnostics of the
+    # first build double as the marker, and are saved only when the job succeeds.
+    - key: chromatic-$CI_COMMIT_SHA
+      paths:
+        - packages/storybook/chromatic-diagnostics.json
+      policy: pull-push
   rules:
+    # Drafts push often and nobody reviews their snapshots, so Chromatic waits to be played there.
+    # Marking an MR ready starts no pipeline, so the job stays blocking: unplayed, it holds the merge.
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_DRAFT == "true"
+      changes: &chromatic_changes
+        compare_to: refs/heads/master
+        paths:
+          - packages/components/**/*
+          - packages/storybook/**/*
+          - package.json
+          - pnpm-lock.yaml
+          - vite.config.base.ts
+          - scripts/pack-prerelease.mjs
+      when: manual
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      changes: *chromatic_changes
   before_script:
     - !reference [.install_pnpm]
   script:
+    - |
+      if [ -f packages/storybook/chromatic-diagnostics.json ]; then
+        echo "Chromatic already built $CI_COMMIT_SHORT_SHA; keeping that build and its diagnostics."
+        exit 0
+      fi
     - ls -l packages/components/core
     - pnpm install --frozen-lockfile --prefer-offline
     # - apt-get -qq update
@@ -386,5 +454,8 @@ chromatic_publish_baseline:
     - !reference [.install_pnpm]
   script:
     - pnpm install --frozen-lockfile --offline
-    - (cd packages/storybook; pnpm chromatic --project-token=$CHROMATIC_PROJECT_TOKEN_SB7 --auto-accept-changes)
+    - (cd packages/storybook; pnpm chromatic --diagnostics-file --project-token=$CHROMATIC_PROJECT_TOKEN_SB7 --auto-accept-changes)
+  artifacts:
+    paths:
+      - packages/storybook/chromatic-diagnostics.json
   interruptible: true

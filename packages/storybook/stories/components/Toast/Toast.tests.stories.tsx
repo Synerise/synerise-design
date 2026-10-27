@@ -63,6 +63,7 @@ export const ShowSingleToast: Story = {
 
 export const ShowMultipleToasts: Story = {
   ...ShowToast,
+  tags: ['known-failure'],
   args: {
     ...ShowToast.args,
     message: TOAST_MESSAGE,

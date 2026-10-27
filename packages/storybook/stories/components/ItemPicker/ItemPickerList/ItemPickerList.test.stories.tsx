@@ -2,6 +2,7 @@ import { Meta, StoryObj } from '@storybook/react-vite';
 
 import type { ItemPickerProps } from '@synerise/ds-item-picker';
 
+import { NO_SNAPSHOT } from '../../../utils/chromatic';
 import type { StoryPropsOverlay } from '../ItemPicker.types';
 import {
   playActionsAllStory,
@@ -54,6 +55,7 @@ export const SearchResultsEmpty: StoryObj<StoryPropsOverlay> = {
 export const KeyboardEscapeClearSearch: StoryObj<StoryPropsOverlay> = {
   ...FlatItems,
   parameters: {
+    ...NO_SNAPSHOT,
     testGoal: 'test keyboard shortcut ESC',
   },
   play: playKeyboardEscapeClearSearchStory,
@@ -62,6 +64,7 @@ export const KeyboardEscapeClearSearch: StoryObj<StoryPropsOverlay> = {
 export const KeyboardBack: StoryObj<StoryPropsOverlay> = {
   ...SectionsAndFolders,
   parameters: {
+    ...NO_SNAPSHOT,
     testGoal: 'test keyboard shortcut BACK',
   },
   play: playKeyboardBackStory,

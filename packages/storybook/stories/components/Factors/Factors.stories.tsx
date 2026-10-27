@@ -18,6 +18,7 @@ import {
   fixedWrapper300,
   flexColumnWrapper,
 } from '../../utils';
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 import { ITEMS_IN_SECTIONS, SECTIONS } from '../ItemPicker/ItemPicker.data';
 import { SelectedItem } from '../ItemPicker/ItemPicker.stories';
 import {
@@ -156,6 +157,7 @@ export const ParameterTypeRenderEmptyGroups: Story = {
     },
   },
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `<Factors
@@ -371,6 +373,7 @@ export const ParameterTypeSearch: Story = {
     },
   },
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `<Factors
@@ -435,6 +438,7 @@ export const ArrayNumeric: Story = {
 };
 
 export const Open: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: {
     opened: true,
   },

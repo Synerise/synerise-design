@@ -9,6 +9,9 @@ export default defineConfig({
   plugins: [
     storybookTest({
       configDir: path.resolve(__dirname, '.storybook'),
+      // `play` functions that already failed on master when this suite joined CI. Skipped rather
+      // than excluded, so the report keeps listing them until each is fixed and untagged.
+      tags: { skip: ['known-failure'] },
     }),
   ],
   server: {

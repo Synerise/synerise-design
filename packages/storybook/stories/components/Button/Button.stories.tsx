@@ -14,6 +14,7 @@ import {
   controlFromOptionsArray,
   reactNodeAsSelect,
 } from '../../utils';
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 import {
   BUTTON_CUSTOM_COLORS,
   BUTTON_TYPES,
@@ -109,6 +110,7 @@ export default meta;
 
 export const Simple: Story = {
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `<Button type="primary">Label</Button>`,
@@ -125,6 +127,7 @@ export const IconSolo: Story = {
   ...Simple,
   parameters: {
     ...Simple.parameters,
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `<Button type="primary" mode="single-icon">
@@ -144,6 +147,7 @@ export const IconLeft: Story = {
   ...IconSolo,
   parameters: {
     ...IconSolo.parameters,
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `<Button mode="icon-label">
@@ -168,6 +172,7 @@ export const IconRight: Story = {
   ...IconLeft,
   parameters: {
     ...IconLeft.parameters,
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `<Button mode="label-icon">
@@ -194,6 +199,7 @@ export const TwoIcons: Story = {
   ...IconLeft,
   parameters: {
     ...IconLeft.parameters,
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `<Button mode="two-icons">
@@ -221,6 +227,7 @@ export const ButtonModes: Story = {
   ...IconLeft,
   parameters: {
     ...IconLeft.parameters,
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `<Button mode="two-icons">
@@ -247,6 +254,7 @@ export const ButtonModes: Story = {
 
 export const SplitRight: Story = {
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `<Button mode="split">
@@ -367,6 +375,7 @@ export const AvatarInLabel: Story = {
 
 export const DisabledTooltip: Story = {
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `<Button

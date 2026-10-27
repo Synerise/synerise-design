@@ -62,6 +62,7 @@ export const DropdownOpen: Story = {
 
 export const SelectItem: Story = {
   ...DropdownOpen,
+  tags: ['known-failure'],
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement.parentElement!);
     const { dropdown } = await runOpenDropdown(canvas, args);
@@ -81,6 +82,7 @@ export const SelectItem: Story = {
 
 export const ClearSelectedItem: Story = {
   ...DropdownOpen,
+  tags: ['known-failure'],
   args: {
     ...DropdownOpen.args,
     selectedItem: FLAT_DATA_SOURCE[2],

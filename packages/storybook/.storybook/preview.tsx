@@ -15,7 +15,6 @@ import {
   TOASTER_DEFAULTS,
   theme,
 } from '@synerise/ds-core';
-import { TrayProvider } from '@synerise/ds-tray';
 
 configure({ asyncUtilTimeout: 3000 });
 
@@ -68,11 +67,7 @@ const preview: Preview = {
         timeZone: storyContext.globals.timeZone,
         toasterProps: TOASTER_DEFAULTS,
       };
-      return (
-        <DSProvider {...DSProviderProps}>
-          <TrayProvider>{Story()}</TrayProvider>
-        </DSProvider>
-      );
+      return <DSProvider {...DSProviderProps}>{Story()}</DSProvider>;
     },
   ],
 
