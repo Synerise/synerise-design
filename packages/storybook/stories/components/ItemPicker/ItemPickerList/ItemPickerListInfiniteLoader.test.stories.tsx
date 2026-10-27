@@ -2,6 +2,7 @@ import { Meta, StoryObj } from '@storybook/react-vite';
 
 import type { ItemPickerProps } from '@synerise/ds-item-picker';
 
+import { NO_SNAPSHOT } from '../../../utils/chromatic';
 import type { StoryPropsOverlay } from '../ItemPicker.types';
 import {
   playActionsAllStory,
@@ -33,6 +34,9 @@ export default {
   ...ItemPickerMeta,
   title: 'Components/Pickers/ItemPicker/List With Infinite Loader/Tests',
   tags: ['visualtests'],
+  // Same play functions and end states as the "List With Predefined Items" tests, which keep the
+  // snapshots; here they only exercise the infinite-loader data path.
+  parameters: { ...ItemPickerMeta.parameters, ...NO_SNAPSHOT },
 } as Meta<ItemPickerProps>;
 
 const SEARCH_QUERY = 'seg';

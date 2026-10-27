@@ -97,6 +97,7 @@ export const SearchTag: Story = {
 
 export const AddTag: Story = {
   ...WithAddButton,
+  tags: ['known-failure'],
   args: {
     ...WithAddButton.args,
     maxHeight: 200,

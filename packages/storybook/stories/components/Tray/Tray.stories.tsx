@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 
-import Tray, { type TrayProps } from '@synerise/ds-tray';
+import Tray, { type TrayProps, TrayProvider } from '@synerise/ds-tray';
 
 import { TrayStory, type TrayStoryType } from './Tray.data';
 
@@ -9,7 +9,13 @@ export default {
   component: Tray,
   title: 'Components/Tray',
   tags: [],
-  decorators: [(Story) => <div style={{ minHeight: '700px' }}>{Story()}</div>],
+  decorators: [
+    (Story) => (
+      <TrayProvider>
+        <div style={{ minHeight: '700px' }}>{Story()}</div>
+      </TrayProvider>
+    ),
+  ],
   parameters: {
     layout: 'padded',
   },

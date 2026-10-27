@@ -42,6 +42,8 @@
 - Prerequisite: the generated sources (`pnpm run generate` — core theme variables, icon/flag/avatar SVGR
   output). The root `postinstall` does this; a fresh **git worktree** or `--ignore-scripts` install does not,
   and the test run fails fast naming the command
+- Stories: read `packages/storybook/README.md` before adding or changing one — it says which stories
+  Chromatic snapshots (`NO_SNAPSHOT`), and `play` functions run in CI via `pnpm test-storybook`
 - `DS_TEST_FROM_SOURCE=0` sends **bare** imports back to `dist` for one run; deep `@synerise/ds-x/dist/...`
   imports always resolve from source (the `exports` map cannot resolve them). `DS_TEST_RESOLVE_DEBUG=1`
   logs every redirect

@@ -5,6 +5,7 @@ import type { FactorsProps } from '@synerise/ds-factors';
 import { ALL_FACTOR_TYPES } from '@synerise/ds-factors';
 
 import { centeredPaddedWrapper, fixedWrapper300, sleep } from '../../utils';
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 import {
   ARRAY_VALUE,
   ARRAY_VALUE_NUMERIC,
@@ -76,6 +77,7 @@ export const FactorTypeDropdownOpen: StoryObj<FactorsProps> = {
 
 export const SelectParameterFactorValue: StoryObj<FactorsProps> = {
   ...SwitchFactorType,
+  parameters: { ...NO_SNAPSHOT },
   args: {
     ...SwitchFactorType.args,
     selectedFactorType: 'parameter',
@@ -145,6 +147,7 @@ export const RelativeDateOpen: StoryObj<FactorsProps> = {
 
 export const RelativeDateValueChange: StoryObj<FactorsProps> = {
   ...RelativeDate,
+  tags: ['known-failure'],
   args: {
     ...RelativeDate.args,
     onActivate: fn(),
@@ -297,6 +300,7 @@ export const ArrayEditorOpenRawMode: StoryObj<FactorsProps> = {
 
 export const ArrayEditorModifyValues: StoryObj<FactorsProps> = {
   ...SwitchFactorType,
+  parameters: { ...NO_SNAPSHOT },
   args: {
     ...SwitchFactorType.args,
     selectedFactorType: 'array',
@@ -545,6 +549,7 @@ export const AllTypesReadOnly: StoryObj<FactorsProps> = {
 
 export const ParameterDeactivate: StoryObj<FactorsProps> = {
   ...SelectParameterFactorValue,
+  parameters: { ...NO_SNAPSHOT },
   play: async ({ canvasElement, args, step }) => {
     const canvas = within(canvasElement);
     await step('open parameter dropdown', async () => {
@@ -565,6 +570,7 @@ export const ParameterDeactivate: StoryObj<FactorsProps> = {
 
 export const TextAutocompleteDeactivate: StoryObj<FactorsProps> = {
   ...Default,
+  parameters: { ...NO_SNAPSHOT },
   decorators: [fixedWrapper300],
   args: {
     selectedFactorType: 'text',

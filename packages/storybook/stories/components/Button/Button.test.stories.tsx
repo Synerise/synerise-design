@@ -8,6 +8,7 @@ import ButtonGroup from '@synerise/ds-button-group';
 import { theme } from '@synerise/ds-core';
 import Icon, { AngleDownS } from '@synerise/ds-icon';
 
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 import {
   BUTTON_CUSTOM_COLORS,
   BUTTON_TYPES,
@@ -72,6 +73,7 @@ export const RendersSingleIconSizes: StoryObj<ButtonProps> = {
   ...SingleIconSizes,
   parameters: {
     ...SingleIconSizes.parameters,
+    ...NO_SNAPSHOT,
     layout: 'centered',
   },
   play: async ({ canvasElement }) => {

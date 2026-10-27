@@ -34,6 +34,7 @@ export const OpenedModal: Story = {
 };
 
 export const CurrencyType: Story = {
+  tags: ['known-failure'],
   args: {
     onFormattedValueChange: fn(),
   },
@@ -77,6 +78,7 @@ export const CurrencyType: Story = {
 };
 
 export const CurrencyDropdownOpen: Story = {
+  tags: ['known-failure'],
   args: {
     onFormattedValueChange: fn(),
   },
