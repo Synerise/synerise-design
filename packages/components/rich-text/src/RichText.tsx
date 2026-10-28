@@ -16,7 +16,6 @@ import { useCombinedRefs, useOnClickOutside } from '@synerise/ds-utils';
 import {
   documentToMarkdown,
   documentToTiptapJson,
-  markdownToDocument,
   type RichTextDocument,
   tiptapJsonToDocument,
 } from './blockModel';
@@ -28,11 +27,14 @@ import {
   DEFAULT_TEXTS,
   type RichTextProps,
 } from './RichText.types';
-import { getExtensions } from './utils';
+import { getExtensions, handleMarkdownPaste, markdownToHtml } from './utils';
 
 // Clicks inside portaled popovers (toolbar menus, link/image forms) must not
 // deactivate subtle mode — PopoverContent marks its floating element with this attribute.
 const SUBTLE_IGNORE_SELECTORS = ['[data-popover-content]'];
+
+const MARKDOWN_EDITOR_PROPS = { handlePaste: handleMarkdownPaste };
+const DEFAULT_EDITOR_PROPS = {};
 
 const isDocument = (val: unknown): val is RichTextDocument =>
   typeof val === 'object' &&
@@ -47,10 +49,8 @@ const toEditorContent = (
     return '';
   }
   if (typeof val === 'string') {
-    // A markdown string is parsed to the block model; an HTML string is used as-is.
-    return format === 'markdown'
-      ? documentToTiptapJson(markdownToDocument(val))
-      : val;
+    // Markdown becomes HTML for the editor's own parser, the same route paste takes.
+    return format === 'markdown' ? markdownToHtml(val) : val;
   }
   return documentToTiptapJson(val);
 };
@@ -156,6 +156,8 @@ const RichText = forwardRef<HTMLDivElement, RichTextProps>(
       content: toEditorContent(value ?? defaultValue, format),
       editable: isEditable,
       autofocus: autoFocus,
+      editorProps:
+        format === 'markdown' ? MARKDOWN_EDITOR_PROPS : DEFAULT_EDITOR_PROPS,
       onUpdate: handleUpdate,
       onFocus: () => setIsFocused(true),
       onBlur: () => setIsFocused(false),
@@ -218,10 +220,7 @@ const RichText = forwardRef<HTMLDivElement, RichTextProps>(
       } else if (format === 'markdown') {
         // Skip the echo from our own onChange; otherwise parse markdown → document.
         if (lastEmittedRef.current !== value) {
-          editor.commands.setContent(
-            documentToTiptapJson(markdownToDocument(value)),
-            false,
-          );
+          editor.commands.setContent(markdownToHtml(value), false);
         }
       } else {
         const currentHTML = editor.getHTML();

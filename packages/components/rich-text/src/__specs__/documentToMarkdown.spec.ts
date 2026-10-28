@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 
-import { type RichTextDocument, documentToMarkdown } from '../blockModel';
+import { type RichTextDocument, documentToMarkdown, markdownToDocument } from '../blockModel';
 
 describe('documentToMarkdown', () => {
   it('serializes headings, paragraphs and inline marks', () => {
@@ -63,5 +63,32 @@ describe('documentToMarkdown', () => {
       ],
     };
     expect(documentToMarkdown(doc)).toBe('- one\n- [link](https://x.io)');
+  });
+
+  it('escapes `<` in text so tag-like text survives a reload', () => {
+    const doc: RichTextDocument = {
+      type: 'doc',
+      version: 1,
+      children: [{ type: 'paragraph', children: [{ type: 'text', text: 'Use List<String>' }] }],
+    };
+    const markdown = documentToMarkdown(doc);
+
+    expect(markdown).toBe('Use List\\<String>');
+    expect(markdownToDocument(markdown)).toEqual(doc);
+  });
+
+  it('does not escape code', () => {
+    const doc: RichTextDocument = {
+      type: 'doc',
+      version: 1,
+      children: [
+        { type: 'codeBlock', children: [{ type: 'text', text: 'List<String> a;' }] },
+        {
+          type: 'paragraph',
+          children: [{ type: 'text', text: '<T>', marks: [{ type: 'code' }] }],
+        },
+      ],
+    };
+    expect(documentToMarkdown(doc)).toBe('```\nList<String> a;\n```\n\n`<T>`');
   });
 });
