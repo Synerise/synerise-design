@@ -14,6 +14,12 @@ import type {
   OffsetConfig,
   ShiftConfig,
 } from '../Popover.types';
+import {
+  type LockedPlacementRef,
+  lockPlacement,
+  restoreLockedPlacement,
+  skipWhileLocked,
+} from './stickyPlacement';
 
 type GetMiddleware = {
   offsetConfig: OffsetConfig;
@@ -21,6 +27,7 @@ type GetMiddleware = {
   shiftConfig: ShiftConfig;
   hideConfig?: HideConfig;
   arrowConfig?: ArrowOptions;
+  lockedPlacement?: LockedPlacementRef;
 };
 
 export const getMiddleware = ({
@@ -29,6 +36,7 @@ export const getMiddleware = ({
   shiftConfig,
   hideConfig,
   arrowConfig,
+  lockedPlacement,
 }: GetMiddleware) => {
   const middleware: Middleware[] = [];
 
@@ -38,11 +46,19 @@ export const getMiddleware = ({
   const { enabled: shiftEnabled = true, ...shiftOptions } = shiftConfig || {};
   const { enabled: hideEnabled = true, ...hideOptions } = hideConfig || {};
 
+  if (lockedPlacement) {
+    middleware.push(restoreLockedPlacement(lockedPlacement));
+  }
   if (offsetEnabled) {
     middleware.push(offset(offsetOptions));
   }
   if (flipEnabled) {
-    middleware.push(flip(flipOptions));
+    const flipMiddleware = flip(flipOptions);
+    middleware.push(
+      lockedPlacement
+        ? skipWhileLocked(flipMiddleware, lockedPlacement)
+        : flipMiddleware,
+    );
   }
   if (shiftEnabled) {
     middleware.push(shift(shiftOptions));
@@ -54,6 +70,9 @@ export const getMiddleware = ({
   // it earlier would test a position that flip/shift then moved.
   if (hideEnabled) {
     middleware.push(hide(hideOptions));
+  }
+  if (lockedPlacement) {
+    middleware.push(lockPlacement(lockedPlacement));
   }
 
   return middleware;

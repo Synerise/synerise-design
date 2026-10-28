@@ -138,6 +138,7 @@ const DateRangePicker = forwardRef<HTMLDivElement, DateRangePickerProps>(
         flipConfig={POPOVER_FLIP_CONFIG}
         shiftConfig={POPOVER_SHIFT_CONFIG}
         autoUpdate={true}
+        stickyPlacement={true}
         {...conditionalVisibilityProps}
         {...popoverProps}
       >

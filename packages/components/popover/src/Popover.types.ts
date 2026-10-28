@@ -49,6 +49,17 @@ export type PopoverOptions = {
   testId?: string;
   componentId?: string;
   autoUpdate?: boolean | AutoUpdateOptions;
+  /**
+   * Keeps the side `flip` chose while the overlay's own size changes, so content that grows or
+   * shrinks while open does not make it jump to the other side of its anchor. It chooses again on
+   * scroll, viewport resize, or when the anchor moves or resizes, and on every open.
+   *
+   * Only has an effect together with `autoUpdate`. Content that outgrows the chosen side is left
+   * to `shift`.
+   *
+   * @default false
+   */
+  stickyPlacement?: boolean;
   open?: boolean;
   /**
    * @default true

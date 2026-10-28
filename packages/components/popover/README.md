@@ -45,6 +45,7 @@ import Popover, { PopoverTrigger, PopoverContent } from '@synerise/ds-popover'
 | componentId | Sets data-popover-{id} attribute on content | `string` | - |
 | zIndex | CSS z-index of floating panel | `number` | `theme.variables['zindex-dropdown']` |
 | autoUpdate | Reposition while both elements are mounted | `boolean \| AutoUpdateOptions` | - |
+| stickyPlacement | Keep the side `flip` chose while the overlay's own size changes; it chooses again on scroll, viewport resize, anchor move or resize, and on every open. Needs `autoUpdate` | `boolean` | `false` |
 | offsetConfig | floating-ui offset middleware options (add `enabled: false` to disable) | `OffsetConfig` | `{ enabled: true }` |
 | flipConfig | floating-ui flip middleware options | `FlipConfig` | `{ enabled: true }` |
 | shiftConfig | floating-ui shift middleware options | `ShiftConfig` | `{ enabled: true }` |
