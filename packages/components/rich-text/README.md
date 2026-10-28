@@ -44,6 +44,21 @@ const [doc, setDoc] = useState<RichTextDocument>();
 />
 ```
 
+### Markdown mode
+
+```tsx
+<RichText
+  format="markdown"
+  value={markdown}
+  onChange={(markdown) => setMarkdown(markdown)}
+/>
+```
+
+- **Load:** `value` is read as markdown. Inline HTML the editor writes (`<u>`, `<br>`) is supported.
+- **Paste:** pasted plain text is parsed as markdown, and every pasted line stays a line. HTML tags in it stay text. Rich content copied from documents or another editor is pasted as is.
+- **Save:** line breaks are saved as `<br>`, and `\`, `<` and `&` in text are escaped (`List\<String>`).
+- Only the formats in `toolbarFeatures` are kept. The text of any other block stays as plain paragraphs.
+
 ### With image upload
 
 ```tsx
@@ -74,7 +89,7 @@ const [doc, setDoc] = useState<RichTextDocument>();
 
 | Property | Description | Type | Default |
 | --- | --- | --- | --- |
-| format | Output format — `'html'` emits string, `'document'` emits `RichTextDocument` | `'html' \| 'document'` | `'html'` |
+| format | Output format — `'html'` emits an HTML string, `'markdown'` a markdown string, `'document'` a `RichTextDocument` | `'html' \| 'markdown' \| 'document'` | `'html'` |
 | value | Controlled value (accepts both HTML string and `RichTextDocument`) | `string \| RichTextDocument` | - |
 | defaultValue | Initial value for uncontrolled mode | `string \| RichTextDocument` | - |
 | onChange | Called when content changes | `(value: string \| RichTextDocument) => void` | - |

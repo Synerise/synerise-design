@@ -26,11 +26,14 @@ const serializeMark = (mark: Mark, inner: string): string => {
   }
 };
 
+const escapeText = (text: string): string => text.replace(/[\\<&]/g, '\\$&');
+
 const serializeInline = (node: InlineNode): string => {
   if (node.type === 'hardBreak') {
-    return '  \n';
+    return '<br>';
   }
-  let text = node.text;
+  const isCode = node.marks?.some((mark) => mark.type === 'code');
+  let text = isCode ? node.text : escapeText(node.text);
   if (node.marks) {
     for (const mark of node.marks) {
       text = serializeMark(mark, text);
@@ -41,6 +44,9 @@ const serializeInline = (node: InlineNode): string => {
 
 const serializeInlines = (children: InlineNode[]): string =>
   children.map(serializeInline).join('');
+
+const serializeCode = (children: InlineNode[]): string =>
+  children.map((node) => (node.type === 'text' ? node.text : '\n')).join('');
 
 const indentLines = (text: string, indent: string): string =>
   text
@@ -58,8 +64,13 @@ const serializeListItem = (
   const continuation = indent + ' '.repeat(marker.length);
 
   let line = `${indent}${marker}${firstText}`;
+  let previous = first;
   for (const child of rest) {
-    line += `\n${indentLines(serializeBlock(child), continuation)}`;
+    // Without a blank line, text after a nested list continues that list's last item.
+    const isAfterList =
+      previous?.type === 'bulletList' || previous?.type === 'orderedList';
+    line += `${isAfterList ? '\n\n' : '\n'}${indentLines(serializeBlock(child), continuation)}`;
+    previous = child;
   }
   return line;
 };
@@ -73,10 +84,10 @@ const serializeBlock = (block: Block, indent = ''): string => {
       return `${'#'.repeat(block.attrs.level)} ${serializeInlines(block.children)}`;
 
     case 'codeBlock':
-      return `\`\`\`\n${serializeInlines(block.children)}\n\`\`\``;
+      return `\`\`\`\n${serializeCode(block.children)}\n\`\`\``;
 
     case 'codeSnippet':
-      return `\`${serializeInlines(block.children)}\``;
+      return `\`${serializeCode(block.children)}\``;
 
     case 'image':
       return `![${block.attrs.alt ?? ''}](${block.attrs.src})`;
