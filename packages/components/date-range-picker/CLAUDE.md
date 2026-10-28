@@ -210,6 +210,7 @@ Addons (relative picker, filter) appear below the calendar and are toggled via `
 
 ## Implementation notes
 
+- The popover is opened with `autoUpdate` and `stickyPlacement`: it keeps the side it opened on while its content changes height (expanding the custom relative range, collapsing an addon) and chooses again on scroll, viewport resize or a move of the trigger. `popoverProps={{ stickyPlacement: false }}` restores the old behaviour.
 - `disabled` and `readOnly` both suppress the popover entirely — the component renders just the trigger element without `<Popover>`.
 - `renderPopoverTrigger` takes precedence if it returns a non-undefined value; `popoverTrigger` is checked before that; the default `RangePickerInput` is used otherwise.
 - `valueTransformer` is applied inside `RawDateRangePicker` before calling `onApply` — default transformer strips `ALL_TIME`-specific props.

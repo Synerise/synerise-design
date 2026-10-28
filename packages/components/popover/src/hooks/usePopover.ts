@@ -2,6 +2,7 @@ import {
   autoUpdate,
   type FloatingElement,
   type OpenChangeReason,
+  type Placement,
   type ReferenceElement,
   useClick,
   useDelayGroup,
@@ -20,7 +21,11 @@ import { registerOverlay } from '@synerise/ds-core';
 
 import { HOVER_CLOSE_DELAY, HOVER_OPEN_DELAY } from '../Popover.const';
 import type { PopoverOptions, UsePopoverReturn } from '../Popover.types';
-import { getDefaultTransitionConfig, getMiddleware } from '../utils';
+import {
+  autoUpdateWithStickyPlacement,
+  getDefaultTransitionConfig,
+  getMiddleware,
+} from '../utils';
 import { useListNavigationConfig } from './useListNavigationConfig';
 
 export const usePopover = ({
@@ -34,6 +39,7 @@ export const usePopover = ({
   transitionDuration,
   getPopupContainer,
   autoUpdate: autoUpdateWhileMounted,
+  stickyPlacement = false,
   dismissConfig = {},
   offsetConfig = {},
   flipConfig = {},
@@ -56,6 +62,8 @@ export const usePopover = ({
   const open = controlledOpen ?? uncontrolledOpen;
   const setOpen = setControlledOpen ?? setUncontrolledOpen;
   const arrowRef = useRef<HTMLElement>(null);
+  const lockedPlacementRef = useRef<Placement | null>(null);
+  const isStickyPlacement = stickyPlacement && Boolean(autoUpdateWhileMounted);
 
   const nodeId = useFloatingNodeId();
 
@@ -64,6 +72,22 @@ export const usePopover = ({
   const whileElementsMounted = useMemo(() => {
     if (!autoUpdateWhileMounted) {
       return undefined;
+    }
+    if (isStickyPlacement) {
+      const options =
+        autoUpdateWhileMounted === true ? {} : autoUpdateWhileMounted;
+      return (
+        referenceEl: ReferenceElement,
+        floatingEl: FloatingElement,
+        update: () => void,
+      ) =>
+        autoUpdateWithStickyPlacement(
+          referenceEl,
+          floatingEl,
+          update,
+          options,
+          lockedPlacementRef,
+        );
     }
     if (autoUpdateWhileMounted === true) {
       return autoUpdate;
@@ -81,7 +105,7 @@ export const usePopover = ({
       );
       return cleanup;
     };
-  }, [autoUpdateWhileMounted]);
+  }, [autoUpdateWhileMounted, isStickyPlacement]);
 
   const data = useFloating({
     nodeId,
@@ -107,6 +131,7 @@ export const usePopover = ({
       shiftConfig,
       hideConfig,
       arrowConfig: { ...arrowConfig, element: arrowRef.current },
+      lockedPlacement: isStickyPlacement ? lockedPlacementRef : undefined,
     }),
   });
 

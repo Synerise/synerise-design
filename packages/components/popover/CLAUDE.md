@@ -23,10 +23,12 @@ src/
  PopoverContext.tsx — React context holding UsePopoverReturn
  utils/
  getMiddleware.ts — builds floating-ui middleware array (offset, flip, shift, arrow)
+ stickyPlacement.ts — `autoUpdate` wrapper + middleware behind `stickyPlacement`
  getDefaultTransitionConfig.ts — default opacity fade transition config
  getPlacement.ts — converts LegacyPlacement → floating-ui Placement
  __specs__/Popover.spec.tsx — render, click-open, hover-open
  __specs__/PopoverHide.spec.tsx — the `hide` middleware's two readings, with stubbed rects
+ __specs__/PopoverStickyPlacement.spec.tsx — side kept on overlay resize, released on everything else
 ```
 
 ## Public exports
@@ -52,6 +54,7 @@ Root component (default + named export). Provides `PopoverContext` to all childr
 | `componentId` | `string` | `undefined` | Sets `data-popover-{componentId}` on content for CSS targeting |
 | `zIndex` | `number` | `theme.variables['zindex-dropdown']` | CSS z-index of the floating panel |
 | `autoUpdate` | `boolean \| AutoUpdateOptions` | `undefined` | Keep position updated while both elements are mounted |
+| `stickyPlacement` | `boolean` | `false` | Keep the side `flip` chose while the overlay's own size changes — see *Sticky placement*. Needs `autoUpdate` |
 | `offsetConfig` | `OffsetConfig` | `{ enabled: true }` | Floating-ui `offset` middleware config; set `enabled: false` to disable |
 | `flipConfig` | `FlipConfig` | `{ enabled: true }` | Floating-ui `flip` middleware config |
 | `shiftConfig` | `ShiftConfig` | `{ enabled: true }` | Floating-ui `shift` middleware config |
@@ -221,6 +224,36 @@ of it, and an anchor that is genuinely 0×0 while in view is still left alone.
 Testing either branch therefore needs the rects stubbed, including
 `documentElement.clientWidth/clientHeight`, which floating-ui reads for the viewport and jsdom
 reports as 0. `src/__specs__/PopoverHide.spec.tsx` has a worked example.
+
+## Sticky placement
+
+With `autoUpdate`, floating-ui's `ResizeObserver` watches the overlay itself, and every resize re-runs
+`flip` from the preferred side. An overlay whose content grows or shrinks while open — a date range
+picker expanding its custom-range form — therefore jumps to the other side of its anchor whenever it
+crosses the space available on the preferred one.
+
+`stickyPlacement` splits the update reasons. `autoUpdateWithStickyPlacement` runs `autoUpdate`
+without `elementResize` and with a callback that releases the locked side first, and adds its own
+`ResizeObserver`: an anchor whose size differs from the last one observed releases the side, anything
+else keeps it. Comparing sizes matters — every observed element gets an initial notification, and a
+page that is not rendering (a background tab) can deliver it after the overlay has already resized.
+In the middleware chain, `restoreLockedPlacement` (first) resets to the locked side, `flip` is
+skipped while one is locked, and `lockPlacement` (last) records the side that was settled on.
+`offset`/`shift`/`hide` still run, so an overlay above its anchor stays attached as it resizes, and
+content that outgrows the locked side is nudged by `shift` rather than flipped.
+
+Without `autoUpdate` the prop does nothing: the side is only ever released by the `autoUpdate`
+wrapper, so locking without it would pin every reopen to the first open's side.
+
+Known differences from upstream `autoUpdate`: the anchor is not observed with `animationFrame: true`
+(as upstream), but there is no loop guard for the `size` middleware, which `getMiddleware` does not
+use. A `layoutShift` notification also releases the side, so growth that reflows the page and moves
+the anchor can still let it choose again.
+
+`autoUpdate` calls its callback once on setup, so every open starts unlocked. Specs drive the
+overlay's resize through a firing `ResizeObserver` stub and size the overlay through
+`offsetWidth`/`offsetHeight` (what floating-ui reads for it) — see
+`src/__specs__/PopoverStickyPlacement.spec.tsx`.
 
 ## Implementation notes
 
