@@ -103,8 +103,8 @@ Current API. Generic over `ItemType extends BaseItemType` and `SectionType exten
 | `includeFooter?` | `boolean` | `true` | Show refresh footer |
 | `includeSearchBar?` | `boolean` | `true` | Show search bar |
 | `texts?` | `Partial<ItemPickerTexts>` | (react-intl defaults) | Override any of the 23 localised text strings |
-| `triggerProps?` | `{ size?, allowClear?, withChangeButton?, withClearConfirmation?, informationCardTooltipProps? }` | — | Props forwarded to the default `Trigger` |
-| `renderTrigger?` | `(props) => ReactNode` | — | Completely replace the trigger; receives `{ selected, openDropdown, closeDropdown, error, disabled }` |
+| `triggerProps?` | `{ size?, allowClear?, withChangeButton?, withClearConfirmation?, informationCardTooltipProps? }` | — | Props forwarded to the default `Trigger`; its information card stays closed while the dropdown is open |
+| `renderTrigger?` | `(props) => ReactNode` | — | Completely replace the trigger; receives `{ selected, opened, openDropdown, closeDropdown, error, disabled }` — wrap it in an `InformationCardTooltip` with `disabled={opened}` so the card never covers the open list |
 | `placeholder?` | `ReactNode` | — | Trigger placeholder text |
 | `placeholderIcon?` | `ReactNode` | — | Icon shown in placeholder state |
 | `label?` | `ReactNode` | — | `FormField` label |

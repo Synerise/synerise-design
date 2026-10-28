@@ -31,6 +31,11 @@ export type InformationCardTooltipProps = WithHTMLAttributes<
       'listNavigationConfig' | 'arrowConfig' | 'returnFocus' | 'modal'
     >;
     asChild?: boolean;
+    /**
+     * keeps the card closed and drops any pending hover-open, e.g. while the trigger's own dropdown is open
+     * @default false
+     */
+    disabled?: boolean;
   }
 >;
 

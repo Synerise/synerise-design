@@ -75,6 +75,7 @@ const ItemPickerNewInner = <
     return renderTrigger ? (
       renderTrigger({
         selected: selectedItem,
+        opened: visible,
         openDropdown,
         closeDropdown,
         error,

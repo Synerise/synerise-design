@@ -1,7 +1,12 @@
-import React, { forwardRef, useCallback } from 'react';
+import React, { forwardRef, useCallback, useEffect, useState } from 'react';
 
 import { useTheme } from '@synerise/ds-core';
-import { Popover, PopoverContent, PopoverTrigger } from '@synerise/ds-popover';
+import {
+  Popover,
+  PopoverContent,
+  type PopoverOptions,
+  PopoverTrigger,
+} from '@synerise/ds-popover';
 
 import InformationCard from '../InformationCard';
 import {
@@ -25,12 +30,34 @@ export const InformationCardTooltip = forwardRef<
       style,
       content,
       informationCardProps,
+      disabled = false,
       ...rest
     },
     ref,
   ) => {
     const theme = useTheme();
     const zIndex = parseInt(theme.variables['zindex-tooltip'], 10);
+    const [isOpen, setIsOpen] = useState(false);
+    const onPopoverOpenChange = popoverProps?.onOpenChange;
+
+    useEffect(() => {
+      if (disabled) {
+        setIsOpen(false);
+      }
+    }, [disabled]);
+
+    const handleOpenChange = useCallback<
+      NonNullable<PopoverOptions['onOpenChange']>
+    >(
+      (nextOpen, event, reason) => {
+        if (nextOpen && disabled) {
+          return;
+        }
+        setIsOpen(nextOpen);
+        onPopoverOpenChange?.(nextOpen, event, reason);
+      },
+      [disabled, onPopoverOpenChange],
+    );
 
     const cancelBubblingEvent = useCallback(
       () => (event: Event) => event.stopPropagation(),
@@ -49,7 +76,9 @@ export const InformationCardTooltip = forwardRef<
         hoverConfig={HOVER_CONFIG}
         placement="right"
         zIndex={zIndex}
+        open={isOpen && !disabled}
         {...popoverProps}
+        onOpenChange={handleOpenChange}
       >
         <PopoverContent>
           <S.InformationCardTooltipWrapper

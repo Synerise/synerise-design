@@ -77,7 +77,12 @@ export type ItemPickerProps<
     renderTrigger?: (
       props: Pick<
         ItemPickerTriggerProps,
-        'disabled' | 'error' | 'selected' | 'openDropdown' | 'closeDropdown'
+        | 'disabled'
+        | 'error'
+        | 'selected'
+        | 'opened'
+        | 'openDropdown'
+        | 'closeDropdown'
       >,
     ) => ReactNode;
     texts?: Partial<ItemPickerTexts>;
