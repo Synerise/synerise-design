@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-information-card@2.0.13...@synerise/ds-information-card@2.0.14) (2026-10-28)
+
+
+### Bug Fixes
+
+* keep the information card closed while its picker is open ([4fbed93](https://github.com/Synerise/synerise-design/commit/4fbed93dc688f1f26633378ecc5246c10869bcf4))
+
+
+
+
+
 ## [2.0.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-information-card@2.0.12...@synerise/ds-information-card@2.0.13) (2026-10-26)
 
 

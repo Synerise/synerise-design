@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@2.2.2...@synerise/ds-item-picker@2.2.3) (2026-10-28)
+
+
+### Bug Fixes
+
+* **item-picker:** tolerate undefined items while the consumer loads ([35cb3c8](https://github.com/Synerise/synerise-design/commit/35cb3c8c6727796ed7f1ab01768f8e8bdb16ee97))
+* keep the information card closed while its picker is open ([4fbed93](https://github.com/Synerise/synerise-design/commit/4fbed93dc688f1f26633378ecc5246c10869bcf4))
+
+
+
+
+
 ## [2.2.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@2.2.1...@synerise/ds-item-picker@2.2.2) (2026-10-26)
 
 

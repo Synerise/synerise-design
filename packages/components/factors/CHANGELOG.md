@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@2.3.2...@synerise/ds-factors@2.3.3) (2026-10-28)
+
+
+### Bug Fixes
+
+* keep the information card closed while its picker is open ([4fbed93](https://github.com/Synerise/synerise-design/commit/4fbed93dc688f1f26633378ecc5246c10869bcf4))
+
+
+
+
+
 ## [2.3.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@2.3.1...@synerise/ds-factors@2.3.2) (2026-10-26)
 
 

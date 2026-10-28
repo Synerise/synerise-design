@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-short-cuts@2.0.10...@synerise/ds-short-cuts@2.0.11) (2026-10-28)
+
+**Note:** Version bump only for package @synerise/ds-short-cuts
+
+
+
+
+
 ## [2.0.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-short-cuts@2.0.9...@synerise/ds-short-cuts@2.0.10) (2026-10-26)
 
 

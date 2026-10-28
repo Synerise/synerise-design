@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-rich-text@2.0.11...@synerise/ds-rich-text@2.1.0) (2026-10-28)
+
+
+### Features
+
+* **rich-text:** support markdown paste ([de3bf47](https://github.com/Synerise/synerise-design/commit/de3bf4795cf5682156090e7365e18d6c58226946))
+
+
+
+
+
 ## [2.0.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-rich-text@2.0.10...@synerise/ds-rich-text@2.0.11) (2026-10-26)
 
 

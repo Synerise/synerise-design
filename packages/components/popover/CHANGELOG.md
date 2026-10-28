@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-popover@2.0.4...@synerise/ds-popover@2.1.0) (2026-10-28)
+
+
+### Features
+
+* **popover:** add stickyPlacement option, enable it in date-range-picker ([03d3017](https://github.com/Synerise/synerise-design/commit/03d3017450512e958b5bf9d598a87c789b176037))
+
+
+
+
+
 ## [2.0.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-popover@2.0.3...@synerise/ds-popover@2.0.4) (2026-10-26)
 
 
