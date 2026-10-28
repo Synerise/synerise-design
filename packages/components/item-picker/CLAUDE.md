@@ -310,6 +310,7 @@ import { ItemPickerList } from '@synerise/ds-item-picker';
 ## Implementation notes
 
 - **Version switch**: `ItemPicker` (default) checks `'isNewVersion' in props && props.isNewVersion` at render time. No runtime flag registry — purely prop-driven.
+- **Undefined `items`**: `items` is required in the type, but `useItemsInSections` treats `undefined` as an empty fixed list, so a loosely typed consumer that passes `undefined` while its data loads gets an empty list instead of a render crash. To show a skeleton during that time, the consumer has to pass `isLoading`.
 - **Async loading race prevention**: `useItemsInSections` tracks a `requestIdRef` UUID and discards stale responses.
 - **AbortController**: each `loadItems` call gets a fresh `AbortController`; the previous one is aborted on re-trigger (section change, search, refresh).
 - **Search action trigger**: typing `/` into the search bar activates the global actions list (`listActions = searchQuery === '/'`).

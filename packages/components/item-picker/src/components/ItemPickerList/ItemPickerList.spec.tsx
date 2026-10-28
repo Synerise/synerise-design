@@ -112,6 +112,20 @@ describe('ItemPickerList', () => {
 
     expect(screen.getByText('Item 2')).toBe(rowBefore);
   });
+  it('renders and then lists the items when they arrive after an undefined start', () => {
+    const onItemSelect = vi.fn();
+    const pendingItems = undefined as unknown as typeof FLAT_DATA_SOURCE;
+    const { rerender } = renderWithProvider(
+      <ItemPickerList onItemSelect={onItemSelect} items={pendingItems} />,
+    );
+    expect(screen.queryByText('Item 2')).not.toBeInTheDocument();
+
+    rerender(
+      <ItemPickerList onItemSelect={onItemSelect} items={FLAT_DATA_SOURCE} />,
+    );
+
+    expect(screen.getByText('Item 2')).toBeInTheDocument();
+  });
   it('does not show the error state for a load it cancelled itself', async () => {
     const loadItems = vi.fn(
       ({ searchQuery, abortController }: LoaderProps) =>

@@ -45,6 +45,8 @@ import {
   matchesSearchQuery,
 } from './useItemsInSections.utils';
 
+const EMPTY_ITEMS: never[] = [];
+
 const getSectionHeight = (itemsCount: number, withTitle: boolean) => {
   const itemsHeight = itemsCount * ITEM_SIZE[itemSizes.DEFAULT];
   const titleHeight = withTitle && itemsCount ? ITEM_SIZE.title : 0;
@@ -77,7 +79,7 @@ export const useItemsInSections = <
   ItemType extends BaseItemType,
   SectionType extends BaseSectionType | undefined,
 >({
-  items,
+  items: itemsProp,
   texts,
   selectedItem,
   sections,
@@ -91,6 +93,7 @@ export const useItemsInSections = <
   changeSearchQuery,
   onLoadedData,
 }: ItemsInSectionsType<ItemType, SectionType>) => {
+  const items = itemsProp ?? EMPTY_ITEMS;
   const [currentSection, setCurrentSection] = useState<
     SectionType | BaseSectionType | undefined
   >();
