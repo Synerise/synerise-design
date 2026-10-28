@@ -148,6 +148,7 @@ const ParameterInput = ({
 
   const trigger = selectedItemInfoCard ? (
     <InformationCardTooltip
+      disabled={dropdownVisible}
       content={selectedItemInfoCard}
       popoverProps={{
         placement: 'top',

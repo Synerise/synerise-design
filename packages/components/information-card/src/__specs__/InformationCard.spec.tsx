@@ -1,7 +1,13 @@
 import type { ReactElement } from 'react';
 
 import { renderWithProvider } from '@synerise/ds-core/testing';
-import { screen, waitFor, within } from '@testing-library/react';
+import {
+  act,
+  fireEvent,
+  screen,
+  waitFor,
+  within,
+} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import InformationCard, { InformationCardTooltip } from '../index';
@@ -149,6 +155,69 @@ describe('Information card tooltip', () => {
       expect(screen.getByText(INFOCARD_PROPS.subtitle)).toBeInTheDocument();
       expect(
         screen.getByText(INFOCARD_PROPS.descriptionConfig.value),
+      ).toBeInTheDocument();
+    });
+  });
+
+  describe('disabled', () => {
+    const TRIGGER = 'trigger';
+    const PAST_OPEN_DELAY_MS = 300;
+    const waitPastOpenDelay = () =>
+      act(() => new Promise((resolve) => setTimeout(resolve, PAST_OPEN_DELAY_MS)));
+    const renderTooltip = (disabled: boolean) => (
+      <InformationCardTooltip
+        informationCardProps={INFOCARD_PROPS}
+        disabled={disabled}
+      >
+        {TRIGGER}
+      </InformationCardTooltip>
+    );
+
+    it('closes an open card and keeps the trigger node when it turns disabled', async () => {
+      const { rerender } = renderWithProvider(renderTooltip(false));
+      const trigger = screen.getByText(TRIGGER);
+      fireEvent.mouseEnter(trigger);
+      await screen.findByText(INFOCARD_PROPS.title);
+
+      rerender(renderTooltip(true));
+
+      await waitFor(() => {
+        expect(
+          screen.queryByText(INFOCARD_PROPS.title),
+        ).not.toBeInTheDocument();
+      });
+      expect(screen.getByText(TRIGGER)).toBe(trigger);
+    });
+
+    it('does not open on hover while disabled', async () => {
+      renderWithProvider(renderTooltip(true));
+      const trigger = screen.getByText(TRIGGER);
+      fireEvent.mouseEnter(trigger);
+      fireEvent.mouseMove(trigger);
+
+      await waitPastOpenDelay();
+
+      expect(screen.queryByText(INFOCARD_PROPS.title)).not.toBeInTheDocument();
+    });
+
+    it('drops a hover-open that is still pending when it turns disabled', async () => {
+      const { rerender } = renderWithProvider(renderTooltip(false));
+      fireEvent.mouseEnter(screen.getByText(TRIGGER));
+
+      rerender(renderTooltip(true));
+      await waitPastOpenDelay();
+
+      expect(screen.queryByText(INFOCARD_PROPS.title)).not.toBeInTheDocument();
+    });
+
+    it('opens on hover again once re-enabled', async () => {
+      const { rerender } = renderWithProvider(renderTooltip(true));
+      rerender(renderTooltip(false));
+
+      fireEvent.mouseEnter(screen.getByText(TRIGGER));
+
+      expect(
+        await screen.findByText(INFOCARD_PROPS.title),
       ).toBeInTheDocument();
     });
   });

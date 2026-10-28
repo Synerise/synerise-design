@@ -127,4 +127,5 @@ Displays InformationCard as a tooltip with `children` node as trigger
 | popoverProps         | Floating-ui popover options (see @synerise/ds-popover)  | `Partial<PopoverOptions>`                                          | -       |
 | content              | Custom content (alternative to informationCardProps)    | `ReactNode`                                                        | -       |
 | asChild              | Forward trigger props to first child (Radix-style)      | `boolean`                                                          | -       |
+| disabled             | Keeps the card closed and drops a pending hover-open, e.g. while the trigger's dropdown is open | `boolean`              | `false` |
 | children             | trigger element                         | `ReactNode`                                                        | -       |

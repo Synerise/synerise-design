@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { act, screen, fireEvent } from '@testing-library/react';
+import { act, screen, fireEvent, waitFor } from '@testing-library/react';
 import Icon, { LaptopM, MobileM, UserM } from '@synerise/ds-icon';
 import { renderWithProvider } from '@synerise/ds-core/testing';
 import Avatar from '@synerise/ds-avatar';
@@ -362,6 +362,58 @@ describe('ItemPickerNew trigger with an information card', () => {
 
     const cardTrigger = screen.getByTestId('popover-information-card-trigger');
     expect(cardTrigger.parentElement).toHaveStyle({ width: '100%' });
+  });
+
+  it('keeps the card closed while the picker is open, so Escape still closes the picker', async () => {
+    const CARD_TITLE = 'Card title';
+    const PAST_HOVER_OPEN_DELAY_MS = 300;
+    renderWithProvider(
+      <ItemPickerNew
+        {...SHARED_PROPS}
+        selectedItem={DATA_SOURCE[0]}
+        triggerProps={{
+          informationCardTooltipProps: {
+            informationCardProps: { title: CARD_TITLE },
+          },
+        }}
+      />,
+    );
+    const cardTrigger = screen.getByTestId('popover-information-card-trigger');
+    fireEvent.mouseEnter(cardTrigger);
+    await screen.findByText(CARD_TITLE);
+
+    fireEvent.click(screen.getByText(DATA_SOURCE[0].text));
+    const search = await screen.findByPlaceholderText(SEARCH_PLACEHOLDER);
+    fireEvent.mouseLeave(cardTrigger);
+    fireEvent.mouseEnter(cardTrigger);
+    fireEvent.mouseMove(cardTrigger);
+    await act(
+      () => new Promise((resolve) => setTimeout(resolve, PAST_HOVER_OPEN_DELAY_MS)),
+    );
+    expect(screen.queryByText(CARD_TITLE)).not.toBeInTheDocument();
+
+    fireEvent.keyDown(search, { key: 'Escape' });
+
+    await waitFor(() => {
+      expect(screen.queryByTestId('ds-item-picker-dropdown')).not.toBeInTheDocument();
+    });
+  });
+});
+
+describe('ItemPickerNew renderTrigger', () => {
+  it('tells the trigger whether the picker is open', async () => {
+    const renderTrigger = vi.fn(({ openDropdown }) => (
+      <button type="button" onClick={openDropdown}>
+        {PLACEHOLDER}
+      </button>
+    ));
+    renderWithProvider(<ItemPickerNew {...SHARED_PROPS} renderTrigger={renderTrigger} />);
+    expect(renderTrigger).toHaveBeenLastCalledWith(expect.objectContaining({ opened: false }));
+
+    fireEvent.click(screen.getByText(PLACEHOLDER));
+    await screen.findByPlaceholderText(SEARCH_PLACEHOLDER);
+
+    expect(renderTrigger).toHaveBeenLastCalledWith(expect.objectContaining({ opened: true }));
   });
 });
 
