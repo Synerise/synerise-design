@@ -4,7 +4,6 @@ import { useArgs, useMemo, useState } from 'storybook/preview-api';
 
 import Button from '@synerise/ds-button';
 import CompletedWithin, { PeriodValue } from '@synerise/ds-completed-within';
-import { theme } from '@synerise/ds-core';
 import DateRangePicker, {
   DateRange,
   fnsFormat,
@@ -134,12 +133,7 @@ export default {
     showTagInHeader: true,
     texts: STEP_CARD_TEXTS,
     headerRightSide: (
-      <Tag
-        shape={TagShape.SINGLE_CHARACTER_ROUND}
-        name="A"
-        color={theme.palette['grey-200']}
-        asPill
-      />
+      <Tag shape={TagShape.SINGLE_CHARACTER_ROUND} name="A" asPill />
     ),
   },
 } as Meta<StoryProps>;
@@ -160,7 +154,6 @@ export const Default: Story = {
     <Tag
       shape={TagShape.SINGLE_CHARACTER_ROUND}
       name="A"
-      color={theme.palette['grey-200']}
       asPill
     />
   }

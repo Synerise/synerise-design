@@ -105,13 +105,13 @@ import Scrollbar from '@synerise/ds-scrollbar';
 
 Two layers of styling:
 
-1. **styled-components** — `ScrollbarContainer` (relative, `height: 100%`) wraps both mode variants. It owns the `.ps { overscroll-behavior: <overscrollBehavior>; }` rule, which is picked up by the virtual variant (perfect-scrollbar's `.ps` element). The DnD variant ships its own `ScrollbarContainer` that applies `overscroll-behavior` directly on itself. The prop defaults to `'contain'`, matching the behavior previously hard-coded in `scrollbar.mixin.less`. `LoaderWrapper` (absolute fill, `rgba(255,255,255,0.6)`) and a spinning `Loader` are rendered on top when `loading` is true.
+1. **styled-components** — `ScrollbarContainer` (relative, `height: 100%`) wraps both mode variants. It owns the `.ps { overscroll-behavior: <overscrollBehavior>; }` rule, which is picked up by the virtual variant (perfect-scrollbar's `.ps` element). The DnD variant ships its own `ScrollbarContainer` that applies `overscroll-behavior` directly on itself. The prop defaults to `'contain'`, matching the behavior previously hard-coded in `scrollbar.mixin.less`. `LoaderWrapper` (absolute fill, `--ds-scrollbar-loading-overlay`, the page background at 60%, so it follows dark mode) and a spinning `Loader` are rendered on top when `loading` is true.
 2. **Less overrides** (`style/scrollbar.mixin.less`) — patches PerfectScrollbar's `.ps__rail-*` and `.ps__thumb-*` classes. The `.large-size` class (applied via `classnames` in `VirtualScrollbar`) activates the wide blue thumb variant.
 
 **Token usage:**
-- Default thumb: `grey-300` / `grey-500` (hover). In both variants the thumb element spans the full 11 px rail so it is easy to grab, and only a 3 px bar is painted by its `::before`
-- Large thumb: `blue-050` / `blue-100` (hover), `grey-300` border / `grey-400` border (hover)
-- Loading spinner in `Scrollbar.styles`: `grey-600`; in `DnDScrollbar.styles`: `blue-600`
+- Default thumb: `var(--ds-color-background-base-strong)` / `var(--ds-color-background-base-stronghover)` (hover). In both variants the thumb element spans the full 11 px rail so it is easy to grab, and only a 3 px bar is painted by its `::before`
+- Large thumb: `var(--ds-color-background-brand-subtle)` / `var(--ds-color-background-brand-subtlehover)` (hover), `var(--ds-color-border-base-strong)` border / `var(--ds-color-border-base-stronghover)` border (hover)
+- Loading spinner in `Scrollbar.styles`: `var(--ds-color-icon-base-default)`; in `DnDScrollbar.styles`: `var(--ds-color-icon-brand-default)`
 
 The track in `DnDScrollbar` is hidden (`opacity: 0`) and revealed on parent hover via a styled-components selector chain.
 
@@ -120,7 +120,7 @@ The track in `DnDScrollbar` is hidden (`opacity: 0`) and revealed on parent hove
 - `@ofsajd/react-perfect-scrollbar` `1.0.0` — used only by `VirtualScrollbar`; this is a fork/mirror of `react-perfect-scrollbar`
 - `@synerise/ds-utils` — `useCombinedRefs`, `useResizeObserver` (used in `VirtualScrollbar`)
 - `@synerise/ds-icon` + `SpinnerM` — loading spinner icon
-- `@synerise/ds-core` — `useTheme` for palette tokens; peer dependency
+- `@synerise/ds-core` — peer dependency; `DSProvider` injects the `--ds-*` token custom properties
 - `classnames` — conditional class composition in `VirtualScrollbar`
 
 ## Implementation notes

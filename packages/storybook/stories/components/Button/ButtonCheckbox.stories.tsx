@@ -48,6 +48,16 @@ export const Checkbox: StoryObj<CheckboxButtonProps> = {
   },
 };
 
+export const CheckboxDisabled: StoryObj<CheckboxButtonProps> = {
+  render: () => (
+    <div style={{ display: 'flex', gap: 8 }}>
+      <Button.Checkbox disabled />
+      <Button.Checkbox disabled checked />
+      <Button.Checkbox disabled indeterminate />
+    </div>
+  ),
+};
+
 type CheckboxValue = {
   value: boolean;
 };

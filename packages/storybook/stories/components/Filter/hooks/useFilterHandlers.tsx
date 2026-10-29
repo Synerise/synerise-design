@@ -3,12 +3,12 @@ import React, { createRef, useState } from 'react';
 import Button from '@synerise/ds-button';
 import CompletedWithin, { PeriodValue } from '@synerise/ds-completed-within';
 import { ContextGroup, ContextItem } from '@synerise/ds-context-selector';
-import { theme } from '@synerise/ds-core';
 import DateRangePicker, { DateRange } from '@synerise/ds-date-range-picker';
 import { SavedFilter } from '@synerise/ds-date-range-picker/dist/RangeFilter/Shared/FilterDropdown/FilterDropdown.types';
 import { Expression } from '@synerise/ds-filter';
 import Icon, { CalendarM } from '@synerise/ds-icon';
 import Tag, { TagShape } from '@synerise/ds-tag';
+import { customColors } from '@synerise/ds-tokens/names';
 import Tooltip from '@synerise/ds-tooltip';
 
 import { ConditionExample } from '../ConditionExample';
@@ -140,7 +140,6 @@ export const useFilterHandlers = ({
                 <Tag
                   shape={TagShape.SINGLE_CHARACTER_ROUND}
                   name={String.fromCharCode(index + 65)}
-                  color={theme.palette['grey-200']}
                   onClick={(): void => {
                     jumpToExpression(expression.id);
                   }}
@@ -197,11 +196,7 @@ export const useFilterHandlers = ({
       <Tag
         shape={TagShape.SINGLE_CHARACTER_ROUND}
         name={String.fromCharCode(index + 65)}
-        color={
-          isDragPlaceholder
-            ? theme.palette['blue-600']
-            : theme.palette['grey-200']
-        }
+        color={isDragPlaceholder ? customColors.blue['600'] : undefined}
         asPill
       />
     );

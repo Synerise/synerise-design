@@ -5,7 +5,7 @@ export const ListRoot = styled.div<{ $bordered?: boolean }>`
   ${(props) =>
     props.$bordered &&
     css`
-      border: 1px solid ${props.theme.palette['grey-300']};
+      border: 1px solid var(--ds-color-border-base-strong);
       border-radius: 3px;
     `}
 `;
@@ -14,7 +14,7 @@ export const ListRoot = styled.div<{ $bordered?: boolean }>`
 export const ListHeader = styled.div`
   text-transform: uppercase;
   font-size: 13px;
-  color: ${({ theme }): string => theme.palette['grey-700']};
+  color: var(--ds-color-text-base-subtle);
   padding: 8px 12px;
   border: 0;
 `;

@@ -1,5 +1,6 @@
 export * from './DropdownContext';
 export { type DSProviderProps, default as DSProvider } from './DSProvider';
+export type { ThemeMode } from './DSProvider/ThemeProvider/ThemeProvider';
 export {
   type DefaultColor,
   defaultColorsOrder,

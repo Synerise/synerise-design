@@ -87,11 +87,11 @@ import ActionArea from '@synerise/ds-action-area';
 
 ## Styling
 
-Styles live in `ActionArea.styles.ts`. Uses `@synerise/ds-core` theme palette tokens:
+Styles live in `ActionArea.styles.ts`. Uses `var(--ds-*)` design tokens:
 
-- Error background: `theme.palette['red-050']`
-- Error border / error text: `theme.palette['red-600']`
-- Normal border: `theme.palette['grey-300']`
+- Error background: `var(--ds-color-background-danger-subtle)`
+- Error border: `var(--ds-color-border-danger-default)`; error text: `var(--ds-color-text-danger-default)`
+- Normal border: `var(--ds-color-border-base-strong)` (dashed)
 
 Default width is `588px` (not `100%`) — the `isFullWidth` prop switches to `100%`. This is a common source of surprise in layouts that expect full-width behavior by default.
 

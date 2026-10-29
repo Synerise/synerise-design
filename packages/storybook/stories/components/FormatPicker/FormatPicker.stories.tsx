@@ -8,6 +8,7 @@ import FormatPicker from '@synerise/ds-format-picker';
 import { NOOP } from '@synerise/ds-utils';
 
 import {
+  BOOLEAN_CONTROL,
   centeredPaddedWrapper,
   controlFromOptionsArray,
   fixedWrapper200,
@@ -78,6 +79,7 @@ export default {
   },
   decorators: [centeredPaddedWrapper],
   argTypes: {
+    disabled: BOOLEAN_CONTROL,
     buttonType: {
       ...controlFromOptionsArray('inline-radio', BUTTON_TYPES),
     },

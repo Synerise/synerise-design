@@ -27,6 +27,6 @@ export const Line = styled.div<{
   overflow: hidden;
   color: ${(props) =>
     props.dashed
-      ? props.theme.palette['grey-400']
-      : props.theme.palette['grey-300']};
+      ? 'var(--ds-divider-line-color-dashed)'
+      : 'var(--ds-divider-line-color-solid)'};
 `;

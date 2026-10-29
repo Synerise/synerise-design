@@ -22,7 +22,7 @@ export const TabsDropdownContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  background-color: ${({ theme }): string => theme.palette.white};
+  background-color: var(--ds-color-background-base-default);
   opacity: 1;
   padding: 8px;
 `;
@@ -34,8 +34,8 @@ export const TabsDropdownDivider = styled.div`
   box-sizing: content-box;
   background-image: linear-gradient(
     to right,
-    ${({ theme }): string => theme.palette.white} 66%,
-    ${({ theme }): string => theme.palette['grey-300']} 34%
+    var(--ds-color-background-base-default) 66%,
+    var(--ds-color-border-base-strong) 34%
   );
   background-position: top;
   background-size: 5px 1px;

@@ -7,6 +7,7 @@ import ItemPicker from '@synerise/ds-item-picker';
 import type { ListItemProps } from '@synerise/ds-list-item';
 
 import {
+  BOOLEAN_CONTROL,
   centeredPaddedWrapper,
   controlFromOptionsArray,
   fixedWrapper300,
@@ -44,6 +45,7 @@ export default {
     );
   },
   argTypes: {
+    disabled: BOOLEAN_CONTROL,
     placeholderIcon: {
       ...controlFromOptionsArray('select', Object.keys(ICONS)),
       mapping: ICONS,

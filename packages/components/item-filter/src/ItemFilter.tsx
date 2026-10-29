@@ -8,7 +8,6 @@ import {
 import { withTheme } from 'styled-components';
 
 import Button from '@synerise/ds-button';
-import { useTheme } from '@synerise/ds-core';
 import Drawer from '@synerise/ds-drawer';
 import Icon, { CloseM, SearchM } from '@synerise/ds-icon';
 import { FilterItem } from '@synerise/ds-manageable-list';
@@ -86,7 +85,6 @@ const ItemFilter = ({
   search,
 }: ItemFilterProps & WrappedComponentProps) => {
   const listRef = React.createRef<FixedSizeList>();
-  const theme = useTheme();
   const [listHeight, setListHeight] = React.useState(0);
   const [activeTab, setActiveTab] = React.useState(0);
   const listStyle: React.CSSProperties = {
@@ -181,9 +179,7 @@ const ItemFilter = ({
             onClearInput={search?.onClear}
             onSearchChange={search?.onChange}
             clearTooltip={texts.searchClearTooltip}
-            iconLeft={
-              <Icon component={<SearchM />} color={theme.palette['grey-600']} />
-            }
+            iconLeft={<Icon component={<SearchM />} />}
           />
         )}
       </Drawer.DrawerHeaderWithoutPadding>

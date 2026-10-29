@@ -33,7 +33,12 @@ export default {
     title: 'Copied! Keep it somewhere safe.',
     displayDuration: 5000,
     placement: 'topLeft',
-    icon: <Icon component={<WarningFillM />} color={'#ffc300'} />,
+    icon: (
+      <Icon
+        component={<WarningFillM />}
+        color={'var(--ds-color-icon-warning-default)'}
+      />
+    ),
     onClick: (showMessage) => {
       showMessage();
     },

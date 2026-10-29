@@ -23,8 +23,8 @@ export const SortableItemWrapper = styled.div<{
         position: absolute;
         width: 100%;
         height: 100%;
-        border: 1px dashed ${props.theme.palette['blue-300']};
-        background-color: ${props.theme.palette['blue-050']};
+        border: 1px dashed var(--ds-color-border-brand-strong);
+        background-color: var(--ds-color-background-brand-subtle);
         border-radius: 3px;
         ${props.placeholderCss}
       }
@@ -33,8 +33,8 @@ export const SortableItemWrapper = styled.div<{
     props.isGrabbed &&
     css`
       ${SortableItemContent} {
-        background: ${props.theme.palette.white};
-        box-shadow: 0px 16px 32px 0px rgba(35, 41, 54, 0.1);
+        background: var(--ds-color-background-base-default);
+        box-shadow: var(--ds-shadows-shadow-2);
       }
     `}
 `;

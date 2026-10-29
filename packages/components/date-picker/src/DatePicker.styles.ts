@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  background-color: ${(props) => props.theme.palette.white};
+  background-color: var(--ds-dropdown-bg);
   user-select: none;
   padding-top: 12px;
   > *:not(:last-child) {
-    border-bottom: 1px solid ${(props) => props.theme.palette['grey-200']};
+    border-bottom: 1px solid var(--ds-color-border-base-default);
   }
   .ds-date-picker-nav {
     .long-prev,

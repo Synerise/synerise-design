@@ -109,14 +109,14 @@ const [rightOpen, setRightOpen] = useState(false);
 - Main content inner wrapper has **24 px padding** on all sides except on `medium` breakpoint and below (handled by `@synerise/ds-core` `mediaQuery` helpers). `fullPage=true` overrides this to `0`.
 - Sidebar slide animation uses CSS `max-width` transitions (0.3 s ease); disabled entirely when `sidebarAnimationDisabled` is true.
 - `SidebarButton` (toggle handle) is absolutely positioned outside the sidebar; repositions at `top: 48px` normally, or `top: 170px` when `subheader` is present.
-- `LayoutSidebar` has a hardcoded `background-color: #fff` — not a theme token.
-- `Page.PageContainer` has a hardcoded `background-color: rgb(243, 245, 246)` — not a theme token.
+- `LayoutSidebar` background is `var(--ds-color-background-base-default)` with `--ds-shadows-shadow-1`.
+- `Page.PageContainer` background is `var(--ds-page-bg)`.
 
 ## Key dependencies
 
 - `@synerise/ds-scrollbar` — scrollbar used in main content and sidebars
 - `@synerise/ds-icon` — arrow and close icons on sidebar toggle button
-- `@synerise/ds-core` — `useTheme`, `mediaQuery` breakpoint helpers
+- `@synerise/ds-core` — `mediaQuery` breakpoint helpers
 - `styled-components ^5` (peer)
 
 ## Implementation notes

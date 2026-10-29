@@ -1,7 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 
 import Button from '@synerise/ds-button';
-import { useTheme } from '@synerise/ds-core';
 import Drawer from '@synerise/ds-drawer';
 import Icon, { CloseM, SearchM } from '@synerise/ds-icon';
 import { Title } from '@synerise/ds-typography';
@@ -25,7 +24,6 @@ const ColumnManager = <ColumnType extends Column>({
   const [searchQuery, setSearchQuery] = useState('');
   const [currentColumns, setCurrentColumns] = useState(columns);
   const texts = useTranslations(customTexts);
-  const theme = useTheme();
 
   useEffect(() => {
     setCurrentColumns(columns);
@@ -106,9 +104,7 @@ const ColumnManager = <ColumnType extends Column>({
         placeholder={texts.searchPlaceholder}
         value={searchQuery}
         onClearInput={() => handleSearchChange('')}
-        iconLeft={
-          <Icon component={<SearchM />} color={theme.palette['grey-600']} />
-        }
+        iconLeft={<Icon component={<SearchM />} />}
         clearTooltip={(texts.searchClearTooltip as string) || ''}
       />
       <S.ColumnManagerListWrapper>

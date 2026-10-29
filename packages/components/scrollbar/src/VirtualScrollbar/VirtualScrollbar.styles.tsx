@@ -22,7 +22,8 @@ export const ScrollbarWrapper = styled.div<{
     }};
   }
   & > * {
-    opacity: ${(props): string => (props.loading ? '0.2' : '1')};
+    opacity: ${(props): string =>
+      props.loading ? 'var(--ds-opacity-muted)' : '1'};
     transition: all 0.25s ease-in-out;
   }
 `;

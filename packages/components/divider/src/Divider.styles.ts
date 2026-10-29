@@ -4,7 +4,7 @@ import { Title } from '@synerise/ds-typography';
 
 export const Label = styled(Title)`
   text-transform: uppercase;
-  color: ${({ theme }): string => theme.palette['grey-500']};
+  color: var(--ds-divider-header-text-color);
   height: 16px;
   margin: 12px;
   line-height: 1.6;

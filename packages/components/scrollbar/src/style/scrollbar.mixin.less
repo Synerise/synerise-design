@@ -46,7 +46,7 @@
   &::before {
     content: '';
     position: absolute;
-    background-color: @grey-300;
+    background-color: var(--ds-color-background-base-strong);
     border-radius: 3px;
     transition: background-color 0.2s linear;
   }
@@ -86,7 +86,7 @@
   background-color: transparent;
 
   &::before {
-    background-color: @grey-500;
+    background-color: var(--ds-color-background-base-stronghover);
   }
 }
 
@@ -106,11 +106,11 @@
   .ps__rail-y:hover > .ps__thumb-y,
   .ps__rail-y:focus > .ps__thumb-y,
   .ps__rail-y.ps--clicking .ps__thumb-y {
-    background-color: @blue-050;
+    background-color: var(--ds-color-background-brand-subtle);
     border-radius: 3px;
     width: 16px;
     height: 16px;
-    border: 1px solid @grey-300;
+    border: 1px solid var(--ds-color-border-base-strong);
   }
 
   .ps__thumb-x {
@@ -132,8 +132,8 @@
   .ps__rail-y:hover > .ps__thumb-y,
   .ps__rail-y:focus > .ps__thumb-y,
   .ps__rail-y.ps--clicking .ps__thumb-y {
-    background-color: @blue-100;
-    border: 1px solid @grey-400;
+    background-color: var(--ds-color-background-brand-subtlehover);
+    border: 1px solid var(--ds-color-border-base-stronghover);
     height: 16px;
   }
 }

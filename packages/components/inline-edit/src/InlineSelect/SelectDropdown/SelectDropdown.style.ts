@@ -17,7 +17,7 @@ export const ListWrapper = styled.div`
   align-items: stretch;
   justify-content: flex-start;
   padding: 8px;
-  background: ${({ theme }) => theme.palette.white};
+  background: var(--ds-color-background-base-default);
 `;
 export const StyledScrollbar = styled(Scrollbar)<ScrollbarProps>`
   && {

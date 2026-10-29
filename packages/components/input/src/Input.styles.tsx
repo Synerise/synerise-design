@@ -8,16 +8,14 @@ import styled, {
   type FlattenSimpleInterpolation,
 } from 'styled-components';
 
-import type { ThemeProps } from '@synerise/ds-core';
-
 import type { AutoResizeProp, InputSize } from './Input.types';
 import { TextareaWrapper } from './Textarea/Textarea.styles';
 
-const errorInputStyle = (props: ThemeProps) => `
+const errorInputStyle = () => `
   &&& {
-    border-color: ${props.theme.palette['red-600']};
-    box-shadow: inset 0 0 0 1px ${props.theme.palette['red-600']};
-    background: ${props.theme.palette['red-050']};
+    border-color: var(--ds-form-field-border-validated);
+    box-shadow: inset 0 0 0 1px var(--ds-form-field-border-validated);
+    background: var(--ds-form-field-bg-validated);
   }
 `;
 
@@ -89,10 +87,9 @@ export const OuterWrapper = styled.div<
   &.active {
     && {
       input {
-        box-shadow: inset 0 0 0 1px
-          ${(props) => props.theme.palette['blue-600']};
-        border-color: ${(props) => props.theme.palette['blue-600']};
-        background-color: ${(props) => props.theme.palette['blue-050']};
+        box-shadow: inset 0 0 0 1px var(--ds-form-field-border-focus);
+        border-color: var(--ds-form-field-border-focus);
+        background-color: var(--ds-form-field-bg-focus);
       }
     }
   }
@@ -118,13 +115,11 @@ export const IconsWrapper = styled.div<{ disabled?: boolean }>`
   top: 0;
   z-index: 2;
   height: 100%;
+  color: var(--ds-form-icon-color-default);
 
   .icon {
-    svg {
-      transition: 0.3s all;
-      fill: ${(props) => props.theme.palette['grey-600']};
-      opacity: ${(props) => (props.disabled ? '0.4' : '')};
-    }
+    transition: 0.3s all;
+    opacity: ${(props) => (props.disabled ? 'var(--ds-opacity-disabled)' : '')};
   }
 `;
 
@@ -148,10 +143,8 @@ export const IconsFlexContainer = styled.div<{ type: string }>`
 `;
 export const IconWrapper = styled.div`
   .icon:hover {
-    svg {
-      fill: ${(props) => props.theme.palette['blue-600']};
-      cursor: pointer;
-    }
+    color: var(--ds-color-icon-brand-default);
+    cursor: pointer;
   }
 `;
 
@@ -203,10 +196,10 @@ export const NativeInput = styled(
   ${(props) => props.$hasInnerPrefix && 'padding-left: 32px;'}
   color: ${(props) =>
     props.disabled
-      ? props.theme.palette['grey-400']
-      : props.theme.palette['grey-700']};
-  background-color: ${(props) => props.theme.palette.white};
-  border: ${INPUT_BORDER}px solid ${(props) => props.theme.palette['grey-300']};
+      ? 'var(--ds-form-field-text-disabled)'
+      : 'var(--ds-form-field-text-value)'};
+  background-color: var(--ds-form-field-bg-default);
+  border: ${INPUT_BORDER}px solid var(--ds-form-field-border-default);
   border-radius: 3px;
   /* native form controls don't inherit font-family — pull in the DS body font
      so the value glyphs match antd (Graphik) instead of the browser default */
@@ -227,36 +220,36 @@ export const NativeInput = styled(
     'border-top-right-radius: 0; border-bottom-right-radius: 0;'}
 
   &::placeholder {
-    color: ${(props) => props.theme.palette['grey-500']};
+    color: var(--ds-form-field-text-placeholder);
     line-height: 1.29;
   }
 
   &:hover:not(:disabled) {
-    border-color: ${(props) => props.theme.palette['grey-400']};
+    border-color: var(--ds-form-field-border-hover);
   }
   &:focus {
-    box-shadow: inset 0 0 0 1px ${(props) => props.theme.palette['blue-600']};
-    border-color: ${(props) => props.theme.palette['blue-600']};
-    background-color: ${(props) => props.theme.palette['blue-050']};
+    box-shadow: inset 0 0 0 1px var(--ds-form-field-border-focus);
+    border-color: var(--ds-form-field-border-focus);
+    background-color: var(--ds-form-field-bg-focus);
   }
   &:disabled {
     cursor: not-allowed;
-    background-color: ${(props) => props.theme.palette['grey-050']};
+    background-color: var(--ds-form-field-bg-disabled);
   }
 
-  ${(props) => (props.error ? errorInputStyle(props) : '')};
+  ${(props) => (props.error ? errorInputStyle() : '')};
   ${(props) => autoresizeConfObjToCss({ autoResize: props.autoResize })};
   ${(props) =>
     props.readOnly &&
     `
       &&& {
         &:hover {
-          border-color: ${props.theme.palette['grey-300']};
+          border-color: var(--ds-form-field-border-default);
         }
         &:focus {
-          border-color: ${props.theme.palette['grey-300']};
+          border-color: var(--ds-form-field-border-default);
           box-shadow: none;
-          background: ${props.theme.palette.white};
+          background: var(--ds-form-field-bg-default);
         }
       }
     `}
@@ -285,9 +278,9 @@ export const Addon = styled.div<{
   overflow: hidden;
   padding: 0;
   white-space: nowrap;
-  color: ${(props) => props.theme.palette['grey-700']};
-  background-color: ${(props) => props.theme.palette['grey-050']};
-  border: ${INPUT_BORDER}px solid ${(props) => props.theme.palette['grey-300']};
+  color: var(--ds-form-field-affix-text);
+  background-color: var(--ds-form-field-affix-bg);
+  border: ${INPUT_BORDER}px solid var(--ds-form-field-affix-border);
   ${(props) =>
     props.$position === 'before'
       ? 'border-right: 0; border-radius: 3px 0 0 3px;'
@@ -307,11 +300,7 @@ export const ClearButton = styled.button<{ $offset: number }>`
   border: 0;
   background: transparent;
   cursor: pointer;
-  color: ${(props) => props.theme.palette['grey-500']};
-
-  &:hover {
-    color: ${(props) => props.theme.palette['grey-700']};
-  }
+  color: var(--ds-form-clear-icon);
 `;
 
 /** Inline content rendered inside the input on the left (the `innerPrefix` prop). */
@@ -341,21 +330,23 @@ export const RawTextArea = styled(
        height to fit). Fill the wrapper like NativeInput does. */
     box-sizing: border-box;
     width: 100%;
-    color: ${(props) => props.theme.palette['grey-700']};
+    color: var(--ds-form-field-text-value);
     /* native textarea doesn't inherit font-family — pull in the DS body font */
     font-family: inherit;
     font-size: 13px;
     /* Matches the previous antd textarea base padding (textarea.ant-input). */
     padding: 8px 12px;
-    ${(props) =>
-      props.error
-        ? `
-      box-shadow: inset 0 0 0 1px ${props.theme.palette['red-600']};
-      background: ${props.theme.palette['red-050']};
-      border-color: ${props.theme.palette['red-600']};
-    `
-        : ''}
+    /* Surface (border/background/box-shadow), incl. the error state, lives on the
+       .ds-textarea wrapper (TextareaWrapper) — never on the bare <textarea> node. */
   }
+`;
+
+/**
+ * @deprecated Backs the deprecated public `RawTextArea` export, which has no .ds-textarea wrapper and so
+ * draws its own error surface. Use `DSRawTextArea` or `TextArea`.
+ */
+export const StandaloneRawTextArea = styled(RawTextArea)`
+  ${(props) => (props.error ? errorInputStyle() : '')}
 `;
 
 export const ExpandableWrapper = styled.div<{ expanded: boolean }>`
@@ -388,17 +379,28 @@ export const ExpandableWrapper = styled.div<{ expanded: boolean }>`
   }
 `;
 
+/**
+ * @deprecated Use `ContentBelowElement` (`description`, `errorText`) from `@synerise/ds-form-field`,
+ * or the `description` / `errorText` props of its `FormField`.
+ */
 export const ContentBelow = styled.div`
   margin-top: 8px;
 `;
 
+/**
+ * @deprecated Use `ContentBelowElement` with `errorText` from `@synerise/ds-form-field`,
+ * or the `errorText` prop of its `FormField`.
+ */
 export const ErrorText = styled.div`
-  color: ${(props) => props.theme.palette['red-600']};
+  color: var(--ds-form-error-text-color);
   margin-bottom: 4px;
 `;
 
+/**
+ * @deprecated Use `FormFieldLabel` from `@synerise/ds-form-field`, or the `label` prop of its `FormField`.
+ */
 export const Label = styled.label`
-  color: ${(props) => props.theme.palette['grey-800']};
+  color: var(--ds-form-label-text-color);
   font-weight: 500;
   display: block;
 `;
@@ -407,22 +409,24 @@ export const Counter = styled.div`
   font-weight: 500;
   flex: 1 0 auto;
   text-align: end;
-  color: ${(props) => props.theme.palette['grey-500']};
+  color: var(--ds-form-field-text-counter);
 `;
 
+/**
+ * @deprecated Use `ContentBelowElement` with `description` from `@synerise/ds-form-field`,
+ * or the `description` prop of its `FormField`.
+ */
 export const Description = styled.div`
-  color: ${(props) => props.theme.palette['grey-600']};
+  color: var(--ds-form-description-text-color);
 `;
 
+/**
+ * @deprecated Use `ContentAboveElement` (`label`, `rightSide`) from `@synerise/ds-form-field`,
+ * or the `label` prop of its `FormField`.
+ */
 export const ContentAbove = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 8px;
   min-height: 18px;
-`;
-export const AddonWrapper = styled.div<{ height: number }>`
-  background: ${(props) => props.theme.palette['grey-050']};
-  display: flex;
-  align-items: center;
-  height: ${(props) => (props.height ? `${props.height}px` : '30px')};
 `;

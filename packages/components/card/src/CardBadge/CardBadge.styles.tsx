@@ -1,28 +1,26 @@
 import styled from 'styled-components';
 
-import type { ThemePropsVars } from '@synerise/ds-core';
-
 import type { BadgeStatus } from './CardBadge.types';
 
 const background: Record<BadgeStatus, string> = {
-  success: 'green-600',
-  warning: 'yellow-600',
-  error: 'red-600',
-  default: 'transparent',
-  checked: 'transparent',
+  success: 'var(--ds-card-header-badge-success-bg)',
+  warning: 'var(--ds-card-header-badge-warning-bg)',
+  error: 'var(--ds-card-header-badge-error-bg)',
+  default: 'var(--ds-card-header-badge-default-bg)',
+  checked: 'var(--ds-card-header-badge-checked-bg)',
 };
 
 const color: Record<BadgeStatus, string> = {
-  success: 'white',
-  warning: 'white',
-  error: 'white',
-  default: 'grey-400',
-  checked: 'grey-400',
+  success: 'var(--ds-card-header-badge-success-icon)',
+  warning: 'var(--ds-card-header-badge-warning-icon)',
+  error: 'var(--ds-card-header-badge-error-icon)',
+  default: 'var(--ds-card-header-badge-default-icon)',
+  checked: 'var(--ds-card-header-badge-checked-icon)',
 };
 
-const boxShadow = (props: { status: BadgeStatus; theme: ThemePropsVars }) => {
+const boxShadow = (props: { status: BadgeStatus }) => {
   return props.status === 'default'
-    ? `${props.theme.palette['grey-400']} 0px 0px 0px 1.5px inset`
+    ? 'var(--ds-card-header-badge-default-border) 0px 0px 0px 1.5px inset'
     : 'none';
 };
 
@@ -32,10 +30,10 @@ export const CardBadge = styled.div<{ status: BadgeStatus }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: ${(props) => props.theme.palette[background[props.status]]};
+  background-color: ${(props) => background[props.status]};
   box-shadow: ${(props) => boxShadow(props)};
   border-radius: 50%;
   &&& svg {
-    color: ${(props) => props.theme.palette[color[props.status]]};
+    color: ${(props) => color[props.status]};
   }
 `;

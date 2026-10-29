@@ -7,7 +7,7 @@ export const TileContainer = styled.div<{ width: string }>`
   margin-right: 2px;
   width: ${(props) => props.width};
   height: 6px;
-  background: ${(props) => props.theme.palette['grey-200']};
+  background: var(--ds-progressbar-bar-bg-track);
 `;
 
 export const TileProgress = styled.div<{ color: string; width: string }>`

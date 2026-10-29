@@ -54,7 +54,7 @@ Uses `:focus-visible` (not `:focus`) so the focus ring only appears on keyboard 
 | `type` | `LiteralStringUnion<ButtonType>` | `'secondary'` | Visual style variant |
 | `mode` | `LiteralStringUnion<ButtonModes>` | `undefined` | Icon/label layout |
 | `color` | `string` | `'red'` | Colour token for `custom-color` / `custom-color-ghost` types |
-| `iconColor` | `string` | `undefined` | Colour token for icon colour on secondary/tertiary/ghost types |
+| `iconColor` | `string` | `undefined` | Icon colour on secondary/tertiary/ghost types: a custom-colour family maps to its 600 token, another CSS colour passes through, anything else is ignored (no red fallback) |
 | `groupVariant` | `'left-rounded' \| 'squared' \| 'right-rounded'` | `undefined` | Corner rounding for button groups |
 | `justifyContent` | `JustifyContentProperty` | `'center'` | CSS justify-content |
 | `loading` | `boolean \| { delay?: number }` | `false` | Shows spinning overlay |
@@ -161,6 +161,13 @@ Star favourite toggle. Uses `Button`.
 - **`custom-color-ghost`** — has its own variant entry in `Button.variants.ts` (maps to ghost-primary base styles). Hover preserves the custom color instead of switching to blue.
 - **`ButtonToggle` blurs after pointer-up** — `setTimeout(..., 200)` removes focus after mouse use.
 - **`Checkbox` indeterminate click** — always transitions to `checked=true`.
+- **Error state tokens** — `error` uses `--ds-buttons-error-*` (bg default/hover/pressed, border, text default/pressed). Hover is red-200 (was `palette['red-200']`).
+- **Creator tokens** — hover/pressed backgrounds use `--ds-button-creator-bg-hover` / `-bg-pressed`; upload hover text uses `--ds-button-creator-upload-text-hover`.
+- **Variant tokens** — `Button.variants.ts` has no hardcoded colours and no `theme.palette` dependency (`getVariantStyles(type)` takes no palette). Ripples use the variant's `*-bg-active` token (the colour the press builds toward), except tertiary / ghost-secondary / ghost-primary which have their own `--ds-buttons-variant-*-ripple` token. Disabled primary/danger/success use the solid `*-disabled` tokens plus `--ds-buttons-disabled-opacity`, like every other variant, so disabled text dims with the button.
+- **Danger hover/pressed** — `--ds-buttons-variant-primary-danger-bg-hover` is red-500 and `-bg-active` red-700, the same lighter-on-hover / darker-on-press pattern as primary, success and warning (upstream fixed an earlier inverted pair on 2026-10-12).
+- **Split divider** — `splitDividerColor()` uses each variant's own `--ds-buttons-variant-<variant>-separator` token (the one Figma uses). Secondary follows the button's border per state: separator at rest, `--ds-buttons-variant-secondary-border-hover` on hover, `--ds-color-border-brand-strong` pressed. `custom-color` takes the 500 shade of the chosen colour, because the static `custom-color-separator` token is blue and cannot follow the `color` prop. The resolved colour is published on the button as `--ds-button-split-separator`, which ButtonGroup `splitMode` reads for the seam before a `single-icon` button, so both split looks share one mapping.
+- **Outer box-shadows are invisible on the button** — `StyledButton` sets `-webkit-mask-image` (Safari ripple fix), which clips to the border box, so only `inset` shadows render. The old danger-hover `0 2px 4px rgba(255,90,77,.2)` never showed and was removed; don't add outer shadows to the button itself.
+- **Intended visual shift (Chromatic)** — Creator `status="upload"` hover text changes from blue-500 to blue-600 (`text.brand.default`). This is a design decision, not a regression.
 
 ## Deprecated
 

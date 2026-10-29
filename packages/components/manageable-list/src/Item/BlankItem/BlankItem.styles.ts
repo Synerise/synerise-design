@@ -1,23 +1,24 @@
 import styled from 'styled-components';
 
+import { IconContainer } from '@synerise/ds-icon';
+
 export const BlankItemActions = styled.div`
   opacity: 0;
   flex: 0 1 auto;
   transition: opacity 0.2s;
-  svg:hover {
-    fill: ${(props) => props.theme.palette['blue-600']};
+  ${IconContainer} {
+    color: var(--ds-color-icon-base-default);
+    &:hover {
+      color: var(--ds-color-icon-brand-default);
+    }
   }
 `;
 export const DragHandle = styled.div`
   flex: 0 1 auto;
   cursor: grab;
-  svg {
-    fill: ${(props) => props.theme.palette['grey-400']};
-  }
+  color: var(--ds-color-icon-base-muted);
   &:hover {
-    svg {
-      fill: ${(props) => props.theme.palette['grey-600']};
-    }
+    color: var(--ds-color-icon-base-default);
   }
 `;
 export const BlankItemWrapper = styled.div<{
@@ -28,8 +29,8 @@ export const BlankItemWrapper = styled.div<{
   ${(props) =>
     props.isDragPlaceholder &&
     `  
-    background: ${props.theme.palette['blue-050']};
-    border: 1px dashed ${props.theme.palette['blue-300']};
+    background: var(--ds-color-background-brand-subtle);
+    border: 1px dashed var(--ds-color-border-brand-strong);
     border-radius: 3px;
     ${BlankItemContent}, ${BlankItemActions}, ${DragHandle} {
       visibility: hidden;
@@ -39,8 +40,8 @@ export const BlankItemWrapper = styled.div<{
   ${(props) =>
     props.isDragOverlay &&
     `
-    box-shadow: 0px 16px 32px 0px ${props.theme.palette['grey-200']};
-    background: ${props.theme.palette.white};
+    box-shadow: var(--ds-shadows-shadow-2);
+    background: var(--ds-color-background-base-default);
     `}
   display: flex;
   align-items: center;

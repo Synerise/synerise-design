@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { Input, type StyledInput } from '@synerise/ds-input';
 import { Title } from '@synerise/ds-typography';
@@ -46,6 +46,7 @@ export const IconLeftWrapper = styled.div`
   align-items: center;
   height: 100%;
   z-index: 3;
+  color: var(--ds-search-bar-icon-default);
 `;
 
 export const ValuePrefixWrapper = styled.div`
@@ -69,6 +70,7 @@ export const ClearInputWrapper = styled.div`
   height: 100%;
   z-index: 3;
   cursor: pointer;
+  color: var(--ds-form-clear-icon);
 `;
 export const PlaceholderWrapper = styled.div<{ valuePrefixWidth: number }>`
   pointer-events: none;
@@ -82,7 +84,7 @@ export const PlaceholderWrapper = styled.div<{ valuePrefixWidth: number }>`
     VALUE_PREFIX_WRAPPER_LEFT_VALUE +
     valuePrefixWidth +
     (valuePrefixWidth ? VALUE_PREFIX_WRAPPER_RIGHT_MARGIN : 0)}px;
-  color: ${(props) => props.theme.palette['grey-500']};
+  color: var(--ds-search-bar-text-placeholder);
   line-height: 18px;
 `;
 export const SearchBar: StyledInput = styled(Input)`
@@ -97,12 +99,11 @@ export const SearchBar: StyledInput = styled(Input)`
       max-width: 100%;
       height: 52px;
       border: 0;
-      background: ${(props): string => props.theme.palette['grey-050']};
+      background: var(--ds-search-bar-bg-default);
       box-sizing: content-box;
 
       &:focus {
-        box-shadow: inset 0px -2px 0px 0px
-          ${(props): string => props.theme.palette['blue-600']};
+        box-shadow: inset 0px -2px 0px 0px var(--ds-search-bar-border-focus);
       }
       ::-webkit-input-placeholder {
         line-height: 52px;
@@ -135,7 +136,7 @@ export const SearchBarWrapper = styled.div<{
 }>`
   position: relative;
   overflow: hidden;
-  border-bottom: 1px solid ${(props): string => props.theme.palette['grey-100']};
+  border-bottom: 1px solid var(--ds-search-bar-border-default);
   pointer-events: ${(props): string => (props.disabled ? 'none' : '')};
   user-select: ${(props): string => (props.disabled ? 'none' : '')};
   border-radius: ${(props): string => (props.borderRadius ? '3px' : '')};
@@ -144,8 +145,6 @@ export const SearchBarWrapper = styled.div<{
   &&& {
     svg {
       transition: all 0.3s ease-out;
-      fill: ${(props): string =>
-        props.disabled ? props.theme.palette['grey-400'] : ''};
     }
 
     input {
@@ -156,34 +155,36 @@ export const SearchBarWrapper = styled.div<{
 
     &:hover {
       ${IconLeftWrapper} {
-        svg {
-          fill: ${(props): string => props.theme.palette['blue-600']};
-        }
+        color: var(--ds-search-bar-icon-active);
       }
       ${ClearInputWrapper} {
-        svg {
-          fill: ${(props): string => props.theme.palette['red-600']};
-        }
+        color: var(--ds-form-clear-icon);
       }
       ${ValuePrefixTitle} {
-        color: ${(props) => props.theme.palette['blue-600']};
+        /* No search-bar prefix-text token → semantic brand text (blue-600, exact). */
+        color: var(--ds-color-text-brand-default);
       }
     }
+
+    ${(props) =>
+      props.disabled &&
+      css`
+        ${IconLeftWrapper}, ${ClearInputWrapper} {
+          color: var(--ds-search-bar-icon-disabled);
+        }
+      `}
   }
 
   &.is-focused {
     ${IconLeftWrapper} {
-      svg {
-        fill: ${(props): string => props.theme.palette['blue-600']};
-      }
+      color: var(--ds-search-bar-icon-active);
     }
     ${ClearInputWrapper} {
-      svg {
-        fill: ${(props): string => props.theme.palette['red-600']};
-      }
+      color: var(--ds-form-clear-icon);
     }
     ${ValuePrefixTitle} {
-      color: ${(props) => props.theme.palette['blue-600']};
+      /* No search-bar prefix-text token → semantic brand text (blue-600, exact). */
+      color: var(--ds-color-text-brand-default);
     }
   }
 `;

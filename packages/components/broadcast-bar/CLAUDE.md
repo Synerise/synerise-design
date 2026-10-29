@@ -56,16 +56,10 @@ import BroadcastBar from '@synerise/ds-broadcast-bar';
 
 ## Styling
 
-Styles live in `BroadcastBar.styles.tsx`. Uses `@synerise/ds-core` theme palette tokens exclusively.
+Styles live in `BroadcastBar.styles.tsx`. Uses the `--ds-broadcast-bar-variant-<v>-*` module tokens exclusively.
 
-Background colours per type:
-- `success` → `green-600`
-- `warning` → `yellow-600`
-- `negative` → `red-600`
-
-Icon / text colour per type:
-- `warning` → `grey-800`
-- `success` / `negative` → `white`
+Each type maps to a token variant — `success` → `success`, `warning` → `warning`, `negative` → `error` —
+and reads `--ds-broadcast-bar-variant-<v>-bg` (background), `-text` (text) and `-icon` (icon).
 
 When `withClose` is `true`, the main content block (`AllContent`) switches to `position: absolute; left: 50%; transform: translateX(-50%)` to keep it visually centred while the close button sits at the far right.
 

@@ -71,7 +71,7 @@ import { PanelsResizer } from '@synerise/ds-panels-resizer';
 - `PanelsResizerContainer` uses `display: flex` with `flex-direction: row` (vertical split) or `column` (horizontal split).
 - In vertical mode the container gets `flex: 1; height: -webkit-fill-available`. In horizontal mode it gets `width: -webkit-fill-available`.
 - `overflow: hidden` is always set on the container to prevent layout bleed during drag.
-- The `Handler` (resizer bar) is 16 px wide (vertical) or 16 px tall (horizontal), `background-color: grey-200`, turns `blue-100` on hover.
+- The `Handler` (resizer bar) is 16 px wide (vertical) or 16 px tall (horizontal), `background-color: var(--ds-color-background-base-muted)`, turns `var(--ds-color-background-brand-subtlehover)` on hover.
 - Cursor changes to `ew-resize` (vertical) or `ns-resize` (horizontal) on hover.
 - The `DragHandleM` icon is 16 px; in horizontal mode it is rotated 90 degrees via CSS transform.
 - Panel sizes are expressed as `calc(50% ± Npx)` — left/top grows when the vector is positive, right/bottom shrinks.
@@ -79,7 +79,7 @@ import { PanelsResizer } from '@synerise/ds-panels-resizer';
 
 ## Key dependencies
 - `@synerise/ds-icon` — provides the `DragHandleM` icon and `Icon`/`StyledIcon` types
-- `@synerise/ds-core` (peer) — provides theme tokens (`grey-200`, `blue-100`, `grey-600`, `blue-600`)
+- `@synerise/ds-core` (peer) — `DSProvider` injects the `--ds-*` token custom properties used by the styles
 - `styled-components ^5` (peer)
 
 ## Implementation notes

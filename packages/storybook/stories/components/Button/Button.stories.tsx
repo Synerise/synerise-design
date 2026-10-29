@@ -4,8 +4,8 @@ import React from 'react';
 import Avatar from '@synerise/ds-avatar';
 import type { ButtonProps } from '@synerise/ds-button';
 import Button from '@synerise/ds-button';
-import { theme } from '@synerise/ds-core';
 import Icon, { Add2S, AngleDownS, CheckS } from '@synerise/ds-icon';
+import { customColors } from '@synerise/ds-tokens/names';
 
 import {
   BOOLEAN_CONTROL,
@@ -52,11 +52,11 @@ const meta: Meta<ButtonProps> = {
         none: undefined,
         'tag 1': {
           name: 'ON',
-          color: theme.palette['green-600'],
+          color: customColors.green['600'],
         },
         'tag 2': {
           name: '5/12 HRS',
-          color: theme.palette['grey-400'],
+          color: customColors.grey['400'],
         },
       }),
     },
@@ -353,7 +353,7 @@ export const AvatarInLabel: Story = {
           <Button
             key={`${type}-tag`}
             type={type}
-            tagProps={{ name: 'ON', color: theme.palette['green-600'] }}
+            tagProps={{ name: 'ON', color: customColors.green['600'] }}
           >
             <Avatar
               size="small"

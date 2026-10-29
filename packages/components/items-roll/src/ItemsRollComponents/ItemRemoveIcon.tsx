@@ -1,6 +1,5 @@
 import React, { type MouseEvent } from 'react';
 
-import { theme } from '@synerise/ds-core';
 import Icon, { CloseS } from '@synerise/ds-icon';
 import { FloatingDelayGroup } from '@synerise/ds-popover';
 import Tooltip from '@synerise/ds-tooltip';
@@ -24,7 +23,7 @@ export const RemoveIcon = ({
             handleRemove(id, group);
           }}
           component={<CloseS />}
-          color={theme.palette['red-600']}
+          color="var(--ds-color-icon-danger-default)"
           size={24}
         />
       </RemoveIconWrapper>

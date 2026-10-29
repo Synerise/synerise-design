@@ -4,7 +4,7 @@ import { closeAllOverlays } from '@synerise/ds-core';
 import { renderWithProvider } from '@synerise/ds-core/testing';
 import { act, fireEvent, screen, waitFor, within } from '@testing-library/react';
 
-import Dropdown from '../index';
+import Dropdown, { DropdownMenu } from '../index';
 
 const OVERLAY_ID = 'OVERLAY_ID'
 const OVERLAY_TEXT = 'OVERLAY_TEXT'
@@ -161,6 +161,24 @@ describe('Dropdown', () => {
       });
       await waitFor(() =>
         expect(screen.queryByText(OVERLAY_TEXT)).not.toBeInTheDocument(),
+      );
+    });
+  });
+
+  describe('DropdownMenu search', () => {
+    it('lets the search icon take its colour from the search bar', () => {
+      renderWithProvider(
+        <DropdownMenu
+          open
+          withSearch
+          dataSource={[{ text: 'Item', itemKey: 'item' }]}
+        >
+          <button type="button">Trigger</button>
+        </DropdownMenu>,
+      );
+
+      expect(document.querySelector('svg.search-m')).toHaveStyle(
+        'color: inherit',
       );
     });
   });

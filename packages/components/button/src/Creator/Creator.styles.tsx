@@ -1,8 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import type { ThemeProps } from '@synerise/ds-core';
 import { IconContainer } from '@synerise/ds-icon';
-import { hexToRgba } from '@synerise/ds-utils';
 
 import BaseButton from '../BaseButton';
 import { CreatorStatus } from './Creator.types';
@@ -12,40 +10,40 @@ export const CreatorLabel = styled.span`
   transition: all 0.3s ease;
   color: inherit;
 `;
-const errorStyles = ({ theme }: ThemeProps) => css`
-  border: 1px dashed ${theme.palette['red-600']};
-  background: ${theme.palette['red-050']};
+const errorStyles = () => css`
+  border: 1px dashed var(--ds-color-border-danger-default);
+  background: var(--ds-color-background-danger-subtle);
 
   &:focus-visible {
-    background: ${theme.palette.white};
+    background: var(--ds-color-background-base-default);
   }
   &:hover:not(:disabled):not(:focus-visible) {
-    border: 1px dashed ${theme.palette['grey-400']};
-    background: ${theme.palette.white};
+    border: 1px dashed var(--ds-color-border-base-stronghover);
+    background: var(--ds-color-background-base-default);
   }
 `;
 
-const uploadStyles = ({ theme }: ThemeProps) => css`
+const uploadStyles = () => css`
   & {
-    border: 1px dashed ${theme.palette['blue-300']};
-    background-color: ${theme.palette['blue-050']};
-    color: ${theme.palette['grey-600']};
+    border: 1px dashed var(--ds-color-border-brand-strong);
+    background-color: var(--ds-color-background-brand-subtle);
+    color: var(--ds-color-text-base-muted);
     &:hover:not(:disabled):not(:focus-visible) {
-      border: 1px dashed ${theme.palette['blue-300']};
-      background-color: ${theme.palette['blue-050']};
-      color: ${theme.palette['blue-500']};
+      border: 1px dashed var(--ds-color-border-brand-strong);
+      background-color: var(--ds-color-background-brand-subtle);
+      color: var(--ds-button-creator-upload-text-hover);
     }
     &:focus-visible:active {
-      border: 1px dashed ${theme.palette['blue-600']};
-      background-color: ${theme.palette['blue-050']};
+      border: 1px dashed var(--ds-color-border-brand-default);
+      background-color: var(--ds-color-background-brand-subtle);
       box-shadow: none;
     }
     &:focus-visible {
-      border: 1px dashed ${theme.palette['blue-600']};
+      border: 1px dashed var(--ds-color-border-brand-default);
       box-shadow: none;
     }
     &:disabled {
-      color: ${theme.palette['grey-500']};
+      color: var(--ds-color-text-neutral-default);
       ${IconContainer} {
         margin: 12px;
       }
@@ -73,13 +71,14 @@ export const Creator = styled(BaseButton).attrs({
       }
       return 'auto';
     }};
-    opacity: ${(props) => (props.disabled ? `0.4` : '1')};
+    opacity: ${(props) =>
+      props.disabled ? 'var(--ds-buttons-disabled-opacity)' : '1'};
     height: 48px;
     padding: ${(props) => (props.withLabel ? `0 12px 0 0` : '0')};
     border-radius: 3px;
-    border: 1px dashed ${({ theme }) => theme.palette['grey-300']};
+    border: 1px dashed var(--ds-color-border-base-strong);
     background: transparent;
-    color: ${({ theme }) => theme.palette['grey-600']};
+    color: var(--ds-color-text-base-muted);
     transition: all 0.3s ease;
     justify-content: ${(props) =>
       props.withLabel && !props.block ? `flex-start` : 'center'};
@@ -97,28 +96,27 @@ export const Creator = styled(BaseButton).attrs({
     }
 
     &:hover:not(:disabled):not(:focus-visible) {
-      border: 1px dashed ${({ theme }) => theme.palette['grey-400']};
-      background-color: ${({ theme }) =>
-        hexToRgba(theme.palette['grey-200'], 0.25)};
+      border: 1px dashed var(--ds-color-border-base-stronghover);
+      background-color: var(--ds-button-creator-bg-hover);
     }
     ${(props) =>
       props.pressed &&
-      `&&{ background-color: ${hexToRgba(props.theme.palette['grey-200'], 0.4)}; }`}
+      `&&{ background-color: var(--ds-button-creator-bg-pressed); }`}
 
     &:focus-visible:active {
-      border: 1px dashed ${(props) => props.theme.palette['grey-400']} !important ;
+      border: 1px dashed var(--ds-color-border-base-stronghover) !important ;
       box-shadow: none;
-      background-color: ${(props) => props.theme.palette['grey-050']};
+      background-color: var(--ds-color-background-base-subtle);
     }
     &:focus-visible {
-      border: 1px dashed ${(props) => props.theme.palette['blue-600']};
+      border: 1px dashed var(--ds-color-border-brand-default);
       box-shadow: none;
     }
     &:disabled {
-      border-color: ${(props) => props.theme.palette['grey-300']};
-      background-color: ${(props) => props.theme.palette['grey-050']};
+      border-color: var(--ds-color-border-base-strong);
+      background-color: var(--ds-color-background-base-subtle);
     }
-    ${(props) => props.status === CreatorStatus.Error && errorStyles(props)}
-    ${(props) => props.status === CreatorStatus.Upload && uploadStyles(props)}
+    ${(props) => props.status === CreatorStatus.Error && errorStyles()}
+    ${(props) => props.status === CreatorStatus.Upload && uploadStyles()}
   }
 `;

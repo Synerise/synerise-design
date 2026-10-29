@@ -1,6 +1,5 @@
 import React, { useMemo } from 'react';
 
-import { useTheme } from '@synerise/ds-core';
 import Icon, { StarFillM, StarM } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
 
@@ -14,14 +13,16 @@ const StarCell = ({
   starTooltip,
   ...htmlAttributes
 }: StarCellProps) => {
-  const theme = useTheme();
   const icon = useMemo(() => {
     return active ? (
-      <Icon component={<StarFillM />} color={theme.palette['yellow-600']} />
+      <Icon
+        component={<StarFillM />}
+        color="var(--ds-color-icon-warning-default)"
+      />
     ) : (
-      <Icon component={<StarM />} color={theme.palette['grey-300']} />
+      <Icon component={<StarM />} color="var(--ds-color-icon-base-muted)" />
     );
-  }, [active, theme.palette]);
+  }, [active]);
 
   return (
     <S.StarCell {...htmlAttributes}>

@@ -57,6 +57,7 @@
   },
   "dependencies": {
     "@date-fns/tz": "^1.4.1",
+    "@synerise/ds-tokens": "workspace:^",
     "dayjs": "^1.8.36",
     "deepmerge": "^4.2.2",
     "flat": "^5.0.2",

@@ -4,12 +4,12 @@ export const Label = styled.div`
   font-weight: 500;
   font-size: 14px;
   transition: color 0.3s ease;
-  color: ${(props) => props.theme.palette['grey-700']};
+  color: var(--ds-color-text-base-subtle);
 `;
 
 export const IconWrapper = styled.div`
   margin-right: 12px;
-  color: ${(props) => props.theme.palette['grey-700']};
+  color: var(--ds-color-text-base-subtle);
   transition: color 0.3s ease;
 `;
 
@@ -17,10 +17,10 @@ export const BackActionWrapper = styled.div`
   padding: 0 8px;
   &:hover {
     ${Label} {
-      color: ${(props) => props.theme.palette['grey-800']};
+      color: var(--ds-color-text-base-default);
     }
     ${IconWrapper} {
-      color: ${(props) => props.theme.palette['grey-800']};
+      color: var(--ds-color-text-base-default);
     }
   }
 `;

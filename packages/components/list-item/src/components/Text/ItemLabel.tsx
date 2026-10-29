@@ -7,7 +7,6 @@ import React, {
   type ReactNode,
 } from 'react';
 
-import { useTheme } from '@synerise/ds-core';
 import Icon, {
   AngleDownS,
   AngleRightS,
@@ -92,7 +91,6 @@ export const ItemLabel = forwardRef<HTMLDivElement, ItemLabelProps>(
     },
     ref,
   ) => {
-    const theme = useTheme();
     return (
       <S.Wrapper
         role="menuitem"
@@ -120,7 +118,7 @@ export const ItemLabel = forwardRef<HTMLDivElement, ItemLabelProps>(
         featured={featured}
         {...rest}
       >
-        <S.Inner>
+        <S.Inner className="ds-list-item-inner">
           {prefixElement && (
             <S.PrefixWrapper
               data-testid="list-item-prefix"
@@ -138,10 +136,7 @@ export const ItemLabel = forwardRef<HTMLDivElement, ItemLabelProps>(
           </S.Content>
           {parent && (
             <S.ArrowRight>
-              <Icon
-                component={<AngleRightS />}
-                color={theme.palette['grey-600']}
-              />
+              <Icon component={<AngleRightS />} />
             </S.ArrowRight>
           )}
           {(!!suffixElement || !!checked || hasSubMenu) && (
@@ -153,7 +148,7 @@ export const ItemLabel = forwardRef<HTMLDivElement, ItemLabelProps>(
               {!!checked && (
                 <Icon
                   component={<CheckS />}
-                  color={theme.palette[`green-600`]}
+                  color="var(--ds-color-icon-success-default)"
                 />
               )}
               {hasSubMenu &&

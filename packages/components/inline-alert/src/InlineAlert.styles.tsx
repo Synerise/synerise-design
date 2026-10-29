@@ -2,18 +2,18 @@ import styled, { css } from 'styled-components';
 
 import type { InlineAlertType } from './InlineAlert.types';
 
-const COLORS: Record<InlineAlertType, string> = {
-  success: 'green-600',
-  warning: 'yellow-600',
-  alert: 'red-600',
-  info: 'grey-600',
+const COLOR_TOKENS: Record<InlineAlertType, string> = {
+  success: 'var(--ds-inline-alert-icon-success-default)',
+  warning: 'var(--ds-inline-alert-icon-warning-default)',
+  alert: 'var(--ds-inline-alert-icon-error-default)',
+  info: 'var(--ds-inline-alert-icon-informative-default)',
 };
 
 const COLORS_HOVER: Record<InlineAlertType, string> = {
-  success: 'green-700',
-  warning: 'yellow-700',
-  alert: 'red-700',
-  info: 'grey-700',
+  success: 'var(--ds-inline-alert-icon-success-hover)',
+  warning: 'var(--ds-inline-alert-icon-warning-hover)',
+  alert: 'var(--ds-inline-alert-icon-error-hover)',
+  info: 'var(--ds-inline-alert-icon-informative-hover)',
 };
 
 export const Message = styled.span`
@@ -37,23 +37,21 @@ export const InlineAlertWrapper = styled.span<{
   &:hover {
     cursor: ${(props) => (props.hoverButton ? 'pointer' : 'auto')};
     color: ${(props) =>
-      props.hoverButton
-        ? props.theme.palette[COLORS_HOVER[props.type]]
-        : props.theme.palette[COLORS[props.type]]};
+      props.hoverButton ? COLORS_HOVER[props.type] : COLOR_TOKENS[props.type]};
   }
   &:active {
-    color: ${(props) => props.theme.palette[COLORS[props.type]]};
+    color: ${(props) => COLOR_TOKENS[props.type]};
   }
-  color: ${(props) => props.theme.palette[COLORS[props.type]]};
+  color: ${(props) => COLOR_TOKENS[props.type]};
 
   ${(props) =>
     !!props.disabled &&
     css`
       pointer-events: none;
-      opacity: 0.4;
+      opacity: var(--ds-opacity-disabled);
     `};
   ${Message} {
-    color: ${(props) => props.theme.palette['grey-600']};
+    color: var(--ds-message-text-description);
   }
 `;
 export const EmphasisWrapper = styled.span`

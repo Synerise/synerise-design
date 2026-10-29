@@ -27,7 +27,7 @@ export const TitleContainer = styled.div`
 
 export const Title = styled(TypographyTitle)`
   width: 100%;
-  color: ${(props) => props.theme.palette['grey-800']};
+  color: var(--ds-modal-header-title-color);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -47,11 +47,11 @@ export const ActionButtons = styled.div`
 
 export const BottomBar = styled.div`
   padding: 12px 24px;
-  border-bottom: 1px solid ${(props) => props.theme.palette['grey-200']};
+  border-bottom: 1px solid var(--ds-color-border-base-default);
 `;
 
 export const ModalHeaderTop = styled.div`
-  border-bottom: 1px solid ${(props) => props.theme.palette['grey-100']};
+  border-bottom: 1px solid var(--ds-modal-header-border-color);
 `;
 
 export const ModalTitleWrapper = styled.div<{
@@ -67,15 +67,15 @@ export const Description = styled.div`
   font-size: 13px;
   font-weight: normal;
   line-height: 18px;
-  color: ${(props) => props.theme.palette['grey-600']};
+  color: var(--ds-color-text-base-muted);
   display: block;
   padding: 12px 0 0;
   margin: 14px 0 0;
 
   background-image: linear-gradient(
     to right,
-    ${(props) => props.theme.palette['grey-300']} 33%,
-    ${(props) => props.theme.palette['white']} 0%
+    var(--ds-color-border-base-strong) 33%,
+    var(--ds-modal-container-bg) 0%
   );
   background-repeat: repeat-x;
   background-size: 4px 1px;

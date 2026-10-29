@@ -47,9 +47,9 @@ export const tabsSkeleton = [
   },
 ];
 
-export const steps = [
+export const steps: StepData[] = [
   {
-    number: 1,
+    stepNumber: 1,
     label: 'Details',
     children: (
       <Radio.Group>
@@ -63,7 +63,7 @@ export const steps = [
     ),
   },
   {
-    number: 2,
+    stepNumber: 2,
     label: 'Settings',
     children: (
       <Radio.Group>
@@ -77,7 +77,7 @@ export const steps = [
     ),
   },
   {
-    number: 3,
+    stepNumber: 3,
     label: 'Filters & Facets',
     children: (
       <Radio.Group>
@@ -91,7 +91,7 @@ export const steps = [
     ),
   },
   {
-    number: 4,
+    stepNumber: 4,
     label: 'Ranking',
     children: (
       <Radio.Group>

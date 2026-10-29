@@ -153,7 +153,7 @@ import Autocomplete from '@synerise/ds-autocomplete';
 
 ## Styling
 
-Styles live in `Autocomplete.styles.ts`. Uses `@synerise/ds-core` theme palette tokens (`blue-600`, `blue-050`, `red-600`, `red-050`, `grey-300`, `grey-400`, `grey-600`, `grey-700`, `white`). No hardcoded colour values. **All selectors are `.ds-*` / styled-components — no `.ant-*`.**
+Styles live in `Autocomplete.styles.ts`. Colours come from `var(--ds-*)` tokens — mainly the shared `--ds-form-field-*` (border/bg/text per state) and `--ds-form-icon-color-*` module tokens, plus `--ds-color-icon-brand-default` and `--ds-opacity-disabled`. No hardcoded colour values. **All selectors are `.ds-*` / styled-components — no `.ant-*`.**
 
 Styled components:
 - `AutocompleteWrapper` — outermost `div`; stretches the `InputContainer` to `100%` when `autoResize` is set.

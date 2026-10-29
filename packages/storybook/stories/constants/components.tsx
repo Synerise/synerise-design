@@ -5,8 +5,10 @@ export const Placeholder = styled.div<{
   $background?: string;
   $foreground?: string;
 }>`
-  --bg: ${(props) => props.$background || props.theme.palette.white};
-  --stripe: ${(props) => props.$foreground || props.theme.palette['grey-100']};
+  --bg: ${(props) =>
+    props.$background || 'var(--ds-color-background-base-default)'};
+  --stripe: ${(props) =>
+    props.$foreground || 'var(--ds-color-background-base-muted)'};
   --size: 16px;
   height: ${(props) => props.$height || 400}px;
   flex: 1 1 auto;
@@ -20,9 +22,9 @@ export const Placeholder = styled.div<{
 `;
 
 export const PropNamePill = styled.span`
-  background: ${(props) => props.theme.palette['grey-100']};
+  background: var(--ds-color-background-base-muted);
   padding: 3px 7px;
   border-radius: 3px;
   font-family: monospace;
-  color: ${(props) => props.theme.palette['grey-700']};
+  color: var(--ds-color-text-base-subtle);
 `;

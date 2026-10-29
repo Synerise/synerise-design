@@ -57,7 +57,7 @@ import MetricCard from '@synerise/ds-metric-card';
 
 ## Styling
 
-`MetricCard.styles.tsx`. Root is a `Panel` with `p="8px 8px 14px 24px"` and `radius={3}`. Value font size is `32px`, `font-weight: 500`, colour `grey-800`.
+`MetricCard.styles.tsx`. Root is a `Panel` with `p="8px 8px 14px 24px"` and `radius={3}`. Value font size is `32px`, `font-weight: 500`, colour `var(--ds-color-text-base-default)`.
 
 Hover behaviour is pure CSS class toggle: `MetricContent.hovered` class shows `WrapperNumber` and hides `WrapperFormattedNumber` (and vice versa). The `CopyIcon` uses `visibility + opacity` transition so it doesn't shift layout.
 

@@ -70,4 +70,21 @@ describe('Result', () => {
     // ASSERT
     expect(queryByTestId(CLOSE_BUTTON_TESTID)).toBeFalsy();
   });
+
+  it.each([
+    { type: 'info', token: '--ds-color-icon-brand-default' },
+    { type: 'warning', token: '--ds-color-icon-warning-default' },
+    { type: 'error', token: '--ds-color-icon-danger-default' },
+    { type: 'success', token: '--ds-color-icon-success-default' },
+    { type: 'progress', token: '--ds-color-icon-base-default' },
+    { type: 'no-results', token: '--ds-color-icon-base-default' },
+  ] as const)('colours the $type icon with $token', ({ type, token }) => {
+    const { container } = renderWithProvider(
+      <Result type={type} title={TITLE} />,
+    );
+
+    expect(container.querySelector('.ds-icon svg')).toHaveStyle({
+      color: `var(${token})`,
+    });
+  });
 });

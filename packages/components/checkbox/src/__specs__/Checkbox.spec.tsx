@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { renderWithProvider } from '@synerise/ds-core/testing';
+import { declarationsFor, renderWithProvider } from '@synerise/ds-core/testing';
 import { fireEvent } from '@testing-library/react';
 
 import Checkbox from '../index';
@@ -127,6 +127,20 @@ describe('Checkbox', () => {
         CHECKBOX_VALUE_A,
         CHECKBOX_VALUE_B,
       ]);
+    });
+  });
+
+  describe('disabled styling', () => {
+    it('keeps the selected look and fades it when checked and disabled', () => {
+      const { container } = renderWithProvider(
+        <Checkbox disabled checked>
+          {CHECKBOX_LABEL}
+        </Checkbox>,
+      );
+      const box = container.querySelector('.ds-checkbox-inner');
+
+      expect(box).toHaveStyle('background-color: var(--ds-form-control-bg-selected)');
+      expect(declarationsFor(box)).toContain('opacity:var(--ds-opacity-disabled)');
     });
   });
 });

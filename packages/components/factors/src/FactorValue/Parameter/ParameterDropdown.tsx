@@ -8,7 +8,6 @@ import React, {
 } from 'react';
 import type { VariableSizeList } from 'react-window';
 
-import { useTheme } from '@synerise/ds-core';
 import Divider from '@synerise/ds-divider';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { ArrowRightCircleM, SearchM } from '@synerise/ds-icon';
@@ -63,7 +62,6 @@ const ParameterDropdown = ({
   const listRef = useRef<VariableSizeList>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
   const scrollBarRef = useRef<HTMLDivElement>(null);
-  const theme = useTheme();
 
   const { visibleGroups, tabs, defaultTab } = useGroups(
     items,
@@ -394,9 +392,7 @@ const ParameterDropdown = ({
         value={searchQuery}
         autofocus={!searchQuery || searchInputCanBeFocused}
         autofocusDelay={50}
-        iconLeft={
-          <Icon component={<SearchM />} color={theme.palette['grey-600']} />
-        }
+        iconLeft={<Icon component={<SearchM />} />}
       />
       {tabs.length > 1 && (
         <S.TabsWrapper>

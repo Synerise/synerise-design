@@ -34,7 +34,7 @@ import EditableItemsList from '@synerise/ds-editable-items-list'
 | items            | Array of items to be rendered, each should have a unique id.                                                       | T[]                                      | `[]`    |
 | addButtonLabel   | Text or custom component for the "Add" button.                                                                     | string \| ReactNode                      | -       |
 | addButtonIcon    | Custom icon for the "Add" button.                                                                                  | ReactNode                                | -       |
-| addButtonProps   | Additional props for the "Add" button. It can override default style.                                              | Partial&lt;ButtonProps&gt;               | -       |
+| addButtonProps   | Additional props for the "Add" button. It can override default style and `mode`.                                   | Partial&lt;ButtonProps&gt;               | -       |
 | onAdd            | Callback function called when the "Add" button is clicked.                                                         | MouseEventHandler&lt;HTMLElement&gt;     | -       |
 | minRowLength     | The minimum number of rows to display. Delete button hidden while at or below this count.                          | number                                   | 1       |
 | maxRowLength     | The maximum number of rows allowed.                                                                                | number                                   | -       |

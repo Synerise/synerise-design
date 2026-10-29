@@ -20,7 +20,7 @@ export const RelativeDateDropdownWrapper = styled(Dropdown.Wrapper)`
   }
 `;
 export const RelativeDateDropdownFooter = styled.div`
-  background: ${(props) => props.theme.palette['grey-100']};
+  background: var(--ds-color-background-base-muted);
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -39,15 +39,13 @@ export const ChevronIcon = styled(Icon)``;
 export const Trigger: StyledInput = styled(Input)`
   ${ClearIcon} {
     display: none;
+    color: var(--ds-color-icon-danger-default);
   }
   &:hover {
     ${ClearIcon} {
       display: block;
-      svg {
-        fill: ${(props) => props.theme.palette['red-600']};
-      }
-      &:hover svg {
-        fill: ${(props) => props.theme.palette['red-500']};
+      &:hover {
+        color: var(--ds-color-icon-danger-defaulthover);
       }
     }
     ${ChevronIcon} {

@@ -78,6 +78,11 @@ export const Open: Story = {
       'https://cdn.pixabay.com/photo/2015/07/09/22/45/tree-838667_960_720.jpg',
       'https://cdn.pixabay.com/photo/2015/07/05/10/18/tree-832079_960_720.jpg',
     ],
-    icon: <Icon component={<WarningFillM />} color="#ffc300" />,
+    icon: (
+      <Icon
+        component={<WarningFillM />}
+        color="var(--ds-color-icon-warning-default)"
+      />
+    ),
   },
 };

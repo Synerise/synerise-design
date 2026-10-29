@@ -113,8 +113,9 @@ import Toast from '@synerise/ds-toast';
 ```
 
 ## Styling
-- `Container` renders a white card (`border-radius: 4px`, `box-shadow: 0 16px 32px 0 rgba(35,41,54,0.12)`, `max-width: 500px`) with a 2px top border in the accent color for the type.
-- Accent colors (icon fill + top border): success → `green-600`, warning → `yellow-600`, negative → `red-500`, informative → `grey-600`.
+- `Container` renders a card (`border-radius: 4px`, `box-shadow: var(--ds-toast-shadow)`, `max-width: 500px`) with the type's `-bg` background and a 2px top border in its `-border` colour.
+- Background, border and icon colours come from `var(--ds-toast-variant-<variant>-{bg,border,icon})`; `type` maps to the variant (`negative` → `error`, others by name).
+- `AlertMessage` and `AlertDescription` use the shared `message` module for every type: `var(--ds-message-text-title)` and `var(--ds-message-text-description)`.
 - `AnimationContainer` plays `openingAnimation` (slide up + fade in from `translateY(60px)`) when `$show=true` and `closingAnimation` (fade out + slight scale-down + `translateY(-8px)`) when `$show=false`. Duration is `0.6s cubic-bezier(0.4,0,0.2,1)`.
 - `AlertMessage` right-padding is computed dynamically: 24px (no icons), 48px (close or expander), 72px (both).
 - `expandedContent` is shown/hidden via `visibility + height: auto/0` (not `display: none`), preserving layout flow.

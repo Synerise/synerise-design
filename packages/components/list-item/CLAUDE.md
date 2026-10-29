@@ -176,6 +176,8 @@ import ListItem, { ListWrapper, ListContextProvider, useListContext } from '@syn
 
 ## Styling / Key dependencies / Implementation notes
 
+- **`ds-list-item-inner`** is the class hook on the inner row (`S.Inner`), which paints the hover, focused and selected backgrounds. ds-select targets it to give its keyboard-highlighted option the `--ds-list-item-role-normal-bg-hover` background.
+
 - **`react-intl` (peer)** — `ListWrapper` calls `useIntl()`, so an `IntlProvider` must be present.
 - **`@floating-ui/react` `useListItem`** — `Text` registers each item with floating-ui's list context via `useListItem()`. The merged ref (`useMergeRefs`) handles both the forwarded ref and the floating-ui ref. This is required for keyboard navigation in dropdowns.
 - **`useDropdown` integration** — if an item is rendered inside `@synerise/ds-core`'s `DropdownProvider`, clicking an item calls `setIsOpen(false)` when `hideOnItemClick === true`.

@@ -1,7 +1,6 @@
 import React from 'react';
 
 import Autocomplete from '@synerise/ds-autocomplete';
-import { theme } from '@synerise/ds-core';
 import Cruds from '@synerise/ds-cruds';
 import Icon, { Add3M } from '@synerise/ds-icon';
 import { Input } from '@synerise/ds-input';
@@ -139,7 +138,7 @@ export const EditableList: React.FC<EditListProps> = ({
               <Icon
                 component={<Add3M />}
                 size={24}
-                color={theme.palette['blue-600']}
+                color="var(--ds-color-icon-brand-default)"
               />
             </S.AddIconWrapper>
             <span>{addButtonConfig?.textAddButton}</span>

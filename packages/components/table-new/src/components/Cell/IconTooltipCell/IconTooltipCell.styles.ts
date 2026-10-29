@@ -6,16 +6,12 @@ export const IconTooltipCell = styled.span<{ isDisabled?: boolean }>`
   align-items: center;
   white-space: nowrap;
   justify-content: flex-start;
-  ${(props) => props.isDisabled && 'opacity: 0.4;'}
+  ${(props) => props.isDisabled && 'opacity: var(--ds-opacity-disabled);'}
   .main-icon {
-    svg {
-      fill: ${(props) => props.theme.palette['grey-600']};
-    }
+    color: var(--ds-color-icon-base-default);
   }
   .tooltip-icon {
-    svg {
-      fill: ${(props) => props.theme.palette['grey-400']};
-    }
+    color: var(--ds-color-icon-base-muted);
   }
 `;
 export const Label = styled.span`

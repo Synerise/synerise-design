@@ -5,6 +5,7 @@ import type {
   ReactNode,
 } from 'react';
 
+import type { BaseLabelProps } from '@synerise/ds-form-field';
 import type { DataAttributes, PassthroughAttributes } from '@synerise/ds-utils';
 
 export type RadioValueType = string | number | boolean;
@@ -39,6 +40,11 @@ export type RadioProps = {
   onChange?: (event: RadioChangeEvent) => void;
   /** Label text (rendered via `FormFieldLabel`). Takes precedence over `children`. */
   label?: ReactNode;
+  /** Tooltip on an info icon next to `label`. Use it instead of nesting a `FormFieldLabel` in
+   * `children`, whose own `<label>` would stop clicks on the text from selecting the radio. */
+  tooltip?: BaseLabelProps['tooltip'];
+  /** Tooltip config for `tooltip`, as on `FormFieldLabel`. */
+  tooltipConfig?: BaseLabelProps['tooltipConfig'];
   /** Helper text rendered below the radio. */
   description?: ReactNode;
   /** @deprecated use `label` instead */

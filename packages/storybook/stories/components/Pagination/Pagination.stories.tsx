@@ -4,6 +4,7 @@ import React from 'react';
 import Pagination from '@synerise/ds-pagination';
 
 import {
+  BOOLEAN_CONTROL,
   CLASSNAME_ARG_CONTROL,
   centeredPaddedWrapper,
   NUMBER_CONTROL,
@@ -15,6 +16,7 @@ export default {
   component: Pagination,
   decorators: [centeredPaddedWrapper],
   argTypes: {
+    disabled: BOOLEAN_CONTROL,
     className: CLASSNAME_ARG_CONTROL,
     defaultCurrent: NUMBER_CONTROL,
     total: NUMBER_CONTROL,

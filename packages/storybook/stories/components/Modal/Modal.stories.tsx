@@ -5,13 +5,14 @@ import { fn } from 'storybook/test';
 
 import { ObjectAvatar } from '@synerise/ds-avatar';
 import Button from '@synerise/ds-button';
-import { closeAllOverlays, theme } from '@synerise/ds-core';
+import { closeAllOverlays } from '@synerise/ds-core';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { MailM, UserM } from '@synerise/ds-icon';
 import Layout, { LayoutProps } from '@synerise/ds-layout';
 import Modal, { showModal } from '@synerise/ds-modal';
 import Stepper from '@synerise/ds-stepper';
 import { VirtualTable } from '@synerise/ds-table-new';
+import { customColors } from '@synerise/ds-tokens/names';
 
 import { Placeholder, PropNamePill } from '../../constants';
 import {
@@ -55,13 +56,16 @@ export default {
           <ObjectAvatar
             badgeStatus="active"
             iconComponent={
-              <Icon component={<MailM />} color={theme.palette['red-500']} />
+              <Icon component={<MailM />} color={customColors.red['500']} />
             }
           />,
         ),
         iconAndLabel: headerWithPrefix(
           'Header with icon',
-          <Icon component={<UserM />} color={theme.palette['grey-600']} />,
+          <Icon
+            component={<UserM />}
+            color={'var(--ds-color-icon-base-default)'}
+          />,
         ),
       }),
     },

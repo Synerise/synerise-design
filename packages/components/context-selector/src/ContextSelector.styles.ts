@@ -12,13 +12,13 @@ export const ContentPlaceholder = styled.div`
 
 export const ItemsList = styled.div<{ contentHeight?: number }>`
   width: 100%;
-  background: ${(props) => props.theme.palette.white};
+  background: var(--ds-dropdown-bg);
   .ds-context-selector-list {
     height: auto !important;
     max-height: 300px;
   }
   &[data-keyboard-nav='true'] .ds-context-item:focus > div {
-    box-shadow: inset 0 0 0 2px ${(props) => props.theme.palette['blue-600']};
+    box-shadow: inset 0 0 0 2px var(--ds-color-focus-base-default);
   }
   ${(props) =>
     props.contentHeight !== undefined && `height: ${props.contentHeight}px;`}
@@ -26,12 +26,12 @@ export const ItemsList = styled.div<{ contentHeight?: number }>`
 
 export const SearchResult = styled.span`
   font-weight: 400;
-  color: ${(props): string => props.theme.palette['grey-500']};
+  color: var(--ds-color-text-neutral-default);
 `;
 
 export const SearchResultHighlight = styled.span`
   font-weight: 500;
-  color: ${(props): string => props.theme.palette['grey-700']};
+  color: var(--ds-color-text-base-subtle);
 `;
 
 export const Title = styled.div`
@@ -39,7 +39,7 @@ export const Title = styled.div`
   line-height: 1.6;
   font-weight: 500;
   text-transform: uppercase;
-  color: ${(props): string => props.theme.palette['grey-500']};
+  color: var(--ds-divider-header-text-color);
   padding: 8px 12px;
 `;
 
@@ -54,7 +54,7 @@ export const ShowMoreItem = styled.div`
 `;
 
 export const ErrorWrapper = styled.div`
-  color: ${(props): string => props.theme.palette['red-600']};
+  color: var(--ds-form-error-text-color);
   margin-top: 8px;
 `;
 

@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 
 import type { ThemeProps } from '@synerise/ds-core';
 import { macro } from '@synerise/ds-typography';
+import { type CustomColorShade, resolveCustomColor } from '@synerise/ds-utils';
 
 import type { AvatarProps } from './Avatar.types';
 
@@ -21,19 +22,37 @@ export const TooltipGroup = styled.div`
 `;
 
 const applyBgColors = (
-  props: ThemeProps & { backgroundColor?: string; backgroundColorHue?: string },
-) => css`
-  background: ${
-    props.theme.palette[
-      `${props.backgroundColor}-${props.backgroundColorHue ? props.backgroundColorHue : '400'}`
-    ]
-  };
-`;
+  props: ThemeProps & {
+    backgroundColor?: string;
+    backgroundColorHue?: string;
+    $iconTokens?: boolean;
+  },
+) => {
+  const { backgroundColor, backgroundColorHue, $iconTokens } = props;
+  if ($iconTokens) {
+    return css`
+      background: var(--ds-avatar-icon-bg-default);
+    `;
+  }
+  // Categorical family + hue → flipping custom-colour token via the shared resolver, which also
+  // maps the legacy palette hue '050' to the '50' token key. A raw hex or var() (db-driven prop)
+  // is the `full-custom` escape hatch and is used literally.
+  const bg =
+    backgroundColor && backgroundColor !== 'auto'
+      ? resolveCustomColor(backgroundColor, 'transparent', {
+          defaultShade: (backgroundColorHue || '400') as CustomColorShade,
+          passthroughResolved: true,
+        })
+      : 'transparent';
+  return css`
+    background: ${bg};
+  `;
+};
 
 const applyDisabledStyles = (props: { disabled?: boolean }) =>
   props.disabled &&
   css`
-    opacity: 0.4;
+    opacity: var(--ds-avatar-disabled-opacity);
     pointer-events: none;
   `;
 
@@ -73,6 +92,7 @@ const applyFontSize = (props: AvatarProps) => {
 
 type ExtraAvatarProps = {
   hasTooltip?: boolean;
+  $iconTokens?: boolean;
 };
 
 /**
@@ -154,7 +174,10 @@ export const StyledAvatar = styled(AvatarBase)<ExtraAvatarProps>`
     min-width: 24px;
     vertical-align: middle;
     border-radius: 50%;
-    color: ${(props) => props.theme.palette.white};
+    ${(props) =>
+      props.$iconTokens
+        ? 'color: var(--ds-avatar-icon-icon);'
+        : 'color: var(--ds-avatar-text-text) !important;'}
     user-select: none;
     transition: background 0.3s ease;
 
@@ -173,7 +196,10 @@ export const StyledAvatar = styled(AvatarBase)<ExtraAvatarProps>`
       width: 100%;
       height: 100%;
       font-size: 11px;
-      color: ${(props) => props.theme.palette.white};
+      ${(props) =>
+        props.$iconTokens
+          ? 'color: inherit;'
+          : 'color: var(--ds-avatar-text-text) !important;'}
       user-select: none;
       pointer-events: none;
       ${(props) => applyFontSize(props)};
@@ -197,7 +223,7 @@ export const StyledAvatar = styled(AvatarBase)<ExtraAvatarProps>`
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: #000;
+      background-color: var(--ds-color-background-overlay-solid);
       opacity: 0;
       border-radius: inherit;
     }
@@ -206,7 +232,7 @@ export const StyledAvatar = styled(AvatarBase)<ExtraAvatarProps>`
       (props.onClick || props.hasTooltip) &&
       css`
         &:hover::before {
-          opacity: 0.05;
+          opacity: var(--ds-avatar-overlay-opacity-hover);
         }
       `};
 
@@ -216,7 +242,7 @@ export const StyledAvatar = styled(AvatarBase)<ExtraAvatarProps>`
         cursor: pointer;
 
         &:active::before {
-          opacity: 0.1;
+          opacity: var(--ds-avatar-overlay-opacity-pressed);
         }
       `};
 
@@ -234,7 +260,6 @@ export const StyledAvatar = styled(AvatarBase)<ExtraAvatarProps>`
       css`
         & ~ .ds-badge-dot {
           display: flex;
-          border: 2px solid ${props.theme.palette.white};
           box-sizing: border-box;
           width: 10px;
           height: 10px;

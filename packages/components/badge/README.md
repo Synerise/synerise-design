@@ -61,6 +61,10 @@ import Badge from '@synerise/ds-badge'
 
 <iframe src="/storybook-static/iframe.html?id=components-badge--count"></iframe>
 
+## Badge Outline
+
+<iframe src="/storybook-static/iframe.html?id=components-badge--outline"></iframe>
+
 ## Badge Status
 
 <iframe src="/storybook-static/iframe.html?id=components-badge--status"></iframe>
@@ -77,7 +81,8 @@ import Badge from '@synerise/ds-badge'
 | dot                | Display a dot instead of a counter (auto-enabled by `status`)      | boolean                                                                                              | `false` |
 | flag               | Show the badge as a flag (halo rings)                              | boolean                                                                                              | `false` |
 | offset             | The offset of the badge in [x, y] format                           | [number, number]                                                                                     | -       |
-| outlined           | Add a white outline to the badge counter                           | boolean                                                                                              | `false` |
+| variant            | Counter look: solid fill, solid with a ring, or coloured outline   | `solid` / `solid-ring` / `outline`                                                                   | `solid` |
+| outlined           | **Deprecated** — use `variant="solid-ring"`                        | boolean                                                                                              | `false` |
 | overflowCount      | Maximum number to show in the counter                              | number                                                                                               | 99      |
 | pulsing            | Enable pulsing animation                                           | boolean                                                                                              | `false` |
 | data-\* / aria-\*  | Forwarded to the outermost wrapper element                         | string / number / boolean                                                                            | -       |

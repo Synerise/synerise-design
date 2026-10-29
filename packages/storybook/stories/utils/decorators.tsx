@@ -1,8 +1,6 @@
 import type { Decorator } from '@storybook/react-vite';
 import React from 'react';
 
-import { theme } from '@synerise/ds-core';
-
 export const fixedWrapper200: Decorator = (Story) => (
   <div style={{ width: '200px' }}>{Story()}</div>
 );
@@ -52,7 +50,7 @@ export const footerWrapper: Decorator = (Story) => (
       justifyContent: 'center',
       alignItems: 'stretch',
       padding: '0 16px',
-      background: '#fff',
+      background: 'var(--ds-page-bg)',
     }}
   >
     {Story()}
@@ -72,7 +70,7 @@ export const headerWrapper: Decorator = (Story) => (
 
       alignItems: 'stretch',
       padding: '0 16px',
-      background: '#fff',
+      background: 'var(--ds-page-bg)',
     }}
   >
     {Story()}
@@ -154,7 +152,7 @@ export const variableHeightDecorator: Decorator = (Story, storyContext) => {
 export const buttonDecorator: Decorator = (Story, storyContext) => {
   const lightTypes = ['tertiary-white', 'ghost-white'];
   const backgroundColor = lightTypes.includes(storyContext.args.type as string)
-    ? theme.palette['grey-600']
+    ? 'var(--ds-color-background-neutral-solid)'
     : 'transparent';
   const height = storyContext.viewMode === 'story' ? '100vh' : '100px';
   return (
@@ -176,7 +174,7 @@ export const buttonDecorator: Decorator = (Story, storyContext) => {
 
 export const greyBackgroundDecorator: Decorator = (Story, storyContext) => {
   const backgroundColor = Boolean(storyContext.args.greyBackground)
-    ? theme.palette['grey-300']
+    ? 'var(--ds-color-background-base-mutedactive)'
     : 'transparent';
   const height = storyContext.viewMode === 'story' ? '100vh' : '250px';
   const width = storyContext.viewMode === 'story' ? '100vw' : '100%';

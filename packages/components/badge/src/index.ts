@@ -4,6 +4,7 @@ export type {
   Color as BadgeColor,
   ColorHue as BadgeColorHue,
   Status as BadgeStatus,
+  Variant as BadgeVariant,
 } from './Badge.types';
 export {
   type BadgeWithLabelProps,

@@ -5,7 +5,6 @@ import { expect, userEvent, waitFor, within } from 'storybook/test';
 import type { ButtonProps } from '@synerise/ds-button';
 import Button from '@synerise/ds-button';
 import ButtonGroup from '@synerise/ds-button-group';
-import { theme } from '@synerise/ds-core';
 import Icon, { AngleDownS } from '@synerise/ds-icon';
 
 import { NO_SNAPSHOT } from '../../utils/chromatic';
@@ -127,7 +126,7 @@ export const SplitAllTypesAndColors: StoryObj<ButtonProps> = {
           padding: 8,
           borderRadius: 4,
           background: DARK_BG_TYPES.has(type)
-            ? theme.palette['grey-800']
+            ? 'var(--ds-color-background-neutral-solid)'
             : undefined,
         }}
       >

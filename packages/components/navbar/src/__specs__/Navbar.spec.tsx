@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { renderWithProvider } from '@synerise/ds-core/testing';
+import { renderWithProvider, rulesFor } from '@synerise/ds-core/testing';
 
 import Navbar from '../index';
 
@@ -60,5 +60,67 @@ describe('Navbar', () => {
     );
     // ASSERT
     expect(getByText(ALERT_NOTIFICATION)).toBeTruthy();
+  });
+
+  it('lets an explicit color override the default background', () => {
+    const { container } = renderWithProvider(
+      <Navbar
+        description={DESCRIPTION}
+        logo={LOGO}
+        color="var(--ds-color-custom-green-600)"
+      />,
+    );
+
+    expect(container.querySelector('.ds-navbar')).toHaveStyle({
+      backgroundColor: 'var(--ds-color-custom-green-600)',
+    });
+  });
+});
+
+// Rules setting a colour on the svg inside `element` that come through `owner`.
+const svgColourRules = (element: Element | null, owner: Element) =>
+  rulesFor(element?.querySelector('svg') ?? null, {
+    within: owner,
+    state: 'any',
+  }).filter(({ declarations }) => /(^|;)(fill|color):/.test(declarations));
+
+describe('Navbar alert notification colour', () => {
+  const renderNavbar = () => {
+    const { getByTestId } = renderWithProvider(
+      <Navbar
+        description="Description"
+        logo="Logo"
+        alertNotification={
+          <span className="ds-inline-alert" data-testid="alert">
+            <span className="ds-icon">
+              <svg />
+            </span>
+            <span>Message</span>
+          </span>
+        }
+      />,
+    );
+    const alert = getByTestId('alert');
+    return { alert, wrapper: alert.parentElement as HTMLElement };
+  };
+
+  it('makes the alert itself white so its default icon inherits it', () => {
+    const { alert, wrapper } = renderNavbar();
+    const rules = rulesFor(alert, { within: wrapper, state: 'any' }).filter(
+      ({ declarations }) =>
+        declarations.includes('color:var(--ds-color-text-base-onsolid)'),
+    );
+
+    expect(rules).not.toEqual([]);
+    // Must outrank InlineAlert's own `:hover` / `:active` colour (two classes).
+    rules.forEach(({ selector }) => {
+      expect(selector.match(/[.:][\w-]+/g)?.length).toBeGreaterThan(2);
+    });
+  });
+
+  it('leaves the alert svg alone so a custom icon colour can win', () => {
+    const { alert, wrapper } = renderNavbar();
+
+    expect(svgColourRules(alert, wrapper)).toEqual([]);
   });
 });

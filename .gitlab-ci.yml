@@ -68,7 +68,11 @@ stages:
   - deploy
 
 include:
+  # On the token sync trigger pipeline skip code-quality + AI-review so it runs only
+  # sync_tokens.
   - template: Code-Quality.gitlab-ci.yml
+    rules:
+      - if: '$CI_PIPELINE_SOURCE != "trigger"'
   # workflow:rules (the merge request gate above, auto-cancel) and job defaults (retry, interruptible)
   - project: 'core/gitlab_templates'
     ref: master
@@ -76,11 +80,39 @@ include:
   - project: 'core/gitlab_templates'
     ref: master
     file: '/pipeline/ai-review.yml'
+    rules:
+      - if: '$CI_PIPELINE_SOURCE != "trigger"'
 
+
+# The token sync pipeline runs on the master ref, so every `$CI_DEFAULT_BRANCH` rule would match it
+# too and re-run the build, the Storybook deploy and, on a `build: publish` HEAD, the npm publish.
+# Jobs that run on the default branch list this first.
+.skip_token_triggers:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "trigger"
+      when: never
+
+# Triggered by a token merge in Frontend/design-tokens through the project's only pipeline trigger
+# token, which carries no variables (ADR-0002 §6): the source alone marks a sync pipeline.
+# Mirrors the tokens at design-tokens@main's tip into @synerise/ds-tokens and opens/refreshes the
+# rolling sync MR, whose normal merge_request_event pipeline runs build + Chromatic for review.
+sync_tokens:
+  stage: prepare
+  needs: []
+  # Syncs never overlap, so each one clones a tip at least as new as the last sync's and pushes
+  # after it: two quick design-tokens merges cannot leave older tokens on the rolling branch.
+  resource_group: design-tokens-sync
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "trigger"
+  before_script:
+    - !reference [.install_pnpm]
+  script:
+    - bash scripts/ci-sync-tokens.sh
 
 install:
   stage: install
   rules:
+    - !reference [.skip_token_triggers, rules]
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
   before_script:
@@ -128,6 +160,7 @@ build_packages:
         - .nx
       policy: pull-push
   rules:
+    - !reference [.skip_token_triggers, rules]
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
   before_script:
@@ -138,9 +171,12 @@ build_packages:
     - pnpm types
     # After the build, so the strict pass also checks the published dist/ js and d.ts
     - pnpm knip:ci
+    # Needs the built tokens (packages/tokens/dist/css): a var(--ds-*) no token defines drops its colour silently
+    - pnpm check:token-references
   artifacts:
     paths:
       - packages/components/*/dist
+      - packages/tokens/dist
       - packages/components/flag/src/icons
       - packages/components/icon/src/icons
       - packages/components/avatar/src/defaultAvatars
@@ -299,6 +335,13 @@ chromatic_publish:
     - pnpm install --frozen-lockfile --prefer-offline
     # - apt-get -qq update
     # - apt-get install -y jq
+    # Token-sync MR: token changes reach Storybook via the build (not a traced story import),
+    # so TurboSnap would snapshot nothing. Disable it for this branch only -> full snapshot.
+    - |
+      if [ "$CI_MERGE_REQUEST_SOURCE_BRANCH_NAME" = "chore/design-tokens-sync" ] && [ -f packages/storybook/chromatic.config.json ]; then
+        node -e 'const fs=require("fs"),p="packages/storybook/chromatic.config.json";const c=JSON.parse(fs.readFileSync(p,"utf8"));c.onlyChanged=false;fs.writeFileSync(p,JSON.stringify(c,null,2));'
+        echo "Token-sync MR - TurboSnap disabled (full snapshot)"
+      fi
     - test ! -e packages/storybook/storybook-static && (cd packages/storybook; pnpm build-storybook --quiet --stats-json)
     - pnpm pack:ci
     - test -d packages/storybook/storybook-static/static && (cd packages/storybook/storybook-static/static; ls > index.txt) || true
@@ -315,7 +358,51 @@ chromatic_publish:
       - packages/storybook/chromatic-diagnostics.json
   # environment:
     # name: review/$CI_COMMIT_REF_SLUG
-    # url: $CHROMATIC_SB_URL 
+    # url: $CHROMATIC_SB_URL
+  interruptible: true
+
+# Post the rolling token-sync MR's Chromatic build + published Storybook links to Teams.
+# Runs only on the sync MR; reads the diagnostics artifact chromatic_publish produces.
+notify_tokens_sync:
+  stage: test
+  needs:
+    - job: chromatic_publish
+      artifacts: true
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME == "chore/design-tokens-sync"'
+  script:
+    - |
+      bash scripts/notify-teams.sh \
+        --diagnostics packages/storybook/chromatic-diagnostics.json \
+        --title "🔄 Design tokens synced — Chromatic review ready" \
+        --status Accent \
+        --text "A token sync MR is ready. Review the Chromatic diff before merging to master." \
+        --button "Merge Request=${CI_PROJECT_URL}/-/merge_requests/${CI_MERGE_REQUEST_IID}"
+  interruptible: true
+
+# Anyone with Developer access can push to the rolling token-sync branch, and its MR reads as the
+# bot's tokens-only change. Fail its pipeline, which must pass before merge, when the MR changes
+# anything outside the mirrored token files. A push that also edits this job removes the check,
+# which is why .gitlab-ci.yml has code owners (.gitlab/CODEOWNERS).
+check_tokens_sync_scope:
+  stage: prepare
+  needs: []
+  cache: []
+  variables:
+    GIT_DEPTH: 1
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME == "chore/design-tokens-sync"'
+  script:
+    # Merged results pipelines check out a merge commit; the MR's own head is the source SHA.
+    - SOURCE_SHA="${CI_MERGE_REQUEST_SOURCE_BRANCH_SHA:-$CI_COMMIT_SHA}"
+    - git fetch --quiet --depth 1 origin "$CI_MERGE_REQUEST_DIFF_BASE_SHA" "$SOURCE_SHA"
+    - git diff --name-only "$CI_MERGE_REQUEST_DIFF_BASE_SHA" "$SOURCE_SHA" > changed-files.txt
+    - |
+      if grep -v '^packages/tokens/tokens/' changed-files.txt; then
+        echo "The token-sync MR may change only packages/tokens/tokens/; the files above are outside it." >&2
+        exit 1
+      fi
+    - echo "$(wc -l < changed-files.txt | tr -d ' ') changed file(s), all under packages/tokens/tokens/"
   interruptible: true
 
 publish_packages:
@@ -335,6 +422,7 @@ publish_packages:
   variables:
     PUBLISH_TITLE: "build: publish"
   rules:
+    - !reference [.skip_token_triggers, rules]
     - if: ($CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_COMMIT_TITLE == $PUBLISH_TITLE)
   before_script:
     - !reference [.install_pnpm]
@@ -410,6 +498,7 @@ notify_release:
   variables:
     PUBLISH_TITLE: "build: publish"
   rules:
+    - !reference [.skip_token_triggers, rules]
     - if: ($CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_COMMIT_TITLE == $PUBLISH_TITLE)
   script:
     - |
@@ -445,6 +534,7 @@ chromatic_publish_baseline:
   variables:
     PUBLISH_TITLE: "build: publish"
   rules:
+    - !reference [.skip_token_triggers, rules]
     - if: ($CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_COMMIT_TITLE == $PUBLISH_TITLE)
       when: on_success
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH

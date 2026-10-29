@@ -1,11 +1,46 @@
 import React from 'react';
 
-import { renderWithProvider } from '@synerise/ds-core/testing';
+import { declarationsFor, renderWithProvider } from '@synerise/ds-core/testing';
 import { fireEvent } from '@testing-library/react';
 
 import Radio from '../index';
 
 describe('Radio', () => {
+  it('selects the radio when the label text with a tooltip is clicked', () => {
+    const { container, getByText } = renderWithProvider(
+      <Radio.Group>
+        <Radio value="a" label="First" tooltip="About first" />
+        <Radio value="b" label="Second" tooltip="About second" />
+      </Radio.Group>,
+    );
+
+    fireEvent.click(getByText('Second'));
+
+    const inputs = container.querySelectorAll<HTMLInputElement>('input[type="radio"]');
+    expect(inputs[1].checked).toBe(true);
+    expect(inputs[0].checked).toBe(false);
+    expect(container.querySelectorAll('label label')).toHaveLength(0);
+  });
+
+  it('does not nest a label inside the radio label', () => {
+    const { container, getByLabelText } = renderWithProvider(
+      <Radio value="a" label="Radio label" />,
+    );
+
+    expect(container.querySelectorAll('label label')).toHaveLength(0);
+    expect(getByLabelText('Radio label')).toHaveAttribute('type', 'radio');
+  });
+
+  it('keeps the selected look and fades it when checked and disabled', () => {
+    const { container } = renderWithProvider(
+      <Radio checked disabled label="Radio label" />,
+    );
+    const inner = container.querySelector('.ds-radio-inner');
+
+    expect(declarationsFor(inner)).toContain('opacity:var(--ds-opacity-disabled)');
+    expect(inner).toHaveStyle('background-color: var(--ds-form-control-bg-default)');
+  });
+
   it('should render', () => {
     // ARRANGE
     const RADIO_LABEL = 'Radio label';

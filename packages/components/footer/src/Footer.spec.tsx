@@ -1,18 +1,18 @@
 import React from 'react';
 
 import Button from '@synerise/ds-button';
-import { renderWithProvider } from '@synerise/ds-core/testing';
+import { declarationsFor, renderWithProvider } from '@synerise/ds-core/testing';
 import { screen } from '@testing-library/react';
 
 import Footer from '.';
 
 describe('Footer', () => {
-  it('should have 1px grey-200 top border and 16px padding', () => {
+  it('should have a 1px top border and 16px padding', () => {
     renderWithProvider(<Footer />);
-    expect(screen.getByRole('contentinfo')).toHaveStyle(`
-      padding: 16px 0;
-      border-top: 1px solid #e9edee;
-    `);
+    const footer = screen.getByRole('contentinfo');
+    expect(footer).toHaveStyle('padding: 16px 0');
+    // jsdom drops `var()` on the `border-top` shorthand, so read the declaration instead.
+    expect(declarationsFor(footer)).toMatch(/(?:^|;)border-top:1px solid [^;]+/);
   });
 
   it('should pass style prop', () => {

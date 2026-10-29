@@ -5,7 +5,7 @@ import type { IconProps } from './Icon.types';
 import { useIconComponent } from './useIconComponent';
 
 const Icon = forwardRef<HTMLDivElement, IconProps>(
-  ({ name, iconName, component, className, ...rest }, ref) => {
+  ({ name, iconName, component, className, color, ...rest }, ref) => {
     const IconComponent = useIconComponent(iconName);
 
     const renderedIcon = IconComponent ? <IconComponent /> : component;
@@ -14,6 +14,7 @@ const Icon = forwardRef<HTMLDivElement, IconProps>(
       <S.IconContainer
         className={`ds-icon ${className || ''}`}
         title={name}
+        $color={color}
         ref={ref}
         {...rest}
       >

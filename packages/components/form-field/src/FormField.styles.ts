@@ -20,12 +20,16 @@ export const FormFieldWrapper = styled.div<{ hasContent?: boolean }>`
 
 export const ErrorText = styled(BaseErrorText)`
   margin: 0;
+  color: var(--ds-form-error-text-color);
 `;
 
-export const Description = styled(BaseDescription)``;
+export const Description = styled(BaseDescription)`
+  color: var(--ds-form-description-text-color);
+`;
 
 export const FormFieldLabelWrapper = styled(Label)`
   ${macro.heading};
+  color: var(--ds-form-label-text-color);
   height: 17px;
   display: flex;
   align-items: center;
@@ -38,7 +42,7 @@ export const FormFieldLabelWrapper = styled(Label)`
 
 export const IconWrapper = styled.span`
   display: inline-block;
-  color: ${(props): string => props.theme.palette['grey-400']};
+  color: var(--ds-form-label-icon-color);
   margin-top: -1px;
 `;
 
@@ -60,5 +64,5 @@ export const RightSide = styled.div`
   font-weight: 500;
   flex: 1 0 auto;
   text-align: end;
-  color: ${(props) => props.theme.palette['grey-500']};
+  color: var(--ds-form-field-text-counter);
 `;

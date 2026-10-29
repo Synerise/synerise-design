@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-import type { ThemeProps } from '@synerise/ds-core';
 import { IconContainer } from '@synerise/ds-icon';
 import { macro } from '@synerise/ds-typography';
 
@@ -8,7 +7,7 @@ export const TabLabel = styled.span`
   ${macro.h300}
   line-height: 20px;
   white-space: nowrap;
-  color: ${({ theme }): string => theme.palette['grey-700']};
+  color: var(--ds-tabs-item-text-default);
 `;
 export const BlockContentWrapper = styled.div<{ block?: boolean }>`
   ${(props): string =>
@@ -33,7 +32,7 @@ export const TabContent = styled.div`
   overflow: hidden;
   text-overflow: ellipsis;
 `;
-const applyBlockStyles = (props: ThemeProps): string => `
+const applyBlockStyles = (): string => `
   margin-right: 0;
   flex: 1;
   ${TabContent} {
@@ -41,18 +40,18 @@ const applyBlockStyles = (props: ThemeProps): string => `
     border-right: 5px solid transparent;
   }
   &: after {
-    background-color:${props.theme.palette['grey-200']};
+    background-color: var(--ds-color-border-base-default);
     height:1px;
   }
   &: hover {
     &::after {
-      background-color:${props.theme.palette['grey-300']};
+      background-color: var(--ds-color-border-base-strong);
       height: 1px;
     }
   }
   &:focus:active:not(:hover) {
   &::after {
-      background-color:${props.theme.palette['blue-600']};
+      background-color: var(--ds-color-border-brand-default);
       background-image:none;
       height: 1px;
     }
@@ -84,9 +83,11 @@ export const TabContainer = styled.button<{ block?: boolean }>`
   outline: 0;
   padding: 0;
   pointer-events: ${({ disabled }): string => (disabled ? 'none' : 'all')};
-  opacity: ${({ disabled }): string => (disabled ? '0.4' : '1')};
+  opacity: ${({ disabled }): string =>
+    disabled ? 'var(--ds-opacity-disabled)' : '1'};
   ${IconContainer} {
     margin-right: 4px;
+    color: var(--ds-color-icon-base-default);
   }
 
   &::after {
@@ -104,42 +105,35 @@ export const TabContainer = styled.button<{ block?: boolean }>`
 
   &:hover {
     ${TabLabel} {
-      color: ${({ theme }): string => theme.palette['grey-800']};
+      color: var(--ds-tabs-item-text-hover);
     }
     &:focus:active {
       ${TabLabel} {
-        color: ${({ theme }): string => theme.palette['blue-700']};
+        color: var(--ds-color-text-brand-defaulthover);
       }
     }
-    svg {
-      color: ${({ theme }): string => theme.palette['grey-800']};
-      fill: ${({ theme }): string => theme.palette['grey-800']};
+    ${IconContainer} {
+      color: var(--ds-tabs-item-text-hover);
     }
     &::after {
       height: 0;
     }
   }
 
-  svg {
-    color: ${({ theme }): string => theme.palette['grey-600']};
-    fill: ${({ theme }): string => theme.palette['grey-600']};
-  }
-
   &:focus {
+    /* Chosen by role, not by value; see docs/design-token-visual-shifts.md. */
     ${TabLabel} {
-      color: ${({ theme }): string => theme.palette['blue-500']};
+      color: var(--ds-color-focus-base-default);
     }
-    svg {
-      color: ${({ theme }): string => theme.palette['blue-500']};
-      fill: ${({ theme }): string => theme.palette['blue-500']};
+    ${IconContainer} {
+      color: var(--ds-color-focus-base-default);
     }
     &:active {
       ${TabLabel} {
-        color: ${({ theme }): string => theme.palette['blue-600']};
+        color: var(--ds-tabs-item-text-active);
       }
-      svg {
-        color: ${({ theme }): string => theme.palette['blue-600']};
-        fill: ${({ theme }): string => theme.palette['blue-600']};
+      ${IconContainer} {
+        color: var(--ds-tabs-item-text-active);
       }
     }
     &::after {
@@ -147,8 +141,8 @@ export const TabContainer = styled.button<{ block?: boolean }>`
       background-color: transparent;
       background-image: linear-gradient(
         to right,
-        ${({ theme }): string => theme.palette.white} 66%,
-        ${({ theme }): string => theme.palette['blue-600']} 34%
+        var(--ds-color-background-base-default) 66%,
+        var(--ds-color-border-brand-default) 34%
       );
       background-position: top;
       background-size: 5px 1px;
@@ -157,23 +151,22 @@ export const TabContainer = styled.button<{ block?: boolean }>`
   }
 
   ${TabLabel} {
-    color: ${({ theme }): string => theme.palette['grey-700']};
+    color: var(--ds-tabs-item-text-default);
   }
 
   &.active {
-    svg {
-      color: ${({ theme }): string => theme.palette['blue-600']};
-      fill: ${({ theme }): string => theme.palette['blue-600']};
+    ${IconContainer} {
+      color: var(--ds-tabs-item-text-active);
     }
 
     ${TabLabel} {
-      color: ${({ theme }): string => theme.palette['blue-600']};
+      color: var(--ds-tabs-item-text-active);
     }
 
     && {
       &.underscore::after {
         height: 1px;
-        background-color: ${({ theme }): string => theme.palette['blue-600']};
+        background-color: var(--ds-tabs-item-border-active-color);
         background-image: none;
       }
     }
@@ -184,13 +177,12 @@ export const TabContainer = styled.button<{ block?: boolean }>`
   }
 
   &.pressed {
-    svg {
-      color: ${({ theme }): string => theme.palette['blue-700']};
-      fill: ${({ theme }): string => theme.palette['blue-700']};
+    ${IconContainer} {
+      color: var(--ds-color-text-brand-defaulthover);
     }
 
     ${TabLabel} {
-      color: ${({ theme }): string => theme.palette['blue-700']};
+      color: var(--ds-color-text-brand-defaulthover);
     }
     && {
       &::after {
@@ -202,7 +194,7 @@ export const TabContainer = styled.button<{ block?: boolean }>`
       background-image: none;
     }
   }
-  ${(props): string | false => !!props.block && applyBlockStyles(props)}
+  ${(props): string | false => !!props.block && applyBlockStyles()}
 `;
 
 export const SuffixWrapper = styled.div``;

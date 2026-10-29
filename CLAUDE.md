@@ -37,6 +37,8 @@
 - Test config lives **only** in the `test` block of the root `vite.config.base.ts`. Per-package
   `vitest.*.config.*` files are rejected by `pnpm check:no-package-test-config` in CI — they replace the
   base `test`/`resolve` blocks instead of merging, silently dropping `setupFiles` and the source resolution
+- `pnpm check:token-references` (after `pnpm build`, and in the CI build job) fails when a `var(--ds-*)` or `theme.tokens['--ds-*']` in component or Storybook source names a custom property missing from either theme, unless the file — or its own package, or a workspace package it depends on — declares it. jsdom cannot resolve `var()`, so a spec that only checks a token string appears in the CSS cannot catch a typo; this does. Its parsing and resolution rules live in `scripts/token-references.mjs`, specced by `pnpm test:scripts` (Vitest over `scripts/**/__specs__`, chained into `pnpm test:ci`)
+- Specs assert behaviour, not token data: never compare against a resolved token value, and never assert that two themes' values differ — stub `@synerise/ds-tokens/light`/`dark` with marker maps instead. A spec that only restates which token a static style uses duplicates Chromatic; keep token assertions for choices (state, type mapping, fallback, override)
 - Specs resolve `@synerise/*` imports from the sibling package's **`src/`**, not its built `dist/`, so a
   cross-package change is visible without rebuilding the dependency (`dsTestSourceRedirectPlugin`)
 - Prerequisite: the generated sources (`pnpm run generate` — core theme variables, icon/flag/avatar SVGR

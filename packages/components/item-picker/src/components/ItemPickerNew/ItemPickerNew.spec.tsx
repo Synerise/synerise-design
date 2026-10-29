@@ -54,7 +54,7 @@ const CHANGE_BUTTON_LABEL = 'Change';
 const CLEAR_TEST_ID = 'ds-icon-close-3-s';
 const ANGLE_DOWN_TEST_ID = 'angle-icon';
 const PREFIXEL_TEST_ID = 'value-prefixel';
-const DELETED_VALUE_COLOR = 'rgb(245, 41, 34)';
+const DELETED_VALUE_COLOR = 'var(--ds-form-error-text-color)';
 
 
 const SHARED_PROPS = {

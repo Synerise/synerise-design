@@ -1,3 +1,4 @@
+export * from './customColor';
 export { default as doubleClickListener } from './doubleClickListener/doubleClickListener';
 export { default as focusWithArrowKeys } from './focusWithArrowKeys/focusWithArrowKeys';
 export { generateUuid } from './generateUuid/generateUuid';

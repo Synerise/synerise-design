@@ -4,7 +4,7 @@ import { Wrapper as ListItemWrapper } from '@synerise/ds-list-item/dist/componen
 
 export const Wrapper = styled.div`
   overflow: hidden;
-  background: ${(props) => props.theme.palette.white};
+  background: var(--ds-dropdown-bg);
   ${ListItemWrapper} {
     min-width: 0;
   }

@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-import { useTheme } from '@synerise/ds-core';
 import Icon, { Add3M, SearchM } from '@synerise/ds-icon';
 import Result from '@synerise/ds-result';
 import SearchBar from '@synerise/ds-search-bar';
@@ -41,7 +40,6 @@ export const AddTags = ({
   onCreate,
   addButtonType,
 }: AddTagsProps) => {
-  const theme = useTheme();
   const searchRef = useRef<HTMLInputElement | null>(null);
 
   const [searchQuery, setSearchQuery] = useState('');
@@ -125,11 +123,7 @@ export const AddTags = ({
               onClick={onCreateNewTag}
               marginless={!isSeparated}
             >
-              <Icon
-                component={<Add3M />}
-                size={24}
-                color={theme.palette['grey-500']}
-              />
+              <Icon component={<Add3M />} size={24} />
               <span>{texts.createTagButtonLabel}</span>
               <strong>{searchQuery}</strong>
             </S.CreateTagDropdownButton>
@@ -150,9 +144,7 @@ export const AddTags = ({
           value={searchQuery}
           onSearchChange={setSearchQuery}
           placeholder={texts.searchPlaceholder || ''}
-          iconLeft={
-            <Icon component={<SearchM />} color={theme.palette['grey-600']} />
-          }
+          iconLeft={<Icon component={<SearchM />} />}
           onClearInput={() => setSearchQuery('')}
           clearTooltip={texts.clearTooltip}
         />
@@ -166,11 +158,7 @@ export const AddTags = ({
           (texts?.addButtonLabel ? 'icon-label' : 'single-icon')
         }
       >
-        <Icon
-          component={<Add3M />}
-          size={24}
-          color={theme.palette['grey-500']}
-        />
+        <Icon component={<Add3M />} size={24} />
         {addButtonType !== 'single-icon' && texts.addButtonLabel}
       </S.AddTagButton>
     </TagsDropdown>

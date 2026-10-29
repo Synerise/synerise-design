@@ -1,12 +1,9 @@
 import styled, { css } from 'styled-components';
 
-const checkSvgWithCustomColor = (color: string): string => {
-  const colorValueForSvg = color.replace(/#/, '%23');
-  // NB: SVG attributes must stay double-quoted. This data URI is interpolated into a css``
-  // url('...'), so a single-quoted attribute would terminate the url() early and the tick
-  // would silently disappear.
-  return `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="3 3 18 18" >/><path fill="none" d="M0 0h24v24H0z" /><path style="fill: ${colorValueForSvg};" stroke-width="1" stroke="${colorValueForSvg}" d="M10.61 15.744a.75.75 0 01-.535-.224l-3.11-3.162a.75.75 0 011.07-1.052l2.575 2.618 5.355-5.444a.75.75 0 111.07 1.052l-5.89 5.988a.75.75 0 01-.535.224z"/></svg>`;
-};
+import {
+  Description as BaseDescription,
+  ErrorText as BaseErrorText,
+} from '@synerise/ds-typography';
 
 const soloCss = css`
   padding: 4px;
@@ -20,6 +17,14 @@ export const CheckboxWrapper = styled.div<{ withoutPadding: boolean }>`
 
 export const AdditionalData = styled.div`
   margin: 2px 12px 0px 28px;
+`;
+
+export const ErrorText = styled(BaseErrorText)`
+  color: var(--ds-form-error-text-color);
+`;
+
+export const Description = styled(BaseDescription)`
+  color: var(--ds-form-description-text-color);
 `;
 
 /*
@@ -42,6 +47,20 @@ export const CheckboxInput = styled.input`
   z-index: 1;
 `;
 
+export const CheckIcon = styled.svg`
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+
+  path {
+    fill: currentColor;
+    stroke: currentColor;
+  }
+`;
+
 export const CheckboxInner = styled.span<{
   $checked?: boolean;
   $indeterminate?: boolean;
@@ -53,31 +72,33 @@ export const CheckboxInner = styled.span<{
   width: 16px;
   height: 16px;
   box-sizing: border-box;
-  background-color: ${(props) => props.theme.palette.white};
-  border: 1px solid ${(props) => props.theme.palette['grey-300']};
+  background-color: var(--ds-form-control-bg-default);
+  border: 1px solid var(--ds-form-control-border-default);
   border-radius: 3px;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
 
-  /* checked — white tick on a blue box */
+  /* checked — tick shown; colour flows to the SVG via currentColor */
   ${(props) =>
     props.$checked &&
     css`
-      background-color: ${props.theme.palette['blue-600']};
-      border-color: ${props.theme.palette['blue-600']};
-      background-image: url('${checkSvgWithCustomColor(
-        props.theme.palette.white,
-      )}');
+      background-color: var(--ds-form-control-bg-selected);
+      border-color: var(--ds-form-control-bg-selected);
+      color: var(--ds-form-control-icon-selected);
+
+      ${CheckIcon} {
+        opacity: 1;
+      }
     `}
 
-  /* indeterminate — white horizontal bar */
+  /* indeterminate — horizontal bar */
   ${(props) =>
     props.$indeterminate &&
     css`
-      background-color: ${props.theme.palette['blue-600']};
-      border-color: ${props.theme.palette['blue-600']};
-      background-image: none;
+      background-color: var(--ds-form-control-bg-selected);
+      border-color: var(--ds-form-control-bg-selected);
+
+      ${CheckIcon} {
+        opacity: 0;
+      }
 
       &::after {
         content: '';
@@ -86,7 +107,7 @@ export const CheckboxInner = styled.span<{
         left: 50%;
         width: 8px;
         height: 2px;
-        background: ${props.theme.palette.white};
+        background: var(--ds-form-control-icon-selected);
         border-radius: 2px;
         transform: translate(-50%, -50%);
       }
@@ -96,49 +117,36 @@ export const CheckboxInner = styled.span<{
   ${(props) =>
     props.$error &&
     css`
-      border-color: ${props.theme.palette['red-600']};
+      border-color: var(--ds-form-control-border-error);
       border-width: 2px;
     `}
   ${(props) =>
     props.$error &&
     props.$checked &&
     css`
-      border-color: ${props.theme.palette['blue-600']};
+      border-color: var(--ds-form-control-bg-selected);
     `}
 
-  /* disabled */
   ${(props) =>
     props.$disabled &&
     css`
-      border-color: ${props.theme.palette['grey-200']} !important;
-      background-color: ${props.theme.palette['grey-050']} !important;
-      ${
-        props.$checked &&
-        `background-image: url('${checkSvgWithCustomColor(
-          props.theme.palette['grey-400'],
-        )}');`
-      }
+      opacity: var(--ds-opacity-disabled);
     `}
 `;
 
 export const CheckboxText = styled.span<{
-  $checked?: boolean;
   $disabled?: boolean;
 }>`
   margin: 0;
   padding-left: 12px;
   font-size: 14px;
   font-weight: 500;
-  color: ${(props) =>
-    props.$checked
-      ? props.theme.palette['grey-800']
-      : props.theme.palette['grey-700']};
+  color: var(--ds-form-label-text-color);
 
   ${(props) =>
     props.$disabled &&
     css`
-      color: ${props.theme.palette['grey-600']};
-      opacity: 0.4;
+      opacity: var(--ds-opacity-disabled);
     `}
 `;
 
@@ -164,21 +172,13 @@ export const CheckboxLabel = styled.label<{
   cursor: pointer;
   ${(props) => props.$solo && soloCss};
 
-  &:hover ${CheckboxText} {
-    color: ${(props) => props.theme.palette['grey-800']};
-  }
-
-  /* hover preview of the tick on an unchecked, enabled box */
   ${(props) =>
     !props.$checked &&
     !props.$indeterminate &&
     !props.$disabled &&
     css`
       &:hover ${CheckboxInner} {
-        border-color: ${props.theme.palette['blue-600']};
-        background-image: url('${checkSvgWithCustomColor(
-          props.theme.palette['blue-600'],
-        )}');
+        border-color: var(--ds-form-control-border-hover);
       }
     `}
 
@@ -187,20 +187,20 @@ export const CheckboxLabel = styled.label<{
     props.$indeterminate &&
     css`
       &:hover ${CheckboxInner} {
-        background-color: ${props.theme.palette['blue-500']};
+        background-color: var(--ds-color-background-brand-solidhover);
       }
     `}
 
   /* keyboard focus ring */
   ${CheckboxInput}:focus + ${CheckboxInner} {
-    border-color: ${(props) => props.theme.palette['blue-600']};
-    box-shadow: inset 0 0 0 1px ${(props) => props.theme.palette['blue-600']};
+    border-color: var(--ds-form-control-border-focus);
+    box-shadow: inset 0 0 0 1px var(--ds-form-control-border-focus);
   }
   ${(props) =>
     props.$error &&
     css`
       ${CheckboxInput}:focus + ${CheckboxInner} {
-        box-shadow: 0 0 0 1px ${props.theme.palette['red-600']};
+        box-shadow: 0 0 0 1px var(--ds-form-control-border-error);
       }
     `}
 

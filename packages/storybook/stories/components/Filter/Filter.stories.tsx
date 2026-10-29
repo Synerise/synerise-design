@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { fn } from 'storybook/test';
 
 import ContextSelector from '@synerise/ds-context-selector';
-import { theme } from '@synerise/ds-core';
 import Filter from '@synerise/ds-filter';
 import Layout from '@synerise/ds-layout';
 
@@ -104,7 +103,7 @@ export default {
           position: 'absolute',
           top: '0',
           left: '0',
-          backgroundColor: theme.palette['grey-050'],
+          backgroundColor: 'var(--ds-color-background-base-subtle)',
         }}
       >
         <Layout nativeScroll={layoutNativeScroll} mainSidebarWithDnd>

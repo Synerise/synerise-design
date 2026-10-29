@@ -1,0 +1,60 @@
+{
+  "name": "@synerise/ds-tokens",
+  "version": "2.0.0",
+  "description": "Design tokens for Synerise Design System — generated from Token Studio",
+  "type": "module",
+  "sideEffects": [
+    "*.css"
+  ],
+  "files": [
+    "dist"
+  ],
+  "main": "dist/js/index.js",
+  "types": "dist/js/index.d.ts",
+  "typesVersions": {
+    "*": {
+      "light": ["dist/js/light.d.ts"],
+      "dark": ["dist/js/dark.d.ts"],
+      "names": ["dist/js/names.d.ts"]
+    }
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/js/index.d.ts",
+      "import": "./dist/js/index.js",
+      "default": "./dist/js/index.js"
+    },
+    "./light": {
+      "types": "./dist/js/light.d.ts",
+      "import": "./dist/js/light.js",
+      "default": "./dist/js/light.js"
+    },
+    "./dark": {
+      "types": "./dist/js/dark.d.ts",
+      "import": "./dist/js/dark.js",
+      "default": "./dist/js/dark.js"
+    },
+    "./names": {
+      "types": "./dist/js/names.d.ts",
+      "import": "./dist/js/names.js",
+      "default": "./dist/js/names.js"
+    },
+    "./css/light.css": "./dist/css/light.css",
+    "./css/dark.css": "./dist/css/dark.css"
+  },
+  "scripts": {
+    "build": "node config/build-tokens.mjs",
+    "test": "vitest run",
+    "pack:ci": "pnpm pack --pack-destination ../storybook/storybook-static/static",
+    "sync": "bash scripts/sync-tokens.sh"
+  },
+  "devDependencies": {
+    "style-dictionary": "^4.3.0",
+    "@tokens-studio/sd-transforms": "^1.3.0",
+    "vitest": "^4"
+  },
+  "license": "ISC",
+  "publishConfig": {
+    "access": "public"
+  }
+}

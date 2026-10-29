@@ -1,44 +1,19 @@
 import type { ReactNode } from 'react';
 import styled, { type Keyframes, keyframes } from 'styled-components';
 
-import type { ThemeProps } from '@synerise/ds-core';
 import { UnorderedList } from '@synerise/ds-unordered-list/dist/Unordered-list.styles';
 
 import type { ToastType } from './Toast.types';
 
-const getIconColorForType = ({
-  toastType,
-  theme,
-}: ThemeProps & { toastType: ToastType }): string => {
-  switch (toastType) {
-    case 'informative':
-      return theme.palette['grey-600'];
-    case 'negative':
-      return theme.palette['red-500'];
-    case 'warning':
-      return theme.palette['yellow-600'];
-    case 'success':
-    default:
-      return theme.palette['green-600'];
-  }
+const TYPE_TO_TOKEN_VARIANT: Record<ToastType, string> = {
+  success: 'success',
+  warning: 'warning',
+  negative: 'error',
+  informative: 'informative',
 };
 
-const getBackgroundColorForType = ({
-  toastType,
-  theme,
-}: ThemeProps & { toastType: ToastType }): string => {
-  switch (toastType) {
-    case 'informative':
-      return theme.palette['grey-600'];
-    case 'negative':
-      return theme.palette['red-500'];
-    case 'warning':
-      return theme.palette['yellow-600'];
-    case 'success':
-    default:
-      return theme.palette['green-600'];
-  }
-};
+const toastToken = (type: ToastType, property: string): string =>
+  `var(--ds-toast-variant-${TYPE_TO_TOKEN_VARIANT[type]}-${property})`;
 
 const getWidth = (hasClose?: boolean, hasExpander?: boolean) => {
   if (hasClose && hasExpander) {
@@ -129,8 +104,8 @@ export const NumberWrapper = styled.div`
   &:hover {
     background-image: linear-gradient(
       to right,
-      ${(props) => props.theme.palette['grey-400']} 20%,
-      rgba(255, 255, 255, 0) 10%
+      var(--ds-color-text-base-disabled) 20%,
+      transparent 10%
     );
     background-color: transparent;
     background-position: bottom left;
@@ -153,10 +128,7 @@ export const IconOrderWrapper = styled.div`
   visibility: hidden;
   margin: -4px 0;
   &:hover {
-    svg {
-      fill: ${(props) => props.theme.palette['blue-600']};
-      cursor: pointer;
-    }
+    cursor: pointer;
   }
 `;
 export const OrderWrapper = styled.div`
@@ -175,7 +147,7 @@ export const OrderWrapper = styled.div`
   }
 `;
 export const Wrapper = styled.div`
-  color: ${(props) => props.theme.palette['grey-600']};
+  color: var(--ds-color-text-base-muted);
 `;
 
 export const WrapperSectionMessage = styled.div`
@@ -199,6 +171,7 @@ export const AlertMessage = styled.div<{
   overflow-wrap: break-word;
   text-overflow: ellipsis;
   padding-right: ${(props) => getWidth(props.hasClose, props.hasExpander)};
+  color: var(--ds-message-text-title);
 `;
 export const AlertDescription = styled.div<{
   button?: boolean;
@@ -213,6 +186,7 @@ export const AlertDescription = styled.div<{
   padding-bottom: ${(props) =>
     props.button || props.expandedContent ? '16px' : '0'};
   margin-top: 2px;
+  color: var(--ds-message-text-description);
 `;
 
 export const Container = styled.div<{
@@ -223,39 +197,31 @@ export const Container = styled.div<{
   max-width: 500px;
   align-items: flex-start;
   justify-content: center;
-  border-top: solid 2px ${getBackgroundColorForType};
-  background-color: ${(props) => props.theme.palette.white};
+  border-top: solid 2px ${(props) => toastToken(props.toastType, 'border')};
+  background-color: ${(props) => toastToken(props.toastType, 'bg')};
   border-radius: 4px;
-  box-shadow: 0 16px 32px 0 rgba(35, 41, 54, 0.12);
+  box-shadow: var(--ds-toast-shadow);
 
   ${IconExpanderWrapper},
-  ${IconOrderWrapper},
   ${IconCloseWrapper} {
-    svg {
-      fill: ${(props) => props.theme.palette['grey-600']};
-    }
+    color: var(--ds-color-icon-base-default);
   }
   ${OrderWrapper},
-  ${AlertMessage},
   ${ListWrapper},
-  ${NumberWrapper}:hover,
-  ${AlertDescription} {
-    color: ${(props) => props.theme.palette['grey-600']};
+  ${NumberWrapper}:hover {
+    color: var(--ds-color-text-base-muted);
   }
   ${OrderWrapper}:hover {
     ${NumberWrapper} {
       background-image: linear-gradient(
         to right,
-        ${(props) => props.theme.palette['grey-600']}; 20%,
-        rgba(255, 255, 255, 0) 10%
+        var(--ds-color-text-base-muted) 20%,
+        transparent 10%
       );
-      color: ${(props) => props.theme.palette['grey-600']};
+      color: var(--ds-color-text-base-muted);
     }
   }
   ${IconWrapper} {
-    svg {
-      color: ${getIconColorForType};
-      fill: ${getIconColorForType};
-    }
+    color: ${(props) => toastToken(props.toastType, 'icon')};
   }
 `;

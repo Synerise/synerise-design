@@ -20,9 +20,9 @@ export const Th = styled.th<{
   ${commonPinnedStyles};
   height: 64px;
   text-align: ${(props) => props.$align ?? 'left'};
-  background-color: ${(props) => props.theme.palette['white']};
-  border-bottom: solid 1px ${(props) => props.theme.palette['grey-300']};
-  color: ${(props) => props.theme.palette['grey-700']};
+  background-color: var(--ds-color-background-base-default);
+  border-bottom: solid 1px var(--ds-color-border-base-strong);
+  color: var(--ds-color-text-base-subtle);
 
   ${(props) =>
     props.headerIndex !== undefined &&
@@ -35,9 +35,9 @@ export const Th = styled.th<{
         opacity: 0;
       }
       &:hover {
-        background-color: ${props.theme.palette['grey-050']};
-        border-bottom: solid 1px ${props.theme.palette['grey-400']};
-        box-shadow: inset 0 -1px 0 ${props.theme.palette['grey-400']};
+        background-color: var(--ds-color-background-base-subtle);
+        border-bottom: solid 1px var(--ds-color-border-base-stronghover);
+        box-shadow: inset 0 -1px 0 var(--ds-color-border-base-stronghover);
         ${ToggleButton} {
           opacity: 1;
         }
@@ -51,14 +51,14 @@ export const Th = styled.th<{
           ${ToggleButton} {
             opacity: 1;
           }
-          background-color: ${props.theme.palette['blue-050']};
-          border-bottom: solid 1px ${props.theme.palette['blue-400']};
-          box-shadow: inset 0 -1px 0 ${props.theme.palette['blue-400']};
+          background-color: var(--ds-color-background-brand-subtle);
+          border-bottom: solid 1px var(--ds-color-border-brand-strong);
+          box-shadow: inset 0 -1px 0 var(--ds-color-border-brand-strong);
         }
         &:hover {
-          background-color: ${props.theme.palette['blue-100']};
-          border-bottom: solid 1px ${props.theme.palette['blue-600']};
-          box-shadow: inset 0 -1px 0 ${props.theme.palette['blue-600']};
+          background-color: var(--ds-color-background-brand-subtlehover);
+          border-bottom: solid 1px var(--ds-color-border-brand-default);
+          box-shadow: inset 0 -1px 0 var(--ds-color-border-brand-default);
         }
       `}
   }

@@ -7,6 +7,7 @@ const TEST_ID = 'badge';
 const COUNT = 3;
 const OVERFLOW_COUNT = 99;
 const LOW_OVERFLOW_COUNT = 2;
+const NO_FILL = 'rgba(0, 0, 0, 0)';
 
 describe('Badge', () => {
   it('should render a standalone count badge', () => {
@@ -72,9 +73,121 @@ describe('Badge', () => {
     );
 
     // ASSERT
-    expect(container.querySelector('.ds-badge-count')).toHaveStyle(
-      'box-shadow: 0 0 0 1px #ffffff;'
+    const count = container.querySelector('.ds-badge-count') as Element;
+    expect(window.getComputedStyle(count).boxShadow).toMatch(
+      /^0 0 0 1px var\(--ds-[\w-]+\)$/
     );
+  });
+
+  it('should render the count badge without an outline by default', () => {
+    // ARRANGE
+    const { container } = renderWithProvider(
+      <Badge count={4} offset={[0, 0]} overflowCount={OVERFLOW_COUNT} />
+    );
+
+    // ASSERT
+    expect(container.querySelector('.ds-badge-count')).toHaveStyle(
+      'box-shadow: none'
+    );
+  });
+
+  it('should render the solid-ring variant like the deprecated outlined prop', () => {
+    // ARRANGE
+    const { container } = renderWithProvider(
+      <>
+        <Badge count={COUNT} variant="solid-ring" />
+        <Badge count={COUNT} outlined />
+      </>
+    );
+    const [ring, outlined] = Array.from(
+      container.querySelectorAll('.ds-badge-count')
+    );
+
+    // ASSERT
+    expect(window.getComputedStyle(ring).boxShadow).toBe(
+      window.getComputedStyle(outlined).boxShadow
+    );
+    expect(window.getComputedStyle(ring).boxShadow).toMatch(
+      /^0 0 0 1px var\(--ds-[\w-]+\)$/
+    );
+  });
+
+  describe('outline variant', () => {
+    const getCount = (container: HTMLElement) =>
+      container.querySelector('.ds-badge-count') as Element;
+
+    it.each([
+      ['active', 'success'],
+      ['inactive', 'neutral'],
+      ['blocked', 'error'],
+      ['processing', 'info'],
+      ['warning', 'warning'],
+    ] as const)(
+      'should draw a %s count with the %s border and text tokens and no fill',
+      (status, tokenVariant) => {
+        // ARRANGE
+        const { container } = renderWithProvider(
+          <Badge count={COUNT} status={status} variant="outline" />
+        );
+        const style = window.getComputedStyle(getCount(container));
+
+        // ASSERT
+        expect(style.backgroundColor).toBe(NO_FILL);
+        expect(style.color).toBe(`var(--ds-badge-variant-${tokenVariant}-text)`);
+        expect(style.boxShadow).toBe(
+          `inset 0 0 0 1px var(--ds-badge-variant-${tokenVariant}-border)`
+        );
+      }
+    );
+
+    it('should fall back to the error tokens without a status', () => {
+      // ARRANGE
+      const { container } = renderWithProvider(
+        <Badge count={COUNT} variant="outline" />
+      );
+      const style = window.getComputedStyle(getCount(container));
+
+      // ASSERT
+      expect(style.color).toBe('var(--ds-badge-variant-error-text)');
+      expect(style.boxShadow).toBe(
+        'inset 0 0 0 1px var(--ds-badge-variant-error-border)'
+      );
+    });
+
+    it('should draw the border and text in a raw customColor', () => {
+      // ARRANGE
+      const { container } = renderWithProvider(
+        <Badge count={COUNT} status="active" customColor="#ff0000" variant="outline" />
+      );
+      const count = getCount(container);
+
+      // ASSERT
+      expect(count).toHaveStyle('color: #ff0000');
+      expect(count).toHaveStyle(`background-color: ${NO_FILL}`);
+      expect(window.getComputedStyle(count).boxShadow).toBe('inset 0 0 0 1px #ff0000');
+    });
+
+    it('should resolve a palette customColor for the border and text', () => {
+      // ARRANGE
+      const { container } = renderWithProvider(
+        <Badge count={COUNT} customColor="blue" variant="outline" />
+      );
+      const style = window.getComputedStyle(getCount(container));
+
+      // ASSERT
+      expect(style.color).toBe('var(--ds-color-custom-blue-600)');
+      expect(style.boxShadow).toBe('inset 0 0 0 1px var(--ds-color-custom-blue-600)');
+    });
+
+    it('should take precedence over the deprecated outlined prop', () => {
+      // ARRANGE
+      const { container } = renderWithProvider(
+        <Badge count={COUNT} variant="outline" outlined />
+      );
+
+      // ASSERT
+      expect(window.getComputedStyle(getCount(container)).boxShadow).toMatch(/^inset /);
+    });
   });
 
   it('should hide the count when it is zero', () => {

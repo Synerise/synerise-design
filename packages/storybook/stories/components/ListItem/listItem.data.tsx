@@ -1,13 +1,12 @@
 import { faker } from '@faker-js/faker';
 import React, { ChangeEvent, useRef, useState } from 'react';
 
-import Avatar from '@synerise/ds-avatar';
+import Avatar, { ObjectAvatar } from '@synerise/ds-avatar';
 import Badge from '@synerise/ds-badge';
 import Checkbox, {
   CheckboxBaseProps,
   type CheckboxTristateChangeEvent,
 } from '@synerise/ds-checkbox';
-import { theme } from '@synerise/ds-core';
 import Dropdown from '@synerise/ds-dropdown';
 import DSFlag from '@synerise/ds-flag';
 import { FormFieldLabel } from '@synerise/ds-form-field';
@@ -32,6 +31,7 @@ import ListItem, {
   ListWrapper,
 } from '@synerise/ds-list-item';
 import { RawSwitch } from '@synerise/ds-switch';
+import { customColors } from '@synerise/ds-tokens/names';
 import Tooltip from '@synerise/ds-tooltip';
 import { useOnClickOutside } from '@synerise/ds-utils';
 
@@ -123,7 +123,6 @@ const ActionsMenu = ({ onSelectClick }) => {
     >
       <S.HoverableIconWrapper>
         <Icon
-          color={theme.palette['grey-400']}
           onClick={(e): void => {
             e.stopPropagation();
             setDropdownVisible(!dropdownVisible);
@@ -165,7 +164,6 @@ const Rename = ({ onSelectEdit }) => {
             onSelectEdit();
             e.stopPropagation();
           }}
-          color={theme.palette['grey-600']}
           component={<EditS />}
         />
       </S.HoverableIconWrapper>
@@ -177,8 +175,8 @@ export const StarWithTooltip = () => {
   const [checked, setChecked] = useState(false);
   const iconComponent = checked ? <StarFillM /> : <StarM />;
   const iconColor = checked
-    ? theme.palette['yellow-600']
-    : theme.palette['grey-600'];
+    ? customColors.yellow['600']
+    : 'var(--ds-color-icon-base-default)';
   const handleClick = () => {
     setChecked(!checked);
   };
@@ -206,14 +204,16 @@ const RenameWithDelete = ({ onClickEdit }) => {
               onClickEdit();
               e.stopPropagation();
             }}
-            color={theme.palette['grey-600']}
             component={<EditS />}
           />
         </S.HoverableIconWrapper>
       </Tooltip>
       <Tooltip type="default" trigger="hover" title={'Delete'}>
         <div>
-          <Icon color={theme.palette['red-600']} component={<CloseS />} />
+          <Icon
+            color={'var(--ds-color-icon-danger-default)'}
+            component={<CloseS />}
+          />
         </div>
       </Tooltip>
     </>
@@ -249,24 +249,20 @@ export const renderPrefix = (
     case prefixType.twoIcons:
       return (
         <>
-          <Tooltip type="default" title={'Delete'}>
+          <Tooltip type="default" title={'Tooltip 1'}>
             <div>
-              <Icon color={theme.palette['grey-700']} component={<FolderM />} />
+              <Icon component={<FolderM />} />
             </div>
           </Tooltip>
-          <Tooltip type="default" title={'Delete'}>
+          <Tooltip type="default" title={'Tooltip 2'}>
             <div>
-              <Icon
-                color={theme.palette['grey-700']}
-                style={{ marginLeft: '8px' }}
-                component={<ShowM />}
-              />
+              <Icon style={{ marginLeft: '8px' }} component={<ShowM />} />
             </div>
           </Tooltip>
         </>
       );
     case prefixType.singleIcon:
-      return <Icon color={theme.palette['grey-700']} component={<ShowM />} />;
+      return <Icon component={<ShowM />} />;
     case prefixType.avatar:
       return (
         <Badge status="active">
@@ -298,23 +294,31 @@ export function renderSuffix(
       return (
         <Tooltip type="default" title={'Delete'}>
           <div>
-            <Icon color={theme.palette['red-600']} component={<CloseS />} />
+            <Icon
+              color={'var(--ds-color-icon-danger-default)'}
+              component={<CloseS />}
+            />
           </div>
         </Tooltip>
       );
     case suffixType.check:
-      return <Icon color={theme.palette['green-600']} component={<CheckS />} />;
+      return (
+        <Icon
+          color={'var(--ds-color-icon-success-default)'}
+          component={<CheckS />}
+        />
+      );
     case suffixType.warning:
       return (
         <Icon
-          color={theme.palette['orange-600']}
+          color={'var(--ds-color-icon-warning-default)'}
           component={<WarningFillS />}
         />
       );
     case suffixType.icon:
       return (
         <S.HoverableIconWrapper className="icon-suffix">
-          <Icon color={theme.palette['grey-600']} component={<UserS />} />
+          <Icon component={<UserS />} />
         </S.HoverableIconWrapper>
       );
     case suffixType.label:
@@ -322,7 +326,10 @@ export function renderSuffix(
         <FormFieldLabel
           label={
             <div
-              style={{ color: theme.palette['grey-400'], lineHeight: '18px' }}
+              style={{
+                color: 'var(--ds-color-text-base-disabled)',
+                lineHeight: '18px',
+              }}
             >
               <span>Text</span>
             </div>
@@ -338,7 +345,7 @@ export function renderSuffix(
                 style={{
                   lineHeight: '18px',
                   marginRight: '4px',
-                  color: theme.palette['blue-600'],
+                  color: 'var(--ds-color-text-brand-default)',
                 }}
               >
                 <span>select</span>
@@ -387,6 +394,10 @@ export const LIST_ITEMS: ListItemProps[] = [
   makeItem({ text: 'Icon', prefixType: 'singleIcon' }),
   makeItem({ text: 'Two icons', prefixType: 'twoIcons' }),
   makeItem({ text: 'Avatar', prefixType: 'avatar' }),
+  makeItem({
+    text: 'Object avatar',
+    prefixel: <ObjectAvatar size="small" tooltip={false} />,
+  }),
   makeItem({ text: 'Checkbox', prefixType: 'checkbox' }),
   makeItem({ text: 'Flag', prefixel: <DSFlag country="de" /> }),
 

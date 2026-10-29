@@ -56,16 +56,16 @@ export const TooltipKey = styled.div`
   min-width: 18px;
   height: 18px;
   padding: 0 4px;
-  background: ${(props) => props.theme.palette['grey-700']};
-  border-bottom: 1px solid ${(props) => props.theme.palette['grey-500']};
-  box-shadow: 0px 1px 8px rgba(35, 41, 54, 0.5);
+  background: var(--ds-shortcut-theme-dark-bg);
+  border-bottom: 1px solid var(--ds-shortcut-theme-dark-border);
+  box-shadow: var(--ds-shortcut-theme-dark-shadow);
   border-radius: 3px;
 `;
 
 export const TooltipButton = styled.div`
   width: 100%;
   padding: 8px;
-  background-color: rgba(56, 67, 80, 0.9);
+  background-color: var(--ds-tooltip-footer-bg);
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -101,7 +101,7 @@ export const TooltipImage = styled.div<{ extraMargin: boolean }>`
 `;
 
 export const TooltipWrapper = styled.div`
-  box-shadow: ${(props) => props.theme.variables['box-shadow-2']};
+  box-shadow: var(--ds-tooltip-shadow);
 `;
 
 export const TooltipComponent = styled(TooltipWrapper)<{
@@ -116,11 +116,11 @@ export const TooltipComponent = styled(TooltipWrapper)<{
     props.tooltipType === 'largeScrollable' ? '400px' : '250px'};
   width: max-content;
 
-  background-color: rgba(56, 67, 80, 0.9);
+  background-color: var(--ds-tooltip-surface-bg);
   min-height: 24px;
   width: 100%;
   border-radius: 3px;
-  color: ${(props) => props.theme.palette['grey-200']};
+  color: var(--ds-tooltip-text);
   overflow: hidden;
   text-align: left;
 

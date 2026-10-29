@@ -13,7 +13,7 @@ export const Title = styled.div<{
   font-weight: 500;
   word-wrap: break-word;
   align-items: center;
-  color: ${(props) => props.theme.palette['grey-800']};
+  color: var(--ds-color-text-base-default);
   cursor: ${(props) => (props.isClickable ? 'pointer' : 'default')};
 `;
 export const ContainerWrapper = styled.div`

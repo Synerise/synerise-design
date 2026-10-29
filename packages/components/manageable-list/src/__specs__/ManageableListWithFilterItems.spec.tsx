@@ -1,5 +1,5 @@
 import React from 'react';
-import { screen } from '@testing-library/react';
+import { fireEvent, screen, within } from '@testing-library/react';
 import { renderWithProvider } from '@synerise/ds-core/testing';
 import ManageableList from '../ManageableList';
 
@@ -148,5 +148,38 @@ describe('ManageableList with filter items', () => {
     );
 
     expect(screen.queryByTestId('item-description-icon')).toBeTruthy();
+  });
+
+  it('lets the rename and duplicate menu icons take their colour from the menu item', async () => {
+    renderWithProvider(
+      <ManageableList
+        maxToShowItems={5}
+        onItemRemove={vi.fn()}
+        onItemEdit={vi.fn()}
+        onItemSelect={vi.fn()}
+        onItemDuplicate={vi.fn()}
+        type="filter"
+        items={[{ ...FILTER_LIST_ITEMS[1], canDuplicate: true }]}
+        loading={false}
+        addButtonDisabled={false}
+        changeOrderDisabled={false}
+        greyBackground={false}
+        selectedItemId={undefined}
+        texts={texts}
+      />,
+    );
+
+    fireEvent.click(
+      within(screen.getByTestId('filter-item')).getByRole('button'),
+    );
+
+    for (const label of ['Rename', 'Duplicate']) {
+      const menuItem = (await screen.findByText(label)).closest(
+        '[data-testid="ds-list-item"]',
+      ) as HTMLElement;
+      expect(menuItem.querySelector('.ds-icon svg')).toHaveStyle(
+        'color: inherit',
+      );
+    }
   });
 });

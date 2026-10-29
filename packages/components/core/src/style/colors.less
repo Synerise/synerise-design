@@ -14,6 +14,20 @@
     limitations under the License.
  */
 
+// These MUST stay literal hex — they cannot become var(--ds-*), and the file cannot be
+// deleted in favour of @synerise/ds-tokens. Four independent consumers need compile-time
+// or JS-time hex, and any one of them breaks on a CSS custom property:
+//
+//   1. build/vars.js text-parses this file into theme.palette (the generated
+//      variables.ts), which ~380 call sites read — many as plain JS values, not CSS.
+//   2. hexToRgba() in ds-utils does string surgery (hex.substring(1, 3)) on those values.
+//   3. rgba(@var, alpha) in config.less is Less's two-arg overload, not CSS rgba().
+//   4. antd 4.24.16's own Less runs colorPalette()/fade()/tint()/darken() on the
+//      variables DS overrides — colorPalette() evaluates JS and throws on a var() string.
+//
+// Tokenisation of ds-core therefore happens in config.less (semantic layer) and in JS
+// (theme.colorsOrder reads the resolved ds-tokens map), never here.
+
 @red-900: #520004;
 @red-800: #87020b;
 @red-700: #cf1413;

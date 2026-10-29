@@ -107,7 +107,7 @@ const [format, setFormat] = useState<FormattingValue>({
 
 ## Styling
 
-`FormatSettings.styles.ts` — all styles for the dropdown panel. Uses `theme.palette` tokens (`white`, `grey-050`, `grey-100`, `grey-300`, `grey-500`, `grey-700`). Hardcoded `min-width: 268px` for the panel container.
+`FormatSettings.styles.ts` — all styles for the dropdown panel. Uses `var(--ds-*)` tokens (`--ds-dropdown-bg`, `--ds-dropdown-footer-bg`/`-footer-border`, `--ds-form-field-border-default`, `--ds-form-field-text-value`, `--ds-color-text-neutral-default`). Hardcoded `min-width: 268px` for the panel container.
 
 ## Key dependencies
 

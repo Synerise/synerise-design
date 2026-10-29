@@ -1,14 +1,11 @@
 import type { MouseEventHandler } from 'react';
 import styled, { css } from 'styled-components';
 
-import { theme } from '@synerise/ds-core';
-
 export const defaultSize = 24;
-export const DEFAULT_COLOR_TOKEN = 'grey-800';
 
 export const IconContainer = styled.div<{
   size?: string | number;
-  color?: string;
+  $color?: string;
   stroke?: boolean;
   onClick?: MouseEventHandler;
 }>`
@@ -21,20 +18,18 @@ export const IconContainer = styled.div<{
     svg {
       display: block;
       ${(props) =>
-        props.color
+        props.$color
           ? css`
-              color: ${props.color};
-              ${props.stroke && `stroke: ${props.color};`}
+              color: ${props.$color};
+              ${props.stroke && `stroke: ${props.$color};`}
             `
           : css`
               color: inherit;
 
+              /* Large/xlarge default to a darker colour than the inherited M default. */
               &.ds-icon-set-large,
               &.ds-icon-set-xlarge {
-                color: ${
-                  props.theme?.palette?.[DEFAULT_COLOR_TOKEN] ||
-                  theme.palette[DEFAULT_COLOR_TOKEN]
-                };
+                color: var(--ds-color-icon-base-strong);
               }
             `}
     

@@ -24,6 +24,8 @@ export const RadioBase = ({
   onChange,
   onClick,
   label,
+  tooltip,
+  tooltipConfig,
   description,
   children,
   className,
@@ -117,8 +119,18 @@ export const RadioBase = ({
             $disabled={isDisabled}
           />
         </S.RadioBox>
-        <S.RadioText $checked={isChecked} $disabled={isDisabled}>
-          {label ? <S.Label disabled={isDisabled}>{label}</S.Label> : children}
+        <S.RadioText $disabled={isDisabled}>
+          {label ? (
+            <S.Label
+              forwardedAs="span"
+              tooltip={tooltip}
+              tooltipConfig={tooltipConfig}
+            >
+              {label}
+            </S.Label>
+          ) : (
+            children
+          )}
         </S.RadioText>
       </S.RadioLabel>
       {description && (

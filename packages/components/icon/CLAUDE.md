@@ -46,7 +46,7 @@ src/
 | `iconName` | `IconName` | `undefined` | Icon name string (e.g. `'AddM'`, `'InfoL'`). Use **only** when the icon isn't known at build time (e.g. from a DB/API); prefer `component`. Takes precedence over `component` |
 | `name` | `string` | `undefined` | Sets the `title` HTML attribute on the container div (tooltip on hover) |
 | `size` | `string \| number` | `24` | Width and height of the container and SVG in px |
-| `color` | `string` | `undefined` | Sets `color` CSS on the SVG (inherits if omitted; L/XL sets default to `grey-800`) |
+| `color` | `string` | `undefined` | Sets `color` CSS on the SVG (inherits if omitted; L/XL sets default to `--ds-color-icon-base-strong`) |
 | `stroke` | `boolean` | `undefined` | Also sets `stroke` CSS to the `color` value — for icons that use stroke instead of fill |
 | `className` | `string` | `undefined` | Appended to `'ds-icon'` |
 | + HTML div attrs | — | — | All `HTMLDivElement` attributes and `data-*` attributes spread onto the container |
@@ -130,7 +130,6 @@ Each icon component is `(props: SVGProps<SVGSVGElement>) => JSX.Element`. Every 
 |--------|-------|-------------|
 | `IconContainer` | styled `<div>` | The container element; importable for nested selector use |
 | `defaultSize` | `24` | Default icon size in px |
-| `DEFAULT_COLOR_TOKEN` | `'grey-800'` | Default colour applied to L/XL icons when `color` is not set |
 
 ## Usage patterns
 
@@ -141,7 +140,7 @@ import Icon, { AddM, MimeTypeIcon } from '@synerise/ds-icon';
 <Icon component={<AddM />} size={24} color="#0066cc" />
 
 // With stroke-based icon
-<Icon component={<SomeStrokeIcon />} stroke color={theme.palette['blue-600']} />
+<Icon component={<SomeStrokeIcon />} stroke color="var(--ds-color-icon-brand-default)" />
 
 // Only when the icon name isn't known until runtime (e.g. from a DB/API):
 <Icon iconName={iconNameFromApi} size={32} />
@@ -162,10 +161,10 @@ const MyButton = styled.button`
 
 ## Styling
 
-`IconContainer` in `Icon.styles.ts`. No design-system token dependencies except the L/XL default colour (`DEFAULT_COLOR_TOKEN = 'grey-800'`):
+`IconContainer` in `Icon.styles.ts`. The L/XL default colour is the `--ds-color-icon-base-strong` token (grey-800):
 - Container: `display: inline-block; vertical-align: middle; width/height = size px`
 - If `color` prop is set: applies to SVG as CSS `color` (+ `stroke` if `stroke=true`)
-- If `color` is NOT set: SVGs inherit parent colour, **except** `ds-icon-set-large` and `ds-icon-set-xlarge` which default to `grey-800`
+- If `color` is NOT set: SVGs inherit parent colour, **except** `ds-icon-set-large` and `ds-icon-set-xlarge` which default to `--ds-color-icon-base-strong` (grey-800)
 - If `onClick` is present on the container: `cursor: pointer` is applied automatically
 
 ## Key dependencies

@@ -103,9 +103,11 @@ Enhanced textarea with `FormField` wrapper. Same label/description/error/counter
 
 `RawTextAreaProps` = Ant Design `TextAreaProps` + `error?: boolean`, `errorText?: string | ReactNode`, `wrapperStyle?: CSSProperties`, `resize?: ResizeProperty`
 
-### `RawTextArea`
+### `RawTextArea` _(deprecated)_
 
-Styled Ant Design `TextArea` component (exported from `Input.styles.tsx`). No FormField wrapper.
+Bare styled `<textarea>` (`StandaloneRawTextArea` in `Input.styles.tsx`), with no FormField and no
+`.ds-textarea` wrapper; it draws its own `error` surface. Unused in the DS and the portal repos and due for
+removal: use `DSRawTextArea` for a bare DS textarea, or `TextArea` for the FormField version.
 
 ### `DSRawTextArea`
 
@@ -201,6 +203,16 @@ Re-export of `FormFieldLabel` from `@synerise/ds-form-field`. **Import directly 
 
 Namespace export of all styled-components from `Input.styles.tsx`. Useful for extending via `styled(InputStyles.OuterWrapper)`.
 
+**Deprecated field-chrome exports** (still imported by portal-ui-bridge via `@synerise/ds-input/dist/Input.styles`). Use `@synerise/ds-form-field` instead:
+
+| Export | Replacement in `@synerise/ds-form-field` |
+|---|---|
+| `Label` | `FormFieldLabel`, or `FormField` `label` |
+| `ContentAbove` | `ContentAboveElement` (`label`, `rightSide`), or `FormField` `label` |
+| `ContentBelow` | `ContentBelowElement` (`description`, `errorText`), or `FormField` `description` / `errorText` |
+| `Description` | `ContentBelowElement` / `FormField` `description` |
+| `ErrorText` | `ContentBelowElement` / `FormField` `errorText` (still used internally by `InputGroup`) |
+
 ### Types exported
 
 | Export | Description |
@@ -285,7 +297,7 @@ Reads `inputRef.current.input.offsetHeight` after mount and returns `{ inputAddo
 
 ## Styling
 
-Styles live in `Input.styles.tsx` using `@synerise/ds-core` theme tokens. Error state is applied via `.error` CSS class on the Ant Design input. Icon padding is calculated dynamically: each icon adds 24 px + 4 px gap via `getIconsWidth`.
+Styles live in `Input.styles.tsx` using `var(--ds-*)` tokens (mainly the shared `--ds-form-field-*` set). Error state is applied via the `error` styled prop (`errorInputStyle`: `--ds-form-field-border-validated` / `--ds-form-field-bg-validated`). Icon padding is calculated dynamically: each icon adds 24 px + 4 px gap via `getIconsWidth`.
 
 ## Key dependencies
 

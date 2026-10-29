@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import AnimateHeight from 'react-animate-height';
 
-import { theme } from '@synerise/ds-core';
 import Icon, { CheckS, WarningFillS } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 
@@ -58,8 +57,8 @@ const Step = ({
                 component={<CheckS />}
                 color={
                   warning
-                    ? theme.palette['yellow-600']
-                    : theme.palette['green-600']
+                    ? 'var(--ds-stepper-step-circle-content-warning)'
+                    : 'var(--ds-stepper-step-circle-content-done)'
                 }
               />
             ) : (
@@ -73,7 +72,7 @@ const Step = ({
             <Tooltip trigger={['hover']} title={tooltip}>
               <Icon
                 component={<WarningFillS />}
-                color={theme.palette['yellow-600']}
+                color="var(--ds-stepper-step-label-warning)"
               />
             </Tooltip>
           )}

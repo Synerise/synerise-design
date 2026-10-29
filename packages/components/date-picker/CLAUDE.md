@@ -208,9 +208,10 @@ import { RawDatePicker } from '@synerise/ds-date-picker';
 The three grid views share `Elements/GridPicker` and follow the Figma `Date Picker` states
 (`Months`, `Year`, `Years range`):
 
-- **Every reachable cell carries a chip** — `grey-100` at rest, `grey-200` + `blue-600` text on
-  hover, `blue-600` + white when selected, at regular weight. A **disabled** cell drops the chip
-  and keeps only a `grey-400` label, matching the day grid, where the chip likewise marks a day as
+- **Every reachable cell carries a chip** — `--ds-calendar-day-default-bg` at rest,
+  `--ds-color-background-base-mutedhover` + `--ds-calendar-day-hover-text` on hover,
+  `--ds-calendar-day-selected-bg` / `-selected-text` when selected, at regular weight. A **disabled**
+  cell drops the chip and keeps only a `--ds-calendar-day-disabled-text` label, matching the day grid, where the chip likewise marks a day as
   reachable.
 - **Layout** is three columns on a 24px inset with an 8px column gap and 32px rows spread by
   `align-content: space-between`, so the same rules give Figma's spacing in `DatePicker`'s 304px

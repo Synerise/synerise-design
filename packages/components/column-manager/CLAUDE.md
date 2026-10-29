@@ -120,9 +120,9 @@ const [columns, setColumns] = useState<MyColumn[]>([
 ## Styling
 
 - `ColumnManager.styles.ts` — styled `@synerise/ds-drawer` wrapper (fixed width `338px`), styled `@synerise/ds-search-bar` (height `52px`), flex list wrapper.
-- `ColumnManagerItem.styles.ts` — hover reveals drag handle (opacity transition), adds `grey-050` background and a `blue-600` left border on hover.
-- `ColumnManager.style.ts` (list) — `FixedSizeList` gets `blue-050` background and `blue-600` inset box-shadow; `user-select: none` when `isDragging`.
-- All colours via `theme.palette` tokens; no hardcoded hex values.
+- `ColumnManagerItem.styles.ts` — hover reveals drag handle (opacity transition), adds `--ds-color-background-base-defaulthover` background and a 2px `--ds-color-background-brand-solid` left bar (`::before`) on hover.
+- `ColumnManager.style.ts` (list) — `FixedSizeList` gets `--ds-color-background-brand-subtle` background and a `--ds-color-border-brand-default` inset box-shadow; `user-select: none` when `isDragging`.
+- All colours via `var(--ds-*)` tokens; no hardcoded hex values.
 
 ## Custom hooks
 

@@ -6,7 +6,7 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   padding: 24px 24px;
-  background: ${(props): string => props.theme.palette['grey-050']};
+  background: var(--ds-dropdown-footer-bg);
 `;
 
 export const Actions = styled.div`
@@ -33,11 +33,11 @@ export const ActionsPlaceholder = styled.div`
 export const ChosenRange = styled.div`
   font-weight: 500;
   line-height: 24px;
-  color: ${(props) => props.theme.palette['grey-800']};
+  color: var(--ds-dropdown-text-default);
 
   .ds-icon svg {
     margin-top: -2px;
-    fill: ${(props) => props.theme.palette['grey-400']};
+    fill: var(--ds-color-icon-base-disabled);
   }
 `;
 /**

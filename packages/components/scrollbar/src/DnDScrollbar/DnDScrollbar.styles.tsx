@@ -29,7 +29,8 @@ export const ScrollbarWrapper = styled.div<{
     return props.largeSize ? '20px !important' : '11px !important';
   }};
   & > * {
-    opacity: ${(props): string => (props.loading ? '0.2' : '1')};
+    opacity: ${(props): string =>
+      props.loading ? 'var(--ds-opacity-muted)' : '1'};
     transition: opacity 0.25s ease-in-out;
   }
 `;
@@ -42,14 +43,14 @@ export const ThumbVertical = styled.div<{ largeSize?: boolean }>`
       ? css`
           right: 4px;
           width: 16px;
-          background-color: ${props.theme.palette['blue-050']};
+          background-color: var(--ds-color-background-brand-subtle);
           border-radius: 3px;
-          border: 1px solid ${props.theme.palette['grey-300']};
+          border: 1px solid var(--ds-color-border-base-strong);
 
           &:hover,
           &:active {
-            background-color: ${props.theme.palette['blue-100']};
-            border: 1px solid ${props.theme.palette['grey-400']};
+            background-color: var(--ds-color-background-brand-subtlehover);
+            border: 1px solid var(--ds-color-border-base-stronghover);
           }
         `
       : css`
@@ -65,12 +66,12 @@ export const ThumbVertical = styled.div<{ largeSize?: boolean }>`
             right: 4px;
             width: 3px;
             border-radius: 3px;
-            background-color: ${props.theme.palette['grey-300']};
+            background-color: var(--ds-color-background-base-strong);
           }
 
           &:hover::before,
           &:active::before {
-            background-color: ${props.theme.palette['grey-500']};
+            background-color: var(--ds-color-background-base-stronghover);
           }
         `}
 `;
@@ -91,8 +92,8 @@ export const ScrollbarTrackWrapper = styled.div<{ largeSize?: boolean }>`
     props.largeSize &&
     css`
       &:hover ${ThumbVertical} {
-        background-color: ${props.theme.palette['blue-100']};
-        border: 1px solid ${props.theme.palette['grey-400']};
+        background-color: var(--ds-color-background-brand-subtlehover);
+        border: 1px solid var(--ds-color-border-base-stronghover);
       }
     `}
 
@@ -100,13 +101,13 @@ export const ScrollbarTrackWrapper = styled.div<{ largeSize?: boolean }>`
     !props.largeSize &&
     css`
       &:hover ${ThumbVertical}::before {
-        background-color: ${props.theme.palette['grey-500']};
+        background-color: var(--ds-color-background-base-stronghover);
       }
     `}
 `;
 
 export const TrackVertical = styled.div`
-  opacity: 0.2;
+  opacity: var(--ds-opacity-muted);
   width: 11px;
   height: calc(100% - 8px);
   transform: translateY(4px);
@@ -147,8 +148,8 @@ export const Loader = styled.div<{ loading?: boolean }>`
   transition: opacity 0.3s ease-in-out;
   animation: ${spinnerAnimation} 1s forwards linear infinite;
   svg {
-    color: ${(props): string => props.theme.palette['blue-600']};
-    fill: ${(props): string => props.theme.palette['blue-600']};
+    color: var(--ds-color-icon-brand-default);
+    fill: var(--ds-color-icon-brand-default);
   }
 `;
 

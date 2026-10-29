@@ -8,9 +8,9 @@
 src/
   Confirmation.tsx        — main component (generic over ListItemProps)
   Confirmation.types.ts   — all prop interfaces and shared types
-  Confirmation.styles.ts  — styled-components (no hardcoded tokens — uses ds-core palette via useTheme)
-  Confirmation.const.ts   — BUTTON_COLOR_MAPPING, ICON_COLOR_MAPPING, ITEM_SIZE, MAX_ITEMS
-  Confirmation.utils.ts   — getIconColor(type, theme) helper
+  Confirmation.styles.ts  — styled-components (layout only — no colours)
+  Confirmation.const.ts   — BUTTON_TYPE_MAPPING, ICON_COLOR_MAPPING, ITEM_SIZE, MAX_ITEMS
+  Confirmation.utils.ts   — getIconColor(type) helper (looks up ICON_COLOR_MAPPING)
   index.ts                — public exports
   components/
     Prompt.tsx            — simpler modal variant with free-form content
@@ -143,7 +143,7 @@ The title prop is **ignored** in `'related-objects'` mode — the internal back-
 
 ## Styling
 
-Styles live in `Confirmation.styles.ts`. Colours are resolved at runtime via `useTheme()` from `@synerise/ds-core` — icon colour is looked up from `theme.palette[colorToken]`, not hardcoded. The modal always renders at `size="small"` with `blank={true}` (no default modal padding) in default mode.
+Styles live in `Confirmation.styles.ts`. They set no colours; the type icon colour comes from `getIconColor(type)`, which returns the semantic `var(--ds-color-icon-*)` token from `ICON_COLOR_MAPPING` (`negative`→`danger-default`, `success`→`success-default`, `warning`→`warning-default`, `informative`→`base-default`). The modal always renders at `size="small"` with `blank={true}` (no default modal padding) in default mode.
 
 `BatchItemsList` is capped at `MAX_ITEMS × ITEM_SIZE` (6 × 32 = 192px) height via `@synerise/ds-scrollbar`.
 
@@ -163,7 +163,7 @@ Merges `Partial<ConfirmationTexts>` supplied by the caller with `react-intl` `<F
 - `@synerise/ds-list-item` — `BatchItemsList` items; generic `ItemType extends ListItemProps`
 - `@synerise/ds-scrollbar` — caps `BatchItemsList` height
 - `@synerise/ds-panel` — `AdditionalInfo` and `DecisionSection` frames
-- `@synerise/ds-core` — `useTheme` for palette-based icon colour resolution
+- `@synerise/ds-core` — `setPortalContent` (used by `ShowConfirmation`)
 - `react-intl` — default label strings (peer dependency, `^6.8.7`)
 
 ## Implementation notes
@@ -173,3 +173,4 @@ Merges `Partial<ConfirmationTexts>` supplied by the caller with `react-intl` `<F
 - `bodyStyle={{ padding: 0 }}` is hardcoded — content components own their own padding via styled-components.
 - `onOk` and `onCancel` are **optional**; the footer renders conditionally only when at least one is provided (or `relatedObjects` is set).
 - `ConfirmationButtonProps` is a limited subset of `ButtonProps` (`mode`, `loading`, `readOnly`, `disabled`, `tagProps`) plus `DataAttributes` — arbitrary button props cannot be passed through.
+- **Confirm button uses a semantic ds-button `type`** — `BUTTON_TYPE_MAPPING` maps each `ConfirmationType` to a ds-button `type` (`negative`→`danger`, `success`→`success`, `warning`→`warning`, `informative`→`primary`), replacing the previous `type="custom-color"` + `color` keyword approach. The type-driven icon still comes from `ICON_COLOR_MAPPING` (semantic icon tokens).

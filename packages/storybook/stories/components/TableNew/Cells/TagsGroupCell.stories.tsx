@@ -1,15 +1,15 @@
 import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 
-import { theme } from '@synerise/ds-core';
 import { type BaseTagsGroupProps, TagsGroupCell } from '@synerise/ds-table-new';
+import { customColors } from '@synerise/ds-tokens/names';
 
 import { BOOLEAN_CONTROL, fixedWrapper300 } from '../../../utils';
 
 const SAMPLE_TAGS = [
-  { id: '0', name: 'Segment A', color: theme.palette['grey-200'] },
-  { id: '1', name: 'Segment B', color: theme.palette['blue-600'] },
-  { id: '2', name: 'Segment C', color: theme.palette['fern-600'] },
+  { id: '0', name: 'Segment A' },
+  { id: '1', name: 'Segment B', color: customColors.blue['600'] },
+  { id: '2', name: 'Segment C', color: customColors.fern['600'] },
 ];
 
 const meta: Meta<BaseTagsGroupProps> = {
@@ -35,8 +35,8 @@ export const Default: Story = {
       source: {
         code: `<TagsGroupCell
   tagsProps={{
-    tags: [
-      { id: '0', name: 'Segment A', color: '#ccc' },
+    selected: [
+      { id: '0', name: 'Segment A' },
       { id: '1', name: 'Segment B', color: '#0b68ff' },
     ],
   }}
@@ -46,7 +46,7 @@ export const Default: Story = {
   },
   render: (args) => <TagsGroupCell {...args} />,
   args: {
-    tagsProps: { tags: SAMPLE_TAGS },
+    tagsProps: { selected: SAMPLE_TAGS },
   },
 };
 
@@ -83,7 +83,7 @@ export const Disabled: Story = {
     docs: {
       source: {
         code: `<TagsGroupCell
-  tagsProps={{ tags: [...] }}
+  tagsProps={{ selected: [...] }}
   disabled
 />`,
       },
@@ -91,7 +91,7 @@ export const Disabled: Story = {
   },
   render: (args) => <TagsGroupCell {...args} />,
   args: {
-    tagsProps: { tags: SAMPLE_TAGS },
+    tagsProps: { selected: SAMPLE_TAGS },
     disabled: true,
   },
 };

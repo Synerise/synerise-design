@@ -104,7 +104,7 @@ const config: TabsConfiguration = {
 
 ## Styling
 
-- `TabContainer` (`<button>`) uses a CSS `::after` pseudo-element for the active indicator line (1 px solid blue-600).
+- `TabContainer` (`<button>`) uses a CSS `::after` pseudo-element for the active indicator line (1 px, `var(--ds-tabs-item-border-active-color)`).
 - The `underscore` class is added to `TabContainer` via `classNames`; the active indicator is only visible when both `.active` and `.underscore` are applied.
 - `block` mode applies `applyBlockStyles` which uses `flex: 1` and repositions `BlockContentWrapper` absolutely so content stays centered regardless of tab width.
 - Typography uses the `macro.h300` mixin from `@synerise/ds-typography`.

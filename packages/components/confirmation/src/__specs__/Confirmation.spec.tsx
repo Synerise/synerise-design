@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { renderWithProvider } from '@synerise/ds-core/testing';
+import { declarationsFor, renderWithProvider } from '@synerise/ds-core/testing';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import Confirmation from '../Confirmation';
 import {
-  COLOR_TEST_CASES,
+  BUTTON_TYPE_TEST_CASES,
   DECISION_OPTIONS,
   ITEMS,
   ITEM_NAME,
@@ -34,17 +34,17 @@ describe('Confirmation component', () => {
     expect(screen.queryByTestId(PROPS.secondaryButtonProps['data-testid'])).not.toBeInTheDocument();
   });
   
-  it.each(COLOR_TEST_CASES)(
-    'Should render correct color',
-    async ({ type, color }) => {
+  it.each(BUTTON_TYPE_TEST_CASES)(
+    'Should render the $buttonType button type for $type',
+    async ({ type, background }) => {
       renderWithProvider(<Confirmation {...PROPS} type={type} open />);
 
       expect(
         await screen.findByTestId(PROPS.mainButtonProps['data-testid']),
       ).toBeInTheDocument();
       expect(
-        screen.getByTestId(PROPS.mainButtonProps['data-testid']),
-      ).toHaveStyle({ backgroundColor: color });
+        declarationsFor(screen.getByTestId(PROPS.mainButtonProps['data-testid'])),
+      ).toContain(`background:${background}`);
     },
   );
 

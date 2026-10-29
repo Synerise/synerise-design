@@ -1,14 +1,13 @@
 import React, { useCallback, useMemo, useState } from 'react';
 
 import Button from '@synerise/ds-button';
-import { useTheme } from '@synerise/ds-core';
 import Icon, { ArrowLeftM, ShowM } from '@synerise/ds-icon';
 import type { ListItemProps } from '@synerise/ds-list-item';
 import Modal from '@synerise/ds-modal';
 import Panel from '@synerise/ds-panel';
 import { Paragraph } from '@synerise/ds-typography';
 
-import { BUTTON_COLOR_MAPPING } from './Confirmation.const';
+import { BUTTON_TYPE_MAPPING } from './Confirmation.const';
 import * as S from './Confirmation.styles';
 import type { ConfirmationProps, DisplayMode } from './Confirmation.types';
 import { getIconColor } from './Confirmation.utils';
@@ -35,7 +34,6 @@ const Confirmation = <ItemType extends ListItemProps>({
   ...modalProps
 }: ConfirmationProps<ItemType>) => {
   const [mode, setMode] = useState<DisplayMode>('default');
-  const theme = useTheme();
   const allTexts = useDefaultTexts(texts);
 
   // The related-objects panel is a second face of one modal, not a modal of its own, so it must not
@@ -50,8 +48,8 @@ const Confirmation = <ItemType extends ListItemProps>({
     afterClose?.();
   }, [afterClose]);
 
-  const buttonColor = BUTTON_COLOR_MAPPING[type];
-  const iconColor = getIconColor(type, theme);
+  const buttonType = BUTTON_TYPE_MAPPING[type];
+  const iconColor = getIconColor(type);
 
   const modalContent = useMemo(() => {
     if (mode === 'default') {
@@ -123,12 +121,7 @@ const Confirmation = <ItemType extends ListItemProps>({
               </Button>
             )}
             {onOk && (
-              <Button
-                type="custom-color"
-                onClick={onOk}
-                color={buttonColor}
-                {...mainButtonProps}
-              >
+              <Button type={buttonType} onClick={onOk} {...mainButtonProps}>
                 {allTexts.mainButtonLabel}
               </Button>
             )}
@@ -140,7 +133,7 @@ const Confirmation = <ItemType extends ListItemProps>({
     mode,
     onOk,
     onCancel,
-    buttonColor,
+    buttonType,
     mainButtonProps,
     relatedObjects,
     secondaryButtonProps,

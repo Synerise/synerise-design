@@ -30,11 +30,12 @@ src/
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `status` | `BadgeStatus` | `undefined` | DS status — drives the dot/count colour: `active`→green-600, `inactive`→grey-400, `blocked`→red-600, `processing`→blue-600, `warning`→yellow-600. Auto-enables dot mode. |
+| `status` | `BadgeStatus` | `undefined` | DS status — drives the dot/count colour via `--ds-badge-variant-<v>-bg`: `active`→`success`, `inactive`→`neutral`, `blocked`→`error`, `processing`→`info`, `warning`→`warning`. Auto-enables dot mode. |
 | `flag` | `boolean` | `undefined` | Renders the dot with `::before`/`::after` halos. Requires dot/status. |
 | `pulsing` | `boolean` | `undefined` | Pulse animation on the halos. Only visible when `flag` or `status` is set. |
-| `outlined` | `boolean` | `undefined` | White `box-shadow` ring around the count badge. |
-| `customColor` | `LiteralStringUnion<BadgeColor \| DefaultColor>` | `undefined` | Overrides the badge colour. Palette token → resolved via `theme.palette` (`'blue'` → `blue-600`, or full key `'blue-600'`); any other value is used as a **raw CSS colour** (`'#FF0000'`, `'rgb(…)'`, …), so colours outside the palette work. |
+| `variant` | `BadgeVariant` | `'solid'` | Count badge look. `solid`: fill `--ds-badge-variant-<v>-bg`, text `--ds-badge-text-onsolid`. `solid-ring`: `solid` plus a 1px `--ds-badge-ring-color` `box-shadow` ring (Figma *Full Color+Outline*). `outline`: no fill, text `--ds-badge-variant-<v>-text`, 1px inset `box-shadow` border `--ds-badge-variant-<v>-border` (Figma *Outline*). A `customColor` colours the fill, or the border and text. No effect on dots or custom-node counts. |
+| `outlined` | `boolean` | `undefined` | **Deprecated** — use `variant="solid-ring"`. Ignored when `variant` is set. |
+| `customColor` | `LiteralStringUnion<BadgeColor \| DefaultColor>` | `undefined` | Overrides the badge colour. Custom-colour name → resolved via `resolveCustomColor` to `--ds-color-custom-*` (`'blue'` → shade 600, or full key `'blue-600'`); any other value (including `var()`) is used as a **raw CSS colour** (`'#FF0000'`, `'rgb(…)'`, …), so colours outside the palette work. |
 | `count` | `ReactNode` | `undefined` | Number/node in the count badge. Hidden when `0`. |
 | `dot` | `boolean` | `undefined` | Forces dot mode (auto-enabled by `status`). |
 | `overflowCount` | `number` | `99` | Max number before `N+`. |
@@ -70,6 +71,7 @@ import { BadgeWithLabel } from '@synerise/ds-badge';
 | `BadgeStatus` | `'active' \| 'inactive' \| 'blocked' \| 'processing' \| 'warning' \| undefined` |
 | `BadgeColor` | `'red' \| 'green' \| 'grey' \| 'yellow' \| 'blue' \| 'pink' \| 'mars' \| 'orange' \| 'fern' \| 'cyan' \| 'purple' \| 'violet' \| 'white' \| 'transparent'` |
 | `BadgeColorHue` | `'900' \| '800' \| '700' \| '600' \| '500' \| '400' \| '300' \| '200' \| '100' \| '050'` |
+| `BadgeVariant` | `'solid' \| 'solid-ring' \| 'outline'` |
 
 ## Usage patterns
 
@@ -80,6 +82,12 @@ import Badge from '@synerise/ds-badge';
 <Badge count={5}><Avatar /></Badge>
 <Badge count={3} status="blocked" />
 <Badge count={3} customColor="blue" />
+
+// Outline count badge: coloured border and text, no fill
+<Badge count={3} status="active" variant="outline" />
+
+// Solid count with a ring separating it from the content underneath
+<Badge count={5} variant="solid-ring"><Avatar /></Badge>
 
 // Status dot (dot auto-enabled by status).
 <Badge status="active" />
@@ -101,23 +109,26 @@ import Badge from '@synerise/ds-badge';
 
 `Badge.styles.tsx` is `styled(BadgeBase)`. It **inlines the base badge CSS** that antd's LESS used to
 provide (wrapper positioning, count pill, dot, `.ds-badge-not-a-wrapper` standalone layout) and adds
-the DS overrides. DS-only styling props (`flag`, `pulsing`, `outlined`, `customColor`) are stripped in
+the DS overrides. DS-only styling props (`flag`, `pulsing`, `variant`, `outlined`, `customColor`) are stripped in
 the wrapper before reaching `BadgeBase`'s DOM; they are still read by the CSS interpolations.
 
-Colours come from `@synerise/ds-core` theme palette tokens (`resolveColor`): `customColor` → `status`
-colour → **red** default (count text is white). Consumers wanting a different look (e.g. a neutral
-count chip) override it with an inline `style`/`styled(Badge)` — and, matching antd, the consumer's
+Colours come from `var(--ds-*)` tokens (`resolveColor`): `customColor` (via `resolveCustomColor`) → `status`
+colour (`--ds-badge-variant-<v>-<role>`) → **red** `--ds-badge-variant-error-<role>` default, where the role is `bg` for
+dots and solid counts and `border` / `text` for the `outline` count (solid count text is `--ds-badge-text-onsolid`).
+`customColor` ignores the role: the one resolved colour fills a solid badge or draws the outline's border and text
+(the `--ds-badge-variant-custom-color-*` tokens are a fixed slot, not per-instance, so they are not used).
+The outline border is an inset `box-shadow` so the count keeps the solid pill's 16px box.
+Consumers wanting a different look (e.g. a neutral count chip) override it with an inline `style`/`styled(Badge)` — and, matching antd, the consumer's
 `style` is applied to the **indicator element** (count/dot), not the wrapper, so
 `style={{ backgroundColor: 'transparent', color: ... }}` recolours the count (e.g. the Tabs counter).
 A custom-node `count` (e.g. an icon) renders bare via `.ds-badge-scroll-number-custom-component` — no pill
-background. Count badge is 16px tall; count text uses `macro.h200` from `@synerise/ds-typography`. The
-theme type is `ThemeProps` from `@synerise/ds-core` (not styled-components' `DefaultTheme`, unaugmented here).
+background. Count badge is 16px tall; count text uses `macro.h200` from `@synerise/ds-typography`.
 
 ## Key dependencies
 
-- `@synerise/ds-core` — theme palette tokens, `ThemeProps`, `DefaultColor`
+- `@synerise/ds-core` — `DefaultColor` type
 - `@synerise/ds-typography` — `macro.h200` for count text
-- `@synerise/ds-utils` — `PassthroughAttributes` (data-*/aria-* type)
+- `@synerise/ds-utils` — `PassthroughAttributes` (data-*/aria-* type), `resolveCustomColor`
 
 ## Implementation notes
 
@@ -131,6 +142,8 @@ theme type is `ThemeProps` from `@synerise/ds-core` (not styled-components' `Def
   `textColorHue` props and the antd-passthrough `color` / `text` props were **removed**; `showZero` /
   `size` / `title` / `id` and the antd `Omit<AntBadgeProps>` inheritance are gone too. `customColor`
   is kept for arbitrary per-item colours (segment lists, status-label table cells).
+- **`variant` replaces `outlined`.** No consumer used `outlined` (checked DS, portal-ui-bridge, portal-next,
+  react-internal, universal-list on 2026-10-22); it stays as a deprecated alias for `variant="solid-ring"`.
 - **`dot` is auto-derived from `status`** — set `status` and you get a dot without `dot={true}`.
 - **Standalone vs wrapping** — with no `children` the wrapper gets `ds-badge-not-a-wrapper` and the
   badge renders inline (no absolute positioning / offset).

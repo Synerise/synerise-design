@@ -1,13 +1,10 @@
 import React from 'react';
 
-import { theme } from '@synerise/ds-core';
 import Icon, { CloseS, DuplicateS, EditS } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 
 import * as S from './ItemActions.styles';
 import type { ItemActionsProps } from './ItemActions.types';
-
-const DEFAULT_COLOR = theme.palette['grey-500'];
 
 const ItemActions: React.FC<ItemActionsProps> = ({
   item,
@@ -49,7 +46,7 @@ const ItemActions: React.FC<ItemActionsProps> = ({
     (
       condition: boolean,
       icon: React.ReactNode,
-      color: string,
+      color: string | undefined,
       handleClick: (event: React.MouseEvent) => void,
       testId: string,
       tooltip: string | React.ReactNode,
@@ -78,7 +75,7 @@ const ItemActions: React.FC<ItemActionsProps> = ({
         renderIcon(
           true,
           action.icon,
-          action.color || DEFAULT_COLOR,
+          action.color,
           () => action.onClick(item),
           `additional-action-${index}`,
           action.tooltip,
@@ -93,7 +90,7 @@ const ItemActions: React.FC<ItemActionsProps> = ({
       {renderIcon(
         Boolean(item.canUpdate),
         <EditS />,
-        DEFAULT_COLOR,
+        undefined,
         handleEdit,
         'list-item-edit',
         editActionTooltip,
@@ -101,7 +98,7 @@ const ItemActions: React.FC<ItemActionsProps> = ({
       {renderIcon(
         Boolean(item.canDuplicate),
         <DuplicateS />,
-        DEFAULT_COLOR,
+        undefined,
         handleDuplicate,
         'list-item-duplicate',
         duplicateActionTooltip,
@@ -109,7 +106,7 @@ const ItemActions: React.FC<ItemActionsProps> = ({
       {renderIcon(
         Boolean(item.canDelete),
         <CloseS />,
-        theme.palette['red-600'],
+        'var(--ds-color-icon-danger-default)',
         handleRemove,
         'list-item-remove',
         removeActionTooltip,

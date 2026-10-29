@@ -1,25 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { renderWithProvider } from '@synerise/ds-core/testing';
+import {
+  declarationsFor,
+  renderWithProvider,
+  rulesFor,
+} from '@synerise/ds-core/testing';
 import { screen } from '@testing-library/react';
 
 import { Box, Flex } from '../index';
 
 const CONTENT = 'CONTENT';
-
-const getInjectedStyles = (): string =>
-  Array.from(document.querySelectorAll('style'))
-    .map((node) => node.textContent ?? '')
-    .join('\n');
-
-const getRulesFor = (element: Element): string => {
-  const styles = getInjectedStyles();
-  return Array.from(element.classList)
-    .map((cls) => styles.match(new RegExp(`\\.${cls}\\{[^}]*\\}`, 'g')) ?? [])
-    .flat()
-    .join('\n');
-};
 
 describe('FlexBox', () => {
   it('should render Flex', () => {
@@ -34,29 +25,29 @@ describe('FlexBox', () => {
 
   it('should map numeric gap to theme.space scale', () => {
     renderWithProvider(<Flex gap={2}>{CONTENT}</Flex>);
-    expect(getRulesFor(screen.getByText(CONTENT))).toContain('gap:12px');
+    expect(declarationsFor(screen.getByText(CONTENT))).toMatch(/(?:^|;)gap:12px(?:;|$)/);
   });
 
   it('should pass string gap through verbatim', () => {
     renderWithProvider(<Flex gap="1rem">{CONTENT}</Flex>);
-    expect(getRulesFor(screen.getByText(CONTENT))).toContain('gap:1rem');
+    expect(declarationsFor(screen.getByText(CONTENT))).toMatch(/(?:^|;)gap:1rem(?:;|$)/);
   });
 
   it('should not emit a gap rule when prop is omitted', () => {
     renderWithProvider(<Flex>{CONTENT}</Flex>);
-    expect(getRulesFor(screen.getByText(CONTENT))).not.toMatch(/\bgap:/);
+    expect(declarationsFor(screen.getByText(CONTENT))).not.toMatch(/\bgap:/);
   });
 
   it('should render Box as a border-box div', () => {
     renderWithProvider(<Box>{CONTENT}</Box>);
     const box = screen.getByText(CONTENT);
     expect(box.tagName).toBe('DIV');
-    expect(getRulesFor(box)).toContain('box-sizing:border-box');
+    expect(declarationsFor(box)).toContain('box-sizing:border-box');
   });
 
   it('should make Flex a flex container', () => {
     renderWithProvider(<Flex>{CONTENT}</Flex>);
-    expect(getRulesFor(screen.getByText(CONTENT))).toContain('display:flex');
+    expect(declarationsFor(screen.getByText(CONTENT))).toContain('display:flex');
   });
 
   it('should resolve space props through the real design-system theme', () => {
@@ -65,25 +56,23 @@ describe('FlexBox', () => {
         {CONTENT}
       </Box>,
     );
-    const rules = getRulesFor(screen.getByText(CONTENT));
+    const rules = declarationsFor(screen.getByText(CONTENT));
     expect(rules).toContain('margin-left:8px');
     expect(rules).toContain('margin-top:24px');
   });
 
   it('should treat a fractional width as a percentage', () => {
     renderWithProvider(<Box width={1 / 2}>{CONTENT}</Box>);
-    expect(getRulesFor(screen.getByText(CONTENT))).toContain('width:50%');
+    expect(declarationsFor(screen.getByText(CONTENT))).toContain('width:50%');
   });
 
   it('should emit a media query for a responsive tuple', () => {
     renderWithProvider(<Box width={[1, 1 / 2]}>{CONTENT}</Box>);
 
-    const [cls] = Array.from(screen.getByText(CONTENT).classList).filter(
-      (name) => getInjectedStyles().includes(`.${name}{`),
+    const responsive = rulesFor(screen.getByText(CONTENT)).find(
+      ({ condition }) => condition === '@media screen and (min-width:768px)',
     );
-    expect(getInjectedStyles()).toContain(
-      `@media screen and (min-width:768px){.${cls}{width:50%;}}`,
-    );
+    expect(responsive?.declarations).toContain('width:50%');
   });
 
   it('should render an element given by the as prop', () => {
@@ -133,7 +122,7 @@ describe('FlexBox', () => {
       `;
       renderWithProvider(<Wide width={1}>{CONTENT}</Wide>);
 
-      const rules = getRulesFor(screen.getByText(CONTENT));
+      const rules = declarationsFor(screen.getByText(CONTENT));
       expect(rules).toContain('width:100%');
       expect(rules).toContain('width:500px');
       expect(rules.indexOf('width:500px')).toBeGreaterThan(
@@ -147,7 +136,7 @@ describe('FlexBox', () => {
       `;
       renderWithProvider(<Tall height={40}>{CONTENT}</Tall>);
 
-      const rules = getRulesFor(screen.getByText(CONTENT));
+      const rules = declarationsFor(screen.getByText(CONTENT));
       expect(rules.indexOf('height:500px')).toBeGreaterThan(
         rules.indexOf('height:40px'),
       );
@@ -163,7 +152,7 @@ describe('FlexBox', () => {
       );
 
       expect(container.querySelector('[hasError]')).toBeNull();
-      expect(getRulesFor(screen.getByText(CONTENT))).toContain(
+      expect(declarationsFor(screen.getByText(CONTENT))).toContain(
         'border:1px solid red',
       );
     });

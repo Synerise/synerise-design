@@ -1,5 +1,6 @@
 packages:
   - packages/components/*
+  - packages/tokens
   - packages/storybook
 
 # Single-version pins for the packages that must not be duplicated in the tree.
@@ -20,11 +21,14 @@ allowBuilds:
   esbuild: true
   husky: true
   nx: true
+  style-dictionary: true
   # Neither was in onlyBuiltDependencies, so pnpm 10 never ran their scripts
   # either - both ship prebuilt binaries. false keeps that, rather than newly
   # enabling two builds under cover of the upgrade.
   '@parcel/watcher': false
   unrs-resolver: false
+  # style-dictionary dep (packages/tokens); its postinstall only patches the repo's own tests, no-op for consumers.
+  '@bundled-es-modules/glob': false
 
 # pnpm 11 no longer reads this from .npmrc. It matters because CI runs as root,
 # where the default is false and install scripts would silently drop privileges.

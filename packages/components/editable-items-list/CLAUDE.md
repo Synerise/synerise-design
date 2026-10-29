@@ -25,8 +25,8 @@ Generic component: `EditableItemsList<T extends { id: string }>`. Not a `forward
 | `renderRowElement` | `(index: number, data: T) => ReactElement \| null` | — | **Required.** Renders content for each row |
 | `items` | `T[]` | `[]` | Items to display. Each must have a unique `id: string` |
 | `addButtonLabel` | `string \| ReactNode` | — | **Required.** Label for the Add button |
-| `addButtonIcon` | `ReactNode` | `undefined` | Custom icon for the Add button. Defaults to `<Add3M />` in blue |
-| `addButtonProps` | `Partial<ButtonProps>` | `undefined` | Overrides for the Add button. Merged on top of `{ type: 'ghost-primary', style: { transition: 'none' } }` |
+| `addButtonIcon` | `ReactNode` | `undefined` | Custom icon for the Add button. Defaults to `<Add3M />`, coloured by the ghost-primary button |
+| `addButtonProps` | `Partial<ButtonProps>` | `undefined` | Overrides for the Add button. Merged on top of `{ type: 'ghost-primary', mode, style: { transition: 'none' } }`, where `mode` is `'icon-label'` when `addButtonLabel` is set and `'single-icon'` otherwise |
 | `onAdd` | `MouseEventHandler<HTMLElement>` | — | **Required.** Called when Add button is clicked |
 | `minRowLength` | `number` | `1` | Delete button is hidden while `items.length <= minRowLength` |
 | `maxRowLength` | `number` | `undefined` | Add button is disabled once `items.length >= maxRowLength` |
@@ -72,7 +72,7 @@ Styles in `EditableItemsList.style.ts`. No design-system tokens — layout only:
 ## Implementation notes
 
 - **Delete visibility:** The delete (`CrudWrapper`) is rendered in the DOM at all times but hidden via `visibility: hidden`. It only becomes visible on hover — and only when `items.length > minRowLength`. At or below the minimum, the `CrudWrapper` is not rendered at all.
-- **Add button defaults:** A `DEFAULT_ADD_BUTTON_PROPS` constant sets `type: 'ghost-primary'` and `style: { transition: 'none' }`. `addButtonProps.style` is shallow-merged (not replaced), so individual style keys override but others persist.
+- **Add button defaults:** A `DEFAULT_ADD_BUTTON_PROPS` constant sets `type: 'ghost-primary'` and `style: { transition: 'none' }`. `mode` is derived from `addButtonLabel` — `'icon-label'` (8px/4px/12px icon spacing) with a label, `'single-icon'` (32px square) without — and `addButtonProps.mode` overrides it. `addButtonProps.style` is shallow-merged (not replaced), so individual style keys override but others persist.
 - **Generic constraint:** `T` must extend `{ id: string }`. Item identity for `key` and for `onDelete` is taken from `item.id`.
 - **Row key:** Rows are keyed by `item.id` — duplicate IDs will cause React reconciliation issues.
 - **No state:** Fully controlled — `items` array managed by the caller; this component has no internal list state.

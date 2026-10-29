@@ -30,6 +30,14 @@ const commonArgs = {
   tooltip: { title: 'Silvia Jobs', description: 'silvia.jobs@example.com' },
   useImage: true,
 };
+const colorOptions = backgroundColors.filter((color) => color !== 'auto');
+const skeletonParameters = { controls: { include: ['size', 'shape'] } };
+const skeletonSizeControl = controlFromOptionsArray('inline-radio', [
+  'S',
+  'M',
+  'L',
+  'XL',
+]);
 type AvatarStoryType = AvatarProps & {
   useImage: boolean;
   useIcon: Boolean;
@@ -60,10 +68,7 @@ export default {
       defaultValue: 'active',
     },
 
-    avatar: {
-      ...BOOLEAN_CONTROL,
-      defaultValue: false,
-    },
+    disabled: BOOLEAN_CONTROL,
     text: {
       control: 'text',
       defaultValue: '',
@@ -78,20 +83,20 @@ export default {
     iconComponent: {
       ...reactNodeAsSelect(['none', 'UserCircleM', 'MailM', 'Thunder2M'], {
         none: null,
-        Thunder2M: <Icon component={<Thunder2M />} color="#ffffff" />,
-        UserCircleM: <Icon component={<UserCircleM />} color="#ffffff" />,
-        MailM: <Icon component={<MailM />} color="#ffffff" />,
+        Thunder2M: <Icon component={<Thunder2M />} />,
+        UserCircleM: <Icon component={<UserCircleM />} />,
+        MailM: <Icon component={<MailM />} />,
       }),
     },
   },
 } as Meta<AvatarStoryType>;
 
 export const Default: StoryObj<AvatarStoryType> = {
-  render: ({ badgeStatus, ...args }) => (
+  render: ({ badgeStatus, useImage, ...args }) => (
     <Badge status={badgeStatus || 'active'}>
       <Avatar
         {...args}
-        src={args.useImage ? AVATAR_IMAGE : undefined}
+        src={useImage ? AVATAR_IMAGE : undefined}
         iconComponent={args.iconComponent}
         hasStatus
       >
@@ -99,9 +104,15 @@ export const Default: StoryObj<AvatarStoryType> = {
       </Avatar>
     </Badge>
   ),
+  parameters: { controls: { exclude: ['text'] } },
+  argTypes: {
+    backgroundColor: controlFromOptionsArray('select', colorOptions),
+    useImage: BOOLEAN_CONTROL,
+  },
   args: {
     ...commonArgs,
-    iconComponent: <Icon component={<MailM />} color="#fff" />,
+    useImage: true,
+    iconComponent: <Icon component={<MailM />} />,
     badgeStatus: 'active',
   },
 };
@@ -124,6 +135,8 @@ export const UserAvatar: StoryObj<UserAvatarProps> = {
 
 export const UserAvatarSkeleton: StoryObj<SkeletonAvatarProps> = {
   render: (args) => <SkeletonAvatar {...args} />,
+  parameters: skeletonParameters,
+  argTypes: { size: skeletonSizeControl },
   args: {
     size: 'M',
   },
@@ -131,14 +144,19 @@ export const UserAvatarSkeleton: StoryObj<SkeletonAvatarProps> = {
 
 export const ObjectAvatar: StoryObj<ObjectAvatarProps> = {
   render: (args) => <ObjectAvatarComponent {...args} />,
+  argTypes: {
+    color: controlFromOptionsArray('select', colorOptions),
+  },
   args: {
     ...commonArgs,
-    iconComponent: <Icon component={<Thunder2M />} color="#fff" />,
+    iconComponent: <Icon component={<Thunder2M />} />,
   },
 };
 
 export const ObjectAvatarSkeleton: StoryObj<SkeletonAvatarProps> = {
   render: (args) => <SkeletonAvatar {...args} />,
+  parameters: skeletonParameters,
+  argTypes: { size: skeletonSizeControl },
   args: {
     size: 'M',
     shape: 'square',

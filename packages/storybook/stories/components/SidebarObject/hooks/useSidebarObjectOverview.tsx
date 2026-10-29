@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { action } from 'storybook/actions';
 import { fn } from 'storybook/test';
 
-import { theme } from '@synerise/ds-core';
 import Overview from '@synerise/ds-sidebar-object/dist/Elements/Overview/Overview';
 import Tags, { TagShape } from '@synerise/ds-tags';
 
@@ -39,7 +38,6 @@ export const useSidebarObjectOverview = (allTags) => {
         const tag = {
           id: crypto.randomUUID(),
           name,
-          color: theme.palette['grey-200'],
         };
         setTags([...tags, tag]);
         setSelected([...selected, tag]);

@@ -1,7 +1,6 @@
 import React from 'react';
 
 import Avatar from '@synerise/ds-avatar';
-import { theme } from '@synerise/ds-core';
 import Flag from '@synerise/ds-flag';
 import Icon, { Add3M, FileM, LaptopM, MobileM, UserM } from '@synerise/ds-icon';
 import { type ListItemProps } from '@synerise/ds-list-item';
@@ -19,7 +18,7 @@ export const FLAT_DATA_SOURCE: ListItemProps[] = [
   {
     text: 'iPhone R',
     prefixel: (
-      <Icon component={<MobileM />} color={theme.palette['grey-600']} />
+      <Icon component={<MobileM />} color="var(--ds-color-icon-base-default)" />
     ),
   },
   {
@@ -45,7 +44,7 @@ export const FLAT_DATA_SOURCE: ListItemProps[] = [
   {
     text: 'Macbook Pro 15',
     prefixel: (
-      <Icon component={<LaptopM />} color={theme.palette['grey-600']} />
+      <Icon component={<LaptopM />} color="var(--ds-color-icon-base-default)" />
     ),
   },
   {
@@ -54,7 +53,7 @@ export const FLAT_DATA_SOURCE: ListItemProps[] = [
   {
     text: 'iPhone 13',
     prefixel: (
-      <Icon component={<MobileM />} color={theme.palette['grey-600']} />
+      <Icon component={<MobileM />} color="var(--ds-color-icon-base-default)" />
     ),
   },
   {

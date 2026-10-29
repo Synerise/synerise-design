@@ -91,11 +91,11 @@ const [query, setQuery] = React.useState('');
 ## Styling
 
 - Fixed height of **52 px** for the inner `<input>` element and placeholder overlay.
-- Bottom border: `1px solid grey-100`. No border-radius unless `borderRadius` prop is set.
+- Bottom border: `1px solid var(--ds-search-bar-border-default)`. No border-radius unless `borderRadius` prop is set.
 - Input padding is computed dynamically from constants in `SearchBar.constants.ts` based on whether `iconLeft` and `valuePrefix` are present.
 - Placeholder is a custom absolutely-positioned `<div>` — native placeholder is hidden via transparent color across all vendor prefixes. This is intentional to allow `ReactNode` placeholders.
-- On hover and when focused (`.is-focused`), `IconLeftWrapper` SVG and `ValuePrefixTitle` turn `blue-600`; `ClearInputWrapper` SVG turns `red-600`.
-- `disabled` state: SVGs fill `grey-400`; `pointer-events: none`.
+- On hover and when focused (`.is-focused`), `IconLeftWrapper` SVG turns `var(--ds-search-bar-icon-active)` and `ValuePrefixTitle` `var(--ds-color-text-brand-default)`. `ClearInputWrapper` is `var(--ds-form-clear-icon)` at rest, on hover and when focused.
+- `disabled` state: SVGs fill `var(--ds-search-bar-icon-disabled)`; `pointer-events: none`.
 - Minimum wrapper width: `150px`.
 
 ## Key dependencies
@@ -105,7 +105,7 @@ const [query, setQuery] = React.useState('');
 - `@synerise/ds-tooltip` — wraps the clear icon
 - `@synerise/ds-typography` — `Title` (level 6) used to render `valuePrefix`
 - `@synerise/ds-utils` — `useResizeObserver` (measures `valuePrefix` width), `WithHTMLAttributes` type
-- `@synerise/ds-core` — `useTheme` for palette access; `renderWithProvider` in tests, from its `/testing` subpath
+- `@synerise/ds-core` — `renderWithProvider` in tests, from its `/testing` subpath
 - `classnames` — merges `className` with `is-focused` state class
 - `react-intl` — default `clearTooltip` message (`DS.SEARCH-BAR.CLEAR-TOOLTIP`)
 

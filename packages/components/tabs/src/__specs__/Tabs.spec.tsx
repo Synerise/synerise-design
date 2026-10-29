@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { SearchM } from '@synerise/ds-icon';
-import { renderWithProvider } from '@synerise/ds-core/testing';
+import Icon, { SearchM } from '@synerise/ds-icon';
+import { renderWithProvider, rulesFor } from '@synerise/ds-core/testing';
 import { screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
@@ -121,5 +121,79 @@ describe('Tabs component', () => {
     const tabsFinal =
       await within(tabsContainer).findAllByTestId('tab-container');
     expect(tabsFinal.length).toBe(2);
+  });
+});
+
+// Rules setting a colour on the svg inside `element` that come through `owner`.
+const svgColourRules = (element: Element | null, owner: Element) =>
+  rulesFor(element?.querySelector('svg') ?? null, {
+    within: owner,
+    state: 'any',
+  }).filter(({ declarations }) => /(^|;)(fill|color):/.test(declarations));
+
+describe('Tab icon colours', () => {
+  const SUFFIX_COLOR = 'var(--ds-color-icon-success-default)';
+
+  const renderTab = () => {
+    renderWithProvider(
+      <Tabs
+        tabs={[
+          {
+            label: 'Tab',
+            icon: <SearchM />,
+            suffixel: (
+              <Icon
+                component={<svg />}
+                color={SUFFIX_COLOR}
+                data-testid="suffix-icon"
+              />
+            ),
+          },
+        ]}
+        activeTab={0}
+        handleTabClick={() => {}}
+      />,
+    );
+    const icon = screen.getAllByTestId('ds-tabs-tab-icon')[0];
+    const tab = icon.closest('button') as HTMLElement;
+    return { icon, tab };
+  };
+
+  it('drives the tab icon state colours through the icon container', () => {
+    const { icon, tab } = renderTab();
+    const byState = rulesFor(icon, { within: tab, state: 'any' }).reduce<
+      Record<string, string>
+    >((states, { selector, declarations }) => {
+      const state = selector.split(' ')[0].replace(/^\.[\w-]+/, '');
+      return { ...states, [state]: `${states[state] ?? ''}${declarations}` };
+    }, {});
+
+    expect(icon?.querySelector('svg')).toHaveStyle('color: inherit');
+    expect(byState['']).toContain('color:var(--ds-color-icon-base-default)');
+    expect(byState[':hover']).toContain(
+      'color:var(--ds-tabs-item-text-hover)',
+    );
+    expect(byState[':focus']).toContain(
+      'color:var(--ds-color-focus-base-default)',
+    );
+    expect(byState[':focus:active']).toContain(
+      'color:var(--ds-tabs-item-text-active)',
+    );
+    expect(byState['.active']).toContain(
+      'color:var(--ds-tabs-item-text-active)',
+    );
+    expect(byState['.pressed']).toContain(
+      'color:var(--ds-color-text-brand-defaulthover)',
+    );
+  });
+
+  it('lets an explicit suffixel icon colour win in every tab state', () => {
+    const { tab } = renderTab();
+
+    const suffixIcon = screen.getAllByTestId('suffix-icon')[0];
+    expect(suffixIcon?.querySelector('svg')).toHaveStyle(
+      `color: ${SUFFIX_COLOR}`,
+    );
+    expect(svgColourRules(suffixIcon, tab)).toEqual([]);
   });
 });

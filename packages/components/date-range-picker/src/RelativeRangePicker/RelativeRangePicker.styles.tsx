@@ -22,7 +22,7 @@ export const Title = styled.div`
 
 export const Help = styled.div`
   flex: 0;
-  color: ${(props): string => props.theme.palette['grey-400']};
+  color: var(--ds-color-text-base-disabled);
 `;
 
 export const Ranges = styled.div`
@@ -103,10 +103,10 @@ export const OverlayWrapper = styled.div<{ visible?: boolean; width?: number }>`
   position: absolute;
   bottom: 40px;
   padding: 8px 0 8px 8px;
-  background-color: ${(props): string => props.theme.palette.white};
+  background-color: var(--ds-dropdown-bg);
   display: ${(props): string => (props.visible ? 'block' : 'none')};
   z-index: 15;
-  box-shadow: 0 4px 12px 0 rgba(35, 41, 54, 0.09);
+  box-shadow: var(--ds-shadows-shadow-1);
   ${(props): false | string => !!props.width && `width:${props.width}px;`}
   &, & > ul {
     border-radius: 3px;

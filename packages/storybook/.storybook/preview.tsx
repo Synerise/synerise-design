@@ -13,7 +13,6 @@ import {
   DEFAULT_DATA_FORMAT_NOTATION,
   DSProvider,
   TOASTER_DEFAULTS,
-  theme,
 } from '@synerise/ds-core';
 
 configure({ asyncUtilTimeout: 3000 });
@@ -53,9 +52,23 @@ const preview: Preview = {
         ],
       },
     },
+    dsTheme: {
+      description: 'Design token theme',
+      defaultValue: 'light',
+      toolbar: {
+        title: 'Theme',
+        icon: 'mirror',
+        items: [
+          { value: 'light', title: 'Light' },
+          { value: 'dark', title: 'Dark' },
+        ],
+      },
+    },
   },
   decorators: [
     (Story, storyContext) => {
+      const selectedTheme = storyContext.globals.dsTheme || 'light';
+
       const DSProviderProps = {
         dataFormatConfig: {
           startWeekDayNotation: storyContext.globals.dataFormat,
@@ -66,6 +79,9 @@ const preview: Preview = {
         locale: storyContext.globals.locale,
         timeZone: storyContext.globals.timeZone,
         toasterProps: TOASTER_DEFAULTS,
+        // DSProvider injects both themes and toggles data-ds-theme on <html> from `mode`,
+        // keeping the CSS vars and useTheme().tokens in sync with the Theme toolbar.
+        mode: selectedTheme,
       };
       return <DSProvider {...DSProviderProps}>{Story()}</DSProvider>;
     },
@@ -77,10 +93,22 @@ const preview: Preview = {
 
     backgrounds: {
       options: {
-        dark: { name: 'Dark', value: theme.palette['grey-700'] },
-        grey: { name: 'Grey', value: theme.palette['grey-300'] },
-        yellow: { name: 'Yellow', value: theme.palette['yellow-100'] },
-        light: { name: 'Light', value: '#ffffff' },
+        dark: {
+          name: 'Dark',
+          value: 'var(--ds-color-background-neutral-solid)',
+        },
+        grey: {
+          name: 'Grey',
+          value: 'var(--ds-color-background-base-mutedactive)',
+        },
+        yellow: {
+          name: 'Yellow',
+          value: 'var(--ds-color-background-warning-subtlehover)',
+        },
+        light: {
+          name: 'Light',
+          value: 'var(--ds-color-background-base-default)',
+        },
       },
     },
     initialGlobals: {

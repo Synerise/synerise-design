@@ -109,7 +109,7 @@ Text label with rotating chevron — intended as a dropdown trigger.
 | `size` | `1 \| 2 \| 3 \| 4 \| 5 \| 6` | — | **Required.** Typography size level |
 | `expanded` | `boolean` | `undefined` | Controls arrow rotation (open state) |
 | `isDisabled` | `boolean` | `undefined` | Disables interactions |
-| `inactiveColor` | `string` | `grey-800` | Color when not hovered/focused |
+| `inactiveColor` | `string` | `grey-800` | Color when not hovered/focused. A custom-colour `family-shade` string (resolved through `resolveCustomColor` to `--ds-color-custom-*`) or an already-resolved `var(--ds-*)` / hex, passed through unchanged |
 | `onClick` | `() => void` | `undefined` | Click handler |
 | `onFocus` | `() => void` | `undefined` | Focus handler |
 
@@ -130,7 +130,7 @@ Back-navigation row rendered inside a dropdown overlay.
 
 ### `BottomAction`
 
-Bottom call-to-action row (grey-050 background, 52px height).
+Bottom call-to-action row (`--ds-color-background-base-subtle` background, 52px height).
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
@@ -197,8 +197,8 @@ A `skipDuplicates` ref prevents `onOpenChange` from firing twice when both the t
 
 ## Styling
 
-- Overlay: `DropdownOverlay.styles.ts` — white background, `box-shadow-2`, `3px` border-radius, dynamic width.
-- Footer: `grey-100` background, `48px` height; split layout via `DropdownFooterLeft`/`DropdownFooterRight`.
+- Overlay: `DropdownOverlay.styles.ts` — `--ds-dropdown-bg` background, `--ds-dropdown-shadow`, `3px` border-radius, dynamic width.
+- Footer: `--ds-dropdown-footer-bg` background, `48px` height; split layout via `DropdownFooterLeft`/`DropdownFooterRight`.
 - `Dropdown.Wrapper` clips `ListItemWrapper` to prevent overflow in narrow overlays.
 - All colours and shadows come from `@synerise/ds-core` tokens.
 

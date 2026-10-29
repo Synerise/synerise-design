@@ -186,7 +186,7 @@ Internal button used by `SearchInput`. Exported for advanced composition.
 | `onClick` | `() => void` | — | Click handler |
 | `clickable` | `boolean` | — | Enables pointer events |
 | `disabled` | `boolean` | — | Renders the button as disabled |
-| `inputFocused` | `boolean` | — | Changes icon fill to blue-600 when focused |
+| `inputFocused` | `boolean` | — | Changes icon fill to `var(--ds-color-icon-brand-default)` when focused (and open) |
 
 ## Usage patterns
 
@@ -245,8 +245,8 @@ import { SearchInput } from '@synerise/ds-search';
 - `Search.styles.tsx` contains all styled-components; no CSS Modules.
 - `SearchWrapper` receives `$width` (px) and `inputOpen` to toggle `width: 32px` vs `$width`. Note it emits no width rule at all when `$width` is falsy, so without `width`/`searchWidth` the component never collapses.
 - `SearchInputContent` transitions `width: 0 → 100%` over `ANIMATION_DURATION` (0.1s) using `direction: rtl` for right-to-left expansion animation.
-- `SearchInner` applies blue border (`palette['blue-600']`) and blue background (`palette['blue-050']`) when `hasValue` or `alwaysHighlight`.
-- `Filter` chip is capped at `MAX_FILTER_WIDTH = 120px` and uses `palette['blue-600']` color.
+- `SearchInner` applies the focus border (`var(--ds-form-field-border-focus)`) and focus background (`var(--ds-form-field-bg-focus)`) when `hasValue` or `alwaysHighlight`.
+- `Filter` chip is capped at `MAX_FILTER_WIDTH = 120px` and uses `var(--ds-form-field-text-active)` color.
 - `SearchDropdownWrapper` has `width: 0` by default; the child `.search-list-open` class makes it visible via `openDropdownAnimation` keyframe (fade in over 0.3s).
 - Dropdown appears 40px below the input (`top: 40px` on `SearchDropdownContent`).
 - `SCROLLBAR_HEIGHT_OFFSET = 28` is subtracted from `dropdownMaxHeight` before passing to `@synerise/ds-scrollbar`.

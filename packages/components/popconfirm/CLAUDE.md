@@ -127,20 +127,20 @@ import { ConfirmMessage } from '@synerise/ds-popconfirm';
 
 ## Styling
 
-- Container: `max-width: 288px`, `padding: 16px`, `border-radius: 3px`, `background: theme.palette.white`, shadow from `theme.variables['box-shadow-2']`
-- Title: `14px`, `font-weight: 500`, `color: theme.palette['grey-800']`
+- Container: `max-width: 288px`, `padding: 16px`, `border-radius: 3px`, `background: var(--ds-popconfirm-container-bg)`, shadow `var(--ds-shadows-shadow-2)`
+- Title: `14px`, `font-weight: 500`, `color: var(--ds-popconfirm-header-text)`
 - Description: `13px`, `font-weight: 400`; `margin-top: 6px` only when `titlePadding` is falsy
 - Buttons: `height: 32px`; cancel is always `type="secondary"`, confirm uses `okType`
 - Arrow: custom SVG triangle, positioned via CSS classes (`ds-popover-arrow-*`) — rotated per placement
-- Carousel dots: ds-carousel's `.ds-carousel-dots` restyled here to round dots; active dot (`.ds-carousel-dot-active`) uses `theme.palette['green-600']` border
-- `ConfirmMessage` styles contain a hardcoded colour (`#404c5a` for text) — not a design token
+- Carousel dots: ds-carousel's `.ds-carousel-dots` restyled here to round dots; active dot (`.ds-carousel-dot-active`) uses a `var(--ds-color-background-success-solid)` border
+- `ConfirmMessage` text uses `var(--ds-popconfirm-header-text)`
 
 ## Key dependencies
 
 - `@synerise/ds-popover` — provides `Popover`, `PopoverTrigger`, `PopoverContent`, `PopoverArrow`, `getPlacement`
 - `@synerise/ds-button` — cancel and confirm buttons
 - `@synerise/ds-tooltip` — used by `ConfirmMessage` internally
-- `@synerise/ds-core` — `useTheme` for z-index and colour tokens
+- `@synerise/ds-core` — `useTheme` for the `zindex-popconfirm` default (`theme.variables`)
 - `@synerise/ds-carousel` — image slideshow (fade + dots)
 - `@floating-ui/react` — `UseTransitionStylesProps`, re-exported in the published types
 

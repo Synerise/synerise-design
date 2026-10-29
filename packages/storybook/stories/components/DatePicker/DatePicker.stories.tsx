@@ -44,6 +44,7 @@ export default {
   },
   decorators: [fixedWrapper588],
   argTypes: {
+    disabled: BOOLEAN_CONTROL,
     prefixel: {
       ...REACT_NODE_AS_STRING,
     },

@@ -1,12 +1,10 @@
 import styled from 'styled-components';
 
 export const IconWrapper = styled.span`
+  color: var(--ds-form-icon-color-default);
   &:hover {
     cursor: pointer;
-    svg {
-      color: ${(props): string => props.theme.palette['blue-600']};
-      fill: ${(props): string => props.theme.palette['blue-600']};
-    }
+    color: var(--ds-color-icon-brand-default);
   }
 `;
 

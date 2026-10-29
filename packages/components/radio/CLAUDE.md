@@ -29,6 +29,8 @@ Compound component: `Radio` + `Radio.Group` + `Radio.Button`.
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `label` | `ReactNode` | `undefined` | Renders label text via `FormFieldLabel`. Takes precedence over `children` |
+| `tooltip` | `ReactNode` | `undefined` | Info-icon tooltip next to `label` (via `FormFieldLabel`). Use it instead of nesting a `FormFieldLabel` in `children`: that renders a second `<label>`, and clicks on its text no longer select the radio |
+| `tooltipConfig` | `TooltipProps` | `undefined` | Tooltip config for `tooltip`, as on `FormFieldLabel` |
 | `description` | `ReactNode` | `undefined` | Additional text rendered below the radio in small grey text |
 | `children` | `ReactNode` | `undefined` | **@deprecated** — use `label` instead. Only rendered when `label` is not provided |
 | `checked` | `boolean` | `undefined` | Controlled checked state |
@@ -86,11 +88,11 @@ import Radio from '@synerise/ds-radio';
 
 ## Styling
 
-Styles live in `Radio.styles.tsx`. **Each element is its own styled-component and owns its styles** — the `.ant-radio-*` / `ds-radio-*` class names are kept on the elements purely as hooks (ui-tests / interim external CSS), never used as styling selectors; state is passed in as transient `$`-props. Uses `@synerise/ds-core` theme tokens:
-- `grey-600` — `Description` text colour; `opacity: 0.4` applied on `disabled` to `Label`/`Description`/`RadioText`
+Styles live in `Radio.styles.tsx`. **Each element is its own styled-component and owns its styles** — the `.ant-radio-*` / `ds-radio-*` class names are kept on the elements purely as hooks (ui-tests / interim external CSS), never used as styling selectors; state is passed in as transient `$`-props. The dot uses the `var(--ds-form-control-*)` tokens it shares with checkbox, the texts the shared `form-*` text tokens:
+- `var(--ds-form-description-text-color)` — `Description` text colour; `RadioText` is `var(--ds-form-label-text-color)` in every state. `opacity: var(--ds-opacity-disabled)` is applied on `disabled` to `Description`/`RadioText`/`RadioInner`
 - `Label` extends `FormFieldLabel` from `@synerise/ds-form-field`
-- radio dot: `RadioBox` / `RadioInput` / `RadioInner` / `RadioText`. `RadioInner` is the 16px circle (`grey-300` border, blue-600 dot scaled in on `$checked`, greyed on `$disabled`); `RadioLabel` holds the cross-element hover-preview + focus-ring rules (`${RadioInput}:focus + ${RadioInner}`, white centre once `$checked`).
-- segmented button: `RadioButtonLabel` (+ `RadioButtonInput`) owns the full segment visual including the connected-border `:first-child`/`:last-child` rules and the `$solid`/`$checked`/`$disabled` variants — driven by `$`-props read from the group context, not by group-level `.ant-radio-button-*` selectors.
+- radio dot: `RadioBox` / `RadioInput` / `RadioInner` / `RadioText`. `RadioInner` is the 16px circle (`var(--ds-form-control-bg-default)` fill, `var(--ds-form-control-border-default)` border; on `$checked` a `var(--ds-form-control-bg-selected)` border and dot scaled in). `$disabled` has no colours of its own — the circle keeps its resting or selected look and fades. `RadioLabel` holds the cross-element hover + focus-ring rules (`var(--ds-form-control-border-hover)` on an enabled input's hover; `${RadioInput}:focus + ${RadioInner}`, `var(--ds-form-control-bg-default)` centre once `$checked`).
+- segmented button: `RadioButtonLabel` (+ `RadioButtonInput`) owns the full segment visual including the connected-border `:first-child`/`:last-child` rules and the `$solid`/`$checked`/`$disabled` variants — driven by `$`-props read from the group context, not by group-level `.ant-radio-button-*` selectors. It follows Button Toggle on the button tokens: unselected (incl. hover and focus) is `var(--ds-buttons-variant-secondary-*)`, selected solid is `var(--ds-buttons-variant-primary-*)`, selected outline is `var(--ds-color-background-brand-subtle)` + `var(--ds-color-text-brand-default)` with a `var(--ds-color-border-brand-default)` border.
 - `RadioGroupWrapper` is `inline-block` (vertical stacking) and, with `fullWidth`, switches to flex and stretches `${RadioLabel}`/`${RadioButtonLabel}` (`big` → 48px height).
 - `AdditionalData` is the margin wrapper for `Description`
 

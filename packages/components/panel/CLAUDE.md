@@ -30,7 +30,7 @@ export type { PanelProps } from './Panel.types';
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `radius` | `number` | `8` | Border radius in pixels applied to the wrapper |
-| `greyBackground` | `boolean` | `undefined` | When `true`: applies a drop shadow (`box-shadow: 0 4px 12px 0 rgba(35,41,54,0.04)`); when `false`/absent: applies a `1px solid grey-200` border |
+| `greyBackground` | `boolean` | `undefined` | When `true`: applies a drop shadow (`box-shadow: var(--ds-shadows-shadow-1)`); when `false`/absent: applies a `1px solid var(--ds-color-border-base-default)` border |
 | `label` | `React.ReactNode` | `undefined` | Label rendered above the panel via `FormFieldLabel` |
 | `tooltip` | `React.ReactNode` | `undefined` | Tooltip content shown next to the label (info icon trigger) |
 | `tooltipConfig` | `TooltipProps` | `undefined` | Extra config for the label tooltip |
@@ -45,7 +45,7 @@ export type { PanelProps } from './Panel.types';
 ```tsx
 import Panel from '@synerise/ds-panel';
 
-// Default — white background, 1px grey-200 border, 8px radius, 8px padding
+// Default — base background, 1px base border, 8px radius, 8px padding
 <Panel>
  <ListItem>Item</ListItem>
 </Panel>
@@ -75,7 +75,7 @@ const ref = React.createRef<HTMLDivElement>();
 - The outer element is a plain `div` that receives `ref`, `className`, and `style`.
 - `PanelWrapper` extends `Box` from `@synerise/ds-flex-box`, so all its space/layout style props work. Note `p={8}` resolves through `theme.space`, which has no index 8, so it falls back to `8px`.
 - `Label` extends `FormFieldLabel` from `@synerise/ds-form-field` with `margin-bottom: 8px`.
-- Background is always `theme.palette.white`.
+- Background is always `var(--ds-color-background-base-default)`.
 - `greyBackground` toggles between a border and a box-shadow — it does **not** change the background colour despite its name.
 - `$radius` is passed as a transient styled-components prop (prefixed `$`) to avoid forwarding to the DOM.
 - Default padding (`p={8}`) is set at the component level and can be overridden via `BoxProps`.
@@ -84,7 +84,7 @@ const ref = React.createRef<HTMLDivElement>();
 
 - `@synerise/ds-flex-box` (workspace) — provides `Box` and `BoxProps`
 - `@synerise/ds-form-field` (workspace) — provides `FormFieldLabel` and `BaseLabelProps`
-- `@synerise/ds-core` (peer) — theme provider required for `theme.palette` tokens
+- `@synerise/ds-core` (peer) — `DSProvider` injects the `--ds-*` token custom properties
 - `react >=16.9.0 <= 18.3.1` (peer)
 
 ## Implementation notes

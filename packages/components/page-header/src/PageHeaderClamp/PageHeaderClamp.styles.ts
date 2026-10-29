@@ -8,7 +8,7 @@ export const WrapperPageHeaderClamp = styled.div`
   display: flex;
   overflow: hidden;
   align-items: center;
-  color: ${(props): string => props.theme.palette['grey-800']};
+  color: var(--ds-page-header-navigation-label-color);
 `;
 
 export const PageHeaderTitle = styled.span`
@@ -21,9 +21,6 @@ export const PageHeaderTitle = styled.span`
 export const PageHeaderTooltipWraper = styled.div`
   .ds-icon {
     margin-left: 8px;
-    svg {
-      color: ${(props): string => props.theme.palette['grey-600']};
-      fill: ${(props): string => props.theme.palette['grey-600']};
-    }
+    color: var(--ds-color-icon-base-default);
   }
 `;

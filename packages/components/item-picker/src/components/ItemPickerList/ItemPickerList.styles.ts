@@ -59,28 +59,28 @@ export const EmptyStates = styled(DSEmptyStates)`
 
 export const IconWrapper = styled.div`
   margin-right: 4px;
-  svg {
-    fill: ${(props): string => props.theme.palette['grey-600']};
-  }
+  /* Icon colour flows through the wrapper's \`color\` (DS icons default to
+     fill: currentColor), so no explicit svg fill rule is needed. */
+  color: var(--ds-color-icon-base-default);
 `;
 
 export const FooterWrapper = styled.div`
-  background-color: ${(props): string => props.theme.palette['grey-050']};
+  background-color: var(--ds-dropdown-footer-bg);
   padding: 0 8px;
   height: 48px;
   flex: 0 0 48px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  color: ${(props): string => props.theme.palette['grey-600']};
+  /* Footer action text default. dropdown module has no footer-text token
+     → exact semantic grey-600. DS follow-up: add a dropdown footer-text token. */
+  color: var(--ds-dropdown-text-additional);
   font-weight: 500;
-  border-top: solid 1px ${(props): string => props.theme.palette['grey-100']};
+  border-top: solid 1px var(--ds-dropdown-footer-border);
   &:hover {
-    color: ${(props): string => props.theme.palette['blue-600']};
+    color: var(--ds-color-text-brand-default);
     ${IconWrapper} {
-      svg {
-        fill: ${(props): string => props.theme.palette['blue-600']};
-      }
+      color: var(--ds-color-icon-brand-default);
     }
   }
 `;
@@ -141,7 +141,7 @@ export const Title = styled.div`
   line-height: 1.6;
   font-weight: 500;
   text-transform: uppercase;
-  color: ${(props): string => props.theme.palette['grey-500']};
+  color: var(--ds-divider-header-text-color);
   padding: 8px 12px;
 `;
 

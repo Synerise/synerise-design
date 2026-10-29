@@ -66,6 +66,22 @@ describe('Estimation', () => {
     ];
     renderWithProvider(<Estimation {...defaultProps} progressBarValues={progressBarValues} />);
     expect(screen.getByTestId('estimation-progressbar')).toBeInTheDocument();
+    // Legend renders a labelled ds-badge dot per value with a label.
+    expect(screen.getByText('Active')).toBeInTheDocument();
+    expect(screen.getByText('Inactive')).toBeInTheDocument();
+  });
+
+  it('colours each legend dot with its value colour', () => {
+    const progressBarValues = [
+      { percent: 30, color: 'var(--ds-color-custom-green-600)', label: 'Active' },
+      { percent: 70, color: 'var(--ds-color-custom-red-600)', label: 'Inactive' },
+    ];
+    renderWithProvider(<Estimation {...defaultProps} progressBarValues={progressBarValues} />);
+
+    const dotFor = (label: string) =>
+      screen.getByText(label).parentElement?.querySelector('.ds-badge-dot');
+    expect(dotFor('Active')).toHaveStyle({ backgroundColor: 'var(--ds-color-custom-green-600)' });
+    expect(dotFor('Inactive')).toHaveStyle({ backgroundColor: 'var(--ds-color-custom-red-600)' });
   });
 
   describe('loading states', () => {

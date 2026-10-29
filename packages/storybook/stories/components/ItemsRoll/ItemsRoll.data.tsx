@@ -2,7 +2,6 @@ import React from 'react';
 import { action } from 'storybook/actions';
 
 import { ObjectAvatar } from '@synerise/ds-avatar';
-import { theme } from '@synerise/ds-core';
 import Icon, {
   Add3M,
   AggregateM,
@@ -12,6 +11,7 @@ import Icon, {
   ParamsBadgeM,
 } from '@synerise/ds-icon';
 import InformationCard from '@synerise/ds-information-card';
+import { customColors } from '@synerise/ds-tokens/names';
 import Tooltip from '@synerise/ds-tooltip';
 
 export const SEARCH_PLACEHOLDER = 'Search...';
@@ -59,7 +59,7 @@ const tenParams = Array.from(Array(13).keys()).map((key) => ({
         <Icon
           component={<ParamsBadgeM />}
           size={20}
-          color={theme.palette['red-600']}
+          color={customColors.red['600']}
         />
       </div>
     </Tooltip>
@@ -77,7 +77,7 @@ const tenAggregates = Array.from(Array(25).keys()).map((key) => ({
         <Icon
           component={<AggregateM />}
           size={20}
-          color={theme.palette['red-600']}
+          color={customColors.red['600']}
         />
       </div>
     </Tooltip>
@@ -95,7 +95,7 @@ const tenExpressions = Array.from(Array(6).keys()).map((key) => ({
         <Icon
           component={<ExpressionM />}
           size={20}
-          color={theme.palette['red-600']}
+          color={customColors.red['600']}
         />
       </div>
     </Tooltip>
@@ -114,7 +114,10 @@ export const ACTIONS = [
     onClick: action('OnImportClick'),
     text: 'Import',
     prefixel: (
-      <Icon component={<FileTypeTableM />} color={theme.palette['grey-600']} />
+      <Icon
+        component={<FileTypeTableM />}
+        color="var(--ds-color-icon-base-default)"
+      />
     ),
   },
   {
@@ -122,7 +125,9 @@ export const ACTIONS = [
     onClick: action('OnExportClick'),
     text: 'Export',
     prefixel: (
-      <Icon component={<FileDownloadM color={theme.palette['grey-600']} />} />
+      <Icon
+        component={<FileDownloadM color="var(--ds-color-icon-base-default)" />}
+      />
     ),
   },
 ];

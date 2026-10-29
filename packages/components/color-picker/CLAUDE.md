@@ -85,11 +85,11 @@ const [savedColors, setSavedColors] = useState<string[]>([]);
 
 ## Styling
 
-All styles are in `ColorPicker.styles.ts`. Uses `theme.palette` tokens for borders, backgrounds, and text. `react-colorful` internal class names (`.react-colorful__*`) are overridden directly inside the `Container` styled-component.
+All styles are in `ColorPicker.styles.ts`. Uses `var(--ds-*)` tokens (mostly the shared `--ds-form-field-*` ones, plus `--ds-dropdown-bg`) for borders, backgrounds, and text. `react-colorful` internal class names (`.react-colorful__*`) are overridden directly inside the `Container` styled-component.
 
 `ColorPickerModalStyle` is a `createGlobalStyle` that targets `.color-picker-overlay` — it is only injected into the DOM when `maxWidth >= 228`. This is a **global CSS side-effect**.
 
-The saved-colour **swatch section** is built from plain styled elements matching the Figma spec (16×16, `border-radius: 3px`): `SwatchCreatorButton` (the "+" button, `<button>` — hover shows a `grey-200` background), `Swatch` (a filled `<button>` whose `background-color` is the saved colour; the selected one renders a centred `SwatchDot`), and `SwatchPlaceholder` (an empty `<div>` slot with a `grey-300` border, `grey-400` on hover). It does **not** use `ds-tags`/`ds-button` for swatches. Filled swatches carry `.ds-color-swatch`; empty slots carry `.ds-color-swatch-placeholder`.
+The saved-colour **swatch section** is built from plain styled elements matching the Figma spec (16×16, `border-radius: 3px`): `SwatchCreatorButton` (the "+" button, `<button>` — hover shows a `--ds-color-background-base-mutedhover` background), `Swatch` (a filled `<button>` whose `background-color` is the saved colour; the selected one renders a centred `SwatchDot`), and `SwatchPlaceholder` (an empty `<div>` slot with a `--ds-form-field-affix-border` border, no hover change). It does **not** use `ds-tags`/`ds-button` for swatches. Filled swatches carry `.ds-color-swatch`; empty slots carry `.ds-color-swatch-placeholder`.
 
 ## Key dependencies
 

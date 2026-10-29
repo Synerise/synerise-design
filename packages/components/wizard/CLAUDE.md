@@ -111,7 +111,7 @@ import Wizard from '@synerise/ds-wizard';
 
 ## Styling
 
-All styles are in `Wizard.styles.ts` and shared between `Wizard` and `WizardOnModal`. Uses `@synerise/ds-core` theme palette tokens throughout. Key layout values:
+All styles are in `Wizard.styles.ts` and shared between `Wizard` and `WizardOnModal`. Colours use `var(--ds-color-*)` tokens throughout. Key layout values:
 
 - Wizard wrapper: `position: fixed; z-index: 1500`, inset 24px from every viewport edge over a `WizardMask` backdrop
 - Content area: `padding-top: 122px`, `padding-bottom: 100px` when footer is present

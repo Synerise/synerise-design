@@ -10,9 +10,10 @@ export const ItemActionsWrapper = styled.div`
   span {
     margin: 0 0 0 8px;
   }
-  ${IconContainer}:hover {
-    svg {
-      fill: ${({ theme }): string => theme.palette['blue-600']};
+  ${IconContainer} {
+    color: var(--ds-color-icon-base-subtle);
+    &:hover {
+      color: var(--ds-color-icon-brand-default);
     }
   }
 `;

@@ -66,7 +66,12 @@ export const Switch = forwardRef<HTMLDivElement, Props>(
               <S.BelowLabel>
                 {errorText && <S.Error>{errorText}</S.Error>}
                 {description && (
-                  <S.Description className="switch-description">
+                  <S.Description
+                    className="switch-description"
+                    $disabled={Boolean(
+                      rawSwitchProps.disabled || rawSwitchProps.loading,
+                    )}
+                  >
                     {description}
                   </S.Description>
                 )}

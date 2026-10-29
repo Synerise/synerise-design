@@ -34,7 +34,7 @@ export const BatchSelectionWrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   gap: 14px;
-  border-bottom: solid 1px ${(props) => props.theme.palette['grey-300']};
+  border-bottom: solid 1px var(--ds-color-border-base-strong);
   height: 64px;
 `;
 export const BatchActionButtons = styled.div`

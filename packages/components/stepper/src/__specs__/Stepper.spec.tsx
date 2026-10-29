@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { renderWithProvider } from '@synerise/ds-core/testing';
+import { declarationsFor, renderWithProvider } from '@synerise/ds-core/testing';
 import userEvent from '@testing-library/user-event';
 
 import Stepper from '../Stepper';
@@ -84,5 +84,77 @@ describe('Stepper component', () => {
 
     // ASSERT
     expect(container.querySelector('.warning-fill-s')).toBeTruthy();
+  });
+});
+
+describe('Stepper step token usage', () => {
+  // An Icon's `color` prop styles the svg through its container (`.ds-icon svg`).
+  const iconSvgDeclarations = (icon: Element | null | undefined) =>
+    declarationsFor(icon?.querySelector('svg') ?? null, { within: icon });
+
+  it('colours the active step number with the circle content token', () => {
+    const { getByText } = renderWithProvider(
+      <Stepper>
+        <Stepper.Step label="First step" stepNumber={1} active />
+      </Stepper>,
+    );
+
+    expect(declarationsFor(getByText('1'))).toContain(
+      '--ds-stepper-step-circle-content-active',
+    );
+  });
+
+  it('colours the validated step number with the circle content token', () => {
+    const { getByText } = renderWithProvider(
+      <Stepper>
+        <Stepper.Step label="First step" stepNumber={1} validated />
+      </Stepper>,
+    );
+
+    expect(declarationsFor(getByText('1'))).toContain(
+      '--ds-stepper-step-circle-content-validation',
+    );
+  });
+
+  it('colours the done check icon with the circle content token', () => {
+    const { container } = renderWithProvider(
+      <Stepper>
+        <Stepper.Step label="First step" stepNumber={1} done />
+      </Stepper>,
+    );
+
+    const declarations = iconSvgDeclarations(container.querySelector('.ds-icon'));
+    expect(declarations).toContain('--ds-stepper-step-circle-content-done');
+    expect(declarations).not.toContain('--ds-stepper-step-circle-border-done');
+  });
+
+  it('colours the done check icon in warning with the circle content token', () => {
+    const { container } = renderWithProvider(
+      <Stepper>
+        <Stepper.Step label="First step" stepNumber={1} done warning />
+      </Stepper>,
+    );
+
+    expect(iconSvgDeclarations(container.querySelector('.ds-icon'))).toContain(
+      '--ds-stepper-step-circle-content-warning',
+    );
+  });
+
+  it('colours the tooltip warning icon with the label token', () => {
+    const { container } = renderWithProvider(
+      <Stepper>
+        <Stepper.Step
+          label="First step"
+          stepNumber={1}
+          active
+          tooltip="Tooltip info"
+        />
+      </Stepper>,
+    );
+
+    const icon = container.querySelector('.warning-fill-s')?.closest('.ds-icon');
+    expect(iconSvgDeclarations(icon)).toContain(
+      '--ds-stepper-step-label-warning',
+    );
   });
 });

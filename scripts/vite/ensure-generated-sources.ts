@@ -14,6 +14,11 @@ interface GeneratedSource {
  */
 const GENERATED_SOURCES: GeneratedSource[] = [
   {
+    path: 'packages/tokens/dist/js/index.js',
+    label: '@synerise/ds-tokens build output (it has no src/, specs import its dist)',
+    command: 'pnpm generate:tokens',
+  },
+  {
     path: 'packages/components/core/src/js/DSProvider/ThemeProvider/variables.ts',
     label: '@synerise/ds-core theme variables',
     command: 'pnpm generate:vars',

@@ -64,10 +64,10 @@ sub-component: **`Select.Option`** (the DS `Option` marker). `Select.OptGroup` i
 | `error` | `boolean` | `undefined` | Error visual state without a message. |
 | `clearTooltip` | `string` | `undefined` | Tooltip on hover of the clear (×) control. |
 | `prefixel` / `suffixel` | `ReactNode` | `undefined` | Addon nodes attached left/right of the selector (shared border). |
-| `grey` | `boolean` | `undefined` | `grey-050` selector background when not in error state. |
+| `grey` | `boolean` | `undefined` | `var(--ds-color-background-base-subtle)` selector background when not in error state. |
 | `asFormElement` | `boolean` | `undefined` | Forces a 16 px bottom margin even without `errorText`/`description`. |
 | `raw` | `boolean` | `undefined` | Skips the `FormField` wrapper — renders only the selector; `ref` attaches to `SelectWrapper`. |
-| `readOnly` | `boolean` | `undefined` | Non-interactive with readable styling (white bg, `default` cursor, `grey-600` text). |
+| `readOnly` | `boolean` | `undefined` | Non-interactive with readable styling (`var(--ds-form-field-bg-default)` bg, `default` cursor, `var(--ds-form-field-text-value)` text). |
 | `disabled` | `boolean` | `undefined` | Standard disabled state; ORed with `readOnly` to block interaction. |
 | `selectorStyle` | `CSSObject` | `undefined` | Inline style object applied to the `Selector` box. |
 | `listHeight` | `number \| string` | `256` | Max dropdown list height (px); also the windowed viewport height. |
@@ -128,9 +128,10 @@ const { Option } = Select;
 - `SelectWrapper` (`.ds-select-wrapper`) — the flex row (selector + addons); carries the root
   `onFocus`/`onBlur`/`onClick` and `data-*`/`aria-*` passthrough.
 - `Selector` (`.ds-select`) — the trigger box; `large` height, `withPrefixel`/`withSuffixel`
-  border-radius removal, open/focus ring (`blue-600`/`blue-050`), error (`red-600`/`red-050`),
+  border-radius removal, open/focus ring (`--ds-form-field-border-focus`/`--ds-form-field-bg-focus`), error
+  (`--ds-form-field-border-validated`/`--ds-form-field-bg-validated`),
   `readOnly` vs `disabled` differentiation, and the `selectorStyle` interpolation.
-- `PrefixWrapper` / `SuffixWrapper` — `grey-050` addons with flush border join.
+- `PrefixWrapper` / `SuffixWrapper` — `var(--ds-form-field-affix-*)` addons with flush border join.
 - Dropdown / options: `DropdownWrapper`, `ScrollList`, `Inner` (`role="listbox"`), `OptionItem`
   (styled `ds-list-item`), `NotFound`, `Loading`. Selector content: `SelectionItem`, `Placeholder`,
   `MultiValueArea`, `Chip`/`ChipLabel`/`ChipRemove`, `Arrow`, `ClearWrapper`, `SearchInputEl`.

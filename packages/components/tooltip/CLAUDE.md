@@ -96,13 +96,13 @@ import type { TooltipProps } from '@synerise/ds-tooltip';
 
 ## Styling
 
-- Background: `rgba(56, 67, 80, 0.9)` (semi-transparent dark).
-- Text color: `grey-200` from theme palette.
+- Background: `var(--ds-tooltip-surface-bg)`.
+- Text color: `var(--ds-tooltip-text)`.
 - Border radius: `3px`.
 - Max-width: `250px` for `default`/`largeSimple`; `400px` for `largeScrollable`.
 - Content padding: `3px 8px` for `default`; `12px` for large types.
-- Keyboard key badges (`TooltipKey`): `grey-700` background, `grey-500` border, subtle box-shadow.
-- `TooltipWrapper` applies `box-shadow-2` from theme variables (used by `render` prop path and as base for `TooltipComponent`).
+- Keyboard key badges (`TooltipKey`): `var(--ds-shortcut-theme-dark-bg)` background, `var(--ds-shortcut-theme-dark-border)` bottom border, `var(--ds-shortcut-theme-dark-shadow)` box-shadow.
+- `TooltipWrapper` applies `var(--ds-tooltip-shadow)` (used by `render` prop path and as base for `TooltipComponent`).
 
 ## Key dependencies
 

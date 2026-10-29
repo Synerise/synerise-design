@@ -188,7 +188,7 @@ Creates a `listRef` and returns default list navigation config (`enabled: false`
 ## Key dependencies
 
 - `@floating-ui/react ^0.27` — all positioning, interaction, and transition logic
-- `@synerise/ds-core` — `useTheme()` for z-index and styling tokens
+- `@synerise/ds-core` — `useTheme()` for the `zindex-dropdown` default (`theme.variables`)
 - `classnames` — arrow placement class name composition
 
 ## Hiding while the anchor is not visible

@@ -76,7 +76,7 @@ Circular 24×24 icon badge for use as `renderBadge` content or standalone.
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `icon` | `ReactNode` | — | **Required.** Icon element rendered inside the badge. |
-| `status` | `'success' \| 'checked' \| 'warning' \| 'error' \| 'default'` | `'default'` | Controls background (`green/yellow/red-600` or transparent) and icon colour. |
+| `status` | `'success' \| 'checked' \| 'warning' \| 'error' \| 'default'` | `'default'` | Controls background and icon colour via `--ds-card-header-badge-<status>-bg` / `-icon`. |
 
 ### `CardSummary`
 

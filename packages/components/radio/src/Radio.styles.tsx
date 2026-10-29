@@ -9,14 +9,13 @@ export const RadioWrapper = styled.div`
 `;
 
 export const Description = styled.div<{ disabled?: boolean }>`
-  color: ${(props) => props.theme.palette['grey-600']};
-  ${(props) => (props.disabled ? 'opacity: 0.4;' : '')}
+  color: var(--ds-form-description-text-color);
+  ${(props): string =>
+    props.disabled ? `opacity: var(--ds-opacity-disabled);` : ''}
   ${macro.small}
 `;
 
-export const Label = styled(FormFieldLabel)<{ disabled?: boolean }>`
-  ${(props) => (props.disabled ? 'opacity: 0.4;' : '')}
-`;
+export const Label = styled(FormFieldLabel)``;
 
 export const AdditionalData = styled.div`
   margin: 4px 8px 15px 28px;
@@ -51,8 +50,8 @@ export const RadioInner = styled.span<{
   width: 16px;
   height: 16px;
   box-sizing: border-box;
-  background-color: ${(props) => props.theme.palette.white};
-  border: 1px solid ${(props) => props.theme.palette['grey-300']};
+  background-color: var(--ds-form-control-bg-default);
+  border: 1px solid var(--ds-form-control-border-default);
   border-radius: 50%;
 
   &::after {
@@ -68,7 +67,7 @@ export const RadioInner = styled.span<{
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background-color: ${(props) => props.theme.palette['blue-600']};
+    background-color: var(--ds-form-control-bg-selected);
     transform: scale(0);
     transition: transform 0.2s ease;
   }
@@ -76,7 +75,7 @@ export const RadioInner = styled.span<{
   ${(props) =>
     props.$checked &&
     css`
-      border-color: ${props.theme.palette['blue-600']};
+      border-color: var(--ds-form-control-bg-selected);
       border-width: 2px;
 
       &::after {
@@ -87,33 +86,23 @@ export const RadioInner = styled.span<{
   ${(props) =>
     props.$disabled &&
     css`
-      border-color: ${props.theme.palette['grey-200']} !important;
-      background-color: ${props.theme.palette['grey-050']} !important;
-
-      &::after {
-        background-color: ${props.theme.palette['grey-400']};
-      }
+      opacity: var(--ds-opacity-disabled);
     `}
 `;
 
 export const RadioText = styled.span<{
-  $checked?: boolean;
   $disabled?: boolean;
 }>`
   flex-grow: 1;
   margin: 0 12px;
   padding: 0;
   font-weight: 500;
-  color: ${(props) =>
-    props.$checked
-      ? props.theme.palette['grey-800']
-      : props.theme.palette['grey-700']};
+  color: var(--ds-form-label-text-color);
 
   ${(props) =>
     props.$disabled &&
     css`
-      color: ${props.theme.palette['grey-600']};
-      opacity: 0.4;
+      opacity: var(--ds-opacity-disabled);
     `}
 `;
 
@@ -138,17 +127,17 @@ export const RadioLabel = styled.label<{
   white-space: normal;
 
   /* hover preview */
-  ${RadioInput}:hover + ${RadioInner} {
-    border-color: ${(props) => props.theme.palette['grey-400']};
+  ${RadioInput}:hover:not(:disabled) + ${RadioInner} {
+    border-color: var(--ds-form-control-border-hover);
   }
 
   /* keyboard focus ring (white centre once checked) */
   ${RadioInput}:focus + ${RadioInner} {
-    border-color: ${(props) => props.theme.palette['blue-600']};
+    border-color: var(--ds-color-focus-base-default);
     background-color: ${(props) =>
       props.$checked
-        ? props.theme.palette.white
-        : props.theme.palette['blue-050']};
+        ? 'var(--ds-form-control-bg-default)'
+        : 'var(--ds-form-field-bg-focus)'};
     border-width: 2px;
   }
 
@@ -191,31 +180,39 @@ export const RadioButtonLabel = styled.label<{
   height: ${(props) => BUTTON_HEIGHT[props.$size ?? 'middle']};
   margin: 0;
   padding: 0 16px;
-  color: ${(props) => props.theme.palette['grey-700']};
-  background-color: ${(props) => props.theme.palette['grey-050']};
-  border: 1px solid ${(props) => props.theme.palette['grey-300']};
+  color: var(--ds-buttons-variant-secondary-text-default);
+  background-color: var(--ds-buttons-variant-secondary-bg-default);
+  border: 1px solid var(--ds-buttons-variant-secondary-border-default);
   border-left-width: 0;
   cursor: pointer;
 
   &:first-child {
-    border-left: 1px solid ${(props) => props.theme.palette['grey-300']};
+    border-left: 1px solid var(--ds-buttons-variant-secondary-border-default);
     border-radius: 3px 0 0 3px;
   }
   &:last-child {
     border-radius: 0 3px 3px 0;
   }
 
-  &:hover {
-    background-color: ${(props) => props.theme.palette.white};
-  }
+  ${(props) =>
+    !props.$disabled &&
+    css`
+      &:hover {
+        color: var(--ds-buttons-variant-secondary-text-hover);
+        background-color: var(--ds-buttons-variant-secondary-bg-hover);
+        border-color: var(--ds-buttons-variant-secondary-border-hover);
+        box-shadow: -1px 0 0 0 var(--ds-buttons-variant-secondary-border-hover);
+        z-index: 1;
+      }
+    `}
 
   /*
    * Focus ring via an inset box-shadow (not a border-width bump) so the button keeps its 1px border
    * and doesn't change width when focused.
    */
   &:focus-within {
-    border-color: ${(props) => props.theme.palette['blue-600']};
-    box-shadow: inset 0 0 0 1px ${(props) => props.theme.palette['blue-600']};
+    border-color: var(--ds-buttons-variant-secondary-border-focus);
+    box-shadow: inset 0 0 0 1px var(--ds-buttons-variant-secondary-border-focus);
     z-index: 2;
   }
 
@@ -224,9 +221,10 @@ export const RadioButtonLabel = styled.label<{
     css`
       /* '&&' beats ':first-child' so the first checked button's left border is blue, not grey */
       && {
-        color: ${props.theme.palette['blue-600']};
-        border-color: ${props.theme.palette['blue-600']};
-        box-shadow: -1px 0 0 0 ${props.theme.palette['blue-600']};
+        color: var(--ds-color-text-brand-default);
+        background-color: var(--ds-color-background-brand-subtle);
+        border-color: var(--ds-color-border-brand-default);
+        box-shadow: -1px 0 0 0 var(--ds-color-border-brand-default);
         z-index: 1;
       }
     `}
@@ -234,8 +232,8 @@ export const RadioButtonLabel = styled.label<{
   ${(props) =>
     props.$disabled &&
     css`
-      color: ${props.theme.palette['grey-700']};
-      opacity: 0.4;
+      color: var(--ds-buttons-variant-secondary-text-disabled);
+      opacity: var(--ds-opacity-disabled);
       cursor: not-allowed;
 
       ${RadioButtonInput} {
@@ -251,14 +249,15 @@ export const RadioButtonLabel = styled.label<{
       /* '&&' matches the checked block's specificity and, coming later, restores white text on the
          solid (blue) background — otherwise the checked block's blue 'color' would win. */
       && {
-        color: ${props.theme.palette.white};
-        background-color: ${props.theme.palette['blue-600']};
-        border-color: ${props.theme.palette['blue-600']};
+        color: var(--ds-buttons-variant-primary-text-default);
+        background-color: var(--ds-buttons-variant-primary-bg-default);
+        border-color: var(--ds-buttons-variant-primary-bg-default);
 
         &:hover {
-          background-color: ${props.theme.palette['blue-500']};
-          border-color: ${props.theme.palette['blue-500']};
-          box-shadow: -1px 0 0 0 ${props.theme.palette['blue-500']};
+          color: var(--ds-buttons-variant-primary-text-hover);
+          background-color: var(--ds-buttons-variant-primary-bg-hover);
+          border-color: var(--ds-buttons-variant-primary-bg-hover);
+          box-shadow: -1px 0 0 0 var(--ds-buttons-variant-primary-bg-hover);
         }
       }
     `}

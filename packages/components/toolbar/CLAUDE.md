@@ -129,10 +129,10 @@ import Icon, { StepBackM, StepForwardM, AddM, RemoveM } from '@synerise/ds-icon'
 ## Styling
 
 - `Toolbar` — `display: flex; gap: 8px` — a flat flex row of groups.
-- `ToolbarGroup` — white background, `padding: 4px`, `border-radius: 3px`, drop-shadow using `grey-900` at 4% opacity. Default inner gap is `4px`; `isCompact` removes it.
-- `ToolbarLabel` — centred flex container, `padding: 0 12px`, medium weight, `grey-600` text colour.
-- `ToolbarDivider` — 1px wide, `height: calc(100% + 8px)`, `margin: -4px 0` to bleed through the group's 4px padding; colour `grey-200`.
-- All colour values come from the styled-components theme (`props.theme.palette`).
+- `ToolbarGroup` — `var(--ds-color-background-base-default)` background, `padding: 4px`, `border-radius: 3px`, `var(--ds-shadows-shadow-1)` drop-shadow. Default inner gap is `4px`; `isCompact` removes it.
+- `ToolbarLabel` — centred flex container, `padding: 0 12px`, medium weight, `var(--ds-color-text-base-muted)` text colour.
+- `ToolbarDivider` — 1px wide, `height: calc(100% + 8px)`, `margin: -4px 0` to bleed through the group's 4px padding; colour `var(--ds-color-border-base-default)`.
+- All colour values are `var(--ds-*)` custom properties.
 
 ## Key dependencies
 

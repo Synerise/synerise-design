@@ -6,7 +6,6 @@ import React, {
   useState,
 } from 'react';
 
-import { useTheme } from '@synerise/ds-core';
 import Icon, { EditS } from '@synerise/ds-icon';
 import { Input } from '@synerise/ds-input';
 import Tooltip from '@synerise/ds-tooltip';
@@ -31,8 +30,6 @@ const SubtleInput = ({
   const [active, setActive] = useState(false);
   const [blurred, setBlurred] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-
-  const theme = useTheme();
 
   const hasError = error || !!errorText;
   const handleDeactivate = useCallback(
@@ -89,7 +86,7 @@ const SubtleInput = ({
                   <Tooltip title={suffixTooltip}>
                     <Icon
                       component={<EditS />}
-                      color={theme.palette['grey-600']}
+                      color="var(--ds-color-icon-base-default)"
                     />
                   </Tooltip>
                 </S.Suffix>

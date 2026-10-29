@@ -31,7 +31,7 @@ export const Footer = styled.div`
   align-items: center;
   justify-content: flex-end;
   padding: 24px;
-  background-color: ${(props): string => props.theme.palette['grey-050']};
+  background-color: var(--ds-dropdown-footer-bg);
 
   > *:not(:last-child) {
     margin-right: 16px;
@@ -42,7 +42,7 @@ export const Title = styled.div`
   font-size: 16px;
   line-height: 1.39;
   font-weight: 500;
-  color: ${(props): string => props.theme.palette['grey-800']};
+  color: var(--ds-dropdown-text-default);
 `;
 
 export const WeeklyFilterContainer = styled.div`

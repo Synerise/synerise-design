@@ -25,7 +25,7 @@ src/
 | `description` | `ReactNode` | — (required) | Module name / page title shown left of centre |
 | `logo` | `ReactNode` | — (required) | `string` → renders `<img src>`, otherwise renders the node directly |
 | `className` | `string` | — | Appended to `ds-navbar` on the root element |
-| `color` | `string` | `theme.palette['blue-600']` | Background colour of the bar |
+| `color` | `string` | `var(--ds-navbar-container-bg)` | Background colour of the bar |
 | `actions` | `ReactNode` | — | Action area on the right (typically an avatar button) |
 | `additionalNodes` | `ReactNode[]` | — | Extra sections inserted before the actions area; each is separated by a `NavbarDivider` |
 | `alertNotification` | `ReactNode` | — | Alert + button slot; rendered between description and additional nodes, wrapped in a `NavbarDivider` on each side |
@@ -52,7 +52,7 @@ import Navbar from '@synerise/ds-navbar';
 
 ## Styling
 
-Styles live in `Navbar.styles.ts`. The navbar is a `56px` tall flex row with `padding: 16px 24px`. Background defaults to `theme.palette['blue-600']` when no `color` prop is provided. Text colour is always `#fff` (hardcoded, not a token).
+Styles live in `Navbar.styles.ts`. The navbar is a `56px` tall flex row with `padding: 16px 24px`. Background defaults to `var(--ds-navbar-container-bg)` when no `color` prop is provided. Text colour is always `var(--ds-color-text-base-onsolid)`.
 
 `NavbarAlertNotification` forces `InlineAlert` SVGs and text spans white via class-based CSS (`.ds-inline-alert svg` and `.ds-inline-alert > span`).
 

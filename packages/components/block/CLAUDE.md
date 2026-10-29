@@ -45,10 +45,10 @@ import Block from '@synerise/ds-block';
 
 ## Styling
 
-`Block.styles.ts` uses `@synerise/ds-typography` `macro.h200` and `@synerise/ds-core` theme palette tokens:
-- Default: grey-050 background, transparent border, grey-600 text.
-- Hover: grey-800 text and icon colour.
-- `is-dragging`: dashed grey-400 border, icon and label hidden (`display: none`).
+`Block.styles.ts` uses `@synerise/ds-typography` `macro.h200` and `var(--ds-*)` tokens:
+- Default: `--ds-color-background-base-subtle` background, transparent border, `--ds-color-text-base-muted` text.
+- Hover: `--ds-color-text-base-default` text and icon colour.
+- `is-dragging`: dashed `--ds-color-border-base-stronghover` border, icon and label hidden (`display: none`).
 - `BlockWrapper` uses `flex: 0 0 50%` — designed to sit in a two-column flex grid.
 
 ## Implementation notes

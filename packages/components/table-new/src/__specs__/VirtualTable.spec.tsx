@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { renderWithProvider } from '@synerise/ds-core/testing';
+import { declarationsFor, renderWithProvider } from '@synerise/ds-core/testing';
 import { act, fireEvent, screen, within } from '@testing-library/react';
 
 import { DEFAULT_CELL_HEIGHT } from '../Table.const';
@@ -567,14 +567,10 @@ describe('VirtualTable', () => {
           />,
         );
 
-        const { backgroundColor } = getComputedStyle(
-          screen.getByTestId('ds-table-subheader'),
-        );
-
-        // The transparent-colour comparison is the one that discriminates: jsdom reports an unstyled
-        // element as `rgba(0, 0, 0, 0)`, not as an empty string, so `not.toBe('')` would pass for a
-        // plain div.
-        expect(backgroundColor).not.toBe('rgba(0, 0, 0, 0)');
+        // jsdom drops `var()` on the `background` shorthand, so read the subheader's own declarations.
+        expect(
+          declarationsFor(screen.getByTestId('ds-table-subheader')),
+        ).toMatch(/(?:^|;)background:(?!transparent|none)[^;]+/);
       });
 
       it('layers below the title bar and above the column header row', () => {

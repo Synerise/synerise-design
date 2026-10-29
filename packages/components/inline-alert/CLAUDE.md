@@ -68,16 +68,16 @@ import InlineAlert from '@synerise/ds-inline-alert';
 
 ## Styling
 
-All styles in `InlineAlert.styles.tsx`. Key colour mapping (from `theme.palette`):
+All styles in `InlineAlert.styles.tsx`. Key colour mapping (`--ds-inline-alert-*` module tokens):
 
 | Type | Normal | Hover (`hoverButton`) |
 |------|--------|-----------------------|
-| `success` | `green-600` | `green-700` |
-| `warning` | `yellow-600` | `yellow-700` |
-| `alert` | `red-600` | `red-700` |
-| `info` | `grey-600` | `grey-700` |
+| `success` | `--ds-inline-alert-icon-success-default` | `--ds-inline-alert-icon-success-hover` |
+| `warning` | `--ds-inline-alert-icon-warning-default` | `--ds-inline-alert-icon-warning-hover` |
+| `alert` | `--ds-inline-alert-icon-error-default` | `--ds-inline-alert-icon-error-hover` |
+| `info` | `--ds-inline-alert-icon-informative-default` | `--ds-inline-alert-icon-informative-hover` |
 
-The **icon** inherits the type colour; the **message text** is always `grey-600` regardless of type.
+The **icon** inherits the type colour; the **message text** is always `--ds-message-text-description` (the shared `message` module) regardless of type.
 
 `withLink` content is underlined and inherits the icon colour. `withEmphasis` content is `font-weight: 500` and also inherits the icon colour.
 

@@ -5,20 +5,20 @@ import { Label, Text } from '@synerise/ds-typography';
 
 export const PreviewImage = styled.div`
   ${IconContainer} {
-    color: ${(props) => props.theme.palette['grey-700']};
+    color: var(--ds-color-text-base-subtle);
   }
   margin: -4px -8px -4px -4px;
 `;
 
 export const PlaceholderImage = styled.div`
-  background-color: ${(props) => props.theme.palette['grey-200']};
+  background-color: var(--ds-color-background-base-mutedhover);
   width: 32px;
   height: 32px;
   border-radius: 3px;
   padding: 4px;
 
   ${IconContainer} {
-    color: ${(props) => props.theme.palette['grey-500']};
+    color: var(--ds-color-icon-base-subtle);
   }
 `;
 
@@ -31,7 +31,7 @@ export const PreviewThumbnail = styled.img`
   margin: -4px -8px -4px -4px;
   border-radius: 3px;
   object-fit: contain;
-  background-color: ${(props) => props.theme.palette['grey-200']};
+  background-color: var(--ds-color-background-base-mutedhover);
 `;
 
 export const Info = styled.div<{ progress: boolean }>`
@@ -41,7 +41,7 @@ export const Info = styled.div<{ progress: boolean }>`
 `;
 
 export const FileWeight = styled.div`
-  color: ${(props) => props.theme.palette['grey-500']};
+  color: var(--ds-color-text-neutral-default);
   padding-right: 30px;
   font-weight: normal;
   font-size: 13px;
@@ -54,7 +54,7 @@ export const FileName = styled.div`
 `;
 export const Name = styled(Label)`
   && {
-    color: ${(props) => props.theme.palette['grey-600']};
+    color: var(--ds-color-text-base-muted);
     max-width: 100%;
     cursor: initial;
     white-space: nowrap;
@@ -69,7 +69,7 @@ export const FlexRow = styled.div`
 
 export const SizeOrError = styled(Text)`
   && {
-    color: ${(props) => props.theme.palette['grey-600']};
+    color: var(--ds-color-text-base-muted);
   }
 `;
 export const RemoveWrapper = styled.div`
@@ -91,10 +91,10 @@ export const RemoveWrapper = styled.div`
     right: -2px;
     top: -2px;
     transition: color 0.3s;
-    color: ${(props) => props.theme.palette['grey-300']};
+    color: var(--ds-color-icon-base-muted);
 
     &:hover {
-      color: ${(props) => props.theme.palette['red-500']};
+      color: var(--ds-color-icon-danger-default);
     }
   }
 `;
@@ -114,11 +114,7 @@ export const CheckButtonWrapper = styled.div`
     position: absolute;
     right: -2px;
     top: -2px;
-    transition: color 0.3s;
-    color: ${(props) => props.theme.palette['green-600']};
-    &:hover {
-      color: ${(props) => props.theme.palette['green-500']};
-    }
+    color: var(--ds-color-icon-success-default);
   }
 `;
 export const RemoveButtonWrapper = styled.div<{ pressed?: boolean }>`
@@ -140,12 +136,7 @@ export const RemoveButtonWrapper = styled.div<{ pressed?: boolean }>`
     position: absolute;
     right: -2px;
     top: -2px;
-    transition: color 0.3s;
-    color: ${(props) => props.theme.palette['red-600']};
-
-    &:hover {
-      color: ${(props) => props.theme.palette['red-500']};
-    }
+    color: var(--ds-color-icon-danger-default);
   }
 `;
 
@@ -157,9 +148,9 @@ export const FileViewContainer = styled.button<{
   progress?: boolean;
   pressed?: boolean;
 }>`
-  background-color: ${(props) => props.theme.palette.white};
+  background-color: var(--ds-color-background-base-default);
   border-radius: 3px;
-  border: 1px solid ${(props) => props.theme.palette['grey-200']};
+  border: 1px solid var(--ds-color-border-base-default);
   display: flex;
   align-items: center;
   padding: 12px 6px;
@@ -175,7 +166,7 @@ export const FileViewContainer = styled.button<{
   }
 
   &:hover {
-    border-color: ${(props) => props.theme.palette['grey-300']};
+    border-color: var(--ds-color-border-base-strong);
 
     ${(props) =>
       props.removable &&
@@ -197,8 +188,8 @@ export const FileViewContainer = styled.button<{
   }
 
   &:focus {
-    border-color: ${(props) => props.theme.palette['blue-500']};
-    background-color: ${(props) => props.theme.palette['grey-050']};
+    border-color: var(--ds-color-border-brand-default);
+    background-color: var(--ds-color-background-base-subtle);
     ${(props) =>
       props.pressed &&
       `
@@ -208,19 +199,19 @@ export const FileViewContainer = styled.button<{
     `}
   }
   &:hover {
-    background-color: ${(props) => props.theme.palette['grey-050']};
+    background-color: var(--ds-color-background-base-subtle);
   }
 
   &:active {
-    border-color: ${(props) => props.theme.palette['grey-300']};
-    background-color: ${(props) => props.theme.palette['grey-100']};
+    border-color: var(--ds-color-border-base-strong);
+    background-color: var(--ds-color-background-base-muted);
   }
 
   ${(props) =>
     props.disabled &&
     `
-    background-color: ${props.theme.palette['grey-050']};
-    opacity: 0.4;
+    background-color: var(--ds-color-background-base-subtle);
+    opacity: var(--ds-opacity-disabled);
   `};
 
   ${(props) =>
@@ -228,10 +219,10 @@ export const FileViewContainer = styled.button<{
     !props.progress &&
     `
     && {
-      border: 1px solid ${props.theme.palette['red-600']};
+      border: 1px solid var(--ds-color-border-danger-default);
 
       ${SizeOrError} {
-        color: ${props.theme.palette['red-600']};
+        color: var(--ds-color-text-danger-default);
       }
     }
   `};

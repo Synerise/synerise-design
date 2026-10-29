@@ -1,5 +1,9 @@
 import React from 'react';
-import { renderWithProvider } from '@synerise/ds-core/testing';
+import {
+  declarationsFor,
+  renderWithProvider,
+  rulesFor,
+} from '@synerise/ds-core/testing';
 import { fireEvent, screen } from '@testing-library/react';
 import Switch from '../index';
 
@@ -65,5 +69,42 @@ describe('Switch', () => {
     );
 
     expect(screen.queryByTestId('label-tooltip-trigger')).not.toBeInTheDocument();
+  });
+});
+
+describe('Switch label and description styling', () => {
+  it('colours the label with the form label token and never overrides it on hover or disabled', () => {
+    const { container } = renderWithProvider(<Switch label="Label" disabled />);
+
+    const label = container.querySelector('.switch-label');
+    expect(label).toHaveStyle('color: var(--ds-form-label-text-color)');
+    // A state anywhere in the selector counts: `.toggle:disabled + .texts .label` styles the label.
+    const stateColours = rulesFor(label, { state: 'any' }).filter(
+      ({ selector, declarations }) =>
+        /:(hover|disabled)/.test(selector) && /(?:^|;)color:/.test(declarations),
+    );
+    expect(stateColours).toHaveLength(0);
+  });
+
+  it('fades the description when the switch is disabled', () => {
+    const { container } = renderWithProvider(<Switch label="Label" description="Help" disabled />);
+
+    expect(declarationsFor(container.querySelector('.switch-description'))).toContain(
+      'opacity:var(--ds-opacity-disabled)',
+    );
+  });
+
+  it('fades the description while loading', () => {
+    const { container } = renderWithProvider(<Switch label="Label" description="Help" loading />);
+
+    expect(declarationsFor(container.querySelector('.switch-description'))).toContain(
+      'opacity:var(--ds-opacity-disabled)',
+    );
+  });
+
+  it('keeps the description at full opacity when enabled', () => {
+    const { container } = renderWithProvider(<Switch label="Label" description="Help" />);
+
+    expect(declarationsFor(container.querySelector('.switch-description'))).not.toContain('opacity:');
   });
 });

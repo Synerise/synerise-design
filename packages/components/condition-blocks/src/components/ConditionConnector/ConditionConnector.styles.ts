@@ -32,7 +32,7 @@ export const Connector = styled.span<{
     height: 1px;
     top: 16px;
     left: ${({ $first }) => ($first ? '0' : '16px')};
-    background-color: ${({ theme }) => theme.palette['grey-300']};
+    background-color: var(--ds-color-border-base-strong);
   }
 
   &:after {
@@ -42,7 +42,7 @@ export const Connector = styled.span<{
     content: '';
     width: 1px;
     left: 50%;
-    background-color: ${({ theme }) => theme.palette['grey-300']};
+    background-color: var(--ds-color-border-base-strong);
     /* Start at this row's stub (first) or at the cell top (continuing from the row above). */
     top: ${({ $first }) => ($first ? '16px' : '0')};
     /* Last row: stop at this row's stub. Otherwise fill the cell and bridge the gap below. */

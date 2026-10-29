@@ -17,16 +17,15 @@ export const ClearButton: StyledButton = styled(Button)`
   &&& {
     ${IconContainer} {
       svg {
-        fill: ${(props): string => props.theme.palette['red-600']};
-        color: ${(props): string => props.theme.palette['red-600']};
+        fill: var(--ds-color-icon-danger-default);
+        color: var(--ds-color-icon-danger-default);
       }
     }
     &:hover {
       ${IconContainer} {
         svg {
-          fill: ${(props): string => props.theme.palette['red-600']} !important;
-          color: ${(props): string =>
-            props.theme.palette['red-600']} !important;
+          fill: var(--ds-color-icon-danger-default) !important;
+          color: var(--ds-color-icon-danger-default) !important;
         }
       }
     }

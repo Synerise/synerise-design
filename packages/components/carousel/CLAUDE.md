@@ -15,7 +15,7 @@ src/
   __specs__/Carousel.spec.tsx
 ```
 
-No LESS, no antd. Pure styled-components + theme tokens (`theme.palette`).
+No LESS, no antd. Pure styled-components + `var(--ds-*)` design tokens.
 
 ## Public API
 
@@ -61,5 +61,5 @@ No LESS, no antd. Pure styled-components + theme tokens (`theme.palette`).
 
 ## Key dependencies
 
-- `@synerise/ds-core` (peer) — theme palette tokens via the styled-components `ThemeProvider`.
+- `@synerise/ds-core` (peer) — not imported; its `DSProvider` (`GlobalTokenStyles`) injects the `--ds-*` custom properties the styles read.
 - No other `@synerise/ds-*` runtime imports.

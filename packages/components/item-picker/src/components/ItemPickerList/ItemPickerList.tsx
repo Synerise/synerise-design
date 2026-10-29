@@ -15,7 +15,6 @@ import React, {
 } from 'react';
 import type { ListChildComponentProps, VariableSizeList } from 'react-window';
 
-import { useTheme } from '@synerise/ds-core';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { ArrowLeftM } from '@synerise/ds-icon';
 import { itemSizes, ListContextProvider } from '@synerise/ds-list-item';
@@ -92,8 +91,6 @@ const ItemPickerListInner = <
   }: ItemPickerListProps<ItemType, SectionType>,
   forwardedRef: ItemPickerListRef,
 ) => {
-  const theme = useTheme();
-
   const [searchQuery, setSearchQuery] = useState('');
 
   const scrollBarRef = useRef<HTMLDivElement>(null);
@@ -362,7 +359,6 @@ const ItemPickerListInner = <
                 <Icon
                   key="hint-arrow-left"
                   size={18}
-                  color={theme.palette.white}
                   component={<ArrowLeftM />}
                 />,
               ],

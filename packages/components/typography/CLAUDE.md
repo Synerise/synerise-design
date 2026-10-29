@@ -108,15 +108,15 @@ Type exported from `Ellipsis.tsx` (re-exported via `export * from './Text'`).
 
 ### `Description`
 
-Styled `<div>` for secondary/help text. Props: `disabled?: boolean` (reduces opacity to 0.4). Color: `grey-600`.
+Styled `<div>` for secondary/help text. Props: `disabled?: boolean` (opacity `var(--ds-opacity-disabled)`). Color: `var(--ds-color-text-base-muted)`.
 
 ### `ErrorText`
 
-Styled `<div>` for field error messages. Color: `red-600`, bottom margin 4px. No custom props.
+Styled `<div>` for field error messages. Color: `var(--ds-color-text-danger-default)`, bottom margin 4px. No custom props.
 
 ### `Label`
 
-Styled `<label>` for form field labels. Color: `grey-800`, font-weight 500, `display: block`, `cursor: pointer`. No custom props.
+Styled `<label>` for form field labels. Color: `var(--ds-color-text-base-default)`, font-weight 500, `display: block`, `cursor: pointer`. No custom props.
 
 ### `macro`
 
@@ -124,9 +124,9 @@ Namespace of reusable styled-components CSS snippets for typography styling in c
 
 | Export | Description |
 |--------|-------------|
-| `h700`–`h100` | Heading scales (font-size, line-height, letter-spacing, grey-800 color) |
+| `h700`–`h100` | Heading scales (font-size, line-height, letter-spacing, `var(--ds-color-text-base-default)` color) |
 | `medium`, `small`, `xsmall` | Body text scales |
-| `link` | Blue-600 link style with hover |
+| `link` | `var(--ds-color-text-brand-default)` link style with hover |
 | `linkbutton` | Grey link variant |
 | `heading`, `regular` | Base weight/color mixins used by heading/body macros |
 | `tag`, `tooltip`, `xsAvatar`, `xlAvatar`, `xlAvatarIcon` | Specific UI element sizes |
@@ -176,7 +176,7 @@ const MyHeading = styled.div`
 
 ## Styling
 
-All styled primitives live in `CommonElements.ts`. Typography tokens come from `macro-utils.ts` (hardcoded scale values using `theme.palette` for colour). No variant prop on styled elements — size is selected by mapping to a different component.
+All styled primitives live in `CommonElements.ts`. Typography tokens come from `macro-utils.ts` (hardcoded scale values using `var(--ds-color-text-*)` tokens for colour). No variant prop on styled elements — size is selected by mapping to a different component.
 
 `EllipsisText` sets `overflow: hidden; white-space: nowrap; text-overflow: ellipsis; max-width: 100%` on a `<div>`, and makes inner heading/text elements `display: inline` or inherit parent styles.
 

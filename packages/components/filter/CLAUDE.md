@@ -103,7 +103,7 @@ const [expressions, setExpressions] = useState<Expression[]>([]);
 
 ## Styling
 
-Styles in `Filter.styles.ts` use `@synerise/ds-core` theme palette tokens. `placeholderCss` is passed to `@synerise/ds-sortable` to style the drag-and-drop placeholder. No hardcoded values.
+Styles in `Filter.styles.ts` use `var(--ds-*)` tokens (e.g. `--ds-color-background-brand-subtle` and a `--ds-color-border-brand-default` left border on the drag placeholder). `placeholderCss` is passed to `@synerise/ds-sortable` to style the drag-and-drop placeholder. No hardcoded values.
 
 ## Key dependencies
 

@@ -49,7 +49,7 @@ src/
 | `onGoBack` | `() => void` | — | When provided, shows a back button (ArrowLeftM) at the left edge |
 | `goBackIcon` | `ReactNode` | — | Custom icon component to replace the default ArrowLeftM in the back button |
 | `onClose` | `() => void` | — | When provided, shows a close button (CloseM) at the right edge |
-| `isolated` | `boolean` | — | Adds a `grey-100` bottom border overlay (visually separates content below) |
+| `isolated` | `boolean` | — | Adds a `var(--ds-color-border-base-subtle)` bottom border overlay (visually separates content below) |
 | `tooltip` | `TooltipProps` | — | Tooltip props spread onto `<Tooltip>` wrapping the `tooltipIcon` |
 | `tooltipIcon` | `ReactNode` | — | Icon rendered inside the Tooltip; tooltip is only shown when **both** `tooltip` and `tooltipIcon` are provided |
 | `handleTooltipClick` | `() => void` | — | Click handler wired to the tooltip icon |
@@ -115,10 +115,10 @@ import PageHeader from '@synerise/ds-page-header';
 ```
 
 ## Styling
-- Uses styled-components with theme tokens (`palette`, `variables`)
-- `MainContainer` has a hardcoded `background-color: #fff` (not a token)
+- Uses styled-components with `var(--ds-*)` custom properties
+- `MainContainer` background is `var(--ds-page-header-container-bg)`
 - Min height of the main row is `80px`; padding is `24px`
-- `PageHeaderBack` renders a vertical divider via `::after` pseudo-element (`grey-300`, 40px tall)
+- `PageHeaderBack` renders a vertical divider via `::after` pseudo-element (`var(--ds-page-header-navigation-back-separator-color)`, 40px tall)
 - `PageHeaderRightSide` is `flex: 1 auto; justify-content: flex-end` — it grows to fill remaining horizontal space
 - `PageHeaderClamp` uses `ds-typography`'s `macro.h600` mixin and truncates title text with `text-overflow: ellipsis`
 - `PageHeader.styles.ts` re-exports styled components from sub-packages under their legacy names for backwards compatibility
@@ -129,7 +129,7 @@ import PageHeader from '@synerise/ds-page-header';
 - `@synerise/ds-inline-edit` — inline editable title field
 - `@synerise/ds-tooltip` — tooltip wrapping the tooltipIcon
 - `@synerise/ds-typography` — `macro.h600` applied to the title clamp area
-- `@synerise/ds-core` — `theme` palette constants used directly in sub-components
+- `@synerise/ds-core` (peer) — `DSProvider` injects the `--ds-*` token custom properties used by the styles
 
 ## Implementation notes
 - `children` takes precedence over `title` inside PageHeaderClamp — both target the same slot (`children || title`)

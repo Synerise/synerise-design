@@ -96,7 +96,7 @@ import { SortableContainer, useSortable, CSS } from '@synerise/ds-sortable';
 
 ## Styling
 
-Drag placeholder (the item's original slot while dragging): blue dashed border + blue-050 background, customisable via `placeholderCss`. Grabbed item (in the overlay): white background + `box-shadow` elevation. Controlled via `SortableItemWrapper` in `Sortable.styles.ts`.
+Drag placeholder (the item's original slot while dragging): `1px dashed var(--ds-color-border-brand-strong)` border + `var(--ds-color-background-brand-subtle)` background, customisable via `placeholderCss`. Grabbed item (in the overlay): `var(--ds-color-background-base-default)` background + `var(--ds-shadows-shadow-2)` elevation. Controlled via `SortableItemWrapper` in `Sortable.styles.ts`.
 
 ## Key dependencies
 

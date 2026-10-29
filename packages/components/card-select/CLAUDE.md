@@ -103,7 +103,7 @@ const [selected, setSelected] = useState(false);
 
 ## Styling
 
-Styles are in `CardSelect.styles.ts` using `styled-is` for `is(prop)` / `isNot(prop)` conditional CSS blocks. All colours are resolved from `@synerise/ds-core` theme palette tokens — no hardcoded hex values except in comments. The `styled-is` library is an additional dependency not used elsewhere in the DS.
+Styles are in `CardSelect.styles.ts` using `styled-is` for `is(prop)` / `isNot(prop)` conditional CSS blocks. Colours come from `var(--ds-*)` tokens, mostly the `--ds-card-select-*` module tokens — no hardcoded hex values except in comments. The `styled-is` library is an additional dependency not used elsewhere in the DS.
 
 ## Implementation notes
 
@@ -113,4 +113,4 @@ Styles are in `CardSelect.styles.ts` using `styled-is` for `is(prop)` / `isNot(p
 - **Tag ribbon offset**: the `TagRibbonAnchor` padding is calculated from constants (`TAG_LEFT_OFFSET*`) to align the ribbon with or without a tick. Position (`left`/`right`) is mirrored based on `elementsPosition`.
 - **`CardSelectGroup` columns fallback**: when `columns` is `null`, the grid uses `itemsCount` columns (i.e. all items in one row). When both `items` and `children` are provided, `items` takes precedence.
 - **`width` prop is deprecated**: it maps to the same styled `size` prop on the wrapper and only affects gap, not card size. Use `size` for both.
-- **`withTheme` wrapper**: `CardSelect` is exported as `withTheme(CardSelect)` so the component receives `theme` as a prop. Internally it also calls `useTheme()` from `@synerise/ds-core`. The `theme` prop type is marked `@deprecated`.
+- **`withTheme` wrapper**: `CardSelect` is exported as `withTheme(CardSelect)` so the component receives `theme` as a prop, but nothing reads it any more (no `useTheme()` call). The `theme` prop type is marked `@deprecated`.

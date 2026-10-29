@@ -1,7 +1,8 @@
 import React from 'react';
 
-import { renderWithProvider } from '@synerise/ds-core/testing';
-import { fireEvent, waitFor } from '@testing-library/react';
+import { renderWithProvider, rulesFor } from '@synerise/ds-core/testing';
+import Icon, { SearchM } from '@synerise/ds-icon';
+import { fireEvent, screen, waitFor } from '@testing-library/react';
 
 import SearchBar from './../SearchBar';
 
@@ -124,5 +125,82 @@ describe('SearchBar', () => {
 
       expect(second).toHaveBeenCalledTimes(1);
     });
+  });
+});
+
+describe('SearchBar icon colour', () => {
+  const getIconWrappers = () => {
+    const clear = screen.getByTestId('clear-btn');
+    const iconLeft = screen.getByTestId('search-icon').parentElement;
+    return { clear, iconLeft: iconLeft as HTMLElement };
+  };
+  const renderSearchBar = (disabled = false) =>
+    renderWithProvider(
+      <SearchBar
+        value="query"
+        onSearchChange={() => {}}
+        onClearInput={() => {}}
+        disabled={disabled}
+        iconLeft={<Icon component={<SearchM />} data-testid="search-icon" />}
+      />,
+    );
+
+  it('colours the icon wrappers instead of their svgs', () => {
+    renderSearchBar();
+    const { clear, iconLeft } = getIconWrappers();
+
+    expect(
+      clear.querySelector('.ds-icon')?.querySelector('svg'),
+    ).toHaveStyle('color: inherit');
+    expect(clear).toHaveStyle('color: var(--ds-form-clear-icon)');
+    expect(iconLeft).toHaveStyle('color: var(--ds-search-bar-icon-default)');
+
+    const svgRules = [clear, iconLeft].flatMap((wrapper) =>
+      rulesFor(wrapper.querySelector('svg'), { within: wrapper, state: 'any' }),
+    );
+    expect(svgRules).toEqual([]);
+    const activeBodies = [clear, iconLeft]
+      .flatMap((wrapper) => rulesFor(wrapper, { state: 'any' }))
+      .filter(
+        ({ selector }) =>
+          selector.includes(':hover') || selector.includes('.is-focused'),
+      )
+      .map(({ declarations }) => declarations)
+      .join(';');
+    expect(activeBodies).toContain('color:var(--ds-search-bar-icon-active)');
+    expect(activeBodies).toContain('color:var(--ds-form-clear-icon)');
+  });
+
+  it('greys out both icon wrappers when disabled', () => {
+    renderSearchBar(true);
+    const { clear, iconLeft } = getIconWrappers();
+
+    expect(clear).toHaveStyle('color: var(--ds-search-bar-icon-disabled)');
+    expect(iconLeft).toHaveStyle('color: var(--ds-search-bar-icon-disabled)');
+  });
+
+  it('keeps an explicit colour on the left icon', () => {
+    renderWithProvider(
+      <SearchBar
+        value=""
+        onSearchChange={() => {}}
+        disabled
+        iconLeft={
+          <Icon
+            component={<SearchM />}
+            data-testid="search-icon"
+            color="var(--ds-color-icon-danger-default)"
+          />
+        }
+      />,
+    );
+
+    const svg = screen
+      .getByTestId('search-icon')
+      .querySelector('svg') as SVGElement;
+    expect(getComputedStyle(svg).color).toBe(
+      'var(--ds-color-icon-danger-default)',
+    );
+    expect(getComputedStyle(svg).fill).toBe('');
   });
 });

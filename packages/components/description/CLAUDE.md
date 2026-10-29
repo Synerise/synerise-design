@@ -93,7 +93,7 @@ import Description, { DescriptionRow } from '@synerise/ds-description';
 ## Styling
 
 - Container styles in `Description.styles.tsx`; row styles in `Row/DescriptionRow.styles.ts`.
-- Uses `props.theme.palette` tokens from `@synerise/ds-core` (e.g. `grey-600`, `grey-800`, `blue-600`, `yellow-600`) — no hardcoded hex values.
+- Uses `var(--ds-*)` tokens (e.g. `--ds-description-line-label-text`, `--ds-description-line-content-text`, `--ds-color-text-brand-default`; the starred icon uses `--ds-color-icon-warning-default`) — no hardcoded hex values.
 - Copy icon and `Copyable` wrapper are hidden (`visibility: hidden; opacity: 0`) and revealed via CSS `:hover` on `RowWrapper` — no JS toggle needed.
 - `numbered-list` is a valid `DescriptionType` value but has **no dedicated CSS branch** in `Description.styles.tsx`; it falls through to `inlineStyles`.
 

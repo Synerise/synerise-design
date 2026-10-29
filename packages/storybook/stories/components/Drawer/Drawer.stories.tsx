@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import { action } from 'storybook/actions';
 
 import Button from '@synerise/ds-button';
-import { theme } from '@synerise/ds-core';
 import Drawer from '@synerise/ds-drawer';
 import Icon, { SearchM } from '@synerise/ds-icon';
 import SearchBar from '@synerise/ds-search-bar';
@@ -149,12 +148,7 @@ export const WithSearch: Story = {
               disabled={false}
               borderRadius={false}
               autofocus={false}
-              iconLeft={
-                <Icon
-                  component={<SearchM />}
-                  color={theme.palette['grey-600']}
-                />
-              }
+              iconLeft={<Icon component={<SearchM />} />}
               value={searchQuery}
               onSearchChange={(targetValue) => setSearchQuery(targetValue)}
               placeholder={'Search'}
@@ -213,12 +207,7 @@ export const WithSearchAndTabs: Story = {
               disabled={false}
               borderRadius={false}
               autofocus={false}
-              iconLeft={
-                <Icon
-                  component={<SearchM />}
-                  color={theme.palette['grey-600']}
-                />
-              }
+              iconLeft={<Icon component={<SearchM />} />}
               value={searchQuery}
               onSearchChange={(targetValue) => setSearchQuery(targetValue)}
               placeholder={'Search'}

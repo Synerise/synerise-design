@@ -16,38 +16,34 @@ type InPlaceEditableInputContainerProps = {
   pressed: boolean;
   dropdownOpened: boolean;
 };
-const applyColor = (
-  props: ThemeProps & InPlaceEditableInputContainerProps,
-): string => {
+const applyColor = (props: InPlaceEditableInputContainerProps): string => {
   if (props.error) {
-    return props.theme.palette['red-600'];
+    return 'var(--ds-inline-select-text-error)';
   }
-  return props.theme.palette['blue-600'];
+  return 'var(--ds-inline-select-text-default)';
 };
 
-const applyColorHover = (
-  props: ThemeProps & InPlaceEditableInputContainerProps,
-): string => {
+const applyColorHover = (props: InPlaceEditableInputContainerProps): string => {
   if (props.error) {
-    return props.theme.palette['red-600'];
+    return 'var(--ds-inline-select-text-error)';
   }
-  return props.theme.palette['blue-500'];
+  return 'var(--ds-inline-select-text-hover)';
 };
 
 const applyColorActive = (
-  props: ThemeProps & InPlaceEditableInputContainerProps,
+  props: InPlaceEditableInputContainerProps,
 ): string => {
   if (props.error) {
-    return props.theme.palette['red-600'];
+    return 'var(--ds-inline-select-text-error)';
   }
-  return props.theme.palette['blue-700'];
+  return 'var(--ds-inline-select-text-selected)';
 };
 
 const applyDotsOnError = (
   props: ThemeProps & InPlaceEditableInputContainerProps,
 ): string => {
   if (props.error) {
-    return `background-image: linear-gradient(to right, ${applyColor(props)} 20%, rgba(255, 255, 255, 0) 10%);
+    return `background-image: linear-gradient(to right, ${applyColor(props)} 20%, transparent 10%);
   background-color: transparent;
   background-position: bottom left;
   background-size: 5px 1px;
@@ -75,7 +71,7 @@ export const IconWrapper = styled.div<
   line-height: inherit;
   cursor: pointer;
   &:hover {
-    background-color: ${(props): string => props.theme.palette.white};
+    background-color: var(--ds-color-background-base-default);
   }
   &&& {
     svg {
@@ -92,7 +88,8 @@ export const InPlaceEditableInputContainer = styled.div<InPlaceEditableInputCont
   padding-bottom: 2px;
   max-width: 100%;
   align-items: center;
-  opacity: ${({ disabled }): number => (disabled ? 0.4 : 1)};
+  opacity: ${({ disabled }): string =>
+    disabled ? 'var(--ds-opacity-disabled)' : '1'};
   pointer-events: ${({ disabled }): string => (disabled ? 'none' : 'all')};
   ${IconWrapper} {
     margin-right: -3px;
@@ -130,7 +127,7 @@ export const InPlaceEditableInputContainer = styled.div<InPlaceEditableInputCont
           background-image: linear-gradient(
             to right,
             ${applyColor(props)} 20%,
-            rgba(255, 255, 255, 0) 10%
+            transparent 10%
           );
           input {
             color: transparent;
@@ -192,7 +189,9 @@ export const InPlaceEditableInputContainer = styled.div<InPlaceEditableInputCont
     text-shadow: 0 0 0 ${(props): string => applyColor(props)};
     ::placeholder {
       color: ${(props): string =>
-        props.theme.palette[props.error ? 'red-600' : 'grey-400']};
+        props.error
+          ? 'var(--ds-inline-select-text-error)'
+          : 'var(--ds-inline-select-text-disabled)'};
     }
   }
 `;

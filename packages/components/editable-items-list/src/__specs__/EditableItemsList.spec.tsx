@@ -73,4 +73,43 @@ describe('EditableItemsList', () => {
     fireEvent.click(addButton);
     expect(onAddMock).toHaveBeenCalled();
   });
+
+  describe('add button mode', () => {
+    const renderAddButton = (
+      props: Partial<React.ComponentProps<typeof EditableItemsList>>,
+    ) => {
+      renderWithProvider(
+        <EditableItemsList
+          renderRowElement={renderRowElement}
+          items={[{ id: '1' }]}
+          onDelete={onDeleteMock}
+          onAdd={onAddMock}
+          addButtonLabel={undefined}
+          {...props}
+        />,
+      );
+      return screen.getByRole('button');
+    };
+
+    it('uses icon-label mode when a label is set', () => {
+      const button = renderAddButton({ addButtonLabel });
+      expect(button).toHaveClass('icon-label');
+      expect(button).not.toHaveClass('single-icon');
+    });
+
+    it('uses single-icon mode when there is no label', () => {
+      const button = renderAddButton({});
+      expect(button).toHaveClass('single-icon');
+      expect(button).not.toHaveClass('icon-label');
+    });
+
+    it('lets addButtonProps.mode override the derived mode', () => {
+      const button = renderAddButton({
+        addButtonLabel,
+        addButtonProps: { mode: 'label-icon' },
+      });
+      expect(button).toHaveClass('label-icon');
+      expect(button).not.toHaveClass('icon-label');
+    });
+  });
 });

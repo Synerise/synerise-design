@@ -26,8 +26,8 @@ export const Loader = styled.div<{ loading?: boolean }>`
   transition: opacity 0.3s ease-in-out;
   animation: ${spinnerAnimation} 1s forwards linear infinite;
   svg {
-    color: ${(props): string => props.theme.palette['grey-600']};
-    fill: ${(props): string => props.theme.palette['grey-600']};
+    color: var(--ds-color-icon-base-default);
+    fill: var(--ds-color-icon-base-default);
   }
 `;
 
@@ -37,7 +37,7 @@ export const LoaderWrapper = styled.div`
   bottom: 0;
   left: 0;
   position: absolute;
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: var(--ds-scrollbar-loading-overlay);
 `;
 
 export const ScrollbarContainer = styled.div<{

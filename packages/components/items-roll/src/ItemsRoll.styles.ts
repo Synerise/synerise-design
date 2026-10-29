@@ -17,7 +17,7 @@ export const HeaderRight = styled.div`
 `;
 
 export const HeaderLeft = styled.div`
-  color: ${({ theme }) => theme.palette['grey-800']};
+  color: var(--ds-color-text-base-default);
   margin-left: 12px;
   height: 34px;
   display: flex;
@@ -33,7 +33,7 @@ export const ShowButtonsWrapper = styled.div`
 export const ListWrapper = styled.div``;
 
 export const Bold = styled.span`
-  color: ${({ theme }) => theme.palette['grey-800']};
+  color: var(--ds-color-text-base-default);
   font-weight: 500;
   margin-left: 2px;
 `;
@@ -46,13 +46,9 @@ export const ChangeSelection: StyledButton = styled(Button)`
   font-weight: 500;
 
   &&& {
-    color: ${({ theme }) => theme.palette['blue-600']};
+    color: var(--ds-color-text-brand-default);
     .ds-icon {
       margin-right: 4px;
-
-      svg {
-        fill: ${({ theme }) => theme.palette['blue-600']};
-      }
     }
   }
 `;
@@ -68,7 +64,7 @@ export const ShowButton: StyledButton = styled(Button)`
 
   span {
     font-weight: 400;
-    color: ${({ theme }) => theme.palette['grey-700']};
+    color: var(--ds-color-text-base-subtle);
   }
 
   .bold-label {
@@ -91,9 +87,7 @@ export const ClearButton: StyledButton = styled(Button)`
 `;
 
 export const ArrowIcon = styled(Icon)`
-  svg {
-    fill: ${({ theme }) => theme.palette['grey-600']};
-  }
+  color: var(--ds-color-icon-base-default);
 `;
 
 export const NoResults = styled.div`
@@ -102,7 +96,7 @@ export const NoResults = styled.div`
   align-items: center;
   justify-content: center;
   height: 144px;
-  color: ${({ theme }) => theme.palette['grey-600']};
+  color: var(--ds-color-text-base-muted);
 `;
 
 export const NoResultIconWrapper = styled.div`
@@ -113,12 +107,7 @@ export const NoResultIconWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-
-  .ds-icon {
-    svg {
-      fill: ${({ theme }) => theme.palette['grey-600']};
-    }
-  }
+  color: var(--ds-color-icon-base-default);
 `;
 
 export const Divider = styled(DividerBase)<{ footer?: boolean }>`
@@ -128,7 +117,5 @@ export const Divider = styled(DividerBase)<{ footer?: boolean }>`
 `;
 
 export const WarningIcon = styled(Icon)`
-  svg {
-    fill: ${({ theme }) => theme.palette['yellow-500']};
-  }
+  color: var(--ds-color-icon-warning-default);
 `;

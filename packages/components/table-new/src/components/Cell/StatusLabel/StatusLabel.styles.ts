@@ -4,11 +4,11 @@ export const StatusLabel = styled.div<{ isDisabled?: boolean }>`
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  ${(props) => props.isDisabled && 'opacity: 0.4;'}
+  ${(props) => props.isDisabled && 'opacity: var(--ds-opacity-disabled);'}
 `;
 
 export const Label = styled.span`
-  color: ${(props): string => props.theme.palette['grey-700']};
+  color: var(--ds-color-text-base-subtle);
   font-weight: 500;
   font-size: 13px;
   line-height: 1.38;

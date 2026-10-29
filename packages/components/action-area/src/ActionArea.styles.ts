@@ -15,11 +15,11 @@ export const ActionAreaContent = styled.div<{ isError?: boolean }>`
   justify-content: center;
   padding: 28px 24px;
   border-radius: 3px;
-  background-color: ${({ isError, theme }) =>
-    isError ? theme.palette['red-050'] : 'none'};
-  border: 1px dashed ${({ theme }) => theme.palette['grey-300']};
-  ${({ isError, theme }) =>
-    isError && `border-color: ${theme.palette['red-600']};`}
+  background-color: ${({ isError }) =>
+    isError ? 'var(--ds-color-background-danger-subtle)' : 'none'};
+  border: 1px dashed var(--ds-color-border-base-strong);
+  ${({ isError }) =>
+    isError && `border-color: var(--ds-color-border-danger-default);`}
   .ds-title {
     margin-bottom: 8px;
     text-align: center;
@@ -36,5 +36,5 @@ export const ActionAreaAction = styled.div``;
 
 export const ErrorText = styled.div`
   margin-top: 8px;
-  color: ${({ theme }) => theme.palette['red-600']};
+  color: var(--ds-color-text-danger-default);
 `;

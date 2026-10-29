@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { renderWithProvider } from '@synerise/ds-core/testing';
+import { declarationsFor, renderWithProvider } from '@synerise/ds-core/testing';
 import { fireEvent } from '@testing-library/react';
 
 import Pagination from '../index';
@@ -36,9 +36,13 @@ describe('Pagination', () => {
       <Pagination defaultCurrent={1} total={50} />,
     );
 
-    expect(container.querySelector('.ds-pagination-prev')).toHaveStyle(
-      'opacity: 0.4',
-    );
+    const disabledOpacity = 'opacity:var(--ds-pagination-nav-disabled-opacity)';
+    expect(
+      declarationsFor(container.querySelector('.ds-pagination-prev')),
+    ).toContain(disabledOpacity);
+    expect(
+      declarationsFor(container.querySelector('.ds-pagination-next')),
+    ).not.toContain(disabledOpacity);
   });
 
   it('should render the size changer and quick jumper when enabled', () => {

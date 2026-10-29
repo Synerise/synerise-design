@@ -6,7 +6,6 @@ import Tooltip from '@synerise/ds-tooltip';
 
 import { useDefaultTexts } from './hooks/useDefaultTexts';
 import * as S from './Tag.styles';
-import { getColorText } from './Tag.styles';
 import { type TagProps, TagShape } from './Tag.types';
 
 const Tag = forwardRef<HTMLDivElement, TagProps>(
@@ -117,7 +116,7 @@ const Tag = forwardRef<HTMLDivElement, TagProps>(
             <Tooltip
               title={allTexts.deleteTooltip}
               open={isIconHovered}
-              zIndex={parseInt(theme.variables['@zindex-tooltip'], 10) + 1}
+              zIndex={parseInt(theme.variables['zindex-tooltip'], 10) + 1}
             >
               <S.RemoveButton
                 onClick={onRemoveCall}
@@ -125,12 +124,7 @@ const Tag = forwardRef<HTMLDivElement, TagProps>(
                 onMouseLeave={handleMouseLeave}
                 data-testid="remove-btn"
               >
-                <Icon
-                  className="icon"
-                  component={<CloseS />}
-                  size={24}
-                  color={getColorText(theme, color)}
-                />
+                <Icon className="icon" component={<CloseS />} size={24} />
               </S.RemoveButton>
             </Tooltip>
           )}

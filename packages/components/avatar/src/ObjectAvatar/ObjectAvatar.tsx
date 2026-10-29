@@ -1,22 +1,21 @@
 import React from 'react';
 
 import Badge from '@synerise/ds-badge';
-import { theme } from '@synerise/ds-core';
 import Icon, { MailM } from '@synerise/ds-icon';
 import Status from '@synerise/ds-status';
+import { customColors } from '@synerise/ds-tokens/names';
 
 import Avatar from '../Avatar';
 import type { ObjectAvatarProps } from '../Avatar.types';
 import { addIconColor, getColorByText, getObjectName } from '../utils';
 
 export const DEFAULT_COLOR_HUE = '600';
-export const DEFAULT_COLOR = 'grey';
 
 const ObjectAvatar = ({
   backgroundColor,
   badgeStatus,
   iconComponent,
-  color = 'grey',
+  color,
   object = {},
   size,
   src,
@@ -39,12 +38,19 @@ const ObjectAvatar = ({
     status: objectStatus ? <Status label={objectStatus} type="disabled" /> : '',
   };
   const avatarText = getObjectName(objectName, text);
+  const hasBackgroundColor = !!backgroundColor && backgroundColor !== 'auto';
   const [avatarBackgroundColor, avatarBackgroundHue] = getColorByText(
     avatarText,
     backgroundColor,
   );
-  const iconColor =
-    theme.palette[`${color || DEFAULT_COLOR}-${DEFAULT_COLOR_HUE}`];
+  // Without a colour on the icon background the icon inherits the avatar colour, so a
+  // container (e.g. a list item prefix) can recolour it per state.
+  let iconColor: string | undefined;
+  if (color) {
+    iconColor = customColors[color]?.[DEFAULT_COLOR_HUE];
+  } else if (hasBackgroundColor) {
+    iconColor = 'var(--ds-avatar-icon-icon)';
+  }
   const avatarTooltip =
     tooltip === undefined &&
     (defaultTooltip.title || defaultTooltip.description)
@@ -61,7 +67,9 @@ const ObjectAvatar = ({
     <Avatar
       iconComponent={icon}
       shape="square"
-      backgroundColor={avatarBackgroundColor}
+      backgroundColor={
+        avatarText || hasBackgroundColor ? avatarBackgroundColor : undefined
+      }
       backgroundColorHue={avatarBackgroundHue}
       size={size}
       hasStatus={disabled === true ? false : !!badgeStatus}

@@ -1,6 +1,5 @@
 import React, { useCallback, useRef, useState } from 'react';
 
-import { theme } from '@synerise/ds-core';
 import Icon, { CheckS } from '@synerise/ds-icon';
 import { useOnClickOutside } from '@synerise/ds-utils';
 
@@ -41,7 +40,7 @@ const ModeDrop = ({ currentGroup, onModeChange, modes, texts }: Props) => {
               mode === currentGroup ? (
                 <Icon
                   component={<CheckS />}
-                  color={theme.palette['green-600']}
+                  color="var(--ds-color-icon-success-default)"
                 />
               ) : null
             }

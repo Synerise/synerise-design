@@ -4,9 +4,9 @@ import { SortableItemContent } from '@synerise/ds-sortable/dist/Sortable.styles'
 
 export const placeholderCss = css`
   height: calc(100% - 24px);
-  background-color: ${(props) => props.theme.palette['blue-050']};
+  background-color: var(--ds-color-background-brand-subtle);
   border: 0;
-  border-left: 2px solid ${(props) => props.theme.palette['blue-600']};
+  border-left: 2px solid var(--ds-color-border-brand-default);
   border-radius: 3px;
 `;
 
@@ -92,7 +92,7 @@ export const FilterTitle = styled.div`
   font-size: 16px;
   font-weight: 500;
   line-height: 1.25;
-  color: ${(props) => props.theme.palette['grey-800']};
+  color: var(--ds-color-text-base-default);
   text-align: left;
   user-select: none;
   flex: 0 0 auto;

@@ -3,7 +3,6 @@ import React from 'react';
 
 import Button from '@synerise/ds-button';
 import ButtonGroup from '@synerise/ds-button-group';
-import { theme } from '@synerise/ds-core';
 import Icon, { AngleDownS } from '@synerise/ds-icon';
 
 import { fixedWrapper588 } from '../../utils';
@@ -93,7 +92,7 @@ export const SplitModeDividerCases: StoryObj<typeof ButtonGroup> = {
           padding: 8,
           borderRadius: 4,
           background: DARK_BG_VARIANTS.has(type)
-            ? theme.palette['grey-800']
+            ? 'var(--ds-color-background-neutral-solid)'
             : undefined,
         }}
       >
