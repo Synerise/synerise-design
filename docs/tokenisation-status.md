@@ -143,7 +143,7 @@ Nothing upstream blocks code any more. Source of truth: `UPSTREAM_GAPS_HANDOFF.m
 
 Single at-a-glance view of every colour-bearing component: migration **status** + whether it is **awaiting token definitions** (a pending module namespace, a missing semantic role, or a `.less`/de-antd blocker). Sourced from the two detailed tables below + `token-audit.md` blockers. **Update this table (and the detailed one) whenever `apply-tokens` migrates a component.**
 
-**Totals (2026-10-22):** ✅ 111 done · 🚧 2 partial (`core`, `table-new`) · ❌ 0 not started · ⛔ 0 deprecated (`alert`, `menu`, `table` retired on master) · ➖ 4 n/a — **2 awaiting token defs** (`avatar` variant tokens, `core`).
+**Totals (2026-10-29):** ✅ 112 done · 🚧 1 partial (`core`) · ❌ 0 not started · ⛔ 0 deprecated (`alert`, `menu`, `table` retired on master) · ➖ 4 n/a — **2 awaiting token defs** (`avatar` variant tokens, `core`).
 
 **Nothing is left that can be tokenised with the tokens available today** — every remaining `🚧` is waiting on
 an upstream definition (see the blocker column). The next move is upstream in the design-tokens repo, not here.
@@ -263,7 +263,7 @@ an upstream definition (see the blocker column). The next move is upstream in th
 | subject | semantic | ✅ | — |
 | subtle-form | module | ✅ | hover/focus/error → `--ds-subtle-form-bg-*` (2026-10-06) |
 | switch | module | ✅ | — |
-| table-new | semantic | 🚧 | colours tokenised → semantic; scroll shadow colour → `--ds-table-scroll-shadow` (2026-10-06, colour only; offsets stay in the styles); WIP: feature in active dev; `TreeTable` level bars resolve through `resolveCustomColor` only (no palette fallback) |
+| table-new | semantic | ✅ | colours tokenised → semantic; scroll shadow colour → `--ds-table-scroll-shadow` (2026-10-06); `TreeTable` level bars resolve through `resolveCustomColor` only (no palette fallback). Intentionally literal: the scroll-shadow offsets and the z-index values |
 | tabs | module | ✅ | ⚑ focus text/icon blue-500 → `--ds-color-focus-base-default` (blue-600, darker) |
 | tag | module | ✅ | — |
 | tags | module (tag) | ✅ | — |
