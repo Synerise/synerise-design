@@ -1,5 +1,6 @@
 import React, { type ReactNode, useMemo } from 'react';
 
+import { BadgeWithLabel } from '@synerise/ds-badge';
 import type { ProgressValue } from '@synerise/ds-progress-bar';
 
 import type { EstimationProgressValue } from '../Estimation.types';
@@ -15,15 +16,20 @@ export const EstimationProgressBar = ({
   const { progressValues, progressLegend } = useMemo(() => {
     const values: ProgressValue[] = [];
     const legend: ReactNode[] = [];
-    progressBarValues.forEach((value) => {
+    progressBarValues.forEach((value, index) => {
       values.push({
         ...value,
       });
       if (value.label) {
         legend.push(
-          <S.EstimationProgressBarLegendItem dotColor={value.color}>
-            <span>{value.label}</span>
-          </S.EstimationProgressBarLegendItem>,
+          <BadgeWithLabel
+            // biome-ignore lint/suspicious/noArrayIndexKey: values carry no id; colour alone may repeat
+            key={`${value.color}-${index}`}
+            dot
+            customColor={value.color}
+          >
+            {value.label}
+          </BadgeWithLabel>,
         );
       }
     });

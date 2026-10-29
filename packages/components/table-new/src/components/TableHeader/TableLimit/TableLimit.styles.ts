@@ -10,7 +10,7 @@ export const TableLimit = styled.div`
 
 export const Title = styled.div`
   ${macro.small};
-  color: ${(props): string => props.theme.palette['grey-700']};
+  color: var(--ds-color-text-base-subtle);
   strong {
     font-weight: 500;
   }
@@ -31,6 +31,6 @@ export const Alert = styled.div`
     display: flex;
     width: 1px;
     height: 16px;
-    background: ${(props): string => props.theme.palette['grey-200']};
+    background: var(--ds-color-background-base-mutedhover);
   }
 `;

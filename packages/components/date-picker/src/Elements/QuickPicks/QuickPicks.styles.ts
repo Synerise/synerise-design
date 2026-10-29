@@ -7,5 +7,5 @@ export const QuickPicksWrapper = styled.div`
   align-items: flex-start;
   gap: 8px;
   padding: 16px 16px 16px 24px;
-  border-top: 1px solid ${(props) => props.theme.palette['grey-200']};
+  border-top: 1px solid var(--ds-color-border-base-default);
 `;

@@ -7,7 +7,7 @@ export const RowLabel = styled.span`
   display: flex;
   font-size: 13px;
   line-height: 1.38;
-  color: ${(props) => props.theme.palette['grey-600']};
+  color: var(--ds-description-line-label-text);
   font-weight: normal;
   flex-direction: row;
   align-items: center;
@@ -15,10 +15,6 @@ export const RowLabel = styled.span`
   overflow-x: hidden;
   ${IconContainer} {
     margin-right: 4px;
-    svg {
-      color: ${(props) => props.theme.palette['grey-600']};
-      fill: ${(props) => props.theme.palette['grey-600']};
-    }
   }
 `;
 
@@ -37,7 +33,7 @@ export const RowValue = styled.div`
   justify-content: flex-start;
   font-size: 13px;
   line-height: 1.38;
-  color: ${(props) => props.theme.palette['grey-800']};
+  color: var(--ds-description-line-content-text);
   font-weight: 500;
   overflow-x: hidden;
   .ds-status {
@@ -50,15 +46,9 @@ export const Copyable = styled.div`
   position: relative;
   opacity: 0;
   margin-left: 8px;
-  svg {
-    color: ${(props) => props.theme.palette['grey-600']};
-    fill: ${(props) => props.theme.palette['grey-600']};
-  }
+  color: var(--ds-color-icon-base-default);
   &:hover {
-    svg {
-      color: ${(props) => props.theme.palette['blue-600']};
-      fill: ${(props) => props.theme.palette['blue-600']};
-    }
+    color: var(--ds-color-text-brand-default);
   }
 `;
 
@@ -99,7 +89,7 @@ export const RowWrapper = styled.div<{ copyable: boolean }>`
     text-decoration: none;
     cursor: pointer;
     &:hover {
-      color: ${(props) => props.theme.palette['blue-600']};
+      color: var(--ds-color-text-brand-default);
     }
   }
 `;

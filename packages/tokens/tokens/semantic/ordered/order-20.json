@@ -1,0 +1,26 @@
+{
+  "color": {
+    "ordered": {
+      "base": {
+        "$type": "color",
+        "$value": "{color.orange.500}"
+      },
+      "hover": {
+        "$type": "color",
+        "$value": "{color.orange.400}"
+      }
+    }
+  },
+  "color-dark": {
+    "ordered": {
+      "base": {
+        "$type": "color",
+        "$value": "{color-dark.orange.500}"
+      },
+      "hover": {
+        "$type": "color",
+        "$value": "{color-dark.orange.400}"
+      }
+    }
+  }
+}

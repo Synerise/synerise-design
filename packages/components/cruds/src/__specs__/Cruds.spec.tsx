@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { Settings2S } from '@synerise/ds-icon';
-import { renderWithProvider } from '@synerise/ds-core/testing';
-import { fireEvent } from '@testing-library/react';
+import { renderWithProvider, rulesFor } from '@synerise/ds-core/testing';
+import { fireEvent, screen } from '@testing-library/react';
 
 import Cruds from '../Cruds';
 
@@ -124,5 +124,69 @@ describe('Cruds', () => {
     // ASSERT
     expect(settingsIcon).toBeTruthy();
     expect(handleClick).toBeCalled();
+  });
+});
+
+describe('Cruds icon colour', () => {
+  const renderAll = () =>
+    renderWithProvider(
+      <Cruds
+        onAdd={vi.fn()}
+        onEdit={vi.fn()}
+        onPreview={vi.fn()}
+        onDuplicate={vi.fn()}
+        onDelete={vi.fn()}
+        onRemove={vi.fn()}
+        onMoveUp={vi.fn()}
+        moveUpInactive
+      />,
+    );
+
+  it('sets the idle and danger colours on the action wrapper, not the svg', () => {
+    renderAll();
+
+    ['add', 'edit', 'preview', 'duplicate'].forEach((action) => {
+      expect(screen.getByTestId(`ds-cruds-${action}`)).toHaveStyle(
+        'color: var(--ds-cruds-default-idle)',
+      );
+    });
+    ['delete', 'remove'].forEach((action) => {
+      expect(screen.getByTestId(`ds-cruds-${action}`)).toHaveStyle(
+        'color: var(--ds-cruds-danger-idle)',
+      );
+    });
+    expect(screen.getByTestId('ds-cruds-moveup')).toHaveStyle(
+      'color: var(--ds-cruds-default-disabled)',
+    );
+    screen.getAllByTestId(/^ds-cruds-/).forEach((wrapper) => {
+      expect(
+        wrapper.querySelector('.ds-icon')?.querySelector('svg'),
+      ).toHaveStyle('color: inherit');
+    });
+  });
+
+  it('turns the hover colour on via the wrapper and never forces svg fill', () => {
+    renderAll();
+
+    const edit = screen.getByTestId('ds-cruds-edit');
+    const cruds = edit.closest('.ds-cruds');
+    const hoverRule = rulesFor(edit, { within: cruds, state: ':hover' }).find(
+      ({ selector }) => selector.includes('.edit:hover'),
+    );
+    // Every state's rules the container emits for itself and for anything inside it.
+    const crudsRules = [
+      ...rulesFor(cruds, { state: 'any' }),
+      ...Array.from(cruds?.querySelectorAll('*') ?? []).flatMap((element) =>
+        rulesFor(element, { within: cruds, state: 'any' }),
+      ),
+    ];
+
+    expect(hoverRule?.declarations).toContain(
+      'color:var(--ds-cruds-default-hover)',
+    );
+    expect(crudsRules.some(({ selector }) => /svg/.test(selector))).toBe(false);
+    expect(
+      crudsRules.map(({ declarations }) => declarations).join(';'),
+    ).not.toMatch(/(^|;)fill:/);
   });
 });

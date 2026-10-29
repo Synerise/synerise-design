@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-import { theme } from '@synerise/ds-core';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { SearchM } from '@synerise/ds-icon';
 
@@ -29,9 +28,7 @@ export const EmojiOverlay = ({
         placeholder={texts.placeholder}
         value={searchQuery}
         autofocus={focus}
-        iconLeft={
-          <Icon component={<SearchM />} color={theme.palette['grey-600']} />
-        }
+        iconLeft={<Icon component={<SearchM />} />}
       />
       <EmojiList onSelect={onSelect} searchQuery={searchQuery} texts={texts} />
     </>

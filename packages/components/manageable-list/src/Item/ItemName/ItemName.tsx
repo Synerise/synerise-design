@@ -99,7 +99,10 @@ const ItemName = ({
               type="largeSimple"
             >
               <span>
-                <S.DescriptionIcon component={<InfoFillS />} color="#b5bdc3" />
+                <S.DescriptionIcon
+                  component={<InfoFillS />}
+                  color="var(--ds-color-icon-base-muted)"
+                />
               </span>
             </Tooltip>
           )}

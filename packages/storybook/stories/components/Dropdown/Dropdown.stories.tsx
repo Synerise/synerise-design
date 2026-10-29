@@ -3,7 +3,6 @@ import React, { ReactNode, useRef, useState } from 'react';
 import { fn } from 'storybook/test';
 
 import Button from '@synerise/ds-button';
-import { theme } from '@synerise/ds-core';
 import Dropdown, {
   type DropdownProps,
   TextTrigger,
@@ -268,12 +267,7 @@ const data = [{ text: 'Preview' }, { text: 'Edit' }, { text: 'Duplicate' }];
                 onClearInput={onClearInput}
                 placeholder="Search"
                 value={value}
-                iconLeft={
-                  <Icon
-                    component={<SearchM />}
-                    color={theme.palette['grey-600']}
-                  />
-                }
+                iconLeft={<Icon component={<SearchM />} />}
               />
               <S.TabsWrapper>
                 <Tabs

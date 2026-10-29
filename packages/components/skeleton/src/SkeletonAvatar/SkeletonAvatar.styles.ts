@@ -9,15 +9,15 @@ const SKELETON_WIDTH = 80;
 export const loadingAnimation = (size?: 'S' | 'M' | 'L' | 'XL') => keyframes`
   0% {
      background: ${BackgroundGradient}; left: -${size ? LeftSize[size] : SIZE_LEFT}px; top:0px;
-     opacity: 0.1;
+     opacity: var(--ds-skeleton-pulse-opacity-min);
   }
   50% {
      background: ${BackgroundGradient}; left: ${size ? LeftSize[size] : SIZE_RIGHT}px; top:0px;
-     opacity: 0.3;
+     opacity: var(--ds-skeleton-pulse-opacity-max);
   }
    100% {
      background: ${BackgroundGradient}; left: -${size ? LeftSize[size] : SIZE_LEFT}px; top:0px;
-     opacity: 0.1;
+     opacity: var(--ds-skeleton-pulse-opacity-min);
   }
 `;
 const SIZE_DEFAULT = 40;
@@ -53,5 +53,5 @@ export const Wrapper = styled.div<{
   width: 100%;
   height: ${(props) =>
     props.size ? SkeletonSize[props.size] : SIZE_WRAPPER_DEFAULT}px;
-  background-color: ${(props) => props.theme.palette[`grey-050`]};
+  background-color: var(--ds-skeleton-bg);
 `;

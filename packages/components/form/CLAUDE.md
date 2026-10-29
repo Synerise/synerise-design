@@ -96,7 +96,7 @@ const [rows, setRows] = useState([{ name: '', value: '' }]);
 ## Styling
 
 - `FieldSet.styles.ts`: `Heading` uses `macro.heading` + `macro.h400` from `@synerise/ds-typography`. **`Description` is exported as the string `'div'`** (not a styled component) — this is intentional (renders a native `<div>`) but inconsistent with the rest of the pattern.
-- `EditableList.styles.tsx`: plain flex wrappers, no theme tokens except `theme.palette['blue-600']` hardcoded in the add icon colour in `EditableList.tsx`.
+- `EditableList.styles.tsx`: plain flex wrappers, no colour tokens; the add icon in `EditableList.tsx` is coloured `var(--ds-color-icon-brand-default)`.
 
 ## Key dependencies
 

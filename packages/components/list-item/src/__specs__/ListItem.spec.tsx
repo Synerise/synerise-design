@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { renderWithProvider } from '@synerise/ds-core/testing';
+import { declarationsFor, renderWithProvider } from '@synerise/ds-core/testing';
 import { fireEvent, screen, within } from '@testing-library/react';
 
 import ListItem from '../ListItem';
@@ -499,5 +499,44 @@ describe('ListItem', () => {
         Object.keys(itemSizes).length,
       );
     });
+  });
+});
+
+describe('ListItem prefix avatar colour', () => {
+  it('lets an avatar in the prefix inherit the prefix colour', () => {
+    renderWithProvider(
+      <ListItem prefixel={<span className="ds-avatar" data-testid="avatar" />}>
+        Label
+      </ListItem>,
+    );
+
+    const avatar = screen.getByTestId('avatar');
+
+    expect(declarationsFor(avatar, { within: avatar.parentElement })).toContain(
+      'color:inherit',
+    );
+  });
+});
+
+
+describe('ListItem icon colours', () => {
+  it('lets the submenu chevron take its colour from the item instead of a color prop', () => {
+    const { container } = renderWithProvider(
+      <ListItem parent>Parent</ListItem>,
+    );
+
+    const chevron = container.querySelector('.ds-icon');
+    expect(chevron?.querySelector('svg')).toHaveStyle('color: inherit');
+  });
+
+  it('keeps the explicit success colour on the checked mark', () => {
+    renderWithProvider(<ListItem checked>Checked Item</ListItem>);
+
+    const check = screen
+      .getByTestId('list-item-suffix')
+      .querySelector('.ds-icon');
+    expect(check?.querySelector('svg')).toHaveStyle(
+      'color: var(--ds-color-icon-success-default)',
+    );
   });
 });

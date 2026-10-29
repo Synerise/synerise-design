@@ -53,7 +53,7 @@ Sub-components attached as static properties:
 
 | Static | Element | Description |
 |--------|---------|-------------|
-| `Drawer.DrawerHeader` | `div` | Header wrapper — `24px` padding (top/sides) + bottom border (`grey-100`). |
+| `Drawer.DrawerHeader` | `div` | Header wrapper — `24px` padding (top/sides) + bottom border (`--ds-color-border-base-subtle`). |
 | `Drawer.DrawerHeaderWithoutPadding` | `div` | Header variant — no padding, no border. Wrap `DrawerHeader` when adding full-width elements below it (tabs, search bar). |
 | `Drawer.DrawerHeaderBar` | `div` | Flex row (`space-between`, centered), `24px` bottom padding. Place back icon, title, action buttons here. |
 | `Drawer.DrawerHeaderBack` | `div` | Container for a back/nav icon; adds `24px` right margin. |
@@ -112,7 +112,7 @@ Styles live in `Drawer.styles.tsx`, using `theme` tokens (no hardcoded values):
 - `DrawerRoot` — outer overlay. `position: fixed; inset: 0` (or `absolute` when inline),
   `z-index: zindex-modal` token, `pointer-events: none`. Carries the class hooks and the
   consumer `className` (consumers may `styled(Drawer)` and target `&.ant-drawer { ... }`).
-- `DrawerMask` — `grey-800` at `0.2` alpha (matches `ds-modal`), opacity fade on open/close.
+- `DrawerMask` — `--ds-drawer-mask-color` scrim (alpha is in the token), opacity fade on open/close.
 - `DrawerContentWrapper` — the `role="dialog"` panel; slides via `transform` per placement,
   `transition: transform 0.3s ease`; `width`/`height` applied per placement axis.
 - `DrawerBodyBox` — white panel body: no padding, flex column, `overflow: hidden`,
@@ -127,7 +127,7 @@ Styles live in `Drawer.styles.tsx`, using `theme` tokens (no hardcoded values):
 
 - `react-dom` — `createPortal` for the overlay mount.
 - `@synerise/ds-utils` — `useFocusTrap` (focus trap + restore) and `PassthroughAttributes`.
-- `@synerise/ds-core` — theme tokens (`palette`, `variables`) via styled-components `theme`.
+- `@synerise/ds-core` — `theme.variables` (`zindex-modal`, `zindex-dropdown`) via styled-components `theme`; colours are `var(--ds-*)` tokens.
 - `styled-components` — styling + sub-component primitives.
 
 ## Implementation notes

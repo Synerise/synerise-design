@@ -93,8 +93,10 @@ function readSubpathEntries(
  * package.json `name`. Built from the manifests rather than from directory names, so
  * packages whose directory differs from their name (packages/components/design-system ->
  * @synerise/design-system) and layouts other than src/index (core -> src/js/index) need
- * no special case, and stale dist-only directories with no manifest (packages/tokens,
- * packages/components/plain-list) are skipped.
+ * no special case. Directories with no manifest (stale dist-only leftovers such as
+ * packages/components/plain-list) and packages with no src/ tree (packages/tokens, whose
+ * dist is generated from JSON by its own build) are skipped, so their imports resolve to
+ * dist without a staleness warning.
  *
  * Cached per process: two readdir plus ~130 small reads, once.
  */
@@ -123,7 +125,7 @@ export function getDsWorkspacePackages(
 
       const dir = join(parentDir, entry.name);
       const manifestPath = join(dir, 'package.json');
-      if (!existsSync(manifestPath)) {
+      if (!existsSync(manifestPath) || !existsSync(join(dir, 'src'))) {
         continue;
       }
 

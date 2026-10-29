@@ -99,7 +99,7 @@ Merges `react-intl` defaults with `texts` prop override. Returns a complete `Map
 
 ## Styling
 
-`Mapping.styles.ts`. Uses `theme.palette['grey-300']` for the batch selection header border. The wrapper has no gap when `dataSource.length === 1` (`isCompact` mode); otherwise `gap: 16px` between rows.
+`Mapping.styles.ts`. Uses `var(--ds-color-border-base-strong)` for the batch selection header border. The wrapper has no gap when `dataSource.length === 1` (`isCompact` mode); otherwise `gap: 16px` between rows.
 
 ## Key dependencies
 

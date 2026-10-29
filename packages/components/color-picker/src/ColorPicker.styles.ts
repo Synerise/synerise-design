@@ -12,7 +12,7 @@ export const Container = styled.div<{ size?: 'S' | 'M' | 'L' }>`
   width: 100%;
   @media (min-width: 200px) {
     min-width: 200px;
-    background-color: ${(props) => props.theme.palette.white};
+    background-color: var(--ds-dropdown-bg);
   }
   .react-colorful__last-control {
     margin: 24px 56px 8px 17px;
@@ -38,10 +38,10 @@ export const Container = styled.div<{ size?: 'S' | 'M' | 'L' }>`
       props.size ? ColorPickerSize[props.size] : SIZE_DEFAULT}px;
   }
   .react-colorful__hue-pointer {
-    border: 1px solid ${(props) => props.theme.palette['grey-300']};
+    border: 1px solid var(--ds-form-field-affix-border);
     box-shadow: none !important;
     .react-colorful__pointer-fill {
-      background-color: ${(props) => props.theme.palette.white} !important;
+      background-color: var(--ds-form-field-bg-default) !important;
     }
   }
   .ant-divider-horizontal {
@@ -57,7 +57,7 @@ export const SubContainer = styled.div<{ savedColors?: boolean }>`
 export const ColorTag = styled(Tag)`
   width: 16px;
   height: 16px;
-  border: 1px solid ${(props) => props.theme.palette['grey-300']};
+  border: 1px solid var(--ds-form-field-affix-border);
 `;
 
 const SWATCH_SIZE = 16;
@@ -74,16 +74,16 @@ export const SwatchCreatorButton = styled.button`
   border: none;
   border-radius: 3px;
   background-color: transparent;
-  color: ${(props) => props.theme.palette['grey-800']};
+  color: var(--ds-color-icon-base-default);
   cursor: pointer;
   transition: background-color 0.2s ease;
 
   &:hover {
-    background-color: ${(props) => props.theme.palette['grey-200']};
+    background-color: var(--ds-color-background-base-mutedhover);
   }
 
   &:focus-visible {
-    outline: 1px solid ${(props) => props.theme.palette['blue-600']};
+    outline: 1px solid var(--ds-form-field-border-focus);
     outline-offset: 1px;
   }
 `;
@@ -102,7 +102,7 @@ export const Swatch = styled.button`
   cursor: pointer;
 
   &:focus-visible {
-    outline: 1px solid ${(props) => props.theme.palette['blue-600']};
+    outline: 1px solid var(--ds-form-field-border-focus);
     outline-offset: 1px;
   }
 `;
@@ -112,7 +112,7 @@ export const SwatchDot = styled.span`
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background-color: ${(props) => props.theme.palette.white};
+  background-color: var(--ds-color-icon-base-onsolid);
 `;
 
 /** An empty swatch slot (Figma: Swatch — Default). */
@@ -120,7 +120,7 @@ export const SwatchPlaceholder = styled.div`
   flex: 0 0 auto;
   width: ${SWATCH_SIZE}px;
   height: ${SWATCH_SIZE}px;
-  border: 1px solid ${(props) => props.theme.palette['grey-300']};
+  border: 1px solid var(--ds-form-field-affix-border);
   border-radius: 3px;
 `;
 
@@ -145,7 +145,8 @@ export const ColorPickerSelect = styled(Input)`
     width: 100px;
     /* The color swatch is supplied via the Input's innerPrefix slot. */
     input {
-      box-shadow: none;
+      /* Keep the ds-input focus/error rings (box-shadow) — the error state needs the
+         2px ring like every other field; don't null box-shadow here. */
       /* tabular figures so the colour value keeps a steady width as digits change */
       font-variant-numeric: tabular-nums;
     }
@@ -160,7 +161,7 @@ export const PrefixTag = styled.div<{
     margin: 0;
     width: 24px;
     height: 24px;
-    border: 1px solid ${(props) => props.theme.palette['grey-300']};
+    border: 1px solid var(--ds-form-field-affix-border);
     cursor: auto;
     &:hover:before {
       cursor: auto;
@@ -188,7 +189,7 @@ export const PreffixWrapper = styled.div`
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  color: ${(props) => props.theme.palette['grey-500']};
+  color: var(--ds-form-field-affix-text);
 `;
 
 export const ValueWrapper = styled.div`

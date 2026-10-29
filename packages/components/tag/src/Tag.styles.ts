@@ -1,8 +1,30 @@
 import styled, { css } from 'styled-components';
 
-import type { ThemeProps, ThemePropsVars } from '@synerise/ds-core';
+import type { ThemeProps } from '@synerise/ds-core';
+import { resolveCustomColor } from '@synerise/ds-utils';
 
 import { TagShape } from './Tag.types';
+
+/**
+ * DS-specific styling props that must NOT be forwarded to the DOM element.
+ * `dashed` is intentionally consumed-and-ignored (deprecated) — the dashed border is
+ * applied by ds-status's styled(Tag) wrapper, not Tag itself; kept only for API compat.
+ */
+const dsProps = new Set([
+  'isStatusShape',
+  'shape',
+  'color',
+  'textColor',
+  'removable',
+  'disabled',
+  'isActionable',
+  'suffixel',
+  'preffixel',
+  'hasImage',
+  'iconHover',
+  'asPill',
+  'dashed',
+]);
 
 const defaultStatusStyles = css`
   border-radius: 9px;
@@ -15,10 +37,30 @@ const defaultStatusStyles = css`
   padding: 0 8px;
   line-height: 18px;
 `;
-export const getColorText = (theme: ThemePropsVars, color?: string): string => {
-  return color === theme.palette['grey-200']
-    ? theme.palette['grey-600']
-    : theme.palette.white;
+const LIGHT_GREY = resolveCustomColor('grey-200');
+
+const isLightGrey = (color?: string, theme?: ThemeProps['theme']): boolean =>
+  !!color &&
+  (color === LIGHT_GREY || color === theme?.tokens['--ds-color-grey-200']);
+
+// Text pairs with the tag body. No `color` → the body is the grey variant, so
+// the text is the grey variant token too (`textColor` does not apply). A custom
+// `color` → `textColor`, else the colour variant's text token, or muted text on
+// a light-grey body where white would not read.
+export const getColorText = (
+  color?: string,
+  textColor?: string,
+  theme?: ThemeProps['theme'],
+): string => {
+  if (!color) {
+    return 'var(--ds-tag-variant-gray-text)';
+  }
+  if (textColor) {
+    return textColor;
+  }
+  return isLightGrey(color, theme)
+    ? 'var(--ds-color-text-base-muted)'
+    : 'var(--ds-tag-variant-color-text)';
 };
 
 type InsertShapeStyles = {
@@ -45,23 +87,30 @@ const getWidthOnHover = (props: InsertShapeStyles): string => {
   return 'calc(100% - 10px)';
 };
 const getFilterColor = (props: TagProps): string => {
-  if (props.iconHover && props.color === props.theme.palette['grey-200']) {
-    return 'brightness(100%)';
-  }
-  if (props.color === props.theme.palette['grey-200']) {
-    return 'brightness(90%)';
-  }
   if (props.iconHover) {
     return 'brightness(100%)';
   }
+  if (isLightGrey(props.color, props.theme)) {
+    return 'brightness(90%)';
+  }
   return 'brightness(110%)';
 };
-const addonStyles = (props: ThemeProps): string => `
+// No `color` (and not a small pill shape) → the body is the grey variant, so hover
+// swaps to its hover token. A custom `color` has no hover token: keep the filter.
+const usesGrayVariant = (props: TagProps): boolean =>
+  !props.color &&
+  props.shape !== TagShape.SMALL_SQUARE &&
+  props.shape !== TagShape.SMALL_ROUND;
+const getHoverStyles = (props: TagProps): string =>
+  usesGrayVariant(props)
+    ? 'background-color: var(--ds-tag-variant-gray-bg-hover);'
+    : `filter: ${getFilterColor(props)};`;
+const addonStyles = (): string => `
   border: 1px solid;
   border-radius: 10px;
   height: 50%;
   padding: 0 3px;
-  border-color: ${props.theme.palette.white};
+  border-color: var(--ds-color-background-base-default);
   font-size: 9px;
   line-height: 10px;
   text-align: center;
@@ -73,7 +122,8 @@ export const TagName = styled.span`
   text-overflow: ellipsis;
 `;
 export const RemoveButton = styled.div`
-  color: ${({ color, theme }) => getColorText(theme, color)};
+  /* The ✕ matches the tag text: inherit what getColorText (or textColor) set on the tag. */
+  color: inherit;
   height: 18px;
   width: 18px;
   border-radius: 10px;
@@ -86,23 +136,11 @@ export const RemoveButton = styled.div`
   position: relative;
   overflow: hidden;
   display: none;
-  opacity: 0.8;
-
-  &:before {
-    color: ${(props) => props.color || props.theme.palette['red-600']};
-    filter: brightness(70%);
-    opacity: 0.3;
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
+  opacity: var(--ds-tag-remove-opacity);
 
   &&&:hover {
-    .ds-icon svg {
-      fill: ${(props) => props.theme.palette['red-600']} !important;
+    .ds-icon {
+      color: var(--ds-tag-remove-icon);
     }
   }
   .icon {
@@ -116,7 +154,7 @@ const insertShapeStyles = (props: InsertShapeStyles) => {
   switch (props.shape) {
     case TagShape.SMALL_SQUARE:
       return css`
-        color: ${props.textColor || '#fff'};
+        color: ${props.textColor || 'var(--ds-tag-pill-text)'};
         border-radius: 3px;
         font-size: 10px;
         height: 14px;
@@ -129,7 +167,7 @@ const insertShapeStyles = (props: InsertShapeStyles) => {
 
     case TagShape.SMALL_ROUND:
       return css`
-        color: ${props.textColor || '#fff'};
+        color: ${props.textColor || 'var(--ds-tag-pill-text)'};
         border-radius: 8px;
         font-size: 10px;
         height: 14px;
@@ -141,13 +179,13 @@ const insertShapeStyles = (props: InsertShapeStyles) => {
 
     case TagShape.MEDIUM_ROUND:
       return css`
-        color: ${props.textColor || getColorText(props.theme, props.color)};
+        color: ${getColorText(props.color, props.textColor, props.theme)};
         ${defaultStatusStyles}
       `;
 
     case TagShape.DEFAULT_ROUND:
       return css`
-        color: ${props.textColor || getColorText(props.theme, props.color)};
+        color: ${getColorText(props.color, props.textColor, props.theme)};
         border-radius: 12px;
         font-size: 13px;
         height: 24px;
@@ -192,7 +230,7 @@ const insertShapeStyles = (props: InsertShapeStyles) => {
 
     case TagShape.DEFAULT_SQUARE:
       return css`
-        color: ${props.textColor || getColorText(props.theme, props.color)};
+        color: ${getColorText(props.color, props.textColor, props.theme)};
         border-radius: 3px;
         font-size: 13px;
         height: 24px;
@@ -236,7 +274,7 @@ const insertShapeStyles = (props: InsertShapeStyles) => {
 
     case TagShape.SINGLE_CHARACTER_ROUND:
       return css`
-        color: ${props.textColor || getColorText(props.theme, props.color)};
+        color: ${getColorText(props.color, props.textColor, props.theme)};
         border-radius: 12px;
         font-size: 13px;
         height: 24px;
@@ -247,7 +285,7 @@ const insertShapeStyles = (props: InsertShapeStyles) => {
 
     case TagShape.SINGLE_CHARACTER_SQUARE:
       return css`
-        color: ${props.textColor || getColorText(props.theme, props.color)};
+        color: ${getColorText(props.color, props.textColor, props.theme)};
         border-radius: 3px;
         font-size: 13px;
         height: 24px;
@@ -258,31 +296,34 @@ const insertShapeStyles = (props: InsertShapeStyles) => {
 
     case TagShape.STATUS_NEUTRAL:
       return css`
-        border: 1px solid ${props.color || props.theme.palette['grey-500']};
+        border: 1px solid
+          ${props.color || 'var(--ds-status-pill-variant-neutral-border-solid)'};
         color: ${
-          props.textColor || props.color || props.theme.palette['grey-500']
+          props.textColor ||
+          props.color ||
+          'var(--ds-status-pill-variant-neutral-text)'
         };
         ${defaultStatusStyles}
       `;
 
     case TagShape.STATUS_SUCCESS:
       return css`
-        border: 1px solid ${props.theme.palette['green-600']};
-        color: ${props.theme.palette['green-600']};
+        border: 1px solid var(--ds-status-pill-variant-success-border-solid);
+        color: var(--ds-status-pill-variant-success-text);
         ${defaultStatusStyles}
       `;
 
     case TagShape.STATUS_ERROR:
       return css`
-        border: 1px solid ${props.theme.palette['red-600']};
-        color: ${props.theme.palette['red-600']};
+        border: 1px solid var(--ds-status-pill-variant-error-border-solid);
+        color: var(--ds-status-pill-variant-error-text);
         ${defaultStatusStyles}
       `;
 
     case TagShape.STATUS_WARNING:
       return css`
-        border: 1px solid ${props.theme.palette['yellow-600']};
-        color: ${props.theme.palette['yellow-600']};
+        border: 1px solid var(--ds-status-pill-variant-warning-border-solid);
+        color: var(--ds-status-pill-variant-warning-text);
         ${defaultStatusStyles}
       `;
 
@@ -307,7 +348,9 @@ type TagProps = {
   dashed?: boolean;
 } & ThemeProps;
 
-export const Content = styled.div<{ iconHover?: boolean }>`
+export const Content = styled.div.withConfig({
+  shouldForwardProp: (prop) => !dsProps.has(prop as string),
+})<{ iconHover?: boolean }>`
   position: relative;
   display: flex;
   align-items: center;
@@ -318,39 +361,45 @@ export const Content = styled.div<{ iconHover?: boolean }>`
     !!props.iconHover &&
     `
     &&& {
-     color:${props.theme.palette['red-600']};
+     color: var(--ds-color-text-danger-default);
    }
 `}
 `;
-export const PrefixWrapper = styled.div<{ iconHover?: boolean }>`
-  ${(props) => addonStyles(props)};
+export const PrefixWrapper = styled.div.withConfig({
+  shouldForwardProp: (prop) => !dsProps.has(prop as string),
+})<{ iconHover?: boolean }>`
+  ${addonStyles()};
   ${(props) =>
     !!props.iconHover &&
     `.ds-badge-scroll-number{
-    color: ${props.theme.palette['red-600']}!important;
-    box-shadow: 0 0 0 1px ${props.theme.palette['red-600']}!important;
+    color: var(--ds-color-text-danger-default)!important;
+    box-shadow: 0 0 0 1px var(--ds-color-border-danger-default)!important;
     }
-  .ds-icon svg {
-  fill: ${props.theme.palette['red-600']};
+  .ds-icon {
+  color: var(--ds-color-icon-danger-default);
 }`}
 `;
 export const SuffixWrapper = styled.div`
-  ${(props) => addonStyles(props)};
+  ${addonStyles()};
 `;
 export const DefaultSuffixWrapper = styled.div``;
-export const DefaultPrefixWrapper = styled.div<{ iconHover?: boolean }>`
+export const DefaultPrefixWrapper = styled.div.withConfig({
+  shouldForwardProp: (prop) => !dsProps.has(prop as string),
+})<{ iconHover?: boolean }>`
   ${(props) =>
     !!props.iconHover &&
     `.ds-badge-scroll-number{
-    color: ${props.theme.palette['red-600']}!important;
-    box-shadow: 0 0 0 1px ${props.theme.palette['red-600']}!important;
+    color: var(--ds-color-text-danger-default)!important;
+    box-shadow: 0 0 0 1px var(--ds-color-border-danger-default)!important;
     }
-.ds-icon svg {
-  fill: ${props.theme.palette['red-600']};
+.ds-icon {
+  color: var(--ds-color-icon-danger-default);
 }`}
 `;
 
-export const Tag = styled.div<TagProps>`
+export const Tag = styled.div.withConfig({
+  shouldForwardProp: (prop) => !dsProps.has(prop as string),
+})<TagProps>`
   position: relative;
   margin: 4px;
   display: inline-flex;
@@ -363,7 +412,7 @@ export const Tag = styled.div<TagProps>`
     css`
       cursor: pointer;
       &:hover:before {
-        filter: ${getFilterColor};
+        ${getHoverStyles}
       }
     `}
 
@@ -372,14 +421,14 @@ export const Tag = styled.div<TagProps>`
     !!props.iconHover &&
     `
     &&&:before{
-     background-color:${props.theme.palette['red-050']};
+     background-color: var(--ds-color-background-danger-subtle);
    }
 `}
 
   ${(props) =>
     !!props.disabled &&
     css`
-      opacity: 0.4;
+      opacity: var(--ds-tag-disabled-opacity);
       cursor: not-allowed;
     `}
 
@@ -393,14 +442,20 @@ export const Tag = styled.div<TagProps>`
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: ${props.color || props.theme.palette['grey-500']};
+        background-color: ${
+          props.color ||
+          (props.shape === TagShape.SMALL_SQUARE ||
+          props.shape === TagShape.SMALL_ROUND
+            ? 'var(--ds-tag-pill-bg-gray)'
+            : 'var(--ds-tag-variant-gray-bg-default)')
+        };
       }
 
       ${
         props.isActionable &&
         css`
         &:hover:before {
-          filter: ${getFilterColor};
+          ${getHoverStyles}
         }
       `
       };

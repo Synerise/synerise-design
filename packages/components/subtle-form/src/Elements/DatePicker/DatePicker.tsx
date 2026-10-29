@@ -6,11 +6,7 @@ import React, {
   useState,
 } from 'react';
 
-import {
-  getDefaultDataTimeOptions,
-  useDataFormat,
-  useTheme,
-} from '@synerise/ds-core';
+import { getDefaultDataTimeOptions, useDataFormat } from '@synerise/ds-core';
 import { DatePicker } from '@synerise/ds-date-picker';
 import Icon, { CalendarM } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
@@ -40,7 +36,6 @@ const SubtleDatePicker = ({
   const [active, setActive] = useState(false);
   const [blurred, setBlurred] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-  const theme = useTheme();
   const { formatValue } = useDataFormat();
   const hasError = error || !!errorText;
   const { showTime, valueFormatOptions } = rest;
@@ -146,7 +141,7 @@ const SubtleDatePicker = ({
                   <Tooltip title={suffixTooltip}>
                     <Icon
                       component={<CalendarM />}
-                      color={theme.palette['grey-600']}
+                      color="var(--ds-color-icon-base-default)"
                     />
                   </Tooltip>
                 </S.Suffix>

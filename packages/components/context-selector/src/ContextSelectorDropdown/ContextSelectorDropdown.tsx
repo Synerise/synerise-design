@@ -12,7 +12,6 @@ import React, {
 } from 'react';
 import { VariableSizeList } from 'react-window';
 
-import { theme } from '@synerise/ds-core';
 import Divider from '@synerise/ds-divider';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { ArrowRightCircleM, SearchM } from '@synerise/ds-icon';
@@ -646,9 +645,7 @@ const ContextSelectorDropdown = ({
           autofocus={!searchQuery || searchInputCanBeFocused}
           autofocusDelay={50}
           handleInputRef={setSearchInputHandle}
-          iconLeft={
-            <Icon component={<SearchM />} color={theme.palette['grey-600']} />
-          }
+          iconLeft={<Icon component={<SearchM />} />}
         />
       )}
       {hasTabs && (

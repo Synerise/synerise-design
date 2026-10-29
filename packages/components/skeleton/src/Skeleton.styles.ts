@@ -3,7 +3,7 @@ import styled, { css, type Keyframes, keyframes } from 'styled-components';
 import { SkeletonSize, StartOffsetSize, WidthSize } from './Skeleton.types';
 
 export const BackgroundGradient = css`
- linear-gradient(90deg, rgba(252,252,255,1) 0%, rgba(243,243,245,1) 17%, rgba(156,157,157,1) 100%);
+ var(--ds-skeleton-gradient);
 `;
 const OFFSET_LEFT = 140;
 const START_OFFSET_LEFT = -120;
@@ -11,15 +11,15 @@ export const loadingAnimation = (width?: 'M' | 'L'): Keyframes => keyframes`
 
   0% {
      left:${width ? StartOffsetSize[width] : START_OFFSET_LEFT}px; 
-     opacity: 0.1;
+     opacity: var(--ds-skeleton-pulse-opacity-min);
   }
   50% {
      left:${width ? WidthSize[width] : OFFSET_LEFT}px;
-     opacity: 0.4;
+     opacity: var(--ds-skeleton-pulse-opacity-max);
   }
   100% {
      left:${width ? StartOffsetSize[width] : START_OFFSET_LEFT}px;
-     opacity: 0.1;
+     opacity: var(--ds-skeleton-pulse-opacity-min);
   }
 `;
 
@@ -53,7 +53,7 @@ export const Wrapper = styled.div<{
     }
     return props.size ? SkeletonSize[props.size] : SIZE_WRAPPER_DEFAULT;
   }}px;
-  background-color: ${(props) => props.theme.palette[`grey-050`]};
+  background-color: var(--ds-skeleton-bg);
   overflow: hidden;
 `;
 

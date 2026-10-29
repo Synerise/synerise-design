@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { theme } from '@synerise/ds-core';
 import Icon, { CheckS } from '@synerise/ds-icon';
 import ListItem from '@synerise/ds-list-item';
 
@@ -30,7 +29,10 @@ const ContextSelectorDropdownItem = ({
         item?.customSuffix
           ? item.customSuffix
           : selected && (
-              <Icon component={<CheckS />} color={theme.palette['green-600']} />
+              <Icon
+                component={<CheckS />}
+                color="var(--ds-color-icon-success-default)"
+              />
             )
       }
       onClick={() => {

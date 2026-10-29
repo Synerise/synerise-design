@@ -8,7 +8,7 @@ export const FormatSettingsContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   justify-content: stretch;
-  background-color: ${(props) => props.theme.palette.white};
+  background-color: var(--ds-dropdown-bg);
   min-width: 268px;
   .ds-title {
     margin-bottom: 8px;
@@ -49,9 +49,9 @@ export const FormatOptions = styled.div`
 `;
 
 export const FormatFooter = styled.div`
-  background-color: ${(props) => props.theme.palette['grey-050']};
+  background-color: var(--ds-dropdown-footer-bg);
   padding: 8px 10px;
-  border-top: 1px solid ${(props) => props.theme.palette['grey-100']};
+  border-top: 1px solid var(--ds-dropdown-footer-border);
   width: 100%;
 `;
 
@@ -63,7 +63,7 @@ export const DropdownTrigger = styled.div`
   padding: 0 8px 0 12px;
   height: 32px;
   border-radius: 3px;
-  border: 1px solid ${(props) => props.theme.palette['grey-300']};
+  border: 1px solid var(--ds-form-field-border-default);
   width: 100%;
   margin-bottom: 20px;
 `;
@@ -72,11 +72,11 @@ export const DropdownValue = styled.span`
   font-size: 13px;
   line-height: 18px;
   font-weight: 400;
-  color: ${(props) => props.theme.palette['grey-700']};
+  color: var(--ds-form-field-text-value);
 `;
 
 export const CurrencyExample = styled.span`
-  color: ${(props) => props.theme.palette['grey-500']};
+  color: var(--ds-color-text-neutral-default);
   font-weight: 400;
 `;
 

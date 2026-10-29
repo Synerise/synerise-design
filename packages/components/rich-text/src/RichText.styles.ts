@@ -1,8 +1,5 @@
 import styled, { css, keyframes } from 'styled-components';
 
-import type { ThemeProps } from '@synerise/ds-core';
-import { hexToRgba } from '@synerise/ds-utils';
-
 // Height of the toolbar row that unmounts when subtle mode deactivates.
 const TOOLBAR_HEIGHT_PX = 44;
 
@@ -26,7 +23,7 @@ export const RichTextWrapper = styled.div<{
   ${(props) =>
     props.$disabled &&
     css`
-      opacity: 0.4;
+      opacity: var(--ds-opacity-disabled);
       pointer-events: none;
     `};
 `;
@@ -36,6 +33,8 @@ export const SubtleSuffix = styled.div`
   right: 6px;
   top: 6px;
   display: flex;
+  /* The edit icon inherits this rather than taking a color prop. */
+  color: var(--ds-color-icon-base-default);
   opacity: 0;
   height: 24px;
   transition: opacity 0.1s ease-in;
@@ -59,10 +58,10 @@ export const EditorWrapper = styled.div<{
         ? 'solid 1px transparent'
         : `solid 1px ${
             props.$hasError
-              ? props.theme.palette['red-600']
+              ? 'var(--ds-color-border-danger-default)'
               : props.$isFocused
-                ? props.theme.palette['blue-600']
-                : props.theme.palette['grey-200']
+                ? 'var(--ds-color-focus-base-default)'
+                : 'var(--ds-color-border-base-default)'
           }`};
   border-radius: 3px;
   display: flex;
@@ -85,7 +84,7 @@ export const EditorWrapper = styled.div<{
       }
 
       &&:hover {
-        background: ${hexToRgba(props.theme.palette['grey-300'], 0.4)};
+        background: var(--ds-rich-text-bg-hover);
 
         ${SubtleSuffix} {
           opacity: 1;
@@ -150,11 +149,11 @@ export const EditorWrapper = styled.div<{
   ${(props) =>
     props.$hasError &&
     css`
-      background: ${props.theme.palette['red-050']};
+      background: var(--ds-color-background-danger-subtle);
       ${
         !props.$noBorder &&
         css`
-        outline: 1px solid ${props.theme.palette['red-600']};
+        outline: 1px solid var(--ds-color-border-danger-default);
         outline-offset: -1px;
       `
       };
@@ -165,15 +164,14 @@ export const EditorWrapper = styled.div<{
     !props.$hasError &&
     !props.$noBorder &&
     css`
-      outline: 1px solid ${props.theme.palette['blue-600']};
+      outline: 1px solid var(--ds-color-focus-base-default);
       outline-offset: -1px;
     `};
 `;
 
 export const ToolbarArea = styled.div`
   padding: 4px;
-  box-shadow: inset 0 -1px 0 0
-    ${(props: ThemeProps) => props.theme.palette['grey-200']};
+  box-shadow: inset 0 -1px 0 0 var(--ds-color-border-base-default);
 
   > div {
     > div {
@@ -236,12 +234,12 @@ export const EditorArea = styled.div<{
     overflow-y: auto;
     font-size: 13px;
     line-height: 1.6;
-    color: ${(props: ThemeProps) => props.theme.palette['grey-800']};
+    color: var(--ds-color-text-base-default);
 
     ${(props) =>
       props.$readOnly &&
       css`
-        background: ${props.theme.palette['grey-050']};
+        background: var(--ds-color-background-base-subtle);
         cursor: default;
       `};
 
@@ -285,13 +283,13 @@ export const EditorArea = styled.div<{
     }
 
     a {
-      color: ${(props: ThemeProps) => props.theme.palette['blue-600']};
+      color: var(--ds-color-text-brand-default);
       text-decoration: underline;
       cursor: pointer;
     }
 
     code {
-      background: ${(props: ThemeProps) => props.theme.palette['grey-100']};
+      background: var(--ds-color-background-base-muted);
       padding: 2px 4px;
       border-radius: 3px;
       font-family:
@@ -300,7 +298,7 @@ export const EditorArea = styled.div<{
     }
 
     pre {
-      background: ${(props: ThemeProps) => props.theme.palette['grey-100']};
+      background: var(--ds-color-background-base-muted);
       padding: 12px;
       border-radius: 3px;
       overflow-x: auto;
@@ -314,18 +312,17 @@ export const EditorArea = styled.div<{
     }
 
     blockquote {
-      border-left: 3px solid
-        ${(props: ThemeProps) => props.theme.palette['grey-300']};
+      border-left: 3px solid var(--ds-color-border-base-strong);
       padding-left: 12px;
       margin: 0 0 4px;
-      color: ${(props: ThemeProps) => props.theme.palette['grey-500']};
+      color: var(--ds-color-text-neutral-default);
     }
 
     .ds-rt-code-snippet {
       position: relative;
       display: flex;
       align-items: center;
-      background: ${(props: ThemeProps) => props.theme.palette['grey-050']};
+      background: var(--ds-color-background-base-subtle);
       border-radius: 3px;
       padding: 6px 40px 6px 12px;
       margin: 0 0 4px;
@@ -357,8 +354,7 @@ export const EditorArea = styled.div<{
 
       td,
       th {
-        border: 1px solid
-          ${(props: ThemeProps) => props.theme.palette['grey-300']};
+        border: 1px solid var(--ds-color-border-base-strong);
         padding: 6px 10px;
         vertical-align: top;
         text-align: left;
@@ -370,7 +366,7 @@ export const EditorArea = styled.div<{
       }
 
       th {
-        background: ${(props: ThemeProps) => props.theme.palette['grey-050']};
+        background: var(--ds-color-background-base-subtle);
         font-weight: 500;
       }
 
@@ -378,7 +374,7 @@ export const EditorArea = styled.div<{
         content: '';
         position: absolute;
         inset: 0;
-        background: ${(props: ThemeProps) => props.theme.palette['blue-050']};
+        background: var(--ds-color-background-brand-subtle);
         opacity: 0.4;
         pointer-events: none;
       }
@@ -396,15 +392,14 @@ export const EditorArea = styled.div<{
       margin: 8px 0;
 
       &.ProseMirror-selectednode {
-        outline: 2px solid
-          ${(props: ThemeProps) => props.theme.palette['blue-600']};
+        outline: 2px solid var(--ds-color-focus-base-default);
         outline-offset: 2px;
       }
     }
   }
 
   .ProseMirror p.is-editor-empty:first-child::before {
-    color: ${(props: ThemeProps) => props.theme.palette['grey-400']};
+    color: var(--ds-color-text-base-disabled);
     content: attr(data-placeholder);
     float: left;
     height: 0;
@@ -421,23 +416,19 @@ export const ContentBelow = styled.div`
 `;
 
 export const ErrorText = styled.div`
-  color: ${(props: ThemeProps) => props.theme.palette['red-600']};
+  color: var(--ds-color-text-danger-default);
   font-size: 13px;
   line-height: 1.39;
 `;
 
 export const Description = styled.div`
-  color: ${(props: ThemeProps) => props.theme.palette['grey-500']};
+  color: var(--ds-color-text-neutral-default);
   font-size: 13px;
   line-height: 1.39;
 `;
 
 export const AiGradientLabel = styled.span`
-  background: linear-gradient(
-    90deg,
-    ${(props) => props.theme.palette['mars-500']} 0%,
-    ${(props) => props.theme.palette['purple-400']} 100%
-  );
+  background: var(--ds-rich-text-ai-label-text);
   /* Paint the glyphs with the gradient. text-fill-color wins over the
      button variant's "color: inherit", so no specificity battle. */
   -webkit-background-clip: text;
@@ -457,17 +448,17 @@ export const ToolbarSeparator = styled.div`
     margin: 0 4px;
     padding: 0;
     border-radius: 0;
-    background: ${(props: ThemeProps) => props.theme.palette['grey-200']};
+    background: var(--ds-color-border-base-default);
   }
 `;
 
 // PopoverContent renders a bare positioned container, so the floating surface
 // (background / border / shadow) must come from the content itself.
 const popoverSurface = css`
-  background: ${(props) => props.theme.palette.white};
-  border: 1px solid ${(props) => props.theme.palette['grey-200']};
+  background: var(--ds-color-background-base-default);
+  border: 1px solid var(--ds-color-border-base-default);
   border-radius: 3px;
-  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: var(--ds-shadows-shadow-1);
 `;
 
 export const BlockMenu = styled.div`

@@ -98,8 +98,9 @@ import InputNumber from '@synerise/ds-input-number';
 All styling lives in `InputNumber.styles.tsx` as DS-native styled-components driven by transient
 `$`-props and `:focus-within` (no antd LESS, no `.ant-*`/`.ds-*` styling selectors). The
 `ant-input-number-*` and `ds-input-number-*` class names are kept on the elements as hooks only
-(ui-tests / interim external CSS). Theme tokens used: `grey-700` (text), `grey-300` (idle border),
-`blue-600` (focus border), `red-600`/`red-050` (error), `grey-500` (placeholder), `grey-050` (addon).
+(ui-tests / interim external CSS). Tokens used: the shared `--ds-form-field-*` set — `text-value`,
+`border-default` (idle), `border-hover`, `border-focus` / `bg-focus`, `border-validated` / `bg-validated`
+(error), `text-placeholder`, `affix-*` (addon), `bg-disabled` / `text-disabled` — plus `--ds-opacity-disabled`.
 
 > **Deep import**: `InputNumber.styles.tsx` imports `autoresizeConfObjToCss` from
 > `@synerise/ds-input/dist/Input.styles` — a fragile internal path (pre-existing; flagged as an

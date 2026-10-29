@@ -1,14 +1,13 @@
 import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 
-import { Label } from '@synerise/ds-input';
 import Radio, {
   RadioChangeEvent,
   RadioGroupProps,
   RadioProps,
 } from '@synerise/ds-radio';
 
-import { fixedWrapper300 } from '../../utils';
+import { BOOLEAN_CONTROL, fixedWrapper300 } from '../../utils';
 
 type StoryProps = RadioGroupProps & RadioProps;
 
@@ -28,7 +27,9 @@ export default {
       </Radio.Group>
     );
   },
-  argTypes: {},
+  argTypes: {
+    disabled: BOOLEAN_CONTROL,
+  },
   args: {
     defaultValue: 'A',
     description: 'Description',
@@ -37,6 +38,10 @@ export default {
 } as Meta<StoryProps>;
 
 export const Default: StoryObj<StoryProps> = {};
+
+export const Disabled: StoryObj<StoryProps> = {
+  args: { disabled: true },
+};
 
 export const RadioButtons: StoryObj<StoryProps> = {
   render: ({
@@ -88,18 +93,14 @@ export const RadioWithLabelAndTooltip: StoryObj<StoryProps> = {
     };
     return (
       <Radio.Group onChange={handleChange} defaultValue={defaultValue}>
-        <Radio {...args} value="A">
-          <Label tooltip="Label A" label="Label A" />
-        </Radio>
-        <Radio {...args} value="B">
-          <Label tooltip="Label B" label="Label B" />
-        </Radio>
+        <Radio {...args} value="A" label="Label A" tooltip="Label A" />
+        <Radio {...args} value="B" label="Label B" tooltip="Label B" />
       </Radio.Group>
     );
   },
+  parameters: { controls: { exclude: ['label', 'tooltip'] } },
   args: {
     description: 'Description',
-    label: '',
   },
 };
 

@@ -1,0 +1,1030 @@
+{
+  "color": {
+    "background": {
+      "base": {
+        "default": {
+          "$type": "color",
+          "$value": "{color-dark.mono.00}",
+          "$description": "Default background - white"
+        },
+        "defaultHover": {
+          "$type": "color",
+          "$value": "{color-dark.grey.50}",
+          "$description": "Hover state for default background"
+        },
+        "subtle": {
+          "$type": "color",
+          "$value": "{color-dark.grey.50}",
+          "$description": "Subtle background - light grey"
+        },
+        "subtleHover": {
+          "$type": "color",
+          "$value": "{color-dark.grey.100}",
+          "$description": "Hover state for subtle background"
+        },
+        "muted": {
+          "$type": "color",
+          "$value": "{color-dark.grey.100}",
+          "$description": "Muted background - medium grey"
+        },
+        "mutedHover": {
+          "$type": "color",
+          "$value": "{color-dark.grey.200}",
+          "$description": "Hover state for muted background"
+        },
+        "mutedActive": {
+          "$type": "color",
+          "$value": "{color-dark.grey.300}",
+          "$description": "Active or pressed state for muted background"
+        },
+        "strong": {
+          "$type": "color",
+          "$value": "{color-dark.grey.400}",
+          "$description": "Strong background - dark grey"
+        },
+        "strongHover": {
+          "$type": "color",
+          "$value": "{color-dark.grey.500}",
+          "$description": "Hover state for strong background"
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{color-dark.grey.100}",
+          "$description": "Disabled background"
+        }
+      },
+      "brand": {
+        "subtle": {
+          "$type": "color",
+          "$value": "{color-dark.blue.50}",
+          "$description": "Subtle brand background"
+        },
+        "subtleHover": {
+          "$type": "color",
+          "$value": "{color-dark.blue.100}",
+          "$description": "Hover state for subtle brand"
+        },
+        "solid": {
+          "$type": "color",
+          "$value": "{color-dark.blue.600}",
+          "$description": "Solid brand background"
+        },
+        "solidHover": {
+          "$type": "color",
+          "$value": "{color-dark.blue.500}",
+          "$description": "Hover state for solid brand"
+        },
+        "solidActive": {
+          "$type": "color",
+          "$value": "{color-dark.blue.700}",
+          "$description": "Active state for solid brand"
+        }
+      },
+      "success": {
+        "subtle": {
+          "$type": "color",
+          "$value": "{color-dark.green.50}",
+          "$description": "Subtle success background"
+        },
+        "subtleHover": {
+          "$type": "color",
+          "$value": "{color-dark.green.100}",
+          "$description": "Hover state for subtle success"
+        },
+        "solid": {
+          "$type": "color",
+          "$value": "{color-dark.green.600}",
+          "$description": "Solid success background"
+        },
+        "solidHover": {
+          "$type": "color",
+          "$value": "{color-dark.green.500}",
+          "$description": "Hover state for solid success"
+        },
+        "solidActive": {
+          "$type": "color",
+          "$value": "{color-dark.green.700}",
+          "$description": "Active state for solid success"
+        }
+      },
+      "warning": {
+        "subtle": {
+          "$type": "color",
+          "$value": "{color-dark.yellow.50}",
+          "$description": "Subtle warning background"
+        },
+        "subtleHover": {
+          "$type": "color",
+          "$value": "{color-dark.yellow.100}",
+          "$description": "Hover state for subtle warning"
+        },
+        "solid": {
+          "$type": "color",
+          "$value": "{color-dark.yellow.500}",
+          "$description": "Solid warning background"
+        },
+        "solidHover": {
+          "$type": "color",
+          "$value": "{color-dark.yellow.600}",
+          "$description": "Hover state for solid warning"
+        },
+        "solidActive": {
+          "$type": "color",
+          "$value": "{color-dark.yellow.700}",
+          "$description": "Active state for solid warning (yellow-700, darker; matches success pattern)"
+        }
+      },
+      "danger": {
+        "subtle": {
+          "$type": "color",
+          "$value": "{color-dark.red.50}",
+          "$description": "Subtle danger background"
+        },
+        "subtleHover": {
+          "$type": "color",
+          "$value": "{color-dark.red.100}",
+          "$description": "Hover state for subtle danger"
+        },
+        "subtleActive": {
+          "$type": "color",
+          "$value": "{color-dark.red.200}",
+          "$description": "Stronger subtle danger background - e.g. hover on a button in error state"
+        },
+        "solid": {
+          "$type": "color",
+          "$value": "{color-dark.red.600}",
+          "$description": "Solid danger background"
+        },
+        "solidHover": {
+          "$type": "color",
+          "$value": "{color-dark.red.500}",
+          "$description": "Hover state for solid danger - lighter, same pattern as brand and success"
+        },
+        "solidActive": {
+          "$type": "color",
+          "$value": "{color-dark.red.700}",
+          "$description": "Active or pressed state for solid danger - darker"
+        }
+      },
+      "neutral": {
+        "subtle": {
+          "$type": "color",
+          "$value": "{color-dark.grey.50}",
+          "$description": "Subtle neutral background"
+        },
+        "subtleHover": {
+          "$type": "color",
+          "$value": "{color-dark.grey.200}",
+          "$description": "Hover state for subtle neutral"
+        },
+        "solid": {
+          "$type": "color",
+          "$value": "{color-dark.grey.800}",
+          "$description": "Solid neutral background"
+        },
+        "solidHover": {
+          "$type": "color",
+          "$value": "{color-dark.grey.700}",
+          "$description": "Hover state for solid neutral"
+        },
+        "solidActive": {
+          "$type": "color",
+          "$value": "{color-dark.grey.700}",
+          "$description": "Active state for solid neutral"
+        }
+      },
+      "overlay": {
+        "default": {
+          "$extensions": {
+            "studio.tokens": {
+              "modify": {
+                "type": "alpha",
+                "value": "0.40",
+                "space": "srgb"
+              }
+            }
+          },
+          "$type": "color",
+          "$value": "{color.mono.1000}",
+          "$description": "Tlo pod modalem, drawerem i AI chatem (dark) — czern przy 40% krycia, przyciemnia strone jak cienie w dark"
+        },
+        "solid": {
+          "$extensions": {
+            "studio.tokens": {
+              "modify": {
+                "type": "alpha",
+                "value": "0.90",
+                "space": "srgb"
+              }
+            }
+          },
+          "$type": "color",
+          "$value": "{color-dark.grey.800}",
+          "$description": "Tło tooltipu (dark mode) — color-dark.grey.800 @ 90%. [TYMCZASOWE — do wycofania po tokenizacji modules]"
+        }
+      },
+      "translucent": {
+        "none": {
+          "$type": "color",
+          "$value": "{color-dark.transparent}",
+          "$description": "Przezroczyste tło (brak wypełnienia). [TYMCZASOWE — do wycofania po tokenizacji modules]"
+        },
+        "subtle": {
+          "$extensions": {
+            "studio.tokens": {
+              "modify": {
+                "type": "alpha",
+                "value": "0.10",
+                "space": "srgb"
+              }
+            }
+          },
+          "$type": "color",
+          "$value": "{color-dark.grey.700}",
+          "$description": "Subtelne półprzezroczyste tło (dark) — jasny kolor 10% krycia. [TYMCZASOWE — do wycofania po tokenizacji modules]"
+        },
+        "subtleHover": {
+          "$extensions": {
+            "studio.tokens": {
+              "modify": {
+                "type": "alpha",
+                "value": "0.15",
+                "space": "srgb"
+              }
+            }
+          },
+          "$type": "color",
+          "$value": "{color-dark.grey.700}",
+          "$description": "Subtelne półprzezroczyste tło (dark) — hover — 15% krycia. [TYMCZASOWE — do wycofania po tokenizacji modules]"
+        },
+        "subtleActive": {
+          "$extensions": {
+            "studio.tokens": {
+              "modify": {
+                "type": "alpha",
+                "value": "0.25",
+                "space": "srgb"
+              }
+            }
+          },
+          "$type": "color",
+          "$value": "{color-dark.grey.700}",
+          "$description": "Subtelne półprzezroczyste tło (dark) — active — 25% krycia. [TYMCZASOWE — do wycofania po tokenizacji modules]"
+        },
+        "muted": {
+          "$extensions": {
+            "studio.tokens": {
+              "modify": {
+                "type": "alpha",
+                "value": "0.10",
+                "space": "srgb"
+              }
+            }
+          },
+          "$type": "color",
+          "$value": "{color-dark.grey.600}",
+          "$description": "Stonowane półprzezroczyste tło (dark) — 10% krycia. [TYMCZASOWE — do wycofania po tokenizacji modules]"
+        },
+        "mutedHover": {
+          "$extensions": {
+            "studio.tokens": {
+              "modify": {
+                "type": "alpha",
+                "value": "0.15",
+                "space": "srgb"
+              }
+            }
+          },
+          "$type": "color",
+          "$value": "{color-dark.grey.700}",
+          "$description": "Stonowane półprzezroczyste tło (dark) — hover — 15% krycia. [TYMCZASOWE — do wycofania po tokenizacji modules]"
+        },
+        "mutedActive": {
+          "$extensions": {
+            "studio.tokens": {
+              "modify": {
+                "type": "alpha",
+                "value": "0.25",
+                "space": "srgb"
+              }
+            }
+          },
+          "$type": "color",
+          "$value": "{color-dark.grey.700}",
+          "$description": "Stonowane półprzezroczyste tło (dark) — active — 25% krycia. [TYMCZASOWE — do wycofania po tokenizacji modules]"
+        },
+        "strong": {
+          "$extensions": {
+            "studio.tokens": {
+              "modify": {
+                "type": "alpha",
+                "value": "0.35",
+                "space": "srgb"
+              }
+            }
+          },
+          "$type": "color",
+          "$value": "{color-dark.grey.700}",
+          "$description": "Mocne półprzezroczyste tło (dark) — 35% krycia. [TYMCZASOWE — do wycofania po tokenizacji modules]"
+        },
+        "strongHover": {
+          "$extensions": {
+            "studio.tokens": {
+              "modify": {
+                "type": "alpha",
+                "value": "0.25",
+                "space": "srgb"
+              }
+            }
+          },
+          "$type": "color",
+          "$value": "{color-dark.grey.800}",
+          "$description": "Mocne półprzezroczyste tło (dark) — hover — 25% krycia. [TYMCZASOWE — do wycofania po tokenizacji modules]"
+        }
+      },
+      "custom": {
+        "subtle": {
+          "$type": "color",
+          "$value": "{color-dark.custom.50}"
+        },
+        "subtleHover": {
+          "$type": "color",
+          "$value": "{color-dark.custom.100}"
+        },
+        "solid": {
+          "$type": "color",
+          "$value": "{color-dark.custom.600}"
+        },
+        "solidHover": {
+          "$type": "color",
+          "$value": "{color-dark.custom.500}"
+        },
+        "solidActive": {
+          "$type": "color",
+          "$value": "{color-dark.custom.700}"
+        }
+      },
+      "entity": {
+        "subtle": {
+          "$type": "color",
+          "$value": "{color-dark.cyan.50}",
+          "$description": "Subtelne tło Supply — dark mode"
+        },
+        "subtleHover": {
+          "$type": "color",
+          "$value": "{color-dark.cyan.100}",
+          "$description": "Subtelne tło Supply — hover dark"
+        },
+        "solid": {
+          "$type": "color",
+          "$value": "{color-dark.cyan.600}",
+          "$description": "Solidne tło Supply — dark mode"
+        },
+        "solidHover": {
+          "$type": "color",
+          "$value": "{color-dark.cyan.500}",
+          "$description": "Solidne tło Supply — hover dark"
+        },
+        "solidActive": {
+          "$type": "color",
+          "$value": "{color-dark.cyan.700}",
+          "$description": "Solidne tło Supply — active dark"
+        }
+      },
+      "service": {
+        "subtle": {
+          "$type": "color",
+          "$value": "{color-dark.purple.50}",
+          "$description": "Subtelne tło Service — dark mode"
+        },
+        "subtleHover": {
+          "$type": "color",
+          "$value": "{color-dark.purple.100}",
+          "$description": "Subtelne tło Service — hover dark"
+        },
+        "solid": {
+          "$type": "color",
+          "$value": "{color-dark.purple.600}",
+          "$description": "Solidne tło Service — dark mode"
+        },
+        "solidHover": {
+          "$type": "color",
+          "$value": "{color-dark.purple.500}",
+          "$description": "Solidne tło Service — hover dark"
+        },
+        "solidActive": {
+          "$type": "color",
+          "$value": "{color-dark.purple.700}",
+          "$description": "Solidne tło Service — active dark"
+        }
+      },
+      "supply": {
+        "subtle": {
+          "$type": "color",
+          "$value": "{color-dark.violet.50}",
+          "$description": "Subtelne tło Entity — dark mode"
+        },
+        "subtleHover": {
+          "$type": "color",
+          "$value": "{color-dark.violet.100}",
+          "$description": "Subtelne tło Entity — hover dark"
+        },
+        "solid": {
+          "$type": "color",
+          "$value": "{color-dark.violet.600}",
+          "$description": "Solidne tło Entity — dark mode"
+        },
+        "solidHover": {
+          "$type": "color",
+          "$value": "{color-dark.violet.500}",
+          "$description": "Solidne tło Entity — hover dark"
+        },
+        "solidActive": {
+          "$type": "color",
+          "$value": "{color-dark.violet.700}",
+          "$description": "Solidne tło Entity — active dark"
+        }
+      },
+      "ordered": {
+        "default": {
+          "$type": "color",
+          "$value": "{color-dark.ordered.base}"
+        },
+        "defaultHover": {
+          "$type": "color",
+          "$value": "{color-dark.ordered.hover}"
+        }
+      },
+      "ai": {
+        "solid": {
+          "$type": "color",
+          "$value": "{color-dark.cyan.600}",
+          "$description": "AI primary surface"
+        }
+      }
+    },
+    "text": {
+      "base": {
+        "default": {
+          "$type": "color",
+          "$value": "{color-dark.grey.800}",
+          "$description": "Default text color"
+        },
+        "subtle": {
+          "$type": "color",
+          "$value": "{color-dark.grey.700}",
+          "$description": "Subtle text - less emphasis"
+        },
+        "muted": {
+          "$type": "color",
+          "$value": "{color-dark.grey.600}",
+          "$description": "Muted text - least emphasis"
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{color-dark.grey.400}",
+          "$description": "Disabled text color"
+        },
+        "onSolid": {
+          "$type": "color",
+          "$value": "{color-dark.mono.00}",
+          "$description": "Text on solid backgrounds - default white"
+        }
+      },
+      "brand": {
+        "default": {
+          "$type": "color",
+          "$value": "{color-dark.blue.600}",
+          "$description": "Brand text color"
+        },
+        "defaultHover": {
+          "$type": "color",
+          "$value": "{color-dark.blue.700}",
+          "$description": "Hover state for brand text"
+        },
+        "onSolid": {
+          "$type": "color",
+          "$value": "{color-dark.mono.00}",
+          "$description": "Text on solid brand background"
+        }
+      },
+      "success": {
+        "default": {
+          "$type": "color",
+          "$value": "{color-dark.green.700}",
+          "$description": "Success text color"
+        },
+        "onSolid": {
+          "$type": "color",
+          "$value": "{color-dark.mono.00}",
+          "$description": "Text on solid success background"
+        }
+      },
+      "warning": {
+        "default": {
+          "$type": "color",
+          "$value": "{color-dark.yellow.700}",
+          "$description": "Warning text color"
+        },
+        "onSolid": {
+          "$type": "color",
+          "$value": "{color-dark.grey.800}",
+          "$description": "Text on solid warning background - dark for contrast"
+        }
+      },
+      "danger": {
+        "default": {
+          "$type": "color",
+          "$value": "{color-dark.red.600}",
+          "$description": "Danger/error text color"
+        },
+        "onSolid": {
+          "$type": "color",
+          "$value": "{color-dark.mono.00}",
+          "$description": "Text on solid danger background"
+        }
+      },
+      "neutral": {
+        "default": {
+          "$type": "color",
+          "$value": "{color-dark.grey.500}",
+          "$description": "Neutral text color"
+        },
+        "onSolid": {
+          "$type": "color",
+          "$value": "{color-dark.mono.00}",
+          "$description": "Text on solid neutral background"
+        },
+        "onSolidSubtle": {
+          "$type": "color",
+          "$value": "{color-dark.grey.200}",
+          "$description": "Subtle text on a solid background, e.g. tooltip body text on neutral solid"
+        }
+      },
+      "custom": {
+        "default": {
+          "$type": "color",
+          "$value": "{color-dark.custom.600}",
+          "$description": "Neutral text color"
+        },
+        "onSolid": {
+          "$type": "color",
+          "$value": "{color-dark.mono.00}",
+          "$description": "Text on solid neutral background"
+        }
+      },
+      "entity": {
+        "default": {
+          "$type": "color",
+          "$value": "{color-dark.cyan.700}",
+          "$description": "Kolor tekstu Supply — dark mode"
+        }
+      },
+      "service": {
+        "default": {
+          "$type": "color",
+          "$value": "{color-dark.purple.700}",
+          "$description": "Kolor tekstu Service — dark mode"
+        }
+      },
+      "supply": {
+        "default": {
+          "$type": "color",
+          "$value": "{color-dark.violet.700}",
+          "$description": "Kolor tekstu Entity — dark mode"
+        }
+      },
+      "ordered": {
+        "default": {
+          "$type": "color",
+          "$value": "{color-dark.ordered.base}"
+        }
+      }
+    },
+    "icon": {
+      "base": {
+        "default": {
+          "$type": "color",
+          "$value": "{color-dark.grey.600}",
+          "$description": "Default icon color"
+        },
+        "defaultHover": {
+          "$type": "color",
+          "$value": "{color-dark.grey.700}",
+          "$description": "Hover ikony neutralnej (grey.700, krok dalej niz default). Uzywane m.in. przez inline-alert informative (dark: color-dark.grey.700)"
+        },
+        "strong": {
+          "$type": "color",
+          "$value": "{color-dark.grey.800}",
+          "$description": "Strong (emphasis) default icon - grey.800, e.g. default colour of large and extra-large icons"
+        },
+        "subtle": {
+          "$type": "color",
+          "$value": "{color-dark.grey.500}",
+          "$description": "Subtle icon color"
+        },
+        "muted": {
+          "$type": "color",
+          "$value": "{color-dark.grey.400}",
+          "$description": "Muted icon color"
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{color-dark.grey.400}",
+          "$description": "Disabled icon color"
+        },
+        "onSolid": {
+          "$type": "color",
+          "$value": "{color-dark.mono.00}",
+          "$description": "Icon on solid backgrounds - default white"
+        }
+      },
+      "brand": {
+        "default": {
+          "$type": "color",
+          "$value": "{color-dark.blue.600}",
+          "$description": "Brand icon color"
+        },
+        "defaultHover": {
+          "$type": "color",
+          "$value": "{color-dark.blue.700}",
+          "$description": "Hover i stan wybrany ikony brand (blue.700), lustro text.brand.defaultHover. Uzywane m.in. przez inline-select (dark: color-dark.blue.700)"
+        },
+        "onSolid": {
+          "$type": "color",
+          "$value": "{color-dark.mono.00}",
+          "$description": "Icon on solid brand background"
+        }
+      },
+      "success": {
+        "default": {
+          "$type": "color",
+          "$value": "{color-dark.green.700}",
+          "$description": "Success icon color"
+        },
+        "defaultHover": {
+          "$type": "color",
+          "$value": "{color-dark.green.800}",
+          "$description": "Hover ikony success (green.700, krok dalej niz default). Uzywane m.in. przez inline-alert success (dark: color-dark.green.800)"
+        },
+        "onSolid": {
+          "$type": "color",
+          "$value": "{color-dark.mono.00}",
+          "$description": "Icon on solid success background"
+        }
+      },
+      "warning": {
+        "default": {
+          "$type": "color",
+          "$value": "{color-dark.yellow.700}",
+          "$description": "Warning icon color"
+        },
+        "defaultHover": {
+          "$type": "color",
+          "$value": "{color-dark.yellow.800}",
+          "$description": "Hover ikony warning (yellow.700, krok dalej niz default). Uzywane m.in. przez inline-alert warning (dark: color-dark.yellow.800)"
+        },
+        "onSolid": {
+          "$type": "color",
+          "$value": "{color-dark.grey.800}",
+          "$description": "Icon on solid warning background - dark for contrast"
+        }
+      },
+      "danger": {
+        "default": {
+          "$type": "color",
+          "$value": "{color-dark.red.600}",
+          "$description": "Danger icon color"
+        },
+        "defaultHover": {
+          "$type": "color",
+          "$value": "{color-dark.red.700}",
+          "$description": "Hover ikony danger (red.700, krok ciemniej niz default, zgodnie z reszta macierzy). Uzywane przez inline-alert error oraz krzyzyk usuwania w factors (dark: color-dark.red.700)"
+        },
+        "onSolid": {
+          "$type": "color",
+          "$value": "{color-dark.mono.00}",
+          "$description": "Icon on solid danger background"
+        }
+      },
+      "neutral": {
+        "default": {
+          "$type": "color",
+          "$value": "{color-dark.grey.500}",
+          "$description": "Neutral icon color"
+        },
+        "onSolid": {
+          "$type": "color",
+          "$value": "{color-dark.mono.00}",
+          "$description": "Icon on solid neutral background"
+        }
+      },
+      "custom": {
+        "default": {
+          "$type": "color",
+          "$value": "{color-dark.custom.600}",
+          "$description": "Neutral icon color"
+        }
+      },
+      "entity": {
+        "default": {
+          "$type": "color",
+          "$value": "{color-dark.cyan.600}",
+          "$description": "Ikona Supply — dark mode"
+        }
+      },
+      "service": {
+        "default": {
+          "$type": "color",
+          "$value": "{color-dark.purple.600}",
+          "$description": "Ikona Service — dark mode"
+        }
+      },
+      "supply": {
+        "default": {
+          "$type": "color",
+          "$value": "{color-dark.violet.600}",
+          "$description": "Ikona Entity — dark mode"
+        }
+      },
+      "ai": {
+        "default": {
+          "$type": "color",
+          "$value": "{color-dark.mars.400}",
+          "$description": "AI accent icon color - mars.400, e.g. AI star icon"
+        }
+      }
+    },
+    "border": {
+      "base": {
+        "none": {
+          "$type": "color",
+          "$value": "{color-dark.transparent}",
+          "$description": "No border - transparent"
+        },
+        "default": {
+          "$type": "color",
+          "$value": "{color-dark.grey.200}",
+          "$description": "Default border color"
+        },
+        "subtle": {
+          "$type": "color",
+          "$value": "{color-dark.grey.200}",
+          "$description": "Subtle border - lighter"
+        },
+        "strong": {
+          "$type": "color",
+          "$value": "{color-dark.grey.300}",
+          "$description": "Strong border - darker"
+        },
+        "strongHover": {
+          "$type": "color",
+          "$value": "{color-dark.grey.400}",
+          "$description": "Hover state for strong border"
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{color-dark.grey.200}",
+          "$description": "Disabled border color"
+        },
+        "onSolid": {
+          "$type": "color",
+          "$value": "{color-dark.mono.00}",
+          "$description": "Border or separator on a solid background, e.g. separators on navbar, white ring on badge"
+        }
+      },
+      "brand": {
+        "default": {
+          "$type": "color",
+          "$value": "{color-dark.blue.600}",
+          "$description": "Brand border color"
+        },
+        "subtle": {
+          "$type": "color",
+          "$value": "{color-dark.blue.200}",
+          "$description": "Subtle brand border"
+        },
+        "strong": {
+          "$type": "color",
+          "$value": "{color-dark.blue.300}",
+          "$description": "Strong brand border"
+        }
+      },
+      "success": {
+        "default": {
+          "$type": "color",
+          "$value": "{color-dark.green.600}",
+          "$description": "Success border color"
+        },
+        "subtle": {
+          "$type": "color",
+          "$value": "{color-dark.green.100}",
+          "$description": "Subtle success border"
+        },
+        "strong": {
+          "$type": "color",
+          "$value": "{color-dark.green.200}",
+          "$description": "Strong success border"
+        }
+      },
+      "warning": {
+        "default": {
+          "$type": "color",
+          "$value": "{color-dark.yellow.600}",
+          "$description": "Warning border color"
+        },
+        "subtle": {
+          "$type": "color",
+          "$value": "{color-dark.yellow.100}",
+          "$description": "Subtle warning border"
+        },
+        "strong": {
+          "$type": "color",
+          "$value": "{color-dark.yellow.200}",
+          "$description": "Strong warning border"
+        }
+      },
+      "danger": {
+        "default": {
+          "$type": "color",
+          "$value": "{color-dark.red.600}",
+          "$description": "Danger border color"
+        },
+        "subtle": {
+          "$type": "color",
+          "$value": "{color-dark.red.100}",
+          "$description": "Subtle danger border"
+        },
+        "strong": {
+          "$type": "color",
+          "$value": "{color-dark.red.200}",
+          "$description": "Strong danger border"
+        }
+      },
+      "neutral": {
+        "default": {
+          "$type": "color",
+          "$value": "{color-dark.grey.700}",
+          "$description": "Neutral border color"
+        },
+        "subtle": {
+          "$type": "color",
+          "$value": "{color-dark.grey.500}",
+          "$description": "Subtle neutral border"
+        },
+        "strong": {
+          "$type": "color",
+          "$value": "{color-dark.grey.800}",
+          "$description": "Strong neutral border"
+        }
+      },
+      "custom": {
+        "default": {
+          "$type": "color",
+          "$value": "{color-dark.custom.600}",
+          "$description": "Danger border color"
+        },
+        "subtle": {
+          "$type": "color",
+          "$value": "{color-dark.custom.100}",
+          "$description": "Subtle danger border"
+        },
+        "strong": {
+          "$type": "color",
+          "$value": "{color-dark.custom.200}",
+          "$description": "Strong danger border"
+        }
+      },
+      "entity": {
+        "default": {
+          "$type": "color",
+          "$value": "{color-dark.cyan.600}",
+          "$description": "Obramowanie Supply — dark mode"
+        },
+        "subtle": {
+          "$type": "color",
+          "$value": "{color-dark.cyan.100}",
+          "$description": "Subtelne obramowanie Supply — dark"
+        },
+        "strong": {
+          "$type": "color",
+          "$value": "{color-dark.cyan.200}",
+          "$description": "Mocne obramowanie Supply — dark"
+        }
+      },
+      "service": {
+        "default": {
+          "$type": "color",
+          "$value": "{color-dark.purple.600}",
+          "$description": "Obramowanie Service — dark mode"
+        },
+        "subtle": {
+          "$type": "color",
+          "$value": "{color-dark.purple.100}",
+          "$description": "Subtelne obramowanie Service — dark"
+        },
+        "strong": {
+          "$type": "color",
+          "$value": "{color-dark.purple.200}",
+          "$description": "Mocne obramowanie Service — dark"
+        }
+      },
+      "supply": {
+        "default": {
+          "$type": "color",
+          "$value": "{color-dark.violet.600}",
+          "$description": "Obramowanie Entity — dark mode"
+        },
+        "subtle": {
+          "$type": "color",
+          "$value": "{color-dark.violet.100}",
+          "$description": "Subtelne obramowanie Entity — dark"
+        },
+        "strong": {
+          "$type": "color",
+          "$value": "{color-dark.violet.200}",
+          "$description": "Mocne obramowanie Entity — dark"
+        }
+      }
+    },
+    "focus": {
+      "base": {
+        "default": {
+          "$type": "color",
+          "$value": "{color-dark.blue.600}"
+        },
+        "strong": {
+          "$type": "color",
+          "$value": "{color-dark.blue.700}"
+        }
+      }
+    },
+    "gradient": {
+      "ai": {
+        "default": {
+          "$type": "color",
+          "$value": "linear-gradient(90deg, {color-dark.mars.500} 0%, {color-dark.purple.400} 100%)",
+          "$description": "AI accent gradient - mars.500 to purple.400, used for AI labels and decorative AI text"
+        }
+      }
+    },
+    "shadow": {
+      "1": {
+        "$extensions": {
+          "studio.tokens": {
+            "modify": {
+              "type": "alpha",
+              "value": "0.18",
+              "space": "srgb"
+            }
+          }
+        },
+        "$type": "color",
+        "$value": "{color.mono.1000}",
+        "$description": "Kolor cienia poziomu 1 (dark) — czern przy 18% krycia, mocniej niz light, bo na ciemnym tle cien inaczej znika. Uzywany przez Shadows.Shadow 1"
+      },
+      "2": {
+        "$extensions": {
+          "studio.tokens": {
+            "modify": {
+              "type": "alpha",
+              "value": "0.24",
+              "space": "srgb"
+            }
+          }
+        },
+        "$type": "color",
+        "$value": "{color.mono.1000}",
+        "$description": "Kolor cienia poziomu 2 (dark) — czern przy 24% krycia. Uzywany przez Shadows.Shadow 2"
+      },
+      "3": {
+        "$extensions": {
+          "studio.tokens": {
+            "modify": {
+              "type": "alpha",
+              "value": "0.28",
+              "space": "srgb"
+            }
+          }
+        },
+        "$type": "color",
+        "$value": "{color.mono.1000}",
+        "$description": "Kolor cienia poziomu 3 (dark) — czern przy 28% krycia. Uzywany przez Shadows.Shadow 3"
+      },
+      "4": {
+        "$extensions": {
+          "studio.tokens": {
+            "modify": {
+              "type": "alpha",
+              "value": "0.36",
+              "space": "srgb"
+            }
+          }
+        },
+        "$type": "color",
+        "$value": "{color.mono.1000}",
+        "$description": "Kolor cienia poziomu 4 (dark) — czern przy 36% krycia. Uzywany przez Shadows.Shadow 4"
+      }
+    }
+  }
+}

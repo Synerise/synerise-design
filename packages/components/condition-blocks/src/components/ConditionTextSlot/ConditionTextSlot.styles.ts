@@ -6,6 +6,8 @@ export const Text = styled.span<{ $muted?: boolean }>`
   white-space: nowrap;
   font-size: 13px;
   line-height: 1.85;
-  color: ${({ theme, $muted }) =>
-    theme.palette[$muted ? 'grey-500' : 'grey-800']};
+  color: ${({ $muted }) =>
+    $muted
+      ? 'var(--ds-color-text-neutral-default)'
+      : 'var(--ds-color-text-base-default)'};
 `;

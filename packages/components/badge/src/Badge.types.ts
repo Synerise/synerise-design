@@ -45,6 +45,8 @@ export type Status =
   | 'warning'
   | undefined;
 
+export type Variant = 'solid' | 'solid-ring' | 'outline';
+
 export type BadgeOwnProps = {
   /**
    * Content the badge is positioned over. When omitted, the badge renders inline (standalone).
@@ -70,7 +72,12 @@ export type BadgeOwnProps = {
    */
   pulsing?: boolean;
   /**
-   * Adds a white outline ring around the count badge.
+   * Look of the count badge: `solid` fill, `solid-ring` (solid with a ring separating it from the
+   * content underneath) or `outline` (coloured border and text, no fill). Does not affect dots.
+   */
+  variant?: Variant;
+  /**
+   * @deprecated Use `variant="solid-ring"`. Ignored when `variant` is set.
    */
   outlined?: boolean;
   /**

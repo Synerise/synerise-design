@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { useTheme } from '@synerise/ds-core';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { SearchM } from '@synerise/ds-icon';
 
@@ -18,7 +17,6 @@ const Overlay = <Source extends SourceType>({
   focus,
   noResultMsg,
 }: OverlayType<Source>) => {
-  const theme = useTheme();
   return (
     <>
       <Dropdown.SearchInput
@@ -27,9 +25,7 @@ const Overlay = <Source extends SourceType>({
         placeholder={placeholder}
         value={value}
         autofocus={focus}
-        iconLeft={
-          <Icon component={<SearchM />} color={theme.palette['grey-600']} />
-        }
+        iconLeft={<Icon component={<SearchM />} />}
       />
       <List onSelect={onSelect} data={data} noResultMsg={noResultMsg} />
     </>

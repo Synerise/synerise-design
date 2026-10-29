@@ -8,13 +8,12 @@ export const List = styled.div`
   flex-wrap: wrap;
 `;
 
+// Clear (✕) icon is a danger action → semantic --ds-color-icon-danger-default (red-600, exact).
+// Icon inherits currentColor from this wrapper's color.
 export const ClearIcon = styled(Icon)`
-  &&&&&,
-  &&&&&:hover {
-    svg {
-      color: ${(props): string => props.theme.palette['red-600']};
-      fill: ${(props): string => props.theme.palette['red-600']};
-    }
+  &&&,
+  &&&:hover {
+    color: var(--ds-color-icon-danger-default);
   }
 `;
 
@@ -40,33 +39,10 @@ export const VirtualList = styled(FixedSizeList)<{ listHeight: number }>`
 
 export const Overlay = styled.span`
   width: 250px;
-  background-color: ${(props): string => props.theme.palette.white};
+  background-color: var(--ds-dropdown-bg);
   position: relative;
   display: block;
   border-radius: 3px;
-
-  ${OverlayWrapper}:not(:last-child) {
-    &::after {
-      content: '';
-      display: flex;
-      width: calc(100% - 6px);
-      height: 1px;
-      background-image: linear-gradient(
-        to right,
-        ${({ theme }): string => theme.palette.white} 40%,
-        ${({ theme }): string => theme.palette['grey-300']} 100%,
-        transparent 0%
-      );
-      background-position: 0 bottom;
-      background-size: 4px 1px;
-      background-repeat: repeat-x;
-      margin: 4px auto 0;
-    }
-  }
-
-  ${OverlayWrapper}:first-child {
-    padding-top: 16px;
-  }
 `;
 
 export const Title = styled.div<{ elementSize: string }>`
@@ -74,7 +50,7 @@ export const Title = styled.div<{ elementSize: string }>`
   line-height: 1.6;
   font-weight: 500;
   text-transform: uppercase;
-  color: ${(props) => props.theme.palette['grey-500']};
+  color: var(--ds-divider-header-text-color);
   padding: 0 12px;
   flex-basis: 100%;
   height: ${(props) => props.elementSize};
@@ -137,7 +113,6 @@ export const ListRow = styled.div`
 export const NoResultIcon = styled.div`
   width: 40px;
   height: 40px;
-  background: rgba(148, 158, 166, 0.05);
   border-radius: 50%;
   display: flex;
   align-items: center;

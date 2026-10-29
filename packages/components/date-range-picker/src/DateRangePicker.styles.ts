@@ -4,8 +4,8 @@ import { PopoverTrigger } from '@synerise/ds-popover';
 
 export const DateRangePickerWrapper = styled.div``;
 export const DateRangePickerOverlay = styled.div`
-  background: ${(props) => props.theme.palette['white']};
-  box-shadow: ${(props) => props.theme.variables['box-shadow-2']};
+  background: var(--ds-dropdown-bg);
+  box-shadow: var(--ds-dropdown-shadow);
   border-radius: 3px;
   overflow: hidden;
   overflow-y: auto;
@@ -22,13 +22,13 @@ export const Container = styled.div`
 
 export const Separator = styled.div`
   margin: 0;
-  border-top: 1px solid ${(props): string => props.theme.palette['grey-200']};
+  border-top: 1px solid var(--ds-color-border-base-default);
 `;
 
 export const Addon = styled.div<{ last?: boolean }>`
   ${(props): string | false =>
     !props.last &&
-    `border-bottom: 1px solid ${props.theme.palette['grey-200']};`}
+    `border-bottom: 1px solid var(--ds-color-border-base-default);`}
 `;
 
 export const PickerWrapper = styled.div``;

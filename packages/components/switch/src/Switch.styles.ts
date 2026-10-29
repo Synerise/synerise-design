@@ -22,7 +22,7 @@ export const Texts = styled.div`
 
 export const Label = styled(FormFieldLabel)`
   ${macro.heading};
-  color: ${(props) => props.theme.palette['grey-700']};
+  color: var(--ds-form-label-text-color);
   cursor: pointer;
   transition: 0.3s ease;
   width: 100%;
@@ -32,31 +32,27 @@ export const Label = styled(FormFieldLabel)`
 
 export const BelowLabel = styled.div``;
 
-// Label colour reacts to the adjacent switch state (was the antd `.ant-switch + .switch-texts` mixin).
+// The label fades with the adjacent disabled switch; its colour stays --ds-form-label-text-color.
 export const LabelSwitchWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
 
-  ${Toggle}:hover:not(:disabled) + .switch-texts .switch-label {
-    color: ${(props) => props.theme.palette['grey-800']};
-  }
-
-  ${Toggle}:disabled + .switch-texts .switch-label {
-    color: ${(props) => props.theme.palette['grey-600']};
-    opacity: 0.4;
+  ${Toggle}:disabled + ${Texts} ${Label} {
+    opacity: var(--ds-opacity-disabled);
   }
 `;
 
 export const Error = styled.div`
-  color: ${(props) => props.theme.palette['red-600']};
+  color: var(--ds-form-error-text-color);
   margin-bottom: 4px;
 `;
 
-export const Description = styled.div`
-  color: ${(props) => props.theme.palette['grey-600']};
+export const Description = styled.div<{ $disabled?: boolean }>`
+  color: var(--ds-form-description-text-color);
   transition: 0.3s ease;
+  ${(props) => props.$disabled && 'opacity: var(--ds-opacity-disabled);'}
 `;
 
 export const DescriptionWrapper = styled.div`

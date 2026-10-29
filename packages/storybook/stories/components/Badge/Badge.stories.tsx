@@ -5,8 +5,8 @@ import type { AvatarProps } from '@synerise/ds-avatar';
 import Avatar from '@synerise/ds-avatar';
 import type { BadgeProps } from '@synerise/ds-badge';
 import Badge, { BadgeWithLabel } from '@synerise/ds-badge';
-import { theme } from '@synerise/ds-core';
 import Icon, { FileM, IconProps } from '@synerise/ds-icon';
+import { customColors } from '@synerise/ds-tokens/names';
 
 import { AVATAR_IMAGE } from '../../constants';
 import {
@@ -17,7 +17,7 @@ import {
   fixedWrapper400,
   NUMBER_CONTROL,
 } from '../../utils';
-import { AVATAR_ARG_TYPES, STATUSES } from './constants';
+import { AVATAR_ARG_TYPES, STATUSES, VARIANTS } from './constants';
 
 export default {
   title: 'Components/Badge',
@@ -29,8 +29,11 @@ export default {
     offset: {
       control: false,
     },
+    variant: {
+      ...controlFromOptionsArray('inline-radio', [...VARIANTS]),
+    },
     outlined: {
-      ...BOOLEAN_CONTROL,
+      table: { disable: true },
     },
     overflowCount: {
       ...NUMBER_CONTROL,
@@ -60,34 +63,37 @@ export const Standalone: StoryObj<BadgeProps> = {
     <div
       style={{
         ...ROW,
-        background: args.outlined ? theme.palette['grey-200'] : 'transparent',
+        background:
+          args.variant === 'solid-ring'
+            ? customColors.grey['200']
+            : 'transparent',
         padding: '8px',
       }}
     >
-      <Badge {...args} customColor={theme.palette['red-600']} />
-      <Badge {...args} customColor={theme.palette['yellow-600']} />
-      <Badge {...args} customColor={theme.palette['green-600']} />
-      <Badge {...args} customColor={theme.palette['grey-500']} />
+      <Badge {...args} customColor={customColors.red['600']} />
+      <Badge {...args} customColor={customColors.yellow['600']} />
+      <Badge {...args} customColor={customColors.green['600']} />
+      <Badge {...args} customColor={customColors.grey['500']} />
       <div
         style={{
           ...ROW,
           padding: '0 8px',
           minHeight: '34px',
-          background: theme.palette['grey-200'],
+          background: customColors.grey['200'],
         }}
       >
         <Badge
           {...args}
           style={{
-            backgroundColor: theme.palette['white'],
-            color: theme.palette['grey-400'],
+            backgroundColor: 'var(--ds-color-background-base-default)',
+            color: 'var(--ds-color-text-base-disabled)',
           }}
         />
         <Badge
           {...args}
           style={{
             backgroundColor: 'transparent',
-            color: theme.palette['white'],
+            color: 'var(--ds-color-text-base-onsolid)',
           }}
         />
       </div>
@@ -95,8 +101,82 @@ export const Standalone: StoryObj<BadgeProps> = {
   ),
   args: {
     count: 1,
-    outlined: false,
+    variant: 'solid',
     overflowCount: 99,
+  },
+};
+
+const BADGE_TYPES: {
+  key: string;
+  props: Pick<BadgeProps, 'status' | 'customColor'>;
+}[] = [
+  ...STATUSES.map((status) => ({ key: status, props: { status } })),
+  { key: 'custom', props: { customColor: customColors.violet['600'] } },
+];
+
+const CONTENT_BOX: CSSProperties = {
+  width: '32px',
+  height: '32px',
+  background: customColors.grey['200'],
+  borderRadius: '4px',
+};
+
+/**
+ * Coloured border and text, no fill: one badge per status plus a `customColor`, standalone and
+ * over content.
+ */
+export const Outline: StoryObj<BadgeProps> = {
+  parameters: {
+    controls: {
+      include: ['count', 'overflowCount'],
+    },
+  },
+  render: (args) => (
+    <div style={{ display: 'grid', gap: '24px' }}>
+      <div style={ROW}>
+        {BADGE_TYPES.map(({ key, props }) => (
+          <Badge key={key} {...args} {...props} variant="outline" />
+        ))}
+      </div>
+      <div style={ROW}>
+        {BADGE_TYPES.map(({ key, props }) => (
+          <Badge key={key} {...args} {...props} variant="outline">
+            <div style={CONTENT_BOX} />
+          </Badge>
+        ))}
+      </div>
+    </div>
+  ),
+  args: {
+    count: 5,
+    overflowCount: 99,
+  },
+};
+
+/**
+ * Every `variant` for every type, for visual regression.
+ */
+export const Variants: StoryObj<BadgeProps> = {
+  parameters: {
+    controls: {
+      include: ['count'],
+    },
+  },
+  render: (args) => (
+    <div style={{ display: 'grid', gap: '16px' }}>
+      {VARIANTS.map((variant) => (
+        <div key={variant} style={ROW}>
+          {BADGE_TYPES.map(({ key, props }) => (
+            <Badge key={key} {...args} {...props} variant={variant}>
+              <div style={CONTENT_BOX} />
+            </Badge>
+          ))}
+        </div>
+      ))}
+    </div>
+  ),
+  args: {
+    count: 12,
   },
 };
 
@@ -163,7 +243,7 @@ export const Count: StoryObj<BadgeProps> = {
             <Icon
               component={<FileM />}
               size={24}
-              color={theme.palette['red-600']}
+              color={customColors.red['600']}
             />
           }
         >
@@ -181,7 +261,7 @@ export const Count: StoryObj<BadgeProps> = {
   },
   args: {
     count: 5,
-    outlined: false,
+    variant: 'solid',
     overflowCount: 99,
   },
 };

@@ -7,7 +7,11 @@ import Card, { CardBadge } from '@synerise/ds-card';
 import Icon, { CheckS, DuplicateS, UserAddM } from '@synerise/ds-icon';
 import Modal from '@synerise/ds-modal';
 import SectionMessage, {
+  IconOrderWrapper,
+  NumberWrapper,
+  OrderWrapper,
   SectionMessageProps,
+  Wrapper,
 } from '@synerise/ds-section-message';
 import Tooltip from '@synerise/ds-tooltip';
 import UnorderedList from '@synerise/ds-unordered-list';
@@ -23,14 +27,7 @@ import {
   STYLE_ARG_CONTROL,
 } from '../../utils';
 import { TYPE_MAPPING } from './SectionMessage.data';
-import {
-  ButtonsWrapper,
-  FirstButtonWrapper,
-  IconOrderWrapper,
-  NumberWrapper,
-  OrderWrapper,
-  Wrapper,
-} from './stories.styles';
+import { ButtonsWrapper, FirstButtonWrapper } from './stories.styles';
 
 type StoryProps = SectionMessageProps & {
   showTagInHeader: boolean;
@@ -76,6 +73,17 @@ export const Default: Story = {};
 export const WithLink: Story = {
   args: {
     withLink: <a href="#">More information</a>,
+  },
+};
+
+export const WithLinkInDescription: Story = {
+  args: {
+    description: (
+      <>
+        This is a section message description with <a href="#">a link</a> inside
+        it
+      </>
+    ),
   },
 };
 
@@ -185,7 +193,7 @@ export const CardWithSectionMessage: Story = {
         title="Card header"
         description="Description"
         icon={<CardBadge icon={<CheckS />} />}
-        iconColor="#54cb0b"
+        iconColor="var(--ds-color-icon-success-default)"
         onHeaderClick={action('onHeaderClick')}
         headerSideChildren={
           <div>

@@ -10,7 +10,6 @@ import React, {
   useState,
 } from 'react';
 
-import { theme } from '@synerise/ds-core';
 import Icon, { SearchM } from '@synerise/ds-icon';
 import SearchBar from '@synerise/ds-search-bar';
 import { useResize } from '@synerise/ds-utils';
@@ -192,9 +191,7 @@ export const Cascader = ({
           }}
           placeholder={searchInputPlaceholder || ''}
           value={searchQuery}
-          iconLeft={
-            <Icon component={<SearchM />} color={theme.palette['grey-600']} />
-          }
+          iconLeft={<Icon component={<SearchM />} />}
           onClearInput={() => setSearchQuery('')}
           clearTooltip={searchClearTooltip}
         />

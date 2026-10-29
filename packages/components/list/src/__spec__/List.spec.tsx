@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Radio from '@synerise/ds-radio';
-import { renderWithProvider } from '@synerise/ds-core/testing';
+import { renderWithProvider, rulesFor } from '@synerise/ds-core/testing';
 import { fireEvent } from '@testing-library/react';
 
 import { isNestedArray } from '../List';
@@ -281,5 +281,60 @@ describe('List', () => {
     expect(isNestedArray(flat)).toBe(false);
     expect(isNestedArray(nestedEmpty)).toBe(true);
     expect(isNestedArray(flatEmpty)).toBe(false);
+  });
+});
+
+const getSvgColourRules = (owner: Element) =>
+  rulesFor(owner.querySelector('svg'), { within: owner, state: 'any' }).filter(
+    ({ declarations }) => /(^|;)(fill|color):/.test(declarations),
+  );
+
+describe('List.Item icon colour', () => {
+  const renderItem = (danger?: boolean) => {
+    const { getByTestId } = renderWithProvider(
+      <List.Item
+        danger={danger}
+        icon={
+          <span data-testid="icon">
+            <svg />
+          </span>
+        }
+      >
+        Item
+      </List.Item>,
+    );
+    const iconWrapper = getByTestId('icon').parentElement as HTMLElement;
+    const item = iconWrapper.parentElement as HTMLElement;
+    const rules = rulesFor(iconWrapper, { within: item, state: 'any' });
+    const declarationsFor = (hover: boolean) =>
+      rules
+        .filter(({ selector }) => selector.includes(':hover') === hover)
+        .map(({ declarations }) => declarations)
+        .join(';');
+    return { item, declarationsFor };
+  };
+
+  it('colours the icon through its wrapper so an icon colour prop can win', () => {
+    const { item, declarationsFor } = renderItem();
+
+    expect(declarationsFor(false)).toContain(
+      'color:var(--ds-color-icon-base-default)',
+    );
+    expect(declarationsFor(true)).toContain(
+      'color:var(--ds-color-icon-brand-default)',
+    );
+    expect(getSvgColourRules(item)).toEqual([]);
+  });
+
+  it('keeps the danger icon colour on the wrapper in both states', () => {
+    const { item, declarationsFor } = renderItem(true);
+
+    expect(declarationsFor(false)).toContain(
+      'color:var(--ds-color-icon-danger-default)',
+    );
+    expect(declarationsFor(true)).toContain(
+      'color:var(--ds-color-icon-danger-default)',
+    );
+    expect(getSvgColourRules(item)).toEqual([]);
   });
 });

@@ -77,10 +77,10 @@ tables.
   radius + background) clips the image and hover overlay. This lets the delete
   affordance overhang the corner without being cut off.
 - **Thumbnail states** — *Hover* (interactive tiles): a full-cover `HoverOverlay`
-  (`grey-900` at ~30%, alpha `4D`) with a centered white `ShowS` icon, faded in on
-  `:hover`. *Focused* (`:focus-visible`): a 2px `blue-600` ring via outset
+  (`--ds-image-hoveroverlay-bg`) with a centered `ShowS` icon (`--ds-image-hoveroverlay-icon`), faded in on
+  `:hover`. *Focused* (`:focus-visible`): a 2px `--ds-color-border-brand-default` ring via outset
   `box-shadow` (no layout shift; the ring is on the non-clipping `Tile`).
-  *Hover-deletable* (`deletable`): a bare `DeleteButton` (`<button>`, `red-600`)
+  *Hover-deletable* (`deletable`): a bare `DeleteButton` (`<button>`, `--ds-color-icon-danger-default`)
   rendering a `Close3FullBackgroundM` icon (white X on a red disc — the disc is the
   icon's `currentColor` fill, driven by the button's `color`), whose **center sits
   on the tile's top-right corner** (24×24, icon-sized — no extra clickable padding —
@@ -153,5 +153,5 @@ tables.
 - `@synerise/ds-utils` — `useFocusTrap`.
 - `react-intl` (peer) — control labels/tooltips via `useImageTexts`.
 - `react-dom` (peer) — `createPortal` for the preview overlay.
-- `@synerise/ds-core` (peer) — theme palette, `box-shadow-*` variables and
-  `useResolvedOverlayZIndex` (overlay stacking).
+- `@synerise/ds-core` (peer) — `ThemeProps` type and `useResolvedOverlayZIndex`
+  (overlay stacking); colours and shadows are `var(--ds-*)` tokens.

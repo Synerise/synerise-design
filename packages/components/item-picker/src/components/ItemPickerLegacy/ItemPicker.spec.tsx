@@ -3,7 +3,7 @@ import React from 'react';
 import Avatar from '@synerise/ds-avatar';
 import DSFlag from '@synerise/ds-flag';
 import Icon, { LaptopM, MobileM, UserM } from '@synerise/ds-icon';
-import { renderWithProvider } from '@synerise/ds-core/testing';
+import { renderWithProvider, rulesFor } from '@synerise/ds-core/testing';
 import { fireEvent, screen } from '@testing-library/react';
 
 import ItemPicker from './ItemPickerLegacy';
@@ -56,7 +56,7 @@ const CLEAR_TEST_ID = 'clear-icon';
 const ANGLE_DOWN_TEST_ID = 'angle-icon';
 const PREFIXEL_TEST_ID = 'value-prefixel';
 const BOTTOM_ACTION_LABEL = 'Bottom action label';
-const DELETED_VALUE_COLOR = 'rgb(245, 41, 34)';
+const DELETED_VALUE_COLOR = 'var(--ds-form-error-text-color)';
 
 const SHARED_PROPS = {
   dataSource: DATA_SOURCE,
@@ -405,4 +405,67 @@ describe('ItemPicker component', () => {
   it.todo('should call onYReachEnd function');
   it.todo('should shows loading state');
   it.todo('should highlight labels based on searchBarProps.value');
+});
+
+describe('ItemPicker trigger prefix icon colour', () => {
+  const EXPLICIT_COLOR = 'var(--ds-color-icon-danger-default)';
+
+  it('colours the placeholder prefix itself, not its svg', () => {
+    renderWithProvider(
+      <ItemPicker
+        {...SHARED_PROPS}
+        onChange={vi.fn()}
+        placeholderIcon={<Icon component={<UserM />} />}
+      />,
+    );
+
+    const prefix = screen.getByTestId(PLACEHOLDER_ICON_TEST_ID);
+    expect(prefix).toHaveStyle('color: var(--ds-color-icon-base-subtle)');
+
+    const hoverDeclarations = rulesFor(prefix, { state: 'any' })
+      .filter(({ selector }) => selector.includes(':hover'))
+      .map(({ declarations }) => declarations)
+      .join(';');
+    expect(hoverDeclarations).toContain(
+      'color:var(--ds-form-icon-color-default)',
+    );
+    const svgHoverRules = rulesFor(prefix.querySelector('svg'), {
+      within: prefix,
+      state: 'any',
+    }).filter(({ selector }) => selector.includes(':hover'));
+    expect(svgHoverRules).toEqual([]);
+  });
+
+  it('colours the selected value prefix itself', () => {
+    renderWithProvider(
+      <ItemPicker
+        {...SHARED_PROPS}
+        onChange={vi.fn()}
+        selectedItem={DATA_SOURCE[0]}
+      />,
+    );
+
+    expect(screen.getByTestId(PREFIXEL_TEST_ID)).toHaveStyle(
+      'color: var(--ds-form-icon-color-default)',
+    );
+  });
+
+  it('keeps an explicit colour on a consumer prefixel icon', () => {
+    renderWithProvider(
+      <ItemPicker
+        {...SHARED_PROPS}
+        onChange={vi.fn()}
+        selectedItem={{
+          text: 'Coloured',
+          prefixel: <Icon component={<MobileM />} color={EXPLICIT_COLOR} />,
+        }}
+      />,
+    );
+
+    const svg = screen
+      .getByTestId(PREFIXEL_TEST_ID)
+      .querySelector('svg') as SVGElement;
+    expect(getComputedStyle(svg).color).toBe(EXPLICIT_COLOR);
+    expect(getComputedStyle(svg).fill).toBe('');
+  });
 });

@@ -44,6 +44,7 @@ export default {
     layout: 'padded',
   },
   argTypes: {
+    disabled: BOOLEAN_CONTROL,
     open: BOOLEAN_CONTROL,
     asChild: {
       ...BOOLEAN_CONTROL,

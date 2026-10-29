@@ -5,7 +5,7 @@ import InlineEdit, { type InlineEditProps } from '@synerise/ds-inline-edit';
 export const HeaderWrapper = styled.div<{ dashed: boolean }>`
   padding: ${(props): string => (props.dashed ? '0 0 16px 0' : '0')};
   border-bottom: ${(props): string =>
-    props.dashed ? `1px dashed ${props.theme.palette['grey-300']}` : `0`};
+    props.dashed ? `1px dashed var(--ds-color-border-base-strong)` : `0`};
   margin-top: -8px;
 `;
 
@@ -32,7 +32,7 @@ export const ButtonsWrapper = styled.div`
 `;
 
 export const DropdownWrapper = styled.div`
-  background: ${(props): string => props.theme.palette.white};
+  background: var(--ds-modal-container-bg);
 `;
 
 export const OverviewWrapper = styled.div`

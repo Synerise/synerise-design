@@ -62,6 +62,22 @@ figma.connect(Badge, FIGMA_URL_BADGE_NUMBER, {
     }),
   },
   example: ({ count, status }) => (
-    <Badge count={count} status={status} outlined />
+    <Badge count={count} status={status} variant="solid-ring" />
+  ),
+});
+
+figma.connect(Badge, FIGMA_URL_BADGE_NUMBER, {
+  variant: { Comntent: 'Outline' },
+  props: {
+    count: figma.string('✏️Value'),
+    status: figma.enum('Type', {
+      Default: 'processing',
+      Warning: 'warning',
+      Success: 'active',
+      Gray: 'inactive',
+    }),
+  },
+  example: ({ count, status }) => (
+    <Badge count={count} status={status} variant="outline" />
   ),
 });

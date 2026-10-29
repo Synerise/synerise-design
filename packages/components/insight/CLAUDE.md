@@ -26,7 +26,7 @@ src/
 | `headerRightSide` | `ReactNode` | `undefined` | Rendered at the far right of the header bar (e.g. edit button). |
 | `content` | `InlineAlertProps[] \| ReactNode` | `undefined` | Card body. If an `InlineAlertProps[]` is passed, each item is automatically rendered as `<InlineAlert>`. Otherwise treated as a plain ReactNode. |
 | `footer` | `ReactNode` | `undefined` | Rendered at the bottom of the card. |
-| `onClick` | `() => void` | `undefined` | Makes the entire card hoverable (`grey-050` background on hover). Only applied when truthy. |
+| `onClick` | `() => void` | `undefined` | Makes the entire card hoverable (`--ds-color-background-base-defaulthover` background on hover). Only applied when truthy. |
 | `className` | `string` | `undefined` | Extra class names appended to `ds-insight <className>`. |
 
 All standard `HTMLDivElement` attributes are also accepted and spread onto the root element via `WithHTMLAttributes<HTMLDivElement, ..>`.
@@ -68,10 +68,10 @@ import Insight from '@synerise/ds-insight';
 
 ## Styling
 
-Styles live in `Insight.styles.tsx`. Uses `theme.palette` tokens for all colours:
-- Container: `white` background, `grey-200` bottom border
-- Hover state: `grey-050` background — only added when `hasHover` is `true` (i.e. `onClick` is provided)
-- `Title` renders as a `<label>` element (not a heading) with `font-weight: 500; font-size: 14px; color: grey-800`
+Styles live in `Insight.styles.tsx`. Uses `var(--ds-*)` tokens for all colours:
+- Container: `--ds-color-background-base-default` background, `--ds-color-border-base-default` bottom border
+- Hover state: `--ds-color-background-base-defaulthover` background — only added when `hasHover` is `true` (i.e. `onClick` is provided)
+- `Title` renders as a `<label>` element (not a heading) with `font-weight: 500; font-size: 14px; color: var(--ds-color-text-base-default)`
 - Gaps: `24px` padding, `16px` gap between sections, `4px` gap between content items
 
 ## Key dependencies

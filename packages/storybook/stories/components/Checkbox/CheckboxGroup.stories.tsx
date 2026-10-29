@@ -3,6 +3,7 @@ import React from 'react';
 
 import Checkbox from '@synerise/ds-checkbox';
 
+import { BOOLEAN_CONTROL } from '../../utils';
 import { Default } from './Checkbox.stories';
 
 type CheckboxGroupProps = typeof Checkbox.Group;
@@ -12,6 +13,7 @@ export default {
   tags: ['autodocs'],
   component: Checkbox.Group,
   argTypes: {
+    disabled: BOOLEAN_CONTROL,
     onChange: {
       control: false,
       table: {

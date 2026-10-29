@@ -62,13 +62,17 @@ DS-native `<button role="switch">`. Keyboard (space/enter) toggling works native
 
 ## Styling
 
-- Toggle: 28×16 track, 8px radius, 12×12 white handle. Unchecked `grey-400` (hover `grey-500`), checked
-  `green-600` (hover `green-500`), error `red-600`, focus-visible border `blue-600`, disabled `opacity 0.4`.
+- Toggle: 28×16 track, 8px radius, 12×12 `var(--ds-form-switch-handle-bg)` handle. Track uses
+  `--ds-form-switch-bg-default` (hover `-bg-hover`), checked `-bg-selected` (hover `-bg-selectedhover`), error
+  `-bg-error`; focus-visible border `var(--ds-color-focus-base-default)`, disabled
+  `opacity: var(--ds-opacity-disabled)`.
   Driven by transient `$checked` / `$error` / `$loading` props (no class selectors).
 - Class hooks kept on the toggle for the interim: `ant-switch` / `ant-switch-checked` / `ant-switch-disabled`
   / `ant-switch-loading` **and** `ds-switch-toggle` / `ds-switch-checked` / … (the `ant-*` ones removed later).
-- Label (`S.Label`, `FormFieldLabel` + `macro.heading`) is `grey-700`, `grey-800` on toggle hover, faded
-  when disabled (sibling selectors on the styled `Toggle`).
+- Label (`S.Label`, `FormFieldLabel` + `macro.heading`) is `var(--ds-form-label-text-color)`, faded
+  when disabled (sibling selector on the styled `Toggle`). Error and description text are
+  `var(--ds-form-error-text-color)` / `var(--ds-form-description-text-color)`; the description fades to
+  `var(--ds-opacity-disabled)` when disabled or loading.
 
 ## Key dependencies
 

@@ -100,7 +100,7 @@ import { ButtonVariant } from '@synerise/ds-sidebar-object/dist/Elements/Header/
 
 ## Styling
 
-Styles in `SidebarObject.style.ts`. Uses `theme.palette` tokens for footer background (`grey-050`), border (`grey-100`). Component assumes `height: 100vh` for full-height layout. The `Scrollbar` component is configured with `absolute` and `maxHeight: 100vh`.
+Styles in `SidebarObject.style.ts`. Footer background is `var(--ds-modal-footer-bg)`, top border `var(--ds-modal-footer-border-color)`. Component assumes `height: 100vh` for full-height layout. The `Scrollbar` component is configured with `absolute` and `maxHeight: 100vh`.
 
 ## Key dependencies
 

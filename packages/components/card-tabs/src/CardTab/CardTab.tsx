@@ -36,6 +36,7 @@ const CardTab = <IdType extends string | number>(
     onPreviewTab,
     texts,
     color = 'yellow',
+    orderIndex,
     itemData,
     dragHandleProps,
     actionsAsDropdown,
@@ -204,6 +205,7 @@ const CardTab = <IdType extends string | number>(
       disabled={!active && Boolean(disabled)}
       isDraggable={draggable}
       color={color}
+      orderIndex={orderIndex}
       onClick={handleSelect}
       greyBackground={!!greyBackground}
       data-id={id}

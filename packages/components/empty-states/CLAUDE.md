@@ -86,7 +86,7 @@ import { NoResultsM } from '@synerise/ds-icon';
 
 ## Styling
 
-Styles in `EmptyStates.styles.tsx`. Uses `props.theme.palette['grey-800']` for header text colour (from `@synerise/ds-core`). No hardcoded hex values.
+Styles in `EmptyStates.styles.tsx`. Header text colour is `var(--ds-color-text-base-default)`. No hardcoded hex values.
 
 Layout is driven by `iconPosition`:
 - `'top'` → `flex-direction: column; align-items: center`

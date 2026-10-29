@@ -4,46 +4,62 @@ import styled, {
   keyframes,
 } from 'styled-components';
 
-import type { ThemeProps } from '@synerise/ds-core';
 import { macro } from '@synerise/ds-typography';
+import { resolveCustomColor } from '@synerise/ds-utils';
 
-import type { Status } from './Badge.types';
+import type { Status, Variant } from './Badge.types';
 
 // Colour props are transient ($-prefixed) so they are not forwarded to the DOM element.
 type ColorProps = { $status?: Status; $customColor?: string };
 type PositionProps = { $standalone?: boolean };
+type ColorRole = 'bg' | 'border' | 'text';
 
-const STATUS_COLOR_TOKEN: Record<Exclude<Status, undefined>, string> = {
-  active: 'green-600',
-  inactive: 'grey-400',
-  blocked: 'red-600',
-  processing: 'blue-600',
-  warning: 'yellow-600',
+// Each status maps to a badge module variant; `--ds-badge-variant-<v>-<role>` emits its colours.
+const STATUS_VARIANT: Record<Exclude<Status, undefined>, string> = {
+  active: 'success',
+  inactive: 'neutral',
+  blocked: 'error',
+  processing: 'info',
+  warning: 'warning',
 };
 
-const resolveCustomColor = (
-  theme: ThemeProps['theme'],
-  customColor: string,
-): string => {
-  const paletteColor =
-    customColor.indexOf('-') >= 0
-      ? theme.palette[customColor]
-      : theme.palette[`${customColor}-600`];
-  // Fall back to the raw value so any CSS colour (e.g. a hex outside the palette) works.
-  return paletteColor ?? customColor;
-};
-
-// Background: custom colour → status colour → red default. Consumers that want a
+// Colour: custom colour → status colour → red default. Consumers that want a
 // different look (e.g. a neutral count chip) override it with an inline `style`.
-const resolveColor = (props: ColorProps & ThemeProps): string => {
-  const { theme, $customColor, $status } = props;
+// A custom colour resolves a family/name-hue to its theme-aware background-custom
+// token (bare name → shade 600); a raw hex/`var()` value passes through unchanged.
+const resolveColor = (props: ColorProps, role: ColorRole = 'bg'): string => {
+  const { $customColor, $status } = props;
   if ($customColor) {
-    return resolveCustomColor(theme, $customColor);
+    return resolveCustomColor($customColor, $customColor, {
+      passthroughResolved: true,
+    });
   }
   if ($status) {
-    return theme.palette[STATUS_COLOR_TOKEN[$status]];
+    return `var(--ds-badge-variant-${STATUS_VARIANT[$status]}-${role})`;
   }
-  return theme.palette['red-600'];
+  return `var(--ds-badge-variant-error-${role})`;
+};
+
+// The outline border is an inset shadow so the count keeps the solid pill's 16px box.
+const countVariant = (
+  props: ColorProps & { $variant: Variant },
+): FlattenSimpleInterpolation => {
+  if (props.$variant === 'outline') {
+    return css`
+      background-color: transparent;
+      color: ${resolveColor(props, 'text')};
+      box-shadow: inset 0 0 0 1px ${resolveColor(props, 'border')};
+    `;
+  }
+  return css`
+    background-color: ${resolveColor(props)};
+    color: var(--ds-badge-text-onsolid);
+    box-shadow: ${
+      props.$variant === 'solid-ring'
+        ? '0 0 0 1px var(--ds-badge-ring-color)'
+        : 'none'
+    };
+  `;
 };
 
 // Indicator positioning: overlaid (top-right) when wrapping children, inline when standalone.
@@ -94,7 +110,7 @@ export const Wrapper = styled.span`
 `;
 
 export const CountSup = styled.sup<
-  ColorProps & PositionProps & { $outlined?: boolean }
+  ColorProps & PositionProps & { $variant: Variant }
 >`
   z-index: auto;
   ${(props): FlattenSimpleInterpolation =>
@@ -105,10 +121,7 @@ export const CountSup = styled.sup<
   white-space: nowrap;
   text-align: center;
   border-radius: 8px;
-  background-color: ${(props): string => resolveColor(props)};
-  color: ${(props): string => props.theme.palette.white};
-  box-shadow: ${(props): string =>
-    props.$outlined ? `0 0 0 1px ${props.theme.palette.white}` : 'none'};
+  ${countVariant};
 `;
 
 export const ScrollNumberOnly = styled.span`
@@ -148,7 +161,7 @@ export const DotSup = styled.sup<
       width: 10px;
       height: 10px;
       overflow: visible;
-      border: 2px solid ${props.theme.palette.white};
+      border: 2px solid var(--ds-badge-ring-color);
       box-shadow: none;
 
       &::before {

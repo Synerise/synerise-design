@@ -1,6 +1,5 @@
-import styled, { css, type Keyframes, keyframes } from 'styled-components';
+import styled, { css } from 'styled-components';
 
-import type { ThemeProps } from '@synerise/ds-core';
 import type { LiteralStringUnion } from '@synerise/ds-utils';
 
 // A "button unit" inside .ant-btn-group is either a bare button or a span that wraps a
@@ -31,18 +30,6 @@ const getButtonsPosition = (position: string) => {
   }
 };
 
-export const focusAnimation = ({ theme }: ThemeProps): Keyframes => keyframes`
-  0% {
-      box-shadow: inset 0 0 0 1px inherit;
-  }
-  50% {
-     box-shadow: inset 0 0 0 1px ${theme.palette['blue-600']};
-  }
-  100% {
-     box-shadow: inset 0 0 0 1px inherit;
-  }
-`;
-
 export const Container = styled.div<{
   options?: boolean;
   fullWidth?: boolean;
@@ -64,37 +51,20 @@ export const Container = styled.div<{
       !!props.splitMode &&
       !props.error &&
       css`
+        /* The divider is the same per-type separator Button mode="split" draws, read from the
+           button's own --ds-button-split-separator (custom-color follows its colour prop). */
         *:not(:first-child).ds-button.single-icon,
         .ds-button.single-icon.ant-btn-custom-color,
         .ds-button.single-icon.ant-btn-tertiary-white {
-          border-left: 1px solid rgba(255, 255, 255, 0.15);
-          &:disabled.ds-button.single-icon {
-            &.ant-btn-tertiary-white {
-              border-left: 1px solid rgba(255, 255, 255, 0.2) !important ;
-            }
-            &.ant-btn-tertiary {
-              border-left: 1px solid rgba(106, 117, 128, 0.1) !important ;
-            }
-            &.ant-btn-custom-color {
-              border-left: 1px solid rgba(255, 255, 255, 0.8) !important ;
-            }
-            &.ant-btn-primary {
-              border-left: 1px solid rgba(255, 255, 255, 0.5) !important ;
-            }
-          }
+          border-left: 1px solid var(--ds-button-split-separator);
         }
-        *:not(:first-child).ds-button.single-icon.ant-btn-ghost-primary,
-        .ds-button.single-icon.ant-btn-ghost,
-        .ds-button.single-icon.ant-btn-ghost-white,
+        /* Secondary already draws its outline with an inset box-shadow, so the seam is there. */
         .ds-button.single-icon.ant-btn-secondary {
           border-left: 0px;
           padding-left: 1px;
         }
-        *:not(:first-child).ds-button.single-icon.ant-btn-tertiary {
-          border-left: 1px solid rgba(106, 117, 128, 0.2);
-        }
         .ds-button.label.ant-btn-tertiary[disabled] {
-          color: ${props.theme.palette['grey-500']} !important;
+          color: var(--ds-buttons-variant-tertiary-text-disabled) !important;
         }
         &:hover:not(:disabled) {
           *:not(:first-child).ds-button.single-icon {
@@ -127,7 +97,7 @@ export const Container = styled.div<{
         .ds-button.single-icon.ant-btn-tertiary-white,
         .ds-button.single-icon.ant-btn-ghost,
         .ds-button.single-icon.ant-btn-ghost-white {
-          border-left: 1px solid ${props.theme.palette['red-600']};
+          border-left: 1px solid var(--ds-buttons-error-border);
         }
         .ds-button:focus {
           &.ant-btn-primary,
@@ -159,7 +129,7 @@ export const Container = styled.div<{
           &.ant-btn-ghost,
           &.ant-btn-tertiary-white,
           &.ant-btn-ghost-white {
-            box-shadow: inset 0 0 0 1px ${props.theme.palette['red-600']};
+            box-shadow: inset 0 0 0 1px var(--ds-buttons-error-border);
           }
         }
       `};
@@ -215,5 +185,5 @@ export const Title = styled.h4`
 
 export const Description = styled.p`
   margin: 8px 0 0;
-  color: ${(props) => props.theme.palette['grey-500']};
+  color: var(--ds-color-text-base-muted);
 `;

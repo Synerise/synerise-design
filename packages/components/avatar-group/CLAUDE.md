@@ -119,7 +119,7 @@ Styles in `AvatarGroup.styles.ts`. Key behaviors:
 
 - **Collapsed state**: avatars overlap with negative `margin-left` (`-8px` small, `-12px` medium, `-16px` large); badge dots are invisible (`opacity: 0`); avatars have a `2px white` ring (`box-shadow`).
 - **Hover state**: gap switches to `8px` for all avatars, badge dots fade in (`opacity: 1`), white ring disappears.
-- `MoreInfo` is a styled `Avatar` with white background and `grey-300` border — always appears after the overlapping group with `margin-left: 8px`.
+- `MoreInfo` is a styled `Avatar` with `--ds-avatar-more-bg-default` background and `--ds-avatar-more-border-color-default` border — always appears after the overlapping group with `margin-left: 8px`.
 
 ## Key dependencies
 

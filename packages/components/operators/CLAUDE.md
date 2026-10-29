@@ -95,7 +95,7 @@ import type { OperatorsItem, OperatorsGroup } from '@synerise/ds-operators';
 
 ## Styling
 
-`Operators.style.ts` — minimal; most styles are in `OperatorsDropdown`. Uses `theme.palette` tokens. The `ItemsList` styled component has a typo: `backgorund` instead of `background` — silently ignored by browsers.
+`Operators.style.ts` — minimal; most styles are in `OperatorsDropdown`. Colours are `var(--ds-*)` custom properties (`--ds-divider-header-text-color`, `--ds-color-text-base-subtle`).
 
 ## Key dependencies
 

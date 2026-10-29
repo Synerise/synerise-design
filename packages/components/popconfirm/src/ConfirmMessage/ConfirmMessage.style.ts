@@ -7,17 +7,17 @@ export const Message = styled.div``;
 export const ConfirmMessageTitle = styled.span`
   font-size: 14px;
   line-height: 1.43;
-  color: #404c5a;
+  color: var(--ds-popconfirm-header-text);
 `;
 
 export const ConfirmMessage = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: ${(props): string => props.theme.palette.white};
+  background-color: var(--ds-popconfirm-container-bg);
   padding: 16px;
   border-radius: 3px;
-  box-shadow: 0 16px 32px 0 rgba(35, 41, 54, 0.1);
+  box-shadow: var(--ds-shadows-shadow-2);
   ${IconContainer} {
     margin-right: 8px;
   }

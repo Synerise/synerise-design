@@ -116,14 +116,15 @@ import Checkbox from '@synerise/ds-checkbox';
 
 ## Styling
 
-`Checkbox.styles.ts` is pure styled-components (theme tokens). **Each element is its own styled-component and owns its styles** — the `.ant-checkbox-*` / `ds-checkbox-*` class names are kept on the elements purely as hooks (ui-tests / interim external CSS), never used as styling selectors. State is passed in as transient `$`-props by `CheckboxBase`:
+`Checkbox.styles.ts` is pure styled-components (the shared `--ds-form-control-*` checkbox/radio tokens plus `--ds-form-label-text-color` / `--ds-form-description-text-color` / `--ds-form-error-text-color`). **Each element is its own styled-component and owns its styles** — the `.ant-checkbox-*` / `ds-checkbox-*` class names are kept on the elements purely as hooks (ui-tests / interim external CSS), never used as styling selectors. State is passed in as transient `$`-props by `CheckboxBase`:
 - `CheckboxWrapper` — flex column container; `withoutPadding` removes default spacing.
 - `CheckboxBox` — the `.ant-checkbox` span (positioning).
 - `CheckboxInput` — the visually-hidden `<input>` overlaying the box.
-- `CheckboxInner` — the visible box: `grey-300` border, white-tick check (inline SVG data URL) when `$checked`, 2px white bar when `$indeterminate`, `$error` border, `$disabled` greys. 
-- `CheckboxText` — the label text; `$checked`/`$disabled` drive its colour/opacity.
-- `CheckboxLabel` — the `<label>`; layout + the **cross-element** rules (hover-preview, indeterminate hover, focus ring, disabled cursor) that reference the child styled-components (`&:hover ${CheckboxInner}`, `${CheckboxInput}:focus + ${CheckboxInner}`). The hover-preview rule is only emitted when `!$checked && !$indeterminate && !$disabled`, so checked/disabled states never fight it.
+- `CheckboxInner` — the visible box: `--ds-form-control-bg-default` fill and `--ds-form-control-border-default` border; when `$checked` it reveals the tick, an inline `<svg>` child (`CheckIcon`, rendered by `CheckboxBase`) coloured via `currentColor` from `--ds-form-control-icon-selected` on `--ds-form-control-bg-selected`; a 2px bar when `$indeterminate`, `--ds-form-control-border-error` border on `$error`. `$disabled` has no colours of its own: the box keeps its resting or selected look and fades to `--ds-opacity-disabled`.
+- `CheckboxText` — the label text, `--ds-form-label-text-color` in every state (no hover or selected colour); `$disabled` fades it to `--ds-opacity-disabled`.
+- `CheckboxLabel` — the `<label>`; layout + the **cross-element** rules (hover border, indeterminate hover, focus ring, disabled cursor) that reference the child styled-components (`&:hover ${CheckboxInner}`, `${CheckboxInput}:focus + ${CheckboxInner}`). Hovering an unchecked, enabled box only changes its border to `--ds-form-control-border-hover` — there is no tick preview; the rule is only emitted when `!$checked && !$indeterminate && !$disabled`. The focus ring is `--ds-form-control-border-focus`.
 - `AdditionalData` — left-aligns `errorText` and `description` below the checkbox box (28px left indent to align with label text).
+- `ErrorText` / `Description` — the typography elements recoloured onto `--ds-form-error-text-color` / `--ds-form-description-text-color`.
 
 ## Implementation notes
 

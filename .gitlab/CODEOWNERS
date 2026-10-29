@@ -1,2 +1,8 @@
 # Design System
-/packages/components @malgorzata.wierzbicka @jakub.sidor
+/packages/components @malgorzata.wierzbicka
+
+# CI and its scripts run with the publish and token-sync credentials; the sync MR's scope check is in CI
+/.gitlab-ci.yml @malgorzata.wierzbicka
+/.gitlab/ @malgorzata.wierzbicka
+/scripts/ @malgorzata.wierzbicka
+/packages/tokens/ @malgorzata.wierzbicka

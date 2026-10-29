@@ -22,7 +22,7 @@ src/
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `type` | `StatusType` | `'primary'` | Semantic type; controls border/text colour |
+| `type` | `StatusType` | `'primary'` | Semantic type; controls border/text colour. An unknown value renders as `neutral` |
 | `label` | `string` | — | **Required.** Text inside the badge |
 | `color` | `string` | — | Custom colour (only effective when `type='custom'`) |
 | `dashed` | `boolean` | — | Renders a dashed border instead of solid |
@@ -34,13 +34,13 @@ src/
 
 ```ts
 type StatusType =
- | 'primary' // blue-600
- | 'success' // green-700
- | 'warning' // yellow-700
- | 'danger' // red-600
- | 'info' // blue-600 (same as primary)
- | 'disabled' // grey-500
- | 'default' // grey-500
+ | 'primary' // info variant
+ | 'success' // success variant
+ | 'warning' // warning variant
+ | 'danger' // error variant
+ | 'info' // info variant (same as primary)
+ | 'disabled' // neutral variant
+ | 'default' // neutral variant
  | 'custom'; // uses color prop
 ```
 
@@ -60,7 +60,7 @@ import Status from '@synerise/ds-status';
 
 ## Styling
 
-`StatusTag` in `Status.styles.ts` extends `@synerise/ds-tag`. The `typeColor` helper maps `type` to a `theme.palette` token. For `type='custom'`, `typeColor` returns `null` and no colour style is applied — the `color` prop is passed directly to `Tag`. Root element always receives `ds-status` class plus any passed `className`.
+`StatusTag` in `Status.styles.ts` extends `@synerise/ds-tag`. `TYPE_TO_TOKEN_VARIANT` maps `type` to a status-pill variant (`primary`/`info` → `info`, `danger` → `error`, `default`/`disabled` → `neutral`, …), and the text and border use `--ds-status-pill-variant-<variant>-text` / `-border-solid|dashed`. An unknown `type` falls back to `neutral`. For `type='custom'` no colour style is applied — the `color` prop is passed directly to `Tag`. Root element always receives `ds-status` class plus any passed `className`.
 
 ## Key dependencies
 
@@ -69,7 +69,7 @@ import Status from '@synerise/ds-status';
 
 ## Implementation notes
 
-- **`info` and `primary` both map to `blue-600`** — they are functionally identical in the current colour mapping.
-- **`disabled` and `default` both map to `grey-500`** — functionally identical.
+- **`info` and `primary` both map to the `info` status-pill variant** — they are functionally identical in the current colour mapping.
+- **`disabled` and `default` both map to the `neutral` status-pill variant** — functionally identical.
 - **`custom` type**: pass `color` prop for the badge colour; without it the badge renders unstyled (no colour CSS applied).
 - **Uses Vitest** for testing.

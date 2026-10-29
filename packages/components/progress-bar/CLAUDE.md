@@ -128,11 +128,11 @@ import ProgressBar, { Multivalue, ProgressTiles } from '@synerise/ds-progress-ba
 
 ## Styling
 
-All styles in `*.styles.ts` files. Use `theme.palette` tokens for backgrounds; `customColor` / `color` props accept any CSS colour string.
+All styles in `*.styles.ts` files. Backgrounds use `var(--ds-progressbar-*)` tokens; `customColor` / `color` props accept any CSS colour string.
 
-- **ProgressBar**: bar track is `grey-200`; fill is `customColor` or `green-500`. Segment border-radius is 3px. In multi-step mode, first tile gets left radius only, last tile gets right radius only.
+- **ProgressBar**: bar track is `var(--ds-progressbar-bar-bg-track)`; fill is `customColor` or `var(--ds-progressbar-bar-fill-default)`. Segment border-radius is 3px. In multi-step mode, first tile gets left radius only, last tile gets right radius only.
 - **Multivalue stacked**: bars overlap via `margin-top: -6px`; each bar has `border-right: 2px solid white` (hardcoded white) to create visual separation.
-- **ProgressTiles**: tile track is `grey-200`; fill uses the colour from `colors[]`. Same border-radius rule as ProgressBar.
+- **ProgressTiles**: tile track is `var(--ds-progressbar-bar-bg-track)`; fill uses the colour from `colors[]`. Same border-radius rule as ProgressBar.
 - Both `ProgressBar.styles.ts` and `ProgressTiles.styles.ts` use `FormFieldLabel` from `@synerise/ds-form-field` for the label styled component.
 
 ## Key dependencies

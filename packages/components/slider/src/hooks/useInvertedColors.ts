@@ -7,9 +7,10 @@ export const useInvertedColors = ({
   inverted: boolean;
   colorMap: ColorMap;
 }) => {
-  const GREY_200 = 'grey-200';
-  const lineColor = inverted ? colorMap[0] : GREY_200;
-  const tracksColorMap = inverted ? { 0: GREY_200 } : colorMap;
+  // Rail / inverted-fill default — the neutral track colour (was the `grey-200` palette key).
+  const DEFAULT_RAIL_COLOR = 'var(--ds-slider-track-bg-default)';
+  const lineColor = inverted ? colorMap[0] : DEFAULT_RAIL_COLOR;
+  const tracksColorMap = inverted ? { 0: DEFAULT_RAIL_COLOR } : colorMap;
   return {
     lineColor,
     tracksColorMap,

@@ -28,8 +28,8 @@ src/
 | `buttonsPosition` | `'left' \| 'center' \| 'right'` | `'center'` | Horizontal alignment |
 | `fullWidth` | `boolean` | `undefined` | Container `width: 100%`, buttons `flex: 1` |
 | `compact` | `boolean` | `true` | `true` = zero gap, square middle corners, rounded outer corners; `false` = 8px gap, all corners rounded |
-| `splitMode` | `boolean` | `undefined` | Adds 1px borders between adjacent `single-icon` buttons |
-| `error` | `boolean` | `undefined` | In `splitMode`, switches borders to `red-600` |
+| `splitMode` | `boolean` | `undefined` | Adds a 1px divider before `single-icon` buttons, coloured like Button `mode="split"` |
+| `error` | `boolean` | `undefined` | In `splitMode`, switches borders to `--ds-buttons-error-border` |
 | `disabled` | `boolean` | `undefined` | CSS-only, suppresses hover effects in splitMode |
 | `className` | `string` | `undefined` | Extra class (always includes `ds-button-group`) |
 
@@ -47,7 +47,7 @@ Zero-props vertical divider. Renders a styled `ds-divider` with `type="vertical"
 
 - **`compact={true}`** — `gap: 0`, inner buttons `border-radius: 0`, first child gets `3px 0 0 3px`, last child gets `0 3px 3px 0`.
 - **`compact={false}`** — `gap: 8px`, each button `border-radius: 3px`.
-- **`splitMode`** — CSS borders via `.ant-btn-*` class selectors.
+- **`splitMode`** — the divider is `border-left: 1px solid var(--ds-button-split-separator)`, a property each ds-button sets from its type (and `color` for `custom-color`). Secondary keeps its own inset-shadow seam.
 - **`fullWidth`** — outer `width: 100%`, inner buttons `flex: 1`.
 
 ## Key dependencies
@@ -59,5 +59,5 @@ Zero-props vertical divider. Renders a styled `ds-divider` with `type="vertical"
 
 - **No antd dependency** — `Button.Group` replaced with a plain `<div className="ant-btn-group">`.
 - **`compact` corner rounding** — handled by CSS `:first-child` / `:last-child` selectors on the group container. Individual `groupVariant` props on buttons are no longer required for basic groups.
-- **`splitMode` targets CSS classes** — uses `.ant-btn-*` selectors. Adding a new button type requires updating the styled-component CSS.
+- **`splitMode` divider colour comes from the button** — a new button type only needs an entry in ds-button's `splitSeparatorTokens`. The hover/focus and `error` rules still use `.ant-btn-*` selectors.
 - **`disabled` is CSS-only** — not forwarded to child buttons. Disable buttons individually.

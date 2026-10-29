@@ -18,17 +18,18 @@ import {
 } from './style/macro-utils';
 
 export const Description = styled.div<{ disabled?: boolean }>`
-  color: ${(props): string => props.theme.palette['grey-600']};
-  ${(props): string => (props.disabled ? `opacity: 0.4;` : '')}
+  color: var(--ds-color-text-base-muted);
+  ${(props): string =>
+    props.disabled ? `opacity: var(--ds-opacity-disabled);` : ''}
 `;
 
 export const ErrorText = styled.div`
-  color: ${(props): string => props.theme.palette['red-600']};
+  color: var(--ds-color-text-danger-default);
   margin-bottom: 4px;
 `;
 
 export const Label = styled.label`
-  color: ${(props): string => props.theme.palette['grey-800']};
+  color: var(--ds-color-text-base-default);
   font-weight: 500;
   display: block;
   cursor: pointer;

@@ -118,11 +118,11 @@ import { Placeholder } from '@synerise/ds-logic';
 
 ## Styling
 
-- `Logic`: `styled.div` — dashed bottom border via `::after` pseudo-element (grey-600, hidden in `readOnly`); hover changes text and border to `blue-700`.
-- `Matching` toggle: `styled.span` — green (`green-600`/`green-700` hover) when `matching=true`, red (`red-600`/`red-700` hover) when `matching=false`; grey-800 when `readOnly`.
+- `Logic`: `styled.div` — dashed bottom border via `::after` pseudo-element (`--ds-color-text-base-muted`, hidden in `readOnly`); hover changes text and border to `--ds-color-text-brand-defaulthover`.
+- `Matching` toggle: `styled.span` — green (`--ds-color-background-success-solid` / `-solidactive` hover) when `matching=true`, red (`--ds-color-background-danger-solid` / `-solidactive` hover) when `matching=false`; `--ds-color-text-base-default` when `readOnly`.
 - Both use `user-select: none`.
-- `Placeholder`: fixed `min-height: 63px`, white background, icon + text centered in a row.
-- All colour values come from `theme.palette` tokens — no hardcoded hex values.
+- `Placeholder`: fixed `min-height: 63px`, `--ds-color-background-base-default` background, icon + text centered in a row.
+- All colour values come from `var(--ds-*)` tokens — no hardcoded hex values.
 
 ## Key dependencies
 

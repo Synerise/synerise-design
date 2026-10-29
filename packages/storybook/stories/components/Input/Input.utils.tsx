@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { theme } from '@synerise/ds-core';
 import Icon, { LaptopM } from '@synerise/ds-icon';
 import { TagShape } from '@synerise/ds-tag';
+import { customColors } from '@synerise/ds-tokens/names';
 import Tooltip from '@synerise/ds-tooltip';
 
 import * as S from './Input.styles';
@@ -26,7 +26,10 @@ export const renderAddonComponent = (
     case addonType.icon:
       return (
         <S.IconWrapper>
-          <Icon color={theme.palette['grey-600']} component={<LaptopM />} />
+          <Icon
+            color="var(--ds-color-icon-base-default)"
+            component={<LaptopM />}
+          />
         </S.IconWrapper>
       );
     case addonType.label:
@@ -44,8 +47,8 @@ export const renderAddonComponent = (
         <S.TagAddon
           name="A"
           shape={TagShape.SINGLE_CHARACTER_SQUARE}
-          color={theme.palette['cyan-200']}
-          textColor={theme.palette['cyan-600']}
+          color={customColors.cyan['200']}
+          textColor={customColors.cyan['600']}
         />
       );
     default:

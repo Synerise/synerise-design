@@ -8,7 +8,7 @@ export const PageContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   height: 100vh;
-  background-color: rgb(243, 245, 246);
+  background-color: var(--ds-page-bg);
   overflow: hidden;
 `;
 

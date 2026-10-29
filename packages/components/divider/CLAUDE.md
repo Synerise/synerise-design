@@ -69,8 +69,8 @@ import Divider from '@synerise/ds-divider';
 ## Styling
 
 Styles are split between two files:
-- `Divider.styles.ts` — `Label`: extends `Title` from `@synerise/ds-typography` with uppercase transform, `grey-500` colour, fixed height/margin.
-- `Line.styles.tsx` — `Line` wrapper div: controls `display`, margins, width/height, and line colour (`grey-300` solid / `grey-400` dashed) via `@synerise/ds-core` theme tokens.
+- `Divider.styles.ts` — `Label`: extends `Title` from `@synerise/ds-typography` with uppercase transform, `--ds-divider-header-text-color` colour, fixed height/margin.
+- `Line.styles.tsx` — `Line` wrapper div: controls `display`, margins, width/height, and line colour (`--ds-divider-line-color-solid` / `--ds-divider-line-color-dashed`).
 
 Vertical dividers switch to `display: inline-block` with `height: 0.9em` (relative to surrounding font size) and a fixed `8px` horizontal margin — these are not configurable via props.
 
@@ -78,7 +78,7 @@ Vertical dividers switch to `display: inline-block` with `height: 0.9em` (relati
 
 - `@synerise/ds-typography` — `Title` used for label rendering
 - `@synerise/ds-utils` — `WithHTMLAttributes` utility type
-- `@synerise/ds-core` — theme palette tokens consumed in styled-components
+- `@synerise/ds-core` — not imported; its `DSProvider` injects the `--ds-divider-*` custom properties the styles read
 
 ## Implementation notes
 

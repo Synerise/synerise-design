@@ -4,7 +4,17 @@ const lessVarsToJs = require('less-vars-to-js');
 const { resolveVariable, generateFileContent, prepare } = require('./utils.js');
 
 const colorsLess = fs.readFileSync(path.resolve(__dirname, '../src/style/colors.less'), 'utf8');
-const configLess = fs.readFileSync(path.resolve(__dirname, '../src/style/config.less'), 'utf8');
+
+// config.less holds the surface the design system and consumer apps use; antd-legacy.less
+// holds the variables that exist only to theme antd and the deprecated menu/alert/table
+// packages. Both feed theme.variables, so deleting antd-legacy.less removes its keys from the
+// public theme. Tokenisation already dropped 217 unused keys and turned 15 into var()
+// references; see docs/migration-design-tokens.md. Order matters: antd-legacy may reference
+// config.
+const configLess = [
+  fs.readFileSync(path.resolve(__dirname, '../src/style/config.less'), 'utf8'),
+  fs.readFileSync(path.resolve(__dirname, '../src/style/antd-legacy.less'), 'utf8'),
+].join('\n');
 
 const colorsDictionary = lessVarsToJs(colorsLess, { resolveVariables: true, stripPrefix: true });
 const colorsVars = lessVarsToJs(colorsLess, { resolveVariables: true });

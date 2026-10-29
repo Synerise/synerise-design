@@ -101,7 +101,7 @@ import Sidebar from '@synerise/ds-sidebar';
 
 ## Styling
 
-`StyledCollapse` in `Sidebar.styles.ts` styles the DS accordion DOM via its `.ant-collapse-*` class hooks (retained for ui-tests / interim external CSS; `ds-sidebar-*` emitted alongside). Header padding is `18px 24px`. Content padding is `16px 24px`. Background is `blue-050`. The drag handle (`SidebarHandle`) is `cursor: grabbing` and positioned absolutely on the left of the header.
+`StyledCollapse` in `Sidebar.styles.ts` styles the DS accordion DOM via its `.ant-collapse-*` class hooks (retained for ui-tests / interim external CSS; `ds-sidebar-*` emitted alongside). Header padding is `18px 24px`. Content padding is `16px 24px`. The accordion root background is `var(--ds-color-background-brand-subtle)` (`CollapseRoot` in `Collapse/Collapse.styles.ts`). The drag handle (`SidebarHandle`) is `cursor: grabbing` and positioned absolutely on the left of the header.
 
 ## Key dependencies
 

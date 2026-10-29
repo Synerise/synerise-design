@@ -14,7 +14,8 @@ src/
  toCamelCase/ — kebab/snake_case → camelCase
  escapeRegEx/ (regex/) — escape special regex chars in a string
  getInitials/ — extract initials from first/last name (NOT exported from index.ts)
- selectColorByLetter/ — map letter → ds-core palette colour
+ selectColorByLetter/ — map letter → custom-colour token
+ customColor/ — map a custom-colour name/name-shade string → reversible token + shared colour types
  renderWithHighlight/ — wrap a substring match in a highlight <span>
  doubleClickListener/ — factory for single/double click disambiguation
  focusWithArrowKeys/ — keyboard arrow-key focus navigation helper
@@ -63,8 +64,8 @@ Escapes all regex special characters in a string for safe use in `new RegExp(..)
 Returns an RFC 4122 version 4 UUID. Uses `crypto.randomUUID()` when it exists; it only does in secure contexts (https, localhost), so on plain http the UUID is built from `crypto.getRandomValues()`, with `Math.random()` as a last resort for runtimes without `crypto`. Use it instead of calling `crypto.randomUUID()` directly in component code. Fine for DOM ids and keys; not for secrets. Every call returns a new value, so never use it directly as a React `key` (the `no-random-jsx-key` Biome rule rejects that).
 
 #### `selectColorByLetter(letter?: string, forAvatar?: boolean): Color`
-Maps a letter to a design-system palette colour. Uses `latinize` to normalise accented characters.
-- `forAvatar = false` (default) → returns a `theme.palette` hex string
+Maps a letter to a design-system custom colour. Uses `latinize` to normalise accented characters.
+- `forAvatar = false` (default) → returns the `var(--ds-color-custom-<family>-500)` token via `resolveCustomColor`
 - `forAvatar = true` → returns `{ color: string; hue: string }` (split on `-`)
 - Falls back to `'orange-500'` when `letter` is undefined or not a string.
 
@@ -227,13 +228,18 @@ The outer style for a row measured by `useMeasuredRow`: react-window's `style` w
 | `DeepPartial<T>` | Recursively makes all properties optional |
 | `RequiredProps<BaseType, PropName>` | Makes specific props required on a base type |
 | `ObjectStringKeys<T>` | Union of keys in T whose values are `string` |
+| `CustomColorShade` | The shade steps (`'50'` … `'900'`) |
+| `CustomColorToken` | A `` `${family}-${CustomColorShade}` `` combo (`'blue-600'`) across the 12 custom-colour families — maps 1:1 to a reversible `--ds-color-custom-*` token |
+
+### `resolveCustomColor(value, fallback?, options?): string | undefined` / `isResolvedColor(value?): boolean`
+
+`resolveCustomColor` maps a custom-colour name (`'grey'`) or name-shade combo (`'blue-600'`) to its reversible `--ds-color-custom-*` token (light/dark aware, from `@synerise/ds-tokens`). Options: `defaultShade` (bare-name shade, default `'600'`), `shadeShift` (±100 for hover variants), `passthroughResolved` (return `var()`/hex verbatim). Anything unmapped returns `fallback`, or `undefined` when none is given (the CSS declaration is then dropped, exactly what an unknown palette key did before) — never `theme.palette`. Pass a fallback only where a component has a sensible default (e.g. a neutral icon colour). An unresolved value that is not a valid CSS colour logs a `console.warn` once per distinct value. `isResolvedColor` reports whether a value is already a `var()` token or hex literal. Shared by slider (`tracksColorMap`) and card-tabs (`color`); reusable in consumer apps.
 
 ---
 
 ## Key dependencies
 
 - `latinize` — used by `selectColorByLetter` to normalise accented letters
-- `@synerise/ds-core` — `theme.palette` used by `selectColorByLetter`
 
 ## Implementation notes
 

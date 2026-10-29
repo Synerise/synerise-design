@@ -37,12 +37,12 @@ The full props type, re-exported as a named type.
 
 | `type` | Icon | Colour |
 |--------|------|--------|
-| `info` | `InfoL` | `blue-600` |
-| `warning` | `WarningL` | `yellow-600` |
-| `error` | `WarningL` | `red-600` |
-| `success` | `CheckL` | `green-600` |
-| `progress` | `TimeL` | `grey-600` |
-| `no-results` | `InformationNoSearchResultL` | `grey-600` |
+| `info` | `InfoL` | `var(--ds-color-icon-brand-default)` |
+| `warning` | `WarningL` | `var(--ds-color-icon-warning-default)` |
+| `error` | `WarningL` | `var(--ds-color-icon-danger-default)` |
+| `success` | `CheckL` | `var(--ds-color-icon-success-default)` |
+| `progress` | `TimeL` | `var(--ds-color-icon-base-default)` |
+| `no-results` | `InformationNoSearchResultL` | `var(--ds-color-icon-base-default)` |
 
 ## Usage patterns
 
@@ -70,7 +70,7 @@ import Result from '@synerise/ds-result';
 
 ## Styling
 
-Styles live in `Result.styles.ts`. Uses `@synerise/ds-core` theme tokens for colours (`theme.palette[iconColor]`). Layout is a centred flex column with `gap: 24px`, `max-width: 440px`, `padding: 24px 0`.
+Styles live in `Result.styles.ts`. Icon colour is a `var(--ds-color-icon-*)` token picked per `type` in `mapTypeToStatus` (`Result.tsx`) and applied as `iconColor`. Layout is a centred flex column with `gap: 24px`, `max-width: 440px`, `padding: 24px 0`.
 
 ## Key dependencies
 

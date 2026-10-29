@@ -50,7 +50,7 @@ export const ModalBody = styled.div<{
 }>`
   ${(props) => !props.bodyFullWidth && `padding: 24px;`}
   ${(props) =>
-    props.greyBackground && `background: ${props.theme.palette['grey-050']};`}
+    props.greyBackground && `background: var(--ds-modal-content-bg-grey);`}
 
   ${(props) =>
     !props.bodyFullWidth &&
@@ -68,10 +68,10 @@ export const ModalContainer = styled.div<{
   centered?: boolean;
   maxHeight?: number;
 }>`
-  background: ${(props) => props.theme.palette['white']};
+  background: var(--ds-modal-container-bg);
   width: ${(props) => props.$width};
   position: absolute;
-  box-shadow: ${(props) => props.theme.variables['box-shadow-2']};
+  box-shadow: var(--ds-modal-container-shadow);
   border-radius: 3px;
 
   ${(props) =>
@@ -139,6 +139,5 @@ export const ModalMask = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-  background: ${(props) => props.theme.palette['grey-800']};
-  opacity: 0.2;
+  background: var(--ds-modal-mask-color);
 `;

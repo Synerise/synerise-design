@@ -64,7 +64,7 @@ Exported type: `TextProps`
 |------|------|---------|-------------|
 | `disabled` | `boolean` | `undefined` | Reduces opacity to 0.4, sets `cursor: not-allowed`, removes tabIndex |
 | `icon` | `JSX.Element` | `undefined` | Rendered in `IconWrapper` before content; adjusts `ContentWrapper` left padding |
-| `danger` | `boolean` | `undefined` | Colors text and icon `red-600`; hover background becomes `red-050` |
+| `danger` | `boolean` | `undefined` | Colors text and icon with `--ds-color-text-danger-default` / `--ds-color-icon-danger-default`; hover background becomes `--ds-color-background-danger-subtle` |
 | `actions` | `ReactNode` | `undefined` | Rendered at the end of the row in a flex-1 container |
 | `onSelect` | `(e?: MouseEvent \| KeyboardEvent) => void` | `undefined` | Called on click and on `Space` keyup |
 | `size` | `'small' \| 'medium'` | `'small'` | `small`: padding `5px 12px 4px 7px`; `medium`: padding `12px` (left `12px` with icon, `16px` without) |

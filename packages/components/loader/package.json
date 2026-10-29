@@ -41,6 +41,9 @@
     "*.less"
   ],
   "types": "dist/index.d.ts",
+  "dependencies": {
+    "@synerise/ds-utils": "workspace:^"
+  },
   "devDependencies": {
     "vitest": "4"
   },

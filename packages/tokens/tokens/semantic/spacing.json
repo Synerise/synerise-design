@@ -1,0 +1,93 @@
+{
+  "inset": {
+    "xs": {
+      "$type": "dimension",
+      "$value": "{space.1}",
+      "$description": "4px — gęste UI: tagi, badges, tiny chips"
+    },
+    "sm": {
+      "$type": "dimension",
+      "$value": "{space.2}",
+      "$description": "8px — kompaktowe: badge padding, małe buttony"
+    },
+    "md": {
+      "$type": "dimension",
+      "$value": "{space.3}",
+      "$description": "12px — standard: inputy, nav items"
+    },
+    "lg": {
+      "$type": "dimension",
+      "$value": "{space.4}",
+      "$description": "16px — wygodne: card content, sidebar"
+    },
+    "xl": {
+      "$type": "dimension",
+      "$value": "{space.6}",
+      "$description": "24px — przestronne: modal body, card padding"
+    },
+    "2xl": {
+      "$type": "dimension",
+      "$value": "{space.8}",
+      "$description": "32px — duże sekcje"
+    }
+  },
+  "stack": {
+    "xs": {
+      "$type": "dimension",
+      "$value": "{space.1}",
+      "$description": "4px — ikona + label, helper text"
+    },
+    "sm": {
+      "$type": "dimension",
+      "$value": "{space.2}",
+      "$description": "8px — pola formularza, elementy listy"
+    },
+    "md": {
+      "$type": "dimension",
+      "$value": "{space.3}",
+      "$description": "12px — standardowe sekcje w komponencie"
+    },
+    "lg": {
+      "$type": "dimension",
+      "$value": "{space.4}",
+      "$description": "16px — grupy fieldów, bloki"
+    },
+    "xl": {
+      "$type": "dimension",
+      "$value": "{space.6}",
+      "$description": "24px — sekcje strony"
+    },
+    "2xl": {
+      "$type": "dimension",
+      "$value": "{space.8}",
+      "$description": "32px — duże sekcje layoutu"
+    }
+  },
+  "inline": {
+    "xs": {
+      "$type": "dimension",
+      "$value": "{space.1}",
+      "$description": "4px — ikona + tekst"
+    },
+    "sm": {
+      "$type": "dimension",
+      "$value": "{space.2}",
+      "$description": "8px — między tagami, chipami"
+    },
+    "md": {
+      "$type": "dimension",
+      "$value": "{space.3}",
+      "$description": "12px — między polami formularza"
+    },
+    "lg": {
+      "$type": "dimension",
+      "$value": "{space.4}",
+      "$description": "16px — między blokami UI"
+    },
+    "xl": {
+      "$type": "dimension",
+      "$value": "{space.6}",
+      "$description": "24px — między sekcjami layoutu"
+    }
+  }
+}

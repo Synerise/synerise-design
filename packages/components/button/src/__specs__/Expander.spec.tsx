@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { renderWithProvider } from '@synerise/ds-core/testing';
+import { declarationsFor, renderWithProvider } from '@synerise/ds-core/testing';
 import { fireEvent } from '@testing-library/react';
 
 import { Expander } from '../index';
@@ -44,9 +44,11 @@ describe('Expander', () => {
       <Expander size={'M'} disabled={true}></Expander>,
     );
     // ACT
-    const expander = container.querySelector('svg');
+    const expander = container.querySelector('button');
     // ASSERT
-    expect(expander).toHaveStyle(`opacity:0.4`);
+    expect(
+      declarationsFor(container.querySelector('svg'), { within: expander }),
+    ).toContain('opacity:var(--ds-buttons-disabled-opacity)');
   });
   it('should handle onClick', () => {
     // ARRANGE

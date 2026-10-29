@@ -1,10 +1,13 @@
 import type { ReactNode } from 'react';
 import styled from 'styled-components';
 
+import { resolveCustomColor } from '@synerise/ds-utils';
+
 import type { CustomColorType, SectionType } from './SectionMessage.types';
 import {
   getColorBackground,
   getColorBorder,
+  getColorBorderTop,
   getColorIconAndBorderTop,
 } from './SectionMessage.utils';
 
@@ -27,20 +30,24 @@ export const Text = styled.div`
   width: 100%;
 `;
 export const IconWrapper = styled.div<{
-  type?: SectionType;
+  type: SectionType;
   customColorIcon?: CustomColorType;
 }>`
   margin: 10px 12px;
   display: flex;
   color: ${(props) =>
     props.customColorIcon
-      ? props.theme.palette[`${props.customColorIcon}-600`]
-      : getColorIconAndBorderTop(props.type!, props.theme)};
+      ? resolveCustomColor(
+          props.customColorIcon,
+          getColorIconAndBorderTop(props.type),
+          { defaultShade: '600' },
+        )
+      : getColorIconAndBorderTop(props.type)};
 `;
 export const IconCloseWrapper = styled.div`
   margin: 3px 5px 2px;
   cursor: pointer;
-  color: ${(props) => props.theme.palette['grey-700']};
+  color: var(--ds-color-icon-base-default);
 `;
 export const ButtonWrapper = styled.div`
   padding: 6px 8px 0 8px;
@@ -52,7 +59,7 @@ export const SuffixWrapper = styled.div`
 `;
 
 export const Container = styled.div<{
-  type?: SectionType;
+  type: SectionType;
   customColor?: CustomColorType;
 }>`
   width: 100%;
@@ -61,13 +68,17 @@ export const Container = styled.div<{
   position: relative;
   background-color: ${(props) =>
     props.customColor
-      ? props.theme.palette[`${props.customColor}-050`]
-      : getColorBackground(props.type!, props.theme)};
+      ? resolveCustomColor(props.customColor, getColorBackground(props.type), {
+          defaultShade: '50',
+        })
+      : getColorBackground(props.type)};
   border: 1px solid
     ${(props) =>
       props.customColor
-        ? props.theme.palette[`${props.customColor}-200`]
-        : getColorBorder(props.type!, props.theme)};
+        ? resolveCustomColor(props.customColor, getColorBorder(props.type), {
+            defaultShade: '200',
+          })
+        : getColorBorder(props.type)};
   border-radius: 3px;
 
   &::after {
@@ -80,8 +91,10 @@ export const Container = styled.div<{
     border-radius: 3px 3px 0 0;
     background-color: ${(props) =>
       props.customColor
-        ? props.theme.palette[`${props.customColor}-600`]
-        : getColorIconAndBorderTop(props.type!, props.theme)};
+        ? resolveCustomColor(props.customColor, getColorBorderTop(props.type), {
+            defaultShade: '600',
+          })
+        : getColorBorderTop(props.type)};
   }
 `;
 export const WrapperSectionMessage = styled.div`
@@ -98,7 +111,7 @@ export const AlertMessage = styled.span`
   overflow-wrap: break-word;
   min-width: 0;
   width: 100%;
-  color: ${(props) => props.theme.palette['grey-700']};
+  color: var(--ds-message-text-title);
 `;
 
 export const AlertDescription = styled.span`
@@ -109,7 +122,13 @@ export const AlertDescription = styled.span`
   font-weight: normal;
   padding-right: 3px;
   margin-top: 2px;
-  color: ${(props) => props.theme.palette['grey-700']};
+  color: var(--ds-message-text-description);
+  a,
+  a:hover,
+  a:active {
+    color: inherit;
+    text-decoration: underline;
+  }
 `;
 export const EmphasisWrapper = styled.span`
   display: flex;
@@ -145,32 +164,28 @@ export const AlertShowMore = styled.span`
 
 export const NumberWrapper = styled.div`
   margin-left: 4px;
-  color: ${(props): string => props.theme.palette['grey-400']};
+  color: var(--ds-color-text-base-disabled);
   cursor: pointer;
   &:hover {
     background-image: linear-gradient(
       to right,
-      ${(props): string => props.theme.palette['grey-400']} 20%,
-      rgba(255, 255, 255, 0) 10%
+      var(--ds-color-text-base-disabled) 20%,
+      transparent 10%
     );
     background-color: transparent;
     background-position: bottom left;
     background-size: 5px 1px;
     background-repeat: repeat-x;
-    color: ${(props): string => props.theme.palette['grey-700']};
+    color: var(--ds-color-text-base-subtle);
   }
 `;
 export const IconOrderWrapper = styled.div`
   display: none;
   margin: -4px 0;
-  svg {
-    fill: ${(props): string => props.theme.palette['grey-700']};
-  }
+  color: var(--ds-color-icon-base-default);
   &:hover {
-    svg {
-      fill: ${(props): string => props.theme.palette['blue-600']};
-      cursor: pointer;
-    }
+    color: var(--ds-color-icon-brand-default);
+    cursor: pointer;
   }
 `;
 export const OrderWrapper = styled.div`
@@ -182,18 +197,18 @@ export const OrderWrapper = styled.div`
     ${NumberWrapper} {
       background-image: linear-gradient(
         to right,
-        ${(props): string => props.theme.palette['grey-400']} 20%,
-        rgba(255, 255, 255, 0) 10%
+        var(--ds-color-text-base-disabled) 20%,
+        transparent 10%
       );
       background-color: transparent;
       background-position: bottom left;
       background-size: 5px 1px;
       background-repeat: repeat-x;
-      color: ${(props): string => props.theme.palette['grey-700']};
+      color: var(--ds-color-text-base-subtle);
     }
   }
 `;
 export const Wrapper = styled.div`
   margin-top: 10px;
-  color: ${(props): string => props.theme.palette['grey-700']};
+  color: var(--ds-color-text-base-subtle);
 `;

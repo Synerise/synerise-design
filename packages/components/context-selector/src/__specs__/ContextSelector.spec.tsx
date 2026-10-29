@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { ApiM } from '@synerise/ds-icon';
-import { renderWithProvider } from '@synerise/ds-core/testing';
+import { declarationsFor, renderWithProvider } from '@synerise/ds-core/testing';
 import { fireEvent, screen, waitFor } from '@testing-library/react';
 
 
@@ -144,8 +144,26 @@ describe('Context selector component', () => {
         isError: true,
       }),
     );
-    expect(screen.getByRole('button')).toHaveStyle({
-      backgroundColor: '#ffece8',
-    });
+    const trigger = screen
+      .getByText(CONTEXT_TEXTS.buttonLabel)
+      .closest('button');
+    expect(declarationsFor(trigger)).toContain(
+      'background-color:var(--ds-buttons-error-bg-default)',
+    );
+  });
+
+  test('lets the search icon take its colour from the search bar', async () => {
+    renderWithProvider(RENDER_CONTEXT_SELECTOR({}));
+
+    fireEvent.click(screen.getByText(CONTEXT_TEXTS.buttonLabel));
+
+    await waitFor(() =>
+      expect(
+        screen.getByPlaceholderText(CONTEXT_TEXTS.searchPlaceholder),
+      ).toBeInTheDocument(),
+    );
+    expect(document.querySelector('svg.search-m')).toHaveStyle(
+      'color: inherit',
+    );
   });
 });

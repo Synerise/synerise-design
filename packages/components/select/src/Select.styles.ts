@@ -28,9 +28,9 @@ const HEIGHT = { large: 48, default: 32 } as const;
 const addonStyles = css`
   display: flex;
   align-items: center;
-  background: ${(props) => props.theme.palette['grey-050']};
-  box-shadow: inset 0 0 0 1px ${(props) => props.theme.palette['grey-300']};
-  color: ${(props) => props.theme.palette['grey-500']};
+  background: var(--ds-form-field-affix-bg);
+  box-shadow: inset 0 0 0 1px var(--ds-form-field-affix-border);
+  color: var(--ds-form-field-affix-text);
   font-size: 13px;
   line-height: 1.39;
 `;
@@ -86,11 +86,13 @@ export const Selector = styled.div<SelectorProps>`
           padding: 0 30px 0 12px;
         `;
   }}
-  border: 1px solid ${(props) => props.theme.palette['grey-300']};
+  border: 1px solid var(--ds-form-field-border-default);
   border-radius: 3px;
   background-color: ${(props) =>
-    props.$grey ? props.theme.palette['grey-050'] : props.theme.palette.white};
-  color: ${(props) => props.theme.palette['grey-700']};
+    props.$grey
+      ? 'var(--ds-color-background-base-subtle)'
+      : 'var(--ds-form-field-bg-default)'};
+  color: var(--ds-form-field-text-value);
   font-size: 13px;
   cursor: pointer;
   transition: all 0.3s;
@@ -113,7 +115,7 @@ export const Selector = styled.div<SelectorProps>`
     !props.$error &&
     css`
       &:hover {
-        border-color: ${props.theme.palette['grey-400']};
+        border-color: var(--ds-form-field-border-hover);
       }
     `}
 
@@ -133,17 +135,17 @@ export const Selector = styled.div<SelectorProps>`
   ${(props) =>
     props.$open &&
     css`
-      box-shadow: inset 0 0 0 1px ${props.theme.palette['blue-600']};
-      border-color: ${props.theme.palette['blue-600']};
-      background-color: ${props.theme.palette['blue-050']};
+      box-shadow: inset 0 0 0 1px var(--ds-form-field-border-focus);
+      border-color: var(--ds-form-field-border-focus);
+      background-color: var(--ds-form-field-bg-focus);
     `}
 
   ${(props) =>
     props.$error &&
     css`
-      border-color: ${props.theme.palette['red-600']};
-      box-shadow: inset 0 0 0 1px ${props.theme.palette['red-600']};
-      background: ${props.theme.palette['red-050']};
+      border-color: var(--ds-form-field-border-validated);
+      box-shadow: inset 0 0 0 1px var(--ds-form-field-border-validated);
+      background: var(--ds-form-field-bg-validated);
     `}
 
   ${(props) =>
@@ -152,16 +154,16 @@ export const Selector = styled.div<SelectorProps>`
       cursor: ${props.$readOnly ? 'default' : 'not-allowed'};
       color: ${
         props.$readOnly
-          ? props.theme.palette['grey-600']
-          : props.theme.palette['grey-400']
+          ? 'var(--ds-form-field-text-value)'
+          : 'var(--ds-form-field-text-disabled)'
       };
       background-color: ${
         props.$readOnly
-          ? props.theme.palette.white
-          : props.theme.palette['grey-050']
+          ? 'var(--ds-form-field-bg-default)'
+          : 'var(--ds-form-field-bg-disabled)'
       };
       &:hover {
-        border-color: ${props.theme.palette['grey-300']};
+        border-color: var(--ds-form-field-border-default);
       }
     `}
 
@@ -181,7 +183,7 @@ export const Placeholder = styled.span`
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  color: ${(props) => props.theme.palette['grey-500']};
+  color: var(--ds-form-field-text-placeholder);
 `;
 
 export const Arrow = styled.span<{ $open?: boolean }>`
@@ -193,7 +195,7 @@ export const Arrow = styled.span<{ $open?: boolean }>`
   transform: translateY(-50%)
     ${(props) => (props.$open ? 'rotate(180deg)' : '')};
   transition: transform 0.3s;
-  color: ${(props) => props.theme.palette['grey-500']};
+  color: var(--ds-color-icon-base-subtle);
   pointer-events: none;
 `;
 
@@ -206,7 +208,7 @@ export const ClearWrapper = styled.span`
   align-items: center;
   cursor: pointer;
   /* DS icons use currentColor — set color, not svg fill. */
-  color: ${(props) => props.theme.palette['red-600']};
+  color: var(--ds-form-clear-icon);
 `;
 
 /* ── dropdown (mirrors ds-autocomplete's dropdown: ListWrapper + Scrollbar) ── */
@@ -263,7 +265,7 @@ export const NotFound = styled.div`
   align-items: center;
   justify-content: center;
   padding: 8px 12px;
-  color: ${(props) => props.theme.palette['grey-600']};
+  color: var(--ds-form-description-text-color);
   font-weight: normal;
 `;
 
@@ -278,9 +280,11 @@ export const OptionItem: StyledListItem = styled(DSListItem)`
   min-width: auto;
   font-weight: normal;
 
-  &&:hover:not(.ds-list-item-disabled),
-  &&.ds-select-item-option-active:not(.ds-list-item-disabled) {
-    background-color: ${(props) => props.theme.palette['blue-050']};
+  /* Hover and selected come from ds-list-item (role-normal bg-hover / bg-active). The keyboard
+     highlight has no real hover, so it takes the list item's focused background. */
+  &&.ds-select-item-option-active:not(.ds-select-item-option-selected):not(.ds-list-item-disabled)
+    .ds-list-item-inner {
+    background-color: var(--ds-list-item-role-normal-bg-hover);
   }
 `;
 
@@ -296,10 +300,10 @@ export const SearchInputEl = styled.input<{ $overlay?: boolean }>`
   margin: 0;
   font-family: inherit;
   font-size: 13px;
-  color: ${(props) => props.theme.palette['grey-700']};
+  color: var(--ds-form-field-text-value);
   cursor: inherit;
   &::placeholder {
-    color: ${(props) => props.theme.palette['grey-500']};
+    color: var(--ds-form-field-text-placeholder);
   }
   &:disabled {
     cursor: not-allowed;
@@ -383,16 +387,16 @@ export const Chip = styled.span`
   max-width: 100%;
   min-height: 24px;
   padding: 0 8px;
-  background: ${(props) => props.theme.palette['grey-200']};
+  background: var(--ds-form-chip-bg-default);
   border: none;
   border-radius: 3px;
   font-size: 13px;
   line-height: 1;
-  color: ${(props) => props.theme.palette['grey-600']};
+  color: var(--ds-form-chip-text-default);
 
   &:hover {
-    background: ${(props) => props.theme.palette['grey-300']};
-    color: ${(props) => props.theme.palette['grey-800']};
+    background: var(--ds-form-chip-bg-hover);
+    color: var(--ds-form-chip-text-default);
   }
   /* The chip width is fixed by the label (max-content, capped at the container).
      On hover the absolute X appears and the label's max-width shrinks by the X
@@ -425,5 +429,5 @@ export const ChipRemove = styled.span`
   height: 24px;
   cursor: pointer;
   /* DS icons use currentColor — set color, not svg fill. */
-  color: ${(props) => props.theme.palette['red-600']};
+  color: var(--ds-form-clear-icon);
 `;

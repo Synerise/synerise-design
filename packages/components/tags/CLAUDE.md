@@ -130,7 +130,7 @@ import type { TagsProps } from '@synerise/ds-tags';
 
 - Root container: `display: flex; margin-bottom: 24px` — the bottom margin is always applied.
 - Tags wrap via `flex-wrap: wrap`; each tag sits inside a `32px`-height overflow div.
-- The `LimitedTags` "+N" pill uses `grey-100` background / `grey-700` text and is always rendered `asPill`.
+- The `LimitedTags` "+N" pill uses `var(--ds-tag-more-bg)` background / `var(--ds-tag-more-text)` text and is always rendered `asPill`.
 - Dropdown tag list has a hardcoded `max-height: 320px` (inside `DropdownTagsContainer`); use `maxHeight` prop on `Tags` to override the scrollable container height.
 
 ## Key dependencies
@@ -144,7 +144,7 @@ import type { TagsProps } from '@synerise/ds-tags';
 | `@synerise/ds-result` | "No results" empty-state inside the dropdown |
 | `@synerise/ds-scrollbar` | Scrollable container in `TagsDropdown` |
 | `@synerise/ds-button` | Add-tag trigger button and create-tag button |
-| `@synerise/ds-core` | `useTheme` hook for palette tokens |
+| `@synerise/ds-core` | `useTheme` hook for the `zindex-dropdown` value (`theme.variables`) |
 
 ## Implementation notes
 

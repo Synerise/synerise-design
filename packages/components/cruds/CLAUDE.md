@@ -104,11 +104,11 @@ import { Settings2S } from '@synerise/ds-icon';
 
 ## Styling
 
-Styles live in `Cruds.styles.tsx`. Uses `theme.palette` from `@synerise/ds-core` (requires styled-components `ThemeProvider`):
+Styles live in `Cruds.styles.tsx`. Icon fills use the `--ds-cruds-*` module tokens:
 
-- `.add`, `.edit`, `.duplicate`, `.move`, `.moveup`, `.movedown` — `grey-600` fill, `blue-600` on hover
-- `.delete`, `.remove` — `red-600` fill (no hover change)
-- `inactive` state — `grey-300` fill, `cursor: default`, pointer-events disabled
+- `.add`, `.edit`, `.duplicate`, `.preview`, `.move`, `.moveup`, `.movedown` — `--ds-cruds-default-idle` fill, `--ds-cruds-default-hover` on hover
+- `.delete`, `.remove` — `--ds-cruds-danger-idle` fill (no hover change)
+- `inactive` state — `--ds-cruds-default-disabled` fill, `cursor: default`, pointer-events disabled
 
 The root `CrudsContainer` has `className="ds-cruds"` applied unconditionally.
 

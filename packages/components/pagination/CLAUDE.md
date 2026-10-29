@@ -57,13 +57,15 @@ import Pagination from '@synerise/ds-pagination';
 No CSS import is required (styled-components).
 
 ## Styling
-- All styling lives in `Pagination.styles.ts` (styled-components, theme tokens). Classes are hooks only,
+- All styling lives in `Pagination.styles.ts` (styled-components, `var(--ds-*)` tokens). Classes are hooks only,
   not styling selectors.
-- Page item: 32px, `border-radius: 16px`; active = `grey-700` background, white text; hover = translucent grey.
-- prev/next: `grey-600` ghost icon buttons (`@synerise/ds-button`); disabled = `opacity: 0.4`.
+- Page item: 32px, `border-radius: 16px`; active = `var(--ds-pagination-item-bg-active)` background,
+  `var(--ds-pagination-item-text-color-active)` text; hover = `var(--ds-pagination-item-bg-hover)`.
+- prev/next: `var(--ds-pagination-nav-icon-default)` ghost icon buttons (`@synerise/ds-button`); disabled =
+  `opacity: var(--ds-pagination-nav-disabled-opacity)`.
 - jump-prev/next: `OptionHorizontalM` by default, swap to `DoubleAngleLeftS`/`DoubleAngleRightS` on hover
   (via `.default-icon` / `.hover-icon` toggling inside the styled `Jump`).
-- size changer: `@synerise/ds-select`, `min-width: 140px`; quick jumper: input with `blue-600` focus ring.
+- size changer: `@synerise/ds-select`, `min-width: 140px`; quick jumper: input with `var(--ds-color-focus-base-default)` focus ring.
 - Font family `'Graphik LCG Web', sans-serif`.
 
 ### DOM / class hooks (`ds-pagination-*` only)

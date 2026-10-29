@@ -71,10 +71,10 @@ export function getObjectName(
 
 export function addIconColor(
   iconComponent: ReactNode,
-  color: string,
+  color?: string,
 ): ReactElement {
   let iconElement = iconComponent as ReactElement;
-  if (iconElement && !iconElement?.props?.color) {
+  if (color && iconElement && !iconElement?.props?.color) {
     iconElement = cloneElement(iconElement, { color });
   }
   return iconElement;
@@ -86,6 +86,9 @@ export function getColorByText(
 ): [Color, ColorHue] {
   if (backgroundColor && backgroundColor.indexOf('-') !== -1) {
     return backgroundColor.split('-') as [Color, ColorHue];
+  }
+  if (!text && backgroundColor && backgroundColor !== 'auto') {
+    return [backgroundColor as Color, '100'];
   }
   const autoColor =
     (

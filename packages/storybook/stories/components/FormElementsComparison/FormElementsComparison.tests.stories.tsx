@@ -49,8 +49,9 @@ const noop = (): void => {};
  * `label` prop). The FormField wrapper also matches their layout/margins to the
  * label-prop components so the 16px rhythm stays consistent. State props are
  * only passed to components that support them — the omissions (ItemPicker/
- * TimePicker have no readOnly, TimePicker has no error boolean, DateRangePicker
- * has no error state) are themselves discrepancies worth seeing.
+ * TimePicker have no readOnly, TimePicker has no error boolean) are themselves
+ * discrepancies worth seeing. DateRangePicker's error is applied through its
+ * trigger via `rangePickerInputProps`, not a flat `error` prop.
  */
 const FieldStack = ({ error, readOnly, disabled, populated }: FieldState) => {
   // Autocomplete is controlled, so it needs real state to be typeable.
@@ -191,12 +192,15 @@ const FieldStack = ({ error, readOnly, disabled, populated }: FieldState) => {
         />
       </FormField>
 
-      {/* DateRangePicker has no `label` prop — wrap in FormField for the label. */}
+      {/* DateRangePicker has no `label` prop — wrap in FormField for the label.
+          Its error state is applied through the trigger via `rangePickerInputProps`
+          (a different API than the flat `error`/`errorText` the others use). */}
       <FormField label="Date range picker">
         <DateRangePicker
           value={populated ? ABSOLUTE_RANGE : EMPTY_RANGE}
           texts={TEXTS}
           onApply={noop}
+          rangePickerInputProps={{ error, errorText }}
           readOnly={readOnly}
           disabled={disabled}
         />

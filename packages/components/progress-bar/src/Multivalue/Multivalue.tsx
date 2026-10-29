@@ -32,9 +32,13 @@ const Multivalue = ({
   return (
     <S.Container stackedBars={stackedBars} {...htmlAttributes}>
       {finalValues.map((val, index) => (
-        <Tooltip title={val.tooltip} {...val?.tooltipProps}>
+        <Tooltip
+          // biome-ignore lint/suspicious/noArrayIndexKey: values carry no id; colour and percent may repeat
+          key={`${val.color}-${val.percent}-${index}`}
+          title={val.tooltip}
+          {...val?.tooltipProps}
+        >
           <S.Multivalue
-            key={`${val.color}-${val.percent}-${index}`}
             color={val.color}
             percent={normalizePercent(val.percent)}
             onClick={val.onClick}

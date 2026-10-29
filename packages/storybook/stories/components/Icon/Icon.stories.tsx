@@ -96,7 +96,7 @@ const SEARCH_INPUT_STYLE: React.CSSProperties = {
   maxWidth: 320,
   padding: '8px 12px',
   marginBottom: 16,
-  border: '1px solid #e0e0e0',
+  border: '1px solid var(--ds-color-border-base-default)',
   borderRadius: 4,
   fontSize: 14,
   boxSizing: 'border-box',

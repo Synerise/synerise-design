@@ -12,15 +12,16 @@ import image from '../public/logo_syne.svg';
 // Load code panel addon
 import('../addon-code-panel/manager');
 
+// The manager UI renders outside DSProvider, so it takes resolved light values rather than var().
 const storybookTheme = create({
   base: 'light',
   fontBase: "'Graphik LCG Web', sans-serif",
-  barTextColor: theme.palette['grey-800'],
-  barSelectedColor: theme.palette['blue-600'],
-  barBg: theme.palette['grey-100'],
-  appContentBg: theme.palette.white,
-  colorPrimary: theme.palette['grey-050'],
-  colorSecondary: theme.palette['blue-500'],
+  barTextColor: theme.tokens['--ds-color-text-base-default'],
+  barSelectedColor: theme.tokens['--ds-color-text-brand-default'],
+  barBg: theme.tokens['--ds-color-background-base-muted'],
+  appContentBg: theme.tokens['--ds-color-background-base-default'],
+  colorPrimary: theme.tokens['--ds-color-background-base-subtle'],
+  colorSecondary: theme.tokens['--ds-color-background-brand-solidhover'],
   brandTitle: 'Synerise Design System',
   brandUrl: 'https://synerise.com',
   brandImage: image,
@@ -34,8 +35,8 @@ addons.setConfig({
       badge: {
         text: 'NEW',
         style: {
-          backgroundColor: theme.palette['fern-600'],
-          color: theme.palette['white'],
+          backgroundColor: theme.tokens['--ds-color-custom-fern-600'],
+          color: theme.tokens['--ds-color-text-base-onsolid'],
           borderRadius: '3px',
           padding: '3px 6px',
         },

@@ -3,6 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import FormField, { FormFieldProps } from '@synerise/ds-form-field';
+import { customColors } from '@synerise/ds-tokens/names';
 
 import {
   fixedWrapper400,
@@ -12,7 +13,7 @@ import {
 
 const ChildrenWrapper = styled.div`
   opacity: 0.5;
-  background: ${(props) => props.theme.palette['grey-200']};
+  background: ${customColors.grey['200']};
   line-height: 30px;
 `;
 

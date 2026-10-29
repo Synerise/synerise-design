@@ -161,7 +161,7 @@ Merges i18n defaults (via `react-intl` `useIntl`) with caller-provided `Partial<
 
 ## Styling
 
-`ContextSelector.styles.ts` exports internal building blocks (`ItemsList`, `Title`, `ErrorWrapper`, `Skeleton`, etc.). Uses `@synerise/ds-core` theme palette tokens. No variant/theme prop pattern on the styles themselves — visual variants are controlled by props (`type`, `readOnly`, `addMode`).
+`ContextSelector.styles.ts` exports internal building blocks (`ItemsList`, `Title`, `ErrorWrapper`, `Skeleton`, etc.). Colours come from `var(--ds-*)` tokens (e.g. `--ds-dropdown-bg`, `--ds-color-text-neutral-default`, `--ds-form-error-text-color`). No variant/theme prop pattern on the styles themselves — visual variants are controlled by props (`type`, `readOnly`, `addMode`).
 
 ## Key dependencies
 

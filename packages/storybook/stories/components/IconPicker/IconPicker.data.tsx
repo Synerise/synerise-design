@@ -1,7 +1,6 @@
 import React from 'react';
 
 import Avatar from '@synerise/ds-avatar';
-import { theme } from '@synerise/ds-core';
 import Icon, {
   ArrowDownCircleM,
   ArrowDownM,
@@ -57,7 +56,7 @@ export const PICKER_DATA = [
         item: (
           <Icon
             component={<ArrowDownCircleM />}
-            color={theme.palette['grey-600']}
+            color="var(--ds-color-icon-base-default)"
           />
         ),
       },
@@ -65,141 +64,192 @@ export const PICKER_DATA = [
         item: (
           <Icon
             component={<ArrowLdCircleM />}
-            color={theme.palette['grey-600']}
+            color="var(--ds-color-icon-base-default)"
           />
         ),
       },
       {
         item: (
-          <Icon component={<ArrowLdM />} color={theme.palette['grey-600']} />
+          <Icon
+            component={<ArrowLdM />}
+            color="var(--ds-color-icon-base-default)"
+          />
         ),
       },
       {
         item: (
-          <Icon component={<ArrowDownS />} color={theme.palette['grey-600']} />
+          <Icon
+            component={<ArrowDownS />}
+            color="var(--ds-color-icon-base-default)"
+          />
         ),
       },
       {
         item: (
-          <Icon component={<ArrowDragM />} color={theme.palette['grey-600']} />
+          <Icon
+            component={<ArrowDragM />}
+            color="var(--ds-color-icon-base-default)"
+          />
         ),
       },
       {
         item: (
-          <Icon component={<ArrowDownM />} color={theme.palette['grey-600']} />
+          <Icon
+            component={<ArrowDownM />}
+            color="var(--ds-color-icon-base-default)"
+          />
         ),
       },
       {
         item: (
-          <Icon component={<ArrowLdS />} color={theme.palette['grey-600']} />
+          <Icon
+            component={<ArrowLdS />}
+            color="var(--ds-color-icon-base-default)"
+          />
         ),
       },
       {
         item: (
           <Icon
             component={<ArrowLeftCircleM />}
-            color={theme.palette['grey-600']}
+            color="var(--ds-color-icon-base-default)"
           />
         ),
       },
       {
         item: (
-          <Icon component={<ArrowLuM />} color={theme.palette['grey-600']} />
+          <Icon
+            component={<ArrowLuM />}
+            color="var(--ds-color-icon-base-default)"
+          />
         ),
       },
       {
         item: (
           <Icon
             component={<ArrowLuCircleM />}
-            color={theme.palette['grey-600']}
+            color="var(--ds-color-icon-base-default)"
           />
         ),
       },
       {
         item: (
-          <Icon component={<ArrowLeftS />} color={theme.palette['grey-600']} />
+          <Icon
+            component={<ArrowLeftS />}
+            color="var(--ds-color-icon-base-default)"
+          />
         ),
       },
       {
         item: (
-          <Icon component={<ArrowLeftM />} color={theme.palette['grey-600']} />
+          <Icon
+            component={<ArrowLeftM />}
+            color="var(--ds-color-icon-base-default)"
+          />
         ),
       },
       {
         item: (
           <Icon
             component={<ArrowRdCircleM />}
-            color={theme.palette['grey-600']}
+            color="var(--ds-color-icon-base-default)"
           />
         ),
       },
       {
         item: (
-          <Icon component={<ArrowRdM />} color={theme.palette['grey-600']} />
+          <Icon
+            component={<ArrowRdM />}
+            color="var(--ds-color-icon-base-default)"
+          />
         ),
       },
       {
         item: (
-          <Icon component={<ArrowRdS />} color={theme.palette['grey-600']} />
+          <Icon
+            component={<ArrowRdS />}
+            color="var(--ds-color-icon-base-default)"
+          />
         ),
       },
       {
         item: (
           <Icon
             component={<ArrowRuCircleM />}
-            color={theme.palette['grey-600']}
+            color="var(--ds-color-icon-base-default)"
           />
         ),
       },
       {
         item: (
-          <Icon component={<ArrowLuS />} color={theme.palette['grey-600']} />
+          <Icon
+            component={<ArrowLuS />}
+            color="var(--ds-color-icon-base-default)"
+          />
         ),
       },
       {
         item: (
-          <Icon component={<ArrowRuM />} color={theme.palette['grey-600']} />
+          <Icon
+            component={<ArrowRuM />}
+            color="var(--ds-color-icon-base-default)"
+          />
         ),
       },
       {
         item: (
-          <Icon component={<ArrowRightM />} color={theme.palette['grey-600']} />
+          <Icon
+            component={<ArrowRightM />}
+            color="var(--ds-color-icon-base-default)"
+          />
         ),
       },
       {
         item: (
-          <Icon component={<ArrowRightS />} color={theme.palette['grey-600']} />
+          <Icon
+            component={<ArrowRightS />}
+            color="var(--ds-color-icon-base-default)"
+          />
         ),
       },
       {
         item: (
           <Icon
             component={<ArrowRightCircleM />}
-            color={theme.palette['grey-600']}
+            color="var(--ds-color-icon-base-default)"
           />
         ),
       },
       {
         item: (
-          <Icon component={<ArrowRuS />} color={theme.palette['grey-600']} />
+          <Icon
+            component={<ArrowRuS />}
+            color="var(--ds-color-icon-base-default)"
+          />
         ),
       },
       {
         item: (
-          <Icon component={<ArrowUpS />} color={theme.palette['grey-600']} />
+          <Icon
+            component={<ArrowUpS />}
+            color="var(--ds-color-icon-base-default)"
+          />
         ),
       },
       {
         item: (
           <Icon
             component={<ArrowUpCircleM />}
-            color={theme.palette['grey-600']}
+            color="var(--ds-color-icon-base-default)"
           />
         ),
       },
       {
         item: (
-          <Icon component={<ArrowUpM />} color={theme.palette['grey-600']} />
+          <Icon
+            component={<ArrowUpM />}
+            color="var(--ds-color-icon-base-default)"
+          />
         ),
       },
     ],

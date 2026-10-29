@@ -74,3 +74,23 @@
 body {
   font-family: "Graphik LCG Web", sans-serif !important;
 }
+
+/* Storybook preview canvas — track the DS theme instead of a hardcoded white.
+   The token vars are injected on :root by GlobalTokenStyles (via DSProvider) and
+   flip to dark under [data-ds-theme='dark'], so the canvas follows the Theme toolbar. */
+.sb-main-padded,
+.sb-show-main {
+  background-color: var(--ds-page-bg);
+  /* Pair text with the surface: antd's reset sets a static body colour
+     (grey-600) that never flips with the theme; the class selector beats
+     `body`, so bare text follows the Theme toolbar like the background does.
+     Muted, not default — it is grey-600 in light, so snapshots keep the body colour. */
+  color: var(--ds-color-text-base-muted);
+}
+
+/* Docs-page story previews. Both classes stacked to out-specify addon-docs'
+   emotion rule (single-class, so .sbdocs-preview alone ties and loses). */
+.sbdocs.sbdocs-preview {
+  background-color: var(--ds-page-bg);
+  color: var(--ds-color-text-base-muted);
+}

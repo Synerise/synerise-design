@@ -7,7 +7,7 @@ export const Tr = styled.tr`
   ${commonRowStyles}
   &:hover {
     ${Td} {
-      background: ${(props) => props.theme.palette['grey-050']};
+      background: var(--ds-color-background-base-subtle);
     }
   }
 `;
@@ -20,17 +20,17 @@ export const TBody = styled.tbody`
 // Wrapper row + cell for `expandable.expandedRowRender` content. Spans every
 // visible column so the rendered ReactNode can lay itself out freely.
 export const ExpandedContentRow = styled.tr`
-  background: ${(props) => props.theme.palette['white']};
+  background: var(--ds-color-background-base-default);
 `;
 
 export const ExpandedContentCell = styled.td`
   padding: 0;
-  background: ${(props) => props.theme.palette['grey-050']};
-  border-bottom: 1px solid ${(props) => props.theme.palette['grey-200']};
+  background: var(--ds-color-background-base-subtle);
+  border-bottom: 1px solid var(--ds-color-border-base-default);
   position: relative;
 
   tr:hover & {
-    background: ${(props) => props.theme.palette['grey-100']};
+    background: var(--ds-color-background-base-muted);
   }
 
   &:before {
@@ -39,7 +39,7 @@ export const ExpandedContentCell = styled.td`
     height: 100%;
     left: 0;
     top: 0;
-    background-color: ${(props) => props.theme.palette['grey-600']};
+    background-color: var(--ds-color-background-neutral-solidhover);
     content: '';
   }
 `;

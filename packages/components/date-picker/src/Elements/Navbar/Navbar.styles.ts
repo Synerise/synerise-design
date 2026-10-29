@@ -4,7 +4,7 @@ import Button, { type StyledButton } from '@synerise/ds-button';
 
 export const NavButton: StyledButton = styled(Button)`
   .ds-icon > svg {
-    fill: ${(props) => props.theme.palette['grey-600']};
+    fill: var(--ds-dropdown-nav-icon-default);
   }
 `;
 
@@ -29,7 +29,7 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   padding: 0 24px;
-  border-bottom: 1px solid ${(props) => props.theme.palette['grey-200']};
+  border-bottom: 1px solid var(--ds-color-border-base-default);
   ${ArrowContainer}:first-of-type {
     ${NavButton}, ${ArrowPlaceholder} {
       margin-right: 8px;
@@ -45,12 +45,13 @@ export const Container = styled.div`
 export const Link = styled.span`
   cursor: pointer;
   transition: 0.3s;
+  color: var(--ds-calendar-nav-title-default);
 
   &:hover {
-    color: ${(props) => props.theme.palette['blue-600']};
+    color: var(--ds-calendar-nav-title-hover);
   }
 
   &:active {
-    color: ${(props) => props.theme.palette['blue-600']};
+    color: var(--ds-calendar-nav-title-active);
   }
 `;

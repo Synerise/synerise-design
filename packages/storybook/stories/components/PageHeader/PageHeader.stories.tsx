@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 
 import { ObjectAvatar } from '@synerise/ds-avatar';
 import Button from '@synerise/ds-button';
-import { theme } from '@synerise/ds-core';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, {
   AngleDownS,
@@ -17,6 +16,7 @@ import PageHeader from '@synerise/ds-page-header';
 import Skeleton, { SkeletonAvatar } from '@synerise/ds-skeleton';
 import Stepper from '@synerise/ds-stepper';
 import Tabs from '@synerise/ds-tabs';
+import { customColors } from '@synerise/ds-tokens/names';
 import { useOnClickOutside } from '@synerise/ds-utils';
 
 import {
@@ -216,7 +216,7 @@ export const withDropdown: Story = {
         avatar={
           <ObjectAvatar
             iconComponent={
-              <Icon component={<MailM />} color={theme.palette['red-600']} />
+              <Icon component={<MailM />} color={customColors.red['600']} />
             }
             badgeStatus="active"
           />
@@ -236,7 +236,10 @@ export const withDropdown: Story = {
             <Button>Duplicate</Button>
             <Button mode={'split'} type={'primary'}>
               Edit
-              <Icon component={<AngleDownS />} color={'#ffffff'} />
+              <Icon
+                component={<AngleDownS />}
+                color={'var(--ds-color-icon-base-onsolid)'}
+              />
             </Button>
           </>
         }
@@ -257,7 +260,7 @@ export const withStepper: Story = {
         avatar={
           <ObjectAvatar
             iconComponent={
-              <Icon component={<MailM />} color={theme.palette['red-600']} />
+              <Icon component={<MailM />} color={customColors.red['600']} />
             }
             badgeStatus="active"
           />
@@ -277,6 +280,7 @@ export const withStepper: Story = {
             <Stepper {...args}>
               {steps.map((step: StepData, index: number) => (
                 <Stepper.Step
+                  key={step.stepNumber}
                   {...step}
                   onClick={() => handleStepClick(index)}
                   active={index === activeStep}

@@ -76,7 +76,7 @@ import Stepper from '@synerise/ds-stepper';
 
 ## Styling
 
-`Stepper.styles.ts` and `Step/Step.styles.ts`. All colours come from `theme.palette`. Status colours: `validated` → `red-600`, `warning` → `yellow-600`, `done` → `green-600`, `active` → `grey-700`. Priority order (highest wins visually): `validated > warning > done > active`.
+`Stepper.styles.ts` and `Step/Step.styles.ts`. All colours come from `var(--ds-stepper-step-*)` tokens. Status colours use the `circle-border-<state>` / `circle-content-<state>` / `label-<state>` tokens for `validated` (`-validation`), `warning`, `done` and `active`. Priority order (highest wins visually): `validated > warning > done > active`.
 
 `size='small'` with `orientation='horizontal'`: step labels have `max-width: 0; opacity: 0` (hidden) except for the active step, which reveals to `max-width: 100px`. Useful for compact nav bars.
 

@@ -1,6 +1,6 @@
 # Footer (`@synerise/ds-footer`)
 
-> Minimal semantic `<footer>` wrapper with a `grey-200` top border and 16px vertical padding — designed to hold action buttons or status content at the bottom of a panel or page.
+> Minimal semantic `<footer>` wrapper with a `--ds-color-border-base-default` top border and 16px vertical padding — designed to hold action buttons or status content at the bottom of a panel or page.
 
 ## Package structure
 
@@ -40,7 +40,7 @@ import Button from '@synerise/ds-button';
 
 Single styled-component in `Footer.styles.ts`:
 - `padding: 16px 0`
-- `border-top: 1px solid` using `@synerise/ds-core` `grey-200` token
+- `border-top: 1px solid var(--ds-color-border-base-default)`
 
 ## Implementation notes
 

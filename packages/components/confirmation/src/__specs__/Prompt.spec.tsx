@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { renderWithProvider } from '@synerise/ds-core/testing';
+import { declarationsFor, renderWithProvider } from '@synerise/ds-core/testing';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { Prompt } from '../index';
-import { COLOR_TEST_CASES, PROPS } from './testData';
+import { BUTTON_TYPE_TEST_CASES, PROPS } from './testData';
 
 const TITLE = 'prompt title';
 describe('Prompt component', () => {
@@ -15,17 +15,17 @@ describe('Prompt component', () => {
     expect(await screen.findByText(TITLE)).toBeInTheDocument();
   });
 
-  it.each(COLOR_TEST_CASES)(
-    'Should render correct color',
-    async ({ type, color }) => {
+  it.each(BUTTON_TYPE_TEST_CASES)(
+    'Should render the $buttonType button type for $type',
+    async ({ type, background }) => {
       renderWithProvider(<Prompt {...PROPS} type={type} open />);
 
       expect(
         await screen.findByTestId(PROPS.mainButtonProps['data-testid']),
       ).toBeInTheDocument();
       expect(
-        screen.getByTestId(PROPS.mainButtonProps['data-testid']),
-      ).toHaveStyle({ backgroundColor: color });
+        declarationsFor(screen.getByTestId(PROPS.mainButtonProps['data-testid'])),
+      ).toContain(`background:${background}`);
     },
   );
 

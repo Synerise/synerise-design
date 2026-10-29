@@ -7,7 +7,7 @@ export const TagIcon = styled.div<{ isDisabled?: boolean }>`
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-  ${(props) => props.isDisabled && 'opacity: 0.4;'}
+  ${(props) => props.isDisabled && 'opacity: var(--ds-opacity-disabled);'}
   ${Tag} {
     margin-right: 4px;
   }

@@ -2,7 +2,6 @@ import styled, { css, keyframes } from 'styled-components';
 
 import FormField from '@synerise/ds-form-field';
 import { TextareaWrapper } from '@synerise/ds-input/dist/Textarea/Textarea.styles';
-import { hexToRgba } from '@synerise/ds-utils';
 
 import { MaskedDatePlaceholder } from './Elements/DatePicker/DatePicker.styles';
 
@@ -122,12 +121,12 @@ export const Inactive = styled.div<{
     css`
       &:hover {
         padding: ${getFocusPadding({ hasSuffix: props.isSuffixVisible })};
-        background: ${hexToRgba(props.theme.palette['grey-300'], 0.4)};
+        background: var(--ds-subtle-form-bg-hover);
         ${MainContent} {
           ${props.$mask && `color: transparent;`}
           ${MaskedDatePlaceholder} {
             left: 12px;
-            ${props.$mask && `color: ${props.theme.palette['grey-600']};`}
+            ${props.$mask && `color: var(--ds-color-text-base-muted);`}
           }
         }
         ${Suffix} {
@@ -146,8 +145,8 @@ export const ValueArea = styled.textarea<{ isPlaceholder: boolean }>`
     text-shadow: 0 1px
       ${(props) =>
         props.isPlaceholder
-          ? props.theme.palette['grey-500']
-          : props.theme.palette['grey-600']};
+          ? 'var(--ds-color-text-neutral-default)'
+          : 'var(--ds-color-text-base-muted)'};
 
     width: 100%;
     height: 100%;
@@ -217,8 +216,8 @@ export const Subtle = styled.div<{ $disabled?: boolean; hasError?: boolean }>`
   ${TextareaWrapper}:focus-within {
     ${(props) =>
       props.hasError
-        ? `background-color: ${hexToRgba(props.theme.palette['red-100'], 0.4)};`
-        : `background-color: ${hexToRgba(props.theme.palette['blue-100'], 0.4)};`}
+        ? `background-color: var(--ds-subtle-form-bg-error);`
+        : `background-color: var(--ds-subtle-form-bg-focus);`}
   }
 `;
 

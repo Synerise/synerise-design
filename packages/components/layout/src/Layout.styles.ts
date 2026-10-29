@@ -39,7 +39,7 @@ export const LayoutSubheader = styled.div`
   max-width: 100%;
   top: 0;
   z-index: 1;
-  box-shadow: 0 4px 12px 0 rgba(35, 41, 54, 0.04);
+  box-shadow: var(--ds-shadows-shadow-1);
 `;
 
 export const LayoutBody = styled.div<{ allowOverflow?: boolean }>`
@@ -126,7 +126,8 @@ type SidebarButtonProps = {
 export const SidebarButton = styled.button<SidebarButtonProps>`
   width: 36px;
   height: 44px;
-  background-color: ${(props): string => props.theme.palette['grey-500']};
+  /* A "hover" token at rest: it holds the exact resting colour. */
+  background-color: var(--ds-color-background-base-stronghover);
   align-items: center;
   justify-content: center;
   position: absolute;
@@ -143,9 +144,7 @@ export const SidebarButton = styled.button<SidebarButtonProps>`
   visibility: visible;
   transition: all 0.3s ease;
   z-index: 1;
-  ${(props) =>
-    mediaQuery.to
-      .medium`display: flex; ${props.theme.palette.white} opacity: 1; visibility: visible`};
+  ${mediaQuery.to.medium`display: flex; opacity: 1; visibility: visible`};
 
   ${ArrowIcon} {
     transition: transform 0.3s ease;
@@ -176,7 +175,7 @@ export const SidebarButton = styled.button<SidebarButtonProps>`
       left: ${!props.right ? 'auto' : '-4px'};
       ${mediaQuery.to.medium`width: 44px;`};
       ${mediaQuery.to
-        .medium`background-color: ${props.theme.palette['grey-600']};`};
+        .medium`background-color: var(--ds-color-background-neutral-solidhover);`}; /* hover token at rest: exact resting colour */
       ${ArrowIcon}${ArrowIcon} {
         transform: rotateZ(180deg);
         ${mediaQuery.to.medium`display: none;`};
@@ -205,9 +204,9 @@ export const LayoutSidebar = styled.div<LayoutSidebarProps>`
   z-index: 10;
   overflow-y: auto;
   overflow-x: hidden;
-  background-color: #fff;
+  background-color: var(--ds-color-background-base-default);
   height: 100%;
-  box-shadow: 0 4px 12px 0 rgba(35, 41, 54, 0.04);
+  box-shadow: var(--ds-shadows-shadow-1);
   width: ${(props): string => `${props.openedWidth}px`};
   max-width: 100%;
 
@@ -263,7 +262,7 @@ export const LayoutSidebarWrapper = styled.div<LayoutSidebarWrapperProps>`
     `};
   &:hover {
     ${SidebarButton} {
-      background-color: ${(props): string => props.theme.palette['grey-600']};
+      background-color: var(--ds-color-background-neutral-solidhover);
       left: ${(props): string => (props.right ? '-32px' : 'auto')};
       right: ${(props): string => (props.right ? 'auto' : '-32px')};
       ${(props) => mediaQuery.to.medium`${props.right && props.opened && 'left: -44px'}`};

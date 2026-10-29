@@ -57,6 +57,9 @@ const Avatar = ({
         hasTooltip={!!hasTooltip}
         backgroundColor={backgroundColor}
         backgroundColorHue={backgroundColorHue}
+        $iconTokens={
+          !!iconElement && (!backgroundColor || backgroundColor === 'auto')
+        }
         disabled={disabled}
         size={size}
         src={src !== '' ? src : undefined}

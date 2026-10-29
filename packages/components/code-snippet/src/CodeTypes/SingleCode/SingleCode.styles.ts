@@ -17,12 +17,12 @@ export const ContentIconWrapper = styled.div`
 export const StyledCopyIcon = styled(CopyIcon)`
   && {
     cursor: pointer;
-    background-color: ${(props): string => props.theme.palette['grey-100']};
-    color: ${(props): string => props.theme.palette['grey-400']};
+    background-color: var(--ds-code-snippet-copy-bg);
+    color: var(--ds-code-snippet-copy-icon);
   }
 
   &:hover {
-    color: ${(props): string => props.theme.palette['blue-600']};
+    color: var(--ds-code-snippet-copy-iconhover);
   }
 `;
 
@@ -31,7 +31,7 @@ export const CodeSnippetWrapperSingle = styled.div<{
 }>`
   & {
     height: 100%;
-    background-color: ${(props): string => props.theme.palette['grey-100']};
+    background-color: var(--ds-code-snippet-surface-bg);
     border-radius: 3px;
     padding: 12px 8px 0 12px;
 
@@ -55,7 +55,7 @@ export const BlockCodeWrapperSingle = styled.code<{
     font-family: 'IBM Plex Mono Regular', monospace;
     font-size: ${(props): string => `${props.fontSize || FONT_SIZE_DEFAULT}px`};
     line-height: ${LINE_HEIGHT_DEFAULT}px;
-    color: ${(props): string => props.theme.palette[`grey-600`]};
+    color: var(--ds-code-snippet-surface-text);
     ${(props): false | string =>
       !!props.fontSize &&
       `

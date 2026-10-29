@@ -9,11 +9,7 @@ import React, {
 } from 'react';
 import { useIntl } from 'react-intl';
 
-import {
-  getDefaultDataTimeOptions,
-  useDataFormat,
-  useTheme,
-} from '@synerise/ds-core';
+import { getDefaultDataTimeOptions, useDataFormat } from '@synerise/ds-core';
 import Icon, { CalendarM, Close3S } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 
@@ -43,7 +39,6 @@ const PickerInputBase = <ValueType extends Date | string = Date>(
 ) => {
   const { formatValue } = useDataFormat();
   const intl = useIntl();
-  const theme = useTheme();
 
   const [hovered, setHovered] = useState(false);
 
@@ -124,7 +119,7 @@ const PickerInputBase = <ValueType extends Date | string = Date>(
         </S.ClearIconWrapper>
       ) : (
         <S.DefaultIconWrapper>
-          <Icon component={<CalendarM />} color={theme.palette['grey-400']} />
+          <Icon component={<CalendarM />} />
         </S.DefaultIconWrapper>
       ),
     [
@@ -133,7 +128,6 @@ const PickerInputBase = <ValueType extends Date | string = Date>(
       allowClear,
       readOnly,
       value,
-      theme,
       clearTooltip,
       handleIconClick,
     ],

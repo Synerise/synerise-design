@@ -33,7 +33,7 @@ export type { SectionMessageProps, SectionType, CustomColorType };
 | `description` | `ReactNode` | — | Regular-weight body text rendered below the message |
 | `icon` | `ReactNode` | type-derived icon | Overrides the automatic icon for the given type |
 | `customIcon` | `ReactElement` | — | Renders the element directly (bypasses `<Icon>` wrapper); takes precedence over `icon` |
-| `customColor` | `CustomColorType` | — | Overrides the background and border colours using the palette |
+| `customColor` | `CustomColorType` | — | Overrides the background and border colours via `resolveCustomColor` (`--ds-color-custom-*` tokens) |
 | `customColorIcon` | `CustomColorType` | — | Overrides the icon and top-border colour |
 | `showMoreLabel` | `ReactNode` | — | Label for the "show more" link; only rendered when `onShowMore` is also provided |
 | `onShowMore` | `() => void` | — | Click handler for the "show more" link; requires `showMoreLabel` |
@@ -87,19 +87,25 @@ import SectionMessage from '@synerise/ds-section-message';
 
 ## Styling
 
-All colours are derived from the design-system theme palette using the `type` prop:
+`AlertMessage` and `AlertDescription` use the shared `message` module for every type: `var(--ds-message-text-title)` and `var(--ds-message-text-description)`.
 
-| `type` | Background | Border | Icon / top-border |
-|--------|-----------|--------|-------------------|
-| `positive` | `green-050` | `green-200` | `green-600` |
-| `negative` | `red-050` | `red-200` | `red-600` |
-| `notice` | `yellow-050` | `yellow-200` | `yellow-600` |
-| `neutral` | `grey-050` | `grey-200` | `grey-600` |
-| `supply` | `violet-050` | `violet-200` | `violet-600` |
-| `service` | `purple-050` | `purple-200` | `purple-600` |
-| `entity` | `cyan-050` | `cyan-200` | `cyan-600` |
+All other colours come from `var(--ds-section-message-variant-<variant>-{bg,border,bordertop,icon})` tokens (`SectionMessage.utils.tsx`), with `type` mapped to a token variant:
 
-When `customColor` / `customColorIcon` are set, they use the same palette pattern (`<color>-050`, `<color>-200`, `<color>-600`) and fully override the type-derived values.
+| `type` | Token variant |
+|--------|---------------|
+| `positive` | `success` |
+| `negative` | `error` |
+| `notice` | `warning` |
+| `neutral` | `informative` |
+| `supply` | `supply` |
+| `service` | `service` |
+| `entity` | `entity` |
+
+An unknown `type` (untyped consumer data) falls back to the `informative` variant, as `neutral` does.
+
+When `customColor` / `customColorIcon` are set, they go through `resolveCustomColor` (`@synerise/ds-utils`) to the `--ds-color-custom-*` tokens (background shade `50`, border `200`, icon/top-border `600`) and fully override the type-derived values.
+
+Links inside `description` take the description colour and are underlined in every state, like the `withLink` slot, so the global `a` colours from ds-core's reset do not apply.
 
 The component has a `border-radius: 2px` and a thicker `border-top: 2px` that carries the accent colour.
 

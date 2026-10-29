@@ -168,7 +168,7 @@ Merges the user-provided `texts` (any `DeepPartial<FactorsTexts>`) with react-in
 
 ## Styling
 
-Styles are minimal — the outer `Group` wrapper uses `@synerise/ds-input` group primitives. Individual factor value components each have their own styles files. All use `@synerise/ds-core` theme tokens; no hardcoded colours.
+Styles are minimal — the outer `Group` wrapper uses `@synerise/ds-input` group primitives. Individual factor value components each have their own styles files. All use `var(--ds-*)` tokens; no hardcoded colours.
 
 ## Key dependencies
 

@@ -32,7 +32,7 @@ export const NotFound = styled.div`
   align-items: center;
   justify-content: center;
   padding: 8px 12px;
-  color: ${({ theme }) => theme.palette['grey-600']};
+  color: var(--ds-dropdown-text-additional);
   font-weight: normal;
 `;
 

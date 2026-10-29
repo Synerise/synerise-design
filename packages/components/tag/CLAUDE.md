@@ -30,8 +30,8 @@ export { useDefaultTexts } from './hooks/useDefaultTexts';
 |------|------|---------|-------------|
 | `id` | `string \| number` | — | Used as the argument passed to `onRemove`; also sets `data-testid="tag-{id}"` (falls back to `"tag"` when absent) |
 | `name` | `string` | — | Display text of the tag, rendered inside a `<span>` with text-overflow ellipsis |
-| `color` | `string` | — | Background color for non-status shapes; sets close-icon color via `getColorText` |
-| `textColor` | `string` | — | Overrides computed text color for any shape |
+| `color` | `string` | — | Background color for non-status shapes. Unset → grey variant tokens for background and text |
+| `textColor` | `string` | — | Text color; on default/single-character/medium shapes it applies only when `color` is set (else the grey variant text token wins) |
 | `shape` | `TagShape` | `TagShape.DEFAULT_SQUARE` (see note) | Controls size, border-radius, and status styling |
 | `image` | `string` | — | `src` for an `<img>` rendered before content; only shown for `DEFAULT_ROUND`/`DEFAULT_SQUARE` shapes |
 | `removable` | `boolean` | — | Shows remove button on hover; only functional for `DEFAULT_ROUND` and `DEFAULT_SQUARE` |
@@ -41,8 +41,8 @@ export { useDefaultTexts } from './hooks/useDefaultTexts';
 | `prefixel` | `ReactNode` | — | Leading slot; strings/numbers get badge-style addonStyles wrapper, nodes get plain wrapper |
 | `suffixel` | `ReactNode` | — | Trailing slot; hidden on remove-button hover; strings/numbers get addonStyles wrapper |
 | `texts` | `Partial<TagTexts>` | — | Override any i18n string (see `TagTexts`) |
-| `asPill` | `boolean` | — | Disables hover brightness filter (cursor stays default) |
-| `dashed` | `boolean` | — | Passed to styled component; intended for dashed-border variant (no built-in CSS rule in current styles) |
+| `asPill` | `boolean` | — | Disables the hover effect (cursor stays default) |
+| `dashed` | `boolean` | — | **@deprecated** — no-op on `Tag` (no CSS rule; filtered from the DOM). The dashed-border status variant is applied by `ds-status`'s `styled(Tag)` wrapper, not `Tag`. |
 | `tooltipProps` | `TooltipProps` | — | Wraps the entire rendered tag in `<Tooltip>` when provided |
 | `className` | `string` | — | Appended to the `ds-tag` className on the root element |
 | `ref` | `React.Ref<HTMLDivElement>` | — | Forwarded to the root `<div>` |
@@ -126,19 +126,20 @@ import Tag, { TagShape } from '@synerise/ds-tag';
 ## Styling
 
 - Uses `styled-components` throughout; all styles are in `Tag.styles.ts`.
-- Background is rendered via a `::before` pseudo-element (non-status shapes), with `filter: brightness()` applied on hover.
-- `getColorText(theme, color)` is exported from `Tag.styles` and used by stories and the remove-icon to pick white vs `grey-600` depending on whether `color` equals `theme.palette['grey-200']`.
-- When `asPill` is `true`, the hover brightness filter is suppressed and cursor stays `default`.
+- Background is rendered via a `::before` pseudo-element (non-status shapes). On hover, a tag without `color` (grey variant, not a small pill shape) switches to `--ds-tag-variant-gray-bg-hover`; a tag with a custom `color` and the small pill shapes get `filter: brightness()` instead.
+- `getColorText(color, textColor, theme?)` is exported from `Tag.styles` (stories deep-import it). No `color` → `--ds-tag-variant-gray-text`; `color` set → `textColor`, else `--ds-tag-variant-color-text`, except on a light-grey `color` (the grey-200 custom colour, or its hex via `theme`) → `--ds-color-text-base-muted`. The background pairs with it: `color`, else `--ds-tag-variant-gray-bg-default`.
+- When `asPill` is `true`, the hover effect is suppressed and cursor stays `default`.
 - Remove button is hidden via `display: none` by default and set to `display: inline-block` on `:hover` via the isActionable CSS block.
 - Suffix is hidden (`display: none`) while the remove button is visible on hover.
-- `dashed` prop is forwarded to the styled component but no CSS rule currently uses it in `Tag.styles.ts` — it is available for downstream extension.
+- **`dashed` is deprecated and a no-op on `Tag`** — it has no CSS rule in `Tag.styles.ts` and is filtered from the DOM via `shouldForwardProp`. The dashed-border status variant is applied by `ds-status`'s `styled(Tag)` wrapper (`Status.styles.ts`), which reads its own `dashed` prop.
+- **DOM prop leak guard** — `Tag`/`Content`/`PrefixWrapper`/`DefaultPrefixWrapper` use `.withConfig({ shouldForwardProp })` (denylist `dsProps`) so styling props (`shape`, `color`, `iconHover`, …) don't reach the DOM element.
 
 ## Key dependencies
 
 - `@synerise/ds-icon` — close icon (`CloseS`) and custom prefix icons
 - `@synerise/ds-tooltip` — delete tooltip on remove button and optional whole-tag tooltip
-- `@synerise/ds-core` — `useTheme()` for palette access, `ThemeProps` typing
-- `@synerise/ds-utils` — `WithHTMLAttributes` wrapper type
+- `@synerise/ds-core` — `useTheme()` for the `zindex-tooltip` value (`theme.variables`), `ThemeProps` typing
+- `@synerise/ds-utils` — `WithHTMLAttributes` wrapper type, `resolveCustomColor` for the light-grey text check
 - `react-intl` — i18n for default texts (requires `IntlProvider` in the tree)
 
 ## Implementation notes

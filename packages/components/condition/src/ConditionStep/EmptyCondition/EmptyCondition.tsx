@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { theme } from '@synerise/ds-core';
 import Icon, { ClickM } from '@synerise/ds-icon';
 
 import * as S from './emptyCondition.styles';
@@ -16,7 +15,7 @@ export const EmptyCondition = ({
 }: EmptyConditionProps) => {
   return (
     <S.EmptyConditionWrapper>
-      <Icon component={icon} color={theme.palette['grey-500']} />
+      <Icon component={icon} color="var(--ds-color-icon-base-subtle)" />
       <S.LabelWrapper size="small">{label}</S.LabelWrapper>
     </S.EmptyConditionWrapper>
   );

@@ -1,10 +1,6 @@
 import React, { type MouseEvent, useCallback, useMemo, useState } from 'react';
 
-import {
-  getDefaultDataTimeOptions,
-  useDataFormat,
-  useTheme,
-} from '@synerise/ds-core';
+import { getDefaultDataTimeOptions, useDataFormat } from '@synerise/ds-core';
 import FormField from '@synerise/ds-form-field';
 import Icon, { ArrowRightS, CalendarM, Close3S } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
@@ -49,7 +45,6 @@ const RangePickerInput = ({
   preferRelativeDesc = false,
   timeZone,
 }: RangePickerInputProps) => {
-  const theme = useTheme();
   const { formatValue } = useDataFormat();
 
   const dateRangeValue = value
@@ -110,7 +105,7 @@ const RangePickerInput = ({
 
   const renderEndDate = useCallback(() => {
     const isEndDateDefined = dateRangeValue && dateRangeValue.to;
-    const isFromDateDefined = dateRangeValue && dateRangeValue.from;
+    const isFromDateDefined = dateRangeValue?.from;
 
     const text =
       dateRangeValue && isDateLimit(dateRangeValue.to) ? (
@@ -121,13 +116,17 @@ const RangePickerInput = ({
     return (
       <S.DateWrapper
         highlight={
-          active && !!isFromDateDefined && !isEndDateDefined && highlight
+          active &&
+          !disabled &&
+          !!isFromDateDefined &&
+          !isEndDateDefined &&
+          highlight
         }
       >
         {text}
       </S.DateWrapper>
     );
-  }, [dateRangeValue, getText, active, texts, highlight]);
+  }, [dateRangeValue, getText, active, disabled, texts, highlight]);
 
   const placeholder = useMemo(() => {
     if (isLifetime(value as typeof dateRangeValue)) {
@@ -139,7 +138,10 @@ const RangePickerInput = ({
           dateRangeValue?.translationKey &&
           `${texts?.[dateRangeValue.translationKey as keyof Texts] || dateRangeValue?.translationKey} (`}
         {renderFromDate()}
-        <Icon component={<ArrowRightS />} color={theme.palette['grey-400']} />
+        <Icon
+          component={<ArrowRightS />}
+          color="var(--ds-color-icon-base-disabled)"
+        />
         {renderEndDate()}
         {preferRelativeDesc && dateRangeValue?.translationKey && value && ')'}
       </>
@@ -150,7 +152,6 @@ const RangePickerInput = ({
     dateRangeValue?.translationKey,
     texts,
     renderFromDate,
-    theme.palette,
     renderEndDate,
   ]);
 
@@ -193,10 +194,7 @@ const RangePickerInput = ({
               </Tooltip>
             ) : (
               <S.DefaultIconWrapper>
-                <Icon
-                  component={<CalendarM />}
-                  color={theme.palette['grey-600']}
-                />
+                <Icon component={<CalendarM />} />
               </S.DefaultIconWrapper>
             )}
           </S.RangeInputWrapper>

@@ -8,6 +8,8 @@ export const STATUSES = [
   'warning',
 ] as const;
 
+export const VARIANTS = ['solid', 'solid-ring', 'outline'] as const;
+
 export const AVATAR_ARG_TYPES = {
   size: {
     defaultValue: 'default',

@@ -2,38 +2,38 @@ import styled from 'styled-components';
 
 export const Highlight = styled.div`
   .hljs {
-    color: ${(props): string => props.theme.palette['grey-700']};
+    color: var(--ds-code-snippet-syntax-base);
   }
 
   .hljs-attr,
   .hljs-template-tag {
-    color: ${(props): string => props.theme.palette['blue-600']};
+    color: var(--ds-code-snippet-syntax-keyword);
   }
 
   .hljs-comment,
   .hljs-doctag,
   .hljs-quote {
-    color: ${(props): string => props.theme.palette['cyan-600']};
+    color: var(--ds-code-snippet-syntax-comment);
   }
 
   .hljs-params {
-    color: ${(props): string => props.theme.palette['grey-600']};
+    color: var(--ds-code-snippet-syntax-params);
   }
 
   .hljs-regexp {
-    color: ${(props): string => props.theme.palette['violet-600']};
+    color: var(--ds-code-snippet-syntax-regexp);
   }
 
   .hljs-tag,
   .hljs-selector-id,
   .hljs-number,
   .hljs-literal {
-    color: ${(props): string => props.theme.palette['red-600']};
+    color: var(--ds-code-snippet-syntax-literal);
   }
 
   .hljs-meta,
   .hljs-meta .hljs-keyword {
-    color: ${(props): string => props.theme.palette['blue-600']};
+    color: var(--ds-code-snippet-syntax-keyword);
   }
 
   /* opt-out */
@@ -50,13 +50,13 @@ export const Highlight = styled.div`
   .hljs-selector-pseudo,
   .hljs-link,
   .hljs-keyword {
-    color: ${(props): string => props.theme.palette['blue-600']};
+    color: var(--ds-code-snippet-syntax-keyword);
   }
 
   .hljs-built_in,
   .hljs-title,
   .hljs-deletion {
-    color: ${(props): string => props.theme.palette['orange-600']};
+    color: var(--ds-code-snippet-syntax-builtin);
   }
 
   .hljs-type,
@@ -65,7 +65,7 @@ export const Highlight = styled.div`
   .hljs-name,
   .hljs-property,
   .hljs-attribute {
-    color: ${(props): string => props.theme.palette['yellow-600']};
+    color: var(--ds-code-snippet-syntax-type);
   }
 
   .hljs-meta .hljs-string,
@@ -74,11 +74,11 @@ export const Highlight = styled.div`
   .hljs-symbol,
   .hljs-bullet,
   .hljs-addition {
-    color: ${(props): string => props.theme.palette['green-600']};
+    color: var(--ds-code-snippet-syntax-string);
   }
 
   .hljs-selector-tag {
-    color: ${(props): string => props.theme.palette['purple-600']};
+    color: var(--ds-code-snippet-syntax-selectortag);
   }
 
   .hljs-emphasis {

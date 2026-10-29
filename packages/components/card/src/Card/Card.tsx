@@ -1,12 +1,32 @@
-import React, { useState } from 'react';
+import React, {
+  cloneElement,
+  isValidElement,
+  type ReactNode,
+  useState,
+} from 'react';
 import AnimateHeight from 'react-animate-height';
 import VisibilitySensor from 'react-visibility-sensor';
 
-import Icon from '@synerise/ds-icon';
+import Icon, { type IconProps } from '@synerise/ds-icon';
 
+import CardBadge from '../CardBadge/CardBadge';
 import { ANIMATION_DURATION } from '../constants';
 import * as S from './Card.styles';
 import type { CardProps } from './Card.types';
+
+// A CardBadge or an Icon element already renders its own Icon, so wrapping it again nests ds-icon in
+// ds-icon. Only a bare icon component (e.g. <CheckS />) is wrapped.
+const renderHeaderIcon = (icon: ReactNode, iconColor?: string) => {
+  if (isValidElement(icon) && icon.type === CardBadge) {
+    return icon;
+  }
+  if (isValidElement<IconProps>(icon) && icon.type === Icon) {
+    return iconColor && !icon.props.color
+      ? cloneElement(icon, { color: iconColor })
+      : icon;
+  }
+  return <Icon component={icon} color={iconColor} />;
+};
 
 const Card = ({
   children,
@@ -76,7 +96,7 @@ const Card = ({
         >
           {(icon && (
             <S.IconContainer description={description} compact={compactHeader}>
-              <Icon component={icon} color={iconColor} />
+              {renderHeaderIcon(icon, iconColor)}
             </S.IconContainer>
           )) ||
             avatar ||

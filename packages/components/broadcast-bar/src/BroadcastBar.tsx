@@ -40,7 +40,7 @@ const BroadcastBar = ({
             <Icon component={renderIcon} />
           </S.IconWrapper>
           {renderMessage}
-          <S.ButtonWrapper type={type}>{button}</S.ButtonWrapper>
+          <S.ButtonWrapper>{button}</S.ButtonWrapper>
         </S.AllContent>
         {withClose && (
           <S.ButtonCloseWrapper>

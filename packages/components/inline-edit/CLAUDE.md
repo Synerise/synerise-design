@@ -33,7 +33,7 @@ Functional component. Not forwardRef.
 | `input` | `InputProps` | — | **Required.** Value, event handlers, and native input attributes |
 | `size` | `'large' \| 'normal' \| 'small'` | `'normal'` | Controls font size via `@synerise/ds-typography` macros |
 | `disabled` | `boolean` | `undefined` | Disables input and hides the icon via `pointer-events: none` |
-| `error` | `boolean` | `undefined` | Switches underline/text colour to `red-600` |
+| `error` | `boolean` | `undefined` | Switches underline/text colour to the error tokens (`--ds-inline-edit-text-error`, `--ds-color-text-danger-default` dots) |
 | `hideIcon` | `boolean` | `undefined` | Hides the edit icon entirely |
 | `customIcon` | `ReactNode` | `undefined` | Replaces the default `EditS` icon |
 | `tooltipTitle` | `string` | `undefined` | Tooltip shown on hover over the icon |
@@ -72,7 +72,7 @@ Generic component: `InlineSelect<ItemType extends ListItemProps>`. Functional, n
 | `size` | `'normal' \| 'small'` | `'normal'` | Font size via typography macros (no `'large'` unlike `InlineEdit`) |
 | `expanded` | `boolean` | `undefined` | Sets initial open state of the dropdown |
 | `disabled` | `boolean` | `undefined` | Disables interaction; adds 0.4 opacity |
-| `error` | `boolean` | `undefined` | Switches underline/text colour to `red-600` |
+| `error` | `boolean` | `undefined` | Switches underline/text colour to `--ds-inline-select-text-error` |
 | `hideIcon` | `boolean` | `undefined` | Hides the `AngleDownS` chevron icon |
 | `dropdownProps` | `Partial<Omit<DropdownSharedProps, 'open' \| 'onOpenChange' \| 'children' \| 'overlay' \| 'disabled'>>` | `{}` | Extra props forwarded to `@synerise/ds-dropdown` |
 | `dropdownOverlayStyle` | `CSSProperties` | `{}` | Style applied to the dropdown overlay wrapper |
@@ -125,13 +125,13 @@ import InlineEdit, { InlineSelect } from '@synerise/ds-inline-edit';
 
 **`InlineEdit`** styles in `InlineEdit.styles.ts`:
 - No visible border; uses a CSS dashed `background-image` gradient as an underline
-- On hover/focus: `grey-400` dots underline (or `red-600` if `error`)
-- On focus: `blue-600` dots underline (or `red-600` if `error`)
+- On hover/focus: `--ds-color-icon-base-muted` dots underline (or `--ds-color-text-danger-default` if `error`); text is `--ds-inline-edit-text-default` / `-error`
+- On focus: `--ds-color-focus-base-default` dots underline (or `--ds-color-text-danger-default` if `error`)
 - Font size driven by `size` prop: `large` → `macro.h600`, `normal` → `macro.h400`, `small` → `macro.small`
 - Disabled: `pointer-events: none` + icon hidden via `display: none`
 
 **`InlineSelect`** styles in `InlineSelect.style.ts`:
-- Text colour rendered via CSS `text-shadow` trick: input `color: transparent`, shadow is `blue-600`/`red-600`
+- Text colour rendered via CSS `text-shadow` trick: input `color: transparent`, shadow is `--ds-inline-select-text-default` / `-hover` / `-selected` per state, or `--ds-inline-select-text-error` if `error`
 - Icon animates 180° rotation when dropdown is open
 - Disabled: 0.4 opacity + `pointer-events: none`
 - Has a `// todo: set type` comment next to font size for `normal`/`small` sizes

@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { resolveCustomColor } from '@synerise/ds-utils';
+
 const INDENT_SIZE = 42;
 
 const LEVEL_COLORS = [
@@ -18,6 +20,17 @@ const getColorHue = (active: boolean, level: number): string => {
     return '500';
   }
   return active ? '600' : '200';
+};
+
+// Reversible per-level bar colour: the ad-hoc LEVEL_COLORS hue + shade is mapped through the shared
+// `resolveCustomColor` helper to the `--ds-color-custom-<hue>-<shade>` token, so nesting-depth
+// colours flip with the theme. A hue/shade it can't resolve drops the bar colour, as an unknown key did before.
+const levelBarColor = (level: number, active: boolean): string | undefined => {
+  const key =
+    level >= 0
+      ? `${LEVEL_COLORS[level % LEVEL_COLORS.length]}-${getColorHue(active, level)}`
+      : 'grey-600';
+  return resolveCustomColor(key);
 };
 
 export const IndentsContainer = styled.div<{ $depth: number }>`
@@ -40,12 +53,8 @@ export const IndentBar = styled.span<{ $level: number; $active: boolean }>`
     left: 0;
     height: 100%;
     width: 2px;
-    background-color: ${({ $level, $active, theme }) =>
-      $level >= 0
-        ? theme.palette[
-            `${LEVEL_COLORS[$level % LEVEL_COLORS.length]}-${getColorHue($active, $level)}`
-          ]
-        : theme.palette['grey-600']};
+    background-color: ${({ $level, $active }) =>
+      levelBarColor($level, $active)};
   }
 `;
 

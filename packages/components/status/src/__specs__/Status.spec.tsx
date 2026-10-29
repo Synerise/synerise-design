@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { renderWithProvider } from '@synerise/ds-core/testing';
+import { declarationsFor, renderWithProvider } from '@synerise/ds-core/testing';
 import { fireEvent } from '@testing-library/react';
 
 import Status from '../Status';
@@ -37,3 +37,42 @@ describe('Status', () => {
     expect(onClick).toHaveBeenCalled();
   });
 });
+
+describe('Status tokens', () => {
+  it('falls back to the neutral tokens for an unknown type', () => {
+    const { container } = renderWithProvider(
+      // @ts-expect-error an invalid type from untyped consumer data
+      <Status type="not-a-status" label="Status" />,
+    );
+
+    const status = container.querySelector('.ds-status');
+    const declarations = declarationsFor(status);
+    expect(declarations).toContain('--ds-status-pill-variant-neutral-text');
+    expect(declarations).toContain(
+      '--ds-status-pill-variant-neutral-border-solid',
+    );
+    expect(declarationsFor(status, { state: 'any' })).not.toContain('undefined');
+  });
+
+  it('uses the dashed neutral border for an unknown dashed type', () => {
+    const { container } = renderWithProvider(
+      // @ts-expect-error an invalid type from untyped consumer data
+      <Status type="not-a-status" label="Status" dashed />,
+    );
+
+    expect(declarationsFor(container.querySelector('.ds-status'))).toContain(
+      '--ds-status-pill-variant-neutral-border-dashed',
+    );
+  });
+
+  it('keeps the mapped tokens for a known type', () => {
+    const { container } = renderWithProvider(
+      <Status type="danger" label="Status" />,
+    );
+
+    expect(declarationsFor(container.querySelector('.ds-status'))).toContain(
+      '--ds-status-pill-variant-error-text',
+    );
+  });
+});
+

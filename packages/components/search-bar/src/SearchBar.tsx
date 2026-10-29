@@ -10,7 +10,6 @@ import React, {
 } from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { useTheme } from '@synerise/ds-core';
 import Icon, { Close3M } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 
@@ -47,7 +46,6 @@ const SearchBar = forwardRef<HTMLDivElement, SearchBarProps>(
     },
     forwardedRef,
   ) => {
-    const theme = useTheme();
     const [isFocused, setFocus] = useState(false);
     const [input, setInput] = useState<HTMLInputElement | null>();
     const [valuePrefixWidth, setValuePrefixWidth] = useState<number>(0);
@@ -113,7 +111,6 @@ const SearchBar = forwardRef<HTMLDivElement, SearchBarProps>(
                   <Close3M />
                 </Tooltip>
               }
-              color={theme.palette['grey-500']}
               size={CLEAR_ICON_SIZE}
             />
           </S.ClearInputWrapper>

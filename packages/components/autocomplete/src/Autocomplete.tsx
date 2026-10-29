@@ -282,11 +282,11 @@ const Autocomplete = ({
       icon2
     );
     return (
-      <S.IconWrapper onClick={handleIconsClick}>
+      <S.IconWrapper onClick={handleIconsClick} $disabled={disabled}>
         {icon1WithTooltip} {icon2WithTooltip}
       </S.IconWrapper>
     );
-  }, [handleIconsClick, icon1, icon2, icon1Tooltip, icon2Tooltip]);
+  }, [handleIconsClick, icon1, icon2, icon1Tooltip, icon2Tooltip, disabled]);
 
   const showClear = !!allowClear && !isDisabled && currentValue !== '';
 

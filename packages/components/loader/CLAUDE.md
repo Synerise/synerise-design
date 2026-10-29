@@ -22,7 +22,7 @@ src/
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `size` | `'S' \| 'M' \| 'L'` | `'M'` | Spinner diameter: S=12px, M=20px, L=40px |
-| `color` | `'grey' \| 'blue' \| 'red' \| 'green' \| 'yellow' \| 'pink' \| 'mars' \| 'orange' \| 'fern' \| 'cyan' \| 'purple' \| 'violet' \| string` | `'grey'` | Spinner border color — resolved via `theme.palette[\`${color}-600\`]` |
+| `color` | `'grey' \| 'blue' \| 'red' \| 'green' \| 'yellow' \| 'pink' \| 'mars' \| 'orange' \| 'fern' \| 'cyan' \| 'purple' \| 'violet' \| string` | `'grey'` | Spinner border color — resolved via `resolveCustomColor` to `--ds-color-custom-<color>-600` (a `'<color>-<shade>'` key picks that shade) |
 | `label` | `ReactNode` | — | Text rendered below/right of the spinner |
 | `labelPosition` | `'right' \| 'bottom'` | `'right'` | Controls flex-direction: `right` → row, `bottom` → column |
 | `text` | `ReactNode` | — | Bold header rendered between spinner and label (only shown when truthy) |
@@ -73,7 +73,7 @@ import Loader from '@synerise/ds-loader';
 ## Styling
 
 - Spinner is a CSS `border-radius: 50%` div with a `rotate(0deg → 720deg)` keyframe animation (2s linear infinite).
-- Color resolves through the DS theme: `theme.palette[\`${color}-600\`]`. An arbitrary CSS color string also works because styled-components evaluates it as-is if no matching palette key exists.
+- Color resolves through ds-utils `resolveCustomColor(color, 'var(--ds-color-icon-neutral-default)', { defaultShade: '600' })` to the `--ds-color-custom-<color>-<shade>` token. It is called without `passthroughResolved`, so any value that is not a custom-colour name — including a hex, `rgb()` or `var()` string — falls back to `var(--ds-color-icon-neutral-default)` (an unknown name that is also not a CSS colour additionally logs a one-time `console.warn`).
 - `size="L"` adds 12px margin around the spinner; S/M use 8px (`Wrapper`).
 - `TextWrapper` font size: S size → 11px, M/L → 13px.
 - `mode="absolute"` sets `position: absolute; top: 50%; left: 50%` — **no `transform: translate(-50%, -50%)`**, so the loader is not truly centered unless a transform is added by the consumer.
@@ -82,7 +82,8 @@ import Loader from '@synerise/ds-loader';
 ## Key dependencies
 
 - `styled-components` ^5 (peer)
-- `@synerise/ds-core` (peer) — theme tokens, plus `renderWithProvider` from its `/testing` subpath in tests
+- `@synerise/ds-core` (peer) — `renderWithProvider` from its `/testing` subpath in tests (no runtime import)
+- `@synerise/ds-utils` — `resolveCustomColor` for the spinner `color`
 - No Ant Design dependency
 
 ## Implementation notes

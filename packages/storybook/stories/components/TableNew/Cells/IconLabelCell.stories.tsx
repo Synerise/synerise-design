@@ -33,7 +33,7 @@ export const Default: Story = {
       source: {
         code: `<IconLabelCell
   label="Charlotte Stiedemann"
-  icon={{ component: <UserM />, color: '#6a7580' }}
+  icon={{ component: <UserM />, color: 'var(--ds-color-icon-base-default)' }}
 />`,
       },
     },
@@ -41,7 +41,7 @@ export const Default: Story = {
   render: (args) => <IconLabelCell {...args} />,
   args: {
     label: 'Charlotte Stiedemann',
-    icon: { component: <UserM />, color: '#6a7580' },
+    icon: { component: <UserM />, color: 'var(--ds-color-icon-base-default)' },
   },
 };
 
@@ -65,7 +65,7 @@ export const Disabled: Story = {
       source: {
         code: `<IconLabelCell
   label="Inactive user"
-  icon={{ component: <UserM />, color: '#6a7580' }}
+  icon={{ component: <UserM />, color: 'var(--ds-color-icon-base-default)' }}
   disabled
 />`,
       },
@@ -74,7 +74,7 @@ export const Disabled: Story = {
   render: (args) => <IconLabelCell {...args} />,
   args: {
     label: 'Inactive user',
-    icon: { component: <UserM />, color: '#6a7580' },
+    icon: { component: <UserM />, color: 'var(--ds-color-icon-base-default)' },
     disabled: true,
   },
 };

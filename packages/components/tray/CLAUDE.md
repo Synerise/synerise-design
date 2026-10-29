@@ -126,9 +126,9 @@ All styles are in `Tray.styles.ts`. Key layout:
 - `TrayWrapper`: `position: fixed; top: 0; right: 0; width: 400px; max-height: 562px; z-index: zindex-tooltip`. Override via `className`/`style`.
 - `TrayHeader`: fixed height `56px`, `padding-left: 18px`, flex row with space-between.
 - `TrayContent`: flex `1 1 auto`, wraps a `@synerise/ds-scrollbar` in `absolute` mode.
-- `TrayFooter`: fixed height `48px`, `grey-050` background, only rendered when `footer` is provided.
+- `TrayFooter`: fixed height `48px`, `var(--ds-modal-footer-bg)` background, only rendered when `footer` is provided.
 
-All colours and shadow come from `@synerise/ds-core` theme tokens (`grey-050`, `grey-100`, `grey-200`, `white`, `box-shadow-2`, `zindex-tooltip`).
+Colours and shadow come from the `var(--ds-modal-*)` tokens (`container-bg`, `container-shadow`, `header-border-color`, `footer-bg`, `footer-border-color`); `z-index` still reads `theme.variables['zindex-tooltip']`.
 
 ## Custom hooks
 

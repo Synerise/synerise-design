@@ -10,34 +10,43 @@ type InPlaceEditableInputContainerProps = {
   pressed?: boolean;
   scrolled?: boolean;
 };
-const applyColor = (props: ThemeProps & InPlaceEditableInputContainerProps) => {
+const applyColor = (props: InPlaceEditableInputContainerProps) => {
   if (props.error) {
-    return props.theme.palette['red-600'];
+    return 'var(--ds-inline-edit-text-error)';
   }
-  return props.theme.palette['grey-800'];
+  return 'var(--ds-inline-edit-text-default)';
+};
+
+// Edit-icon colour uses icon tokens (not the text tokens above). The inline-edit
+// module has no icon-error token, so error falls back to the semantic icon-danger.
+const applyIconColor = (props: InPlaceEditableInputContainerProps) => {
+  if (props.error) {
+    return 'var(--ds-color-icon-danger-default)';
+  }
+  return 'var(--ds-inline-edit-icon-btn-icon-default)';
 };
 
 const applyColorFocus = (
   props: ThemeProps & InPlaceEditableInputContainerProps,
 ) => {
   if (props.error) {
-    return props.theme.palette['red-600'];
+    return 'var(--ds-color-text-danger-default)';
   }
-  return props.theme.palette['blue-600'];
+  return 'var(--ds-color-focus-base-default)';
 };
 
 const applyDots = (props: ThemeProps & InPlaceEditableInputContainerProps) => {
   if (props.error) {
-    return props.theme.palette['red-600'];
+    return 'var(--ds-color-text-danger-default)';
   }
-  return props.theme.palette['grey-400'];
+  return 'var(--ds-color-icon-base-muted)';
 };
 
 const applyDotsOnError = (
   props: ThemeProps & InPlaceEditableInputContainerProps,
 ) => {
   if (props.error) {
-    return `background-image: linear-gradient(to right, ${applyDots(props)} 20%, rgba(255, 255, 255, 0) 10%);
+    return `background-image: linear-gradient(to right, ${applyDots(props)} 20%, transparent 10%);
   background-color: transparent;
   background-position: bottom left;
   background-size: 5px 1px;
@@ -62,9 +71,9 @@ export const IconWrapper = styled.div<
 >`
   display: ${(props) => (props.disabled ? 'none' : 'flex')};
   border-radius: 24px;
-  color: ${(props) => props.theme.palette['grey-600']};
+  color: var(--ds-inline-edit-icon-btn-icon-default);
   background: ${(props) =>
-    props.customIcon ? undefined : props.theme.palette['grey-100']};
+    props.customIcon ? undefined : 'var(--ds-inline-edit-icon-btn-bg-default)'};
   margin: 0;
   font-size: 11px;
   justify-content: center;
@@ -75,12 +84,14 @@ export const IconWrapper = styled.div<
   line-height: inherit;
   cursor: pointer;
   &&&:hover {
-    background-color: ${(props) => props.theme.palette.white};
+    background-color: var(--ds-color-background-base-default);
   }
   div :active {
     border-radius: ${(props) => (props.customIcon ? '0px' : '24px')};
     background-color: ${(props) =>
-      props.customIcon ? undefined : props.theme.palette['grey-300']};
+      props.customIcon
+        ? undefined
+        : 'var(--ds-inline-edit-icon-btn-bg-active)'};
   }
 `;
 
@@ -90,25 +101,22 @@ export const InPlaceEditableInputContainer = styled.div<InPlaceEditableInputCont
   align-items: center;
   pointer-events: ${({ disabled }) => (disabled ? 'none' : 'all')};
   ${IconWrapper} {
-    svg {
-      color: ${(props) => applyColor(props)};
-      fill: ${(props) => applyColor(props)};
-    }
+    color: ${(props) => applyIconColor(props)};
   }
   input {
     ${(props) => applyDotsOnError(props)}
   }
   &:hover {
     input {
-      color: ${(props) => props.theme.palette['grey-800']};
+      color: var(--ds-inline-edit-text-default);
       background-image: linear-gradient(
         to right,
         ${(props) => applyDots(props)} 20%,
-        rgba(255, 255, 255, 0) 10%
+        transparent 10%
       );
     }
     ${IconWrapper} {
-      background-color: ${({ theme }) => theme.palette['grey-200']};
+      background-color: var(--ds-inline-edit-icon-btn-bg-hover);
     }
   }
 
@@ -127,7 +135,7 @@ export const InPlaceEditableInputContainer = styled.div<InPlaceEditableInputCont
             background-image: linear-gradient(
               to right,
               ${applyColorFocus(props)} 20%,
-              rgba(255, 255, 255, 0) 10%
+              transparent 10%
             );
           }
         }
@@ -156,7 +164,9 @@ export const InPlaceEditableInputContainer = styled.div<InPlaceEditableInputCont
     color: ${(props) => applyColor(props)};
     ::placeholder {
       color: ${(props) =>
-        props.theme.palette[props.error ? 'red-600' : 'grey-400']};
+        props.error
+          ? 'var(--ds-inline-edit-text-error)'
+          : 'var(--ds-color-text-base-disabled)'};
     }
   }
 `;

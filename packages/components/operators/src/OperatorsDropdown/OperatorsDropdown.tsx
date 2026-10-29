@@ -6,7 +6,6 @@ import React, {
   useState,
 } from 'react';
 
-import { theme } from '@synerise/ds-core';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { SearchM } from '@synerise/ds-icon';
 import Result from '@synerise/ds-result';
@@ -210,9 +209,7 @@ const OperatorsDropdown = ({
         value={searchQuery}
         autofocus={!searchQuery || searchInputCanBeFocused}
         autofocusDelay={50}
-        iconLeft={
-          <Icon component={<SearchM />} color={theme.palette['grey-600']} />
-        }
+        iconLeft={<Icon component={<SearchM />} />}
       />
       {searchQuery === '' && hasTabs && (
         <S.TabsWrapper>

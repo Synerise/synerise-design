@@ -118,9 +118,11 @@ import { ContentBelowElement } from '@synerise/ds-form-field';
 
 Styles live in `FormField.styles.ts` (note: `.ts`, not `.tsx`). Uses `@synerise/ds-typography` styled components:
 - `FormFieldWrapper` only adds `display: flex; flex-direction: column; gap: 8px` when `hasContent` is `true` (`label || rightSide || description || errorText` is truthy). A field with only `children` has no extra wrapper styles.
-- `FormFieldLabelWrapper` extends `Label` from ds-typography and applies `macro.heading` typography.
-- `RightSide` is right-aligned, `font-weight: 500`, `color: grey-500`.
-- `ErrorText` extends `BaseErrorText` with `margin: 0` override.
+- `FormFieldLabelWrapper` extends `Label` from ds-typography and applies `macro.heading` typography, coloured `var(--ds-form-label-text-color)`.
+- `RightSide` is right-aligned, `font-weight: 500`, `color: var(--ds-form-field-text-counter)`.
+- `ErrorText` extends `BaseErrorText` with `margin: 0` override, coloured `var(--ds-form-error-text-color)`.
+- `Description` extends `BaseDescription`, coloured `var(--ds-form-description-text-color)`.
+- These three `form-*` tokens are shared with checkbox, radio and switch, so a label/description/error change in the tokens reaches every form control.
 
 ## Key dependencies
 

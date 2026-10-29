@@ -7,15 +7,15 @@ export const loadingAnimation = keyframes`
 
   0% {
      background: ${BackgroundGradient}; left:-120px; top:0px;
-     opacity: 0.1;
+     opacity: var(--ds-skeleton-pulse-opacity-min);
   }
   50% {
      background: ${BackgroundGradient}; left:140px; top:0px;
-     opacity: 0.3;
+     opacity: var(--ds-skeleton-pulse-opacity-max);
   }
   100% {
      background: ${BackgroundGradient}; left:-120px; top:0px;
-     opacity: 0.1;
+     opacity: var(--ds-skeleton-pulse-opacity-min);
   }
 `;
 export const Container = styled.div`
@@ -40,5 +40,5 @@ export const Wrapper = styled.div<{ size?: 'S' | 'M' | 'L' }>`
   width: 150px;
   height: ${(props) =>
     props.size ? SkeletonSize[props.size] : SIZE_WRAPPER_DEFAULT}px;
-  background-color: ${(props) => props.theme.palette[`grey-050`]};
+  background-color: var(--ds-skeleton-bg);
 `;

@@ -1,11 +1,9 @@
 import styled, {
   css,
   type FlattenSimpleInterpolation,
-  type Keyframes,
   keyframes,
 } from 'styled-components';
 
-import type { ThemeProps } from '@synerise/ds-core';
 import { IconContainer } from '@synerise/ds-icon';
 
 import BaseButton from '../BaseButton';
@@ -15,15 +13,15 @@ export type ExpanderProps = {
   disabled?: boolean;
   expanded?: boolean;
 };
-export const focusAnimation = ({ theme }: ThemeProps): Keyframes => keyframes`
+export const focusAnimation = keyframes`
   0% {
-      box-shadow: inset 0 0 0 1px inherit;
+      box-shadow: inset 0 0 0 1px var(--ds-button-expander-variant-default-border-default);
   }
   50% {
-     box-shadow: inset 0 0 0 1px ${theme.palette['blue-600']};
+     box-shadow: inset 0 0 0 1px var(--ds-color-focus-base-default);
   }
   100% {
-     box-shadow: inset 0 0 0 1px inherit;
+     box-shadow: inset 0 0 0 1px var(--ds-button-expander-variant-default-border-default);
   }
 `;
 
@@ -39,33 +37,35 @@ export const Expander = styled(BaseButton).attrs({
     width: ${(props): number => props.expanderSize || SIZE_DEFAULT}px;
     height: ${(props): number => props.expanderSize || SIZE_DEFAULT}px;
     border-radius: 50%;
-    background-color: ${(props): string => props.theme.palette['grey-050']};
+    background-color: var(--ds-button-expander-variant-default-bg-default);
+    color: var(--ds-button-expander-variant-default-icon-default);
     box-shadow: inset 0 0 0 1px
       ${(props): string =>
         props.disabled
-          ? props.theme.palette['grey-200']
-          : props.theme.palette['grey-300']};
+          ? 'var(--ds-button-expander-variant-default-border-disabled)'
+          : 'var(--ds-button-expander-variant-default-border-default)'};
     ${IconContainer} {
       svg {
         opacity: ${(props: ExpanderProps): string =>
-          props.disabled ? `0.4` : `1`};
-        fill: ${(props: ThemeProps): string =>
-          props.theme.palette['grey-600']} !important;
+          props.disabled ? 'var(--ds-buttons-disabled-opacity)' : '1'};
         transition: transform 0.1s linear;
         transform: rotate(
           ${(props): string => (props.expanded ? '180deg' : '0deg')}
         );
       }
     }
-    ${(props: ExpanderProps & ThemeProps): FlattenSimpleInterpolation | false =>
+    ${(props: ExpanderProps): FlattenSimpleInterpolation | false =>
       !props.disabled &&
       css`
         &:hover {
-          box-shadow: inset 0 0 0 1px ${props.theme.palette['grey-400']};
-          background-color: ${props.theme.palette['grey-050']};
+          box-shadow: inset 0 0 0 1px
+            var(--ds-button-expander-variant-default-border-hover);
+          background-color: var(
+            --ds-button-expander-variant-default-bg-default
+          );
         }
         &:focus-visible:not(:active) {
-          animation: ${focusAnimation(props)} 1s ease-in-out 0s 1;
+          animation: ${focusAnimation} 1s ease-in-out 0s 1;
         }
       `}
   }

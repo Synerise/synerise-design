@@ -115,7 +115,7 @@ const categories: Category[] = [
 
 ## Styling
 
-- `FiltersList` — full-height container; overrides `ItemContainer` from `@synerise/ds-manageable-list` to enforce `max-height: 48px`, remove `box-shadow`, and apply `grey-050` background.
+- `FiltersList` — full-height container; overrides `ItemContainer` from `@synerise/ds-manageable-list` to enforce `max-height: 48px`, remove `box-shadow`, and apply `--ds-color-background-base-subtle` background.
 - `ItemFilterHeader` — flex row with space-between for title + close button; `padding-bottom: 24px`.
 - Drawer fixed width: **676px**.
 - List item height: **48px** with **16px** margin-bottom (total row size 64px for `react-window`).

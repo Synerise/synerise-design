@@ -79,9 +79,9 @@ All styles are in `FieldSet.styles.ts`. Notable patterns:
 
 - `ContainerWrapper`: `flex-column; gap: 16px` — overall layout
 - `CollapsibleContent`: when `expandable`, uses `max-height` CSS transition (`0.7s ease-in-out`) between `0` and the measured natural height. Transition only fires when `shouldAnimate` is `true` (set on click, cleared on `transitionend`) to avoid animating on initial render.
-- `Title`: `font-size: 16px; font-weight: 500; grey-800`; `cursor: pointer` when `isClickable`
+- `Title`: `font-size: 16px; font-weight: 500; color: var(--ds-color-text-base-default)`; `cursor: pointer` when `isClickable`
 - `Description`: `font-size: 13px`
-- No theme variant pattern — sizing and colours are hardcoded or use `theme.palette` tokens directly.
+- No theme variant pattern — sizing is hardcoded and colours use `var(--ds-*)` tokens directly.
 
 ## Key dependencies
 

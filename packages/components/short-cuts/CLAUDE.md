@@ -23,7 +23,7 @@ src/
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `size` | `'S' \| 'L'` | `'L'` | `L` = 24px height, `S` = 18px height |
-| `color` | `'light' \| 'dark'` | — | `light` = white bg / grey border; `dark` = grey-600 bg / grey-500 border |
+| `color` | `'light' \| 'dark'` | — | Selects the `--ds-shortcut-theme-light-*` or `--ds-shortcut-theme-dark-*` token set (bg, border, text, shadow) |
 | `autoWidth` | `boolean` | — | When `false` (default), width equals height (square); when `true`, width is `auto` |
 | `icon` | `ReactNode` | — | Icon to display (mutually exclusive with `children`) |
 | `children` | `ReactNode` | — | Text label to display (mutually exclusive with `icon`) |
@@ -52,7 +52,7 @@ import { ArrowUpM } from '@synerise/ds-icon';
 
 ## Styling
 
-`ShortCuts.style.ts`. The `Wrapper` is a flex `div` centered on both axes. Padding and width are computed via `getPadding()` and `getWidth()` helper functions based on `size` and `isIcon`. Icon color is `white` for `dark` variant, `grey-600` for `light` variant (hardcoded via `theme.palette`, applied as `Icon` `color` prop). Font size is hardcoded `11px`. Box shadow opacity: `0.5` for dark, `0.08` for light.
+`ShortCuts.style.ts`. The `Wrapper` is a flex `div` centered on both axes. Padding and width are computed via `getPadding()` and `getWidth()` helper functions based on `size` and `isIcon`. Background, border, text colour and box-shadow come from `--ds-shortcut-theme-{light|dark}-{bg,border,text,shadow}` tokens (the `theme` name is the Figma variant, not the colour mode). Font size is hardcoded `11px`.
 
 ## Key dependencies
 

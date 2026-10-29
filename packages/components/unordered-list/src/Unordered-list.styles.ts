@@ -20,7 +20,7 @@ export const UnorderedList = styled.ul<{ listStyle?: string }>`
   }
 `;
 export const Label = styled.label`
-  color: ${(props): string => props.theme.palette['grey-800']};
+  color: var(--ds-color-text-base-default);
   font-weight: 500;
   display: block;
 `;

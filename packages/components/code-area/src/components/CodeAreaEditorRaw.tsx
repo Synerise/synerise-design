@@ -12,6 +12,7 @@ import React, {
   useState,
 } from 'react';
 
+import { useTheme } from '@synerise/ds-core';
 import { InlineSelect } from '@synerise/ds-inline-edit';
 import Loader from '@synerise/ds-loader';
 import { NOOP, useResizeObserver } from '@synerise/ds-utils';
@@ -22,8 +23,8 @@ import type {
   CodeAreaSyntaxOption,
 } from '../CodeArea.types';
 import {
-  DS_MONACO_THEME,
   DS_MONACO_THEME_NAME,
+  getDsMonacoTheme,
   MONACO_DEFAULT_OPTIONS,
   TRIGGER_SOURCE,
 } from '../constants';
@@ -65,6 +66,13 @@ export const CodeAreaEditorRaw = ({
   const wrapperRef = useRef<HTMLDivElement>(null);
   const [isTouched, setIsTouched] = useState(false);
 
+  const { tokens } = useTheme();
+  const monacoTheme = useMemo(() => getDsMonacoTheme(tokens), [tokens]);
+  // @monaco-editor/react keeps the first beforeMount it receives, and Monaco
+  // loads asynchronously, so read the theme through a ref to avoid a stale one.
+  const monacoThemeRef = useRef(monacoTheme);
+  monacoThemeRef.current = monacoTheme;
+
   const { height, width } = useResizeObserver(wrapperRef);
   const monacoAriaContainerElement = useMemo(() => {
     return document.createElement('div');
@@ -96,7 +104,10 @@ export const CodeAreaEditorRaw = ({
       // Ensure base theme CSS is injected (needed for locally-bundled Monaco)
       monacoInstance.editor.setTheme('vs');
 
-      monacoInstance.editor.defineTheme(DS_MONACO_THEME_NAME, DS_MONACO_THEME);
+      monacoInstance.editor.defineTheme(
+        DS_MONACO_THEME_NAME,
+        monacoThemeRef.current,
+      );
       monacoInstance.editor.setTheme(DS_MONACO_THEME_NAME);
       monacoInstance.editor.onDidChangeMarkers(() => {
         const markers = monacoInstance.editor.getModelMarkers({});
@@ -193,6 +204,14 @@ export const CodeAreaEditorRaw = ({
       )
     );
   }, [renderFooterContent, isFullscreen, count, isValid]);
+
+  useEffect(() => {
+    if (!monacoRef.current) {
+      return;
+    }
+    monacoRef.current.editor.defineTheme(DS_MONACO_THEME_NAME, monacoTheme);
+    monacoRef.current.editor.setTheme(DS_MONACO_THEME_NAME);
+  }, [monacoTheme]);
 
   useEffect(() => {
     if (editorRef.current) {

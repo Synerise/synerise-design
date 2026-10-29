@@ -31,6 +31,7 @@ const BadgeCore = ({
   dot,
   flag,
   pulsing,
+  variant,
   outlined,
   customColor,
   overflowCount = DEFAULT_OVERFLOW_COUNT,
@@ -96,7 +97,7 @@ const BadgeCore = ({
             $standalone={standalone}
             $status={status}
             $customColor={customColor}
-            $outlined={outlined}
+            $variant={variant ?? (outlined ? 'solid-ring' : 'solid')}
             title={
               typeof count === 'string' || typeof count === 'number'
                 ? String(count)

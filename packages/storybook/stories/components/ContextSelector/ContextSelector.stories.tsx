@@ -7,6 +7,7 @@ import ContextSelector, {
   ContextProps,
 } from '@synerise/ds-context-selector';
 
+import { BOOLEAN_CONTROL } from '../../utils';
 import {
   CONTEXT_CLIENT_GROUPS,
   CONTEXT_CLIENT_ITEMS,
@@ -43,6 +44,7 @@ export default {
     );
   },
   argTypes: {
+    disabled: BOOLEAN_CONTROL,
     setDropdownVisible: {
       action: 'setDropdownVisible',
     },

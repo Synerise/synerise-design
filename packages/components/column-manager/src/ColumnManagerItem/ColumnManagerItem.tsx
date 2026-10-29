@@ -1,6 +1,5 @@
 import React, { useMemo } from 'react';
 
-import { useTheme } from '@synerise/ds-core';
 import Icon, { DragHandleM } from '@synerise/ds-icon';
 import { RawSwitch } from '@synerise/ds-switch';
 import Tooltip from '@synerise/ds-tooltip';
@@ -26,7 +25,6 @@ export const ColumnManagerItem = <ColumnType extends Column>({
   isDragged,
   ...rest
 }: ColumnManagerItemProps<ColumnType>) => {
-  const theme = useTheme();
   const iconComponent =
     ICON_MAP[
       item.type && TYPES_WITH_ICONS.includes(item.type)
@@ -58,12 +56,15 @@ export const ColumnManagerItem = <ColumnType extends Column>({
         {draggable && (
           <S.DragHandler
             component={<DragHandleM />}
-            color={theme.palette['grey-400']}
+            color="var(--ds-color-icon-base-muted)"
             {...dragHandleProps?.attributes}
             {...dragHandleProps?.listeners}
           />
         )}
-        <Icon component={iconComponent} color={theme.palette['grey-600']} />
+        <Icon
+          component={iconComponent}
+          color="var(--ds-color-icon-base-default)"
+        />
         <S.ColumnManagerItemName
           dangerouslySetInnerHTML={{ __html: columnName }}
         />

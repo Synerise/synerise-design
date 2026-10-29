@@ -8,5 +8,5 @@ export const Wrapper = styled.span`
 
 export const Label = styled.span`
   line-height: 1;
-  color: ${(props): string => props.theme.palette['grey-600']};
+  color: var(--ds-badge-variant-neutral-text);
 `;

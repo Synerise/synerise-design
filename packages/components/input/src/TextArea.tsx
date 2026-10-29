@@ -101,4 +101,8 @@ export const TextArea = ({
   );
 };
 
-export const RawTextArea = S.RawTextArea;
+/**
+ * @deprecated Unused and due for removal. Use `DSRawTextArea` for a bare DS textarea, or `TextArea` for
+ * one with label, description, error text and counter.
+ */
+export const RawTextArea = S.StandaloneRawTextArea;

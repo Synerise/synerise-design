@@ -1,6 +1,10 @@
 import React from 'react';
 
-import { renderWithProvider } from '@synerise/ds-core/testing';
+import {
+  declarationsFor,
+  renderWithProvider,
+  rulesFor,
+} from '@synerise/ds-core/testing';
 import { act, fireEvent, screen } from '@testing-library/react';
 
 import Select from '../Select';
@@ -1260,5 +1264,34 @@ describe('Select (windowed row measurement)', () => {
     expect(rowFor('Beta').style.minHeight).toBe('48px');
     expect(rowFor('Beta').style.top).toBe(`${TALL_ROW}px`);
     expect(rowFor('Gamma').style.top).toBe(`${TALL_ROW + 48}px`);
+  });
+});
+
+describe('Select option backgrounds', () => {
+  it('leaves hover and selected to the list item and gives the keyboard highlight its focused background', () => {
+    renderWithProvider(
+      <Select
+        defaultOpen
+        value="a"
+        options={[
+          { value: 'a', label: 'Alpha' },
+          { value: 'b', label: 'Beta' },
+        ]}
+      />,
+    );
+
+    const option = screen.getAllByTestId('select-option')[0];
+    const inner = option.querySelector('.ds-list-item-inner');
+    expect(inner).not.toBeNull();
+
+    const brandSubtle = '--ds-color-background-brand-subtle';
+    expect(declarationsFor(option, { state: 'any' })).not.toContain(brandSubtle);
+    expect(declarationsFor(inner, { within: option, state: 'any' })).not.toContain(brandSubtle);
+
+    const highlight = rulesFor(inner, { within: option }).find(({ selector }) =>
+      selector.includes('ds-select-item-option-active'),
+    );
+    expect(highlight?.selector).toContain(':not(.ds-select-item-option-selected)');
+    expect(highlight?.declarations).toContain('background-color:var(--ds-list-item-role-normal-bg-hover)');
   });
 });

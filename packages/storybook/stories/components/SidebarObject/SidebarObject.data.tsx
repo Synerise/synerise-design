@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 
 import { UserAvatar } from '@synerise/ds-avatar';
 import Button from '@synerise/ds-button';
-import { theme } from '@synerise/ds-core';
 import Drawer from '@synerise/ds-drawer';
 import Icon, { ArrowLeftM, StarFillM, StarM } from '@synerise/ds-icon';
 import { ContentItem } from '@synerise/ds-manageable-list';
 import Status from '@synerise/ds-status';
+import { customColors } from '@synerise/ds-tokens/names';
 import Tooltip from '@synerise/ds-tooltip';
 
 import { avatar1 } from '../../constants';
@@ -44,7 +44,9 @@ export const StarPrefix = () => {
       <Tooltip align={{ offset: [0, 5] }} title="Starred">
         <Button
           iconColor={
-            starred ? theme.palette['yellow-600'] : theme.palette['grey-600']
+            starred
+              ? customColors.yellow['600']
+              : 'var(--ds-color-icon-base-default)'
           }
           type="ghost"
           mode="single-icon"
@@ -55,7 +57,9 @@ export const StarPrefix = () => {
           <Icon
             component={starred ? <StarFillM /> : <StarM />}
             color={
-              starred ? theme.palette['yellow-600'] : theme.palette['grey-600']
+              starred
+                ? customColors.yellow['600']
+                : 'var(--ds-color-icon-base-default)'
             }
           />
         </Button>
@@ -136,21 +140,17 @@ export const ALL_TAGS = [
   {
     id: 0,
     name: 'Summer',
-    color: theme.palette['grey-200'],
   },
   {
     id: 1,
     name: 'Customer Service PL',
-    color: theme.palette['grey-200'],
   },
   {
     id: 2,
     name: 'Tag Name 3',
-    color: theme.palette['grey-200'],
   },
   {
     id: 3,
     name: 'Tag Name 4',
-    color: theme.palette['grey-200'],
   },
 ];

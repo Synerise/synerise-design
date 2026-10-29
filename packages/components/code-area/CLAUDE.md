@@ -10,7 +10,7 @@ src/
   CodeArea.types.ts        — all type definitions
   CodeArea.styles.ts       — all styled-components (also re-exported from index.ts)
   CodeArea.figma.tsx       — Figma Code Connect file
-  constants.ts             — MONACO_DEFAULT_OPTIONS, DS_MONACO_THEME, DS_MONACO_THEME_NAME
+  constants.ts             — MONACO_DEFAULT_OPTIONS, getDsMonacoTheme, DS_MONACO_THEME_NAME, DS_MONACO_THEME (deprecated)
   index.ts                 — public exports
   components/
     CodeAreaEditor.tsx     — forwardRef wrapper; handles label, counter, error, fullscreen header
@@ -131,7 +131,7 @@ type Syntax = 'json' | 'javascript';
 - **`onFullscreenChange` receives the old state**: `onFullscreenChange && onFullscreenChange(isFullscreen)` is called before `setIsFullscreen` — the callback gets the value *before* the toggle (likely a bug).
 - **Counter hard-limit**: when `value.length > counter.limit`, `CodeAreaEditorRaw` triggers `'undo'` on the Monaco instance directly. The `onChange` callback is not called for over-limit input.
 - **`isValid` logic**: `isValid` starts as `true`, is set to `false` when `errorText` is truthy (via `useEffect`), and is also set to `false` when Monaco reports markers (lint/parse errors). Both paths independently drive the error state.
-- **Monaco theme**: `DS_MONACO_THEME` (`'DSTheme'`) is registered in `beforeMount` and uses a transparent background so the wrapper's background colour shows through.
+- **Monaco theme**: `getDsMonacoTheme(useTheme().tokens)` builds `'DSTheme'` from the active mode's resolved tokens (Monaco needs hex, not `var()`), with a transparent background so the wrapper's background colour shows through. The base is `'vs-dark'` when `--ds-color-background-base-default` is dark, so syntax colours stay readable. It is defined in `beforeMount` and re-defined + re-applied whenever the tokens change (a `mode` switch). Monaco themes are global, so the last editor to apply one wins page-wide. `DS_MONACO_THEME` is the light-only constant, kept for consumers that import it.
 - **`loaderConfig` is one-shot**: a `loaderConfigSet` ref prevents calling `loader.config()` more than once per component instance — changing `loaderConfig` after mount has no effect.
 - **`placeholder` offset**: positioned `left: 62px` to align with the editor text column after Monaco's line-number gutter. Adjust if `options.lineNumbers` is set to `'off'`.
 - **BottomBar visibility**: shown when at least one of `isSyntaxSelectVisible`, `allowFullscreen && !isFullscreen`, or `renderFooterContent` is truthy.

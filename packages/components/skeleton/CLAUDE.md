@@ -104,7 +104,7 @@ import Skeleton, { CheckboxSkeleton, DropdownSkeleton, OrderedListSkeleton, Skel
 
 ## Styling
 
-All components share `BackgroundGradient` from `Skeleton.styles.ts` — a grey-to-light gradient. Each bar is animated with a `1.2s ease-in-out infinite` keyframes animation that slides the gradient left/right, producing a shimmer effect. Colours come from `theme.palette['grey-050']` for the base and the gradient for the shimmer.
+All components share `BackgroundGradient` from `Skeleton.styles.ts` — a grey-to-light gradient. Each bar is animated with a `1.2s ease-in-out infinite` keyframes animation that slides the gradient left/right, producing a shimmer effect. Colours come from `var(--ds-skeleton-bg)` for the base and `var(--ds-skeleton-gradient)` for the shimmer.
 
 ## Key dependencies
 

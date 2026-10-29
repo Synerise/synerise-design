@@ -49,6 +49,7 @@ src/js/
  mediaQuery/
  mediaQuery.ts — MEDIA_FROM, MEDIA_TO, MEDIA_ONLY tagged-template helpers
  testing/
+ declarationsFor/declarationsFor.ts — injected CSS declarations targeting one element (spec helper)
  renderWithProvider/renderWithProvider.tsx — RTL render() wrapped in DSProvider
  sleep.ts — Promise-based sleep utility
  style.ts — Less import entry point
@@ -73,6 +74,7 @@ Root provider. Must wrap the entire application. Composes `LocaleProvider` → `
 | `timeZone` | `string` | — | IANA timezone string (e.g. `'Europe/Warsaw'`) |
 | `onErrorIntl` | `(error: OnErrorFn[0]) => void` | — | react-intl error handler; suppress or log missing translation keys |
 | `theme` | `ThemePropsVars` | `dsTheme` | Override the styled-components theme; merged with defaults |
+| `mode` | `'light' \| 'dark' \| 'system'` | — | Colour scheme. Sets `data-ds-theme` on `<html>` and selects the `theme.tokens` map. `'system'` follows `prefers-color-scheme`. Omit to let the app own the attribute. |
 | `dataFormatConfig` | `DataFormatConfig` | EU notation | Date/number format notation config |
 | `toasterProps` | `false \| Partial<ToasterProps>` | `false` | Pass `TOASTER_DEFAULTS` or a custom config to enable the toast container; `false` disables the `<Toaster>` element |
 | `children` | `ReactNode` | — | App content |
@@ -84,13 +86,25 @@ Root provider. Must wrap the entire application. Composes `LocaleProvider` → `
 The default `ThemePropsVars` object. Passed automatically via `DSProvider`; also importable for use outside styled-components (e.g. inline styles, tests).
 
 ```ts
-theme.palette['blue-600'] // '#0064D6'
-theme.variables['--ds-color-..'] // CSS variable value
+theme.palette['blue-600'] // '#0b68ff' — from colors.less
+theme.variables['zindex-tooltip'] // '991060' — from config.less, key WITHOUT the leading @
+theme.tokens['--ds-color-text-base-default'] // '#384350' — fully-resolved design token
 theme.space // [0, 8, 12, 16, 24, 32, 48, 64]
 theme.breakpoints // ['768px', '960px', '1280px']
-theme.colorsOrder // array of 21 colour hex values in display order
-theme.variable('--ds-name') // looks up variables by CSS var name
+theme.colorsOrder // 21 resolved hex values in display order (design-tokens `ordered` set)
+theme.variable('@border-radius-base') // Less-name lookup; strips a leading @
 ```
+
+> `theme.variables` / `theme.variable()` are **Less-name** lookups, not CSS-var lookups — they are
+> generated from `config.less` by `build/vars.js`, which strips the `@`. `theme.variable('--ds-x')`
+> returns `undefined`. For design tokens use `theme.tokens[...]` or a `var(--ds-...)` string in CSS.
+> Tokenisation removed 217 unused keys and turned 15 (e.g. `text-color`, `border-color-base`,
+> `box-shadow-1/2`) into `var()` references — see `docs/migration-design-tokens.md`.
+
+`theme.tokens` is the fully-resolved design-token map from `@synerise/ds-tokens` (keyed by full CSS var
+name → concrete value). Use it — via `useTheme().tokens[...]` — for non-CSS consumers (canvas, charting,
+Monaco theming) that can't resolve `var()`. It is the resolved map of the active mode (see
+`mode` below). For ordinary styling still prefer passing `var(--ds-…)` strings.
 
 ### `useTheme`
 
@@ -352,7 +366,7 @@ unused in DS — 991050 is the real floor. The clamp allows 24 levels of nesting
 Exported from the **`@synerise/ds-core/testing`** subpath, not the package root:
 
 ```ts
-import { renderWithProvider, sleep } from '@synerise/ds-core/testing';
+import { declarationsFor, renderWithProvider, sleep } from '@synerise/ds-core/testing';
 ```
 
 They are not on the root entry because `renderWithProvider` imports
@@ -377,6 +391,29 @@ RTL `render()` wrapped in `DSProvider` with sensible test defaults. Use in compo
 
 `(ms: number) => Promise<void>` — Promise-based delay for async tests.
 
+### `declarationsFor` / `rulesFor`
+
+`declarationsFor(element: Element | null, filter?: RuleFilter) => string` — the declarations of every injected
+styled-components rule whose **subject** (the selector's last compound) is the element, joined with `;` (whitespace as
+stylis emits it, e.g. `opacity:var(--ds-x)`). `rulesFor(element, filter?) => CssRule[]` returns the same rules as
+`{ selector, declarations, condition? }`, one per selector of a selector list (`:has(a, b)` arguments stay intact;
+`condition` is the enclosing `@media`/`@supports`). Use them to assert a token on one element when `toHaveStyle`
+cannot: jsdom drops `var()` on numeric properties such as `opacity` and on shorthands such as `border-top`. Never
+search every `<style>` in the document instead — rules persist across tests, so that passes on a rule emitted for a
+different element.
+
+`RuleFilter`:
+
+| Field | Default | Meaning |
+|-------|---------|---------|
+| `state` | `'rest'` | `'rest'` keeps rules whose subject has no state pseudo-class (`:hover`, `:disabled`, `:focus-within`, …) and no pseudo-element — structural ones (`:not()`, `:has()`, `:first-child`, …) still count as rest. `'any'` keeps every rule. Any other string keeps rules whose subject contains it, e.g. `':hover'`, `':hover:before'` |
+| `within` | — | An ancestor whose class must appear before the subject. Narrows to rules that reach the element through it, and lets a bare type subject match — the `.ds-icon svg` rule an Icon's `color` prop emits is read with `declarationsFor(svg, { within: icon })`. A bare type subject counts only when the compound before it matches a real ancestor of the element at or below `within`, so `.alert > span` never matches the `.alert` span itself. Throws when passed `null` |
+
+- A rule for a descendant or sibling (`.el .child`, `.el + .x`) is **not** the element's — query the descendant instead.
+- A state on an ancestor (`.wrap:hover .el`) does not make the rule a state rule; the subject decides.
+- A negative assertion meant as "nowhere" (`not.toContain`) needs `state: 'any'`, or a hover rule slips past it.
+- Class names match whole: `.ds-x` never matches `.ds-x-long`.
+
 ---
 
 ## Key dependencies
@@ -392,6 +429,11 @@ RTL `render()` wrapped in `DSProvider` with sensible test defaults. Use in compo
 
 - **`toasterProps` must be explicitly set** to enable the `<Toaster>` DOM element inside `DSProvider`; passing `false` (the default) skips rendering `<Toaster>` while still mounting `ToasterProvider`.
 - **`ThemeProvider` merges with defaults**: `{ ..dsTheme, ..theme }` — partial overrides are safe; you cannot remove keys from the theme object.
+- **Both themes are always injected**: `GlobalTokenStyles` emits light on `:root` and dark on `[data-ds-theme="dark"]` (the same selector as the shipped `css/dark.css`). Theme switching is a single attribute flip on `<html>` — no CSS re-injection.
+- **Only the outermost provider injects and owns the attribute.** A nested `DSProvider`/`ThemeProvider` renders no second copy of the token CSS, ignores its own `mode`, and gives its subtree the outer resolved mode, so `theme.tokens` always matches the CSS in effect. Separate React roots (micro-frontends) each have their own outermost provider.
+- **`mode` sets `data-ds-theme` on `document.documentElement`** (not a wrapper) because DS overlays portal to `document.body` and must resolve the same tokens. `mode="system"` subscribes to a `prefers-color-scheme` media query. The provider removes the attribute it set when it unmounts or `mode` is dropped. When `mode` is omitted the provider leaves the attribute alone (app-owned) and `theme.tokens` follows it through a `MutationObserver`. Applied in a layout effect, so before the first client paint; the first render (and SSR) uses light for `'system'` and the app-owned case to keep server and client markup identical — apps that SSR should still set the attribute early (inline `<head>` script).
+- **`theme.colorsOrder` follows the resolved mode** unless the `theme` prop carries its own array; the default array that `{ ...theme }` spreads along does not count as an override.
+- **`theme.tokens` follows the resolved `mode`** — light or dark resolved map, keyed by CSS var name; for non-CSS consumers only (prefer `var(--ds-…)` for styling).
 - **`breakpoints.xxlarge.max = 0`** — intentionally 0; `MEDIA_FROM.xxlarge` produces an unbounded min-width query.
 - **Nested i18n messages** are flattened by `LocaleProvider.utils.ts` before passing to `IntlProvider`; keys use dot-notation after flattening.
 - **`useDataFormat` uses `biome-ignore lint/suspicious/noExplicitAny`** in `formatValue` and `formatMultipleValues` to handle the overload dispatch pattern.

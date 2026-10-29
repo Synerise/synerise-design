@@ -2,7 +2,6 @@ import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 
 import Badge from '@synerise/ds-badge';
-import { theme } from '@synerise/ds-core';
 import Icon, { Add3M } from '@synerise/ds-icon';
 import InformationCard from '@synerise/ds-information-card';
 import Tag, { TagProps, TagShape } from '@synerise/ds-tag';
@@ -111,10 +110,10 @@ export const WithPrefixAndSuffix: Story = {
         overflowCount={99}
         outlined={false}
         style={{
-          ...{ boxShadow: `0 0 0 1px ${getColorText(theme, TAG_COLOR)}` },
+          ...{ boxShadow: `0 0 0 1px ${getColorText(TAG_COLOR)}` },
           margin: '0px',
           backgroundColor: 'transparent',
-          color: getColorText(theme, TAG_COLOR),
+          color: getColorText(TAG_COLOR),
           alignItems: 'center',
         }}
       />
@@ -125,9 +124,9 @@ export const WithPrefixAndSuffix: Story = {
         overflowCount={99}
         outlined={false}
         style={{
-          ...{ boxShadow: `0 0 0 1px ${getColorText(theme, TAG_COLOR)}` },
+          ...{ boxShadow: `0 0 0 1px ${getColorText(TAG_COLOR)}` },
           backgroundColor: 'transparent',
-          color: getColorText(theme, TAG_COLOR),
+          color: getColorText(TAG_COLOR),
           alignItems: 'center',
           margin: '0px',
         }}
@@ -150,7 +149,7 @@ export const WithIconPrefix: Story = {
         className="icon1"
         component={<Add3M />}
         size={20}
-        color={getColorText(theme, TAG_COLOR)}
+        color={getColorText(TAG_COLOR)}
       />
     ),
   },

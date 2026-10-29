@@ -1,11 +1,14 @@
 import type { ReactNode } from 'react';
 
 import type { TooltipProps } from '@synerise/ds-tooltip';
+import type { CustomColorToken, LiteralStringUnion } from '@synerise/ds-utils';
 
 type AllocationType = 'allocation';
 export type SliderType = AllocationType | 'default';
 
-export type ColorMap = Record<number, string>;
+// `tracksColorMap` values accept any custom-colour combo (`'blue-600'`) — with autocomplete — plus
+// already-resolved `var()`/hex strings; `resolveTrackColor` maps them to reversible tokens.
+export type ColorMap = Record<number, LiteralStringUnion<CustomColorToken>>;
 export type ColorsOrder = string[];
 
 export type HandlerConfig = Record<

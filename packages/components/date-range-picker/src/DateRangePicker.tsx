@@ -52,7 +52,6 @@ const DateRangePicker = forwardRef<HTMLDivElement, DateRangePickerProps>(
     const selectedRange = value || defaultValue;
     const [popupVisible, setPopupVisible] = useState(false);
     const [selectedDate, setSelectedDate] = useState(selectedRange);
-    const [inputActive, setInputActive] = useState(false);
 
     const floatingPlacement = getPlacement(placement);
     const allTexts = useMemo(
@@ -76,7 +75,6 @@ const DateRangePicker = forwardRef<HTMLDivElement, DateRangePickerProps>(
         onApply && onApply(finalDateRange);
         setSelectedDate(finalDateRange as DateRange);
         setPopupVisible(false);
-        setInputActive(false);
       },
       [defaultValue, onApply],
     );
@@ -99,7 +97,7 @@ const DateRangePicker = forwardRef<HTMLDivElement, DateRangePickerProps>(
           texts={allTexts}
           valueFormatOptions={valueFormatOptions}
           onChange={onApplyCallback}
-          active={inputActive}
+          active={popupVisible}
           timeZone={resolvedTimeZone}
           {...rangePickerInputProps}
           readOnly={readOnly}
@@ -127,7 +125,6 @@ const DateRangePicker = forwardRef<HTMLDivElement, DateRangePickerProps>(
         trigger="click"
         onOpenChange={(openState: boolean) => {
           setPopupVisible(openState);
-          setInputActive(openState);
           onVisibleChange && onVisibleChange(openState);
         }}
         placement={floatingPlacement}

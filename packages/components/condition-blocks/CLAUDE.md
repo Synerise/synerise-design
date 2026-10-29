@@ -153,9 +153,9 @@ import {
 
 ## Styling
 
-Each block has a co-located `*.styles.ts` using `@synerise/ds-core` theme tokens. The shared
+Each block has a co-located `*.styles.ts` using `var(--ds-*)` tokens. The shared
 `ErrorMessage` (`errorMessage.styles.ts`) is `styled(ErrorText)` from `@synerise/ds-typography`
-(red-600) with its default bottom margin replaced by an 8px top margin.
+(`--ds-color-text-danger-default`) with its default bottom margin replaced by an 8px top margin.
 
 ## The sizing guarantee (grow/shrink within bounds)
 

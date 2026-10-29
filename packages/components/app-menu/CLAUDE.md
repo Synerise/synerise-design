@@ -85,7 +85,7 @@ Styled `h3` (`macro.h600`). Accepts `children` only (it is a styled-component, n
 
 ### `AppMenu.SubMenu.SubTitle`
 
-Styled `h4` (`macro.h100`). Uppercase, grey-500, dashed top border. Accepts `children` only.
+Styled `h4` (`macro.h100`). Uppercase, `--ds-divider-header-text-color` text, dashed top border. Accepts `children` only.
 
 ### `AppMenu.SubMenu.Item`
 
@@ -149,7 +149,7 @@ Two contexts are used internally — no external Provider is needed:
 
 ## Styling
 
-All styles in `*.styles.ts` files. Uses `theme.palette` tokens throughout (no hardcoded colours). Notable specifics:
+All styles in `*.styles.ts` files. Colours come from `var(--ds-*)` tokens, mostly the `--ds-app-menu-*` module tokens (no hardcoded colours). Notable specifics:
 
 - `MenuWrapper`: `position: fixed; left: 0; width: 60px` → `width: 322px` on `.menu--opened`, with a `cubic-bezier` transition and `0.25s` delay.
 - `SubMenu` panel: `position: absolute; left: 61px; width: 262px`. Child elements stagger in using a generated array of 100 `transition-delay` CSS rules.

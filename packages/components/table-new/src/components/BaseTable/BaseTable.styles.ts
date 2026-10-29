@@ -34,16 +34,16 @@ export const TableContainer = styled.div<{
   ${(props) =>
     props.withBorderTop &&
     css`
-      border-top: solid 1px ${props.theme.palette['grey-200']};
+      border-top: solid 1px var(--ds-color-border-base-default);
     `}
   ${(props) =>
     props.cardStyles &&
     css`
       border-radius: 3px;
-      box-shadow: ${props.theme.variables['box-shadow-2']};
+      box-shadow: var(--ds-shadows-shadow-2);
     `}
     
-  background: ${(props) => props.theme.palette['white']};
+  background: var(--ds-color-background-base-default);
 `;
 
 export const TableBodyScrollWrapper = styled.div<{
@@ -94,13 +94,13 @@ export const StyledTable = styled.table<{ $tableLayoutAuto?: boolean }>`
       }
     `}
 
-  ${(props) => css`
+  ${css`
     @keyframes ds-table-row-highlight {
       5%,
       30% {
         background-color: var(
           --ds-highlight-color,
-          ${props.theme.palette['blue-050']}
+          var(--ds-color-background-brand-subtle)
         );
       }
     }
@@ -128,7 +128,7 @@ export const StyledTable = styled.table<{ $tableLayoutAuto?: boolean }>`
  * headers. See how BaseTable measures it.
  */
 export const SubHeader = styled.div<{ stickyData?: StickyData }>`
-  ${({ stickyData, theme }) =>
+  ${({ stickyData }) =>
     stickyData &&
     css`
       position: sticky;
@@ -139,7 +139,7 @@ export const SubHeader = styled.div<{ stickyData?: StickyData }>`
           : `-${stickyData.subHeaderHeight + stickyData.containerPaddingTop}px`
       };
       z-index: 12;
-      background: ${theme.palette['white']};
+      background: var(--ds-color-background-base-default);
     `}
 `;
 
@@ -147,7 +147,7 @@ export const TableColumnsHorizontalScroll = styled(TableHorizontalScroll)<{
   stickyData?: StickyData;
   isScrolled?: number | null;
 }>`
-  ${({ stickyData, isScrolled, theme }) => {
+  ${({ stickyData, isScrolled }) => {
     // Height of everything that reveals above this row. `subHeaderHeight` is 0 without a
     // subHeaderComponent, so every offset below is unchanged for tables that don't use one.
     const revealedStackHeight = stickyData
@@ -164,13 +164,13 @@ export const TableColumnsHorizontalScroll = styled(TableHorizontalScroll)<{
             : `-${stickyData.containerPaddingTop}px`
         };
         z-index: 11;
-        background: ${theme.palette['white']};
+        background: var(--ds-color-background-base-default);
         ${
           ((isScrolled &&
             isScrolled >
               revealedStackHeight + stickyData.containerPaddingTop) ||
             stickyData.isRevealed) &&
-          `box-shadow: ${theme.variables['box-shadow-1']};`
+          'box-shadow: var(--ds-shadows-shadow-1);'
         }
       `
     );

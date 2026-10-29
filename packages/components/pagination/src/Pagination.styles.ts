@@ -20,7 +20,7 @@ export const TotalText = styled.li`
   align-items: center;
   height: 32px;
   margin-right: 8px;
-  color: ${(props) => props.theme.palette['grey-600']};
+  color: var(--ds-color-text-base-muted);
 
   strong {
     font-weight: 500;
@@ -42,27 +42,27 @@ export const Item = styled.li<{ $active?: boolean }>`
 
   a {
     padding: 0 6px;
-    color: ${(props) => props.theme.palette['grey-700']};
+    color: var(--ds-pagination-item-text-color-default);
     text-decoration: none;
   }
 
   &:hover {
-    background-color: ${(props) => `${props.theme.palette['grey-400']}66`};
+    background-color: var(--ds-pagination-item-bg-hover);
   }
 
   ${(props) =>
     props.$active &&
     css`
       && {
-        border-color: ${props.theme.palette['grey-700']};
-        background-color: ${props.theme.palette['grey-700']};
+        border-color: var(--ds-pagination-item-bg-active);
+        background-color: var(--ds-pagination-item-bg-active);
 
         a {
-          color: ${props.theme.palette.white};
+          color: var(--ds-pagination-item-text-color-active);
         }
 
         &:hover a {
-          color: ${props.theme.palette.white};
+          color: var(--ds-pagination-item-text-color-active);
         }
       }
     `}
@@ -71,7 +71,7 @@ export const Item = styled.li<{ $active?: boolean }>`
 export const Nav = styled.li<{ $disabled?: boolean; $side?: 'prev' | 'next' }>`
   display: inline-flex;
   align-items: center;
-  color: ${(props) => props.theme.palette['grey-600']};
+  color: var(--ds-pagination-nav-icon-default);
 
   /* prev sits left of the page items, next sits right — independent of list position */
   ${(props) => props.$side === 'prev' && 'margin-right: 8px;'}
@@ -80,7 +80,7 @@ export const Nav = styled.li<{ $disabled?: boolean; $side?: 'prev' | 'next' }>`
   ${(props) =>
     props.$disabled &&
     css`
-      opacity: 0.4;
+      opacity: var(--ds-pagination-nav-disabled-opacity);
       cursor: not-allowed;
 
       /* keep 'not-allowed' visible on the <li> while making the button inert */
@@ -131,7 +131,7 @@ export const QuickJumper = styled.div`
   display: inline-flex;
   align-items: center;
   white-space: nowrap;
-  color: ${(props) => props.theme.palette['grey-600']};
+  color: var(--ds-color-text-base-muted);
 `;
 
 export const JumperInput = styled.input`
@@ -139,13 +139,13 @@ export const JumperInput = styled.input`
   height: 32px;
   margin: 0 8px;
   padding: 7px 12px;
-  border: 1px solid ${(props) => props.theme.palette['grey-300']};
+  border: 1px solid var(--ds-color-border-base-strong);
   border-radius: 3px;
   outline: none;
   box-sizing: border-box;
 
   &:focus {
-    border-color: ${(props) => props.theme.palette['blue-600']};
-    box-shadow: inset 0 0 0 1px ${(props) => props.theme.palette['blue-600']};
+    border-color: var(--ds-color-focus-base-default);
+    box-shadow: inset 0 0 0 1px var(--ds-color-focus-base-default);
   }
 `;

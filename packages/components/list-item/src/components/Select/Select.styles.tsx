@@ -16,7 +16,7 @@ export const SelectItem = styled(Text)`
   &:focus {
     ${SuffixWrapper} > * {
       opacity: 1;
-      color: ${(props) => props.theme.palette['blue-600']};
+      color: var(--ds-list-item-role-normal-text-hover);
     }
   }
 `;

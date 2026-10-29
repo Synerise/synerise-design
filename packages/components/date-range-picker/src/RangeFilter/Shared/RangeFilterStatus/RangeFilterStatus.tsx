@@ -2,7 +2,6 @@ import React, { type MouseEvent } from 'react';
 import { useIntl } from 'react-intl';
 
 import Badge from '@synerise/ds-badge';
-import { theme } from '@synerise/ds-core';
 import Icon, { CloseS, FilterM } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 
@@ -45,7 +44,7 @@ const RangeFilterStatus = ({
                     onFilterRemove && onFilterRemove();
                   }}
                   component={<CloseS />}
-                  color={theme.palette['red-600']}
+                  color="var(--ds-color-icon-danger-default)"
                 />
               </Tooltip>
             </>

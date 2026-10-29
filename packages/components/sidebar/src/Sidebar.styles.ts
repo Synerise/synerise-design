@@ -37,13 +37,13 @@ export const SidebarContentWrapper = styled.div``;
 export const DragOverlay = styled.div``;
 
 export const DragOverlayHeader = styled.div`
-  border-top: 1px solid ${(props) => props.theme.palette['grey-200']};
+  border-top: 1px solid var(--ds-color-border-base-default);
   ${headerStyle}
   user-select: none;
 `;
 
 export const DragOverlayContent = styled.div`
-  background-color: white;
+  background-color: var(--ds-color-background-base-default);
   padding: 16px 24px;
 `;
 

@@ -30,7 +30,7 @@ export const TagsWrapper = styled.div`
 `;
 
 export const Title = styled.div<{ shape?: TagShape }>`
-  color: ${(props): string => props.theme.palette['grey-800']};
+  color: var(--ds-color-text-base-default);
   font-weight: 500;
   display: block;
   margin: 6px 4px 0 0;

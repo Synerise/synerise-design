@@ -3,7 +3,6 @@ import React from 'react';
 import { useArgs } from 'storybook/preview-api';
 
 import Button from '@synerise/ds-button';
-import { theme } from '@synerise/ds-core';
 import Icon, { ExternalLinkM } from '@synerise/ds-icon';
 import type { TagProps, TagsProps } from '@synerise/ds-tags';
 import Tags, { TagShape } from '@synerise/ds-tags';
@@ -91,7 +90,7 @@ const TagsMeta = {
         <Icon
           component={<ExternalLinkM />}
           size={24}
-          color={theme.palette['grey-600']}
+          color="var(--ds-color-icon-base-default)"
         />{' '}
         Manage tags
       </Button>
@@ -125,7 +124,6 @@ export const WithAddButton: Story = {
           const tag = {
             id: crypto.randomUUID(),
             name,
-            color: theme.palette['grey-200'],
           };
           updateArgs({
             data: [...data, tag],

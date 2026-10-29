@@ -17,7 +17,7 @@ export const TagsGroupWrapper = styled.div<{
   ${(props) =>
     props.isDisabled
       ? `
-        opacity: 0.4;
+        opacity: var(--ds-opacity-disabled);
         pointer-events: none;
     `
       : `

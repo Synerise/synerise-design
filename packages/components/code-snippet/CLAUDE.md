@@ -104,9 +104,9 @@ import { FontSize } from '@synerise/ds-code-snippet';
 ## Styling
 
 - Styles split across `InlineCode.styles.ts`, `SingleCode.styles.ts`, `MultiCode.styles.ts`, `Highlight.styles.ts`.
-- Uses `@synerise/ds-core` theme palette tokens (e.g. `props.theme.palette['grey-100']`).
+- Colours come from the `--ds-code-snippet-*` module tokens (e.g. `var(--ds-code-snippet-surface-bg)`, `--ds-code-snippet-syntax-*` for highlighting).
 - Font loaded via `src/style/index.less` — imports IBM Plex Mono WOFF files. The Less file is compiled separately (`build:css` script) and must be imported as a side effect: `import './style/index.less'` (already done in `CodeSnippet.tsx`).
-- Inline variant uses a hardcoded `#e31a5d` for the code text colour (not a token).
+- Inline variant code text uses `--ds-code-snippet-inlinecode-text` on `--ds-code-snippet-inlinecode-bg`.
 
 ## Key dependencies
 

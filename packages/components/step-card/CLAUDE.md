@@ -103,7 +103,7 @@ Merges user-provided `Partial<StepCardTexts>` with `react-intl` defaults via `us
 ## Styling
 
 Styles in `StepCard.styles.ts`. Key states:
-- `isDragged`: body hidden (`visibility: hidden`), placeholder shown with blue dashed overlay (`border: 1px dashed blue-300; background: blue-050`). Height collapses to 100px.
+- `isDragged`: body hidden (`visibility: hidden`), `DragPlaceholder` shown with the `dropLabel` in `var(--ds-color-text-brand-default)` (no border/background of its own). Height collapses to 100px.
 - `isDragOverlay`: content height fixed at 76px, body/footer hidden, cursor `grabbing`.
 - Cruds (delete/duplicate) are hidden by default (`opacity: 0; visibility: hidden`) and revealed on header hover.
 

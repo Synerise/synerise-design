@@ -2,7 +2,6 @@ import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 import { useArgs } from 'storybook/preview-api';
 
-import { theme } from '@synerise/ds-core';
 import Icon, { SearchM } from '@synerise/ds-icon';
 import SearchBar, { SearchBarProps } from '@synerise/ds-search-bar';
 
@@ -46,9 +45,7 @@ export default {
     clearTooltip: REACT_NODE_AS_STRING,
   },
   args: {
-    iconLeft: (
-      <Icon component={<SearchM />} color={theme.palette['grey-600']} />
-    ),
+    iconLeft: <Icon component={<SearchM />} />,
     placeholder: 'Placeholder',
     clearTooltip: 'Clear',
   },

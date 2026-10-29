@@ -160,4 +160,18 @@ describe('ColumnManager', () => {
       expect(screen.getByText('No results')).toBeInTheDocument();
     });
   });
+
+  it('lets the search icon take its colour from the search bar', () => {
+    renderWithProvider(
+      COLUMN_MANAGER(
+        true,
+        () => {},
+        () => {},
+      ),
+    );
+
+    expect(document.querySelector('svg.search-m')).toHaveStyle(
+      'color: inherit',
+    );
+  });
 });

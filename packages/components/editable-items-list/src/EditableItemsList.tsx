@@ -1,7 +1,6 @@
 import React from 'react';
 
 import Button from '@synerise/ds-button';
-import { theme } from '@synerise/ds-core';
 import Cruds from '@synerise/ds-cruds';
 import Icon, { Add3M } from '@synerise/ds-icon';
 
@@ -27,6 +26,7 @@ const EditableItemsList = <T extends { id: string }>({
 }: EditableItemsListProps<T>) => {
   const mergedAddButtonProps = {
     ...DEFAULT_ADD_BUTTON_PROPS,
+    mode: addButtonLabel ? 'icon-label' : 'single-icon',
     ...addButtonProps,
     style: {
       ...DEFAULT_ADD_BUTTON_PROPS.style,
@@ -55,13 +55,7 @@ const EditableItemsList = <T extends { id: string }>({
         onClick={onAdd}
         disabled={maxRowLength !== undefined && items.length >= maxRowLength}
       >
-        {addButtonIcon || (
-          <Icon
-            component={<Add3M />}
-            size={24}
-            color={theme.palette['blue-600']}
-          />
-        )}
+        {addButtonIcon || <Icon component={<Add3M />} size={24} />}
         {addButtonLabel}
       </Button>
     </>

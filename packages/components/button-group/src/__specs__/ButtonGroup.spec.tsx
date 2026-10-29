@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Button from '@synerise/ds-button';
-import { renderWithProvider } from '@synerise/ds-core/testing';
+import { renderWithProvider, rulesFor } from '@synerise/ds-core/testing';
 import { fireEvent } from '@testing-library/react';
 
 import ButtonGroup from '../';
@@ -60,8 +60,10 @@ describe('ButtonGroup', () => {
    * button before it rounds all four corners as though it were the only one.
    */
   describe('compact corner selectors', () => {
-    const emittedCss = () => {
-      const { container } = renderWithProvider(
+    // Selectors of the rules this group emits for its buttons, so a rule left in the sheet by
+    // another render cannot satisfy the assertion.
+    const compactSelectors = () => {
+      const { container, getByText } = renderWithProvider(
         <ButtonGroup compact>
           <Button>One</Button>
           <span>
@@ -69,24 +71,27 @@ describe('ButtonGroup', () => {
           </span>
         </ButtonGroup>,
       );
-      // styled-components writes into <style> tags in the document head
-      return Array.from(document.querySelectorAll('style'))
-        .map((tag) => tag.textContent ?? '')
-        .join('\n')
-        .concat(container.innerHTML);
+      const group = container.querySelector('.ds-button-group');
+      return ['One', 'Two'].flatMap((label) =>
+        rulesFor(getByText(label).closest('.ant-btn'), {
+          within: group,
+          state: 'any',
+        }).map(({ selector }) => selector),
+      );
     };
 
     it('never nests :has() inside :has()', () => {
-      const css = emittedCss();
-      const nested = css.match(/:has\([^)]*:has\(/g) ?? [];
+      const selectors = compactSelectors();
+      const nested = selectors.join('\n').match(/:has\([^)]*:has\(/g) ?? [];
 
+      expect(selectors.some((selector) => selector.includes(':has('))).toBe(true);
       expect(nested).toEqual([]);
     });
 
     it('still recognises a button wrapped in a span as following its sibling', () => {
       // The relative form that replaced the nested one. Without it the wrapped button is invisible
       // to the "is another unit after me?" test.
-      expect(emittedCss()).toContain('~ span > .ant-btn');
+      expect(compactSelectors().join('\n')).toMatch(/:has\(~ \.ant-btn, ?~ span > \.ant-btn\)/);
     });
   });
 });
