@@ -35,7 +35,7 @@ Migrate components off `theme.palette['grey-700']` / hardcoded hex / antd Less v
 ## Sync pipeline (upstream → DS)
 - Token SOURCE (`packages/tokens/tokens/`) is **committed** in DS; `dist/` is gitignored (CI rebuilds).
 - **Local**: `cd packages/tokens && pnpm sync [<branch>]` — SSH-clones design-tokens@main, `rsync --delete` into `tokens/` (preserves `semantic/dimensions.json` + `spacing.json`), then `pnpm build`. It's a **full mirror**, not a cherry-pick — review `git diff packages/tokens/tokens` and revert unintended file moves.
-- **CI (automatic)**: a merge to design-tokens@main triggers a rolling sync MR (`chore/design-tokens-sync` → `chore/tokenisation`); a human reviews the Chromatic diff and merges. Sync commit `chore(tokens): sync from design-tokens@<sha>` (does not publish).
+- **CI (automatic)**: a merge to design-tokens@main triggers a rolling sync MR (`chore/design-tokens-sync` → `master`); a human reviews the Chromatic diff and merges. Sync commit `chore(tokens): sync from design-tokens@<sha>` (does not publish).
 - **Golden rule**: **tokens sync first (rolling MR); consuming-code changes follow in a separate code MR.** A token rename/removal breaks only consumers of the old var — fix those in the follow-up MR (grep `--ds-<old>` across `packages/`).
 
 ## Per-component workflow (summary — use the `apply-tokens` skill for detail)
@@ -48,16 +48,16 @@ Migrate components off `theme.palette['grey-700']` / hardcoded hex / antd Less v
 7. Update the component's row in `docs/tokenisation-status.md`.
 
 ## Branch / MR / commit conventions
-- **One component per branch/MR**, branched off `chore/tokenisation`; label the MR **`tokenisation`**. (A cross-cutting convention change may be a single MR — confirm first.)
+- **One component per branch/MR**, branched off `master`; label the MR **`tokenisation`**. (A cross-cutting convention change may be a single MR — confirm first.)
 - Branch `refactor/<component>-tokens`; commit `refactor(<component>): <desc>` (component-name scope; body lines ≤100 chars). Jira → `Resolves task:` footer (not in the subject).
 - **NO `Co-Authored-By` / AI-attribution / `Claude-Session` lines — ever.**
-- Push + MR: `git push -o merge_request.create -o merge_request.target=chore/tokenisation -o merge_request.label=tokenisation origin refactor/<c>-tokens`.
+- Push + MR: `git push -o merge_request.create -o merge_request.target=master -o merge_request.label=tokenisation origin refactor/<c>-tokens`.
 - DS is **not strict SemVer** — breaking token/de-antd changes ship as minor/patch; don't demand a BREAKING CHANGE footer.
 - Never push to master; never `git stash` bare (shared stack); never `--no-verify`.
 
 ## Worktree / commit env (mechanics that bite)
 - The **Edit/Write tools are worktree-isolation-pinned** to the session's launch worktree → in any *other* worktree, edit files via **Bash/Python** (exact-string replace with count asserts), not Edit/Write. `Read` works anywhere. Subagents inherit the same pin.
-- Per-component worktree: `git worktree add -b refactor/<c>-tokens <path> origin/chore/tokenisation`; `ln -s <main>/node_modules <path>/node_modules` (for husky/lint-staged/eslint). Remove after push.
+- Per-component worktree: `git worktree add -b refactor/<c>-tokens <path> origin/master`; `ln -s <main>/node_modules <path>/node_modules` (for husky/lint-staged/eslint). Remove after push.
 - Offline `tsc` is noisy (unresolved `@synerise/*` → `TS2307` + cascade `TS7006` implicit-any) — **rely on CI** for full type/lint; the *real* errors are the non-`TS2307` ones in files you touched. Fix lint locally with `node_modules/.bin/eslint --fix <files>`.
 - husky/lint-staged (eslint --fix + prettier + commitlint) run on commit — let them.
 
@@ -81,12 +81,12 @@ Migrate components off `theme.palette['grey-700']` / hardcoded hex / antd Less v
 
 ## Current state (as of ~2026-07-24 — check `docs/tokenisation-status.md` for live)
 - Most colour-bearing components ✅. **Blocked (no MR)**: `drawer`, `list`, `scrollbar`, `select` (`.less`/de-antd first); `tabs` (focus token), `tooltip` (key-cap token); `button-group` (translucent split-dividers, no token); `card-tabs` (design-gated redesign + `ordered` SET). Deprecated (won't tokenise): `alert`, `menu`, `table`.
-- Base branch for all tokenisation work: **`chore/tokenisation`** (integrates to master via Semantic Release).
+- Base branch for all tokenisation work: **`master`** (`chore/tokenisation` merged into it on 2026-10-29 and was deleted).
 
 ## Quick start for a new session
-1. `git fetch origin chore/tokenisation`; make a worktree branch `refactor/<comp>-tokens` off it (+ node_modules symlink).
+1. `git fetch origin master`; make a worktree branch `refactor/<comp>-tokens` off `origin/master` (+ node_modules symlink).
 2. `/audit-tokens <comp>` (or grep `theme.palette` / hex / `.less`) → decide exact-vs-shift per value.
 3. Apply edits (Bash/Python in the worktree), keeping dynamic colours on palette; drop unused theme imports + stale comments.
 4. Update the component's `docs/tokenisation-status.md` row.
-5. Commit `refactor(<comp>): …` (no attribution lines) → push with MR create + `tokenisation` label → target `chore/tokenisation`.
+5. Commit `refactor(<comp>): …` (no attribution lines) → push with MR create + `tokenisation` label → target `master`.
 6. Rely on CI for type/lint; flag value shifts for Chromatic.

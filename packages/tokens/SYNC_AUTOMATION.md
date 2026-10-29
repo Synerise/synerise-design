@@ -237,7 +237,7 @@ non-protected trigger token. Once:
 Until ADR-0002 §6 was amended, the trigger sent `SYNC_TOKENS` and the merged SHA as pipeline
 variables, and `sync_tokens` required them. In order:
 
-1. Land the synerise-design change on the trigger ref (`chore/tokenisation`, later `master`). Its
+1. Land the synerise-design change on the trigger ref (`master`). Its
    `sync_tokens` rule needs only the `trigger` source, so the old trigger, variables and all, keeps
    working.
 2. Land the design-tokens change that drops the variables from `trigger_synerise_design`.
@@ -299,12 +299,12 @@ error messages are not masked, so no token may appear in a command line or a rem
   the branch.
 - **Rolling MR**: a single `chore/design-tokens-sync` branch is force-pushed and its MR refreshed, so the
   reviewer always sees "current tokens vs the target branch" in one Chromatic thread. The MR targets
-  the branch the sync ran on (`CI_COMMIT_REF_NAME`, override `SYNC_MR_TARGET_BRANCH`) — normally
-  `master`, but **`chore/tokenisation` during the interim** while tokenisation is not yet in master
-  (auto-reverts to `master` when the trigger ref does; the target is updated on existing MRs too).
-  An MR targeting `chore/tokenisation` still runs the full MR pipeline incl. `chromatic_publish` —
-  those jobs gate only on `merge_request_event`, and the token-sync specials key on the *source*
-  branch (`chore/design-tokens-sync`), so neither depends on the target.
+  the branch the sync ran on (`CI_COMMIT_REF_NAME`, override `SYNC_MR_TARGET_BRANCH`), which is
+  `master`; the target is also set on existing MRs, so a refresh retargets them. Until
+  `chore/tokenisation` merged into `master` (2026-10-29) the trigger ran on that branch and the MR
+  targeted it. The MR pipeline does not depend on the target: `chromatic_publish` and the rest gate
+  only on `merge_request_event`, and the token-sync specials key on the *source* branch
+  (`chore/design-tokens-sync`).
 - **No premature publish**: the sync commit/MR title is `chore(tokens): sync …`, never
   `build: publish`, so merging it does not trigger `publish_packages`. The next normal release
   (`lerna version` → `build: publish`) picks up the changed package files and publishes.
@@ -358,7 +358,7 @@ SCRIPT=/tmp/old-ci-sync-tokens.sh bash scripts/test-ci-sync-tokens.sh   # any ot
    title isn't `build: publish`).
 7. **Variables refused** — nobody can read `DS_SYNC_TRIGGER_TOKEN`, so probe with a throwaway
    trigger token of your own: *No one allowed* applies to every role, so it stands in for the bot's.
-   The script creates it, sends one variable to `chore/tokenisation`, prints the result, and deletes
+   The script creates it, sends one variable to `master`, prints the result, and deletes
    it:
 
    ```bash
@@ -368,7 +368,7 @@ SCRIPT=/tmp/old-ci-sync-tokens.sh bash scripts/test-ci-sync-tokens.sh   # any ot
      t=$(curl -sS --config <(h) -X POST --form description=variables-probe \
        --form "expires_at=$(date -v+1d +%F)" "$API/projects/1171/triggers")
      id=$(jq -r .id <<<"$t")
-     jq -j .token <<<"$t" | curl -sS -X POST -F "token=<-" -F ref=chore/tokenisation \
+     jq -j .token <<<"$t" | curl -sS -X POST -F "token=<-" -F ref=master \
        -F "variables[PROBE]=1" "$API/projects/1171/trigger/pipeline" | jq -c "{pipeline_id: .id, message}"
      curl -sS -o /dev/null -w "probe trigger deleted: HTTP %{http_code}\n" --config <(h) \
        -X DELETE "$API/projects/1171/triggers/$id"'

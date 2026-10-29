@@ -335,7 +335,8 @@ flowchart TD
   verification and must be changed to `master` by hand once verified: the `ref` that
   `trigger_synerise_design` sends, and `DS_REF` in `preview_synerise_design`. The sync MR target
   follows the trigger ref, so it needs no change. The trigger token's Maintainer bot can already
-  run pipelines on the protected `master` (decision 6).
+  run pipelines on the protected `master` (decision 6). Done in Frontend/design-tokens!30 after
+  `chore/tokenisation` merged into `master` (2026-10-29).
 
 ## Alternatives considered
 
