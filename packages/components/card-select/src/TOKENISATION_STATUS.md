@@ -1,6 +1,6 @@
 # CardSelect — Tokenisation Status
 
-✅ **Migrated** on `chore/tokenisation` (colors, shadow, opacity).
+✅ **Migrated** (colors, shadow, opacity); merged to `master`.
 
 The canonical, up-to-date report — including the full value→token mapping, visual diffs, and the
 `check-*` token-naming discrepancy flagged for UX — lives in
