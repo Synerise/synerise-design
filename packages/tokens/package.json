@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-tokens",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Design tokens for Synerise Design System — generated from Token Studio",
   "type": "module",
   "sideEffects": [
@@ -13,9 +13,15 @@
   "types": "dist/js/index.d.ts",
   "typesVersions": {
     "*": {
-      "light": ["dist/js/light.d.ts"],
-      "dark": ["dist/js/dark.d.ts"],
-      "names": ["dist/js/names.d.ts"]
+      "light": [
+        "dist/js/light.d.ts"
+      ],
+      "dark": [
+        "dist/js/dark.d.ts"
+      ],
+      "names": [
+        "dist/js/names.d.ts"
+      ]
     }
   },
   "exports": {
@@ -49,8 +55,8 @@
     "sync": "bash scripts/sync-tokens.sh"
   },
   "devDependencies": {
-    "style-dictionary": "^4.3.0",
     "@tokens-studio/sd-transforms": "^1.3.0",
+    "style-dictionary": "^4.3.0",
     "vitest": "^4"
   },
   "license": "ISC",

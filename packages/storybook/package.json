@@ -1,6 +1,6 @@
 {
   "name": "storybook",
-  "version": "1.65.1",
+  "version": "1.66.0",
   "private": true,
   "repository": {
     "type": "git",
@@ -128,9 +128,9 @@
     "@synerise/ds-tags": "workspace:^",
     "@synerise/ds-time-picker": "workspace:^",
     "@synerise/ds-toast": "workspace:^",
+    "@synerise/ds-tokens": "workspace:^",
     "@synerise/ds-toolbar": "workspace:^",
     "@synerise/ds-tooltip": "workspace:^",
-    "@synerise/ds-tokens": "workspace:^",
     "@synerise/ds-tray": "workspace:^",
     "@synerise/ds-typography": "workspace:^",
     "@synerise/ds-unordered-list": "workspace:^",

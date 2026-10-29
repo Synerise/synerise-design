@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition-blocks@0.1.6...@synerise/ds-condition-blocks@0.2.0) (2026-10-29)
+
+
+### Features
+
+* integrate Token Studio design tokens across the design system ([aabb447](https://github.com/Synerise/synerise-design/commit/aabb447edfb2d0c85e3de1f07e809ef84083453b))
+
+
+
+
+
 ## [0.1.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition-blocks@0.1.5...@synerise/ds-condition-blocks@0.1.6) (2026-10-28)
 
 **Note:** Version bump only for package @synerise/ds-condition-blocks

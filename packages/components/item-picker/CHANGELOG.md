@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@2.2.3...@synerise/ds-item-picker@2.3.0) (2026-10-29)
+
+
+### Features
+
+* integrate Token Studio design tokens across the design system ([aabb447](https://github.com/Synerise/synerise-design/commit/aabb447edfb2d0c85e3de1f07e809ef84083453b))
+
+
+
+
+
 ## [2.2.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@2.2.2...@synerise/ds-item-picker@2.2.3) (2026-10-28)
 
 
