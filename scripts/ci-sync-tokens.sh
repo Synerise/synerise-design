@@ -36,10 +36,8 @@ CI_API_V4_URL="${CI_API_V4_URL:-https://${GITLAB_HOST}/api/v4}"
 # Must match the repo's branch-name policy: (feature|hotfix|bugfix|fix|chore|test|docs|
 # refactor|renovate|dev|master|beta|release)/*
 SYNC_BRANCH="${SYNC_BRANCH:-chore/design-tokens-sync}"
-# Target branch for the rolling MR. Defaults to the ref this sync ran on (CI_COMMIT_REF_NAME),
-# so the MR's diff is just the token commit. While tokenisation is not yet in master the trigger
-# fires on chore/tokenisation, so the MR targets chore/tokenisation; once the trigger ref reverts
-# to master this auto-targets master. Override with SYNC_MR_TARGET_BRANCH.
+# Target branch for the rolling MR. Defaults to the ref this sync ran on (CI_COMMIT_REF_NAME,
+# normally master), so the MR's diff is just the token commit. Override with SYNC_MR_TARGET_BRANCH.
 SYNC_MR_TARGET_BRANCH="${SYNC_MR_TARGET_BRANCH:-${CI_COMMIT_REF_NAME:-master}}"
 # Target repo derived from CI env, with fallbacks for local runs.
 TARGET_HOST="${CI_SERVER_HOST:-$GITLAB_HOST}"
@@ -143,8 +141,7 @@ const main = async () => {
     const res = await fetch(`${api}/${open[0].iid}`, {
       method: 'PUT',
       headers,
-      // include target_branch so an existing rolling MR is retargeted if the target changed
-      // (e.g. master -> chore/tokenisation during the interim, or back again).
+      // include target_branch so an existing rolling MR is retargeted if the target changed.
       body: JSON.stringify({ ...body, target_branch: target }),
     });
     if (!res.ok) throw new Error(`update MR failed: ${res.status} ${await res.text()}`);

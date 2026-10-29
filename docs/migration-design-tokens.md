@@ -1,6 +1,6 @@
 # Migrating to design tokens
 
-**Status:** in progress on `chore/tokenisation` (not yet released)
+**Status:** merged to `master` on 2026-10-29 and released
 
 Component styling moves from the Less-derived `theme.palette` / `theme.variables` to design-token CSS
 custom properties (`var(--ds-*)`) from `@synerise/ds-tokens`. The DS does not follow strict SemVer:

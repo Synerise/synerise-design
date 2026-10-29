@@ -475,7 +475,7 @@ but have no consuming markup yet.)
 
 **Package:** `packages/components/section-message/`
 **Token variants:** success, warning, error, informative, supply, service, entity (7 total)
-**Migrated in:** `chore/tokenisation` branch
+**Migrated:** merged to `master`
 
 #### Colors — :white_check_mark: Complete
 
@@ -513,7 +513,7 @@ Hardcoded px values remain. Token Studio defines: `content.padding.x`, `content.
 
 **Package:** `packages/components/toast/`
 **Token variants:** success, warning, error, informative (4 total; component type `negative` → token `error`)
-**Migrated in:** `chore/tokenisation` branch
+**Migrated:** merged to `master`
 
 #### Colors — :white_check_mark: Complete
 
@@ -553,7 +553,7 @@ Hardcoded px values remain. Token Studio defines: `content.padding.x`, `content.
 **Package:** `packages/components/broadcast-bar/`
 **Token variants:** success, warning, error (3 total; component type `negative` → token `error`)
 **Layer:** module (`--ds-broadcast-bar-variant-*`)
-**Migrated in:** `chore/tokenisation` branch
+**Migrated:** merged to `master`
 
 #### Colors — :white_check_mark: Complete
 
@@ -592,7 +592,7 @@ warning text/icon token resolves to `grey-800` (#384350), an exact match.)
 
 **Package:** `packages/components/card-select/`
 **Layer:** module (`--ds-card-select-*`), with semantic fallback where no module token exists
-**Migrated in:** `chore/tokenisation` branch
+**Migrated:** merged to `master`
 
 #### Colors — :white_check_mark: Complete
 
@@ -665,7 +665,7 @@ Reconciling these requires aligning the Figma component, the token names, and th
 
 **Package:** `packages/components/divider/`
 **Layer:** module (`--ds-divider-*`)
-**Migrated in:** `chore/tokenisation` branch
+**Migrated:** merged to `master`
 
 #### Colors — :white_check_mark: Complete
 
@@ -694,7 +694,7 @@ token-vs-code gap that the sync closes — no code change needed.
 
 **Package:** `packages/components/inline-alert/`
 **Layer:** module (`--ds-inline-alert-*`) + semantic (`--ds-opacity-disabled`)
-**Migrated in:** `chore/tokenisation` branch
+**Migrated:** merged to `master`
 
 #### Colors — :white_check_mark: Complete
 
@@ -719,7 +719,7 @@ in this file is removed.
 **Package:** `packages/components/inline-edit/` (both components live here)
 **Layer:** module (`--ds-inline-edit-*`, `--ds-inline-select-*`) + semantic (`text-base-disabled`,
 `background-base-default`)
-**Migrated in:** `chore/tokenisation` branch
+**Migrated:** merged to `master`
 
 #### Colors — :white_check_mark: Complete
 
@@ -747,7 +747,7 @@ visual diffs. `useTheme()` removed from `InlineEdit.tsx`.
 
 **Package:** `packages/components/progress-bar/`
 **Layer:** module (`--ds-progressbar-*`)
-**Migrated in:** `chore/tokenisation` branch
+**Migrated:** merged to `master`
 
 #### Colors — :white_check_mark: Complete
 
@@ -775,7 +775,7 @@ Track background (`ProgressBar` + `ProgressTiles`) → `--ds-progressbar-bar-bg-
 
 **Package:** `packages/components/status/`
 **Layer:** module (`--ds-status-pill-variant-*`)
-**Migrated in:** `chore/tokenisation` branch
+**Migrated:** merged to `master`
 
 #### Colors — :white_check_mark: Complete
 
@@ -801,7 +801,7 @@ tokens split them, so success/warning **borders** now use the `-600` shade while
 
 **Package:** `packages/components/description/`
 **Layer:** module (`--ds-description-line-*`, 2) + semantic (icon/brand, 4)
-**Migrated in:** `chore/tokenisation` branch
+**Migrated:** merged to `master`
 
 #### Colors — :white_check_mark: Complete
 
@@ -820,7 +820,7 @@ Inactive star `grey-300` (`Star.tsx:19`) — no on-system icon token resolves to
 
 **Package:** `packages/components/navbar/`
 **Layer:** module (`--ds-navbar-*`, 3) + semantic (`text-onsolid-default`)
-**Migrated in:** `chore/tokenisation` branch
+**Migrated:** merged to `master`
 
 #### Colors — :white_check_mark: Complete · Opacity — :white_check_mark: Complete
 
@@ -844,7 +844,7 @@ dropped (inherits via currentColor). The `color` prop override is preserved.
 
 **Package:** `packages/components/popconfirm/`
 **Layer:** module (`--ds-popconfirm-*`, 5) + semantic (`shadow-2` ×2, `background-base-default`, `text-base-subtle`)
-**Migrated in:** `chore/tokenisation` branch
+**Migrated:** merged to `master`
 
 #### Colors — :white_check_mark: · Shadows — :white_check_mark: (shadow-2, provably equal)
 
@@ -871,7 +871,7 @@ now lives in `Popconfirm.styles.tsx` on palette (directly tokenisable).
 
 **Package:** `packages/components/tabs/`
 **Layer:** module (`--ds-tabs-item-*`, 4 — all used) + semantic (5)
-**Migrated in:** `chore/tokenisation` branch
+**Migrated:** merged to `master`
 
 #### Colors — :construction: Main states done · Opacity — :white_check_mark:
 
@@ -897,7 +897,7 @@ disabled opacity → `--ds-opacity-disabled`. Six `svg { fill }` rules dropped (
 
 **Package:** `packages/components/time-picker/`
 **Layer:** module (`--ds-time-picker-*`, 8) + semantic (5) + opacity (2)
-**Migrated in:** `chore/tokenisation` branch
+**Migrated:** merged to `master`
 
 #### Colors — :white_check_mark: · Opacity — :white_check_mark:
 
@@ -919,7 +919,7 @@ box-shadow exists (the `overlay-shadow` module token is unused).
 
 **Package:** `packages/components/tooltip/`
 **Layer:** module (`--ds-tooltip-*`, 4 of 5 applied) + 2 decorative opacities kept
-**Migrated in:** `chore/tokenisation` branch (`refactor/tooltip-tokens`)
+**Migrated:** merged to `master` (`refactor/tooltip-tokens`)
 
 #### Colors — :construction: · Shadows — :white_check_mark:
 
@@ -941,7 +941,7 @@ did **not** land in this sync — kept on `theme.palette`, flagged upstream. Com
 
 **Package:** `packages/components/card/`
 **Layer:** module (`--ds-card-bg-*`, `--ds-card-disabled-opacity`) + semantic (text/border/shadow)
-**Migrated in:** `chore/tokenisation` branch
+**Migrated:** merged to `master`
 
 #### Colors — :white_check_mark: · Shadows — :construction: · Opacity — :white_check_mark:
 
@@ -963,7 +963,7 @@ description text → `text-base-muted`; default raised shadow → `--ds-shadows-
 
 **Package:** `packages/components/modal/`
 **Layer:** module (`--ds-modal-*`, 6) + semantic (`background-base-subtle`, `text-base-muted`, `opacity-muted`, `shadow-2`)
-**Migrated in:** `chore/tokenisation` branch
+**Migrated:** merged to `master`
 
 #### Colors — :white_check_mark: · Shadows — :white_check_mark: · Opacity — :white_check_mark:
 
@@ -989,7 +989,7 @@ Description dashed-separator gradient (decorative); `zindex-modal` (not Phase 1)
 
 **Package:** `packages/components/stepper/`
 **Layer:** module (`--ds-stepper-step-*`, 13)
-**Migrated in:** `chore/tokenisation` branch
+**Migrated:** merged to `master`
 
 #### Colors — :construction: (warning state migrated in sync `66dddd0a`; filled-circle content still deferred)
 
@@ -1042,7 +1042,7 @@ Active page bg (grey-700), active text (white) and nav icon (grey-600) are exact
 
 **Package:** `packages/components/list-item/`
 **Layer:** module (`--ds-list-item-*`, 31) + semantic (focus rings, neutral text, success icon — 7)
-**Migrated in:** `chore/tokenisation` branch
+**Migrated:** merged to `master`
 
 #### Colors — :white_check_mark: · Opacity — :white_check_mark:
 
@@ -1069,7 +1069,7 @@ pressed delete state should stay darker (red-100 / `danger-subtlehover`).
 
 **Package:** `packages/components/avatar/`
 **Layer:** module (`--ds-avatar-disabled-opacity`) + semantic (text-onsolid, background-base, icon-base-subtle)
-**Migrated in:** `chore/tokenisation` branch
+**Migrated:** merged to `master`
 
 #### Colors — :white_check_mark: (static) · Opacity — :white_check_mark:
 
@@ -1091,7 +1091,7 @@ locals (not exported, no consumers).
 
 **Package:** `packages/components/page-header/`
 **Layer:** module (`--ds-page-header-*`, 3) + semantic (border/text/icon, 7) + `--ds-shadows-shadow-1`
-**Migrated in:** `chore/tokenisation` branch
+**Migrated:** merged to `master`
 
 #### Colors — :white_check_mark: · Shadows — :white_check_mark:
 
@@ -1110,7 +1110,7 @@ semantic `shadow-1` (identical). The `page` namespace (`--ds-page-bg`) has no ma
 
 **Package:** `packages/components/app-menu/`
 **Layer:** module (`--ds-app-menu-*`, 5) + semantic (border-base-subtle, text-brand, text-neutral) + `--ds-shadows-shadow-1`
-**Migrated in:** `chore/tokenisation` branch
+**Migrated:** merged to `master`
 
 #### Colors — :white_check_mark: · Shadows — :white_check_mark:
 
@@ -1135,7 +1135,7 @@ package yet (nothing to apply).
 
 **Packages:** `packages/components/checkbox/`, `packages/components/radio/`
 **Layer:** module (`--ds-form-checkbox-*` / `--ds-form-radio-*`)
-**Migrated in:** `chore/tokenisation` branch · **Status: :construction: partial**
+**Migrated:** merged to `master` · **Status: :construction: partial**
 
 The `*.mixin.less` files were **removed** (deantd); the per-state styling now lives in `Checkbox.styles.ts` /
 `Radio.styles.tsx` as styled-components on `theme.palette`. For checkbox, the check icons remain **data-URI SVG**
@@ -1175,7 +1175,7 @@ Description text → `--ds-form-radio-text-description`; disabled opacity (label
 
 **Package:** `packages/components/button/` (keys `buttons` + `button-expander`)
 **Layer:** module (`--ds-buttons-variant-*`, `--ds-button-expander-*`, 36) + semantic (14)
-**Migrated in:** `chore/tokenisation` branch · **Status: :white_check_mark: colours (custom-color dynamic; readOnly freeze + ripple on palette)**
+**Migrated:** merged to `master` · **Status: :white_check_mark: colours (custom-color dynamic; readOnly freeze + ripple on palette)**
 
 #### Done
 
