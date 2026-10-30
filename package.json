@@ -69,6 +69,7 @@
     "@types/react-dom": "18.3.5",
     "@types/react-window": "^1.8.8",
     "@types/styled-components": "5.1.27",
+    "@typescript/native": "npm:typescript@^7.0.2",
     "@vitejs/plugin-react": "^5.1.4",
     "babel-plugin-styled-components": "^2.1.4",
     "chalk": "^5.6.2",
@@ -90,7 +91,7 @@
     "sass": "^1.43.4",
     "styled-components": "^5.3.3",
     "tslib": "2",
-    "typescript": "^5.8.0",
+    "typescript": "npm:@typescript/typescript6@^6.0.2",
     "vite": "^7.3.7",
     "vite-plugin-dts": "^4.5.4",
     "vitest": "4.1.12"

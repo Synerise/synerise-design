@@ -2,7 +2,7 @@ import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import React, { useCallback, useState } from 'react';
 
 import Icon from '@synerise/ds-icon';
-import * as medium from '@synerise/ds-icon/dist/icons/M';
+import * as medium from '@synerise/ds-icon/dist/icons/M/index';
 
 import type {
   FilterElement,

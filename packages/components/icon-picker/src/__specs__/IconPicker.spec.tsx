@@ -11,7 +11,7 @@ import Icon, { Add3M } from "@synerise/ds-icon";
 // once tests resolve siblings from source rather than dist, dropping an export means they receive
 // undefined. Regenerate by intersecting the named @synerise/ds-icon imports of icon-picker's
 // transitive dependencies with the exports of icon/src/icons/M.
-vi.mock('@synerise/ds-icon/dist/icons/M', () => {
+vi.mock('@synerise/ds-icon/dist/icons/M/index', () => {
   const Stub = (name: string) => {
     const Component = (props: React.SVGProps<SVGSVGElement>) => <svg data-testid={`ds-icon-${name}`} {...props} />;
     Component.displayName = name;

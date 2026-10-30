@@ -97,6 +97,7 @@ The saved-colour **swatch section** is built from plain styled elements matching
 - `@synerise/ds-dropdown` — popover/overlay shell for the picker panel
 - `@synerise/ds-input` — trigger text input and the hex input inside the dropdown
 - `@synerise/ds-tags` — `Tag` for the colour preview swatch (trigger `innerPrefix` + the dropdown preview square); **not** used for saved-colour swatches
+- `@synerise/ds-tag` — no runtime import; listed because the published `ColorPicker.styles.d.ts` names `TagShape`/`TagTexts` from it (the inferred type of the styled `Tag`)
 - `@synerise/ds-copy-icon` — copy-to-clipboard button in the dropdown hex input
 - `@synerise/ds-icon` — the `FormulaPlusM` plus glyph inside the swatch creator button
 - `@synerise/ds-form-field` — `FormFieldCommonProps` for `description`/`errorText`

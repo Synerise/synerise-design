@@ -125,7 +125,7 @@ const myIcons: DataSource[] = [
 ### `useIconSourceLoader`
 
 Loads icons based on the `data` prop and returns `FilterElement[]`.
-- `'design-system'` → synchronously imports `@synerise/ds-icon/dist/icons/M` (deep import) and sets state
+- `'design-system'` → synchronously imports `@synerise/ds-icon/dist/icons/M/index` (deep import) and sets state
 - `'font-awesome'` → dynamically imports all FA packs via `Promise.all` (async, icons appear after load)
 - `DataSource[]` → runs `prepareItems()` synchronously
 
@@ -150,6 +150,6 @@ Flattens `FilterElement[]` into `GroupedFilterElement[]` for react-window. Each 
 - **Selection state is fully controlled** — the component has no internal selection state. Pass `selectedIcon` and handle `onClear` to control the selected-state UI.
 - **`selectedIcon` toggles the trigger entirely** — when truthy, the default trigger button is replaced with `ButtonGroup` (selected icon + clear button). The `button` prop is ignored in this state.
 - **`ListItem` has a fragile Avatar check** — `(element.item as any).type.name === 'Avatar'` detects Avatar items by component name. Minification or renaming will break this.
-- **Deep import for DS icons** — `import * as medium from '@synerise/ds-icon/dist/icons/M'` is a fragile path that may break if `@synerise/ds-icon` restructures its dist output.
+- **Deep import for DS icons** — `import * as medium from '@synerise/ds-icon/dist/icons/M/index'` is a fragile path that may break if `@synerise/ds-icon` restructures its dist output. Keep the `/index`: ds-icon's `exports` map turns `dist/icons/M` into `dist/icons/M.js`, which does not exist, so TypeScript's `bundler` resolution and any bundler that honours `exports` fail without it.
 - **Uses Vitest** — `package.json` has `"test": "jest"`. Spec also uses `vi.fn()`. Not yet migrated.
 - **`react-intl` is required** — `IntlProvider` must be present for the default `noResultMsg`. Tests use `renderWithProvider` from `@synerise/ds-core/testing`.

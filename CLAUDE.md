@@ -2,7 +2,12 @@
 
 ## Project Overview
 - Component library / design system — publishes `@synerise/ds-*` packages to npm
-- React 18.3 + TypeScript 5.8, monorepo via **pnpm workspaces + Lerna** (`"npmClient": "pnpm"`)
+- React 18.3 + TypeScript 7, monorepo via **pnpm workspaces + Lerna** (`"npmClient": "pnpm"`)
+- TypeScript runs side by side: `tsc` (each package's `types` script) is the native TS 7 compiler
+  (`@typescript/native`), while the `typescript` package name is aliased to `@typescript/typescript6`,
+  because TS 7.0 ships no compiler API and vite-plugin-dts, Storybook docgen, madge and Code Connect
+  still import one. A package that pulls in a `typescript` peer must list that alias itself (see
+  ds-avatar/flag/icon); otherwise pnpm links an older `tsc` into its `.bin`, which shadows TS 7
 - styled-components for all styling; **antd has been fully removed** (see `docs/adr/0001-remove-antd-dependency.md`) — never reintroduce it, biome bans the import
 - Functional components with hooks for all new code
 
