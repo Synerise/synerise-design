@@ -7,7 +7,6 @@
   "compilerOptions": {
     "outDir": "dist",
     "rootDir": "src",
-    "baseUrl": "src",
     "jsx": "react-jsx"
   },
   "references": []

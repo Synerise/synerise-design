@@ -48,6 +48,7 @@
     "@synerise/ds-form-field": "workspace:^",
     "@synerise/ds-icon": "workspace:^",
     "@synerise/ds-input": "workspace:^",
+    "@synerise/ds-tag": "workspace:^",
     "@synerise/ds-tags": "workspace:^",
     "@synerise/ds-tooltip": "workspace:^",
     "@synerise/ds-utils": "workspace:^",

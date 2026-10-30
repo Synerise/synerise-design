@@ -7,7 +7,7 @@
     "jsx": "preserve",
     "declaration": true,
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "target": "es6",
     "lib": [
       "dom",
@@ -22,7 +22,6 @@
     "noImplicitReturns": true,
     "noUnusedLocals": true,
     "importHelpers": true,
-    "esModuleInterop": false,
     "skipLibCheck": true,
     "resolveJsonModule": true
   }

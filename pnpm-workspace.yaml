@@ -11,6 +11,12 @@ overrides:
   react: 18.3.1
   react-dom: 18.3.1
   svgo: 3.3.3
+  # TypeScript 7 ships only the native `tsc`, no compiler API, so every pinned `typescript`
+  # dependency (@figma/code-connect, @microsoft/api-extractor) gets the 6.0 compat package.
+  # It has only a `tsc6` bin. Leaving another real `typescript` in the graph lets pnpm hand
+  # it to an auto-installed peer, which links its older `tsc` into a package's .bin and
+  # shadows the root TS 7 one. Overrides do not reach peers - see ds-avatar/flag/icon.
+  'typescript@<7': npm:@typescript/typescript6@^6.0.2
 
 # Replaces onlyBuiltDependencies, which pnpm 11 removed. Only these packages
 # may run install scripts; strictDepBuilds is on by default, so anything else
