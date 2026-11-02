@@ -85,7 +85,7 @@ This replaces the old hand-maintained `modules/colors-only.json` — adding a ne
 upstream needs **no** manual extraction. Tokens whose reference targets appear upstream later
 (e.g. once `outline.*` / `shadow.level.*` primitives are added) are picked up automatically. The
 build warns with how many tokens were pruned per theme and names them (first 20), and asserts the output contains `--ds-color-` vars. See
-`SYNC_AUTOMATION.md` for the end-to-end sync flow.
+`SYNC_AUTOMATION.md` in the design-tokens repo for the end-to-end sync flow.
 
 ## How tokens are consumed
 
@@ -128,7 +128,7 @@ Mirrors the latest JSON from the **design-tokens GitLab repo** (`Frontend/design
 `semantic/spacing.json`). After syncing, rebuild with `pnpm build`.
 
 In CI this is fully automated: a token merge in design-tokens triggers a sync that opens a
-Chromatic-reviewed MR here. See **`SYNC_AUTOMATION.md`** for the flow and one-time setup.
+Chromatic-reviewed MR here. See **`SYNC_AUTOMATION.md`** in the design-tokens repo for the flow and one-time setup.
 
 ## Naming convention
 

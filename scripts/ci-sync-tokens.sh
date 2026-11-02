@@ -4,34 +4,17 @@
 # monorepo's @synerise/ds-tokens package, then open/refresh a Merge Request whose
 # pipeline publishes Storybook to Chromatic for visual review.
 #
-# Runs as the `sync_tokens` CI job (triggered by a merge in Frontend/design-tokens),
-# but is fully runnable locally for testing via DRY_RUN / TOKENS_SRC_DIR.
-#
 # Flow: clone the source branch tip → mirror tokens/ (protecting repo-local files) →
 #       diff-guard (nothing changed: close a still-open rolling MR, exit) → build gate →
 #       force-push rolling branch → create or refresh the rolling MR.
 #
-# Env (all optional unless noted):
-#   TRIGGER_SOURCE_BRANCH   source branch to sync from           (default: main)
-#   TOKENS_REPO             source repo path on the GitLab host  (default: Frontend/design-tokens)
-#   GITLAB_HOST             GitLab host                          (default: gitlab.synerise.com)
-#   TOKENS_REPO_READ_TOKEN  read token for cloning the source    (falls back to CI_JOB_TOKEN)
-#   TOKENS_SRC_DIR          use an existing local clone instead of cloning (local testing)
-#   PUSH_TOKEN              write + api token for project 1171   (required unless DRY_RUN)
-#   CI_PROJECT_ID           target project id                    (default: 1171)
-#   CI_API_V4_URL           GitLab API base                      (default: https://$GITLAB_HOST/api/v4)
-#   SYNC_BRANCH             rolling branch name                  (default: chore/design-tokens-sync)
-#   SYNC_MR_TARGET_BRANCH   target branch for the rolling MR     (default: $CI_COMMIT_REF_NAME, else master)
-#   DRY_RUN                 skip push + MR API calls (mirror/build only)
-#   SKIP_BUILD             skip the build gate (local dry-run only)
-#
 set -euo pipefail
 
 # ── Config ────────────────────────────────────────────────────────────────────
-GITLAB_HOST="${GITLAB_HOST:-gitlab.synerise.com}"
-TOKENS_REPO="${TOKENS_REPO:-Frontend/design-tokens}"
+GITLAB_HOST="${GITLAB_HOST:-${CI_SERVER_HOST:-}}"
+TOKENS_REPO="${TOKENS_REPO:-${CI_PROJECT_NAMESPACE:+${CI_PROJECT_NAMESPACE}/design-tokens}}"
 TRIGGER_SOURCE_BRANCH="${TRIGGER_SOURCE_BRANCH:-main}"
-CI_PROJECT_ID="${CI_PROJECT_ID:-1171}"
+CI_PROJECT_ID="${CI_PROJECT_ID:-}"
 CI_API_V4_URL="${CI_API_V4_URL:-https://${GITLAB_HOST}/api/v4}"
 # Must match the repo's branch-name policy: (feature|hotfix|bugfix|fix|chore|test|docs|
 # refactor|renovate|dev|master|beta|release)/*
@@ -39,9 +22,8 @@ SYNC_BRANCH="${SYNC_BRANCH:-chore/design-tokens-sync}"
 # Target branch for the rolling MR. Defaults to the ref this sync ran on (CI_COMMIT_REF_NAME,
 # normally master), so the MR's diff is just the token commit. Override with SYNC_MR_TARGET_BRANCH.
 SYNC_MR_TARGET_BRANCH="${SYNC_MR_TARGET_BRANCH:-${CI_COMMIT_REF_NAME:-master}}"
-# Target repo derived from CI env, with fallbacks for local runs.
 TARGET_HOST="${CI_SERVER_HOST:-$GITLAB_HOST}"
-TARGET_PATH="${CI_PROJECT_PATH:-Frontend/synerise-design}"
+TARGET_PATH="${CI_PROJECT_PATH:-}"
 PROJECT_URL="${CI_PROJECT_URL:-https://${TARGET_HOST}/${TARGET_PATH}}"
 
 REPO_ROOT="$(git rev-parse --show-toplevel)"
@@ -84,6 +66,8 @@ git_auth() {
 
 require_push_token() {
   secret_set PUSH_TOKEN || { echo "ERROR: PUSH_TOKEN required to push and to open/close the MR." >&2; exit 1; }
+  [[ -n "$TARGET_HOST" && -n "$TARGET_PATH" && -n "$CI_PROJECT_ID" ]] ||
+    { echo "ERROR: CI_SERVER_HOST, CI_PROJECT_PATH and CI_PROJECT_ID required to push and to open/close the MR." >&2; exit 1; }
   export PUSH_TOKEN
 }
 
@@ -184,9 +168,8 @@ else
     echo "ERROR: no clone credential (set TOKENS_REPO_READ_TOKEN or run in CI with CI_JOB_TOKEN)." >&2
     exit 1
   fi
-  # The trigger carries no variables (ADR-0002 §6), so the sync always takes the branch tip. Syncs
-  # run one at a time (resource_group in .gitlab-ci.yml), so each clones a tip at least as new as
-  # the one the previous sync pushed.
+  [[ -n "$GITLAB_HOST" && -n "$TOKENS_REPO" ]] ||
+    { echo "ERROR: GITLAB_HOST and TOKENS_REPO required to clone the source (or set TOKENS_SRC_DIR)." >&2; exit 1; }
   log "Cloning ${TOKENS_REPO}@${TRIGGER_SOURCE_BRANCH}"
   git_auth "$GITLAB_HOST" "$CLONE_USER" "$CLONE_SECRET_VAR" clone --depth 1 \
     --branch "$TRIGGER_SOURCE_BRANCH" "https://${GITLAB_HOST}/${TOKENS_REPO}.git" "$CLONE_DIR"
@@ -298,7 +281,7 @@ fi
 require_push_token
 log "Committing + force-pushing ${SYNC_BRANCH}"
 git config user.name "ds-tokens-sync-bot"
-git config user.email "ds-bot@synerise.com"
+git config user.email "${GITLAB_USER_EMAIL:-ds-tokens-sync-bot@localhost}"
 git checkout -B "$SYNC_BRANCH"
 git commit --quiet -m "$TITLE"
 git_auth "$TARGET_HOST" oauth2 PUSH_TOKEN push -f -o ci.skip \

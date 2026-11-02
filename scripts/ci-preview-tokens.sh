@@ -2,20 +2,11 @@
 #
 # ci-preview-tokens.sh — build a Chromatic PREVIEW of how an in-progress design-tokens
 # change looks, WITHOUT creating an MR. Run (manually) by the `preview_synerise_design` job
-# in a design-tokens MR pipeline, from a read-only clone of this repo (ADR-0002 §7).
+# in a design-tokens MR pipeline, from a read-only clone of this repo.
 #
 # Flow: toolchain → mirror the MR checkout's tokens into @synerise/ds-tokens → full build →
 # build Storybook → run Chromatic on an isolated `token-preview/<branch>` branch, which never
 # updates the baseline of the branch it was cloned from. Nothing is pushed, no MR.
-#
-# Env (set by the design-tokens job / its CI vars):
-#   TOKENS_SRC_DIR              the design-tokens MR checkout whose tokens/ is mirrored (required)
-#   TRIGGER_SOURCE_BRANCH       design-tokens MR source branch (used as the preview name)
-#   TRIGGER_SOURCE_SHA          design-tokens commit being previewed (logged only)
-#   SNR_NPM_REGISTRY_USERNAME   Nexus read credentials for pnpm install
-#   SNR_NPM_REGISTRY_PASSWORD
-#   CHROMATIC_PROJECT_TOKEN_SB7 Chromatic project token
-#   TEAMS_TOKENS_WEBHOOK        Teams webhook for the "preview ready" card
 #
 set -euo pipefail
 
@@ -38,7 +29,8 @@ log "Installing pnpm@${PNPM_VERSION}"
 npm install -g "pnpm@${PNPM_VERSION}"
 export pnpm_config_strict_ssl=false
 cp .npmrc.dist .npmrc
-printf '\n//nexus.snrinternal.com/repository/npm-release/:_auth = %s\n' \
+REGISTRY="$(sed -n 's|^registry=https:||p' .npmrc.dist)"
+printf '\n%s/:_auth = %s\n' "$REGISTRY" \
   "$(printf '%s:%s' "$SNR_NPM_REGISTRY_USERNAME" "$SNR_NPM_REGISTRY_PASSWORD" | base64 | tr -d '\n')" >> .npmrc
 
 # ── 1. Mirror the MR checkout's tokens into the working tree (reuses the sync worker) ──
