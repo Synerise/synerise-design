@@ -1,6 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react-vite';
-import React, { ChangeEvent, ReactNode, useState } from 'react';
-import { useArgs } from 'storybook/preview-api';
+import React, { ChangeEvent, ReactNode, useEffect, useState } from 'react';
 
 import Icon, { FileM, SearchM } from '@synerise/ds-icon';
 import type { InputProps } from '@synerise/ds-input';
@@ -22,10 +21,11 @@ import { NO_SNAPSHOT } from '../../utils/chromatic';
 import { addonType, renderAddonComponent } from './Input.utils';
 
 const defaultRender = (args: InputProps) => {
-  const [{ value }, updateArgs] = useArgs();
+  const [value, setValue] = useState(args.value);
+  useEffect(() => setValue(args.value), [args.value]);
 
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
-    updateArgs({ value: event.target.value });
+    setValue(event.target.value);
   };
 
   return <Input {...args} value={value} onChange={onChange} />;
@@ -240,6 +240,7 @@ export const WithPrefixAndSuffix: StoryObj<
     suffixLabel?: string;
   }
 > = {
+  parameters: { ...NO_SNAPSHOT },
   render: (args) => {
     const { prefixLabel, prefixType, suffixType, suffixLabel, ...rest } = args;
 

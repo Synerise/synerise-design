@@ -201,22 +201,19 @@ export const AsyncOnCancelResolvesBeforeClose: Story = {
 // ---------------------------------------------------------------------------
 export const CancelButtonCallsHandler: Story = {
   parameters: { ...NO_SNAPSHOT },
-  render: () => {
-    const onCancel = fn();
-    return <Modal title="Cancel test" open onCancel={onCancel} />;
-  },
-  play: async ({ canvasElement }) => {
+  args: { onCancel: fn() },
+  render: (args) => <Modal title="Cancel test" open onCancel={args.onCancel} />,
+  play: async ({ canvasElement, args }) => {
     const body = within(canvasElement.ownerDocument.body);
 
     await waitFor(() =>
       expect(body.getByTestId('ds-modal')).toBeInTheDocument(),
     );
 
-    const cancelBtn = body.getByText('Cancel');
-    await userEvent.click(cancelBtn);
+    await userEvent.click(body.getByText('Cancel'));
 
-    // onCancel was invoked (modal remains open since no state change in this story)
-    expect(cancelBtn).toBeInTheDocument();
+    expect(args.onCancel).toHaveBeenCalledOnce();
+    await waitFor(() => expect(body.getByTestId('ds-modal')).not.toBeVisible());
   },
 };
 

@@ -1,14 +1,12 @@
-import { composeStories, Meta, StoryObj } from '@storybook/react-vite';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 
-import { fixedWrapper300 } from '../../utils';
-import { StoryMatrix } from '../../utils/StoryMatrix';
+import { centeredPaddedWrapper } from '../../utils';
+import { composeMatrixStories, StoryMatrix } from '../../utils/StoryMatrix';
 import * as PasswordInputStories from './PasswordInput.stories';
 
-// the stories' own centeredPaddedWrapper sizes each one to the viewport
-const VARIANTS = composeStories({
-  ...PasswordInputStories,
-  default: { ...PasswordInputStories.default, decorators: [fixedWrapper300] },
+const VARIANTS = composeMatrixStories(PasswordInputStories, {
+  withoutDecorators: [centeredPaddedWrapper],
 });
 
 const meta: Meta = {
