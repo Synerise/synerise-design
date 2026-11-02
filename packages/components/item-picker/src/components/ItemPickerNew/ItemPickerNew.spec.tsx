@@ -339,6 +339,29 @@ describe('ItemPickerNew component', () => {
         fireEvent.click(getByText(PLACEHOLDER));
         expect(screen.queryByPlaceholderText(SEARCH_PLACEHOLDER)).toBeTruthy();
     });
+
+    it('should stay open when the selected item is refreshed with a new label', () => {
+        const { getByText, rerender } = renderWithProvider(
+            <ItemPickerNew {...SHARED_PROPS} onChange={vi.fn()} selectedItem={{ id: 'filter', text: 'Old name' }} />
+        );
+        fireEvent.click(getByText('Old name'));
+
+        rerender(<ItemPickerNew {...SHARED_PROPS} onChange={vi.fn()} selectedItem={{ id: 'filter', text: 'New name' }} />);
+
+        expect(screen.getByText('New name')).toBeTruthy();
+        expect(screen.queryByPlaceholderText(SEARCH_PLACEHOLDER)).toBeTruthy();
+    });
+
+    it('should close when another item is selected via prop', () => {
+        const { getByText, rerender } = renderWithProvider(
+            <ItemPickerNew {...SHARED_PROPS} onChange={vi.fn()} selectedItem={{ id: 'filter', text: 'Old name' }} />
+        );
+        fireEvent.click(getByText('Old name'));
+
+        rerender(<ItemPickerNew {...SHARED_PROPS} onChange={vi.fn()} selectedItem={{ id: 'other', text: 'Other' }} />);
+
+        expect(screen.queryByPlaceholderText(SEARCH_PLACEHOLDER)).toBeFalsy();
+    });
     it.todo('should call onYReachEnd function');
     it.todo('should shows loading state');
     it.todo('should highlight labels based on searchBarProps.value');

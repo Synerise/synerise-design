@@ -5,6 +5,7 @@ import FormField from '@synerise/ds-form-field';
 
 import { useDefaultTexts } from '../../hooks/useDefaultTexts';
 import * as S from '../../ItemPicker.styles';
+import { GET_ITEM_KEY } from '../ItemPickerList/constants';
 import { ItemPickerList } from '../ItemPickerList/ItemPickerList';
 import type { ItemPickerListRef } from '../ItemPickerList/ItemPickerList.types';
 import Trigger from '../ItemPickerTrigger/Trigger';
@@ -64,12 +65,15 @@ const ItemPickerNewInner = <
     closeDropdown();
   };
 
+  const selectedItemKey = selectedItem ? GET_ITEM_KEY(selectedItem) : undefined;
+
+  useEffect(() => setSelected(selectedItem), [selectedItem]);
+
   useEffect(() => {
-    setSelected(selectedItem);
-    if (selectedItem) {
+    if (selectedItemKey !== undefined) {
       setVisible(false);
     }
-  }, [selectedItem]);
+  }, [selectedItemKey]);
 
   const trigger = useMemo(() => {
     return renderTrigger ? (
