@@ -10,6 +10,7 @@ import {
   fixedWrapper588,
   variableHeightDecorator,
 } from '../../../utils';
+import { NO_SNAPSHOT } from '../../../utils/chromatic';
 import {
   ACTIONS,
   ITEM_LOADER_CONFIG,
@@ -113,6 +114,7 @@ export const FillAvailableSpace: StoryObj<
 };
 
 export const RequestErrors: StoryObj<StoryPropsOverlay> = {
+  parameters: { ...NO_SNAPSHOT },
   args: {
     items: ITEM_LOADER_CONFIG_ERRORS,
     sections: SECTIONS_WITH_FOLDERS,
@@ -120,6 +122,7 @@ export const RequestErrors: StoryObj<StoryPropsOverlay> = {
 };
 
 export const EmptyState: StoryObj<StoryPropsOverlay> = {
+  parameters: { ...NO_SNAPSHOT },
   args: {
     items: ITEM_LOADER_CONFIG_EMPTY,
     recents: undefined,

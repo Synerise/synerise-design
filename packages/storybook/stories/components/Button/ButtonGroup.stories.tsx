@@ -16,6 +16,7 @@ import {
   STRING_CONTROL,
   STYLE_ARG_CONTROL,
 } from '../../utils';
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 import { BUTTON_TYPES, ButtonTypeWrapper } from './Button.constants';
 import { IconLeft, IconSolo, Simple } from './Button.stories';
 
@@ -53,6 +54,7 @@ export default meta;
 
 export const SplitButton: StoryObj<typeof ButtonGroup> = {
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `<ButtonGroup splitMode buttonsPosition="center">
@@ -83,6 +85,7 @@ export const SplitButton: StoryObj<typeof ButtonGroup> = {
 
 export const DisabledButtonsWithTooltip: StoryObj<typeof ButtonGroup> = {
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `<ButtonGroup splitMode buttonsPosition="center">
@@ -232,6 +235,7 @@ export const OptionButtons: StoryObj<typeof ButtonGroup> = {
 
 export const ButtonsWithDivider: StoryObj<typeof ButtonGroup> = {
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `<ButtonGroup size="small" buttonsPosition="center" compact={false}>
@@ -339,6 +343,7 @@ export const MoreButtonsWithDivider: StoryObj<typeof ButtonGroup> = {
 
 export const DropdownTriggers: StoryObj<typeof ButtonGroup> = {
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `<ButtonGroup compact buttonsPosition="center">

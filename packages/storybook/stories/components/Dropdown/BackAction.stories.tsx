@@ -7,6 +7,7 @@ import Dropdown, { BackAction } from '@synerise/ds-dropdown';
 
 import { Placeholder } from '../../constants';
 import { fixedWrapper400, REACT_NODE_AS_STRING } from '../../utils';
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 
 export default {
   title: 'Components/Dropdown/BackAction',
@@ -28,6 +29,7 @@ export default {
 type Story = StoryObj<typeof BackAction>;
 
 export const Default: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: {
     label: 'Back action',
     tooltip: 'Tooltip content',

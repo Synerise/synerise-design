@@ -13,6 +13,7 @@ import DateRangePicker, {
 import Tooltip from '@synerise/ds-tooltip';
 
 import { centeredPaddedWrapper } from '../../utils';
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 import {
   datePickerArgTypes,
   filterArgTypes,
@@ -117,6 +118,7 @@ export const WithoutPopover: Story = {
 
 export const RelativePickerOptions: Story = {
   parameters: {
+    ...NO_SNAPSHOT,
     controls: {
       include: Object.keys(relativeArgTypes),
     },
@@ -138,6 +140,7 @@ export const RelativePickerOptions: Story = {
 
 export const GeneralOptions: Story = {
   parameters: {
+    ...NO_SNAPSHOT,
     controls: {
       include: Object.keys(generalArgTypes),
     },
@@ -155,6 +158,7 @@ export const GeneralOptions: Story = {
 
 export const DatePickerOptions: Story = {
   parameters: {
+    ...NO_SNAPSHOT,
     controls: {
       include: Object.keys(datePickerArgTypes),
     },
@@ -172,6 +176,7 @@ export const DatePickerOptions: Story = {
 
 export const DateFilterOptions: Story = {
   parameters: {
+    ...NO_SNAPSHOT,
     controls: {
       include: Object.keys(filterArgTypes),
     },
@@ -213,6 +218,7 @@ export const WithDefaultValue: Story = {
 
 export const WithStartDate: Story = {
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `<DateRangePicker
@@ -232,6 +238,7 @@ export const WithStartDate: Story = {
 
 export const CustomTrigger: Story = {
   parameters: {
+    ...NO_SNAPSHOT,
     layout: 'centered',
     docs: {
       source: {

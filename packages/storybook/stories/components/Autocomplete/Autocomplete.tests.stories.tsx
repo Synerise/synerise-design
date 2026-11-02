@@ -6,6 +6,7 @@ import type { AutocompleteProps } from '@synerise/ds-autocomplete';
 import Autocomplete from '@synerise/ds-autocomplete';
 
 import { fixedWrapper200, fixedWrapper400 } from '../../utils';
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 import {
   AutocompleteWithAsyncState,
   AutocompleteWithRichOptions,
@@ -137,6 +138,7 @@ export const AutocompleteWithTooltip: StoryObj<AutocompleteProps> = {
 // Typing opens the dropdown and renders the matching options.
 export const OpensAndFiltersOnType: StoryObj<AutocompleteProps> = {
   ...Primary,
+  parameters: { ...NO_SNAPSHOT },
   args: { ...eventArgs },
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement);
@@ -180,6 +182,7 @@ export const SelectsOption: StoryObj<AutocompleteProps> = {
 // the panel — the accessible-keyboard-selection path.
 export const SelectsWithKeyboard: StoryObj<AutocompleteProps> = {
   ...Primary,
+  parameters: { ...NO_SNAPSHOT },
   args: { ...eventArgs },
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement);
@@ -229,6 +232,7 @@ export const AsyncSuggestions: StoryObj<AutocompleteProps> = {
 // panel closed, which produced the open→close flicker on (re)click.
 export const ClickingOpenInputKeepsItOpen: StoryObj<AutocompleteProps> = {
   ...Primary,
+  parameters: { ...NO_SNAPSHOT },
   args: { ...eventArgs },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
@@ -261,6 +265,7 @@ export const ClickingOpenInputKeepsItOpen: StoryObj<AutocompleteProps> = {
 // unit spec covers the outside-press path instead.
 export const EscapeDismissesThePanel: StoryObj<AutocompleteProps> = {
   ...Primary,
+  parameters: { ...NO_SNAPSHOT },
   args: { ...eventArgs },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);

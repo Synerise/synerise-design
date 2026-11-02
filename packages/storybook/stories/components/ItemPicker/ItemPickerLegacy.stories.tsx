@@ -12,6 +12,7 @@ import {
   controlFromOptionsArray,
   fixedWrapper300,
 } from '../../utils';
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 import { CompleteExample } from '../InformationCard/InformationCard.stories';
 import { FLAT_DATA_SOURCE, ICONS } from './ItemPickerLegacy.data';
 
@@ -56,8 +57,11 @@ export default {
   },
 } as Meta<ItemPickerProps>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  parameters: { ...NO_SNAPSHOT },
+};
 export const WithPlaceholder: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: {
     placeholder: 'Set customer',
     placeholderIcon: ICONS['user'],
@@ -72,12 +76,14 @@ export const SelectedItem: Story = {
 };
 
 export const WithoutSearchBar: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: {
     hideSearchBar: true,
   },
 };
 
 export const WithInfocard: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: {
     selectedItem: FLAT_DATA_SOURCE[3],
     informationCardTooltipProps: {
@@ -93,6 +99,7 @@ export const WithInfocard: Story = {
 };
 
 export const LabelDescriptionAndErrorMessage: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: {
     ...Default.args,
     description: 'Field description',

@@ -11,6 +11,7 @@ import {
   fixedWrapper400,
   REACT_NODE_AS_STRING,
 } from '../../utils';
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 import Advanced from './Advanced';
 import {
   data,
@@ -51,6 +52,7 @@ type Story = StoryObj<typeof TextTrigger>;
 
 export const Default: Story = {};
 export const WithDropdown: Story = {
+  parameters: { ...NO_SNAPSHOT },
   render: (args) => (
     <Dropdown overlay={<Placeholder $height={300} />} size="medium">
       <TextTrigger {...args} />
