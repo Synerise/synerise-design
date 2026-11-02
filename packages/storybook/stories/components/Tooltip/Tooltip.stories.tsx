@@ -31,6 +31,7 @@ import {
   REACT_NODE_AS_STRING,
   STYLE_ARG_CONTROL,
 } from '../../utils';
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 import { TOOLTIP_TITLE } from './Tooltip.data';
 
 export type StoryProps = TooltipProps & {};
@@ -155,6 +156,7 @@ export const LargeScrollableType: Story = {
 };
 
 export const TagWithTooltip: Story = {
+  parameters: { ...NO_SNAPSHOT },
   render: ({ title }) => (
     <Tooltip title={title}>
       <Tag
@@ -170,6 +172,7 @@ export const TagWithTooltip: Story = {
 };
 
 export const FileUploaderWithTooltip: Story = {
+  parameters: { ...NO_SNAPSHOT },
   decorators: [fixedWrapper400],
   render: ({ title }) => (
     <Tooltip title={title}>

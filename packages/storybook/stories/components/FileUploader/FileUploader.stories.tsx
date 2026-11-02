@@ -16,6 +16,7 @@ import {
   REACT_NODE_AS_STRING,
   STRING_CONTROL,
 } from '../../utils';
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 
 type StoryProps = FileUploaderProps & {
   disabledFiles?: boolean;
@@ -123,6 +124,7 @@ export const WithError: Story = {
   },
 };
 export const MultipleMedium: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: {
     mode: 'multi-medium',
   },

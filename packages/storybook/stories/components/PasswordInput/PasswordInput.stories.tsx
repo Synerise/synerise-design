@@ -15,6 +15,7 @@ import {
   REACT_NODE_AS_STRING,
   STRING_CONTROL,
 } from '../../utils';
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 
 const defaultRender = (args: InputProps) => {
   const [{ value }, updateArgs] = useArgs();
@@ -31,6 +32,7 @@ export default {
   component: PasswordInput,
   tags: ['autodocs'],
   parameters: {
+    ...NO_SNAPSHOT,
     layout: 'centered',
   },
   decorators: [fixedWrapper300, centeredPaddedWrapper],

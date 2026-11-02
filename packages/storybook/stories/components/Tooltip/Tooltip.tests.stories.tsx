@@ -3,6 +3,7 @@ import isChromatic from 'chromatic/isChromatic';
 import { expect, userEvent, waitFor, within } from 'storybook/test';
 
 import { centeredPaddedWrapper } from '../../utils';
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 import StoriesMeta, { StoryProps } from './Tooltip.stories';
 
 export default {
@@ -23,6 +24,7 @@ const TOOLTIP_TITLE_NO_SPACES =
 const TOOLTIP_TITLE_LONG =
   'Unnamed segmentation Unnamed segmentation Unnamed segmentation Unnamed segmentation Unnamed segmentation Unnamed segmentation Unnamed segmentation Unnamed segmentation';
 export const Default: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: {
     title: TOOLTIP_TITLE,
     trigger: 'click',

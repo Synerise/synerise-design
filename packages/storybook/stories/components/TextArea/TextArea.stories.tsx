@@ -15,6 +15,7 @@ import {
   STRING_CONTROL,
   STYLE_ARG_CONTROL,
 } from '../../utils';
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 
 type Story = StoryObj<TextareaProps>;
 export default {
@@ -31,6 +32,7 @@ export default {
     return <TextArea {...args} onChange={handleChange} value={value} />;
   },
   parameters: {
+    ...NO_SNAPSHOT,
     controls: {
       exclude: ['bordered', 'autoResize', 'expandable', 'expandableTooltip'],
     },

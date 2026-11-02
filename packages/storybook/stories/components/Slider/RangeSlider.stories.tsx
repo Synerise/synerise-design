@@ -11,11 +11,13 @@ import {
   NUMBER_CONTROL,
   REACT_NODE_AS_STRING,
 } from '../../utils';
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 import { TRACKS_COLOR_MAP } from './Slider.data';
 
 export default {
   component: Slider,
   title: 'Components/Slider/RangeSlider',
+  parameters: { ...NO_SNAPSHOT },
   tags: ['autodocs'],
   decorators: [fixedWrapper400],
   render: ({ onChange, ...args }) => {

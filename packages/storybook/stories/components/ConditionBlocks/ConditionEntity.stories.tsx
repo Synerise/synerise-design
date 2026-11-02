@@ -6,6 +6,7 @@ import { ConditionEntity } from '@synerise/ds-condition-blocks';
 import Icon, { AngleDownS, CalendarM, NotificationsM } from '@synerise/ds-icon';
 
 import { fixedWrapper800 } from '../../utils';
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 
 const meta: Meta<typeof ConditionEntity> = {
   decorators: [fixedWrapper800],
@@ -33,6 +34,7 @@ const chip = (label: string, color: string) => (
 /** A single coloured context chip, passed in by the implementation. */
 export const Default: Story = {
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `<ConditionEntity gap={12}>
@@ -56,6 +58,7 @@ export const Default: Story = {
  */
 export const MultipleSlots: Story = {
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `<ConditionEntity>

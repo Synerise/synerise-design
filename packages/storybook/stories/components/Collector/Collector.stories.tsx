@@ -17,6 +17,7 @@ import {
   REACT_NODE_AS_STRING,
   STRING_CONTROL,
 } from '../../utils';
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 import { SUGGESTIONS, SUGGESTIONS_SAME_LABEL, TEXTS } from './Collector.const';
 import { HeaderWrapper } from './Collestor.styles';
 
@@ -141,6 +142,7 @@ export const WithCounter: Story = {
   },
 };
 export const AllowCustomValues: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: {
     ...WithLabelAndDescription.args,
     allowCustomValue: true,
@@ -148,6 +150,7 @@ export const AllowCustomValues: Story = {
 };
 
 export const DuplicateLabels: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: {
     ...WithLabelAndDescription.args,
     allowCustomValue: true,
@@ -166,6 +169,7 @@ export const AllowPaste: Story = {
 };
 
 export const DropdownCustomisation: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: {
     ...WithLabelAndDescription.args,
     showNavigationHints: true,

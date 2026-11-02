@@ -13,6 +13,7 @@ import {
   NUMBER_CONTROL,
   STYLE_ARG_CONTROL,
 } from '../../utils';
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 import {
   CarouselWithControls,
   CarouselWithSlides,
@@ -63,6 +64,7 @@ export const Default: Story = {};
 
 /** `effect="fade"` cross-fades slides in place instead of sliding them. */
 export const Fade: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: { effect: 'fade' },
 };
 
@@ -85,6 +87,7 @@ export const MultipleSlides: Story = {
  * wrapping around at the ends.
  */
 export const NonInfinite: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: { infinite: false },
 };
 
@@ -113,5 +116,6 @@ export const ImperativeControls: Story = {
 
 /** A single slide renders no dots (there is nothing to navigate). */
 export const SingleSlide: Story = {
+  parameters: { ...NO_SNAPSHOT },
   render: (args) => <CarouselWithSlides {...args} slideCount={1} />,
 };

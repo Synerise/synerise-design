@@ -25,6 +25,7 @@ import {
   reactNodeAsSelect,
   sleep,
 } from '../../utils';
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 import { STEPPER_STEPS, StepData } from '../Stepper/Stepper.data';
 import { DATA_SOURCE_FULL } from '../TableNew/data/tableData';
 import { headerWithPrefix, SIZES, TAB_PROPS } from './Modal.data';
@@ -192,6 +193,7 @@ export const withFooter: Story = {
     children: 'Modal content...',
   },
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: '<Modal\n  title="title"\n  size="small"\n  onOk={handleOk}\n  onCancel={handleCancel}\n  open\n>\n  Modal content...\n</Modal>',
@@ -410,6 +412,7 @@ export const ShowModal: Story = {
     size: 'small',
   },
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: "const ref = showModal({\n  title: 'title',\n  size: 'small',\n  onOk: () => ref.destroy(),\n  onCancel: () => ref.destroy(),\n});",
@@ -442,6 +445,7 @@ export const ShowModalPromise: Story = {
     size: 'small',
   },
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: "// onOk / onCancel can return a Promise — the modal stays open until it resolves\nconst ref = showModal({\n  title: 'title',\n  size: 'small',\n  onOk: async () => { await doWork(); },\n  onCancel: async () => { await doCleanup(); },\n});",
@@ -506,6 +510,7 @@ export const CloseAllOverlays: Story = {
     );
   },
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: "// One call closes the modal and the dropdown inside it, newest first.\n// Each overlay runs its own close path, so onCancel / onOpenChange fire\n// and focus is restored.\nimport { closeAllOverlays } from '@synerise/ds-core';\n\nawait closeAllOverlays();",

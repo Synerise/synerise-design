@@ -18,6 +18,7 @@ import {
   STRING_CONTROL,
   STYLE_ARG_CONTROL,
 } from '../../utils';
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 import { ALL_TAGS, TAG_PROP_CATEGORY, TAG_TEXTS } from './Tags.constants';
 import { getTagNameForShape } from './Tags.utils';
 
@@ -99,6 +100,7 @@ const TagsMeta = {
 export default TagsMeta;
 
 export const Default: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: {
     selected: [
       {

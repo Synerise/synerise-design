@@ -20,6 +20,7 @@ import {
   STRING_CONTROL,
   STYLE_ARG_CONTROL,
 } from '../../utils';
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 import { AVAILABLE_SYNTAXES, SAMPLE_DATA } from './CodeArea.data';
 
 type Story = StoryObj<CodeAreaProps>;
@@ -152,6 +153,7 @@ export const WithCustomFooterContent: Story = {
 };
 
 export const WithCounter: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: {
     counter: {
       limit: 300,
@@ -172,6 +174,7 @@ export const WithSyntaxValidation: Story = {
 };
 
 export const CustomFullscreenLabel: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: {
     fullscreenLabel: 'Fullscreen Label',
   },

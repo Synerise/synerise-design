@@ -4,6 +4,7 @@ import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
 import type { TabsProps } from '@synerise/ds-tabs';
 
 import { fixedWrapper300 } from '../../utils';
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 import StoriesMeta, {
   TabsWithConfiguration,
   TabsWithConfigurationDisabled,
@@ -296,6 +297,7 @@ export const TabsDropdownHideAfterConfigurationClick: Story = {
 
 export const TabsDropdownHideAfterHiddenTabClick: Story = {
   ...TabsWithConfiguration,
+  parameters: { ...NO_SNAPSHOT },
   decorators: [fixedWrapper300],
   play: async ({ canvasElement, args, step }) => {
     const canvas = within(canvasElement.parentElement!);

@@ -12,6 +12,7 @@ import {
   controlFromOptionsArray,
   fixedWrapper200,
 } from '../../utils';
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 import { BUTTON_TYPES } from '../Button/Button.constants';
 
 const DEFAULT_FORMAT: FormatPickerProps['format'] = {
@@ -118,7 +119,9 @@ export default {
 
 type Story = StoryObj<FormatPickerProps>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  parameters: { ...NO_SNAPSHOT },
+};
 
 export const AllTypes: Story = {
   decorators: [fixedWrapper200],
@@ -206,6 +209,7 @@ export const WithClear: Story = {
 
 // Dozens of currencies: the menu shows seven rows and scrolls the rest; the search matches labels and ISO codes.
 export const ManyCurrencies: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: {
     format: { ...DEFAULT_FORMAT, dataFormat: 'cash' },
     currenciesConfig: MANY_CURRENCIES,

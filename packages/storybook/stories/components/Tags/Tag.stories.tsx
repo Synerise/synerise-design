@@ -16,6 +16,7 @@ import {
   STRING_CONTROL,
   STYLE_ARG_CONTROL,
 } from '../../utils';
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 import { CompleteExample } from '../InformationCard/InformationCard.stories';
 import { TAG_COLOR } from './Tags.constants';
 import { getTagNameForShape } from './Tags.utils';
@@ -55,7 +56,9 @@ const TagMeta = {
 } as Meta<TagProps>;
 export default TagMeta;
 
-export const SingleTag: Story = {};
+export const SingleTag: Story = {
+  parameters: { ...NO_SNAPSHOT },
+};
 export const AllTagShapes: Story = {
   render: ({ name, ...args }) => {
     return (
@@ -75,12 +78,14 @@ export const AllTagShapes: Story = {
 };
 
 export const Pill: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: {
     asPill: true,
     shape: TagShape.SMALL_ROUND,
   },
 };
 export const WithInformationCard: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: {
     tooltipProps: {
       render: () => (

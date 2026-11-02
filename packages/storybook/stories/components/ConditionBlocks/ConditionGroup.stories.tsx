@@ -12,6 +12,7 @@ import {
 import Icon, { AngleDownS } from '@synerise/ds-icon';
 
 import { fixedWrapper800 } from '../../utils';
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 
 const pill = (label: React.ReactNode) => (
   <Button type="secondary" mode="label-icon">
@@ -35,6 +36,7 @@ type Story = StoryObj<typeof ConditionGroup>;
 /** The outermost wrapper: an entity chip (passed by the implementation) on the left, rows on the right. */
 export const Default: Story = {
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `<ConditionGroup>

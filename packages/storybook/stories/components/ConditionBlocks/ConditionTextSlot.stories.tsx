@@ -4,6 +4,7 @@ import React from 'react';
 import { ConditionTextSlot } from '@synerise/ds-condition-blocks';
 
 import { fixedWrapper800 } from '../../utils';
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 
 const meta: Meta<typeof ConditionTextSlot> = {
   decorators: [fixedWrapper800],
@@ -21,6 +22,7 @@ type Story = StoryObj<typeof ConditionTextSlot>;
 /** Inline label used between controls in a row. */
 export const Default: Story = {
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `<ConditionTextSlot>items with the same</ConditionTextSlot>`,

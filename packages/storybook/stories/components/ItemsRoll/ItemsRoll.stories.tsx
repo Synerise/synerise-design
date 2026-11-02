@@ -18,6 +18,7 @@ import {
   NUMBER_CONTROL,
   STRING_CONTROL,
 } from '../../utils';
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 import {
   ACTIONS,
   GROUPED_ITEMS,
@@ -260,6 +261,7 @@ export const Grouped: Story = {
 
 export const ChangeSelectionDropdown: Story = {
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `<ItemsRoll

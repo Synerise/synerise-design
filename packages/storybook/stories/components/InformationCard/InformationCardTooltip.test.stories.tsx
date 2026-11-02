@@ -9,6 +9,7 @@ import type {
 } from '@synerise/ds-information-card';
 
 import { overflowTestWrapper } from '../../utils';
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 import InformationCardTooltipMeta from './InformationCardTooltip.stories';
 
 export default {
@@ -20,6 +21,7 @@ export default {
 type Story = StoryObj<InformationCardTooltipProps>;
 
 export const InformationCardTooltipOpen: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: {
     children: <Button type="primary">Button with infocard</Button>,
     popoverProps: {

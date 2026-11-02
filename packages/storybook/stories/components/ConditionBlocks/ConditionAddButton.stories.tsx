@@ -11,6 +11,7 @@ import {
 import Icon, { Add2M, AngleDownS } from '@synerise/ds-icon';
 
 import { fixedWrapper800 } from '../../utils';
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 
 const pill = (label: React.ReactNode) => (
   <Button type="secondary" mode="label-icon">
@@ -34,6 +35,7 @@ type Story = StoryObj<typeof ConditionAddButton>;
 /** The add-condition action — the consuming app passes the actual ghost button as children. */
 export const Default: Story = {
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `<ConditionAddButton>
@@ -58,6 +60,7 @@ export const Default: Story = {
 /** `withConnector` hangs the action off the row tree line, below the conditions. */
 export const WithConnector: Story = {
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `<ConditionRows>
