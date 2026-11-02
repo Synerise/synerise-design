@@ -1,6 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react-vite';
-import React, { ChangeEvent } from 'react';
-import { useArgs } from 'storybook/preview-api';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 
 import type { InputProps } from '@synerise/ds-input';
 import { PasswordInput } from '@synerise/ds-input';
@@ -18,10 +17,11 @@ import {
 import { NO_SNAPSHOT } from '../../utils/chromatic';
 
 const defaultRender = (args: InputProps) => {
-  const [{ value }, updateArgs] = useArgs();
+  const [value, setValue] = useState(args.value);
+  useEffect(() => setValue(args.value), [args.value]);
 
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
-    updateArgs({ value: event.target.value });
+    setValue(event.target.value);
   };
 
   return <PasswordInput {...args} value={value} onChange={onChange} />;

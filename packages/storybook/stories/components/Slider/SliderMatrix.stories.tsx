@@ -1,12 +1,16 @@
-import { composeStories, Meta, StoryObj } from '@storybook/react-vite';
+import { Meta, StoryObj } from '@storybook/react-vite';
+import type { ComponentType } from 'react';
 import React from 'react';
 
-import { StoryMatrix } from '../../utils/StoryMatrix';
+import { composeMatrixStories, StoryMatrix } from '../../utils/StoryMatrix';
 import * as AllocationSliderStories from './AllocationSlider.stories';
 import * as RangeSliderStories from './RangeSlider.stories';
 import * as SliderStories from './Slider.stories';
 
-const prefixed = <T extends object>(prefix: string, stories: T) =>
+const prefixed = (
+  prefix: string,
+  stories: Record<string, ComponentType>,
+): Record<string, ComponentType> =>
   Object.fromEntries(
     Object.entries(stories).map(([name, story]) => [
       `${prefix}/${name}`,
@@ -15,9 +19,12 @@ const prefixed = <T extends object>(prefix: string, stories: T) =>
   );
 
 const VARIANTS = {
-  ...prefixed('DefaultSlider', composeStories(SliderStories)),
-  ...prefixed('RangeSlider', composeStories(RangeSliderStories)),
-  ...prefixed('AllocationSlider', composeStories(AllocationSliderStories)),
+  ...prefixed('DefaultSlider', composeMatrixStories(SliderStories)),
+  ...prefixed('RangeSlider', composeMatrixStories(RangeSliderStories)),
+  ...prefixed(
+    'AllocationSlider',
+    composeMatrixStories(AllocationSliderStories),
+  ),
 };
 
 const meta: Meta = {

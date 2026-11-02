@@ -1,6 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react-vite';
-import React, { ChangeEvent } from 'react';
-import { useArgs } from 'storybook/preview-api';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 
 import Icon, { Add2M, FileM } from '@synerise/ds-icon';
 import { TextArea, TextareaProps } from '@synerise/ds-input';
@@ -24,9 +23,10 @@ export default {
   tags: ['autodocs'],
   decorators: [fixedWrapper300],
   render: (args) => {
-    const [{ value }, updateArgs] = useArgs();
+    const [value, setValue] = useState(args.value);
+    useEffect(() => setValue(args.value), [args.value]);
     const handleChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
-      updateArgs({ value: event.target.value });
+      setValue(event.target.value);
       args.onChange?.(event);
     };
     return <TextArea {...args} onChange={handleChange} value={value} />;

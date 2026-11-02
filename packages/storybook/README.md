@@ -23,6 +23,11 @@ export const IconLeft: Story = {
 - **Matrix stories carry the visuals.** Render the variants (types × modes × states) side by side in
   one story, like `ButtonMatrix`. The single-variant stories stay for the docs page and controls, with
   `NO_SNAPSHOT`.
+- **Composed matrices get args, `render` and decorators only.** `composeMatrixStories` and
+  `StoryMatrix` (`stories/utils/StoryMatrix.tsx`) render a story file's stories side by side, like
+  `InputMatrix`. A cell drops addon parameters (`pseudo`, `backgrounds`, `viewport`), `play`,
+  `loaders`, `beforeEach` and `globals`, so `composeMatrixStories` throws on a story that sets one:
+  render that state through args, or `exclude` the story with a reason and keep its own snapshot.
 - **Behaviour-only `play` stories opt out.** If the story ends where it started (search typed then
   cleared, dropdown opened then closed, a callback asserted), `storybook_interaction_tests` covers it and
   a snapshot adds nothing. Keep the snapshot when the end state is new (dropdown open, validation error

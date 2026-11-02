@@ -1,13 +1,12 @@
-import { composeStories, Meta, StoryObj } from '@storybook/react-vite';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 
-import { StoryMatrix } from '../../utils/StoryMatrix';
+import { cardSelectWrapper } from '../../utils';
+import { composeMatrixStories, StoryMatrix } from '../../utils/StoryMatrix';
 import * as CardSelectStories from './CardSelect.stories';
 
-// the stories' own cardSelectWrapper sizes each one to the viewport
-const VARIANTS = composeStories({
-  ...CardSelectStories,
-  default: { ...CardSelectStories.default, decorators: [] },
+const VARIANTS = composeMatrixStories(CardSelectStories, {
+  withoutDecorators: [cardSelectWrapper],
 });
 
 const meta: Meta = {

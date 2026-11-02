@@ -1,6 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react-vite';
-import React from 'react';
-import { useArgs } from 'storybook/preview-api';
+import React, { useEffect, useState } from 'react';
 
 import type { CardSelectProps } from '@synerise/ds-card-select';
 import CardSelect from '@synerise/ds-card-select';
@@ -57,11 +56,10 @@ export default {
   tags: ['autodocs'],
   decorators: [cardSelectWrapper],
   render: (args) => {
-    const [{ value }, updateArgs] = useArgs();
+    const [value, setValue] = useState(args.value);
+    useEffect(() => setValue(args.value), [args.value]);
     const handleChange = (newValue: boolean) => {
-      updateArgs({
-        value: newValue,
-      });
+      setValue(newValue);
       args.onChange?.(newValue);
     };
     const { showTag, showTagTooltip, ...rest } = args;
