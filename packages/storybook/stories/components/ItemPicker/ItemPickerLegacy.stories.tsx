@@ -1,6 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react-vite';
-import React from 'react';
-import { useArgs } from 'storybook/preview-api';
+import React, { useEffect, useState } from 'react';
 
 import type { ItemPickerProps } from '@synerise/ds-item-picker';
 import ItemPicker from '@synerise/ds-item-picker';
@@ -25,13 +24,15 @@ export default {
   },
   decorators: [fixedWrapper300, centeredPaddedWrapper],
   render: (args) => {
-    const [{ selectedItem }, updateArgs] = useArgs();
+    // React state, not useArgs: updateArgs does not re-render under `pnpm test-storybook`
+    const [selectedItem, setSelectedItem] = useState(args.selectedItem);
+    useEffect(() => setSelectedItem(args.selectedItem), [args.selectedItem]);
     const handleChange = (item: ListItemProps) => {
-      updateArgs({ selectedItem: item });
+      setSelectedItem(item);
       args.onChange(item);
     };
     const handleClear = () => {
-      updateArgs({ selectedItem: undefined });
+      setSelectedItem(undefined);
       args.onClear?.();
     };
     return (

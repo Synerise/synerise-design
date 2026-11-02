@@ -1,6 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react-vite';
-import React, { useState } from 'react';
-import { useArgs } from 'storybook/preview-api';
+import React, { useEffect, useState } from 'react';
 import { fn } from 'storybook/test';
 
 import type { FormatPickerProps } from '@synerise/ds-format-picker';
@@ -94,38 +93,22 @@ export default {
     onUseSeparatorChange: fn(),
   },
   render: (args) => {
-    const [{ format }, updateArgs] = useArgs();
-    const handleDataFormatChange = (dataFormat: string) => {
-      updateArgs({ format: { ...format, dataFormat } });
-    };
-    const handleCurrencyChange = (currency: string) => {
-      updateArgs({ format: { ...format, currency } });
-    };
-    const handleUseSeparatorChange = (useSeparator: boolean) => {
-      updateArgs({ format: { ...format, useSeparator } });
-    };
-    const handleFixedLengthChange = (fixedLength: number) => {
-      updateArgs({ format: { ...format, fixedLength } });
-    };
-    const handleCompactNumberChange = (compactNumbers: boolean) => {
-      updateArgs({ format: { ...format, compactNumbers } });
-    };
-    const handleSetDefault = () => {
-      updateArgs({
-        format: DEFAULT_FORMAT,
-      });
-    };
+    // React state, not useArgs: updateArgs does not re-render under `pnpm test-storybook`
+    const [format, setFormat] = useState(args.format);
+    useEffect(() => setFormat(args.format), [args.format]);
+    const update = (partial: Partial<FormatPickerProps['format']>) =>
+      setFormat((current) => ({ ...current, ...partial }));
     return (
       <FormatPicker
         {...args}
         format={format}
         value={19000.7}
-        onDataFormatChange={handleDataFormatChange}
-        onCurrencyChange={handleCurrencyChange}
-        onUseSeparatorChange={handleUseSeparatorChange}
-        onCompactNumbersChange={handleCompactNumberChange}
-        onFixedLengthChange={handleFixedLengthChange}
-        onSetDefault={handleSetDefault}
+        onDataFormatChange={(dataFormat) => update({ dataFormat })}
+        onCurrencyChange={(currency) => update({ currency })}
+        onUseSeparatorChange={(useSeparator) => update({ useSeparator })}
+        onCompactNumbersChange={(compactNumbers) => update({ compactNumbers })}
+        onFixedLengthChange={(fixedLength) => update({ fixedLength })}
+        onSetDefault={() => setFormat(DEFAULT_FORMAT)}
       />
     );
   },

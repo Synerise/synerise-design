@@ -62,7 +62,6 @@ export const DropdownOpen: Story = {
 
 export const SelectItem: Story = {
   ...DropdownOpen,
-  tags: ['known-failure'],
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement.parentElement!);
     const { dropdown } = await runOpenDropdown(canvas, args);
@@ -74,7 +73,9 @@ export const SelectItem: Story = {
     );
     await userEvent.click(dropdown.getAllByRole('menuitem')[itemIndex]);
     await waitFor(() =>
-      expect(canvas.getByTestId('ds-item-picker-dropdown')).not.toBeVisible(),
+      expect(
+        canvas.queryByTestId('ds-item-picker-dropdown'),
+      ).not.toBeInTheDocument(),
     );
     expect(args.onChange).toHaveBeenCalled();
   },
@@ -82,7 +83,6 @@ export const SelectItem: Story = {
 
 export const ClearSelectedItem: Story = {
   ...DropdownOpen,
-  tags: ['known-failure'],
   args: {
     ...DropdownOpen.args,
     selectedItem: FLAT_DATA_SOURCE[2],

@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 import { expect, userEvent, waitFor, within } from 'storybook/test';
 
-import Toast, { ToastProps } from '@synerise/ds-toast';
+import Toast, { removeToast, ToastProps } from '@synerise/ds-toast';
 
 import {
   BOOLEAN_CONTROL,
@@ -19,6 +19,8 @@ export default {
   tags: ['autodocs'],
   component: Toast,
   decorators: [gappedColumnDecorator, fixedWrapper400],
+  // toasts live in a global store, so one left by the previous story would be counted too
+  beforeEach: () => removeToast(),
   render: (args) => {
     return <Toast {...args} />;
   },
@@ -63,7 +65,6 @@ export const ShowSingleToast: Story = {
 
 export const ShowMultipleToasts: Story = {
   ...ShowToast,
-  tags: ['known-failure'],
   args: {
     ...ShowToast.args,
     message: TOAST_MESSAGE,

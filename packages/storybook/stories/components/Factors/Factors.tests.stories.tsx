@@ -147,7 +147,6 @@ export const RelativeDateOpen: StoryObj<FactorsProps> = {
 
 export const RelativeDateValueChange: StoryObj<FactorsProps> = {
   ...RelativeDate,
-  tags: ['known-failure'],
   args: {
     ...RelativeDate.args,
     onActivate: fn(),
