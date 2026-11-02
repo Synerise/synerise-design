@@ -48,7 +48,11 @@ Chromatic is manual on draft merge requests; play the job when you want snapshot
 tarballs. Until it has run, the pipeline is blocked and the MR cannot merge. Marking an MR ready does
 not start a new pipeline, so either play the job or push once more after marking it ready.
 
-## Known failures
+## Play functions under `pnpm test-storybook`
 
-Stories tagged `known-failure` are skipped by `pnpm test-storybook` (see `vitest.config.ts`). Their
-`play` functions failed on `master` when the suite joined CI. Fix one, drop its tag.
+- **No `useArgs` for state a `play` function changes.** `updateArgs` does not re-render the story under
+  the Vitest runner, so a picker that keeps its value in args never shows the new one there. Keep that
+  state in React `useState`, synced from args with `useEffect`, as `FormatPicker`, `Tags` and
+  `ItemPickerLegacy` do.
+- **Global stores outlive a story.** Stories run one after another in the same page, so toasts and other
+  module-level state leak into the next story. Reset them in the meta's `beforeEach`, as the Toast tests do.

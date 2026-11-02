@@ -1,6 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react-vite';
-import React from 'react';
-import { useArgs } from 'storybook/preview-api';
+import React, { useEffect, useState } from 'react';
 
 import Button from '@synerise/ds-button';
 import Icon, { ExternalLinkM } from '@synerise/ds-icon';
@@ -112,7 +111,11 @@ export const Default: Story = {
 
 export const WithAddButton: Story = {
   render: (args) => {
-    const [{ selected, data }, updateArgs] = useArgs();
+    // React state, not useArgs: updateArgs does not re-render under `pnpm test-storybook`
+    const [selected, setSelected] = useState(args.selected ?? []);
+    const [data, setData] = useState(args.data ?? []);
+    useEffect(() => setSelected(args.selected ?? []), [args.selected]);
+    useEffect(() => setData(args.data ?? []), [args.data]);
 
     return (
       <Tags
@@ -125,16 +128,12 @@ export const WithAddButton: Story = {
             id: crypto.randomUUID(),
             name,
           };
-          updateArgs({
-            data: [...data, tag],
-            selected: [...selected, tag],
-          });
+          setData([...data, tag]);
+          setSelected([...selected, tag]);
           args.onCreate?.(name);
         }}
         onSelectedChange={(tags, actionTaken) => {
-          updateArgs({
-            selected: tags,
-          });
+          setSelected(tags);
           args.onSelectedChange?.(tags, actionTaken);
         }}
       />
