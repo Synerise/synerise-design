@@ -25,6 +25,7 @@ import {
   controlFromOptionsArray,
   fixedWrapper400,
 } from '../../utils';
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 import Advanced from './Advanced';
 import {
   dataCopy,
@@ -345,6 +346,7 @@ export const withSkeleton: Story = {
     ),
   },
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `import React from 'react';
@@ -376,6 +378,7 @@ export const resizableContentListItems: Story = {
     ),
   },
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `import React from 'react';
@@ -466,6 +469,7 @@ export const PopupContainerTest: Story = {
   },
   ...Default,
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `// Example showing how to mount Dropdown inside a custom popup container:
@@ -497,6 +501,7 @@ export const Copyable: Story = {
   },
 
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `import React from 'react';
@@ -537,6 +542,7 @@ export const DropdownAroundTooltip: Story = {
     asChild: false,
   },
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `import Tooltip from '@synerise/ds-tooltip';

@@ -10,6 +10,7 @@ import {
   centeredPaddedWrapper,
   fixedWrapper588,
 } from '../../../utils';
+import { NO_SNAPSHOT } from '../../../utils/chromatic';
 import {
   ACTIONS_WITH_NO_SEARCH_IN,
   FLAT_DATA_SOURCE,
@@ -104,6 +105,7 @@ export const Sections: StoryObj<StoryPropsOverlay> = {
   },
 };
 export const SectionsCustomLimit: StoryObj<StoryPropsOverlay> = {
+  parameters: { ...NO_SNAPSHOT },
   args: {
     sections: SECTIONS,
     items: {
@@ -123,6 +125,7 @@ export const SectionsAndFolders: StoryObj<StoryPropsOverlay> = {
   },
 };
 export const WithPickerTrigger: StoryObj<StoryPropsOverlay> = {
+  parameters: { ...NO_SNAPSHOT },
   render: (args: StoryPropsOverlay) => {
     const [selected, setSelected] = useState<ItemType | undefined>(
       args.selectedItem,
@@ -206,6 +209,7 @@ export const SectionsAndNestedFolders: StoryObj<StoryPropsOverlay> = {
 
 /** Open "Attributes": each child folder's title row carries its tooltip as an info icon. */
 export const NestedFoldersWithTooltips: StoryObj<StoryPropsOverlay> = {
+  parameters: { ...NO_SNAPSHOT },
   args: {
     items: ITEMS_IN_SECTIONS_NESTED,
     sections: SECTIONS_WITH_NESTED_FOLDERS_AND_TOOLTIPS,

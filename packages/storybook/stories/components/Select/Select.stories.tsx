@@ -14,6 +14,7 @@ import {
   REACT_NODE_AS_STRING,
   STRING_CONTROL,
 } from '../../utils';
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 import { Label as AddonLabel } from '../Input/Input.styles';
 import { MANY_OPTIONS, OPTIONS, SelectWithState } from './data';
 
@@ -125,16 +126,19 @@ type Story = StoryObj<SelectProps>;
 
 /** Single-select. */
 export const Default: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: { defaultValue: 'a' },
 };
 
 /** Just the selector, without the FormField chrome (`raw`). */
 export const RawSelectExample: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: { raw: true, defaultValue: 'a' },
 };
 
 /** Label, description, tooltip and an error message together. */
 export const LabelDescriptionAndError: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: {
     defaultValue: 'a',
     tooltip: 'Label tooltip',
@@ -145,6 +149,7 @@ export const LabelDescriptionAndError: Story = {
 
 /** `mode="multiple"` — selected values render as removable chips. */
 export const MultipleMode: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: {
     mode: 'multiple',
     defaultValue: ['a', 'b'],
@@ -168,6 +173,7 @@ export const WithPrefixAndSuffix: Story = {
 
 /** `loading` shows a spinner inside the dropdown while options load. */
 export const Loading: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: { loading: true, defaultOpen: true },
 };
 
@@ -175,6 +181,7 @@ export const Loading: Story = {
 
 /** Options provided declaratively via `<Select.Option>` children. */
 export const WithOptionChildren: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: { options: undefined },
   render: (args) => (
     <SelectWithState {...args}>
@@ -187,6 +194,7 @@ export const WithOptionChildren: Story = {
 
 /** `mode="tags"` — free-text entry via Enter / `tokenSeparators`. */
 export const Tags: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: {
     mode: 'tags',
     tokenSeparators: [','],
@@ -196,11 +204,13 @@ export const Tags: Story = {
 
 /** `showSearch` — type in the selector to filter options. */
 export const WithSearch: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: { showSearch: true, placeholder: 'Search…' },
 };
 
 /** `disabled` blocks interaction and prevents the dropdown from opening. */
 export const Disabled: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: { disabled: true, defaultValue: 'a' },
 };
 
@@ -210,6 +220,7 @@ export const Disabled: Story = {
  * the omitted options.
  */
 export const MaxTagCount: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: {
     mode: 'multiple',
     defaultValue: ['a', 'b', 'c', 'd', 'e'],
@@ -225,6 +236,7 @@ export const MaxTagCount: Story = {
  * the selector resizes. Drag the bottom-right handle of the box to try it.
  */
 export const MaxTagCountResponsive: Story = {
+  parameters: { ...NO_SNAPSHOT },
   decorators: [
     (Story) => (
       <div
@@ -254,6 +266,7 @@ export const MaxTagCountResponsive: Story = {
 
 /** `maxTagTextLength` truncates long chip labels with an ellipsis. */
 export const MaxTagTextLength: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: {
     mode: 'multiple',
     defaultValue: ['f', 'a'],
@@ -268,6 +281,7 @@ export const MaxTagTextLength: Story = {
  * Actions panel.
  */
 export const PopupScroll: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: {
     defaultOpen: true,
     listHeight: 120,
@@ -282,6 +296,7 @@ export const PopupScroll: Story = {
  * sizes the viewport and `listItemHeight` the row.
  */
 export const ManyOptions: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: {
     showSearch: true,
     placeholder: 'Search 500 options',

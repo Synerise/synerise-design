@@ -86,6 +86,7 @@ export const ActionsInSection: StoryObj<StoryPropsOverlay> = {
     recents: undefined,
   },
   parameters: {
+    ...NO_SNAPSHOT,
     testGoal: 'snapshot listing actions in section view',
     expectedResults: 3,
   },
@@ -140,6 +141,7 @@ export const SelectedSectionSearchResults: StoryObj<StoryPropsOverlay> = {
 export const SearchResultsFolders: StoryObj<StoryPropsOverlay> = {
   ...SectionsAndFolders,
   parameters: {
+    ...NO_SNAPSHOT,
     testGoal: 'snapshot search results in folders',
     expectedResults: 2,
   },
@@ -149,6 +151,7 @@ export const SearchResultsFolders: StoryObj<StoryPropsOverlay> = {
 export const SearchResultsSelectedFolder: StoryObj<StoryPropsOverlay> = {
   ...SectionsAndFolders,
   parameters: {
+    ...NO_SNAPSHOT,
     testGoal: 'snapshot search results in selected folder',
   },
   play: playSelectedFolderSearchResultsStory,

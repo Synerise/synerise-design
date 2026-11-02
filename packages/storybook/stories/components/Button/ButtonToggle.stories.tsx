@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import React, { MouseEvent } from 'react';
 import { useArgs } from 'storybook/preview-api';
 import { fn } from 'storybook/test';
+import styled from 'styled-components';
 
 import type { ButtonToggleProps } from '@synerise/ds-button';
 import { ButtonToggle } from '@synerise/ds-button';
@@ -16,6 +17,7 @@ import {
   controlFromOptionsArray,
   reactNodeAsSelect,
 } from '../../utils';
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 
 type Story = StoryObj<ButtonToggleProps>;
 
@@ -101,6 +103,7 @@ export default meta;
 
 export const Simple: Story = {
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `<ButtonToggle type="primary" onClick={() => {}}>Label</ButtonToggle>`,
@@ -123,6 +126,7 @@ export const Simple: Story = {
 export const IconSolo: Story = {
   ...Simple,
   parameters: {
+    ...NO_SNAPSHOT,
     ...Simple.parameters,
     docs: {
       source: {
@@ -142,6 +146,7 @@ export const IconSolo: Story = {
 export const IconLeft: Story = {
   ...IconSolo,
   parameters: {
+    ...NO_SNAPSHOT,
     ...IconSolo.parameters,
     docs: {
       source: {
@@ -166,6 +171,7 @@ export const IconLeft: Story = {
 export const IconRight: Story = {
   ...IconLeft,
   parameters: {
+    ...NO_SNAPSHOT,
     ...IconLeft.parameters,
     docs: {
       source: {
@@ -199,6 +205,7 @@ export const IconRight: Story = {
 export const TwoIcons: Story = {
   ...IconLeft,
   parameters: {
+    ...NO_SNAPSHOT,
     ...IconLeft.parameters,
     docs: {
       source: {
@@ -233,6 +240,7 @@ export const TwoIcons: Story = {
 
 export const SplitRight: Story = {
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `<ButtonToggle type="solid" mode="split" onClick={() => {}}>
@@ -292,6 +300,7 @@ export const CustomLabel: Story = {
 
 export const DisabledTooltip: Story = {
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `<Tooltip title="This element is disabled">
@@ -320,4 +329,82 @@ export const DisabledTooltip: Story = {
     disabled: true,
     type: 'primary',
   },
+};
+
+const TOGGLE_MODES: Array<Pick<ButtonToggleProps, 'mode' | 'children'>> = [
+  { children: 'Label' },
+  { mode: 'single-icon', children: <Icon component={<AngleDownS />} /> },
+  {
+    mode: 'icon-label',
+    children: (
+      <>
+        <Icon component={<AngleDownS />} />
+        Label
+      </>
+    ),
+  },
+  {
+    mode: 'label-icon',
+    children: (
+      <>
+        Label
+        <Icon component={<AngleDownS />} />
+      </>
+    ),
+  },
+  {
+    mode: 'two-icons',
+    children: (
+      <>
+        <Icon component={<AngleDownS />} />
+        Label
+        <Icon component={<AngleDownS />} />
+      </>
+    ),
+  },
+  {
+    mode: 'split',
+    children: (
+      <>
+        Label <Icon component={<AngleDownS />} />
+      </>
+    ),
+  },
+];
+
+const TOGGLE_STATES: Record<string, Partial<ButtonToggleProps>> = {
+  solid: { type: 'solid' },
+  'solid activated': { type: 'solid', activated: true },
+  ghost: { type: 'ghost' },
+  'ghost activated': { type: 'ghost', activated: true },
+  disabled: { type: 'solid', disabled: true },
+  'disabled activated': { type: 'solid', disabled: true, activated: true },
+};
+
+const MatrixGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(${Object.keys(TOGGLE_STATES).length}, max-content);
+  align-items: center;
+  gap: 16px 24px;
+  padding: 24px;
+`;
+
+/** Every mode in every state, so the single-mode stories above need no snapshot of their own. */
+export const ToggleMatrix: Story = {
+  render: () => (
+    <MatrixGrid>
+      {Object.keys(TOGGLE_STATES).map((state) => (
+        <span key={state}>{state}</span>
+      ))}
+      {TOGGLE_MODES.map(({ mode, children }) =>
+        Object.entries(TOGGLE_STATES).map(([state, props]) => (
+          <div key={`${mode}-${state}`}>
+            <ButtonToggle mode={mode} {...props}>
+              {children}
+            </ButtonToggle>
+          </div>
+        )),
+      )}
+    </MatrixGrid>
+  ),
 };

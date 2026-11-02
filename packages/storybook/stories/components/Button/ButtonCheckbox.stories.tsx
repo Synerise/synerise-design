@@ -7,6 +7,7 @@ import type { CheckboxButtonProps } from '@synerise/ds-button';
 import Button from '@synerise/ds-button';
 
 import { BOOLEAN_CONTROL, CLASSNAME_ARG_CONTROL } from '../../utils';
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 
 const meta: Meta<CheckboxButtonProps> = {
   title: 'Components/Button/WithCheckbox',
@@ -35,6 +36,7 @@ export default meta;
 
 export const Checkbox: StoryObj<CheckboxButtonProps> = {
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `<Checkbox onChange={(checked) => console.log(checked)} />`,

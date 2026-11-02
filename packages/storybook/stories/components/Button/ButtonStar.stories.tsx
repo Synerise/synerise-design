@@ -10,6 +10,7 @@ import {
   buttonDecorator,
   CLASSNAME_ARG_CONTROL,
 } from '../../utils';
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 
 const meta: Meta<StarButtonProps> = {
   title: 'Components/Button/WithStar',
@@ -37,6 +38,7 @@ export default meta;
 
 export const Star: StoryObj<StarButtonProps> = {
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `<Star active={active} onClick={() => setActive(!active)} />`,

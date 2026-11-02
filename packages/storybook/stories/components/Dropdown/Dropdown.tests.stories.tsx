@@ -5,6 +5,7 @@ import { expect, userEvent, waitFor, within } from 'storybook/test';
 import type { DropdownProps } from '@synerise/ds-dropdown';
 
 import { centeredPaddedWrapper } from '../../utils';
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 import DropdownMeta, { resizableContentListItems } from './Dropdown.stories';
 
 export default {
@@ -21,6 +22,10 @@ type Story = StoryObj<DropdownProps & { children: ReactNode }>;
 
 export const OpenDropdown: Story = {
   ...resizableContentListItems,
+  parameters: {
+    ...resizableContentListItems.parameters,
+    chromatic: { disableSnapshot: false },
+  },
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement.parentElement!);
     await userEvent.click(canvas.getByRole('button'));
@@ -53,6 +58,10 @@ export const CloseOnClickOutside: Story = {
 
 export const ArrowKeys: Story = {
   ...resizableContentListItems,
+  parameters: {
+    ...resizableContentListItems.parameters,
+    chromatic: { disableSnapshot: false },
+  },
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement.parentElement!);
     await userEvent.click(canvas.getByRole('button'));
@@ -70,6 +79,7 @@ export const ArrowKeys: Story = {
 
 export const CloseOnMenuClick: Story = {
   ...resizableContentListItems,
+  parameters: { ...NO_SNAPSHOT },
   args: {
     ...resizableContentListItems.args,
     hideOnItemClick: true,

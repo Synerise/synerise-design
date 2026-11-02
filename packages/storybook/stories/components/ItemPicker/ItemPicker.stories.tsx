@@ -16,6 +16,7 @@ import {
   sideBySide,
   sleep,
 } from '../../utils';
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 import {
   FLAT_DATA_SOURCE,
   ICONS,
@@ -126,6 +127,7 @@ export const Default: Story = {
  * `auto` entry is only the 32px floor, and using it alone would overlap the wrapped rows.
  */
 export const WithAutoSizeItems: Story = {
+  parameters: { ...NO_SNAPSHOT },
   decorators: [fixedWrapper300, centeredPaddedWrapper],
   args: {
     showItemsSectionLabel: false,
@@ -146,6 +148,7 @@ export const TriggerWithInformationCard: Story = {
     },
   },
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `<ItemPicker isNewVersion items={FLAT_DATA_SOURCE} showItemsSectionLabel={false} />`,
@@ -241,6 +244,7 @@ export const LargeTriggerSize: Story = {
 
 export const CustomTrigger: Story = {
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `<ItemPicker isNewVersion renderTrigger={({ selected, openDropdown }) => (

@@ -11,6 +11,7 @@ import {
   REACT_NODE_AS_STRING,
   STRING_CONTROL,
 } from '../../utils';
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 import { baseArgs } from './constants';
 
 const disabledDates = (date?: Date): boolean => {
@@ -88,6 +89,7 @@ export const WithTime: Story = {
     showTime: true,
   },
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `<DatePicker onApply={handleApply} showTime />`,
@@ -121,6 +123,7 @@ export const WithQuickPicks: Story = {
     ],
   },
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `<DatePicker
@@ -143,6 +146,7 @@ export const InactiveDates: Story = {
     disabledDates,
   },
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `<DatePicker onApply={handleApply} disabledDates={(date) => isTooFar(date)} />`,
@@ -161,6 +165,7 @@ export const WithProviderTimezone: Story = {
     timeZone: true,
   },
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `<DatePicker onApply={handleApply} showTime timeZone />`,
@@ -201,6 +206,7 @@ export const WithSpecificTimezone: Story = {
     timeZone: 'Asia/Tokyo',
   },
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `<DatePicker onApply={handleApply} showTime timeZone="Asia/Tokyo" />`,
