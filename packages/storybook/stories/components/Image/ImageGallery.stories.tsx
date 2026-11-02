@@ -5,6 +5,7 @@ import { fn } from 'storybook/test';
 import { Gallery, type GalleryProps } from '@synerise/ds-image';
 
 import { avatar1, avatar2, avatar3, avatar4, avatar5 } from '../../constants';
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 
 const IMAGES = [
   { src: avatar1, alt: 'User avatar 1' },
@@ -55,10 +56,12 @@ type Story = StoryObj<GalleryProps>;
 export const Default: Story = {};
 
 export const CoverSquares: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: { aspectRatio: '1:1', objectFit: 'cover', background: 'none' },
 };
 
 export const ContainWide: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: {
     aspectRatio: '16:9',
     objectFit: 'contain',
@@ -67,10 +70,12 @@ export const ContainWide: Story = {
 };
 
 export const Deletable: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: { deletable: true },
 };
 
 export const WithBrokenImage: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: {
     images: [
       IMAGES[0],

@@ -6,12 +6,13 @@ import Icon, { EditM, TrashM } from '@synerise/ds-icon';
 import { ActionCell, type BaseActionCellProps } from '@synerise/ds-table-new';
 
 import { controlFromOptionsArray, fixedWrapper200 } from '../../../utils';
+import { NO_SNAPSHOT } from '../../../utils/chromatic';
 
 const meta: Meta<BaseActionCellProps> = {
   title: 'Components/TableNew/Cells/ActionCell',
   component: ActionCell,
   tags: ['autodocs', 'new'],
-  parameters: { layout: 'centered' },
+  parameters: { layout: 'centered', ...NO_SNAPSHOT },
   decorators: [fixedWrapper200],
   argTypes: {
     contentAlign: controlFromOptionsArray('inline-radio', [

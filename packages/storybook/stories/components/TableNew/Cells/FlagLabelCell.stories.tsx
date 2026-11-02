@@ -4,12 +4,13 @@ import React from 'react';
 import { type BaseFlagLabelProps, FlagLabelCell } from '@synerise/ds-table-new';
 
 import { fixedWrapper300, STRING_CONTROL } from '../../../utils';
+import { NO_SNAPSHOT } from '../../../utils/chromatic';
 
 const meta: Meta<BaseFlagLabelProps> = {
   title: 'Components/TableNew/Cells/FlagLabelCell',
   component: FlagLabelCell,
   tags: ['autodocs', 'new'],
-  parameters: { layout: 'centered' },
+  parameters: { layout: 'centered', ...NO_SNAPSHOT },
   decorators: [fixedWrapper300],
   argTypes: {
     countryCode: STRING_CONTROL,

@@ -8,6 +8,7 @@ import ListItem, {
 } from '@synerise/ds-list-item';
 
 import { fixedWrapper300 } from '../../utils';
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 
 export default {
   component: ListWrapper,
@@ -21,6 +22,7 @@ type Story = StoryObj<ListWrapperProps>;
 const ITEMS = ['Option A', 'Option B', 'Option C', 'Option D', 'Option E'];
 
 export const ShowMoreLessToggle: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: {
     maxToShowItems: 3,
     onClick: fn(),

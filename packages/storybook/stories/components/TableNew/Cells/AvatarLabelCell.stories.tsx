@@ -17,12 +17,13 @@ import {
   REACT_NODE_NO_CONTROL,
   STRING_CONTROL,
 } from '../../../utils';
+import { NO_SNAPSHOT } from '../../../utils/chromatic';
 
 const meta: Meta<BaseAvatarLabelProps> = {
   title: 'Components/TableNew/Cells/AvatarLabelCell',
   component: AvatarLabelCell,
   tags: ['autodocs', 'new'],
-  parameters: { layout: 'centered' },
+  parameters: { layout: 'centered', ...NO_SNAPSHOT },
   decorators: [fixedWrapper300],
   argTypes: {
     avatar: REACT_NODE_NO_CONTROL,

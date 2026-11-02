@@ -9,12 +9,13 @@ import {
   fixedWrapper300,
   REACT_NODE_AS_STRING,
 } from '../../../utils';
+import { NO_SNAPSHOT } from '../../../utils/chromatic';
 
 const meta: Meta<BaseIconLabelProps> = {
   title: 'Components/TableNew/Cells/IconLabelCell',
   component: IconLabelCell,
   tags: ['autodocs', 'new'],
-  parameters: { layout: 'centered' },
+  parameters: { layout: 'centered', ...NO_SNAPSHOT },
   decorators: [fixedWrapper300],
   argTypes: {
     label: REACT_NODE_AS_STRING,

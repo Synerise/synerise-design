@@ -19,6 +19,7 @@ import {
   NUMBER_CONTROL,
   REACT_NODE_AS_STRING,
 } from '../../../utils';
+import { NO_SNAPSHOT } from '../../../utils/chromatic';
 import { COLUMNS_ALL, RESPONSIVE_COLUMNS } from '../data/columns';
 import { type DataSourceItem, TOOLTIP_COLUMNS } from '../data/columns.tooltips';
 import { DATA_SOURCE, DATA_SOURCE_FULL } from '../data/tableData';
@@ -472,6 +473,7 @@ export const WithLimitedSelection: StoryObj<VirtualTableProps> = {
     },
   },
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       description: {
         story:

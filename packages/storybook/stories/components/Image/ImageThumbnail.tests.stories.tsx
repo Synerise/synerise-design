@@ -3,6 +3,7 @@ import { expect, fn, userEvent, within } from 'storybook/test';
 
 import { type ThumbnailProps } from '@synerise/ds-image';
 
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 import StoriesMeta, { Deletable } from './ImageThumbnail.stories';
 
 export default {
@@ -15,6 +16,7 @@ type Story = StoryObj<ThumbnailProps>;
 
 /** An interactive tile invokes onClick when clicked. */
 export const ClickInvokesOnClick: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: { onClick: fn() },
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement);
@@ -39,6 +41,7 @@ export const ActivatesWithEnterKey: Story = {
 
 /** Space activates a focused tile. */
 export const ActivatesWithSpaceKey: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: { onClick: fn() },
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement);
@@ -54,6 +57,10 @@ export const ActivatesWithSpaceKey: Story = {
 export const DeleteStopsPropagation: Story = {
   ...Deletable,
   args: { ...Deletable.args, onClick: fn(), onDelete: fn() },
+  parameters: {
+    ...Deletable.parameters,
+    chromatic: { disableSnapshot: false },
+  },
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement);
     await userEvent.click(canvas.getByTestId('image-thumbnail-delete'));

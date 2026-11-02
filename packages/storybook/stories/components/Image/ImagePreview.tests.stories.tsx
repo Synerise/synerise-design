@@ -4,6 +4,7 @@ import { expect, fn, screen, userEvent, waitFor, within } from 'storybook/test';
 
 import { ImagePreview, type ImagePreviewProps } from '@synerise/ds-image';
 
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 import StoriesMeta, { SingleImage } from './ImagePreview.stories';
 
 const WAIT_FOR_OPTIONS = { timeout: 3000 };
@@ -67,6 +68,7 @@ export const OpensFromTrigger: Story = {
 /** Next advances the index, fires onIndexChange, and updates the counter. */
 export const NavigatesToNextImage: Story = {
   ...controlled,
+  parameters: { ...NO_SNAPSHOT },
   args: { onIndexChange: fn() },
   play: async ({ args }) => {
     await waitFor(
@@ -89,6 +91,7 @@ export const NavigatesToNextImage: Story = {
 /** Previous from the first image wraps around to the last. */
 export const NavigatesPreviousWithWrap: Story = {
   ...controlled,
+  parameters: { ...NO_SNAPSHOT },
   args: { onIndexChange: fn() },
   play: async ({ args }) => {
     await waitFor(
@@ -174,6 +177,7 @@ const clickZoomAndSettle = async (testId: string): Promise<number> => {
  */
 export const ZoomInThenOutRoundTrips: Story = {
   ...controlled,
+  parameters: { ...NO_SNAPSHOT },
   play: async () => {
     // The zoom toolbar only mounts once the loaded image has been measured
     // (maxScale > fit), so waiting for it also means the initial fit has settled.
@@ -199,6 +203,7 @@ export const ZoomInThenOutRoundTrips: Story = {
 /** The close button calls onClose and hides the viewer. */
 export const ClosesWithCloseButton: Story = {
   ...controlled,
+  parameters: { ...NO_SNAPSHOT },
   args: { onClose: fn() },
   play: async ({ args }) => {
     await waitFor(
@@ -218,6 +223,7 @@ export const ClosesWithCloseButton: Story = {
 /** Escape closes the viewer. */
 export const ClosesWithEscapeKey: Story = {
   ...controlled,
+  parameters: { ...NO_SNAPSHOT },
   args: { onClose: fn() },
   play: async ({ args }) => {
     await waitFor(
@@ -233,6 +239,7 @@ export const ClosesWithEscapeKey: Story = {
 /** Clicking the dimmed backdrop closes the viewer. */
 export const ClosesOnBackdropClick: Story = {
   ...controlled,
+  parameters: { ...NO_SNAPSHOT },
   args: { onClose: fn() },
   play: async ({ args }) => {
     await waitFor(
@@ -248,6 +255,7 @@ export const ClosesOnBackdropClick: Story = {
 /** With maskClosable=false a backdrop click does not close. */
 export const KeepsOpenWhenMaskClosableFalse: Story = {
   ...controlled,
+  parameters: { ...NO_SNAPSHOT },
   args: { onClose: fn(), maskClosable: false },
   play: async ({ args }) => {
     await waitFor(

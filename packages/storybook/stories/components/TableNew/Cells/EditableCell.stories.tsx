@@ -7,12 +7,13 @@ import {
 } from '@synerise/ds-table-new';
 
 import { fixedWrapper300, STRING_CONTROL } from '../../../utils';
+import { NO_SNAPSHOT } from '../../../utils/chromatic';
 
 const meta: Meta<BaseEditableCellProps> = {
   title: 'Components/TableNew/Cells/EditableCell',
   component: EditableCell,
   tags: ['autodocs', 'new'],
-  parameters: { layout: 'centered' },
+  parameters: { layout: 'centered', ...NO_SNAPSHOT },
   decorators: [fixedWrapper300],
   argTypes: {
     value: STRING_CONTROL,

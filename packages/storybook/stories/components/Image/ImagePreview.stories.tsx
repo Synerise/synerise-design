@@ -10,6 +10,7 @@ import {
 } from '@synerise/ds-image';
 
 import { avatar1, avatar2, avatar3 } from '../../constants';
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 
 const IMAGES = [
   { src: avatar1, alt: 'User avatar 1' },
@@ -93,18 +94,23 @@ export default meta;
 
 type Story = StoryObj<ImagePreviewProps>;
 
-export const MultipleImages: Story = {};
+export const MultipleImages: Story = {
+  parameters: { ...NO_SNAPSHOT },
+};
 
 export const SingleImage: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: { images: [IMAGES[0]] },
 };
 
 export const TriggeredFromList: Story = {
+  parameters: { ...NO_SNAPSHOT },
   render: (args) => <FromListDemo {...args} />,
 };
 
 /** No download control at all — none of these images may be saved. */
 export const NotDownloadable: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: { downloadable: false },
 };
 
@@ -113,6 +119,7 @@ export const NotDownloadable: Story = {
  * control disappears only while it is shown.
  */
 export const PartiallyDownloadable: Story = {
+  parameters: { ...NO_SNAPSHOT },
   render: (args) => <FromListDemo {...args} />,
   args: {
     images: [IMAGES[0], { ...IMAGES[1], downloadable: false }, IMAGES[2]],
@@ -121,6 +128,7 @@ export const PartiallyDownloadable: Story = {
 
 /** Tooltips/labels overridden with custom (here Polish) translations. */
 export const CustomTexts: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: {
     texts: {
       zoomIn: 'Powiększ',

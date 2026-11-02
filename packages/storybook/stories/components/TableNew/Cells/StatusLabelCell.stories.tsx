@@ -12,12 +12,13 @@ import {
   fixedWrapper300,
   REACT_NODE_AS_STRING,
 } from '../../../utils';
+import { NO_SNAPSHOT } from '../../../utils/chromatic';
 
 const meta: Meta<BaseStatusLabelProps> = {
   title: 'Components/TableNew/Cells/StatusLabelCell',
   component: StatusLabelCell,
   tags: ['autodocs', 'new'],
-  parameters: { layout: 'centered' },
+  parameters: { layout: 'centered', ...NO_SNAPSHOT },
   decorators: [fixedWrapper300],
   argTypes: {
     status: controlFromOptionsArray('select', [

@@ -11,12 +11,13 @@ import {
   NUMBER_CONTROL,
   STRING_CONTROL,
 } from '../../../utils';
+import { NO_SNAPSHOT } from '../../../utils/chromatic';
 
 const meta: Meta<BaseCopyableCellProps> = {
   title: 'Components/TableNew/Cells/CopyableCell',
   component: CopyableCell,
   tags: ['autodocs', 'new'],
-  parameters: { layout: 'centered' },
+  parameters: { layout: 'centered', ...NO_SNAPSHOT },
   decorators: [fixedWrapper300],
   argTypes: {
     value: STRING_CONTROL,
