@@ -11,6 +11,7 @@ import Tabs from '@synerise/ds-tabs';
 import { Title } from '@synerise/ds-typography';
 
 import { CLASSNAME_ARG_CONTROL, centeredPaddedWrapper } from '../../utils';
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 import {
   closeActionTypes,
   headerTypes,
@@ -69,6 +70,7 @@ export const Default: Story = {
 };
 
 export const WithTabs: Story = {
+  parameters: { ...NO_SNAPSHOT },
   render: () => {
     const [drawerVisible, setDrawerVisible] = useState(false);
     const [activeTab, setActiveTab] = useState(0);
@@ -117,6 +119,7 @@ export const WithTabs: Story = {
 };
 
 export const WithSearch: Story = {
+  parameters: { ...NO_SNAPSHOT },
   render: () => {
     const [drawerVisible, setDrawerVisible] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
@@ -174,6 +177,7 @@ export const WithSearch: Story = {
 };
 
 export const WithSearchAndTabs: Story = {
+  parameters: { ...NO_SNAPSHOT },
   render: () => {
     const [drawerVisible, setDrawerVisible] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');

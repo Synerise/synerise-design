@@ -28,6 +28,7 @@ import {
   reactNodeAsSelect,
   STRING_CONTROL,
 } from '../../utils';
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 import { CARD_TABS_ITEMS, createItemData } from './CardTabs.data';
 
 const {
@@ -314,6 +315,7 @@ export const AddDisabled: Story = {
 };
 
 export const DotPrefix: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: {
     prefix: 'DOT',
     colorDot: <CardDot />,

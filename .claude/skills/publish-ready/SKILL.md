@@ -114,7 +114,17 @@ For each non-test story, check whether `parameters.docs.source.code` exists and 
 
 Do NOT generate code tab snippets in this skill — that is the responsibility of the `storybook-code-tab` skill. Only verify and flag.
 
-#### 4.3 Overview MDX page
+#### 4.3 Snapshot policy
+
+Check the stories against *Adding or changing a story* in `packages/storybook/README.md`:
+
+| Check | How to verify |
+|-------|--------------|
+| New variants are in the matrix | Every prop value, mode or state added in Step 2 renders in the folder's matrix story (or has a snapshot of its own when no matrix cell can hold it) |
+| Covered stories opt out | Single-variant stories the matrix shows carry `parameters: { ...NO_SNAPSHOT }` |
+| No spread trap | A story other stories spread (`{ ...Base }`) does not carry `NO_SNAPSHOT` unless each derived story sets its own `parameters` |
+
+#### 4.4 Overview MDX page
 
 Check for an overview MDX page at:
 ```
@@ -162,6 +172,8 @@ Read `*.test.stories.tsx` or `*.tests.stories.tsx` files in the storybook storie
 | Play functions have assertions | Each `play` function should include `expect()` calls, not just `userEvent` actions |
 | Key interactions covered | Open/close, click handlers, keyboard navigation, hover states — at least the primary interaction paths |
 | New interactive behaviour tested | If Step 2 identified new interactive props (e.g., `onClick` on a bar segment), there should be a corresponding play-function test |
+| Play functions pass | `pnpm test-storybook stories/components/<Folder>` from `packages/storybook` passes — CI runs the same in `storybook_interaction_tests` |
+| Snapshot only for a new end state | A `play` story that ends where it started carries `NO_SNAPSHOT`; one that ends in a new visual state keeps its snapshot |
 
 **Complexity heuristic:** A component is "complex" if it:
 - Has open/close or show/hide state
@@ -189,9 +201,10 @@ Format the report as follows:
 | 2 | README.md complete & accurate | PASS / FAIL / WARN | <brief detail> |
 | 3 | Story argTypes correct | PASS / FAIL | <brief detail> |
 | 4 | Code tabs present & up to date | PASS / FAIL | <brief detail> |
-| 5 | Overview MDX page | PASS / FAIL | <brief detail> |
-| 6 | Unit tests for new functionality | PASS / FAIL / N/A | <brief detail> |
-| 7 | Interaction tests (complex components) | PASS / FAIL / N/A | <brief detail> |
+| 5 | Snapshot policy (matrix, `NO_SNAPSHOT`) | PASS / FAIL | <brief detail> |
+| 6 | Overview MDX page | PASS / FAIL | <brief detail> |
+| 7 | Unit tests for new functionality | PASS / FAIL / N/A | <brief detail> |
+| 8 | Interaction tests (complex components) | PASS / FAIL / N/A | <brief detail> |
 
 ### Overall: READY / NOT READY
 

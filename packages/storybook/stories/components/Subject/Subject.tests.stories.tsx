@@ -3,6 +3,7 @@ import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
 
 import type { SubjectProps } from '@synerise/ds-subject';
 
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 import { SUBJECT_ITEMS, SUBJECT_TEXTS } from './data/index.data';
 import SubjectMeta from './Subject.stories';
 
@@ -55,6 +56,7 @@ export const Opened: Story = {
 };
 
 export const Deactivate: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: {
     placeholder: 'Select',
     onSelectItem: fn(),

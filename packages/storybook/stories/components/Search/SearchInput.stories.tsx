@@ -10,6 +10,7 @@ import {
   REACT_NODE_AS_STRING,
   STRING_CONTROL,
 } from '../../utils';
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 import DebouncedInput from './DebouncedInput';
 
 type Story = StoryObj<SearchInputProps>;
@@ -118,6 +119,7 @@ export const Default: Story = {
     closeOnClickOutside: true,
   },
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `const [value, setValue] = useState('');
@@ -140,6 +142,7 @@ export const Expanded: Story = {
     alwaysExpanded: true,
   },
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `const [value, setValue] = useState('');

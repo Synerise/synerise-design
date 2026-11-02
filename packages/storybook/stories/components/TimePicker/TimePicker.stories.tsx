@@ -14,6 +14,7 @@ import {
   reactNodeAsSelect,
   STRING_CONTROL,
 } from '../../utils';
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 
 type Story = StoryObj<TimePickerProps>;
 
@@ -94,6 +95,7 @@ export const WithProviderTimezone: StoryObj<TimePickerProps<string>> = {
     timeZone: true,
   },
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `<TimePicker onChange={handleChange} timeZone />`,
@@ -134,6 +136,7 @@ export const WithSpecificTimezone: StoryObj<TimePickerProps<string>> = {
     timeZone: 'Asia/Tokyo',
   },
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `<TimePicker onChange={handleChange} timeZone="Asia/Tokyo" />`,
@@ -176,6 +179,7 @@ export const OpenByDefault: Story = {
     defaultOpen: true,
   },
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `<TimePicker onChange={handleChange} defaultOpen />`,
