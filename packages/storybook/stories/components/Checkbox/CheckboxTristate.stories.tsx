@@ -14,6 +14,7 @@ import {
   STRING_CONTROL,
   STYLE_ARG_CONTROL,
 } from '../../utils';
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 
 export default {
   title: 'Components/Checkbox/CheckboxTristate',
@@ -63,6 +64,7 @@ export const Controlled: StoryObj<CheckboxTristateProps> = {
     );
   },
   parameters: {
+    ...NO_SNAPSHOT,
     controls: {
       include: ['checked'],
     },

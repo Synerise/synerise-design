@@ -34,6 +34,41 @@ export const IconLeft: Story = {
   other stories are built from disables them too. Put it on leaves, or give each derived story its own
   `parameters`.
 
+## Adding or changing a story
+
+Every story either carries a snapshot or opts out naming the snapshotted story that shows it. Decide
+where the new visual goes before writing the story:
+
+| You add | Where it is snapshotted |
+|---|---|
+| A new prop value, mode, size or state of a component | The folder's matrix story. The single story stays for docs and controls, with `NO_SNAPSHOT` |
+| A hover or focus look | A `pseudo` copy of the matrix, like `ButtonMatrixHover`, not a `play` that hovers |
+| A `play` story that ends where it started | Nowhere: `NO_SNAPSHOT`, since `storybook_interaction_tests` covers it |
+| A `play` story that ends in a new state (overlay open, error shown, rows selected) | Its own snapshot, or render that state through props and add it to the matrix |
+| A variant a matrix cell cannot hold (modal, drawer, full-width table, viewport-sized) | Its own snapshot |
+| A new component, or a folder with several variants and no matrix yet | A new matrix story, then the rows above for each story |
+
+Keeping a matrix complete:
+
+- **Composed matrices pick up new stories.** A `<Name>Matrix.stories.tsx` built with `composeStories`
+  and `StoryMatrix` from `stories/utils/StoryMatrix.tsx` (Input, Slider, TextArea, PasswordInput,
+  CardSelect) renders every story of its source file except the ones it destructures out. Add the story
+  with `NO_SNAPSHOT` and check that it shows up in the matrix. A story that does not fit a cell is
+  destructured out and keeps its own snapshot. `CellsMatrix` lists one file per cell type, so a new
+  `Cells/*.stories.tsx` file is added to its `CELL_STORIES`.
+- **Hand-written matrices need the new value.** `ButtonMatrix` and `ToggleMatrix` map arrays of types,
+  modes and states; add the new one to the array rather than snapshotting a separate story.
+- **Only args go into a matrix.** Composed stories render without their `play` function, so a state
+  reached by clicking is not in the matrix. Give the component the prop that renders it (`open`,
+  `errorText`, `selectedRowKeys`) or keep the `play` story's snapshot.
+- **Matrix content is deterministic.** Fixed data and static props: no `play`, no `Math.random()` or
+  `uuid()`, no `new Date()`, no running animation. Anything that changes between builds diffs the whole
+  matrix on every MR.
+- **Label every cell** with its variant name, as `StoryMatrix` does with the story key, so a Chromatic
+  diff points at the variant that changed.
+- **Review checklist.** The MR names, for every new or changed story, the snapshotted story that shows
+  it, and Chromatic shows the matrix diff with the new variant in it.
+
 ## What makes Chromatic re-snapshot everything
 
 TurboSnap only re-snapshots stories whose imports changed, except when a file imported by

@@ -13,6 +13,7 @@ import {
   STRING_CONTROL,
   STYLE_ARG_CONTROL,
 } from '../../utils';
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 import {
   getItemsWithAvatar,
   getSuggestions,
@@ -407,6 +408,7 @@ export const WithItemsWithAvatars: Story = {
     },
   },
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `const [value, setValue] = useState('');

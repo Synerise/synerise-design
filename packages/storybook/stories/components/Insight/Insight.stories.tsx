@@ -15,6 +15,7 @@ import { customColors } from '@synerise/ds-tokens/names';
 
 import { Placeholder } from '../../constants';
 import { fixedWrapper400, REACT_NODE_AS_STRING } from '../../utils';
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 
 export default {
   component: Insight,
@@ -52,6 +53,7 @@ export const Default: Story = {
 
 export const InsightWithOnClick: Story = {
   ...Default,
+  parameters: { ...NO_SNAPSHOT },
   args: {
     ...Default.args,
     onClick: fn(),

@@ -22,6 +22,7 @@ import {
   REACT_NODE_AS_STRING,
   STRING_CONTROL,
 } from '../../utils';
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 import { PICKER_DATA } from './IconPicker.data';
 
 type Story<Source extends SourceType = DataSource[]> = StoryObj<
@@ -145,11 +146,13 @@ export const CustomTrigger: Story = {
   },
 };
 export const DesignSystemIcons: Story<DSSource> = {
+  parameters: { ...NO_SNAPSHOT },
   args: {
     data: 'design-system',
   },
 };
 export const FontAwesomeIcons: Story<FASource> = {
+  parameters: { ...NO_SNAPSHOT },
   args: {
     data: 'font-awesome',
   },

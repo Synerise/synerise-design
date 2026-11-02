@@ -14,6 +14,7 @@ import {
   controlFromOptionsArray,
   fixedWrapper300,
 } from '../../utils';
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 
 type Story = StoryObj<PopconfirmProps>;
 
@@ -56,6 +57,7 @@ export default {
 export const Default: Story = {};
 
 export const withDescription: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: {
     description: 'This is popconfirm modal example with simple body text here',
   },

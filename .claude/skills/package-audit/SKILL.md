@@ -108,12 +108,18 @@ grep -rn "from '.*<package-name>'" packages/ --include="*.ts" --include="*.tsx" 
 - Do stories cover the most common use cases: default state, all key variants (size, type, state), with and without optional content?
 - Does every story have a `parameters.docs.source.code` snippet (the Code tab)?
 - Are there isolated stories for sub-components or compound usage patterns?
+- Snapshot policy (`packages/storybook/README.md`): is every variant shown in the folder's matrix story,
+  and does each single-variant story it covers carry `NO_SNAPSHOT`? A variant with neither a matrix cell
+  nor its own snapshot is **Important**.
 
 #### 3.4 Interactive Test Stories
 - Does a `*.test.stories.tsx` or `*.tests.stories.tsx` file exist?
 - Do `play` functions test the main interactive paths: click, keyboard navigation, open/close, form submission, etc.?
 - Do they cover error and edge-case flows (invalid input, disabled interactions)?
 - Are assertions (`expect`) present in play functions, not just interactions?
+- Do they pass under `pnpm test-storybook stories/components/<Folder>` (run from `packages/storybook`)?
+- Does a `play` story that ends where it started carry `NO_SNAPSHOT`, and does one that ends in a new
+  visual state keep its snapshot?
 
 #### 3.5 Console Logs
 - Any `console.log`, `console.warn`, `console.error`, or `console.info` left in source files.
