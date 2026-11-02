@@ -34,6 +34,8 @@ type ListSearchInputProps = {
   >;
   allTexts: ItemPickerTexts;
   canPerformListActions: boolean;
+  isInFolder?: boolean;
+  onEmptyBackspace?: () => void;
 };
 
 export const ListSearchInput = ({
@@ -46,6 +48,8 @@ export const ListSearchInput = ({
   allTexts,
   inputRef,
   canPerformListActions,
+  isInFolder,
+  onEmptyBackspace,
 }: ListSearchInputProps) => {
   const [localSearchQuery, setLocalSearchQuery] = useState('');
 
@@ -66,9 +70,14 @@ export const ListSearchInput = ({
   );
 
   const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
-    if (event.key === 'Backspace' && !localSearchQuery) {
-      setSearchByParamConfig(undefined);
+    if (event.key !== 'Backspace' || localSearchQuery) {
+      return;
     }
+    if (searchByParamConfig) {
+      setSearchByParamConfig(undefined);
+      return;
+    }
+    onEmptyBackspace?.();
   };
 
   const handleClearInput = () => {
@@ -89,9 +98,11 @@ export const ListSearchInput = ({
       <Dropdown.SearchInput
         iconLeft={<Icon component={searchByParamConfig?.icon || <SearchM />} />}
         placeholder={
-          canPerformListActions
-            ? allTexts.searchPlaceholder
-            : allTexts.basicSearchPlaceholder
+          isInFolder
+            ? allTexts.searchInFolderPlaceholder
+            : canPerformListActions
+              ? allTexts.searchPlaceholder
+              : allTexts.basicSearchPlaceholder
         }
         {...searchBarProps}
         valuePrefix={searchByParamConfig?.paramKeyLabel}

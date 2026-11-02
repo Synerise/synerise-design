@@ -22,5 +22,13 @@ export type {
   BaseSectionTypeWithFolders,
 } from './components/ItemPickerNew/types/baseItemSectionType.types';
 export type { ItemPickerListTexts } from './components/ItemPickerNew/types/itemPickerListTexts.types';
+export type {
+  FolderNode,
+  LevelEntry,
+  LoadLevelParams,
+  LoadLevelResult,
+  MixedLoaderConfig,
+  PathStep,
+} from './components/ItemPickerNew/types/mixedLoader.types';
 export { default as ItemPickerTrigger } from './components/ItemPickerTrigger/Trigger';
 export { default } from './ItemPicker';

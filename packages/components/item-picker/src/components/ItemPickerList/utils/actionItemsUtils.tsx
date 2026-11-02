@@ -21,8 +21,9 @@ export const getActionItem = (
   action: Action & { onClick?: (action: Action) => void },
   searchQuery?: string,
 ): ListItemProps => {
+  const { showInList: _showInList, ...item } = action;
   return {
-    ...action,
+    ...item,
     highlight: searchQuery,
     onClick:
       'onClick' in action && action.onClick
@@ -170,6 +171,7 @@ export const getSectionActionItems = ({
 }) => {
   const filteredActions = actions?.filter(
     (action) =>
+      action.showInList !== false &&
       (action.actionType === ACTION_TYPES.searchBy ||
         action.actionType === ACTION_TYPES.searchIn ||
         action.sectionId === sectionId) &&

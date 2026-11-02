@@ -136,6 +136,23 @@ export const SkeletonWrapper = styled.div<{ wrapperHeight?: number }>`
   }
 `;
 
+export const LargeSkeletonRow = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 12px;
+`;
+
+export const LargeSkeletonText = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  ${Skeleton}:last-child {
+    width: 40%;
+  }
+`;
+
 export const Title = styled.div`
   font-size: 10px;
   line-height: 1.6;
@@ -165,4 +182,9 @@ export const InfiniteLoaderItemWrapper = styled.div``;
 
 export const Loader = styled(DSLoader)`
   justify-content: flex-start;
+`;
+
+export const FolderDisabledReason = styled.span`
+  color: var(--ds-color-text-base-muted);
+  white-space: nowrap;
 `;

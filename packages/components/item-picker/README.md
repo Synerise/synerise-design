@@ -15,6 +15,48 @@ yarn add @synerise/ds-item-picker
 
 ## Usage
 
+The current API is `isNewVersion` — see `CLAUDE.md` in this package for every prop.
+
+```tsx
+import ItemPicker from '@synerise/ds-item-picker'
+
+<ItemPicker
+  isNewVersion
+  items={items} // an array, { items, limitPerSection }, { loadItems } or { loadLevel }
+  placeholder="Set customer"
+  selectedItem={selected}
+  onChange={setSelected}
+  onClear={() => setSelected(undefined)}
+/>
+```
+
+### Mixed list
+
+Pass a `MixedLoaderConfig` as `items` for a mixed list: folders and items side by side on the same level,
+one level at a time (folders first), and a folder opens the next level. `loadLevel` returns one page of a level (or of a search, which covers
+the level and every level below it) and the level's path:
+
+```tsx
+<ItemPicker
+  isNewVersion
+  items={{
+    loadLevel: async ({ folderId, searchQuery, searchKey, page, limit, abortController }) => ({
+      entries: [
+        { type: 'folder', folder: { id: 'f1', text: 'Folder 1' } },
+        { type: 'item', item: { id: 'i1', text: 'Item 1' } },
+      ],
+      total: 2,
+      path: [{ id: null, text: 'All' }],
+    }),
+  }}
+  onChange={setSelected}
+/>
+```
+
+Search in is not supported in this mode. Actions take `showInList: false` to be offered only under `/`.
+
+### Legacy API (deprecated)
+
 ```
 import ItemPicker from '@synerise/ds-item-picker'
 

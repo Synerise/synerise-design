@@ -19,7 +19,8 @@ src/
  types/
  actions.types.ts — Action union type (redirect | custom | searchBy | searchIn)
  baseItemSectionType.types.ts — BaseItemType, BaseSectionType, BaseSectionTypeWithFolders
- itemPickerListTexts.types.ts — ItemPickerListTexts (all 23 text keys)
+ itemPickerListTexts.types.ts — ItemPickerListTexts (23 list text keys)
+ mixedLoader.types.ts — MixedLoaderConfig, LoadLevelParams/Result, LevelEntry, FolderNode, PathStep
  ItemPickerList/
  ItemPickerList.tsx — virtualised list (react-window VariableSizeList), search, sections, keyboard nav
  ItemPickerList.types.ts — ItemPickerListAPI, ItemSelectHandler, ItemPickerListRef
@@ -30,10 +31,12 @@ src/
  useItemsInSections.tsx — core state machine: section/folder navigation, async loading, infinite scroll, search
  useItemsInSections.utils.tsx
  useFlattenFolders.ts — resolves nested folder structure
+ useFolderLevel.ts — mixed mode: current folderId and path; openFolder / goUp / reset
  useListHeight.ts — calculates outer/list/offset heights from containerHeight config
  utils/
  actionItemsUtils.tsx — builds action rows in the list
  createTitleFromTitlePath.ts
+ formatFolderPath.ts — mixed mode back header: " / " join, middle collapsed past 4 steps
  findSectionById.ts — exported utility
  getContextAwareActions.ts
  getSearchByActionItems.tsx
@@ -84,13 +87,13 @@ Current API. Generic over `ItemType extends BaseItemType` and `SectionType exten
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `isNewVersion` | `true` | — | **Required** discriminant to select this branch via `ItemPicker` default export |
-| `items` | `ItemType[] \| ItemsConfig<ItemType> \| ItemLoaderConfig<ItemType>` | — | Fixed array, array-with-limit config, or async loader config |
+| `items` | `ItemType[] \| ItemsConfig<ItemType> \| ItemLoaderConfig<ItemType> \| MixedLoaderConfig<ItemType>` | — | Fixed array, array-with-limit config, async loader config, or a mixed loader (mixed list: folders and items side by side) |
 | `selectedItem?` | `ItemType` | — | Currently selected item; a new item key set via this prop closes the dropdown, a refreshed label of the same item keeps it open |
 | `onChange?` | `(item: ItemType) => void` | — | Called when an item is selected; dropdown closes automatically |
 | `onClear?` | `() => void` | — | Called when the trigger clear icon is clicked |
 | `sections?` | `BaseSectionTypeWithFolders<SectionType>[]` | — | Section/folder tree; enables section-navigation mode |
 | `recents?` | `ItemType[]` | — | Recent items shown at top |
-| `actions?` | `Action[]` | — | Action rows (redirect / custom / searchBy / searchIn); shown on `/` keystroke |
+| `actions?` | `Action[]` | — | Action rows (redirect / custom / searchBy / searchIn); shown on `/` keystroke. `showInList: false` on an action keeps it out of the list, offered only under `/` |
 | `isLoading?` | `boolean` | — | External loading state (shows skeleton) |
 | `onRefresh?` | `() => void` | — | Enables footer refresh button (async items also get an auto refresh) |
 | `onSectionChange?` | `(section?) => void` | — | Fired when the user navigates into a section |
@@ -102,7 +105,7 @@ Current API. Generic over `ItemType extends BaseItemType` and `SectionType exten
 | `searchBarProps?` | `Omit<SearchBarProps, 'value' \| 'onSearchChange' \| 'placeholder'>` | — | Extra props for the search bar |
 | `includeFooter?` | `boolean` | `true` | Show refresh footer |
 | `includeSearchBar?` | `boolean` | `true` | Show search bar |
-| `texts?` | `Partial<ItemPickerTexts>` | (react-intl defaults) | Override any of the 23 localised text strings |
+| `texts?` | `Partial<ItemPickerTexts>` | (react-intl defaults) | Override any localised text (23 list + 5 trigger keys) |
 | `triggerProps?` | `{ size?, allowClear?, withChangeButton?, withClearConfirmation?, informationCardTooltipProps? }` | — | Props forwarded to the default `Trigger`; its information card stays closed while the dropdown is open |
 | `renderTrigger?` | `(props) => ReactNode` | — | Completely replace the trigger; receives `{ selected, opened, openDropdown, closeDropdown, error, disabled }` — wrap it in an `InformationCardTooltip` with `disabled={opened}` so the card never covers the open list |
 | `placeholder?` | `ReactNode` | — | Trigger placeholder text |
@@ -201,7 +204,8 @@ The standalone trigger button, exported for custom dropdown implementations.
 | `BaseItemType` | Minimum item shape |
 | `BaseSectionType` | Minimum section shape; optional `tooltip` puts an info icon with that tooltip on the section's title row |
 | `BaseSectionTypeWithFolders` | Section with optional `folders` tree |
-| `ItemPickerListTexts` | All 23 localisation text keys |
+| `ItemPickerListTexts` | The 23 list text keys |
+| `MixedLoaderConfig`, `LoadLevelParams`, `LoadLevelResult`, `LevelEntry`, `FolderNode`, `PathStep` | Mixed list mode |
 | `Action` | Union of action types |
 | `findSectionById` | Utility: finds a section by id in a nested section tree |
 
@@ -257,6 +261,57 @@ const loaderConfig: ItemLoaderConfig<MyItem> = {
 />
 ```
 
+### Mixed list
+
+Folders and items side by side on the same level, one level at a time (folders first). Unlike the
+section and folder modes, a level can hold both. A folder opens the next level instead of being picked.
+
+```tsx
+import ItemPicker, { type MixedLoaderConfig } from '@synerise/ds-item-picker';
+
+const folders: MixedLoaderConfig<MyItem> = {
+ rowSize: 'default', // 'large' for image-only pickers
+ loadLevel: async ({ folderId, searchQuery, searchKey, page, limit, abortController }) => {
+ const data = await fetchLevel({ folderId, searchQuery, searchKey, page, limit, signal: abortController?.signal });
+ return {
+ entries: [
+ ...data.folders.map((folder) => ({ type: 'folder', folder: { id: folder.id, text: folder.name } })),
+ ...data.items.map((item) => ({ type: 'item', item, location: item.path })),
+ ],
+ total: data.total,
+ path: data.path, // [{ id: null, text: 'All' }, …, the current folder]
+ };
+ },
+};
+
+<ItemPicker isNewVersion items={folders} onChange={handleChange} placeholder="Choose a file" />
+```
+
+**The `loadLevel` contract**
+- No `searchQuery`: the contents of `folderId` (`null` = root), one page, **folders first**. `total`
+ counts the whole level.
+- With `searchQuery`: matches from `folderId` **and every level below it**. Give each entry a
+ `location` (its path); large rows show it as the second line.
+- `searchKey`: the active Search-by parameter. A parameter folders do not have → return items only.
+- `path`: from the root to `folderId`; the back header shows it and the root's `text` titles the top level.
+- A folder with nothing the field can take: `disabled: true` with a `disabledReason` ("Empty") — the
+ row stays, greyed, and does not open.
+- Respect `abortController`: the list cancels a level's load when the level or the query changes.
+
+**Behaviour**
+- Back header: the folder path joined with " / ", the middle collapsed past four steps (full path in
+ the tooltip). Placeholder inside a folder: `searchInFolderPlaceholder`.
+- Recent and the "Actions" list only at the top level; while searching, matching actions are listed
+ (except `showInList: false`). **Search in is not supported** in this mode — `searchIn` actions are
+ left out.
+- Keyboard: → opens a focused folder, ← on a row and Backspace in an empty search go one level up
+ (Backspace drops a Search-by parameter first), ⌘← as in the other modes.
+- Search results are a flat list under "Results"; the location is in the object's card
+ (`informationCardProps`), shown on hover and keyboard focus.
+- `rowSize: 'large'`: 50px rows with a 40px folder tile, large skeleton rows; items without their own
+ `size` follow it. The card height is the DS preset (a taller card for large rows is a follow-up).
+- Paging: `limitPerPage` (default 30); the next page loads at the end of the list.
+
 ### Imperative reload via ref
 
 ```tsx
@@ -286,7 +341,7 @@ import { ItemPickerList } from '@synerise/ds-item-picker';
 - All styled-components; no hardcoded colours — uses `var(--ds-*)` tokens.
 - The outer wrapper is `S.ItemPickerWrapper` (just `position: relative`).
 - List layout driven by `useListHeight`; default height 420 px, drops to 350 px below 800 px viewport threshold.
-- `containerHeight` prop accepts `'fitContent'` (shrinks to content), `'fillSpace'` (100%), or an explicit `HeightConfig` object.
+- `containerHeight` prop accepts `'fitContent'`, `'fillSpace'` (100%), or an explicit `HeightConfig` object. `fitContent` is for lists known up front (a fixed `items` array): one height, computed for the largest view the structure can show, that stays the same across sections, folders and search so the dropdown never repositions. A loaded list (including the mixed list) uses the preset height.
 
 ---
 
@@ -314,18 +369,21 @@ import { ItemPickerList } from '@synerise/ds-item-picker';
 - **Async loading race prevention**: `useItemsInSections` tracks a `requestIdRef` UUID and discards stale responses.
 - **AbortController**: each `loadItems` call gets a fresh `AbortController`; the previous one is aborted on re-trigger (section change, search, refresh).
 - **Search action trigger**: typing `/` into the search bar activates the global actions list (`listActions = searchQuery === '/'`).
-- **Infinite scroll**: only active for `ItemLoaderConfig` items in `LIST_ITEMS` render mode. Pages are tracked via `pageToLoad.current`; deduplication relies on the caller returning accurate `total`.
+- **Infinite scroll**: active for `ItemLoaderConfig` items in `LIST_ITEMS` and for `MixedLoaderConfig` levels. Pages are tracked via `pageToLoad.current`; a first page whose `total` fits marks the list loaded (no second request, no "All items loaded"). Deduplication relies on the caller returning accurate `total`.
 - **Section tooltips**: a section's `tooltip` renders on its **title row** only (an `InfoFillS` icon in `ds-tooltip`), never on the folder row that opens it. Top-level section titles take it in `LIST_FOLDERS_IN_SECTIONS`; a folder's title (or title path, e.g. "Attributes - Ready to use") takes it when its items are listed under it. The icon sits in a negative-margin wrapper so the title stays as tall as its `ITEM_SIZE.title` estimate.
 - **Measured row heights**: rows report real heights through `useMeasuredRowHeights` (`@synerise/ds-utils`). Each row's floor is its **estimate** (`getMeasuredRowStyle(style, getEstimatedItemSize(index))`), never react-window's `style.height`, so a row measures shorter again when its key last stood for a taller row. Row keys are `itemKey ?? key ?? id`, falling back to the position only for rows with no id at all.
 - **Section/folder rendering modes** (`renderMode.ts`):
  - `LIST_ITEMS` — flat list
  - `LIST_ITEMS_IN_SECTIONS` — items grouped under section headers
  - `LIST_FOLDERS_IN_SECTIONS` — folder tiles (no items loaded yet)
+ - `LIST_MIXED` — mixed list: `items` is a `MixedLoaderConfig`; level state in `useFolderLevel`, rows from `getFolderLevelRow` / `getListItem`
+- **Rows are one stable react-window component** (`ListRow` in `ItemPickerList.tsx`). An inline renderer remounts every row on each list render and drops focus — keep it a module-level component.
+- **Arrow keys stop at the list.** Inside a Dropdown its own `useListNavigation` would also move the focus, from a stale index once the focus has left the rows.
 - **`ItemPickerLegacy` is marked `@deprecated`** in source with a JSDoc comment on the component itself.
 - **`errorMessage` prop** on `ItemPickerNew` is marked `@deprecated`; prefer `errorText` (from `FormFieldCommonProps`).
 - **`isObjectDeleted` prop** (on `ItemPickerNew`, `ItemPickerLegacy`, and the shared `Trigger`) flags a selected item that no longer exists. When `true`, `Trigger.styles` renders `ValueText` in `--ds-form-error-text-color` and skips the `--ds-form-icon-color-default` `Prefix` icon override so the deleted state reads visually. It only affects the selected-value display — it has no effect while showing the placeholder.
 - **Several `ItemPickerTriggerProps` fields are `@deprecated`**: `clear`, `changeButtonLabel`, `clearConfirmTitle`, `yesText`, `noText` — move to `texts` object.
 - **`Props` alias** in `Trigger.types.ts` is marked `@deprecated`; use `ItemPickerTriggerProps`.
-- **Tests use Vitest** (`vitest run`); the root `@testing-library/user-event` is v10, so there is no `userEvent.hover` — a `ds-tooltip` cannot be opened from these specs.
+- **Tests use Vitest** (`vitest run`), co-located `*.spec.tsx`; config only in the root `vite.config.base.ts`. The root `@testing-library/user-event` is v10, so there is no `userEvent.hover` — a `ds-tooltip` cannot be opened from these specs.
 - The search-bar `searchPlaceholder` in `ItemPickerNew` must be overridden via `texts.searchPlaceholder` (not a top-level prop), unlike `ItemPickerLegacy` where it is a direct prop.
 - `ItemPickerList` generates a unique per-instance CSS class via `generateUuid()` on mount; `focusWithArrowKeys` from `@synerise/ds-utils` uses this class for keyboard navigation.

@@ -18,6 +18,11 @@ type BasicAction = Omit<InheritedFromListItem, 'onClick'> & {
   id: string | number;
   text: ReactNode;
   icon?: ReactNode;
+  /**
+   * `false` keeps the action out of the list; it is still offered under `/`.
+   * @default true
+   */
+  showInList?: boolean;
 };
 
 type RedirectAction = BasicAction & {

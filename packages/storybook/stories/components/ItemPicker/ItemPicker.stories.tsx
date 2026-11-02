@@ -59,7 +59,6 @@ const ItemPickerStory = (args) => {
 export default {
   component: ItemPicker,
   title: 'Components/Pickers/ItemPicker/ItemPicker',
-  tags: ['autodocs'],
   parameters: {
     layout: 'fullscreen',
     controls: {

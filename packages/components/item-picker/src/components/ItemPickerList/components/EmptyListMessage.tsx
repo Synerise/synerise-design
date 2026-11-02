@@ -16,8 +16,10 @@ type EmptyListMessageProps = {
     | 'noActions'
     | 'emptyStateLabel'
     | 'searchAllFoldersButtonLabel'
+    | 'emptyFolder'
   >;
   hasCurrentSection?: boolean;
+  isInFolder?: boolean;
   listActions: boolean;
   isActionSection: boolean;
   buttonOnClick: () => void;
@@ -34,6 +36,7 @@ export const EmptyListMessage = ({
   listActions,
   isActionSection,
   hasCurrentSection,
+  isInFolder,
   buttonOnClick,
   currentSection,
   searchQuery,
@@ -63,6 +66,15 @@ export const EmptyListMessage = ({
               texts.searchAllFoldersButtonLabel}
           </Button>
         }
+      />
+    );
+  }
+
+  if (!searchQuery && isInFolder) {
+    return (
+      <S.EmptyStates
+        customIcon={emptyListIcon || <NoData />}
+        label={texts.emptyFolder}
       />
     );
   }

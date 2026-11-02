@@ -1,0 +1,297 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+import ItemPicker from '@synerise/ds-item-picker';
+import ItemPickerMeta, { Default } from './ItemPicker.stories';
+import { FlatItems, Sections, SectionsAndFolders } from './ItemPickerList/ItemPickerList.stories';
+import {
+  Default as MixedDefault,
+  LargeRows as MixedLargeRows,
+  InTheField as MixedInTheField,
+} from './ItemPickerList/ItemPickerListMixed.stories';
+
+<Meta component={ItemPicker} of={ItemPickerMeta} />
+
+# ItemPicker
+
+A field that picks one object from a list: a trigger, a dropdown with search, actions, Recent, paging and
+a card for each row. The list (`ItemPickerList`) can be used on its own. It shows one of four variants,
+chosen by what you pass as `items` and `sections`.
+
+## Quick overview
+
+- `import ItemPicker, { ItemPickerList } from '@synerise/ds-item-picker'`; render it inside `DSProvider`.
+- Use the current API with `isNewVersion`. The props without it are the deprecated legacy picker.
+- `items` decides how rows load: a fixed array, `{ items, limitPerSection }`, an `ItemLoaderConfig`
+  (`loadItems`, paged) or a `MixedLoaderConfig` (`loadLevel`, the mixed list).
+- `actions` add rows under "Actions" and under `/` in the search; `recents` adds a Recent group at the top.
+- A row's `informationCardProps` opens its card on hover and on keyboard focus.
+
+## Basic example
+
+<Canvas of={Default} sourceState="shown" />
+
+## The four list variants
+
+<table>
+  <thead>
+    <tr>
+      <th>Variant</th>
+      <th>Given</th>
+      <th>What the list shows</th>
+      <th>Use it for</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Flat list</td>
+      <td><code>items</code> only</td>
+      <td>One list of items; paged at the end when loaded.</td>
+      <td>Objects without any grouping.</td>
+    </tr>
+    <tr>
+      <td>Sections without folders</td>
+      <td><code>sections</code> without <code>folders</code></td>
+      <td>Each section as a title with a few items and <em>Show more</em>, which enters the section.</td>
+      <td>A few fixed groups of objects (types, categories).</td>
+    </tr>
+    <tr>
+      <td>Sections with folders</td>
+      <td><code>sections</code> with nested <code>folders</code></td>
+      <td>Folders under section titles; items only in the leaves.</td>
+      <td>A static folder tree where only the leaves hold objects.</td>
+    </tr>
+    <tr>
+      <td>Mixed list</td>
+      <td><code>items</code> as a <code>MixedLoaderConfig</code></td>
+      <td>Folders and items side by side on the same level, one level at a time (folders first). A folder opens the next level.</td>
+      <td>Objects stored in folders where any level holds both folders and objects (files, campaigns).</td>
+    </tr>
+  </tbody>
+</table>
+
+### Flat list
+
+<Canvas of={FlatItems} />
+
+### Sections without folders
+
+<Canvas of={Sections} />
+
+### Sections with folders
+
+<Canvas of={SectionsAndFolders} />
+
+### Mixed list
+
+Folders and items share a level, which no other variant allows. `loadLevel` loads each level, and each search, page by page. The back header shows the folder path;
+→ opens a focused folder, ← on a row and Backspace in an empty search go one level up.
+
+<Canvas of={MixedDefault} sourceState="shown" />
+
+`rowSize: 'large'` is for image-only pickers: 50px rows with a 40px tile, and a large-row skeleton.
+
+<Canvas of={MixedLargeRows} />
+
+In the field:
+
+<Canvas of={MixedInTheField} />
+
+## API reference
+
+### `ItemPicker` (with `isNewVersion`)
+
+The main props; the package's `CLAUDE.md` lists all of them.
+
+<table>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>isNewVersion</code></td>
+      <td><code>true</code></td>
+      <td>—</td>
+      <td>Selects the current API</td>
+    </tr>
+    <tr>
+      <td><code>items</code></td>
+      <td><code>ItemType[] | ItemsConfig | ItemLoaderConfig | MixedLoaderConfig</code></td>
+      <td>—</td>
+      <td>The rows, or how to load them</td>
+    </tr>
+    <tr>
+      <td><code>selectedItem</code></td>
+      <td><code>ItemType</code></td>
+      <td>—</td>
+      <td>The chosen item</td>
+    </tr>
+    <tr>
+      <td><code>onChange</code></td>
+      <td><code>(item: ItemType) =&gt; void</code></td>
+      <td>—</td>
+      <td>Called when an item is picked; the dropdown closes</td>
+    </tr>
+    <tr>
+      <td><code>onClear</code></td>
+      <td><code>() =&gt; void</code></td>
+      <td>—</td>
+      <td>Called by the trigger's clear icon</td>
+    </tr>
+    <tr>
+      <td><code>sections</code></td>
+      <td><code>BaseSectionTypeWithFolders[]</code></td>
+      <td>—</td>
+      <td>Sections and their folders (variants 2 and 3)</td>
+    </tr>
+    <tr>
+      <td><code>recents</code></td>
+      <td><code>ItemType[]</code></td>
+      <td>—</td>
+      <td>Recent items at the top</td>
+    </tr>
+    <tr>
+      <td><code>actions</code></td>
+      <td><code>Action[]</code></td>
+      <td>—</td>
+      <td>Action rows; <code>showInList: false</code> offers one only under <code>/</code></td>
+    </tr>
+    <tr>
+      <td><code>containerHeight</code></td>
+      <td><code>'fitContent' | 'fillSpace' | HeightConfig</code></td>
+      <td>420px (350px under an 800px window)</td>
+      <td>List height</td>
+    </tr>
+    <tr>
+      <td><code>texts</code></td>
+      <td><code>Partial&lt;ItemPickerTexts&gt;</code></td>
+      <td>react-intl defaults</td>
+      <td>Text overrides</td>
+    </tr>
+  </tbody>
+</table>
+
+### `MixedLoaderConfig`
+
+<table>
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>loadLevel</code></td>
+      <td><code>(params: LoadLevelParams) =&gt; Promise&lt;LoadLevelResult&gt;</code></td>
+      <td>—</td>
+      <td>Loads one page of a level, or of a search</td>
+    </tr>
+    <tr>
+      <td><code>limitPerPage</code></td>
+      <td><code>number</code></td>
+      <td><code>30</code></td>
+      <td>Page size</td>
+    </tr>
+    <tr>
+      <td><code>rowSize</code></td>
+      <td><code>'default' | 'large'</code></td>
+      <td><code>'default'</code></td>
+      <td>Row size for folders, and for items without their own <code>size</code></td>
+    </tr>
+  </tbody>
+</table>
+
+### The `loadLevel` contract
+
+<table>
+  <thead>
+    <tr>
+      <th>Param / field</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>folderId</code></td>
+      <td>The folder to list; <code>null</code> is the root</td>
+    </tr>
+    <tr>
+      <td><code>searchQuery</code></td>
+      <td>Empty: the level itself, folders first. Otherwise: matches from this level and every level below it</td>
+    </tr>
+    <tr>
+      <td><code>searchKey</code></td>
+      <td>The active Search-by parameter; a parameter folders do not have returns items only</td>
+    </tr>
+    <tr>
+      <td><code>page</code>, <code>limit</code></td>
+      <td>Paging, from page 0</td>
+    </tr>
+    <tr>
+      <td><code>abortController</code></td>
+      <td>Aborted when the level or the query changes</td>
+    </tr>
+    <tr>
+      <td><code>entries</code> (result)</td>
+      <td><code>LevelEntry[]</code>: a folder (<code>type: 'folder'</code> with <code>folder</code>) or an item (<code>type: 'item'</code> with <code>item</code>), with an optional <code>location</code> for search results</td>
+    </tr>
+    <tr>
+      <td><code>total</code> (result)</td>
+      <td>All entries of the level or of the search</td>
+    </tr>
+    <tr>
+      <td><code>path</code> (result)</td>
+      <td>From the root to <code>folderId</code>; the root's <code>text</code> titles the top level</td>
+    </tr>
+  </tbody>
+</table>
+
+### Exported types
+
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>MixedLoaderConfig</code>, <code>LoadLevelParams</code>, <code>LoadLevelResult</code></td>
+      <td>The mixed list</td>
+    </tr>
+    <tr>
+      <td><code>LevelEntry</code>, <code>FolderNode</code>, <code>PathStep</code></td>
+      <td>A level's rows, a folder row (<code>disabled</code> + <code>disabledReason</code> keep it greyed with the reason) and a path step</td>
+    </tr>
+    <tr>
+      <td><code>ItemLoaderConfig</code>, <code>LoaderProps</code>, <code>ItemLoaderResponse</code></td>
+      <td>The paged loader of the other variants</td>
+    </tr>
+    <tr>
+      <td><code>Action</code>, <code>BaseItemType</code>, <code>BaseSectionType</code></td>
+      <td>Actions, items and sections</td>
+    </tr>
+  </tbody>
+</table>
+
+## Notes & tips
+
+- **Mixed list:** Recent and the "Actions" list show only at the top level; while searching,
+  matching actions are listed above the results. Search in is not supported in this mode.
+- Search results in default rows are a flat list under "Results"; put the object's location in its card
+  (`informationCardProps`).
+- A folder with nothing the field can take should stay in the list, `disabled`, with its
+  `disabledReason`, rather than disappear.
+- `containerHeight="fitContent"` is for lists known up front (a fixed `items` array): one height, for the
+  largest view the structure can show, that does not change as the user moves between sections, folders
+  and search results, so the dropdown never repositions. A loaded list, including the list with
+  folders, uses the preset height.
+- Keyboard: ↑ ↓ move between the search and the rows, Enter picks, Esc clears the search and then closes,
+  ⌘← goes back.

@@ -50,6 +50,79 @@ describe('Popover', () => {
         await waitFor(() =>  expect(screen.getByText(OVERLAY_CONTENT)).toBeInTheDocument())
     })
 
+  describe('focus trigger', () => {
+    const renderFocusPopover = () =>
+      renderWithProvider(
+        <>
+          <button>before</button>
+          <Popover trigger={['hover', 'focus']} focusConfig={{ delay: 50 }}>
+            <PopoverTrigger>{TRIGGER}</PopoverTrigger>
+            <PopoverContent>{OVERLAY}</PopoverContent>
+          </Popover>
+          <button>after</button>
+        </>,
+      );
+
+    it('opens when the trigger gets keyboard focus, after the delay', async () => {
+      renderFocusPopover();
+      await userEvent.tab();
+      await userEvent.tab();
+      expect(screen.getByText(TRIGGER_LABEL)).toHaveFocus();
+      expect(screen.queryByText(OVERLAY_CONTENT)).not.toBeInTheDocument();
+
+      await screen.findByText(OVERLAY_CONTENT);
+    });
+
+    it('closes when the focus leaves the trigger', async () => {
+      renderFocusPopover();
+      await userEvent.tab();
+      await userEvent.tab();
+      await screen.findByText(OVERLAY_CONTENT);
+
+      await userEvent.tab();
+      await waitFor(() =>
+        expect(screen.queryByText(OVERLAY_CONTENT)).not.toBeInTheDocument(),
+      );
+    });
+
+    it('does not open when the focus passes before the delay', async () => {
+      renderFocusPopover();
+      await userEvent.tab();
+      await userEvent.tab();
+      await userEvent.tab();
+      await new Promise((resolve) => setTimeout(resolve, 100));
+
+      expect(screen.queryByText(OVERLAY_CONTENT)).not.toBeInTheDocument();
+    });
+
+    it('does not open for the focus a mouse click gives', async () => {
+      renderWithProvider(
+        <Popover trigger="focus" focusConfig={{ delay: 0 }}>
+          <PopoverTrigger>{TRIGGER}</PopoverTrigger>
+          <PopoverContent>{OVERLAY}</PopoverContent>
+        </Popover>,
+      );
+      await userEvent.click(screen.getByText(TRIGGER_LABEL));
+      await new Promise((resolve) => setTimeout(resolve, 100));
+
+      expect(screen.getByText(TRIGGER_LABEL)).toHaveFocus();
+      expect(screen.queryByText(OVERLAY_CONTENT)).not.toBeInTheDocument();
+    });
+
+    it('does not open on focus without the focus trigger', async () => {
+      renderWithProvider(
+        <Popover trigger="hover">
+          <PopoverTrigger>{TRIGGER}</PopoverTrigger>
+          <PopoverContent>{OVERLAY}</PopoverContent>
+        </Popover>,
+      );
+      await userEvent.tab();
+      await new Promise((resolve) => setTimeout(resolve, 200));
+
+      expect(screen.queryByText(OVERLAY_CONTENT)).not.toBeInTheDocument();
+    });
+  });
+
   describe('closeAllOverlays', () => {
     it('closes an uncontrolled popover', async () => {
       renderWithProvider(

@@ -17,6 +17,7 @@ src/
  PopoverClose.tsx — close button helper (forwardRef)
  hooks/
  usePopover.ts — main floating-ui orchestration hook
+ useFocusTrigger.ts — the 'focus' trigger: opens on keyboard focus after a delay
  usePopoverContext.ts — context consumer with null-guard
  useListNavigationConfig.ts — keyboard list navigation config helper
  contexts/
@@ -26,7 +27,7 @@ src/
  stickyPlacement.ts — `autoUpdate` wrapper + middleware behind `stickyPlacement`
  getDefaultTransitionConfig.ts — default opacity fade transition config
  getPlacement.ts — converts LegacyPlacement → floating-ui Placement
- __specs__/Popover.spec.tsx — render, click-open, hover-open
+ __specs__/Popover.spec.tsx — render, click-open, hover-open, focus-open
  __specs__/PopoverHide.spec.tsx — the `hide` middleware's two readings, with stubbed rects
  __specs__/PopoverStickyPlacement.spec.tsx — side kept on overlay resize, released on everything else
 ```
@@ -43,7 +44,7 @@ Root component (default + named export). Provides `PopoverContext` to all childr
 |------|------|---------|-------------|
 | `children` | `ReactNode` | — | **Required.** Should include `PopoverTrigger` and `PopoverContent` |
 | `placement` | `Placement` | `'bottom'` | Floating-ui placement (e.g. `'top'`, `'bottom-start'`) |
-| `trigger` | `PopoverTriggerType \| PopoverTriggerType[]` | `'click'` | `'click'`, `'hover'`, or both |
+| `trigger` | `PopoverTriggerType \| PopoverTriggerType[]` | `'click'` | `'click'`, `'hover'`, `'focus'`, or several |
 | `open` | `boolean` | `undefined` | Controlled open state |
 | `onOpenChange` | `(open, event?, reason?) => void` | `undefined` | Controlled open state setter |
 | `onDismiss` | `(event?, reason?) => void` | `undefined` | Called when closed via escape or outside-press |
@@ -61,6 +62,7 @@ Root component (default + named export). Provides `PopoverContext` to all childr
 | `hideConfig` | `HideConfig` | `{ enabled: true }` | Floating-ui `hide` middleware config; hides the overlay while its anchor is not visible. `{ enabled: false }` opts out |
 | `arrowConfig` | `Omit<ArrowOptions, 'element'>` | `{}` | Arrow middleware config (element is managed by `PopoverArrow`) |
 | `hoverConfig` | `HoverConfig` | `{}` | Extra options forwarded to `useHover` (e.g. `restMs`, `move`) |
+| `focusConfig` | `FocusConfig` | `{ delay: HOVER_OPEN_DELAY, visibleOnly: true }` | The `'focus'` trigger: `delay` before opening, `visibleOnly` to ignore the focus a press on the trigger gives |
 | `dismissConfig` | `UseDismissProps` | `{}` | Extra options forwarded to `useDismiss` |
 | `closeOnFocusOut` | `boolean` | `true` | Close the popover when focus leaves it (e.g. tabbing out); Escape and outside-press still dismiss |
 | `listNavigationConfig` | `UseListNavigationProps` | `{ enabled: false }` | Keyboard list navigation config (disabled by default) |
@@ -124,7 +126,7 @@ Renders a `<button>` that calls `setOpen(false)` on click. Accepts all `ButtonHT
 
 ### Type exports
 
-`PopoverProps`, `PopoverOptions`, `PopoverTriggerType`, `OffsetConfig`, `FlipConfig`, `ShiftConfig`, `HoverConfig`, `DelayConfig`, `UsePopoverReturn`, `LegacyPlacement`, `LegacyDropdownPlacement`, `LegacyPopconfirmPlacement`, `LegacyTooltipPlacement`, `PopoverTriggerProps`
+`PopoverProps`, `PopoverOptions`, `PopoverTriggerType`, `OffsetConfig`, `FlipConfig`, `ShiftConfig`, `HoverConfig`, `FocusConfig`, `DelayConfig`, `UsePopoverReturn`, `LegacyPlacement`, `LegacyDropdownPlacement`, `LegacyPopconfirmPlacement`, `LegacyTooltipPlacement`, `PopoverTriggerProps`
 
 ## Usage patterns
 
@@ -261,6 +263,11 @@ overlay's resize through a firing `ResizeObserver` stub and size the overlay thr
 - **Arrow middleware timing:** `arrowConfig` passes `arrowRef.current` as the arrow element. On the first render `arrowRef.current` is `null`, so the arrow middleware is not active until after `PopoverArrow` mounts and triggers a re-render. This can cause a one-frame position glitch.
 - **`open` is `isMounted`:** `usePopover` returns `isMounted` (from `useTransitionStyles`) as `open`, not the raw open boolean. This keeps the floating element in the DOM during exit transitions. If `transitionDuration` is `undefined`, `isMounted` tracks open/close exactly.
 - **`onDismiss`:** Only fires for `'escape-key'` and `'outside-press'` reasons, even if `dismissConfig.enabled` is false it will still fire (the guard checks `dismissConfig.enabled !== false`, meaning it fires unless explicitly disabled).
+- **Focus trigger:** `useFocusTrigger`, not floating-ui's `useFocus` — that one opens at once, so
+  arrowing through a list would flash a popover on every row. It waits `focusConfig.delay`, drops
+  the pending open if the focus moves on, and keeps the popover open while focus moves into it.
+  Keyboard focus is told apart by a `pointerdown` on the trigger just before the focus, not by
+  `:focus-visible`, which jsdom reports for every focus.
 - **Controlled click trigger:** `useClick` is only enabled when `controlledOpen === undefined` (uncontrolled). In controlled mode the consumer manages open state entirely.
 - **`PopoverTrigger.styles.ts`:** `Trigger` is a `span` with `display: flex; min-width: 0`. If this flex wrapper causes layout issues, use `asChild` mode instead.
 - **GlobalStyles:** Every mounted `PopoverContent` injects global CSS. Multiple concurrent popovers inject it multiple times (harmless but worth knowing).

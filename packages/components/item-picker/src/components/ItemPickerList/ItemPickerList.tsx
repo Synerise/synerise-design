@@ -44,6 +44,7 @@ import {
 } from './components';
 import { ListSearchInput } from './components/ListSearchInput';
 import {
+  FOLDER_ROW_CLASS,
   ITEM_SIZE,
   LIST_INNER_PADDING,
   LIST_STYLE,
@@ -52,7 +53,7 @@ import {
 import { useItemsInSections, useListHeight } from './hooks';
 import * as S from './ItemPickerList.styles';
 import type { ItemPickerListRef } from './ItemPickerList.types';
-import { findSectionById, isNavKey, isTitle } from './utils';
+import { findSectionById, formatFolderPath, isNavKey, isTitle } from './utils';
 
 // Must stay a stable component: an inline renderer remounts every row on each render.
 // The cast restores the `data` type the styled `VariableSizeList` loses.
@@ -156,6 +157,11 @@ const ItemPickerListInner = <
     canPerformListActions,
     reloadActiveSection,
     activeSectionId,
+    isMixedMode,
+    isInFolder,
+    folderId,
+    folderPath,
+    mixedRowSize,
   } = useItemsInSections({
     items,
     texts: allTexts,
@@ -210,6 +216,28 @@ const ItemPickerListInner = <
       focusWithArrowKeys(event, classNames.split(' ')[1], () => {
         focusSearchInput();
       });
+      return;
+    }
+    if (!isMixedMode || event.metaKey || event.ctrlKey) {
+      return;
+    }
+    const row = document.activeElement;
+    if (
+      !(row instanceof HTMLElement) ||
+      !row.matches(`.${classNames.split(' ')[1]}`)
+    ) {
+      return;
+    }
+    if (
+      event.key === 'ArrowRight' &&
+      row.classList.contains(FOLDER_ROW_CLASS)
+    ) {
+      event.preventDefault();
+      row.click();
+    }
+    if (event.key === 'ArrowLeft' && isInFolder) {
+      event.preventDefault();
+      goBack();
     }
   };
 
@@ -300,7 +328,7 @@ const ItemPickerListInner = <
   const isActionSection = Boolean(
     searchByAction || searchInAction || searchInItem,
   );
-  const isSection = Boolean(currentSection || isActionSection);
+  const isSection = Boolean(currentSection || isActionSection || isInFolder);
 
   const listHeight =
     (isSection
@@ -322,10 +350,27 @@ const ItemPickerListInner = <
       return <ErrorMessage texts={allTexts} />;
     }
     if (isLoading || isLoadingItems) {
-      return <ItemPickerListSkeleton wrapperHeight={listWrapperHeight} />;
+      return (
+        <ItemPickerListSkeleton
+          wrapperHeight={listWrapperHeight}
+          rowSize={mixedRowSize}
+        />
+      );
     }
 
     const getSectionLabel = () => {
+      if (isMixedMode) {
+        const { label, fullPath } = formatFolderPath(
+          folderPath.map((step) => step.text),
+        );
+        const searchByLabel =
+          searchByAction?.sectionTitle || searchByAction?.text;
+        return (
+          <Text ellipsis={{ tooltip: fullPath }}>
+            {searchByLabel ? `${label} - ${searchByLabel}` : label}
+          </Text>
+        );
+      }
       const itemsPath = currentPath || [currentSection?.text];
 
       const searchByActionLabel =
@@ -371,7 +416,8 @@ const ItemPickerListInner = <
           <EmptyListMessage
             buttonOnClick={() => resetCurrentSection()}
             listActions={listActions}
-            hasCurrentSection={isSection}
+            hasCurrentSection={isSection && !isInFolder}
+            isInFolder={isInFolder}
             texts={allTexts}
             isActionSection={isActionSection}
             currentSection={currentSection}
@@ -429,6 +475,8 @@ const ItemPickerListInner = <
     scrollbarProps,
     searchQuery,
     listWrapperHeight,
+    isSection,
+    folderPath,
   ]);
 
   useEffect(() => {
@@ -457,6 +505,7 @@ const ItemPickerListInner = <
     searchInAction,
     searchInItem,
     currentSection,
+    folderId,
     focusSearchInput,
   ]);
 
@@ -520,6 +569,8 @@ const ItemPickerListInner = <
           changeLocalSearchQueryRef={changeLocalSearchQueryRef}
           allTexts={allTexts}
           canPerformListActions={canPerformListActions}
+          isInFolder={isInFolder}
+          onEmptyBackspace={isMixedMode ? goBack : undefined}
         />
       )}
       <S.ListWrapper

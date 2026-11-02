@@ -6,10 +6,12 @@ import {
   Popover,
   PopoverContent,
   PopoverTrigger,
+  type PopoverTriggerType,
 } from '@synerise/ds-popover';
 
 import {
   FLIP_CONFIG,
+  FOCUS_CONFIG,
   HOVER_CONFIG,
   OFFSET_CONFIG,
   SHIFT_CONFIG,
@@ -17,6 +19,8 @@ import {
 } from './HoverTooltip.const';
 import { PropagationStopper } from './HoverTooltip.styles';
 import type { HoverTooltipProps } from './HoverTooltip.types';
+
+const TRIGGER: PopoverTriggerType[] = ['hover', 'focus'];
 
 const HoverTooltip = ({
   popoverProps,
@@ -39,7 +43,7 @@ const HoverTooltip = ({
       onClick={cancelBubblingEvent}
     >
       <Popover
-        trigger="hover"
+        trigger={TRIGGER}
         modal={false}
         componentId="information-card"
         testId="information-card"
@@ -47,6 +51,7 @@ const HoverTooltip = ({
         offsetConfig={OFFSET_CONFIG}
         flipConfig={FLIP_CONFIG}
         hoverConfig={HOVER_CONFIG}
+        focusConfig={FOCUS_CONFIG}
         transitionDuration={TRANSITION_DURATION}
         zIndex={zIndex}
         {...popoverProps}

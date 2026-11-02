@@ -105,6 +105,14 @@ export const useDefaultTexts = (
         id: 'DS.ITEM-PICKER-DROPDOWN.LOADED-ALL',
         defaultMessage: 'All items loaded',
       }),
+      searchInFolderPlaceholder: intl.formatMessage({
+        id: 'DS.ITEM-PICKER-DROPDOWN.SEARCH-IN-FOLDER-PLACEHOLDER',
+        defaultMessage: 'Search in this folder',
+      }),
+      emptyFolder: intl.formatMessage({
+        id: 'DS.ITEM-PICKER-DROPDOWN.EMPTY-FOLDER',
+        defaultMessage: 'This folder is empty',
+      }),
       errorMessageTitle: intl.formatMessage({
         id: 'DS.ITEM-PICKER-DROPDOWN.ERROR-TITLE',
         defaultMessage: 'Items can`t be loaded',
