@@ -10,12 +10,13 @@ import {
   fixedWrapper300,
   REACT_NODE_NO_CONTROL,
 } from '../../../utils';
+import { NO_SNAPSHOT } from '../../../utils/chromatic';
 
 const meta: Meta<BaseTagIconProps> = {
   title: 'Components/TableNew/Cells/TagIconCell',
   component: TagIconCell,
   tags: ['autodocs', 'new'],
-  parameters: { layout: 'centered' },
+  parameters: { layout: 'centered', ...NO_SNAPSHOT },
   decorators: [fixedWrapper300],
   argTypes: {
     children: REACT_NODE_NO_CONTROL,

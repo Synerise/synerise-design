@@ -30,6 +30,7 @@ import {
   REACT_NODE_AS_STRING,
   STRING_CONTROL,
 } from '../../utils';
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 import {
   LIST_ITEMS,
   prefixArgTypes,
@@ -243,6 +244,7 @@ export default {
 
 export const LabelOnly: Story = {
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `<ListItem>List Item</ListItem>`,
@@ -276,6 +278,7 @@ export const withFeatured: Story = {
 };
 
 export const WithoutHover: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: {
     noHover: true,
     prefixel: <Icon component={<CopyClipboardM />} />,
@@ -383,6 +386,7 @@ export const WithSelection: Story = {
 export const WithCopyable: Story = {
   render: renderListItem,
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `<ListItem
@@ -406,6 +410,7 @@ export const WithCopyable: Story = {
 export const Divider: Story = {
   render: renderListItem,
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `<ListItem type="divider" />`,
@@ -418,6 +423,7 @@ export const Divider: Story = {
 };
 
 export const WithStar: StoryObj<ListItemProps & { suffixType?: string }> = {
+  parameters: { ...NO_SNAPSHOT },
   render: renderWithPrefixAndSuffix,
   args: {
     suffixType: 'star',
@@ -458,6 +464,7 @@ export const WithTag: StoryObj<ListItemProps & { tagShape?: TagShape }> = {
 
 export const WithDeletePrefix: Story = {
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `<ListItem type="danger" prefixel={<Icon component={<TrashM />} />}>
@@ -474,6 +481,7 @@ export const WithDeletePrefix: Story = {
 
 export const WithFlagPrefix: Story = {
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `<ListItem prefixel={<DSFlag country="de" />}>List Item</ListItem>`,
@@ -487,6 +495,7 @@ export const WithFlagPrefix: Story = {
 
 export const WithHoverTooltip: Story = {
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `<ListItem renderHoverTooltip={() => <div>Tooltip content</div>}>
@@ -556,6 +565,7 @@ export const WithSmallAvatarPrefix: StoryObj<
 > = {
   render: renderWithPrefixAndSuffix,
   parameters: {
+    ...NO_SNAPSHOT,
     controls: {
       include: [
         'children',
@@ -610,6 +620,7 @@ export const WithMediumAvatarPrefix: StoryObj<
 export const WithCheckboxPrefix: StoryObj<
   ListItemProps & { prefixType?: string; suffixType?: string }
 > = {
+  parameters: { ...NO_SNAPSHOT },
   render: renderWithPrefixAndSuffix,
   args: {
     prefixType: 'checkbox',
@@ -621,6 +632,7 @@ export const PrefixAndSuffixOnHover: StoryObj<
 > = {
   render: renderWithPrefixAndSuffix,
   parameters: {
+    ...NO_SNAPSHOT,
     controls: {
       include: [
         'suffixType',
@@ -657,6 +669,7 @@ export const AllSuffixes: StoryObj<
 > = {
   render: renderWithPrefixAndSuffix,
   parameters: {
+    ...NO_SNAPSHOT,
     controls: {
       include: [
         'suffixType',
@@ -701,6 +714,7 @@ export const AllSuffixes: StoryObj<
 export const AllPrefixes: StoryObj<ListItemProps & { prefixType?: string }> = {
   render: renderWithPrefixAndSuffix,
   parameters: {
+    ...NO_SNAPSHOT,
     controls: {
       include: ['prefixType', 'prefixVisibilityTrigger', 'disabled'],
     },
@@ -843,6 +857,7 @@ export const AllCombinationsLarge: StoryObj<
  */
 export const NestedInDropdown: Story = {
   parameters: {
+    ...NO_SNAPSHOT,
     controls: { disable: true },
     docs: {
       source: {

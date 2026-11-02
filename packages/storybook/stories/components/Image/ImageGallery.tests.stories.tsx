@@ -3,6 +3,7 @@ import { expect, fn, screen, userEvent, waitFor, within } from 'storybook/test';
 
 import { type GalleryProps } from '@synerise/ds-image';
 
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 import StoriesMeta, { Deletable } from './ImageGallery.stories';
 
 const WAIT_FOR_OPTIONS = { timeout: 3000 };
@@ -17,6 +18,7 @@ type Story = StoryObj<GalleryProps>;
 
 /** Clicking a thumbnail opens the preview at that image's index. */
 export const OpensPreviewAtClickedIndex: Story = {
+  parameters: { ...NO_SNAPSHOT },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     await userEvent.click(canvas.getAllByTestId('image-thumbnail')[2]);
@@ -33,6 +35,7 @@ export const OpensPreviewAtClickedIndex: Story = {
 
 /** After opening from a thumbnail, the preview navigation still works. */
 export const NavigatesAfterOpening: Story = {
+  parameters: { ...NO_SNAPSHOT },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     await userEvent.click(canvas.getAllByTestId('image-thumbnail')[0]);
@@ -56,6 +59,7 @@ export const NavigatesAfterOpening: Story = {
 /** Deleting a thumbnail fires onDelete with its index and does not open the preview. */
 export const DeleteThumbnailDoesNotOpenPreview: Story = {
   ...Deletable,
+  parameters: { ...NO_SNAPSHOT },
   args: { ...Deletable.args, onDelete: fn() },
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement);

@@ -7,12 +7,13 @@ import {
 } from '@synerise/ds-table-new';
 
 import { BOOLEAN_CONTROL, fixedWrapper300 } from '../../../utils';
+import { NO_SNAPSHOT } from '../../../utils/chromatic';
 
 const meta: Meta<BaseInputNumberCellProps> = {
   title: 'Components/TableNew/Cells/InputNumberCell',
   component: InputNumberCell,
   tags: ['autodocs', 'new'],
-  parameters: { layout: 'centered' },
+  parameters: { layout: 'centered', ...NO_SNAPSHOT },
   decorators: [fixedWrapper300],
   argTypes: {
     inputNumberProps: { control: false },

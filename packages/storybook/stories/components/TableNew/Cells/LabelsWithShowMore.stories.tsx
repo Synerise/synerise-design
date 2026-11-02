@@ -14,6 +14,7 @@ import {
   NUMBER_CONTROL,
   STRING_CONTROL,
 } from '../../../utils';
+import { NO_SNAPSHOT } from '../../../utils/chromatic';
 
 type SampleItem = {
   fieldName: string;
@@ -25,7 +26,7 @@ const meta: Meta<BaseLabelsWithShowMoreProps<SampleItem>> = {
   title: 'Components/TableNew/Cells/LabelsWithShowMore',
   component: LabelsWithShowMore,
   tags: ['autodocs', 'new'],
-  parameters: { layout: 'centered' },
+  parameters: { layout: 'centered', ...NO_SNAPSHOT },
   decorators: [fixedWrapper300],
   argTypes: {
     items: { control: false },

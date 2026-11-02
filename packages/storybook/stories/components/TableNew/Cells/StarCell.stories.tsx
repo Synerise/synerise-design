@@ -10,12 +10,13 @@ import {
   REACT_NODE_AS_STRING,
   REACT_NODE_NO_CONTROL,
 } from '../../../utils';
+import { NO_SNAPSHOT } from '../../../utils/chromatic';
 
 const meta: Meta<BaseStarCellProps> = {
   title: 'Components/TableNew/Cells/StarCell',
   component: StarCell,
   tags: ['autodocs', 'new'],
-  parameters: { layout: 'centered' },
+  parameters: { layout: 'centered', ...NO_SNAPSHOT },
   decorators: [fixedWrapper300],
   argTypes: {
     children: REACT_NODE_NO_CONTROL,

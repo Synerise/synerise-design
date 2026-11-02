@@ -13,6 +13,7 @@ import {
 } from '@synerise/ds-table-new';
 
 import { BOOLEAN_CONTROL, REACT_NODE_AS_STRING } from '../../../utils';
+import { NO_SNAPSHOT } from '../../../utils/chromatic';
 import {
   COLUMNS_ALL,
   COLUMNS_MULTIPLE_SORT,
@@ -173,6 +174,7 @@ export const WithLimitedSelection: StoryObj<typeof Table> = {
     },
   },
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       description: {
         story:
@@ -297,6 +299,7 @@ export const ResponsiveColumns: StoryObj<typeof Table> = {
     },
   },
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `// Columns are sized via meta.minWidth / meta.maxWidth, letting the table
@@ -356,6 +359,7 @@ export const EmptyCustom: StoryObj<typeof Table> = {
     },
   },
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `<Table
@@ -446,6 +450,7 @@ export const RawTable: StoryObj<typeof Table> = {
     columns: RAW_TABLE_COLUMNS,
   },
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `// Minimal Table with raw, unstyled columns — no selection, no title bar
@@ -567,6 +572,7 @@ export const WithBuiltInSearchNoResults: StoryObj<typeof Table> = {
     },
   },
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `// Search for something that matches no rows → "No results found" (auto, no extra prop).
@@ -606,6 +612,7 @@ export const WithCustomNoResultsComponent: StoryObj<typeof Table> = {
     emptyDataComponent: <Box p={24}>No users yet.</Box>,
   },
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `<Table
@@ -789,6 +796,7 @@ export const WithRowHighlight: StoryObj<typeof Table> = {
     rowKey: 'key',
   },
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `const MyList = () => {
@@ -924,6 +932,7 @@ export const ExpandedRowRender: StoryObj<typeof Table> = {
     title: 'Click any row to reveal details',
   },
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `const MyList = () => {
@@ -997,6 +1006,7 @@ export const ExpandedRowRenderWithRowExpandable: StoryObj<typeof Table> = {
     title: 'Only non-disabled rows expand',
   },
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `const MyList = () => {

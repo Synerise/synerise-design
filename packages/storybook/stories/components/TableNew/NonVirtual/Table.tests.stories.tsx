@@ -5,6 +5,7 @@ import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
 import { SearchInput } from '@synerise/ds-search';
 import { Table } from '@synerise/ds-table-new';
 
+import { NO_SNAPSHOT } from '../../../utils/chromatic';
 import StoriesMeta from './Table.stories';
 
 /**
@@ -58,6 +59,7 @@ export default {
 
 type Story = {
   args?: Record<string, unknown>;
+  parameters?: Record<string, unknown>;
   render?: (args: Record<string, unknown>) => React.ReactElement;
   play?: (context: { canvasElement: HTMLElement }) => Promise<void>;
 };
@@ -123,6 +125,7 @@ export const InternalSearch: Story = {
 // --- External (consumer-controlled) search ---------------------------------
 
 export const ExternalSearch: Story = {
+  parameters: { ...NO_SNAPSHOT },
   render: () => {
     const ExternalSearchExample = () => {
       const [query, setQuery] = useState('');
@@ -177,6 +180,7 @@ export const InternalPagination: Story = {
 // --- External (server-side) pagination: data sliced outside the table -------
 
 export const ServerSidePagination: Story = {
+  parameters: { ...NO_SNAPSHOT },
   render: () => {
     const ServerSideExample = () => {
       const pageSize = 2;
@@ -239,6 +243,7 @@ export const Expanding: Story = {
 // --- Combination: change page → search → resets to first page ---------------
 
 export const PageThenSearchResetsToFirstPage: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: {
     data: USERS,
     columns: COLUMNS,
@@ -267,6 +272,7 @@ export const PageThenSearchResetsToFirstPage: Story = {
 // --- Combination: sort → paginate keeps the sort applied --------------------
 
 export const SortThenPaginateKeepsOrder: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: { data: ROWS, columns: COLUMNS, pagination: { pageSize: 2 } },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
@@ -288,6 +294,7 @@ export const SortThenPaginateKeepsOrder: Story = {
 // Empty dataSource → nothing to page through, so the pagination footer must be absent even though
 // pagination is enabled.
 export const EmptyDataNoPagination: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: { data: [], columns: COLUMNS, pagination: { pageSize: 2 } },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
@@ -298,6 +305,7 @@ export const EmptyDataNoPagination: Story = {
 // Searching to zero matches → the pagination footer disappears, then returns once the query is
 // cleared and rows come back.
 export const SearchToZeroHidesPagination: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: {
     data: ROWS,
     columns: COLUMNS,
@@ -327,6 +335,7 @@ export const SearchToZeroHidesPagination: Story = {
 // --- Capped batch selection under a limit -----------------------------------
 
 export const LimitedSelectionCapsAtLimit: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: {
     data: ROWS,
     columns: COLUMNS,

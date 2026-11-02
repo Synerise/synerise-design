@@ -4,9 +4,6 @@ import { expect, userEvent, waitFor, within } from 'storybook/test';
 import type { ListItemProps } from '@synerise/ds-list-item';
 
 import ListItemMeta, {
-  AllCombinationsAuto,
-  AutoSize,
-  AutoSizeWithAvatarPrefix,
   LabelOnly,
   PrefixAndSuffixOnHover,
   WithHoverTooltip,
@@ -24,6 +21,10 @@ type Story = StoryObj<ListItemProps>;
 
 export const ShowHoverTooltip: Story = {
   ...WithHoverTooltip,
+  parameters: {
+    ...WithHoverTooltip.parameters,
+    chromatic: { disableSnapshot: false },
+  },
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement);
     await userEvent.hover(canvas.getByText(args.children as string));
@@ -32,6 +33,10 @@ export const ShowHoverTooltip: Story = {
 
 export const Focused: Story = {
   ...LabelOnly,
+  parameters: {
+    ...LabelOnly.parameters,
+    chromatic: { disableSnapshot: false },
+  },
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement);
     await userEvent.click(canvas.getByText(args.children as string));
@@ -40,6 +45,10 @@ export const Focused: Story = {
 
 export const NoHoverFocused: Story = {
   ...WithoutHover,
+  parameters: {
+    ...WithoutHover.parameters,
+    chromatic: { disableSnapshot: false },
+  },
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement);
     await userEvent.click(canvas.getByText(args.children as string));
@@ -59,6 +68,10 @@ export const NoHoverHovered: Story = {
 
 export const DisplayPrefixAndSuffixOnHover: typeof PrefixAndSuffixOnHover = {
   ...PrefixAndSuffixOnHover,
+  parameters: {
+    ...PrefixAndSuffixOnHover.parameters,
+    chromatic: { disableSnapshot: false },
+  },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
 
@@ -86,17 +99,4 @@ export const WithStarActive: typeof WithStar = {
       pointerEventsCheck: 0,
     });
   },
-};
-
-// Chromatic is the only place the auto size's actual pixel height is asserted — jsdom
-// performs no layout, so a unit test can only check the declared CSS.
-export const AutoSizeWrapping: typeof AutoSize = { ...AutoSize };
-
-export const AutoSizeWithAvatarPrefixWrapping: typeof AutoSizeWithAvatarPrefix =
-  {
-    ...AutoSizeWithAvatarPrefix,
-  };
-
-export const AllCombinationsAutoWrapping: typeof AllCombinationsAuto = {
-  ...AllCombinationsAuto,
 };

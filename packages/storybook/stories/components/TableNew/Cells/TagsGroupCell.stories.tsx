@@ -5,6 +5,7 @@ import { type BaseTagsGroupProps, TagsGroupCell } from '@synerise/ds-table-new';
 import { customColors } from '@synerise/ds-tokens/names';
 
 import { BOOLEAN_CONTROL, fixedWrapper300 } from '../../../utils';
+import { NO_SNAPSHOT } from '../../../utils/chromatic';
 
 const SAMPLE_TAGS = [
   { id: '0', name: 'Segment A' },
@@ -16,7 +17,7 @@ const meta: Meta<BaseTagsGroupProps> = {
   title: 'Components/TableNew/Cells/TagsGroupCell',
   component: TagsGroupCell,
   tags: ['autodocs', 'new'],
-  parameters: { layout: 'centered' },
+  parameters: { layout: 'centered', ...NO_SNAPSHOT },
   decorators: [fixedWrapper300],
   argTypes: {
     disabled: BOOLEAN_CONTROL,

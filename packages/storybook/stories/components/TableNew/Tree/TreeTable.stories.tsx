@@ -5,6 +5,7 @@ import React, { useCallback, useState } from 'react';
 import { TreeTable, type TreeTableProps } from '@synerise/ds-table-new';
 
 import { BOOLEAN_CONTROL } from '../../../utils';
+import { NO_SNAPSHOT } from '../../../utils/chromatic';
 
 type TreeRow = {
   key: string;
@@ -172,6 +173,7 @@ export const AllExpanded: StoryObj<TreeTableProps<TreeRow, unknown>> = {
     defaultExpandAllRows: true,
   },
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `// \`defaultExpandAllRows\` computes every row key from \`data\` and expands
@@ -240,6 +242,7 @@ export const ControlledExpand: StoryObj<TreeTableProps<TreeRow, unknown>> = {
     title: 'Controlled expand',
   },
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `const MyTree = () => {
