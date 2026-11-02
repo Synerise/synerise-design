@@ -85,7 +85,7 @@ Current API. Generic over `ItemType extends BaseItemType` and `SectionType exten
 |------|------|---------|-------------|
 | `isNewVersion` | `true` | — | **Required** discriminant to select this branch via `ItemPicker` default export |
 | `items` | `ItemType[] \| ItemsConfig<ItemType> \| ItemLoaderConfig<ItemType>` | — | Fixed array, array-with-limit config, or async loader config |
-| `selectedItem?` | `ItemType` | — | Currently selected item |
+| `selectedItem?` | `ItemType` | — | Currently selected item; a new item key set via this prop closes the dropdown, a refreshed label of the same item keeps it open |
 | `onChange?` | `(item: ItemType) => void` | — | Called when an item is selected; dropdown closes automatically |
 | `onClear?` | `() => void` | — | Called when the trigger clear icon is clicked |
 | `sections?` | `BaseSectionTypeWithFolders<SectionType>[]` | — | Section/folder tree; enables section-navigation mode |
