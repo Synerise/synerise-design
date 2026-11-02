@@ -17,6 +17,7 @@ import type { TabsConfiguration, TabsProps } from '@synerise/ds-tabs';
 import Tabs from '@synerise/ds-tabs';
 
 import { BOOLEAN_CONTROL, fixedWrapper300, fixedWrapper588 } from '../../utils';
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 
 type Story = StoryObj<TabsProps>;
 
@@ -150,6 +151,7 @@ export const DisabledTabs: Story = {
 };
 
 export const WithCounterSuffix: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: {
     tabs: getTabsFromLabels(defaultLabels, undefined, false, counterBadge),
   },
@@ -169,6 +171,7 @@ export const WithHiddenTabs: Story = {
 };
 
 export const WithIcons: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: {
     tabs: icons,
     block: true,

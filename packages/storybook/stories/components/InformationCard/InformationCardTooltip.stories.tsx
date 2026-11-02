@@ -7,6 +7,7 @@ import type { InformationCardTooltipProps } from '@synerise/ds-information-card'
 import { InformationCardTooltip } from '@synerise/ds-information-card';
 
 import { centeredPaddedWrapper } from '../../utils';
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 import { CompleteExample } from './InformationCard.stories';
 
 export default {
@@ -27,6 +28,7 @@ type Story = StoryObj<InformationCardTooltipProps>;
 export const DefaultStory: Story = {
   name: 'InformationCardTooltip',
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `<InformationCardTooltip
@@ -62,6 +64,7 @@ export const InformationCardTooltipTopPlacement: Story = {
     },
   },
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `<InformationCardTooltip

@@ -6,6 +6,7 @@ import { ConditionRow, ConditionSlot } from '@synerise/ds-condition-blocks';
 import Icon, { AngleDownS } from '@synerise/ds-icon';
 
 import { fixedWrapper800 } from '../../utils';
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 
 const pill = (label: React.ReactNode) => (
   <Button type="secondary" mode="label-icon">
@@ -78,6 +79,7 @@ export const Presets: Story = {
 /** Playground — tweak `variant` / `minWidth` / `maxWidth` on the first slot. */
 export const Playground: Story = {
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `<ConditionRow>

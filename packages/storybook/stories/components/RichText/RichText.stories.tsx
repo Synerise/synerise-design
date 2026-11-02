@@ -12,6 +12,7 @@ import {
   STRING_CONTROL,
   STYLE_ARG_CONTROL,
 } from '../../utils';
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 
 type Story = StoryObj<RichTextProps>;
 
@@ -212,6 +213,7 @@ export const Subtle: Story = {
 
 export const SubtleAnimated: Story = {
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `<RichText
@@ -305,6 +307,7 @@ export const HiddenToolbar: Story = {
 /** format="markdown": value and onChange are a Markdown string (shown live below the editor). */
 export const MarkdownFormat: Story = {
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `<RichText
@@ -422,6 +425,7 @@ export const EditWithAI: Story = {
 /** editWithAIOptions turns the Edit with AI button into a dropdown; each option's behavior is consumer-defined. */
 export const EditWithAIDropdown: Story = {
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `<RichText

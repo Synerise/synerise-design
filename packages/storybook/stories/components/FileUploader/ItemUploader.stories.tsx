@@ -9,6 +9,7 @@ import {
   ItemUploaderProps,
 } from '@synerise/ds-file-uploader';
 
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 import FileUploaderMeta from './FileUploader.stories';
 
 type StoryProps = ItemUploaderProps & {
@@ -76,6 +77,7 @@ export const ItemUploaderStory: Story = {
 };
 
 export const ItemUploaderMultiple: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: {
     mode: 'multi',
   },

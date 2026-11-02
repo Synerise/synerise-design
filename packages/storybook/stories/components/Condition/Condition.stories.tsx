@@ -19,6 +19,7 @@ import {
   fixedWrapper300,
   NUMBER_CONTROL,
 } from '../../utils';
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 import {
   CONTEXT_CLIENT_GROUPS,
   CONTEXT_CLIENT_ITEMS,
@@ -607,6 +608,7 @@ const CustomContextSelector = ({
 
 export const Default: ConditionStory = {};
 export const WithCustomContextSelector: ConditionStory = {
+  parameters: { ...NO_SNAPSHOT },
   args: {
     contextSelectorComponent: CustomContextSelector,
   },

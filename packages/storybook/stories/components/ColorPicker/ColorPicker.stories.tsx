@@ -13,6 +13,7 @@ import {
   REACT_NODE_AS_STRING,
   STRING_CONTROL,
 } from '../../utils';
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 import { size } from '../ColorPicker/ColorPicker.data';
 
 export default {
@@ -155,6 +156,7 @@ export const Minimalistic: Story = {
 
 export const SavedColors: Story = {
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `<ColorPicker

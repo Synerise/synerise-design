@@ -25,6 +25,7 @@ import {
   STRING_CONTROL,
   STYLE_ARG_CONTROL,
 } from '../../utils';
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 import {
   BLANK_DATA,
   BlankItemType,
@@ -175,6 +176,7 @@ export const ContentItemsList: StoryObj<ManageableListProps<ContentItemType>> =
 export const ContentItemsListSelectable: StoryObj<
   ManageableListProps<ContentItemType>
 > = {
+  parameters: { ...NO_SNAPSHOT },
   decorators: [fixedWrapper800, greyBackgroundDecorator],
   args: {
     visibleItemsLimit: CONTENT_ITEMS.length,

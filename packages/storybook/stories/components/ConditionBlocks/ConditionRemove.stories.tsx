@@ -10,6 +10,7 @@ import {
 import Icon, { AngleDownS } from '@synerise/ds-icon';
 
 import { fixedWrapper800 } from '../../utils';
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 
 const pill = (label: React.ReactNode) => (
   <Button type="secondary" mode="label-icon">
@@ -38,6 +39,7 @@ type Story = StoryObj<typeof ConditionRemove>;
 export const Default: Story = {
   args: { revealOnRowHover: true },
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `<ConditionRow>

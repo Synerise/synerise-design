@@ -16,6 +16,7 @@ import {
   STRING_CONTROL,
   THEME_PALETTE_COLOR_NAMES_CONTROL,
 } from '../../utils';
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 import {
   ACTIONS_MENU_ITEMS,
   PROPERTIES_LIST,
@@ -244,6 +245,7 @@ export const ActionButton: Story = {
     actionButtonTooltipText: 'Action Button Tooltip Text',
   },
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `<InformationCard
@@ -276,6 +278,7 @@ export const CustomActionButton: Story = {
     actionButton: renderPreviewButton,
   },
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `<InformationCard

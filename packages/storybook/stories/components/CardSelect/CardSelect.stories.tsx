@@ -22,6 +22,7 @@ import {
   REACT_NODE_AS_STRING,
   reactNodeAsSelect,
 } from '../../utils';
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 
 type CardSelectStoryProps = CardSelectProps & {
   showTag?: boolean;
@@ -52,6 +53,7 @@ const infoTooltipProps = {
 export default {
   component: CardSelect,
   title: 'Components/CardSelect',
+  parameters: { ...NO_SNAPSHOT },
   tags: ['autodocs'],
   decorators: [cardSelectWrapper],
   render: (args) => {

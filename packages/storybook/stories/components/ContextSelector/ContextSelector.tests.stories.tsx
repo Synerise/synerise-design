@@ -118,21 +118,37 @@ const play: Story['play'] = async ({ canvasElement, args }) => {
 
 export const BusinessContextOpen: Story = {
   ...BusinessContext,
+  parameters: {
+    ...BusinessContext.parameters,
+    chromatic: { disableSnapshot: false },
+  },
   play,
 };
 
 export const ClientContextOpen: Story = {
   ...ClientContext,
+  parameters: {
+    ...ClientContext.parameters,
+    chromatic: { disableSnapshot: false },
+  },
   play,
 };
 
 export const LargeItemsOpen: Story = {
   ...LargeItems,
+  parameters: {
+    ...LargeItems.parameters,
+    chromatic: { disableSnapshot: false },
+  },
   play,
 };
 
 export const FlatListDataStructureOpen: Story = {
   ...FlatListDataStructure,
+  parameters: {
+    ...FlatListDataStructure.parameters,
+    chromatic: { disableSnapshot: false },
+  },
   play,
 };
 

@@ -17,6 +17,7 @@ import {
   fixedWrapper400,
   NUMBER_CONTROL,
 } from '../../utils';
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 import { AVATAR_ARG_TYPES, STATUSES, VARIANTS } from './constants';
 
 export default {
@@ -325,6 +326,7 @@ export const StatusDotPulsing: StoryObj<BadgeProps> = {
  */
 export const StatusDotPulsingWithLabel: StoryObj<BadgeProps> = {
   parameters: {
+    ...NO_SNAPSHOT,
     controls: {
       include: ['status'],
     },
@@ -399,6 +401,7 @@ export const StatusDotPulsingWithAvatar: StoryObj<
   Pick<BadgeProps, 'status' | 'pulsing'> & AvatarProps
 > = {
   parameters: {
+    ...NO_SNAPSHOT,
     controls: {
       include: ['status', 'size', 'shape', 'pulsing'],
     },

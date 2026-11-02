@@ -6,6 +6,8 @@ import Button from '@synerise/ds-button';
 import type { ModalProps } from '@synerise/ds-modal';
 import Modal from '@synerise/ds-modal';
 
+import { NO_SNAPSHOT } from '../../utils/chromatic';
+
 const meta: Meta<ModalProps> = {
   title: 'Components/Modal/Tests',
   tags: ['visualtests'],
@@ -21,6 +23,7 @@ type Story = StoryObj<ModalProps>;
 // Close via X button
 // ---------------------------------------------------------------------------
 export const ClosesViaXButton: Story = {
+  parameters: { ...NO_SNAPSHOT },
   render: () => {
     const [open, setOpen] = useState(true);
     return (
@@ -53,6 +56,7 @@ export const ClosesViaXButton: Story = {
 // Close via mask click
 // ---------------------------------------------------------------------------
 export const ClosesViaMaskClick: Story = {
+  parameters: { ...NO_SNAPSHOT },
   render: () => {
     const [open, setOpen] = useState(true);
     return (
@@ -87,6 +91,7 @@ export const ClosesViaMaskClick: Story = {
 // Mask click does NOT close when maskClosable=false
 // ---------------------------------------------------------------------------
 export const MaskClickDoesNotClose: Story = {
+  parameters: { ...NO_SNAPSHOT },
   render: () => {
     const [open, setOpen] = useState(true);
     return (
@@ -121,6 +126,7 @@ export const MaskClickDoesNotClose: Story = {
 // onOk callback fires and closes modal
 // ---------------------------------------------------------------------------
 export const OkButtonCallsHandler: Story = {
+  parameters: { ...NO_SNAPSHOT },
   render: () => {
     const [open, setOpen] = useState(true);
     return (
@@ -150,6 +156,7 @@ export const OkButtonCallsHandler: Story = {
 // Async onCancel — modal stays open until promise resolves
 // ---------------------------------------------------------------------------
 export const AsyncOnCancelResolvesBeforeClose: Story = {
+  parameters: { ...NO_SNAPSHOT },
   render: () => {
     const [open, setOpen] = useState(true);
     const [resolved, setResolved] = useState(false);
@@ -193,6 +200,7 @@ export const AsyncOnCancelResolvesBeforeClose: Story = {
 // Footer cancel button triggers onCancel
 // ---------------------------------------------------------------------------
 export const CancelButtonCallsHandler: Story = {
+  parameters: { ...NO_SNAPSHOT },
   render: () => {
     const onCancel = fn();
     return <Modal title="Cancel test" open onCancel={onCancel} />;

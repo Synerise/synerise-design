@@ -50,6 +50,10 @@ type Story = StoryObj<ToastProps>;
 const TOAST_MESSAGE = 'TOAST_MESSAGE';
 export const ShowSingleToast: Story = {
   ...ShowToast,
+  parameters: {
+    ...ShowToast.parameters,
+    chromatic: { disableSnapshot: false },
+  },
   args: {
     ...ShowToast.args,
     message: TOAST_MESSAGE,
@@ -65,6 +69,10 @@ export const ShowSingleToast: Story = {
 
 export const ShowMultipleToasts: Story = {
   ...ShowToast,
+  parameters: {
+    ...ShowToast.parameters,
+    chromatic: { disableSnapshot: false },
+  },
   args: {
     ...ShowToast.args,
     message: TOAST_MESSAGE,

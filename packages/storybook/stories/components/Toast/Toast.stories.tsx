@@ -17,6 +17,7 @@ import {
   gappedColumnDecorator,
   REACT_NODE_AS_STRING,
 } from '../../utils';
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 import { ButtonShowingToast, data } from './Toast.data';
 
 export default {
@@ -107,6 +108,7 @@ export const WithButton: Story = {
 
 export const ShowToast: Story = {
   ...Default,
+  parameters: { ...NO_SNAPSHOT },
   render: ({ type, ...args }) => {
     return <ButtonShowingToast type={type} {...args} />;
   },

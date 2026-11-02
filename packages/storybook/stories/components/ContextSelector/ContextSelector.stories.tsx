@@ -8,6 +8,7 @@ import ContextSelector, {
 } from '@synerise/ds-context-selector';
 
 import { BOOLEAN_CONTROL } from '../../utils';
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 import {
   CONTEXT_CLIENT_GROUPS,
   CONTEXT_CLIENT_ITEMS,
@@ -78,6 +79,7 @@ export default {
 type Story = StoryObj<ContextProps>;
 
 export const BusinessContext: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: {
     items: CONTEXT_ITEMS,
     groups: CONTEXT_GROUPS,
@@ -85,6 +87,7 @@ export const BusinessContext: Story = {
 };
 
 export const LargeItems: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: {
     ...BusinessContext.args,
     menuItemHeight: 'large',
@@ -92,6 +95,7 @@ export const LargeItems: Story = {
 };
 
 export const ClientContext: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: {
     items: CONTEXT_CLIENT_ITEMS,
     groups: CONTEXT_CLIENT_GROUPS,
@@ -99,6 +103,7 @@ export const ClientContext: Story = {
 };
 
 export const StandardSearch: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: {
     items: CONTEXT_CLIENT_ITEMS,
     groups: CONTEXT_CLIENT_GROUPS,
@@ -115,6 +120,7 @@ export const DefaultContext: Story = {
 };
 
 export const FlatListDataStructure: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: {
     items: FLAT_LIST_ITEMS,
     groups: [],
@@ -138,6 +144,7 @@ const suggestionsTopSection = (
 );
 
 export const TopSection: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: {
     items: CONTEXT_ITEMS,
     groups: CONTEXT_GROUPS.map((group, index) =>

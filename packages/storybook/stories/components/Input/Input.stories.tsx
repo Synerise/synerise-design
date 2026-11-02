@@ -18,6 +18,7 @@ import {
   REACT_NODE_AS_STRING,
   STRING_CONTROL,
 } from '../../utils';
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 import { addonType, renderAddonComponent } from './Input.utils';
 
 const defaultRender = (args: InputProps) => {
@@ -89,18 +90,21 @@ export default {
 type Story = StoryObj<InputProps>;
 
 export const Default: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: {
     value: 'Sample text',
   },
 };
 
 export const Placeholder: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: {
     placeholder: 'Placeholder text',
   },
 };
 
 export const Readonly: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: {
     ...Default.args,
     readOnly: true,
@@ -108,6 +112,7 @@ export const Readonly: Story = {
 };
 
 export const Disabled: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: {
     ...Default.args,
     disabled: true,
@@ -115,6 +120,7 @@ export const Disabled: Story = {
 };
 
 export const WithLabelAndDescription: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: {
     label: 'Input Label',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
@@ -123,6 +129,7 @@ export const WithLabelAndDescription: Story = {
 };
 
 export const WithCounter: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: {
     ...WithLabelAndDescription.args,
     value: 'Sample text',
@@ -131,6 +138,7 @@ export const WithCounter: Story = {
 };
 
 export const WithCustomCounter: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: {
     ...WithLabelAndDescription.args,
     value: 'Sample text',
@@ -140,12 +148,14 @@ export const WithCustomCounter: Story = {
 };
 
 export const WithError: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: {
     ...Default.args,
     error: true,
   },
 };
 export const WithErrorMessage: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: {
     ...WithLabelAndDescription.args,
     errorText: 'An error occurred',
@@ -153,6 +163,7 @@ export const WithErrorMessage: Story = {
 };
 
 export const WithIcon: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: {
     ...WithLabelAndDescription.args,
     icon1: <Icon component={<FileM />} />,
@@ -160,6 +171,7 @@ export const WithIcon: Story = {
 };
 
 export const WithTwoIcons: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: {
     ...WithLabelAndDescription.args,
     icon1: <Icon component={<FileM />} />,
@@ -170,6 +182,7 @@ export const WithTwoIcons: Story = {
 };
 
 export const Autoresize: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: {
     ...Default.args,
     autoResize: {
@@ -180,6 +193,7 @@ export const Autoresize: Story = {
 };
 
 export const AutoresizeWithinParent: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: {
     ...Default.args,
     autoResize: {
@@ -249,6 +263,7 @@ export const WithPrefixAndSuffix: StoryObj<
 };
 
 export const LargeSize: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: {
     ...Default.args,
     size: 'large',

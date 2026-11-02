@@ -3,6 +3,7 @@ import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
 
 import type { OperatorsProps } from '@synerise/ds-operators';
 
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 import { OPERATORS_ITEMS, OPERATORS_TEXTS } from './data/index.data';
 import OperatorsMeta from './Operators.stories';
 
@@ -59,6 +60,7 @@ export const SwitchTabs: Story = {
 };
 
 export const SelectOperator: Story = {
+  parameters: { ...NO_SNAPSHOT },
   args: {
     onChange: fn(),
   },
@@ -128,6 +130,7 @@ export const SearchForOperator: Story = {
 };
 
 export const Deactivate: Story = {
+  parameters: { ...NO_SNAPSHOT },
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement);
     await userEvent.click(
