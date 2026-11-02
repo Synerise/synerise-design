@@ -18,8 +18,8 @@ src/
  Text/DynamicLabel.tsx — swaps normal label for copiedLabel via CSS transition
  Text/utils.ts — renderAddon, removeHandlerProps, getCopyConfig
  Text/ItemLabel.const.ts — INDENT_WIDTH = 20 (px per indentLevel)
- HoverTooltip/HoverTooltip.tsx — wraps item in @synerise/ds-popover on hover
- HoverTooltip/HoverTooltip.const.ts — offset 8px, open 100ms / close 400ms delays
+ HoverTooltip/HoverTooltip.tsx — wraps item in @synerise/ds-popover on hover and keyboard focus
+ HoverTooltip/HoverTooltip.const.ts — offset 8px, open 100ms / close 400ms delays; focus opens after 100ms
  GroupItem/GroupItem.tsx — renders a title + array of ListItems or children
  SubMenu/SubMenu.tsx — collapsible inline sub-list, indented by level
  ListContext/ListContext.tsx — React context + useListContext hook
@@ -67,7 +67,7 @@ src/
 | `subMenuOpen` | `boolean` | — | Controlled open state of `subMenu`; when set, the component stops managing it internally — pair with `onSubMenuToggle` |
 | `onSubMenuToggle` | `(open: boolean) => void` | — | Fires with the next open state on every `subMenu` toggle (row click in default mode, or the suffix arrow when `selectableParent`) |
 | `indentLevel` | `number` | — | Left indent = `indentLevel * 20px` |
-| `renderHoverTooltip` | `() => JSX.Element` | — | Popover rendered on hover via `HoverTooltip`; wraps item in a `PropagationStopper` |
+| `renderHoverTooltip` | `() => JSX.Element` | — | Popover rendered on hover and on keyboard focus of the row via `HoverTooltip` (`trigger={['hover', 'focus']}`); wraps item in a `PropagationStopper` |
 | `popoverProps` | `{ placement?, getPopupContainer?, offsetConfig?, flipConfig?, shiftConfig?, initialOpen? }` | — | Passed to `HoverTooltip`'s `Popover`; only used when `renderHoverTooltip` is set |
 | `onClick` | `ListItemEventHandler<MouseEvent \| KeyboardEvent>` | — | Receives `{ key, item, domEvent }` |
 | `onItemHover` | `ListItemEventHandler<MouseEvent>` | — | Fires on `mouseOver` |

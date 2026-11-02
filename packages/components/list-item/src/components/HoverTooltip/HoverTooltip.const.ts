@@ -1,5 +1,6 @@
 import type {
   FlipConfig,
+  FocusConfig,
   HoverConfig,
   OffsetConfig,
   ShiftConfig,
@@ -15,6 +16,9 @@ export const HOVER_CONFIG: HoverConfig = {
     open: 100,
     close: 400,
   },
+};
+export const FOCUS_CONFIG: FocusConfig = {
+  delay: 100,
 };
 export const SHIFT_CONFIG: ShiftConfig = {
   crossAxis: true,

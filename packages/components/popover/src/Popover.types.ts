@@ -29,7 +29,7 @@ export type PopoverProps = {
   children: ReactNode;
 } & PopoverOptions;
 
-export type PopoverTriggerType = 'click' | 'hover';
+export type PopoverTriggerType = 'click' | 'hover' | 'focus';
 
 type SharedMiddlewareConfig = {
   enabled?: boolean;
@@ -40,6 +40,15 @@ export type FlipConfig = SharedMiddlewareConfig & FlipOptions;
 export type ShiftConfig = SharedMiddlewareConfig & ShiftOptions;
 export type HideConfig = SharedMiddlewareConfig & HideOptions;
 export type HoverConfig = Omit<UseHoverProps, 'enabled'>;
+export type FocusConfig = {
+  /** @default HOVER_OPEN_DELAY */
+  delay?: number;
+  /**
+   * Ignore the focus a press on the trigger gives.
+   * @default true
+   */
+  visibleOnly?: boolean;
+};
 export type DelayConfig = Delay;
 
 export type PopoverOptions = {
@@ -86,6 +95,7 @@ export type PopoverOptions = {
    */
   hideConfig?: HideConfig;
   hoverConfig?: HoverConfig;
+  focusConfig?: FocusConfig;
   arrowConfig?: Omit<ArrowOptions, 'element'>;
   dismissConfig?: UseDismissProps;
   listNavigationConfig?: UseListNavigationProps;

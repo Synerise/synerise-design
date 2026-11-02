@@ -21,7 +21,9 @@ type TextsAsReactNode =
   | 'errorMessageDetails'
   | 'backTooltip'
   | 'clearSearchTooltip'
-  | 'infiniteScrollAllLoaded';
+  | 'infiniteScrollAllLoaded'
+  | 'searchInFolderPlaceholder'
+  | 'emptyFolder';
 
 export type ItemPickerListTexts = {
   [key in TextsAsReactNode]: ReactNode;

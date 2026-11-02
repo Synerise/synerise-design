@@ -1,8 +1,17 @@
 import React, { type ReactNode } from 'react';
 
-import Icon, { ArrowRightCircleM, FolderM } from '@synerise/ds-icon';
+import { ObjectAvatar } from '@synerise/ds-avatar';
+import Icon, {
+  AngleRightS,
+  ArrowRightCircleM,
+  FolderM,
+} from '@synerise/ds-icon';
 import InformationCard from '@synerise/ds-information-card';
-import type { ListItemProps } from '@synerise/ds-list-item';
+import {
+  type ItemSize,
+  itemSizes,
+  type ListItemProps,
+} from '@synerise/ds-list-item';
 
 import type {
   BaseItemType,
@@ -10,6 +19,9 @@ import type {
   BaseSectionTypeWithFolders,
 } from '../../ItemPickerNew/types/baseItemSectionType.types';
 import type { ItemPickerListTexts } from '../../ItemPickerNew/types/itemPickerListTexts.types';
+import type { FolderNode } from '../../ItemPickerNew/types/mixedLoader.types';
+import { FOLDER_ROW_CLASS } from '../constants';
+import * as S from '../ItemPickerList.styles';
 import type { TitleListItemProps } from '../ItemPickerList.types';
 import { createTitleFromTitlePath } from '../utils';
 
@@ -23,6 +35,51 @@ export const getFolderItem = (
     prefixel: <Icon component={<FolderM />} />,
     ...folder,
     onClick,
+  };
+};
+
+export const getFolderLevelRow = ({
+  folder,
+  rowSize,
+  location,
+  highlight,
+  onOpen,
+}: {
+  folder: FolderNode;
+  rowSize: ItemSize;
+  location?: ReactNode;
+  highlight?: string;
+  onOpen: () => void;
+}): ListItemProps => {
+  const isLarge = rowSize === itemSizes.LARGE;
+  const icon = <Icon component={<FolderM />} />;
+  const reason =
+    folder.disabled && folder.disabledReason && !isLarge ? (
+      <S.FolderDisabledReason>{folder.disabledReason}</S.FolderDisabledReason>
+    ) : undefined;
+  const { informationCardProps } = folder;
+  return {
+    itemKey: `folder-${folder.id}`,
+    className: FOLDER_ROW_CLASS,
+    text: folder.text,
+    size: rowSize,
+    description: isLarge
+      ? folder.disabled
+        ? folder.disabledReason
+        : (location ?? folder.description)
+      : undefined,
+    prefixel: isLarge ? (
+      <ObjectAvatar size="medium" iconComponent={icon} />
+    ) : (
+      icon
+    ),
+    suffixel: folder.disabled ? reason : <Icon component={<AngleRightS />} />,
+    disabled: folder.disabled,
+    highlight,
+    renderHoverTooltip: informationCardProps
+      ? () => <InformationCard {...informationCardProps} />
+      : undefined,
+    onClick: folder.disabled ? undefined : onOpen,
   };
 };
 

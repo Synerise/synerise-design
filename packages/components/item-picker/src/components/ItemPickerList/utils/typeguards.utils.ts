@@ -15,6 +15,7 @@ import type {
   BaseSectionType,
   BaseSectionTypeWithFolders,
 } from '../../ItemPickerNew/types/baseItemSectionType.types';
+import type { MixedLoaderConfig } from '../../ItemPickerNew/types/mixedLoader.types';
 import type { TitleListItemProps } from '../ItemPickerList.types';
 
 export const isTitle = (
@@ -23,8 +24,14 @@ export const isTitle = (
   return 'type' in item && item.type === 'title';
 };
 
+type ItemsProp<ItemType extends BaseItemType> =
+  | ItemType[]
+  | ItemsConfig<ItemType>
+  | ItemLoaderConfig<ItemType>
+  | MixedLoaderConfig<ItemType>;
+
 export const isItems = <ItemType extends BaseItemType>(
-  items: ItemType[] | ItemsConfig<ItemType> | ItemLoaderConfig<ItemType>,
+  items: ItemsProp<ItemType>,
 ): items is ItemType[] => {
   if (Array.isArray(items)) {
     return true;
@@ -33,13 +40,23 @@ export const isItems = <ItemType extends BaseItemType>(
 };
 
 export const isItemsConfig = <ItemType extends BaseItemType>(
-  items: ItemType[] | ItemsConfig<ItemType> | ItemLoaderConfig<ItemType>,
+  items: ItemsProp<ItemType>,
 ): items is ItemsConfig<ItemType> => {
   if ('items' in items && Array.isArray(items.items)) {
     return true;
   }
   return false;
 };
+
+export const isMixedLoaderConfig = <ItemType extends BaseItemType>(
+  items: ItemsProp<ItemType>,
+): items is MixedLoaderConfig<ItemType> =>
+  !Array.isArray(items) && 'loadLevel' in items;
+
+export const isItemLoaderConfig = <ItemType extends BaseItemType>(
+  items: ItemsProp<ItemType>,
+): items is ItemLoaderConfig<ItemType> =>
+  !Array.isArray(items) && 'loadItems' in items;
 
 export const isWithOutSections = <
   SectionType extends BaseSectionTypeWithFolders<BaseSectionType> | undefined,

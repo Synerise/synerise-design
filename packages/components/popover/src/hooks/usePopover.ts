@@ -26,6 +26,7 @@ import {
   getDefaultTransitionConfig,
   getMiddleware,
 } from '../utils';
+import { useFocusTrigger } from './useFocusTrigger';
 import { useListNavigationConfig } from './useListNavigationConfig';
 
 export const usePopover = ({
@@ -47,6 +48,7 @@ export const usePopover = ({
   hideConfig = {},
   arrowConfig = {},
   hoverConfig = {},
+  focusConfig = {},
   testId = 'noTestId',
   componentId,
   returnFocus,
@@ -159,6 +161,7 @@ export const usePopover = ({
 
   const isClickEnabled = triggerArray.includes('click');
   const isHoverEnabled = triggerArray.includes('hover');
+  const isFocusEnabled = triggerArray.includes('focus');
 
   const listNavConfig = useListNavigationConfig(listNavigationConfig);
   const listNav = useListNavigation(context, listNavConfig);
@@ -186,6 +189,12 @@ export const usePopover = ({
     ...hoverConfig,
   });
 
+  const focus = useFocusTrigger(context, {
+    enabled: isFocusEnabled,
+    delay: HOVER_OPEN_DELAY,
+    ...focusConfig,
+  });
+
   const dismiss = useDismiss(context, {
     ...dismissConfig,
     bubbles:
@@ -195,7 +204,14 @@ export const usePopover = ({
   });
   const role = useRole(context);
 
-  const interactions = useInteractions([click, hover, dismiss, role, listNav]);
+  const interactions = useInteractions([
+    click,
+    hover,
+    focus,
+    dismiss,
+    role,
+    listNav,
+  ]);
 
   const { styles, isMounted } = useTransitionStyles(context, {
     duration: transitionDuration,

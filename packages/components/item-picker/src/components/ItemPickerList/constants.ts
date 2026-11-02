@@ -53,3 +53,6 @@ export const GET_ITEM_KEY = <ItemType extends BaseItemType>(item: ItemType) => {
   }
   return key;
 };
+
+export const FOLDER_ITEMS_PER_PAGE = 30;
+export const FOLDER_ROW_CLASS = 'ds-item-picker-folder-row';

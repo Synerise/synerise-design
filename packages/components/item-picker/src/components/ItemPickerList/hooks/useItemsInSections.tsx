@@ -8,10 +8,11 @@ import type {
   ItemPickerListProps,
   OnLoadedData,
 } from '../../ItemPickerNew/ItemPickerNew.types';
-import type {
-  SearchByAction,
-  SearchByParamConfig,
-  SearchInAction,
+import {
+  ACTION_TYPES,
+  type SearchByAction,
+  type SearchByParamConfig,
+  type SearchInAction,
 } from '../../ItemPickerNew/types/actions.types';
 import type {
   BaseItemType,
@@ -19,8 +20,10 @@ import type {
   BaseSectionTypeWithFolders,
 } from '../../ItemPickerNew/types/baseItemSectionType.types';
 import type { ItemPickerListTexts } from '../../ItemPickerNew/types/itemPickerListTexts.types';
+import type { LevelEntry } from '../../ItemPickerNew/types/mixedLoader.types';
 import {
   FIRST_PAGE,
+  FOLDER_ITEMS_PER_PAGE,
   GET_ITEM_KEY,
   ITEM_SIZE,
   ITEMS_PER_PAGE,
@@ -30,7 +33,13 @@ import {
   SECTION_HEADER_HEIGHT,
 } from '../constants';
 import { RENDER_MODES } from '../types/renderMode';
-import { isItems, isItemsConfig, isWithOutSections } from '../utils';
+import {
+  isItemLoaderConfig,
+  isItems,
+  isItemsConfig,
+  isMixedLoaderConfig,
+  isWithOutSections,
+} from '../utils';
 import {
   getActionItems,
   getSectionActionItems,
@@ -38,10 +47,15 @@ import {
 import { getSearchByActionItems } from '../utils/getSearchByActionItems';
 import { resolveSectionId } from '../utils/resolveSectionId';
 import { useFlattenFolders } from './useFlattenFolders';
+import { useFolderLevel } from './useFolderLevel';
 import {
   getFolderItems,
+  getFolderLevelRow,
+  getInformationCardTooltip,
   getItems,
+  getListItem,
   getRecentItems,
+  getTitleItem,
   matchesSearchQuery,
 } from './useItemsInSections.utils';
 
@@ -128,6 +142,26 @@ export const useItemsInSections = <
   const sectionTotals = useRef<Record<string, number>>({});
   const abortControllerRef = useRef<AbortController>();
   const isFixedItemsList = isItems(items) || isItemsConfig(items);
+  const itemLoader = isItemLoaderConfig(items) ? items : undefined;
+  const mixedLoader = isMixedLoaderConfig(items) ? items : undefined;
+  const {
+    folderId,
+    path: folderPath,
+    setPath: setFolderPath,
+    openFolder,
+    goUp,
+    reset: resetFolder,
+  } = useFolderLevel();
+  const [levelEntries, setLevelEntries] = useState<LevelEntry<ItemType>[]>([]);
+  const availableActions = useMemo(
+    () =>
+      mixedLoader
+        ? actions?.filter(
+            (action) => action.actionType !== ACTION_TYPES.searchIn,
+          )
+        : actions,
+    [mixedLoader, actions],
+  );
   const [contentHeight, setContentHeight] = useState<number | undefined>();
   const [isInitialDataLoaded, setIsInitialDataLoaded] =
     useState(isFixedItemsList);
@@ -199,10 +233,13 @@ export const useItemsInSections = <
         ? (items.limitPerSection ?? fallbackLimit)
         : fallbackLimit;
     }
-    return items.limitPerSection ?? fallbackLimit;
-  }, [isFixedItemsList, searchQuery, items]);
+    return itemLoader?.limitPerSection ?? fallbackLimit;
+  }, [isFixedItemsList, searchQuery, items, itemLoader]);
 
   const { listRenderingMode } = useMemo(() => {
+    if (mixedLoader) {
+      return { listRenderingMode: RENDER_MODES.LIST_MIXED };
+    }
     if (isListItemsRenderingMode) {
       return { listRenderingMode: RENDER_MODES.LIST_ITEMS };
     }
@@ -231,6 +268,7 @@ export const useItemsInSections = <
     hasSectionsAndFolders,
     currentSectionHasFolders,
     isListItemsRenderingMode,
+    mixedLoader,
   ]);
 
   const globalActionsLength =
@@ -243,7 +281,8 @@ export const useItemsInSections = <
     setSearchInItem(undefined);
     setCurrentSection(undefined);
     setPreviousSection(undefined);
-  }, []);
+    resetFolder();
+  }, [resetFolder]);
 
   const goBack = useCallback(() => {
     if (searchByAction) {
@@ -259,6 +298,13 @@ export const useItemsInSections = <
     if (searchInAction) {
       changeSearchQuery('');
       setSearchInAction(undefined);
+      return;
+    }
+    if (mixedLoader) {
+      if (folderId !== null) {
+        changeSearchQuery('');
+        goUp();
+      }
       return;
     }
     if (searchQuery) {
@@ -279,6 +325,9 @@ export const useItemsInSections = <
     previousSection,
     searchInItem,
     changeSearchQuery,
+    mixedLoader,
+    folderId,
+    goUp,
   ]);
 
   const handleCurrentSectionChange = useCallback(
@@ -416,15 +465,68 @@ export const useItemsInSections = <
     const currentRequestId = generateUuid();
     requestIdRef.current = currentRequestId;
     const abortController = abortControllerRef.current;
+    const isStale = () => currentRequestId !== requestIdRef.current;
+
+    const markFirstPageLoaded = (total: number, limit: number) => {
+      setIsLoading(false);
+      setIsInitialDataLoaded(true);
+      pageToLoad.current = FIRST_PAGE + 1;
+      if (total <= limit) {
+        setIsLoadedAll(true);
+        setIsSinglePage(true);
+      }
+    };
+    const handleFirstPageError = () => {
+      if (isStale()) {
+        return;
+      }
+      setIsLoading(false);
+      setIsInitialDataLoaded(true);
+      if (!abortController?.signal.aborted) {
+        setIsLoadingError(true);
+      }
+    };
+
+    if (mixedLoader) {
+      try {
+        const limit = mixedLoader.limitPerPage || FOLDER_ITEMS_PER_PAGE;
+        const { entries, total, path } = await mixedLoader.loadLevel({
+          folderId,
+          searchQuery: searchQuery ?? '',
+          searchKey: searchByParamConfig?.paramKey,
+          page: FIRST_PAGE,
+          limit,
+          abortController,
+        });
+        if (isStale()) {
+          return;
+        }
+        markFirstPageLoaded(total, limit);
+        setFolderPath(path);
+        onLoadedData?.({
+          sectionId: folderId ?? undefined,
+          meta: undefined,
+          renderMode: listRenderingMode,
+        });
+        setLevelEntries(entries);
+      } catch (_event) {
+        handleFirstPageError();
+      }
+      return;
+    }
+
+    if (!itemLoader) {
+      return;
+    }
 
     if (listRenderingMode === RENDER_MODES.LIST_ITEMS) {
       try {
-        const limit = items.limitPerPage || ITEMS_PER_PAGE;
+        const limit = itemLoader.limitPerPage || ITEMS_PER_PAGE;
         const {
           items: fetchedItems,
           total,
           meta,
-        } = await items.loadItems({
+        } = await itemLoader.loadItems({
           page: FIRST_PAGE,
           searchQuery,
           sectionId: activeSectionIdWithFallback,
@@ -434,32 +536,19 @@ export const useItemsInSections = <
           searchKey: searchByParamConfig?.paramKey,
           searchInItem,
         });
-        if (currentRequestId !== requestIdRef.current) {
+        if (isStale()) {
           return;
         }
-        setIsLoading(false);
-        pageToLoad.current = FIRST_PAGE + 1;
-        if (total <= limit) {
-          setIsLoadedAll(true);
-          setIsSinglePage(true);
-        }
+        markFirstPageLoaded(total, limit);
         metaRef.current[activeSectionIdWithFallback] = meta;
         onLoadedData?.({
           sectionId: activeSectionIdWithFallback,
           meta,
           renderMode: listRenderingMode,
         });
-        setIsInitialDataLoaded(true);
         setCurrentItems(fetchedItems);
       } catch (_event) {
-        if (currentRequestId !== requestIdRef.current) {
-          return;
-        }
-        setIsLoading(false);
-        setIsInitialDataLoaded(true);
-        if (!abortController?.signal.aborted) {
-          setIsLoadingError(true);
-        }
+        handleFirstPageError();
       }
       return;
     }
@@ -471,11 +560,11 @@ export const useItemsInSections = <
         ? [Promise.resolve()]
         : currentFolders?.map((folder) => {
             const sectionId = folder.id;
-            return items
+            return itemLoader
               .loadItems({
                 page: FIRST_PAGE,
                 searchQuery,
-                limit: (items.limitPerSection || ITEMS_PER_SECTION) + 1,
+                limit: (itemLoader.limitPerSection || ITEMS_PER_SECTION) + 1,
                 sectionId,
                 meta: undefined,
                 abortController: abortControllerRef.current,
@@ -515,13 +604,16 @@ export const useItemsInSections = <
     isFixedItemsList,
     currentFolders,
     listRenderingMode,
-    items,
     listActions,
     searchQuery,
     searchByAction,
     onLoadedData,
     activeSectionIdWithFallback,
     searchInItem,
+    itemLoader,
+    mixedLoader,
+    folderId,
+    setFolderPath,
   ]);
 
   useEffect(() => {
@@ -578,6 +670,7 @@ export const useItemsInSections = <
     };
   }, [
     activeSectionId,
+    folderId,
     isFixedItemsList,
     searchQuery,
     listActions,
@@ -597,7 +690,8 @@ export const useItemsInSections = <
   const hasInfiniteScroll =
     !listActions &&
     !isFixedItemsList &&
-    listRenderingMode === RENDER_MODES.LIST_ITEMS;
+    (listRenderingMode === RENDER_MODES.LIST_ITEMS ||
+      listRenderingMode === RENDER_MODES.LIST_MIXED);
 
   const refreshItems = useMemo(() => {
     if (!isFixedItemsList) {
@@ -610,58 +704,85 @@ export const useItemsInSections = <
     if (pageToLoad.current < SECOND_PAGE) {
       return;
     }
-
-    if (hasInfiniteScroll) {
-      if (isLoadedAll || isLoadingMore) {
+    if (!hasInfiniteScroll || isLoadedAll || isLoadingMore) {
+      return;
+    }
+    setIsLoadingMore(true);
+    const pageRequestId = requestIdRef.current;
+    const isStale = () => pageRequestId !== requestIdRef.current;
+    const page = pageToLoad.current;
+    const settlePage = (total: number, pageSize: number) => {
+      setIsLoadingMore(false);
+      setIsLoadingMoreError(false);
+      if (total <= (page + 1) * pageSize) {
+        setIsLoadedAll(true);
+      }
+      pageToLoad.current = page + 1;
+    };
+    const handlePageError = () => {
+      if (isStale()) {
         return;
       }
-      setIsLoadingMore(true);
-      const pageRequestId = requestIdRef.current;
-      const isStale = () => pageRequestId !== requestIdRef.current;
-      items
-        .loadItems({
-          page: pageToLoad.current,
-          limit: items.limitPerPage || ITEMS_PER_PAGE,
-          searchQuery,
-          sectionId: activeSectionIdWithFallback,
-          meta: metaRef.current[activeSectionIdWithFallback],
-          abortController: abortControllerRef.current,
+      setIsLoadingMore(false);
+      setIsLoadingMoreError(true);
+    };
+
+    if (mixedLoader) {
+      const limit = mixedLoader.limitPerPage || FOLDER_ITEMS_PER_PAGE;
+      mixedLoader
+        .loadLevel({
+          folderId,
+          searchQuery: searchQuery ?? '',
           searchKey: searchByParamConfig?.paramKey,
-          searchInItem,
+          page,
+          limit,
+          abortController: abortControllerRef.current,
         })
-        .then(({ items: fetchedItems, total, meta }) => {
+        .then(({ entries, total }) => {
           if (isStale()) {
             return;
           }
-          sectionTotals.current[activeSectionIdWithFallback] = total;
-          metaRef.current[activeSectionIdWithFallback] = meta;
-          setIsLoadingMore(false);
-          setIsLoadingMoreError(false);
-          if (
-            sectionTotals.current[activeSectionIdWithFallback] <=
-            (pageToLoad.current + 1) * (items.limitPerPage || ITEMS_PER_PAGE)
-          ) {
-            setIsLoadedAll(true);
-          }
-          pageToLoad.current += 1;
-          setCurrentItems([...currentItems, ...fetchedItems]);
+          settlePage(total, limit);
+          setLevelEntries((current) => [...current, ...entries]);
         })
-        .catch(() => {
-          if (isStale()) {
-            return;
-          }
-          setIsLoadingMore(false);
-          setIsLoadingMoreError(true);
-        });
+        .catch(handlePageError);
+      return;
     }
+
+    if (!itemLoader) {
+      return;
+    }
+    const limit = itemLoader.limitPerPage || ITEMS_PER_PAGE;
+    itemLoader
+      .loadItems({
+        page,
+        limit,
+        searchQuery,
+        sectionId: activeSectionIdWithFallback,
+        meta: metaRef.current[activeSectionIdWithFallback],
+        abortController: abortControllerRef.current,
+        searchKey: searchByParamConfig?.paramKey,
+        searchInItem,
+      })
+      .then(({ items: fetchedItems, total, meta }) => {
+        if (isStale()) {
+          return;
+        }
+        sectionTotals.current[activeSectionIdWithFallback] = total;
+        metaRef.current[activeSectionIdWithFallback] = meta;
+        settlePage(total, limit);
+        setCurrentItems((current) => [...current, ...fetchedItems]);
+      })
+      .catch(handlePageError);
   }, [
     searchByParamConfig,
     isLoadingMore,
     hasInfiniteScroll,
     isLoadedAll,
-    items,
+    itemLoader,
+    mixedLoader,
+    folderId,
     searchQuery,
-    currentItems,
     activeSectionIdWithFallback,
     searchInItem,
   ]);
@@ -681,7 +802,7 @@ export const useItemsInSections = <
 
     if (listActions) {
       return getActionItems({
-        actions,
+        actions: availableActions,
         texts,
         sectionId: activeSectionId,
         setSearchByAction,
@@ -694,7 +815,7 @@ export const useItemsInSections = <
     }
 
     const sectionActions = getSectionActionItems({
-      actions,
+      actions: availableActions,
       texts,
       searchQuery,
       sectionId: activeSectionId,
@@ -705,6 +826,66 @@ export const useItemsInSections = <
       searchByParamConfig,
       setSearchByParamConfig,
     });
+
+    if (mixedLoader) {
+      const isTopLevel = folderId === null;
+      const rowSize = mixedLoader.rowSize ?? itemSizes.DEFAULT;
+      const isSearchParam = !!searchByParamConfig;
+      const levelActions = isTopLevel || searchQuery ? sectionActions : [];
+      const levelRecents =
+        isTopLevel && !isSearchParam
+          ? getRecentItems({
+              recents,
+              texts,
+              isSelected,
+              searchQuery,
+              handleItemSelect,
+              isSearchParam,
+            })
+          : [];
+      const entryRows = levelEntries.map((entry) => {
+        const location =
+          searchQuery && rowSize === itemSizes.LARGE
+            ? entry.location
+            : undefined;
+        if (entry.type === 'folder') {
+          return getFolderLevelRow({
+            folder: entry.folder,
+            rowSize,
+            location,
+            highlight: isSearchParam ? undefined : searchQuery,
+            onOpen: () => {
+              changeSearchQuery('');
+              openFolder(entry.folder);
+            },
+          });
+        }
+        const row = getListItem(
+          entry.item,
+          isSelected,
+          searchQuery,
+          handleItemSelect,
+          getInformationCardTooltip(entry.item),
+          isSearchParam,
+        );
+        return {
+          ...row,
+          size: row.size ?? rowSize,
+          ...(location !== undefined && { description: location }),
+        };
+      });
+      const levelTitle = searchQuery
+        ? texts.resultsSectionLabel
+        : isTopLevel && showItemsSectionLabel
+          ? folderPath[0]?.text
+          : undefined;
+      return [
+        ...levelActions,
+        ...levelRecents,
+        ...(entryRows.length && levelTitle ? [getTitleItem(levelTitle)] : []),
+        ...entryRows,
+      ];
+    }
 
     const recentItems =
       activeSectionId || isSearchInItemActive || searchByParamConfig
@@ -771,7 +952,6 @@ export const useItemsInSections = <
   }, [
     listActions,
     activeSectionId,
-    actions,
     texts,
     searchQuery,
     recents,
@@ -792,6 +972,12 @@ export const useItemsInSections = <
     isSearchInActionActive,
     searchInItem,
     isListItemsRenderingMode,
+    availableActions,
+    mixedLoader,
+    folderId,
+    folderPath,
+    levelEntries,
+    openFolder,
   ]);
 
   const reloadActiveSection = useCallback(() => {
@@ -834,5 +1020,10 @@ export const useItemsInSections = <
     canPerformListActions,
     reloadActiveSection,
     activeSectionId,
+    isMixedMode: !!mixedLoader,
+    mixedRowSize: mixedLoader?.rowSize,
+    isInFolder: !!mixedLoader && folderId !== null,
+    folderId,
+    folderPath,
   };
 };

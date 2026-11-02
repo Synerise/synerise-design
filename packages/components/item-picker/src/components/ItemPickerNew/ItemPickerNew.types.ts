@@ -20,6 +20,7 @@ import type {
   BaseSectionTypeWithFolders,
 } from './types/baseItemSectionType.types';
 import type { ItemPickerListTexts } from './types/itemPickerListTexts.types';
+import type { MixedLoaderConfig } from './types/mixedLoader.types';
 
 type HeightConfig = {
   defaultHeight: number;
@@ -165,7 +166,11 @@ export type ItemPickerListProps<
       'value' | 'onSearchChange' | 'placeholder'
     >;
     onRefresh?: () => void;
-    items: ItemType[] | ItemsConfig<ItemType> | ItemLoaderConfig<ItemType>;
+    items:
+      | ItemType[]
+      | ItemsConfig<ItemType>
+      | ItemLoaderConfig<ItemType>
+      | MixedLoaderConfig<ItemType>;
     isLoading?: boolean;
     isVisible?: boolean;
     sections?: SectionType extends BaseSectionType

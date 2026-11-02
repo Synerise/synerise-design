@@ -111,7 +111,14 @@ export const ItemPickerListRow = ({
   return (
     <>
       <div ref={rowRef} style={rowStyle}>
-        <ListItem {...listItem} className={classNames} />
+        <ListItem
+          {...listItem}
+          className={
+            listItem.className
+              ? `${classNames} ${listItem.className}`
+              : classNames
+          }
+        />
       </div>
       {index === dataSource.length - 1 && infiniteLoaderItem()}
     </>
