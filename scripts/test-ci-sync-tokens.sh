@@ -52,9 +52,9 @@ cat > "$GITCONFIG" <<EOF
 [advice]
   detachedHead = false
 [url "file://${WORK}/design-tokens.git"]
-  insteadOf = https://${HOST}/Frontend/design-tokens.git
+  insteadOf = https://${HOST}/group/design-tokens.git
 [url "file://${WORK}/target.git"]
-  insteadOf = https://${HOST}/Frontend/synerise-design.git
+  insteadOf = https://${HOST}/group/synerise-design.git
 EOF
 
 # ── Sync target: sparse scratch clone of this repo at HEAD ──────────────────────
@@ -175,6 +175,7 @@ scenario() {
     export ARGV_LOG="${LAST}/logs/argv.log" GIT_TRACE="${LAST}/logs/git-trace.log"
     export GITLAB_HOST="$HOST" CI_API_V4_URL="http://127.0.0.1:$(cat "${LAST}/port")/api/v4"
     export TOKENS_REPO_READ_TOKEN="$read_token" CI_JOB_TOKEN="$job_token" PUSH_TOKEN="$push_token"
+    export CI_PROJECT_ID=42 CI_PROJECT_PATH=group/synerise-design TOKENS_REPO=group/design-tokens
     export SKIP_BUILD=1
     for kv in "$@"; do export "${kv?}"; done
     exec bash -x scripts/ci-sync-tokens.sh
@@ -239,18 +240,18 @@ report
 drop_pushed
 scenario create-mr "$CHANGE" "" 0
 expect "branch not pushed" pushed
-expect "no authenticated MR create" api_has '^POST /api/v4/projects/1171/merge_requests auth=ok'
+expect "no authenticated MR create" api_has '^POST /api/v4/projects/42/merge_requests auth=ok'
 report
 
 scenario refresh-mr "$CHANGE" 7 0
-expect "no authenticated MR update" api_has '^PUT /api/v4/projects/1171/merge_requests/7 auth=ok'
+expect "no authenticated MR update" api_has '^PUT /api/v4/projects/42/merge_requests/7 auth=ok'
 expect "MR created twice" bash -c "! grep -q '^POST' '${LAST}/api.log'"
 report
 
 # A second token merge: the sync takes main's tip, whichever merge triggered it.
 scenario syncs-tip "$NEWER" 7 0
 expect "did not sync the tip" bash -c "git -C '${WORK}/target.git' log -1 --format=%s '${SYNC_BRANCH}' | grep -qF '${NEWER:0:8}'"
-expect "no authenticated MR update" api_has '^PUT /api/v4/projects/1171/merge_requests/7 auth=ok'
+expect "no authenticated MR update" api_has '^PUT /api/v4/projects/42/merge_requests/7 auth=ok'
 report
 
 scenario docs-only-tip "$DOCS" "" 0 DRY_RUN=1
@@ -259,9 +260,9 @@ report
 
 # Upstream reverted: the mirror equals the target again.
 scenario revert-closes-mr "$SAME" 7 0
-expect "no authenticated note" api_has '^POST /api/v4/projects/1171/merge_requests/7/notes auth=ok'
-expect "no authenticated close" api_has '^PUT /api/v4/projects/1171/merge_requests/7 auth=ok state_event=close'
-expect "no branch delete" api_has '^DELETE /api/v4/projects/1171/repository/branches/chore%2Fdesign-tokens-sync auth=ok'
+expect "no authenticated note" api_has '^POST /api/v4/projects/42/merge_requests/7/notes auth=ok'
+expect "no authenticated close" api_has '^PUT /api/v4/projects/42/merge_requests/7 auth=ok state_event=close'
+expect "no branch delete" api_has '^DELETE /api/v4/projects/42/repository/branches/chore%2Fdesign-tokens-sync auth=ok'
 expect "pushed anyway" bash -c "! grep -q 'force-pushing' '${LAST}/logs/output.log'"
 report
 
@@ -276,8 +277,8 @@ expect "API was called" api_empty
 report
 
 drop_pushed
-scenario clone-fails "$CHANGE" "" 128 TOKENS_REPO=Frontend/missing
-expect "no clone error in output" in_output "Frontend/missing"
+scenario clone-fails "$CHANGE" "" 128 TOKENS_REPO=group/missing
+expect "no clone error in output" in_output "group/missing"
 report
 
 echo

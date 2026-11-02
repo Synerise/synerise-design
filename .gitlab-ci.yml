@@ -92,10 +92,6 @@ include:
     - if: $CI_PIPELINE_SOURCE == "trigger"
       when: never
 
-# Triggered by a token merge in Frontend/design-tokens through the project's only pipeline trigger
-# token, which carries no variables (ADR-0002 §6): the source alone marks a sync pipeline.
-# Mirrors the tokens at design-tokens@main's tip into @synerise/ds-tokens and opens/refreshes the
-# rolling sync MR, whose normal merge_request_event pipeline runs build + Chromatic for review.
 sync_tokens:
   stage: prepare
   needs: []
@@ -380,10 +376,6 @@ notify_tokens_sync:
         --button "Merge Request=${CI_PROJECT_URL}/-/merge_requests/${CI_MERGE_REQUEST_IID}"
   interruptible: true
 
-# Anyone with Developer access can push to the rolling token-sync branch, and its MR reads as the
-# bot's tokens-only change. Fail its pipeline, which must pass before merge, when the MR changes
-# anything outside the mirrored token files. A push that also edits this job removes the check,
-# which is why .gitlab-ci.yml has code owners (.gitlab/CODEOWNERS).
 check_tokens_sync_scope:
   stage: prepare
   needs: []
