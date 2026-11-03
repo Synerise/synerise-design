@@ -42,9 +42,9 @@ import Tag from '@synerise/ds-tag'
 | removable    | show remove button                              | boolean                           | -                      |
 | shape        | shape of the tag                                | TagShape                          | TagShape.DEFAULT_SQUARE |
 | textColor    | color of tag name label                         | string                            | -                      |
-| image        | src of image shown before content (DEFAULT_ROUND/SQUARE only) | string             | -                      |
-| prefixel     | leading slot content                            | ReactNode                         | -                      |
-| suffixel     | trailing slot content (hidden on remove hover)  | ReactNode                         | -                      |
+| image        | **@deprecated** pass `<img src alt="" />` as `prefixel`; renders exactly that. Not allowed together with `prefixel` | string | - |
+| prefixel     | leading slot content; an `<img>` is sized 16px in the 24px slot | ReactNode         | -                      |
+| suffixel     | trailing slot content (replaced by ✕ on hover)  | ReactNode                         | -                      |
 | texts        | i18n overrides for internal labels              | Partial&lt;TagTexts&gt;           | -                      |
 | asPill       | disable hover brightness effect                 | boolean                           | -                      |
 | dashed       | **@deprecated** no-op on Tag; dashed border is applied by ds-status | boolean        | -                      |

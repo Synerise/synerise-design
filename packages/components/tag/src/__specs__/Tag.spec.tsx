@@ -9,7 +9,7 @@ import Icon from '@synerise/ds-icon';
 import { resolveCustomColor } from '@synerise/ds-utils';
 import { fireEvent, screen } from '@testing-library/react';
 
-import Tag, { TagShape } from '../index';
+import Tag, { type TagProps, TagShape } from '../index';
 import { getColorText } from '../Tag.styles';
 
 describe('Tag', () => {
@@ -214,5 +214,221 @@ describe('Tag prefix icon colour', () => {
       state: 'any',
     }).filter(({ declarations }) => /(^|;)(fill|color):/.test(declarations));
     expect(wrapperSvgColours).toEqual([]);
+  });
+});
+
+describe('Tag spacing', () => {
+  const tag = () => screen.getByTestId('tag');
+  const badge = <span className="ds-badge" />;
+
+  it('pads a plain tag 12px on both sides', () => {
+    renderWithProvider(<Tag shape={TagShape.DEFAULT_ROUND} name="A" />);
+
+    expect(declarationsFor(tag())).toContain('padding-left:12px');
+    expect(declarationsFor(tag())).toContain('padding-right:12px');
+  });
+
+  it.each([
+    ['prefixel', { prefixel: badge }, 'padding-left:4px', 'padding-right:12px'],
+    ['image', { image: 'a.png' }, 'padding-left:4px', 'padding-right:12px'],
+    ['suffixel', { suffixel: badge }, 'padding-left:12px', 'padding-right:4px'],
+  ])('reduces the padding next to a %s to 4px', (_, props, left, right) => {
+    renderWithProvider(
+      <Tag shape={TagShape.DEFAULT_SQUARE} name="A" {...props} />,
+    );
+
+    expect(declarationsFor(tag())).toContain(left);
+    expect(declarationsFor(tag())).toContain(right);
+  });
+
+  it('leaves the other shapes unpadded by the spacing rules', () => {
+    renderWithProvider(
+      <Tag shape={TagShape.SINGLE_CHARACTER_ROUND} name="A" />,
+    );
+
+    expect(declarationsFor(tag())).not.toContain('padding-left');
+  });
+
+  it('spaces a string or number badge 4px from the label', () => {
+    renderWithProvider(
+      <Tag shape={TagShape.DEFAULT_ROUND} name="A" prefixel={1} suffixel="2" />,
+    );
+
+    expect(declarationsFor(screen.getByText('1'))).toContain(
+      'margin-right:4px',
+    );
+    expect(declarationsFor(screen.getByText('2'))).toContain('margin-left:4px');
+  });
+
+  it('spaces only a ds-badge node 4px from the label', () => {
+    renderWithProvider(
+      <Tag
+        shape={TagShape.DEFAULT_ROUND}
+        name="A"
+        prefixel={<span data-testid="prefix" className="ds-badge" />}
+        suffixel={<span data-testid="suffix" />}
+      />,
+    );
+    const margins = (testId: string) => {
+      const element = screen.getByTestId(testId);
+      return declarationsFor(element, { within: element.parentElement });
+    };
+
+    expect(margins('prefix')).toContain('margin-right:4px');
+    expect(margins('suffix')).not.toContain('margin');
+  });
+
+  it('sizes an image prefixel 16px, centred in the 24px slot', () => {
+    renderWithProvider(
+      <Tag
+        shape={TagShape.DEFAULT_ROUND}
+        name="A"
+        prefixel={<img data-testid="image" src="a.png" alt="" />}
+      />,
+    );
+    const image = screen.getByTestId('image');
+
+    const declarations = declarationsFor(image, {
+      within: image.parentElement,
+    });
+
+    expect(declarations).toContain('width:16px;height:16px;margin:0 4px');
+    expect(declarations).toContain('object-fit:cover');
+  });
+
+  it('renders the deprecated image prop as an image prefixel', () => {
+    const { container } = renderWithProvider(
+      <Tag shape={TagShape.DEFAULT_ROUND} name="A" image="a.png" />,
+    );
+    const image = container.querySelector('img');
+
+    expect(image).toHaveAttribute('src', 'a.png');
+    expect(
+      declarationsFor(image as HTMLElement, { within: image?.parentElement }),
+    ).toContain('width:16px;height:16px;margin:0 4px');
+  });
+
+  it('spaces a ds-badge suffixel 4px from the label', () => {
+    renderWithProvider(
+      <Tag
+        shape={TagShape.DEFAULT_ROUND}
+        name="A"
+        suffixel={<span data-testid="suffix" className="ds-badge" />}
+      />,
+    );
+    const suffix = screen.getByTestId('suffix');
+
+    expect(
+      declarationsFor(suffix, { within: suffix.parentElement }),
+    ).toContain('margin-left:4px');
+  });
+});
+
+describe('Tag remove on hover', () => {
+  const REST_WIDTH = 80;
+  const LABEL_OFFSET = 30;
+
+  beforeEach(() => {
+    vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockImplementation(
+      function (this: HTMLElement) {
+        const isLabel = this.tagName === 'SPAN';
+        return {
+          left: isLabel ? LABEL_OFFSET : 0,
+          width: isLabel ? 10 : REST_WIDTH,
+        } as DOMRect;
+      },
+    );
+  });
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  const removeButtonRules = (tag: HTMLElement) =>
+    declarationsFor(screen.getByTestId('remove-btn'), { within: tag });
+
+  const renderRemovable = (props: Partial<TagProps> = {}) =>
+    renderWithProvider(
+      <Tag
+        shape={TagShape.DEFAULT_ROUND}
+        name="Label"
+        id="a"
+        removable
+        suffixel={<span data-testid="suffix" />}
+        {...props}
+      />,
+    );
+
+  it('swaps the suffixel for the remove button at a locked width', () => {
+    renderRemovable();
+    const tag = screen.getByTestId('tag-a');
+
+    fireEvent.mouseEnter(tag);
+
+    expect(tag).toHaveStyle({ width: `${REST_WIDTH}px` });
+    expect(declarationsFor(tag)).toContain('padding-right:4px');
+    expect(removeButtonRules(tag)).toContain('display:flex');
+    expect(
+      declarationsFor(screen.getByTestId('suffix').parentElement, {
+        within: tag,
+      }),
+    ).toContain('display:none');
+
+    fireEvent.mouseLeave(tag);
+
+    expect(tag.style.width).toBe('');
+    expect(removeButtonRules(tag)).not.toContain('display:flex');
+  });
+
+  it('pads the remove button 4px from the edge without a suffixel', () => {
+    renderRemovable({ suffixel: undefined });
+    const tag = screen.getByTestId('tag-a');
+
+    expect(declarationsFor(tag)).toContain('padding-right:12px');
+    fireEvent.mouseEnter(tag);
+    expect(declarationsFor(tag)).toContain('padding-right:4px');
+  });
+
+  it('never locks below the width the remove button needs', () => {
+    vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockImplementation(
+      function (this: HTMLElement) {
+        const isLabel = this.tagName === 'SPAN';
+        return {
+          left: isLabel ? 12 : 0,
+          width: isLabel ? 8 : 32,
+        } as DOMRect;
+      },
+    );
+    renderRemovable({ suffixel: undefined });
+    const tag = screen.getByTestId('tag-a');
+
+    fireEvent.mouseEnter(tag);
+
+    expect(tag).toHaveStyle({ width: '40px' });
+  });
+
+  it('does not lock the width or show the button when disabled', () => {
+    renderRemovable({ disabled: true });
+    const tag = screen.getByTestId('tag-a');
+
+    fireEvent.mouseEnter(tag);
+
+    expect(tag.style.width).toBe('');
+    expect(removeButtonRules(tag)).not.toContain('display:flex');
+  });
+
+  it('keeps the consumer mouse handlers and style', () => {
+    const onMouseEnter = vi.fn();
+    const onMouseLeave = vi.fn();
+    renderRemovable({ onMouseEnter, onMouseLeave, style: { color: 'red' } });
+    const tag = screen.getByTestId('tag-a');
+
+    fireEvent.mouseEnter(tag);
+    expect(tag.style.color).toBe('red');
+    expect(tag.style.width).toBe(`${REST_WIDTH}px`);
+    fireEvent.mouseLeave(tag);
+
+    expect(onMouseEnter).toHaveBeenCalledTimes(1);
+    expect(onMouseLeave).toHaveBeenCalledTimes(1);
+    expect(tag.style.color).toBe('red');
   });
 });

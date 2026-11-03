@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
+import { expect, userEvent, within } from 'storybook/test';
 
 import Badge from '@synerise/ds-badge';
 import Icon, { Add3M } from '@synerise/ds-icon';
@@ -7,6 +8,7 @@ import InformationCard from '@synerise/ds-information-card';
 import Tag, { TagProps, TagShape } from '@synerise/ds-tag';
 import { getColorText } from '@synerise/ds-tag/dist/Tag.styles';
 
+import { avatar1 } from '../../constants';
 import { VISIBLE_TAG_SHAPES } from '../../constants/tagShapes';
 import {
   BOOLEAN_CONTROL,
@@ -39,7 +41,10 @@ const TagMeta = {
     },
     name: STRING_CONTROL,
     id: STRING_CONTROL,
-    image: STRING_CONTROL,
+    image: {
+      ...STRING_CONTROL,
+      description: 'Deprecated: pass `<img src alt="" />` as `prefixel`.',
+    },
     shape: {
       ...controlFromOptionsArray('select', VISIBLE_TAG_SHAPES),
       mapping: TagShape,
@@ -150,12 +155,54 @@ export const WithIconPrefix: Story = {
     shape: TagShape.DEFAULT_ROUND,
     color: TAG_COLOR,
     prefixel: (
-      <Icon
-        className="icon1"
-        component={<Add3M />}
-        size={20}
-        color={getColorText(TAG_COLOR)}
+      <Icon component={<Add3M />} size={24} color={getColorText(TAG_COLOR)} />
+    ),
+  },
+};
+
+export const WithImagePrefix: Story = {
+  parameters: {
+    controls: {
+      include: ['name', 'disabled', 'asPill', 'removable'],
+    },
+  },
+  args: {
+    shape: TagShape.DEFAULT_ROUND,
+    prefixel: <img src={avatar1} alt="" />,
+  },
+};
+
+export const RemovableOnHover: Story = {
+  parameters: {
+    controls: {
+      include: ['name', 'shape', 'color', 'disabled'],
+    },
+  },
+  args: {
+    id: 'removable',
+    shape: TagShape.DEFAULT_ROUND,
+    removable: true,
+    suffixel: (
+      <Badge
+        count={1}
+        outlined={false}
+        style={{
+          boxShadow: `0 0 0 1px ${getColorText()}`,
+          backgroundColor: 'transparent',
+          color: getColorText(),
+          alignItems: 'center',
+        }}
       />
     ),
+  },
+  play: async ({ canvasElement }) => {
+    await document.fonts.ready;
+    const tag = within(canvasElement).getByTestId('tag-removable');
+    const restWidth = tag.getBoundingClientRect().width;
+
+    await userEvent.hover(tag);
+
+    await expect(within(canvasElement).getByTestId('remove-btn')).toBeVisible();
+    await expect(tag.getBoundingClientRect().width).toBe(restWidth);
   },
 };

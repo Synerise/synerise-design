@@ -50,7 +50,6 @@
     "@synerise/ds-scrollbar": "workspace:^",
     "@synerise/ds-search-bar": "workspace:^",
     "@synerise/ds-tag": "workspace:^",
-    "@synerise/ds-tooltip": "workspace:^",
     "@synerise/ds-utils": "workspace:^"
   },
   "devDependencies": {

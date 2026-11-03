@@ -1,4 +1,4 @@
-import React, { forwardRef, type MouseEvent, useState } from 'react';
+import React, { forwardRef, type MouseEvent, useRef, useState } from 'react';
 
 import { useTheme } from '@synerise/ds-core';
 import Icon, { CloseS } from '@synerise/ds-icon';
@@ -6,6 +6,7 @@ import Tooltip from '@synerise/ds-tooltip';
 
 import { useDefaultTexts } from './hooks/useDefaultTexts';
 import * as S from './Tag.styles';
+import { HUG_PADDING, REMOVE_BUTTON_SIZE } from './Tag.styles';
 import { type TagProps, TagShape } from './Tag.types';
 
 const Tag = forwardRef<HTMLDivElement, TagProps>(
@@ -22,22 +23,24 @@ const Tag = forwardRef<HTMLDivElement, TagProps>(
       textColor,
       onRemove,
       onClick,
-      prefixel,
+      prefixel: prefixelProp,
       suffixel,
       texts,
       asPill,
       dashed,
       tooltipProps,
+      style,
+      onMouseEnter,
+      onMouseLeave,
       ...htmlAttributes
     },
     ref,
   ) => {
     const theme = useTheme();
+    const prefixel =
+      prefixelProp ?? (image ? <img src={image} alt="" /> : undefined);
     const allTexts = useDefaultTexts(texts);
 
-    const isDefaultType =
-      shape &&
-      [TagShape.DEFAULT_ROUND, TagShape.DEFAULT_SQUARE].includes(shape);
     const isDefaultRound = shape === TagShape.DEFAULT_ROUND;
     const isDefaultSquare = shape === TagShape.DEFAULT_SQUARE;
     const isStatusShape =
@@ -51,6 +54,9 @@ const Tag = forwardRef<HTMLDivElement, TagProps>(
     const isRemovable = removable && (isDefaultRound || isDefaultSquare);
     const isActionable = !disabled && isRemovable;
     const [isIconHovered, setIsIconHovered] = useState(false);
+    const [hoverWidth, setHoverWidth] = useState<number>();
+    const labelRef = useRef<HTMLSpanElement>(null);
+    const isHovered = hoverWidth !== undefined;
 
     const onRemoveCall = () => !!onRemove && !!id && onRemove(id);
     const renderPrefixel = () => {
@@ -74,16 +80,23 @@ const Tag = forwardRef<HTMLDivElement, TagProps>(
       return <S.DefaultSuffixWrapper>{suffixel}</S.DefaultSuffixWrapper>;
     };
 
-    const handleMouseOver = (event: MouseEvent<HTMLDivElement>) => {
-      setIsIconHovered(true);
-
-      htmlAttributes.onMouseOver?.(event);
+    // The ✕ replaces the suffixel on hover without changing the tag's width:
+    // the label truncates instead, down to nothing for a very short label.
+    const handleMouseEnter = (event: MouseEvent<HTMLDivElement>) => {
+      if (isActionable) {
+        const tagRect = event.currentTarget.getBoundingClientRect();
+        const labelLeft =
+          labelRef.current?.getBoundingClientRect().left ?? tagRect.left;
+        const widthForRemoveButton =
+          labelLeft - tagRect.left + REMOVE_BUTTON_SIZE + HUG_PADDING;
+        setHoverWidth(Math.max(tagRect.width, widthForRemoveButton));
+      }
+      onMouseEnter?.(event);
     };
 
     const handleMouseLeave = (event: MouseEvent<HTMLDivElement>) => {
-      setIsIconHovered(false);
-
-      htmlAttributes.onMouseLeave?.(event);
+      setHoverWidth(undefined);
+      onMouseLeave?.(event);
     };
 
     const renderedTag = (
@@ -101,16 +114,18 @@ const Tag = forwardRef<HTMLDivElement, TagProps>(
         data-testid={typeof id !== 'undefined' ? `tag-${id}` : 'tag'}
         preffixel={!!prefixel}
         suffixel={!!suffixel}
-        hasImage={!!image}
         iconHover={isIconHovered}
+        isHovered={isHovered}
         asPill={asPill}
         dashed={dashed}
         {...htmlAttributes}
+        style={isHovered ? { ...style, width: hoverWidth } : style}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
       >
         <S.Content iconHover={isIconHovered}>
-          {image && isDefaultType && <img src={image} alt="" />}
           {!!prefixel && renderPrefixel()}
-          <S.TagName>{name}</S.TagName>
+          <S.TagName ref={labelRef}>{name}</S.TagName>
           {!!suffixel && renderSuffixel()}
           {isRemovable && (
             <Tooltip
@@ -120,8 +135,8 @@ const Tag = forwardRef<HTMLDivElement, TagProps>(
             >
               <S.RemoveButton
                 onClick={onRemoveCall}
-                onMouseOver={handleMouseOver}
-                onMouseLeave={handleMouseLeave}
+                onMouseOver={() => setIsIconHovered(true)}
+                onMouseLeave={() => setIsIconHovered(false)}
                 data-testid="remove-btn"
               >
                 <Icon className="icon" component={<CloseS />} size={24} />

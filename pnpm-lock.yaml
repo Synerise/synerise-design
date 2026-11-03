@@ -5051,9 +5051,6 @@ importers:
       '@synerise/ds-tag':
         specifier: workspace:^
         version: link:../tag
-      '@synerise/ds-tooltip':
-        specifier: workspace:^
-        version: link:../tooltip
       '@synerise/ds-utils':
         specifier: workspace:^
         version: link:../utils
