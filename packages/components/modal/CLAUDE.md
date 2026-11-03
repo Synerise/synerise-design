@@ -154,10 +154,10 @@ Built on top of `Modal` in `@synerise/ds-confirmation`:
 DOM structure when visible:
 ```
 document.body (portal target)
-  └─ ModalRoot (position: absolute, z-index from theme)
-       ├─ ModalMask (position: fixed, full viewport, semi-transparent)
-       └─ ModalScrollWrap (position: fixed, full viewport, overflow: auto, scrollbar-gutter: stable)
-            └─ ModalContainer (absolute or fixed, sized, centered)
+  └─ ModalRoot `.ds-modal` (+ `.ds-modal-fullscreen` for size="fullScreen"; position: absolute, z-index from theme)
+       ├─ ModalMask `.ds-modal-mask` (position: fixed, full viewport, semi-transparent)
+       └─ ModalScrollWrap `.ds-modal-wrap` (position: fixed, full viewport, overflow: auto, scrollbar-gutter: stable)
+            └─ ModalContainer `.ds-modal-dialog` (absolute or fixed, sized, centered)
                  ├─ ModalTitle (header: title, tabs, actions, close button)
                  ├─ ModalBody (content, optional grey background)
                  └─ ModalFooter (prefix / cancel / infix / ok / suffix)

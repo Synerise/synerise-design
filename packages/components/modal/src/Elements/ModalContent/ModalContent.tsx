@@ -67,6 +67,7 @@ export const ModalContent = forwardRef<ModalRef, ModalContentProps>(
       closeButtonAriaLabel,
       initialFocusRef,
       zIndex,
+      className,
       ...rest
     },
     modalRef,
@@ -81,6 +82,13 @@ export const ModalContent = forwardRef<ModalRef, ModalContentProps>(
     const DEFAULT_VIEWPORT_HEIGHT = 80;
 
     const isFullscreen = size === 'fullScreen';
+    const rootClassName = [
+      'ds-modal',
+      isFullscreen && 'ds-modal-fullscreen',
+      className,
+    ]
+      .filter(Boolean)
+      .join(' ');
     const maxHeight = useMemo(() => {
       if (maxViewportHeight !== undefined) {
         if (typeof maxViewportHeight === 'number') {
@@ -188,6 +196,7 @@ export const ModalContent = forwardRef<ModalRef, ModalContentProps>(
         <S.ModalRoot
           data-testid="ds-modal"
           {...rest}
+          className={rootClassName}
           zIndex={resolvedZIndex}
           $hidden={hidden}
           data-visible={!hidden}
@@ -195,9 +204,14 @@ export const ModalContent = forwardRef<ModalRef, ModalContentProps>(
           tabIndex={-1}
           ref={containerRef}
         >
-          <S.ModalMask />
-          <S.ModalScrollWrap ref={scrollRef} onClick={handleMaskClick}>
+          <S.ModalMask className="ds-modal-mask" />
+          <S.ModalScrollWrap
+            className="ds-modal-wrap"
+            ref={scrollRef}
+            onClick={handleMaskClick}
+          >
             <S.ModalContainer
+              className="ds-modal-dialog"
               ref={dialogRef}
               tabIndex={-1}
               onClick={cancelClick}

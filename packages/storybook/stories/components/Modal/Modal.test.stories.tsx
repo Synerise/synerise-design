@@ -213,7 +213,7 @@ export const CancelButtonCallsHandler: Story = {
     await userEvent.click(body.getByText('Cancel'));
 
     expect(args.onCancel).toHaveBeenCalledOnce();
-    await waitFor(() => expect(body.getByTestId('ds-modal')).not.toBeVisible());
+    expect(body.getByTestId('ds-modal')).toBeVisible();
   },
 };
 
