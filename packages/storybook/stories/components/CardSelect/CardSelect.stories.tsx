@@ -35,8 +35,7 @@ const tagProps = {
   color: customColors.yellow['600'],
   prefixel: (
     <Icon
-      size={20}
-      className="icon1"
+      size={24}
       color="var(--ds-color-icon-base-onsolid)"
       component={<ClockS />}
     />

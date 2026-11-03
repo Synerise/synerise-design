@@ -13,21 +13,32 @@ export type TagTexts = {
   deleteTooltip?: ReactNode;
   noResultsLabel?: ReactNode;
 };
+type TagPrefixelProps =
+  | {
+      prefixel?: ReactNode;
+      image?: never;
+    }
+  | {
+      prefixel?: never;
+      /**
+       * @deprecated Pass `<img src={src} alt="" />` as `prefixel` instead; this renders exactly that.
+       */
+      image?: string;
+    };
+
 export type TagProps = WithHTMLAttributes<
   HTMLDivElement,
-  {
+  TagPrefixelProps & {
     id?: string | number;
     name?: string;
     textColor?: string;
     color?: string;
-    image?: string;
     shape?: TagShape;
     removable?: boolean;
     className?: string;
     disabled?: boolean;
     onClick?: () => void;
     onRemove?: (tag: string | number) => void;
-    prefixel?: ReactNode;
     suffixel?: ReactNode;
     texts?: TagTexts;
     asPill?: boolean;

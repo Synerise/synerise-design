@@ -20,10 +20,10 @@ const dsProps = new Set([
   'isActionable',
   'suffixel',
   'preffixel',
-  'hasImage',
   'iconHover',
   'asPill',
   'dashed',
+  'isHovered',
 ]);
 
 const defaultStatusStyles = css`
@@ -63,6 +63,13 @@ export const getColorText = (
     : 'var(--ds-tag-variant-color-text)';
 };
 
+const LABEL_PADDING = 12;
+export const HUG_PADDING = 4;
+const BADGE_GAP = 4;
+export const REMOVE_BUTTON_SIZE = 24;
+const PREFIXEL_SLOT_SIZE = 24;
+const PREFIXEL_IMAGE_SIZE = 16;
+
 type InsertShapeStyles = {
   shape?: TagShape;
   textColor?: string;
@@ -71,21 +78,9 @@ type InsertShapeStyles = {
   isActionable?: boolean;
   preffixel?: boolean;
   suffixel?: boolean;
-  hasImage?: boolean;
+  isHovered?: boolean;
 } & ThemeProps;
 
-const getWidthOnHover = (props: InsertShapeStyles): string => {
-  if ((props.suffixel && props.preffixel) || props.hasImage) {
-    return 'calc(100% - 23px)';
-  }
-  if (props.preffixel) {
-    return 'calc(100% - 35px)';
-  }
-  if (props.suffixel) {
-    return 'calc(100% - 4px)';
-  }
-  return 'calc(100% - 10px)';
-};
 const getFilterColor = (props: TagProps): string => {
   if (props.iconHover) {
     return 'brightness(100%)';
@@ -117,6 +112,7 @@ const addonStyles = (): string => `
 `;
 
 export const TagName = styled.span`
+  min-width: 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -124,18 +120,12 @@ export const TagName = styled.span`
 export const RemoveButton = styled.div`
   /* The ✕ matches the tag text: inherit what getColorText (or textColor) set on the tag. */
   color: inherit;
-  height: 18px;
-  width: 18px;
-  border-radius: 10px;
-  padding: 0;
-  border: none;
-  outline: none;
-  margin: 3px 3px 3px 5px;
-  text-align: center;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
   display: none;
+  flex: 0 0 ${REMOVE_BUTTON_SIZE}px;
+  height: ${REMOVE_BUTTON_SIZE}px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
   opacity: var(--ds-tag-remove-opacity);
 
   &&&:hover {
@@ -143,12 +133,33 @@ export const RemoveButton = styled.div`
       color: var(--ds-tag-remove-icon);
     }
   }
-  .icon {
-    && {
-      transform: translate(1px, -3px);
-    }
-  }
 `;
+
+// The ✕ takes the suffixel's place, so it gets the suffixel's 4px padding.
+const defaultShapeStyles = (props: InsertShapeStyles, borderRadius: string) => {
+  const showRemove = props.isActionable && props.isHovered;
+  return css`
+    color: ${getColorText(props.color, props.textColor, props.theme)};
+    border-radius: ${borderRadius};
+    font-size: 13px;
+    height: 24px;
+    line-height: 24px;
+    padding-left: ${props.preffixel ? HUG_PADDING : LABEL_PADDING}px;
+    padding-right: ${props.suffixel || showRemove ? HUG_PADDING : LABEL_PADDING}px;
+
+    ${
+      showRemove &&
+      css`
+        ${SuffixWrapper}, ${DefaultSuffixWrapper} {
+          display: none;
+        }
+        ${RemoveButton} {
+          display: flex;
+        }
+      `
+    }
+  `;
+};
 
 const insertShapeStyles = (props: InsertShapeStyles) => {
   switch (props.shape) {
@@ -184,93 +195,10 @@ const insertShapeStyles = (props: InsertShapeStyles) => {
       `;
 
     case TagShape.DEFAULT_ROUND:
-      return css`
-        color: ${getColorText(props.color, props.textColor, props.theme)};
-        border-radius: 12px;
-        font-size: 13px;
-        height: 24px;
-        line-height: 24px;
-
-        padding: ${props.removable ? '0' : '0 12px'};
-
-        ${TagName} {
-          padding: ${props.removable ? '0 12px' : '0'};
-          padding-left: ${props.removable && props.preffixel && '4px'};
-          padding-right: ${props.removable && props.suffixel && '4px'};
-        }
-
-        ${
-          props.isActionable &&
-          css`
-          &:hover {
-            padding: ${props.removable && props.suffixel && '0 15px 0 0px'};
-
-            ${TagName} {
-              display: inline-block;
-              padding: ${props.removable ? '0 7px 0 12px' : '0'};
-              padding-left: ${props.removable && props.preffixel && '4px'};
-              padding-right: ${props.removable && props.suffixel && '10px'};
-              width: ${getWidthOnHover(props)};
-            }
-            padding-right: ${!props.suffixel && '5px'};
-
-            ${RemoveButton} {
-              margin-left: 0px;
-              margin-right: ${props.suffixel ? '2px' : '-2px'};
-              .icon {
-                position: absolute;
-                left: -3px;
-                top: -3px;
-              }
-            }
-          }
-        `
-        }
-      `;
+      return defaultShapeStyles(props, '12px');
 
     case TagShape.DEFAULT_SQUARE:
-      return css`
-        color: ${getColorText(props.color, props.textColor, props.theme)};
-        border-radius: 3px;
-        font-size: 13px;
-        height: 24px;
-        line-height: 24px;
-        padding: ${props.removable ? '0' : '0 12px'};
-
-        ${TagName} {
-          padding: ${props.removable ? '0 12px' : '0'};
-          padding-left: ${props.removable && props.preffixel && '4px'};
-          padding-right: ${props.removable && props.suffixel && '4px'};
-        }
-
-        ${
-          props.isActionable &&
-          css`
-          &:hover {
-            padding-right: ${props.removable && props.suffixel && '15px'};
-
-            ${TagName} {
-              display: inline-block;
-              padding: ${props.removable ? '0 7px 0 12px' : '0'};
-              padding-left: ${props.removable && props.preffixel && '4px'};
-              padding-right: ${props.removable && props.suffixel && '10px'};
-              width: ${getWidthOnHover(props)};
-            }
-            padding-right: ${!props.suffixel && '5px'};
-
-            ${RemoveButton} {
-              margin-left: 0px;
-              margin-right: ${props.suffixel ? '2px' : '-2px'};
-              .icon {
-                position: absolute;
-                left: -3px;
-                top: -3px;
-              }
-            }
-          }
-        `
-        }
-      `;
+      return defaultShapeStyles(props, '3px');
 
     case TagShape.SINGLE_CHARACTER_ROUND:
       return css`
@@ -342,8 +270,8 @@ type TagProps = {
   isActionable?: boolean;
   suffixel?: boolean;
   preffixel?: boolean;
-  hasImage?: boolean;
   iconHover?: boolean;
+  isHovered?: boolean;
   asPill?: boolean;
   dashed?: boolean;
 } & ThemeProps;
@@ -356,6 +284,7 @@ export const Content = styled.div.withConfig({
   align-items: center;
   flex-grow: 0;
   flex-shrink: 1;
+  min-width: 0;
   max-width: 100%;
   ${(props) =>
     !!props.iconHover &&
@@ -369,6 +298,7 @@ export const PrefixWrapper = styled.div.withConfig({
   shouldForwardProp: (prop) => !dsProps.has(prop as string),
 })<{ iconHover?: boolean }>`
   ${addonStyles()};
+  margin-right: ${BADGE_GAP}px;
   ${(props) =>
     !!props.iconHover &&
     `.ds-badge-scroll-number{
@@ -381,11 +311,33 @@ export const PrefixWrapper = styled.div.withConfig({
 `;
 export const SuffixWrapper = styled.div`
   ${addonStyles()};
+  margin-left: ${BADGE_GAP}px;
 `;
-export const DefaultSuffixWrapper = styled.div``;
+export const DefaultSuffixWrapper = styled.div`
+  display: flex;
+  align-items: center;
+
+  > .ds-badge {
+    margin-left: ${BADGE_GAP}px;
+  }
+`;
 export const DefaultPrefixWrapper = styled.div.withConfig({
   shouldForwardProp: (prop) => !dsProps.has(prop as string),
 })<{ iconHover?: boolean }>`
+  display: flex;
+  align-items: center;
+
+  > .ds-badge {
+    margin-right: ${BADGE_GAP}px;
+  }
+
+  > img {
+    display: block;
+    width: ${PREFIXEL_IMAGE_SIZE}px;
+    height: ${PREFIXEL_IMAGE_SIZE}px;
+    margin: 0 ${(PREFIXEL_SLOT_SIZE - PREFIXEL_IMAGE_SIZE) / 2}px;
+    object-fit: cover;
+  }
   ${(props) =>
     !!props.iconHover &&
     `.ds-badge-scroll-number{
@@ -401,6 +353,7 @@ export const Tag = styled.div.withConfig({
   shouldForwardProp: (prop) => !dsProps.has(prop as string),
 })<TagProps>`
   position: relative;
+  box-sizing: border-box;
   margin: 4px;
   display: inline-flex;
   font-weight: 500;
@@ -460,40 +413,6 @@ export const Tag = styled.div.withConfig({
       `
       };
     `}
-
-
-  .icon1 {
-    margin: 0 -2px 0 1px;
-  }
-
-  ${(props) =>
-    !!props.isActionable &&
-    css`
-      &:hover {
-        ${SuffixWrapper},${DefaultSuffixWrapper} {
-          display: none;
-        }
-        ${RemoveButton} {
-          position: absolute;
-          top: 0;
-          right: ${props.removable && props.suffixel ? '-15px' : '0'};
-          display: inline-block;
-        }
-      }
-    `};
-
-  ${SuffixWrapper},${DefaultSuffixWrapper} {
-    margin: ${(props) =>
-      !props.removable && props.suffixel
-        ? '0px -8px 3px 5px'
-        : '0 4px 3px 1px'};
-  }
-  ${PrefixWrapper},${DefaultPrefixWrapper} {
-    margin: ${(props) =>
-      !props.removable && props.preffixel
-        ? '0px 5px 3px -8px'
-        : '0 1px 3px 4px'};
-  }
 `;
 
 export const DeleteButton = styled.div``;
