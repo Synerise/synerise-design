@@ -4,6 +4,7 @@ const { glob } = require('glob');
 const fs = require('fs');
 const path = require('path');
 const tpl = require('./template.js');
+const normaliseCanvasRect = require('./normaliseCanvasRect.js');
 
 const ICONS_DIR = 'src/icons';
 const ICON_SETS_FILE = `${ICONS_DIR}/iconSets.ts`;
@@ -95,6 +96,7 @@ const svgoConfigFor = (file, componentClassName, iconSet) => ({
         removeMatchedSelectors: true,
       },
     },
+    normaliseCanvasRect(`svg-${hash(file)}canvas`),
   ],
 });
 
