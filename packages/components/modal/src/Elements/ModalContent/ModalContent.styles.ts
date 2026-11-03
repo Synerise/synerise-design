@@ -9,6 +9,7 @@ export const ModalScrollWrap = styled.div`
   right: 0;
   bottom: 0;
   overflow: auto;
+  scrollbar-gutter: stable;
 `;
 export const ModalWrapper = styled.div`
   position: relative;
