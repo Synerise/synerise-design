@@ -16,6 +16,10 @@ In some rare cases we do not want a specific icon to change color depending on c
 
 Read more: https://gomakethings.com/currentcolor-and-svgs/
 
+### Canvas rect
+
+Figma exports a `rect#canvas` as the first child of most icons, to fix the bounding box. `build/svgr.js` rewrites it to `fill="none"` with no opacity (`build/normaliseCanvasRect.js`), so a canvas that was exported with a visible paint (e.g. `fill:#fff;fill-opacity:0.1`) cannot tint an icon on a filled background. No need to clean it up in the source SVG.
+
 ## fill-rule debugging
 
 Some svg objects have a fill-rule="evenodd" specified - svgr processing of those icons can sometimes result in shapes without transparent holes, where they were in the source svg.
