@@ -148,6 +148,18 @@ ref.current?.scrollToBottom();
 
 The dialog container carries `role="dialog"` and `aria-modal="true"`. When a `title` is provided it is linked via `aria-labelledby`; otherwise pass `ariaLabel` to give the dialog an accessible name. A `description`, when present, is linked via `aria-describedby`. The close button's accessible name defaults to the localised `DS.MODAL.CLOSE` translation (`"Close"`), overridable with `closeButtonAriaLabel`. Focus is trapped while the modal is open and restored to the previously focused element on close, and `Escape` closes the modal when `onCancel` is set and `closable` is not `false`.
 
+### CSS class hooks
+
+Every modal carries stable classes for styling from outside (a host shell offsetting modals next to a side panel, for example), so styles never have to select on `data-testid`:
+
+| Class                  | Element                                                      |
+| ---------------------- | ------------------------------------------------------------ |
+| `ds-modal`             | the root, next to any `className` you pass                   |
+| `ds-modal-fullscreen`  | the root of a `size="fullScreen"` modal                       |
+| `ds-modal-mask`        | the backdrop                                                 |
+| `ds-modal-wrap`        | the full-viewport scroll wrapper the dialog is centred in    |
+| `ds-modal-dialog`      | the dialog container (`role="dialog"`)                       |
+
 ### Footer layout slots
 
 These props allow fine-grained control of the default footer layout:

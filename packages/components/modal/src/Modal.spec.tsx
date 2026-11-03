@@ -977,3 +977,33 @@ describe('Modal', () => {
     });
   });
 });
+
+describe('Modal class hooks', () => {
+  it('marks the root, mask, wrap and dialog with ds-modal classes', () => {
+    renderWithProvider(<Modal open title="hooks" />);
+
+    const root = screen.getByTestId('ds-modal');
+    expect(root).toHaveClass('ds-modal');
+    expect(root.querySelector('.ds-modal-mask')).toBeInTheDocument();
+    expect(root.querySelector('.ds-modal-wrap')).toBeInTheDocument();
+    expect(root.querySelector('.ds-modal-dialog')).toBe(screen.getByRole('dialog'));
+  });
+
+  it('keeps the consumer className next to the ds-modal class', () => {
+    renderWithProvider(<Modal open title="hooks" className="my-modal" />);
+
+    expect(screen.getByTestId('ds-modal')).toHaveClass('ds-modal', 'my-modal');
+  });
+
+  it('flags a fullScreen modal with ds-modal-fullscreen', () => {
+    renderWithProvider(<Modal open title="hooks" size="fullScreen" />);
+
+    expect(screen.getByTestId('ds-modal')).toHaveClass('ds-modal-fullscreen');
+  });
+
+  it('leaves ds-modal-fullscreen off the other sizes', () => {
+    renderWithProvider(<Modal open title="hooks" size="large" />);
+
+    expect(screen.getByTestId('ds-modal')).not.toHaveClass('ds-modal-fullscreen');
+  });
+});
