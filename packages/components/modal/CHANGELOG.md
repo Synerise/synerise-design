@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@2.2.0...@synerise/ds-modal@2.2.1) (2026-11-03)
+
+
+### Bug Fixes
+
+* leave a modal's close to its consumer when onCancel is set ([b8bc321](https://github.com/synerise/synerise-design/commit/b8bc32192ce6afd90c79464886fd8ffa31adf558))
+* **modal:** reserve the scrollbar gutter so stacked modals line up ([2b8ac3c](https://github.com/synerise/synerise-design/commit/2b8ac3cb85b0e2b7deaac4ae3868c3b5b60567b1))
+
+
+
+
+
 # [2.2.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@2.1.1...@synerise/ds-modal@2.2.0) (2026-10-29)
 
 

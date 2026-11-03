@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@2.1.0...@synerise/ds-tags@2.1.1) (2026-11-03)
+
+
+### Bug Fixes
+
+* **tag:** match Figma horizontal spacing ([1434e22](https://github.com/Synerise/synerise-design/commit/1434e2218d0e12ac0954788518f44167acde9f6b))
+
+
+
+
+
 # [2.1.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@2.0.14...@synerise/ds-tags@2.1.0) (2026-10-29)
 
 

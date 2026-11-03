@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.67.0](https://github.com/Synerise/synerise-design/compare/storybook@1.66.0...storybook@1.67.0) (2026-11-03)
+
+
+### Bug Fixes
+
+* leave a modal's close to its consumer when onCancel is set ([b8bc321](https://github.com/Synerise/synerise-design/commit/b8bc32192ce6afd90c79464886fd8ffa31adf558))
+* **modal:** reserve the scrollbar gutter so stacked modals line up ([2b8ac3c](https://github.com/Synerise/synerise-design/commit/2b8ac3cb85b0e2b7deaac4ae3868c3b5b60567b1))
+* **tag:** match Figma horizontal spacing ([1434e22](https://github.com/Synerise/synerise-design/commit/1434e2218d0e12ac0954788518f44167acde9f6b))
+
+
+### Features
+
+* **item-picker:** add a mixed list mode and open row cards on keyboard focus ([7237582](https://github.com/Synerise/synerise-design/commit/7237582567e8ab83877b945f7fd5a072b9858ee6))
+
+
+
+
+
 # [1.66.0](https://github.com/Synerise/synerise-design/compare/storybook@1.65.1...storybook@1.66.0) (2026-10-29)
 
 

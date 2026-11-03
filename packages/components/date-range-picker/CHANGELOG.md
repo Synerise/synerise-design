@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@2.3.0...@synerise/ds-date-range-picker@2.3.1) (2026-11-03)
+
+
+### Bug Fixes
+
+* **date-range-picker:** resolve forceAbsolute ranges like the panel ([b0f63d3](https://github.com/Synerise/synerise-design/commit/b0f63d3fcaf8a76183b817c5eebf05e2e55fefa5))
+
+
+
+
+
 # [2.3.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@2.2.0...@synerise/ds-date-range-picker@2.3.0) (2026-10-29)
 
 

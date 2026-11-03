@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-confirmation@2.1.0...@synerise/ds-confirmation@2.1.1) (2026-11-03)
+
+
+### Bug Fixes
+
+* leave a modal's close to its consumer when onCancel is set ([b8bc321](https://github.com/Synerise/synerise-design/commit/b8bc32192ce6afd90c79464886fd8ffa31adf558))
+
+
+
+
+
 # [2.1.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-confirmation@2.0.13...@synerise/ds-confirmation@2.1.0) (2026-10-29)
 
 

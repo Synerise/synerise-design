@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.4.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@2.3.0...@synerise/ds-item-picker@2.4.0) (2026-11-03)
+
+
+### Bug Fixes
+
+* **item-picker:** keep the dropdown open when the selected item's label refreshes ([d294c83](https://github.com/Synerise/synerise-design/commit/d294c83dc48a58bedb34293fda1018cc91e94fd4))
+
+
+### Features
+
+* **item-picker:** add a mixed list mode and open row cards on keyboard focus ([7237582](https://github.com/Synerise/synerise-design/commit/7237582567e8ab83877b945f7fd5a072b9858ee6))
+
+
+
+
+
 # [2.3.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@2.2.3...@synerise/ds-item-picker@2.3.0) (2026-10-29)
 
 

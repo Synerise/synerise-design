@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-popover@2.2.0...@synerise/ds-popover@2.3.0) (2026-11-03)
+
+
+### Features
+
+* **item-picker:** add a mixed list mode and open row cards on keyboard focus ([7237582](https://github.com/Synerise/synerise-design/commit/7237582567e8ab83877b945f7fd5a072b9858ee6))
+
+
+
+
+
 # [2.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-popover@2.1.0...@synerise/ds-popover@2.2.0) (2026-10-29)
 
 

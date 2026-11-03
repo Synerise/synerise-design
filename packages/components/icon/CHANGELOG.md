@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@2.3.0...@synerise/ds-icon@2.3.1) (2026-11-03)
+
+
+### Bug Fixes
+
+* **icon:** make the canvas rect of every icon fill none ([cd31e1d](https://github.com/Synerise/synerise-design/commit/cd31e1dac374bf0f1f81a765bfaefe839701c2d7))
+
+
+
+
+
 # [2.3.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@2.2.3...@synerise/ds-icon@2.3.0) (2026-10-29)
 
 
