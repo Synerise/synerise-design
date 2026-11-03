@@ -32,6 +32,9 @@ export type ModalSize =
  * Handler for the OK / Cancel buttons. May be synchronous or return a
  * `Promise` — when a promise is returned, the modal stays open until it
  * resolves.
+ *
+ * `onCancel` is a request to close, not the close itself: lower `open` to
+ * close, or leave it alone to keep the modal up.
  */
 type ModalButtonHandler =
   | ((e: MouseEvent<HTMLElement>) => void)
@@ -112,13 +115,16 @@ export type ModalProps = {
    */
   closable?: boolean;
   /**
-   * Whether clicking the backdrop closes the modal.
+   * Whether clicking the backdrop requests a close.
    * @defaultValue `true`
    */
   maskClosable?: boolean;
 
   /**
-   * Whether the modal is visible.
+   * Whether the modal is visible, and the only thing that hides it. The close
+   * button, `Escape`, the backdrop and `closeAllOverlays` call `onCancel` and
+   * leave this prop alone; the modal closes itself only when there is no
+   * `onCancel` to ask.
    * @defaultValue `false`
    */
   open?: boolean;

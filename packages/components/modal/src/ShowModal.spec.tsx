@@ -1,4 +1,6 @@
 import { setPortalContent } from '@synerise/ds-core';
+import { renderWithProvider } from '@synerise/ds-core/testing';
+import { fireEvent, screen, waitFor } from '@testing-library/react';
 
 import { showModal } from './ShowModal';
 
@@ -15,14 +17,41 @@ describe('showModal', () => {
     vi.clearAllMocks();
   });
 
-  it('should call setPortalContent with an open Modal element', () => {
+  const portalElement = () =>
+    (setPortalContent as ReturnType<typeof vi.fn>).mock.calls[0][0];
+
+  it('should call setPortalContent with an open modal element', () => {
     showModal({ title: 'Test' });
 
     expect(setPortalContent).toHaveBeenCalledTimes(1);
-    const call = (setPortalContent as ReturnType<typeof vi.fn>).mock.calls[0][0];
-    expect(call).not.toBeNull();
-    expect(call.props.open).toBe(true);
-    expect(call.props.title).toBe('Test');
+    renderWithProvider(portalElement());
+
+    expect(screen.getByRole('dialog')).toBeVisible();
+    expect(screen.getByText('Test')).toBeInTheDocument();
+  });
+
+  it('should close itself when the user cancels', async () => {
+    const onCancel = vi.fn();
+    const afterClose = vi.fn();
+    showModal({ title: 'Test', onCancel, afterClose });
+    renderWithProvider(portalElement());
+
+    fireEvent.click(screen.getByTestId('modal-close'));
+
+    await waitFor(() => expect(onCancel).toHaveBeenCalledTimes(1));
+    await waitFor(() => expect(afterClose).toHaveBeenCalledTimes(1));
+    expect(setPortalContent).toHaveBeenLastCalledWith(null);
+  });
+
+  it('should close itself on an async onCancel once it resolves', async () => {
+    const onCancel = vi.fn().mockResolvedValue(undefined);
+    const afterClose = vi.fn();
+    showModal({ title: 'Test', onCancel, afterClose });
+    renderWithProvider(portalElement());
+
+    fireEvent.click(screen.getByTestId('modal-close'));
+
+    await waitFor(() => expect(afterClose).toHaveBeenCalledTimes(1));
   });
 
   it('should return a handle with destroy()', () => {
@@ -43,8 +72,7 @@ describe('showModal', () => {
     const handle = showModal({ title: 'Test', afterClose });
 
     // Simulate the afterClose being triggered (called via the modal's afterClose prop)
-    const call = (setPortalContent as ReturnType<typeof vi.fn>).mock.calls[0][0];
-    call.props.afterClose();
+    portalElement().props.afterClose();
 
     expect(afterClose).toHaveBeenCalledTimes(1);
   });

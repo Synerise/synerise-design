@@ -32,6 +32,29 @@ import Modal from '@synerise/ds-modal';
 </Modal>
 ```
 
+### Who closes the modal
+
+`open` is the only thing that hides the modal. The close button, `Escape`, the backdrop and
+`closeAllOverlays` call `onCancel` and leave `open` alone, so the modal stays up until you
+lower it yourself. That lets a handler refuse the close — to raise an unsaved-changes prompt,
+say:
+
+```tsx
+<Modal
+  open={isOpen}
+  onCancel={() => {
+    if (hasUnsavedChanges) {
+      setPromptVisible(true);
+      return;
+    }
+    setIsOpen(false);
+  }}
+/>
+```
+
+Without an `onCancel` there is nobody to ask, so the modal closes itself on those same
+gestures. `showModal` holds `open` for you and lowers it once your `onCancel` resolves.
+
 ### Imperative API
 
 Use `showModal` when you need to open a modal outside of the React component tree:
@@ -97,9 +120,9 @@ ref.current?.scrollToBottom();
 | `blank`             | Renders a minimal modal without any header/footer chrome; only a close button is shown when `onCancel` is set    | `boolean`                                                                         | `false`   |
 | `centered`          | Vertically centers the modal in the viewport                                                                      | `boolean`                                                                         | `false`   |
 | `closable`          | Whether the close (×) button is shown                                                                             | `boolean`                                                                         | `true`    |
-| `maskClosable`      | Whether clicking the backdrop closes the modal                                                                    | `boolean`                                                                         | `true`    |
+| `maskClosable`      | Whether clicking the backdrop requests a close                                                                    | `boolean`                                                                         | `true`    |
 | `onOk`              | Called when the OK / Apply button is clicked; may return a `Promise` — modal stays open until it resolves        | `(e: MouseEvent) => void \| Promise<unknown>`                                     | –         |
-| `onCancel`          | Called when the close button, backdrop, or Cancel button is clicked; may return a `Promise`                      | `(e: MouseEvent) => void \| Promise<unknown>`                                     | –         |
+| `onCancel`          | Called when the close button, backdrop, or Cancel button is clicked; may return a `Promise`. It is a close request — lower `open` to close | `(e: MouseEvent) => void \| Promise<unknown>`                                     | –         |
 | `afterClose`        | Called after the modal has fully unmounted                                                                        | `() => void`                                                                      | –         |
 | `footer`            | Custom footer content. Set `footer={null}` to remove the footer entirely                                         | `ReactNode`                                                                       | OK + Cancel buttons |
 | `okText`            | Label for the OK button                                                                                           | `ReactNode`                                                                       | `Apply`   |

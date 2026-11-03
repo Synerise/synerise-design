@@ -1,4 +1,4 @@
-import React, { type MouseEvent } from 'react';
+import React, { type MouseEvent, useState } from 'react';
 
 import { setPortalContent } from '@synerise/ds-core';
 
@@ -9,6 +9,29 @@ let modalInstanceId = 0;
 
 const isThenable = (value: unknown): value is Promise<unknown> =>
   !!value && typeof (value as { then?: unknown }).then === 'function';
+
+// An imperative modal has no consumer holding its visibility, and `Modal` leaves
+// closing to `onCancel` as soon as `open` is passed. This stands in for that
+// consumer: it opens on mount and flips itself closed once `onCancel` resolves.
+const ImperativeModal = ({ onCancel, ...props }: ModalProps) => {
+  const [open, setOpen] = useState(true);
+
+  const handleCancel = async (event: MouseEvent<HTMLElement>) => {
+    const result = onCancel?.(event);
+    if (isThenable(result)) {
+      await result;
+    }
+    setOpen(false);
+  };
+
+  return (
+    <Modal
+      {...props}
+      open={open}
+      onCancel={onCancel ? handleCancel : undefined}
+    />
+  );
+};
 
 export const showModal = ({
   onOk,
@@ -31,10 +54,9 @@ export const showModal = ({
 
   modalInstanceId += 1;
   setPortalContent(
-    <Modal
+    <ImperativeModal
       key={modalInstanceId}
       {...initial}
-      open
       onOk={onOk ? handleOk : undefined}
       afterClose={() => {
         afterClose?.();

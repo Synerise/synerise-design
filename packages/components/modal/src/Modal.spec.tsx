@@ -8,12 +8,29 @@ import Dropdown from '@synerise/ds-dropdown';
 import Popconfirm from '@synerise/ds-popconfirm';
 
 import Modal from './Modal';
-import { type ModalRef } from './Modal.types';
+import { type ModalProps, type ModalRef } from './Modal.types';
 
 const MODAL_TOKEN_FOR_OVERLAY_TESTS = Number.parseInt(
   theme.variables['zindex-modal'],
   10,
 );
+
+// Stands in for a consumer that owns the modal's visibility: the spy under test
+// runs first, then the host lowers `open`, which is what actually closes it.
+const ControlledHost = ({ onCancel, ...props }: ModalProps) => {
+  const [open, setOpen] = useState(true);
+
+  return (
+    <Modal
+      {...props}
+      open={open}
+      onCancel={async (event) => {
+        await onCancel?.(event);
+        setOpen(false);
+      }}
+    />
+  );
+};
 
 describe('Modal', () => {
   const titleMock = 'Test Title';
@@ -329,7 +346,7 @@ describe('Modal', () => {
     it('fires when the user closes via the cancel button', async () => {
       const afterClose = vi.fn();
       renderWithProvider(
-        <Modal open afterClose={afterClose} onCancel={vi.fn()} title="t" />,
+        <ControlledHost afterClose={afterClose} onCancel={vi.fn()} title="t" />,
       );
 
       fireEvent.click(screen.getByText('Cancel'));
@@ -339,7 +356,7 @@ describe('Modal', () => {
     it('fires when the user closes via Escape', async () => {
       const afterClose = vi.fn();
       renderWithProvider(
-        <Modal open afterClose={afterClose} onCancel={vi.fn()} title="t" />,
+        <ControlledHost afterClose={afterClose} onCancel={vi.fn()} title="t" />,
       );
 
       fireEvent.keyDown(screen.getByTestId('ds-modal'), { key: 'Escape' });
@@ -362,6 +379,102 @@ describe('Modal', () => {
       );
       unmount();
       expect(afterClose).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('cancel is a close request', () => {
+    const ControlledModal = ({ veto = false }: { veto?: boolean }) => {
+      const [open, setOpen] = useState(true);
+
+      return (
+        <>
+          <button onClick={() => setOpen(true)}>reopen</button>
+          <Modal
+            open={open}
+            title="controlled"
+            onCancel={() => {
+              if (!veto) {
+                setOpen(false);
+              }
+            }}
+          />
+        </>
+      );
+    };
+
+    it('stays visible when onCancel does not flip open', async () => {
+      renderWithProvider(<ControlledModal veto />);
+
+      fireEvent.click(screen.getByTestId('modal-close'));
+
+      await waitFor(() =>
+        expect(screen.getByTestId('ds-modal')).toBeVisible(),
+      );
+    });
+
+    it('stays visible when Escape is vetoed by onCancel', async () => {
+      renderWithProvider(<ControlledModal veto />);
+
+      fireEvent.keyDown(screen.getByTestId('ds-modal'), { key: 'Escape' });
+
+      await waitFor(() =>
+        expect(screen.getByTestId('ds-modal')).toBeVisible(),
+      );
+    });
+
+    it('reopens after a close the consumer vetoed', async () => {
+      renderWithProvider(<ControlledModal veto />);
+
+      fireEvent.click(screen.getByTestId('modal-close'));
+      fireEvent.click(screen.getByRole('button', { name: 'reopen' }));
+
+      await waitFor(() =>
+        expect(screen.getByTestId('ds-modal')).toBeVisible(),
+      );
+    });
+
+    it('closes when onCancel flips open', async () => {
+      renderWithProvider(<ControlledModal />);
+
+      fireEvent.click(screen.getByTestId('modal-close'));
+
+      await waitFor(() =>
+        expect(screen.getByTestId('ds-modal')).not.toBeVisible(),
+      );
+    });
+
+    it('fires afterClose once the consumer flips open', async () => {
+      const afterClose = vi.fn();
+      const Harness = () => {
+        const [open, setOpen] = useState(true);
+
+        return (
+          <Modal
+            open={open}
+            title="t"
+            afterClose={afterClose}
+            onCancel={() => setOpen(false)}
+          />
+        );
+      };
+      renderWithProvider(<Harness />);
+
+      fireEvent.click(screen.getByTestId('modal-close'));
+
+      await waitFor(() => expect(afterClose).toHaveBeenCalledTimes(1));
+    });
+
+    it('closes itself when no onCancel is given', async () => {
+      renderWithProvider(<Modal open title="t" maskClosable />);
+
+      const mask = document.querySelector(
+        '[data-testid="ds-modal"] > div:nth-child(2)',
+      ) as HTMLElement;
+      fireEvent.click(mask);
+
+      await waitFor(() =>
+        expect(screen.getByTestId('ds-modal')).not.toBeVisible(),
+      );
     });
   });
 
@@ -452,7 +565,7 @@ describe('Modal', () => {
   describe('closeAllOverlays', () => {
     it('closes an open modal through onCancel', async () => {
       const onCancel = vi.fn();
-      renderWithProvider(<Modal open onCancel={onCancel} title="t" />);
+      renderWithProvider(<ControlledHost onCancel={onCancel} title="t" />);
 
       await act(async () => {
         await closeAllOverlays();
@@ -474,7 +587,7 @@ describe('Modal', () => {
 
     it('awaits an async onCancel before closing', async () => {
       const onCancel = vi.fn().mockResolvedValue(undefined);
-      renderWithProvider(<Modal open onCancel={onCancel} title="t" />);
+      renderWithProvider(<ControlledHost onCancel={onCancel} title="t" />);
 
       await act(async () => {
         await closeAllOverlays();
@@ -532,9 +645,9 @@ describe('Modal', () => {
       outsideButton.focus();
 
       renderWithProvider(
-        <Modal open onCancel={vi.fn()} title="restore focus">
+        <ControlledHost onCancel={vi.fn()} title="restore focus">
           <button>Inside</button>
-        </Modal>,
+        </ControlledHost>,
       );
 
       await act(async () => {
@@ -571,6 +684,25 @@ describe('Modal', () => {
       fireEvent.click(screen.getByRole('button', { name: 'rerender' }));
 
       expect(screen.getByTestId('ds-modal')).not.toBeVisible();
+    });
+
+    it('reaches a vetoing controlled modal again on a later sweep', async () => {
+      const onCancel = vi.fn();
+      const Vetoing = () => {
+        const [open] = useState(true);
+
+        return <Modal open={open} title="t" onCancel={onCancel} />;
+      };
+      renderWithProvider(<Vetoing />);
+
+      await act(async () => {
+        await closeAllOverlays();
+      });
+      await act(async () => {
+        await closeAllOverlays();
+      });
+
+      expect(onCancel).toHaveBeenCalledTimes(2);
     });
 
     it('does nothing when no modal is open', async () => {

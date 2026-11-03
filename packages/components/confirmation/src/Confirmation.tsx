@@ -40,9 +40,8 @@ const Confirmation = <ItemType extends ListItemProps>({
   // outlive the opening that revealed it. Without this, dismissing while it is showing leaves the
   // mode behind and the next open lands on the related objects instead of the question.
   //
-  // Hung off `afterClose` rather than watching `open`, because `Modal` also fires it when it closes
-  // itself — from the close button or the mask — where the `open` prop this component sees has not
-  // changed at all.
+  // Hung off `afterClose` rather than watching `open`, so it also covers an uncontrolled
+  // Confirmation, which closes itself without the `open` this component sees ever changing.
   const handleAfterClose = useCallback(() => {
     setMode('default');
     afterClose?.();
