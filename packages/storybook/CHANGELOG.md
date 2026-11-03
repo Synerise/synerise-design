@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.68.0](https://github.com/Synerise/synerise-design/compare/storybook@1.67.0...storybook@1.68.0) (2026-11-03)
+
+
+### Features
+
+* expose ds-modal class hooks on the root, mask, wrap and dialog ([42724b3](https://github.com/Synerise/synerise-design/commit/42724b3961d21495f015d0b27b14914e1ad2addd))
+
+
+
+
+
 # [1.67.0](https://github.com/Synerise/synerise-design/compare/storybook@1.66.0...storybook@1.67.0) (2026-11-03)
 
 

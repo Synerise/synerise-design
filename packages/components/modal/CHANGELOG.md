@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@2.2.1...@synerise/ds-modal@2.3.0) (2026-11-03)
+
+
+### Features
+
+* expose ds-modal class hooks on the root, mask, wrap and dialog ([42724b3](https://github.com/synerise/synerise-design/commit/42724b3961d21495f015d0b27b14914e1ad2addd))
+
+
+
+
+
 ## [2.2.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@2.2.0...@synerise/ds-modal@2.2.1) (2026-11-03)
 
 
