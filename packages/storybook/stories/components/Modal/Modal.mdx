@@ -154,8 +154,8 @@ In the example below, open the modal, open the dropdown inside it, then trigger 
   </thead>
   <tbody>
     <tr><td>Order</td><td>Newest-registered first — a dropdown opened inside a modal closes before the modal</td></tr>
-    <tr><td>Controlled overlays</td><td>The sweep calls <code>onCancel</code>; the modal also closes internally. A fully controlled overlay that ignores its handler and keeps <code>open</code> true stays open</td></tr>
-    <tr><td>Repeat calls</td><td>Each registration closes at most once, so <code>onCancel</code> cannot fire twice</td></tr>
+    <tr><td>Who closes</td><td>The sweep calls <code>onCancel</code> and nothing else — the modal hides when the consumer lowers <code>open</code>. One that refuses and keeps <code>open</code> true stays open, by design</td></tr>
+    <tr><td>Repeat calls</td><td>Each registration is swept at most once, so one sweep cannot fire <code>onCancel</code> twice. A modal that refused the close re-registers and a later sweep asks it again</td></tr>
     <tr><td>Async <code>onCancel</code></td><td>Awaited before the modal closes, same as clicking Cancel</td></tr>
     <tr><td>Nothing open</td><td>Resolves without throwing</td></tr>
     <tr><td>Coverage</td><td><code>ds-modal</code>, <code>ds-drawer</code> and every popover-based overlay (<code>ds-dropdown</code>, <code>ds-tooltip</code>, <code>ds-popconfirm</code>, <code>ds-select</code>, <code>ds-table-new</code>)</td></tr>

@@ -39,14 +39,14 @@ src/
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `open` | `boolean` | `false` | Whether the modal is visible |
+| `open` | `boolean` | `false` | Whether the modal is visible, and the only thing that hides it. Cancel gestures call `onCancel` and leave this prop alone |
 | `destroyOnClose` | `boolean` | `false` | When true, unmounts children on close. When false, keeps mounted but hidden |
 | `title` | `ReactNode` | — | Modal header title |
 | `size` | `ModalSize` | — | Predefined width: `small` (520px), `medium` (792px), `large` (1044px), `extraLarge` (1280px), `fullSize` (100%), `fullScreen` (fixed, 24px gutter on every side) |
 | `bodyBackground` | `'white' \| 'grey'` | `'white'` | Background colour of the modal body |
 | `blank` | `boolean` | — | Strips header/footer chrome; shows only a close button if `onCancel` is provided |
 | `closable` | `boolean` | `true` | Whether the close button is shown (gated in ModalContent before reaching ModalTitle) |
-| `maskClosable` | `boolean` | `true` | Whether clicking the backdrop closes the modal |
+| `maskClosable` | `boolean` | `true` | Whether clicking the backdrop requests a close |
 | `centered` | `boolean` | `false` | Vertically centres the modal |
 | `maxViewportHeight` | `true \| number` | — | Caps height. `true` → 80vh; number → Nvh. Wraps children in scrollbar. Anchors modal to bottom of viewport |
 | `disableScrollbar` | `boolean` | — | Disables scrollbar wrapping from `maxViewportHeight` |
@@ -57,7 +57,7 @@ src/
 | `titleContainerStyle` | `CSSProperties` | — | Inline styles for the title container |
 | `description` | `ReactNode` | — | **Deprecated.** Sub-title with dashed separator |
 | `onOk` | `(e) => void \| Promise` | — | OK button handler; async supported — modal stays open until resolved |
-| `onCancel` | `(e) => void \| Promise` | — | Cancel/close handler; async supported |
+| `onCancel` | `(e) => void \| Promise` | — | Cancel/close handler; async supported. It is a close request: the modal hides only when `open` is lowered. With no `onCancel` the modal closes itself |
 | `afterClose` | `() => void` | — | Called after each close (every `open: true → false` transition). Matches antd Modal semantics. Does not fire on initial mount or on hard unmount of an open modal. |
 | `footer` | `ReactNode \| null` | auto-generated | `null` suppresses footer; custom ReactNode overrides it |
 | `texts` | `{ okButton?; cancelButton? }` | `{ okButton: 'Apply', cancelButton: 'Cancel' }` | Default button labels |

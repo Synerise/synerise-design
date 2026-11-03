@@ -8,6 +8,7 @@ import React, {
   useImperativeHandle,
   useMemo,
   useRef,
+  useState,
 } from 'react';
 
 import {
@@ -71,6 +72,7 @@ export const ModalContent = forwardRef<ModalRef, ModalContentProps>(
     modalRef,
   ) => {
     const scrollRef = useRef<HTMLDivElement>(null);
+    const [cancelAttempts, setCancelAttempts] = useState(0);
     // One step above the enclosing overlay when the consumer gave no explicit
     // `zIndex`, so a modal opened from inside another modal stacks above it.
     const resolvedZIndex = useResolvedOverlayZIndex(zIndex);
@@ -117,7 +119,11 @@ export const ModalContent = forwardRef<ModalRef, ModalContentProps>(
       if (onCancelResult?.then !== undefined) {
         await onCancelResult;
       }
-      closeModal();
+      // Visibility belongs to `open`, so the cancel ends here. Hiding the modal
+      // from the inside would leave the consumer holding `open: true` with no
+      // prop change to come — and a consumer that refuses the close (an
+      // unsaved-changes prompt, say) could never show the modal again.
+      setCancelAttempts((attempts) => attempts + 1);
     };
 
     const handleOk = (event: MouseEvent<HTMLElement>) => {
@@ -145,9 +151,16 @@ export const ModalContent = forwardRef<ModalRef, ModalContentProps>(
     const dialogRef = useRef<HTMLDivElement>(null);
 
     // Join the overlay registry while visible, so `closeAllOverlays()` runs the
-    // same path as the close button: `onCancel` (awaited when async), then
-    // `closeModal`. Focus restore comes from the focus trap's cleanup below.
+    // same path as the close button: `onCancel`, awaited when async, and the
+    // close itself left to the consumer. Focus restore comes from the focus
+    // trap's cleanup below.
+    //
+    // The registry retires an entry as soon as it has swept it, counting on the
+    // overlay to unregister and come back when it reopens. A modal whose consumer
+    // refuses the close never hides, so it would stay retired and no later sweep
+    // could reach it; re-registering on each refused attempt restores it.
     const handleCancelRef = useLatestRef(handleCancel);
+    // biome-ignore lint/correctness/useExhaustiveDependencies: cancelAttempts is the re-registration trigger, not a value the effect reads
     useEffect(() => {
       if (hidden) {
         return undefined;
@@ -161,7 +174,7 @@ export const ModalContent = forwardRef<ModalRef, ModalContentProps>(
             ),
           ),
       });
-    }, [hidden, handleCancelRef]);
+    }, [hidden, cancelAttempts, handleCancelRef]);
 
     // By default focus the dialog container itself (announced by screen readers
     // via its accessible name) instead of the first focusable field. Consumers
