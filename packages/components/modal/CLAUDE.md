@@ -156,7 +156,7 @@ DOM structure when visible:
 document.body (portal target)
   └─ ModalRoot (position: absolute, z-index from theme)
        ├─ ModalMask (position: fixed, full viewport, semi-transparent)
-       └─ ModalScrollWrap (position: fixed, full viewport, overflow: auto)
+       └─ ModalScrollWrap (position: fixed, full viewport, overflow: auto, scrollbar-gutter: stable)
             └─ ModalContainer (absolute or fixed, sized, centered)
                  ├─ ModalTitle (header: title, tabs, actions, close button)
                  ├─ ModalBody (content, optional grey background)
@@ -169,6 +169,7 @@ document.body (portal target)
 - **Title render condition:** Header renders when at least one of `title`, `description`, `headerTabProps` is truthy. `headerBottomBar` renders independently.
 - **Footer render logic:** `footer={null}` suppresses entirely. Explicit `footer` value overrides auto-generated `ModalFooter`. Omitted `footer` renders the default.
 - **`fullScreen`** positions the modal `fixed`, inset 24px from every viewport edge so the mask shows around it; body scrolls via `overflow: scroll`.
+- **Scrollbar gutter:** every modal has its own `ModalScrollWrap`, and `ModalContainer` centres on `left: 50%` of it. A classic scrollbar on a modal taller than the viewport would narrow only that wrap and move its box half a scrollbar left of a shorter modal stacked over it, so the wrap always reserves the gutter (`scrollbar-gutter: stable`). Story `AlignsStackedModalsOfDifferentHeights` covers it.
 - **`maxViewportHeight`** anchors the modal to the bottom of the viewport (sheet-style), not the centre.
 - **Async handlers:** Both `onOk` and `onCancel` can return `Promise`. `onCancel` awaits the promise then calls `closeModal()`. `onOk` resolves then calls `closeModal()` only if the handler was detected as promise-returning via `'then' in onOk`.
 - **Nested-modal stacking:** `ModalContent` resolves its z-index through `useResolvedOverlayZIndex` from `@synerise/ds-core` and re-publishes the result to its whole subtree via `OverlayZIndexProvider`, so a modal opened from inside another modal renders above it without either side coordinating. This cannot be left to DOM order: every modal portals to `document.body` and React commits the **innermost** portal first, so a nested modal ends up *before* its parent in the document. The provider wraps `ModalRoot` rather than just `children`, so a modal passed through `prefix` / `footer` / `headerActions` stacks too. An explicit `zIndex` always wins and is not clamped; derived values are clamped just below `zindex-dropdown` so a modal can never cover a dropdown, select, popconfirm or tooltip opened inside it. `showModal()` renders at `DSProvider` level, outside any modal's React subtree, so it never derives — pass `zIndex` there if it must stack. See "Overlay z-index" in `@synerise/ds-core`'s CLAUDE.md.

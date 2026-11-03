@@ -251,3 +251,39 @@ export const StacksNestedModalsAboveTheirParent: Story = {
     expect(grandchild).toBeLessThan(991050);
   },
 };
+
+// ---------------------------------------------------------------------------
+// A short modal opened over one taller than the viewport lines up with it
+// ---------------------------------------------------------------------------
+export const AlignsStackedModalsOfDifferentHeights: Story = {
+  render: () => (
+    <>
+      {/* Classic scrollbars, as on Windows; overlay ones hide the offset. */}
+      <style>{'::-webkit-scrollbar { width: 15px; }'}</style>
+      <Modal open size="large" title="Tall" footer={null}>
+        <div style={{ height: '200vh' }} />
+      </Modal>
+      <Modal open size="large" title="Short" footer={null} />
+    </>
+  ),
+  play: async ({ canvasElement }) => {
+    const scoped = within(canvasElement.ownerDocument.body);
+
+    await waitFor(() => expect(scoped.getByText('Short')).toBeVisible());
+
+    const tall = scoped.getByRole('dialog', { name: 'Tall' });
+    const short = scoped.getByRole('dialog', { name: 'Short' });
+
+    expect(short.getBoundingClientRect().left).toBe(
+      tall.getBoundingClientRect().left,
+    );
+    // The CI browser runs with --hide-scrollbars, so the offset above cannot
+    // appear there; the reserved gutter is what keeps it away elsewhere.
+    for (const dialog of [tall, short]) {
+      const scrollWrap = dialog.parentElement as HTMLElement;
+      expect(window.getComputedStyle(scrollWrap).scrollbarGutter).toBe(
+        'stable',
+      );
+    }
+  },
+};
