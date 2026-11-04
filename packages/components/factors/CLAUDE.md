@@ -27,7 +27,7 @@ src/
  Date/ — date picker via @synerise/ds-date-picker
  DateRange/ — date range picker via @synerise/ds-date-range-picker
  RelativeDate/ — relative date selector (offset + unit + before/after)
- Array/ — array editor with creator, raw paste, and collector modes
+ Array/ — array editor with creator, raw paste, and collector modes; `ArrayFactor.tsx` is the public standalone trigger + modal
  __specs__/
  Factors.spec.tsx — Vitest tests
  Factors.array.spec.tsx — Vitest tests for array type
@@ -91,6 +91,45 @@ src/
 
 The built-in `FACTOR_TYPE_MAPPING` exported as a named value. Maps each `DefinedFactorTypes` key to `{ name, icon, component }`. Use alongside `customFactorValueComponents` to extend or inspect defaults.
 
+### `ArrayFactor`
+
+The array factor used on its own, without `Factors`: no type selector and no 173px minimum width. Its trigger sizes to its label, capped at the container (`max-width: 100%`); pass `className` to size it otherwise. Props (`ArrayFactorProps<ItemType>`): `onChange(value)` (required), `value`, `itemType` (default `'string'`), `texts` (any `DeepPartial<FactorsTexts>`, merged with the defaults inside), `readOnly`, `error`, `limit`, `collectorSuggestions`, `onActivate`, `onDeactivate`, `className`. Inside `Factors` the `array` type renders `ArrayFactorBase`, the same component with already-resolved texts. Merging those texts a second time would make lodash write into frozen React elements.
+
+```tsx
+import { ArrayFactor } from '@synerise/ds-factors';
+
+<ArrayFactor
+ itemType="string"
+ value={value}
+ onChange={setValue}
+ texts={{ array: { emptyTitle: 'No values yet' } }}
+/>
+```
+
+### `ArrayModal`
+
+The array editor without a trigger, for layouts that render their own button. Props (`ArrayModalProps<ItemType>`): `itemType` (required), `texts` (required, from `useFactorsTexts`), `onApply(value)`, `onCancel()`, `visible`, `value`, `readOnly`, `limit`, `collectorSuggestions`. It resets its draft whenever the `value` reference changes, so memoise a derived value. `ItemType` is inferred from `itemType`, so `onApply` receives `string[]` for `itemType="string"` and `number[]` for `"number"`.
+
+```tsx
+import { ArrayModal, useFactorsTexts } from '@synerise/ds-factors';
+
+const [value, setValue] = useState<string[]>([]);
+const texts = useFactorsTexts({ array: { modalTitle: 'Edit values' } });
+
+<ArrayModal
+ visible={isModalOpen}
+ itemType="string"
+ value={value}
+ texts={texts}
+ onApply={setValue}
+ onCancel={() => setIsModalOpen(false)}
+/>
+```
+
+### `useFactorsTexts`
+
+The package's `useTexts` hook (see *Custom hooks*), exported under this name.
+
 ### Types exported
 
 | Export | Description |
@@ -99,6 +138,11 @@ The built-in `FACTOR_TYPE_MAPPING` exported as a named value. Maps each `Defined
 | `FactorType` | `LiteralStringUnion` of the 10 types (accepts custom strings) |
 | `DefinedFactorTypes` | Strict union of the 10 built-in type strings |
 | `FactorValueType` | Union of all possible value types |
+| `ArrayFactorProps` | Props of `ArrayFactor` (generic over `'string' \| 'number'`) |
+| `ArrayModalProps` | Props of `ArrayModal` (generic over `'string' \| 'number'`) |
+| `ArrayItemType` | `'string' \| 'number'` |
+| `ArrayValue` | `string[] \| number[]` — the array factor's value |
+| `ArrayValueElement` | `string` or `number`, by item type |
 | `FactorsProps` | Full props interface |
 | `FactorsTexts` | Full texts interface |
 | `ParameterValueType` | Shape of a selected parameter value |
@@ -162,9 +206,9 @@ import { factorTypes } from '@synerise/ds-factors';
 
 ## Custom hooks
 
-### `useTexts`
+### `useTexts` (public as `useFactorsTexts`)
 
-Merges the user-provided `texts` (any `DeepPartial<FactorsTexts>`) with react-intl defaults using `lodash.merge`. Returns a complete `FactorsTexts` object. All default strings come from `DS.FACTORS.*` intl message IDs. Requires an `IntlProvider` ancestor.
+Merges the user-provided `texts` (any `DeepPartial<FactorsTexts>`) with react-intl defaults using `lodash.merge`. Returns a complete `FactorsTexts` object. All default strings come from `DS.FACTORS.*` intl message IDs, except `array.emptyDescription` and `array.emptyResultsDescription`, which default to `undefined` so the array empty state shows only its title. Requires an `IntlProvider` ancestor.
 
 ## Styling
 

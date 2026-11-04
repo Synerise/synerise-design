@@ -169,3 +169,65 @@ Type of value depends on current factor type and can contain values: `string` / 
 | renderEmptyGroups       | Show group headers even if group has no items              | boolean                  | -       |
 | dropdownDimensionsConfig | Override dropdown height at different viewport sizes      | { defaultHeight?, lowerHeight?, threshold? } | - |
 | showAllGroup            | **Deprecated**                                             | boolean                  | -       |
+
+### ArrayFactor
+
+The array factor used on its own, without `Factors`: no type selector and no fixed minimum width. Its trigger sizes to its label, capped at the container.
+
+```
+import { ArrayFactor } from '@synerise/ds-factors'
+
+<ArrayFactor
+    itemType="string"
+    value={value}
+    onChange={setValue}
+    texts={{ array: { emptyTitle: 'No values yet' } }}
+/>
+```
+
+| Property             | Description                                                    | Type                                          | Default    |
+| -------------------- | -------------------------------------------------------------- | --------------------------------------------- | ---------- |
+| onChange             | Called with the applied array                                  | (value: ArrayValueElement<ItemType>[]) => void | -          |
+| value                | Current array                                                  | ArrayValueElement<ItemType>[]                 | `[]`       |
+| itemType             | Type of the items                                              | `'string'` / `'number'`                       | `'string'` |
+| texts                | Any subset of the Factors texts, merged with the defaults      | DeepPartial<FactorsTexts>                     | -          |
+| readOnly             | Opens the editor read-only and hides the edit icon             | boolean                                       | false      |
+| error                | Shows error styling on the trigger                             | boolean                                       | -          |
+| limit                | Maximum number of items                                        | number                                        | -          |
+| collectorSuggestions | Suggestions in the value collector                             | CollectorValue[]                              | -          |
+| onActivate           | Called when the editor opens                                   | () => void                                    | -          |
+| onDeactivate         | Called when the editor is closed without applying              | () => void                                    | -          |
+| className            | Class name of the trigger button                               | string                                        | -          |
+
+### ArrayModal
+
+The array editor without a trigger, for layouts that render their own button. Its texts come from `useFactorsTexts`, which merges overrides with the `DS.FACTORS.*` defaults. `onApply` receives `string[]` for `itemType="string"` and `number[]` for `"number"`.
+
+```
+import { ArrayModal, useFactorsTexts } from '@synerise/ds-factors'
+
+const [value, setValue] = useState<string[]>([])
+const texts = useFactorsTexts({ array: { modalTitle: 'Edit values' } })
+
+<Button onClick={() => setIsModalOpen(true)}>Edit value</Button>
+<ArrayModal
+    visible={isModalOpen}
+    itemType="string"
+    value={value}
+    texts={texts}
+    onApply={setValue}
+    onCancel={() => setIsModalOpen(false)}
+/>
+```
+
+| Property             | Description                                       | Type                                     | Default |
+| -------------------- | ------------------------------------------------- | ---------------------------------------- | ------- |
+| itemType             | Type of the items                                 | `'string'` / `'number'`                  | -       |
+| texts                | Texts, from `useFactorsTexts`                     | FactorsTexts                             | -       |
+| onApply              | Called with the edited array                      | (value: ArrayValueElement<ItemType>[]) => void | - |
+| onCancel             | Called when the modal is closed without applying  | () => void                               | -       |
+| visible              | Whether the modal is open                         | boolean                                  | -       |
+| value                | Current array                                     | ArrayValueElement<ItemType>[]            | -       |
+| readOnly             | Disables editing                                  | boolean                                  | -       |
+| limit                | Maximum number of items                           | number                                   | -       |
+| collectorSuggestions | Suggestions in the value collector                | CollectorValue[]                         | -       |

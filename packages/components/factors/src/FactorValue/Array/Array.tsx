@@ -1,7 +1,4 @@
-import React, { useMemo, useState } from 'react';
-
-import Icon, { EditS } from '@synerise/ds-icon';
-import { TagShape } from '@synerise/ds-tag';
+import React from 'react';
 
 import type {
   ArrayItemType,
@@ -9,11 +6,10 @@ import type {
   FactorValueComponentProps,
   FactorValueType,
 } from '../../Factors.types';
-import * as S from './Array.styles';
-import { ArrayModal } from './components/ArrayModal';
+import { ArrayFactorBase } from './ArrayFactor';
 
-export const Array = <ItemType extends ArrayItemType>({
-  value: arrayValue,
+export const Array = ({
+  value,
   onChange,
   texts,
   onActivate,
@@ -21,78 +17,15 @@ export const Array = <ItemType extends ArrayItemType>({
   readOnly = false,
   error,
   arrayProps = {},
-}: FactorValueComponentProps) => {
-  const [isVisible, setIsVisible] = useState(false);
-
-  const handleOnClick = () => {
-    setIsVisible(true);
-    onActivate && onActivate();
-  };
-
-  const buttonLabel = useMemo(() => {
-    if (!(arrayValue as ArrayValueElement<ItemType>[])?.length) {
-      return texts.array.triggerLabel;
-    }
-    return `${(arrayValue as ArrayValueElement<ItemType>[]).join(', ')} `;
-  }, [arrayValue, texts.array.triggerLabel]);
-
-  const triggerMode = useMemo(() => {
-    return readOnly ? '' : 'label-icon';
-  }, [readOnly]);
-
-  const handleApply = (changedValue: ArrayValueElement<ItemType>[]) => {
-    setIsVisible(false);
-    onChange(changedValue as FactorValueType);
-  };
-
-  const handleCancel = () => {
-    setIsVisible(false);
-    onDeactivate && onDeactivate();
-  };
-  const tagProps = {
-    asPill: true,
-    name: `${(arrayValue as ArrayValueElement<ItemType>[]).length}`,
-    color: error
-      ? 'var(--ds-color-background-danger-solid)'
-      : 'var(--ds-color-background-neutral-solid)',
-    textColor: 'var(--ds-color-text-base-onsolid)',
-    shape: TagShape.DEFAULT_ROUND,
-  };
-
-  const tooltipProps = (arrayValue as ArrayValueElement<ItemType>[])?.length
-    ? {
-        title: <>{(arrayValue as ArrayValueElement<ItemType>[]).join(', ')}</>,
-      }
-    : undefined;
-
-  return (
-    <>
-      <S.TriggerButton
-        error={error}
-        type="secondary"
-        mode={triggerMode}
-        onClick={handleOnClick}
-        tooltipProps={tooltipProps}
-        data-testid="ds-factors-array"
-        tagProps={
-          (arrayValue as ArrayValueElement<ItemType>[]).length
-            ? tagProps
-            : undefined
-        }
-      >
-        <S.TriggerButtonLabel>{buttonLabel}</S.TriggerButtonLabel>
-        {!readOnly && <Icon component={<EditS />} />}
-      </S.TriggerButton>
-      <ArrayModal
-        value={arrayValue as ArrayValueElement<ItemType>[]}
-        onApply={handleApply}
-        onCancel={handleCancel}
-        texts={texts}
-        visible={isVisible}
-        readOnly={readOnly}
-        itemType="string"
-        {...arrayProps}
-      />
-    </>
-  );
-};
+}: FactorValueComponentProps) => (
+  <ArrayFactorBase<ArrayItemType>
+    value={value as ArrayValueElement<ArrayItemType>[]}
+    onChange={(changedValue) => onChange(changedValue as FactorValueType)}
+    texts={texts}
+    onActivate={onActivate}
+    onDeactivate={onDeactivate}
+    readOnly={readOnly}
+    error={error}
+    {...arrayProps}
+  />
+);

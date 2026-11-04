@@ -188,20 +188,12 @@ export const useTexts = (
               id: 'DS.FACTORS.ARRAY.EMPTY_TITLE',
               defaultMessage: 'No items defined yet',
             }),
-            emptyDescription: intl.formatMessage({
-              id: 'DS.FACTORS.ARRAY.EMPTY_DESCRIPTION',
-              defaultMessage:
-                'This is a simple empty state example text. You can easily change it.',
-            }),
+            emptyDescription: undefined,
             emptyResultsTitle: intl.formatMessage({
               id: 'DS.FACTORS.ARRAY.EMPTY_RESULTS_TITLE',
               defaultMessage: 'No items match your query',
             }),
-            emptyResultsDescription: intl.formatMessage({
-              id: 'DS.FACTORS.ARRAY.EMPTY_RESULTS_DESCRIPTION',
-              defaultMessage:
-                'This is a simple empty state example text. You can easily change it.',
-            }),
+            emptyResultsDescription: undefined,
             limitPrefix: intl.formatMessage({
               id: 'DS.FACTORS.ARRAY.LIMIT_PREFIX',
               defaultMessage: 'Limit',
