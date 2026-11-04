@@ -1,22 +1,48 @@
 import type { ReactNode } from 'react';
 
-import type { RequiredProps } from '@synerise/ds-utils';
+import type { DeepPartial } from '@synerise/ds-utils';
 
 import type {
+  ArrayItemType,
   ArrayProps,
   ArrayValueElement,
   FactorsTexts,
 } from '../../Factors.types';
 
-export type ArrayModalProps<ItemType extends 'string' | 'number'> =
-  RequiredProps<ArrayProps, 'itemType'> & {
-    visible?: boolean;
-    readOnly?: boolean;
-    onApply: (updatedValue: ArrayValueElement<ItemType>[]) => void;
-    onCancel: () => void;
-    texts: FactorsTexts;
-    value?: ArrayValueElement<ItemType>[];
-  };
+export type ArrayFactorProps<ItemType extends ArrayItemType = 'string'> = Omit<
+  ArrayProps,
+  'itemType'
+> & {
+  value?: ArrayValueElement<ItemType>[];
+  onChange: (value: ArrayValueElement<ItemType>[]) => void;
+  itemType?: ItemType;
+  texts?: DeepPartial<FactorsTexts>;
+  readOnly?: boolean;
+  error?: boolean;
+  onActivate?: () => void;
+  onDeactivate?: () => void;
+  className?: string;
+};
+
+export type ArrayFactorBaseProps<ItemType extends ArrayItemType> = Omit<
+  ArrayFactorProps<ItemType>,
+  'texts'
+> & {
+  texts: FactorsTexts;
+};
+
+export type ArrayModalProps<ItemType extends 'string' | 'number'> = Omit<
+  ArrayProps,
+  'itemType'
+> & {
+  itemType: ItemType;
+  visible?: boolean;
+  readOnly?: boolean;
+  onApply: (updatedValue: ArrayValueElement<ItemType>[]) => void;
+  onCancel: () => void;
+  texts: FactorsTexts;
+  value?: ArrayValueElement<ItemType>[];
+};
 
 export type ArrayValueWithID<ItemType extends 'string' | 'number'> = {
   value: ArrayValueElement<ItemType>;

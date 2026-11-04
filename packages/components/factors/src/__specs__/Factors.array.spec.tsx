@@ -9,6 +9,7 @@ import Modal from '@synerise/ds-modal';
 
 import Factors from './../Factors';
 import { type FactorsProps } from '../Factors.types';
+import { ArrayFactor, ArrayModal, type ArrayValue, useFactorsTexts } from '../index';
 import { FACTORS_GROUPS, FACTORS_ITEMS, FACTORS_TEXTS } from './data/Factors.data';
 
 
@@ -131,6 +132,102 @@ describe('Factors array component', () => {
     });
 
 
+
+    test('should not render an empty state description by default', async () => {
+        renderWithProvider(RENDER_FACTORS({ value: [] }));
+
+        userEvent.click(screen.getByTestId('ds-factors-array'));
+
+        const modal = within(await screen.findByRole('dialog'));
+        expect(await modal.findByText('No items defined yet')).toBeInTheDocument();
+        expect(modal.queryByTestId('empty-states-label')).not.toBeInTheDocument();
+    });
+
+    test('should render an empty state description passed in texts', async () => {
+        renderWithProvider(
+            RENDER_FACTORS({
+                value: [],
+                texts: { ...FACTORS_TEXTS, array: { emptyDescription: 'Paste or type values' } },
+            }),
+        );
+
+        userEvent.click(screen.getByTestId('ds-factors-array'));
+
+        const modal = within(await screen.findByRole('dialog'));
+        expect(await modal.findByTestId('empty-states-label')).toHaveTextContent('Paste or type values');
+    });
+
+    describe('ArrayModal used without the inline trigger', () => {
+        const StandaloneArrayModal = ({ onApply }: { onApply: (value: ArrayValue) => void }) => {
+            const texts = useFactorsTexts({ array: { modalTitle: 'Edit list' } });
+            return (
+                <ArrayModal
+                    visible
+                    itemType="string"
+                    value={VALUE}
+                    texts={texts}
+                    onApply={onApply}
+                    onCancel={() => {}}
+                />
+            );
+        };
+
+        test('should apply its value', async () => {
+            const onApply = vi.fn();
+            renderWithProvider(<StandaloneArrayModal onApply={onApply} />);
+
+            const modal = within(await screen.findByRole('dialog'));
+            expect(modal.getByText('Edit list')).toBeInTheDocument();
+            userEvent.click(modal.getByText('Apply'));
+
+            await waitFor(() => expect(onApply).toHaveBeenCalledWith(VALUE));
+        });
+    });
+
+    describe('ArrayFactor used without Factors', () => {
+        test('should render the default trigger label', () => {
+            renderWithProvider(<ArrayFactor onChange={() => {}} />);
+
+            expect(screen.getByTestId('ds-factors-array')).toHaveTextContent('Define array');
+        });
+
+        test('should merge partial texts with the defaults', async () => {
+            renderWithProvider(
+                <ArrayFactor onChange={() => {}} texts={{ array: { triggerLabel: 'Add values' } }} />,
+            );
+
+            userEvent.click(screen.getByText('Add values'));
+
+            const modal = within(await screen.findByRole('dialog'));
+            expect(modal.getByText('Array')).toBeInTheDocument();
+        });
+
+        test('should open, apply and report the value', async () => {
+            const onChange = vi.fn();
+            const onActivate = vi.fn();
+            renderWithProvider(<ArrayFactor value={VALUE} onChange={onChange} onActivate={onActivate} />);
+
+            userEvent.click(screen.getByText(VALUE.join(', ')));
+            const modal = within(await screen.findByRole('dialog'));
+            expect(onActivate).toHaveBeenCalledOnce();
+            userEvent.click(modal.getByText('Apply'));
+
+            await waitFor(() => expect(onChange).toHaveBeenCalledWith(VALUE));
+        });
+
+        test('should report cancel without a change', async () => {
+            const onChange = vi.fn();
+            const onDeactivate = vi.fn();
+            renderWithProvider(<ArrayFactor value={VALUE} onChange={onChange} onDeactivate={onDeactivate} />);
+
+            userEvent.click(screen.getByText(VALUE.join(', ')));
+            const modal = within(await screen.findByRole('dialog'));
+            userEvent.click(modal.getByText('Cancel'));
+
+            await waitFor(() => expect(onDeactivate).toHaveBeenCalledOnce());
+            expect(onChange).not.toHaveBeenCalled();
+        });
+    });
 
     describe('z-index when opened from inside another modal', () => {
         const MODAL_TOKEN = Number.parseInt(theme.variables['zindex-modal'], 10);
