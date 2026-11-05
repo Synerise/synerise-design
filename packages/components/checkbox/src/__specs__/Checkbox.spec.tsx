@@ -1,6 +1,10 @@
 import React from 'react';
 
-import { declarationsFor, renderWithProvider } from '@synerise/ds-core/testing';
+import {
+  declarationsFor,
+  renderWithProvider,
+  rulesFor,
+} from '@synerise/ds-core/testing';
 import { fireEvent } from '@testing-library/react';
 
 import Checkbox from '../index';
@@ -141,6 +145,33 @@ describe('Checkbox', () => {
 
       expect(box).toHaveStyle('background-color: var(--ds-form-control-bg-selected)');
       expect(declarationsFor(box)).toContain('opacity:var(--ds-opacity-disabled)');
+    });
+  });
+
+  describe('error styling', () => {
+    // jsdom drops var() colours next to the `border` shorthand, so read the cascade instead
+    const restingBorderColor = (box: Element | null) =>
+      rulesFor(box)
+        .filter(({ selector }) => !/:(focus|hover)/.test(selector))
+        .flatMap(({ declarations }) => declarations.split(';'))
+        .filter((declaration) => declaration.startsWith('border-color:'))
+        .at(-1);
+
+    it.each([
+      ['checked', { checked: true }],
+      ['indeterminate', { indeterminate: true }],
+    ])('keeps the selected fill and the error border when %s', (_, props) => {
+      const { container } = renderWithProvider(
+        <Checkbox hasError {...props}>
+          {CHECKBOX_LABEL}
+        </Checkbox>,
+      );
+      const box = container.querySelector('.ds-checkbox-inner');
+
+      expect(box).toHaveStyle('background-color: var(--ds-form-control-bg-selected)');
+      expect(restingBorderColor(box)).toBe(
+        'border-color:var(--ds-form-control-border-error)',
+      );
     });
   });
 });

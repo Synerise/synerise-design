@@ -14,6 +14,7 @@ src/
   index.ts                  — public exports
   components/
     CheckboxBase.tsx        — DS-native checkbox input (DOM + group consumption + event synthesis)
+    CheckboxIndicator.tsx   — the visual box alone (CheckboxInner + CheckIcon); public
     CheckboxTristate.tsx    — three-state stateful layer on top of CheckboxBase
   utils/
     isTristateCheckbox.ts   — type guard: checks props.tristate === true
@@ -54,6 +55,18 @@ When `tristate={true}`, `onChange` receives a `CheckboxTristateChangeEvent` inst
 
 DS-native group (`CheckboxGroup`) — a context provider that child `Checkbox`es read for their checked state and toggle through. Supports `value`/`defaultValue` (controlled/uncontrolled), `onChange(checkedValues)` (ordered by child mount order, or `options` order), `options`, `disabled`, `name`. Replaces the former antd `Checkbox.Group` re-export.
 
+### `CheckboxIndicator`
+
+The visible box with no input or label: `CheckboxInner` plus the `CheckIcon` tick, driven by props. `CheckboxBase` renders it, and so does `Checkbox` from `@synerise/ds-button` (the table selection checkbox), so both always look the same. It has no hover or focus rules of its own — those need the interactive ancestor, so each owner adds them (`CheckboxLabel` here, `IconWrapper` in ds-button).
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `checked` | `boolean` | `undefined` | Selected fill with the tick |
+| `indeterminate` | `boolean` | `undefined` | Selected fill with the bar (wins over `checked`) |
+| `disabled` | `boolean` | `undefined` | Fades to `--ds-opacity-disabled` |
+| `hasError` | `boolean` | `undefined` | 2px `--ds-form-control-border-error` border |
+| `className` | `string` | `undefined` | Added after `ant-checkbox-inner ds-checkbox-inner`, so `styled(CheckboxIndicator)` works |
+
 ### Utility functions (exported)
 
 | Export | Signature | Description |
@@ -70,6 +83,7 @@ DS-native group (`CheckboxGroup`) — a context provider that child `Checkbox`es
 | `CheckboxBaseProps` | Ant `CheckboxProps` + `BaseCheckboxProps`, with standard `onChange` |
 | `CheckboxTristateProps` | Ant `CheckboxProps` + `BaseCheckboxProps`, with `tristate: true` and tristate `onChange` |
 | `BaseCheckboxProps` | DS-only additions: `description`, `errorText`, `hasError`, `withoutPadding` |
+| `CheckboxIndicatorProps` | Props of `CheckboxIndicator` |
 | `CheckboxTristateChangeEvent` | Tristate event type: `target.checked` is `boolean \| undefined` |
 | `CheckboxTristateChangeEventTarget` | The `target` shape inside `CheckboxTristateChangeEvent` |
 
@@ -120,7 +134,7 @@ import Checkbox from '@synerise/ds-checkbox';
 - `CheckboxWrapper` — flex column container; `withoutPadding` removes default spacing.
 - `CheckboxBox` — the `.ant-checkbox` span (positioning).
 - `CheckboxInput` — the visually-hidden `<input>` overlaying the box.
-- `CheckboxInner` — the visible box: `--ds-form-control-bg-default` fill and `--ds-form-control-border-default` border; when `$checked` it reveals the tick, an inline `<svg>` child (`CheckIcon`, rendered by `CheckboxBase`) coloured via `currentColor` from `--ds-form-control-icon-selected` on `--ds-form-control-bg-selected`; a 2px bar when `$indeterminate`, `--ds-form-control-border-error` border on `$error`. `$disabled` has no colours of its own: the box keeps its resting or selected look and fades to `--ds-opacity-disabled`.
+- `CheckboxInner` — the visible box: `--ds-form-control-bg-default` fill and `--ds-form-control-border-default` border; when `$checked` it reveals the tick, an inline `<svg>` child (`CheckIcon`, rendered by `CheckboxIndicator`) coloured via `currentColor` from `--ds-form-control-icon-selected` on `--ds-form-control-bg-selected`; a 2px bar when `$indeterminate`, a 2px `--ds-form-control-border-error` border on `$error` — kept on a checked or indeterminate box too, over the selected fill (the tick is offset by 1px so the thicker border does not shrink it). `$disabled` has no colours of its own: the box keeps its resting or selected look and fades to `--ds-opacity-disabled`.
 - `CheckboxText` — the label text, `--ds-form-label-text-color` in every state (no hover or selected colour); `$disabled` fades it to `--ds-opacity-disabled`.
 - `CheckboxLabel` — the `<label>`; layout + the **cross-element** rules (hover border, indeterminate hover, focus ring, disabled cursor) that reference the child styled-components (`&:hover ${CheckboxInner}`, `${CheckboxInput}:focus + ${CheckboxInner}`). Hovering an unchecked, enabled box only changes its border to `--ds-form-control-border-hover` — there is no tick preview; the rule is only emitted when `!$checked && !$indeterminate && !$disabled`. The focus ring is `--ds-form-control-border-focus`.
 - `AdditionalData` — left-aligns `errorText` and `description` below the checkbox box (28px left indent to align with label text).

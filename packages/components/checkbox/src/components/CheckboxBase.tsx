@@ -14,6 +14,7 @@ import type {
 } from '../Checkbox.types';
 import { CheckboxGroupContext } from '../CheckboxContext';
 import { cx } from '../utils';
+import { CheckboxIndicator } from './CheckboxIndicator';
 
 export const CheckboxBase = ({
   description,
@@ -141,17 +142,12 @@ export const CheckboxBase = ({
             onChange={handleChange}
             {...rest}
           />
-          <S.CheckboxInner
-            className="ant-checkbox-inner ds-checkbox-inner"
-            $checked={isChecked}
-            $indeterminate={Boolean(indeterminate)}
-            $disabled={isDisabled}
-            $error={hasErr}
-          >
-            <S.CheckIcon viewBox="3 3 18 18" aria-hidden="true">
-              <path d="M10.61 15.744a.75.75 0 01-.535-.224l-3.11-3.162a.75.75 0 011.07-1.052l2.575 2.618 5.355-5.444a.75.75 0 111.07 1.052l-5.89 5.988a.75.75 0 01-.535.224z" />
-            </S.CheckIcon>
-          </S.CheckboxInner>
+          <CheckboxIndicator
+            checked={isChecked}
+            indeterminate={indeterminate}
+            disabled={isDisabled}
+            hasError={hasErr}
+          />
         </S.CheckboxBox>
         {children !== undefined && children !== null && children !== false && (
           <S.CheckboxText $disabled={isDisabled}>{children}</S.CheckboxText>

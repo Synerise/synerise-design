@@ -36,6 +36,25 @@ Based on [Ant Design Checkbox](https://ant.design/components/checkbox/)
 | value        | Used for setting the currently selected value.                  | string / number / boolean /string[] / number[] / boolean[] | []      |
 | onChange     | The callback function that is triggered when the state changes. | (value: string / number / boolean) => void                 | -       |
 
+## CheckboxIndicator
+
+The checkbox box alone, with no input, label or behaviour. For controls that own their own checkbox
+semantics and only need the look, such as `Checkbox` from `@synerise/ds-button`.
+
+```tsx
+import { CheckboxIndicator } from '@synerise/ds-checkbox';
+
+<CheckboxIndicator checked hasError />;
+```
+
+| Property      | Description                                   | Type    | Default |
+| ------------- | --------------------------------------------- | ------- | ------- |
+| checked       | Shows the tick on the selected fill           | boolean | `false` |
+| indeterminate | Shows the bar on the selected fill            | boolean | `false` |
+| disabled      | Fades the box to the disabled opacity         | boolean | `false` |
+| hasError      | Error border                                  | boolean | `false` |
+| className     | Class name on the box                         | string  | -       |
+
 ### Methods
 
 #### Checkbox

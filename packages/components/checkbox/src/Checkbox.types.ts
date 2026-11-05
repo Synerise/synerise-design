@@ -9,6 +9,15 @@ export type BaseCheckboxProps = {
   withoutPadding?: boolean;
 };
 
+/** The visual box alone, for controls that own their own input semantics (e.g. ds-button's Checkbox). */
+export type CheckboxIndicatorProps = {
+  checked?: boolean;
+  indeterminate?: boolean;
+  disabled?: boolean;
+  hasError?: boolean;
+  className?: string;
+};
+
 /** antd-compatible change event shape (`target.checked` is a boolean for the base checkbox). */
 export type CheckboxChangeEventTarget = {
   type: 'checkbox';

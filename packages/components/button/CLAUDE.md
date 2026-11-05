@@ -111,14 +111,14 @@ Chevron button for expand/collapse. Uses `BaseButton` directly.
 
 ### `Checkbox` (exported as `CheckboxButton`)
 
-Checkbox icon-button. Uses `Button` (needs ripple/focus ring).
+Checkbox icon-button (the `ds-table-new` row and header selection). Uses `Button` (needs ripple/focus ring) with `type="ghost-primary"` and `mode="single-icon"`, and draws the box with `CheckboxIndicator` from `@synerise/ds-checkbox`, so it looks exactly like `ds-checkbox` in every state and theme. `IconWrapper` centres it in a 24px slot and adds the hover rules `CheckboxLabel` has in ds-checkbox: unchecked → `--ds-form-control-border-hover` border (no tick preview), indeterminate → `--ds-color-background-brand-solidhover` fill. Those rules select on the button's `aria-checked`, not on wrapper props: the hover selector needs `&` after `.ds-button:hover`, and a non-leading `&` compiles to the static component id shared by every instance, so a props-conditional rule there would leak to all checkboxes. `disabled` is not passed to the indicator — the button's own disabled opacity fades it, and passing it too would fade it twice.
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `checked` | `boolean` | `undefined` | Controlled state |
 | `defaultChecked` | `boolean` | `false` | Uncontrolled initial state |
 | `indeterminate` | `boolean` | `undefined` | Indeterminate state |
-| `hasError` | `boolean` | `undefined` | Error styling |
+| `hasError` | `boolean` | `undefined` | Error border on the box (the fill stays brand when checked) |
 | `onChange` | `(checked: boolean) => void` | `undefined` | Change callback |
 
 ### `Star` (exported as `StarButton`)
@@ -147,7 +147,8 @@ Star favourite toggle. Uses `Button`.
 
 ## Key dependencies
 
-- `@synerise/ds-icon` — `SpinnerM`, `AngleDownS`, `AddM`, `StarM`/`StarFillM`, `CheckboxSelectedFillM`/`CheckboxIndeterminateM`
+- `@synerise/ds-checkbox` — `CheckboxIndicator`, the box `Checkbox` renders
+- `@synerise/ds-icon` — `SpinnerM`, `AngleDownS`, `AddM`, `StarM`/`StarFillM`
 - `@synerise/ds-tag` — optional status tag inside button label
 - `@synerise/ds-tooltip` — optional tooltip wrapping button label
 - `classnames` — className composition in Creator and Expander

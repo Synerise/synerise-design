@@ -437,6 +437,9 @@ importers:
 
   packages/components/button:
     dependencies:
+      '@synerise/ds-checkbox':
+        specifier: workspace:^
+        version: link:../checkbox
       '@synerise/ds-core':
         specifier: '*'
         version: link:../core

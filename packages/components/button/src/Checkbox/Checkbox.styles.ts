@@ -1,58 +1,24 @@
 import styled from 'styled-components';
 
-import { CheckboxDeafultM, CheckboxM } from '@synerise/ds-icon';
+import { CheckboxIndicator } from '@synerise/ds-checkbox';
 
-export const IconWrapper = styled.span<{ active?: boolean; error?: boolean }>`
-  && {
-    color: ${({ active, error }) => {
-      if (error) {
-        return 'var(--ds-color-icon-danger-default)';
-      }
+export const Indicator = styled(CheckboxIndicator)``;
 
-      return active
-        ? 'var(--ds-color-icon-brand-default)'
-        : 'var(--ds-color-border-base-strong)';
-    }};
+// A non-leading `&` compiles to the static component id, shared by every instance, so the hover
+// state is keyed on the button's aria-checked rather than on props.
+export const IconWrapper = styled.span`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+
+  .ds-button[aria-checked='false']:not([disabled]):hover & ${Indicator} {
+    border-color: var(--ds-form-control-border-hover);
   }
 
-  .ant-btn:hover & .ds-icon,
-  .ant-btn:focus:hover & .ds-icon {
-    color: var(--ds-color-icon-brand-default);
-  }
-
-  /* icon background */
-  .ds-button.ant-btn &::before {
-    content: '';
-    display: 'block';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    top: 0;
-    margin: 5px;
-    z-index: -1;
-  }
-
-  .ds-button.ant-btn &::before,
-  .ds-button.ant-btn:hover &::before,
-  .ds-button.ant-btn:focus:hover &::before {
-    background: var(--ds-color-background-base-default);
-  }
-`;
-
-export const DefaultIcon = styled(CheckboxDeafultM)`
-  display: block;
-
-  .ds-button.ant-btn:not([disabled]):hover & {
-    display: none;
-  }
-`;
-
-export const HoverIcon = styled(CheckboxM)`
-  display: none;
-
-  .ds-button.ant-btn:not([disabled]):hover & {
-    display: block;
+  .ds-button[aria-checked='mixed']:not([disabled]):hover & ${Indicator} {
+    background-color: var(--ds-color-background-brand-solidhover);
   }
 `;
 
