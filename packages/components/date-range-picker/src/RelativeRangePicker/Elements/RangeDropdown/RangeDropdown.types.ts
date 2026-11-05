@@ -9,9 +9,7 @@ export type RangeDropdownProps = {
   currentRange: DateRange;
   texts: Texts;
   onChange: (range: DateRange | undefined) => void;
-  valueTransformer?:
-    | ((value: DateRange | object) => DateRange | object)
-    | DateRangePickerProps['valueTransformer'];
+  valueTransformer?: DateRangePickerProps['valueTransformer'];
 };
 
 /**

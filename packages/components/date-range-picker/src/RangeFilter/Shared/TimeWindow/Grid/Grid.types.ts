@@ -1,4 +1,4 @@
-import type React from 'react';
+import type { ReactNode } from 'react';
 import type { IntlShape } from 'react-intl';
 
 import type { Texts } from '../../../../DateRangePicker.types';
@@ -9,7 +9,7 @@ export type GridProps = {
   days: Days;
   showSelectAll: boolean;
   showUnselectAll: boolean;
-  title: string | React.ReactNode;
+  title: ReactNode;
   numberOfDays: number;
   numberOfDaysPerRow?: number;
   rowLabelFormatter?: (rowIndex: number) => string;
@@ -21,7 +21,7 @@ export type GridProps = {
   intl: IntlShape;
   onSelectAll: () => void;
   onUnselectAll: () => void;
-  renderDay: (day: DayKey) => React.ReactNode;
+  renderDay: (day: DayKey) => ReactNode;
   texts: GridTexts;
 };
 

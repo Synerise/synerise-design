@@ -25,15 +25,13 @@ export type RelativeRangePickerProps = {
   relativeModes?: RelativeMode[];
   rangeUnits: DateRangePickerProps['rangeUnits'];
   showCustomRange?: boolean;
-  // biome-ignore lint/suspicious/noExplicitAny: upstream type is not expressible here
-  valueTransformer?: (e: RelativeDateRange | any) => RelativeDateRange | any;
+  valueTransformer?: DateRangePickerProps['valueTransformer'];
 };
 
 export type State = {
   currentGroup: RelativeMode | null;
   future: boolean;
   past: boolean;
-  showCustomForm: boolean;
   currentRange: RelativeDateRange;
   groupedRanges?: DateRangePreset[];
   sinceTimestamp?: Date | undefined;

@@ -1,10 +1,10 @@
 import React from 'react';
 
-enum KEYS {
-  SHIFT = 'Shift',
-  COMMAND = 'Meta',
-  CONTROL = 'Control',
-}
+const KEYS = {
+  SHIFT: 'Shift',
+  COMMAND: 'Meta',
+  CONTROL: 'Control',
+} as const;
 
 export const useShiftAndControlKeys = (
   ref: React.MutableRefObject<HTMLElement | undefined>,

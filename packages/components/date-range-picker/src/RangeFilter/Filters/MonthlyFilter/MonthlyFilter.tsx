@@ -1,4 +1,4 @@
-import React, { PureComponent, type ReactNode, type ReactText } from 'react';
+import React, { PureComponent, type ReactElement, type ReactNode } from 'react';
 import { FormattedMessage, injectIntl } from 'react-intl';
 
 import Button from '@synerise/ds-button';
@@ -67,7 +67,7 @@ class MonthlyFilter extends PureComponent<
     this.handleCollapse(id);
   };
 
-  handleRemoveRow = (index: ReactText) => {
+  handleRemoveRow = (index: string | number) => {
     const { value } = this.props;
     const result = value.filter((item, key) => key !== index);
     // @ts-expect-error requires types refactor
@@ -180,7 +180,7 @@ class MonthlyFilter extends PureComponent<
     return settings[item.period] as Partial<TimeWindowProps>;
   };
 
-  handleCollapse = (id: ReactText) => {
+  handleCollapse = (id: string | number) => {
     const { visible } = this.state;
     const updatedVisible: Record<string, boolean> = {};
     const visibleKeys = visible ? Object.keys(visible) : [];
@@ -304,7 +304,7 @@ class MonthlyFilter extends PureComponent<
     );
   };
 
-  render(): JSX.Element {
+  render(): ReactElement {
     const {
       value,
       onRangeCopy,

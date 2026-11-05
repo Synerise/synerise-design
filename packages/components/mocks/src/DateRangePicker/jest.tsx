@@ -84,6 +84,20 @@ export const mockDateRangePicker = () => {
       utils: {},
       CONST: {},
       fnsFormat: jest.fn((date: unknown, _format: unknown) => String(date)),
+      getDisabledTimeOptions: jest.fn((): number[] => []),
+      isSinceRange: jest.fn(
+        (range?: { type?: unknown; offset?: { type?: unknown } }) =>
+          range?.type === 'RELATIVE' && range.offset?.type === 'SINCE',
+      ),
+      DEFAULT_RANGE_START: '00:00:00.000',
+      DEFAULT_RANGE_END: '23:59:59.999',
+      DAYS_OF_PERIOD_ENUM: { DAY_OF_MONTH: 'MONTH', DAY_OF_WEEK: 'WEEK' },
+      COUNTED_FROM_ENUM: { BEGINNING: 'BEGINNING', ENDING: 'ENDING' },
+      MONTH_DAYS: jest.fn(() => []),
+      FORM_MODES: { HOUR: 'Hour', RANGE: 'Range' },
+      EU_NOTATION_WEEK_DAYS_INDEXES: [0, 1, 2, 3, 4, 5, 6],
+      US_NOTATION_WEEK_DAYS_INDEXES: [6, 0, 1, 2, 3, 4, 5],
+      RANGE_DISPLAY_MODES: { TIMEPICKER: 'timepicker', SLIDER: 'slider' },
     };
   });
 };
@@ -100,5 +114,19 @@ export const mockDateRangePickerMinimal = () => {
     utils: {},
     CONST: {},
     fnsFormat: jest.fn((date: unknown, _format: unknown) => String(date)),
+    getDisabledTimeOptions: jest.fn((): number[] => []),
+    isSinceRange: jest.fn(
+      (range?: { type?: unknown; offset?: { type?: unknown } }) =>
+        range?.type === 'RELATIVE' && range.offset?.type === 'SINCE',
+    ),
+    DEFAULT_RANGE_START: '00:00:00.000',
+    DEFAULT_RANGE_END: '23:59:59.999',
+    DAYS_OF_PERIOD_ENUM: { DAY_OF_MONTH: 'MONTH', DAY_OF_WEEK: 'WEEK' },
+    COUNTED_FROM_ENUM: { BEGINNING: 'BEGINNING', ENDING: 'ENDING' },
+    MONTH_DAYS: jest.fn(() => []),
+    FORM_MODES: { HOUR: 'Hour', RANGE: 'Range' },
+    EU_NOTATION_WEEK_DAYS_INDEXES: [0, 1, 2, 3, 4, 5, 6],
+    US_NOTATION_WEEK_DAYS_INDEXES: [6, 0, 1, 2, 3, 4, 5],
+    RANGE_DISPLAY_MODES: { TIMEPICKER: 'timepicker', SLIDER: 'slider' },
   }));
 };

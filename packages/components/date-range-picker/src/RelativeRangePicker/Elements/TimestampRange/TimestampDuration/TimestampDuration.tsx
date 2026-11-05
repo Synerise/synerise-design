@@ -6,8 +6,9 @@ import Select from '@synerise/ds-select';
 import * as CONST from '../../../../constants';
 import { DURATION_MODIFIERS } from '../../../../constants';
 import type { Texts } from '../../../../DateRangePicker.types';
+import type { RelativeUnit } from '../../../../date.types';
 import * as S from '../../../RelativeRangePicker.styles';
-import type { Props } from './TimestampDuration.types';
+import type { DurationModifier, Props } from './TimestampDuration.types';
 
 const TimestampDuration: React.FC<Props> = ({
   handleDurationValueChange,
@@ -27,7 +28,7 @@ const TimestampDuration: React.FC<Props> = ({
           className="ds-select-duration-type"
           value={durationModifier}
           onChange={(modifier): void => {
-            onDurationModifierChange(modifier as string);
+            onDurationModifierChange(modifier as DurationModifier);
           }}
           dropdownStyle={{ minWidth: '125px' }}
           getPopupContainer={(node): HTMLElement =>
@@ -51,7 +52,7 @@ const TimestampDuration: React.FC<Props> = ({
         <Select
           value={unit}
           dropdownStyle={{ minWidth: '125px' }}
-          onChange={(type): void => onDurationUnitChange(type as string)}
+          onChange={(type): void => onDurationUnitChange(type as RelativeUnit)}
           getPopupContainer={(node): HTMLElement =>
             node.parentElement !== null ? node.parentElement : document.body
           }

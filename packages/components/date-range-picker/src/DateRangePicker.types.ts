@@ -1,18 +1,12 @@
-import type { ReactNode } from 'react';
+import type { Dispatch, ReactNode, SetStateAction } from 'react';
 import type { IntlShape } from 'react-intl';
 
 import type { DateToFormatOptions } from '@synerise/ds-core';
 import type { LegacyPlacement, PopoverProps } from '@synerise/ds-popover';
 
-import type {
-  DateFilter,
-  DateRange,
-  DateRangePreset,
-  RelativeUnits,
-} from './date.types';
+import type { DateRange, DateRangePreset, RelativeUnit } from './date.types';
 import type { Props as FooterProps } from './Footer/Footer.types';
 import type { RangeFilterType } from './RangeFilter/constants';
-import type { FilterDefinition } from './RangeFilter/RangeFilter.types';
 import type { SavedFilter } from './RangeFilter/Shared/FilterDropdown/FilterDropdown.types';
 import type {
   DateLimitMode,
@@ -36,8 +30,18 @@ export type DateRangePickerProps = {
   valueFormatOptions?: DateToFormatOptions;
   forceAdjacentMonths?: boolean;
   forceAbsolute?: boolean;
-  footerProps?: Partial<FooterProps>;
-  onValueChange?: (value: Partial<DateFilter> | undefined) => void;
+  /** Overrides of the footer's state and texts; its handlers and value belong to the panel. */
+  footerProps?: Partial<
+    Omit<
+      FooterProps,
+      'onApply' | 'onSwitchMode' | 'mode' | 'value' | 'timeZone'
+    >
+  >;
+  /**
+   * Fires on every change in the panel, before Apply. With the `timeZone` prop the bounds are
+   * emitted as on `onApply`; without it they are the panel's local dates.
+   */
+  onValueChange?: (value: DateRange) => void;
   /**
    * Opts into timezone-aware values: the emitted `from` / `to` become `TZDate`s carrying the
    * resolved zone instead of offset-carrying ISO strings, and the panel works in that zone.
@@ -45,16 +49,31 @@ export type DateRangePickerProps = {
    * component behaves exactly as before — provider zone, ISO strings out.
    */
   timeZone?: boolean | string;
-  onApply: (value: Partial<DateFilter> | undefined) => void;
+  /**
+   * Fires on Apply, and with `undefined` (or `defaultValue`, when set) when the trigger input is
+   * cleared. Absolute bounds are offset-carrying ISO strings, or `TZDate`s with the `timeZone`
+   * prop; a relative range carries no bounds unless `forceAbsolute` resolves it.
+   */
+  onApply: (value: DateRange | undefined) => void;
   onVisibleChange?: (visible: boolean) => void;
   onFilterSave?: (filters: SavedFilter[]) => void;
   popoverProps?: Partial<Omit<PopoverProps, 'placement'>>;
   popoverTrigger?: ReactNode;
   placement?: LegacyPlacement;
   ranges?: DateRangePreset[];
-  rangeUnits?: Array<RelativeUnits>;
+  rangeUnits?: RelativeUnit[];
+  /**
+   * @deprecated has no effect on the modes offered — they come from `relativeModes` only
+   */
   relativeFuture?: boolean;
+  /**
+   * @deprecated has no effect on the modes offered — they come from `relativeModes` only
+   */
   relativePast?: boolean;
+  /**
+   * Modes of the relative picker, which renders only when this is non-empty. Pass `['PAST']`:
+   * `'FUTURE'` and `'SINCE'` are unscoped and not supported.
+   */
   relativeModes?: RelativeMode[];
   savedFilters?: SavedFilter[];
   showRelativePicker?: boolean;
@@ -64,7 +83,7 @@ export type DateRangePickerProps = {
   showNowButton?: boolean;
   texts?: Partial<Texts>;
   validate?: (value: DateRange) => { valid: boolean; message?: string };
-  value: DateRange;
+  value?: DateRange;
   defaultValue?: DateRange;
   /**
    * transforms value, by default omits ALL_TIME props
@@ -76,17 +95,19 @@ export type DateRangePickerProps = {
     'disabled' | 'readOnly'
   > & {
     /**
-     * @deprecated - pass 'disabled' prop directly to DateRangePicker
+     * @deprecated has no effect — pass `disabled` to DateRangePicker
      */
     disabled?: RangePickerInputProps['disabled'];
     /**
-     * @deprecated - pass 'readOnly' prop directly to DateRangePicker
+     * @deprecated has no effect — pass `readOnly` to DateRangePicker
      */
     readOnly?: RangePickerInputProps['readOnly'];
   };
   allowedFilterTypes?: RangeFilterType[];
-  // biome-ignore lint/suspicious/noExplicitAny: upstream type is not expressible here
-  renderPopoverTrigger?: (...args: any) => JSX.Element;
+  /** Renders a custom trigger; return nothing to fall back to `popoverTrigger` or the input. */
+  renderPopoverTrigger?: (args: {
+    setPopupVisible: Dispatch<SetStateAction<boolean>>;
+  }) => ReactNode;
   isTruncateMs?: boolean;
   filterValueSelectionModes?: DateLimitMode[];
   filterRangeDisplayMode?: RangeDisplayMode;
@@ -98,16 +119,15 @@ export type DateRangePickerProps = {
  */
 export type Props = DateRangePickerProps;
 
+export type RawDateRangePickerProps = Omit<DateRangePickerProps, 'placement'>;
+
+/**
+ * Only `'PAST'` is supported. `'FUTURE'` and `'SINCE'` are unscoped and not supported, and will
+ * be removed.
+ */
 export type RelativeMode = 'PAST' | 'FUTURE' | 'SINCE';
-export interface State {
-  mode: string;
-  value: DateRange;
-  filter?: FilterDefinition;
-  visibleAddonKey?: string | undefined;
-  alignContentToTop?: boolean;
-}
 export type Texts = {
-  [k in Translations]: string | ReactNode;
+  [k in Translations]: ReactNode;
 } & {
   [k in TranslationsPlaceholders]: string;
 };

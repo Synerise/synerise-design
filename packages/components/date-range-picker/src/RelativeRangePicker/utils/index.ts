@@ -2,7 +2,6 @@ export { findMatchingPreset } from './findMatchingPreset.utils';
 export { findRangeByKey } from './findRangeByKey.utils';
 export { getCurrentGroupFromProps } from './getCurrentGroupFromProps.utils';
 export { getDefaultCustomRange } from './getDefaultCustomRange.utils';
-export { isAbsolute } from './isAbsolute.utils';
 export { setDurationValue } from './setDurationValue.utils';
 export { setFuture } from './setFuture.utils';
 export { setOffsetValue } from './setOffsetValue.utils';

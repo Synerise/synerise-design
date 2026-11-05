@@ -10,7 +10,7 @@ src/
   DateRangePicker.types.ts  — DateRangePickerProps, Texts, RelativeMode, AddonType
   DateRangePicker.styles.ts — top-level styled-components
   RawDateRangePicker.tsx    — core picker logic without popover
-  date.types.ts             — DateRange, DateFilter, RelativeUnits, RangeKey
+  date.types.ts             — DateRange (Absolute | Relative | Since), RelativeUnit, RangeKey, deprecated DateFilter (DateRange.filter is RangeFilter's RangeFilterValue)
   constants.tsx             — MODES, COLUMNS, presets, POPOVER_*_CONFIG
   utils.ts                  — normalizeRange, getDefaultTexts, DEFAULT_RANGE (toIsoString is re-exported from ds-core)
   fns.ts                    — re-exports / wrappers around date-fns
@@ -31,15 +31,15 @@ Popover-wrapped picker. Uses `forwardRef<HTMLDivElement>` — the ref points to 
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `value` | `DateRange` | — | **Required.** Controlled value |
-| `onApply` | `(value: Partial<DateFilter> \| undefined) => void` | — | **Required.** Fires when user clicks Apply |
+| `value` | `DateRange` | `undefined` | Controlled value |
+| `onApply` | `(value: DateRange \| undefined) => void` | — | **Required.** Fires on Apply, and with `undefined` (or `defaultValue`) when the trigger input is cleared |
 | `defaultValue` | `DateRange` | `undefined` | Fallback when value is undefined or user clears |
 | `placement` | `LegacyPlacement` | `'top'` | Popover placement |
 | `showTime` | `boolean` | `false` | Enable time selection |
-| `showRelativePicker` | `boolean` | `false` | Show relative range addon |
-| `relativePast` | `boolean` | `false` | Enable PAST mode in relative picker |
-| `relativeFuture` | `boolean` | `false` | Enable FUTURE mode in relative picker |
-| `relativeModes` | `RelativeMode[]` | `undefined` | Explicitly set available modes (`'PAST' \| 'FUTURE' \| 'SINCE'`) |
+| `showRelativePicker` | `boolean` | `true` | Show relative range addon — it also needs a non-empty `relativeModes` |
+| `relativePast` | `boolean` | `true` | **Deprecated** — no effect on the modes offered |
+| `relativeFuture` | `boolean` | `undefined` | **Deprecated** — no effect on the modes offered |
+| `relativeModes` | `RelativeMode[]` | `undefined` | Modes of the relative picker; it renders only when this is non-empty. Pass `['PAST']` — `'FUTURE'` and `'SINCE'` are unscoped and not supported |
 | `showFilter` | `boolean` | `false` | Show recurring schedule filter addon |
 | `showCustomRange` | `boolean` | `true` | Show custom range form in relative picker |
 | `showNowButton` | `boolean` | `true` | Show "Now" button in time picker |
@@ -47,35 +47,35 @@ Popover-wrapped picker. Uses `forwardRef<HTMLDivElement>` — the ref points to 
 | `forceAdjacentMonths` | `boolean` | `false` | Force left/right calendars to always show adjacent months |
 | `disabledDate` | `(date?: Date) => boolean` | `undefined` | Disable individual dates |
 | `validate` | `(value: DateRange) => { valid: boolean; message?: string }` | `undefined` | Validate selected range before apply |
-| `ranges` | `DateRangePreset[]` | `[]` | Custom preset ranges |
-| `rangeUnits` | `RelativeUnits[]` | all units | Units available in relative picker |
+| `ranges` | `DateRangePreset[]` | `[...RELATIVE_PRESETS, ...ABSOLUTE_PRESETS]` | Preset ranges |
+| `rangeUnits` | `RelativeUnit[]` | all units | Units available in relative picker |
 | `texts` | `Partial<Texts>` | `undefined` | Translations override — all keys optional |
 | `disableDefaultTexts` | `boolean` | `false` | Disable built-in i18n fallbacks (for testing completeness) |
 | `valueFormatOptions` | `DateToFormatOptions` | `undefined` | Format options for displayed value |
-| `onValueChange` | `(value: Partial<DateFilter> \| undefined) => void` | `undefined` | Fires on every change (before Apply) |
+| `onValueChange` | `(value: DateRange) => void` | `undefined` | Fires on every change (before Apply) |
 | `onVisibleChange` | `(visible: boolean) => void` | `undefined` | Fires when popover opens/closes |
 | `onFilterSave` | `(filters: SavedFilter[]) => void` | `undefined` | Fires when a filter is saved |
 | `disabled` | `boolean` | `false` | Disables picker (no popover, input non-interactive) |
 | `readOnly` | `boolean` | `false` | Read-only (no popover, value displayed) |
 | `popoverTrigger` | `ReactNode` | `undefined` | Replace default `RangePickerInput` trigger |
-| `renderPopoverTrigger` | `(...args: any) => JSX.Element` | `() => undefined` | Render-prop alternative for custom trigger |
+| `renderPopoverTrigger` | `({ setPopupVisible }) => ReactNode` | `() => undefined` | Render-prop alternative for custom trigger |
+| `timeZone` | `boolean \| string` | `undefined` | Opt into timezone-aware values — see *Implementation notes* |
 | `popoverProps` | `Partial<Omit<PopoverProps, 'placement'>>` | `{}` | Pass-through to `@synerise/ds-popover` |
-| `rangePickerInputProps` | `Omit<RangePickerInputProps, 'disabled' \| 'readOnly'>` | `{}` | Pass-through to trigger input |
-| `footerProps` | `Partial<FooterProps>` | `undefined` | Pass-through to Footer |
+| `rangePickerInputProps` | `RangePickerInputProps` | `{}` | Pass-through to trigger input; its `disabled` / `readOnly` are deprecated and have no effect |
+| `footerProps` | `Partial<FooterProps>` without `onApply`, `onSwitchMode`, `mode`, `value`, `timeZone` | `undefined` | Overrides of the footer's state and texts |
 | `allowedFilterTypes` | `RangeFilterType[]` | `undefined` | Restrict schedule filter types (DAILY/WEEKLY/MONTHLY) |
 | `filterValueSelectionModes` | `DateLimitMode[]` | `["Range", "Hour"]` | Allowed modes in filter form |
 | `filterRangeDisplayMode` | `RangeDisplayMode` | `undefined` | How the time window is rendered |
 | `savedFilters` | `SavedFilter[]` | `undefined` | Pre-loaded saved filters |
 | `valueTransformer` | `(value: DateRange) => DateRange` | omits ALL_TIME props | Transform applied to value before emitting |
-| `isTruncateMs` | `boolean` | `undefined` | Truncate milliseconds from times |
+| `isTruncateMs` | `boolean` | `true` | Truncate milliseconds from times |
 | `containerClass` | `string` | `'ds-date-range-picker'` | CSS class on the root wrapper |
 | `getPopupContainer` | `(node: HTMLElement) => HTMLElement` | `() => document.body` | Popover mount container |
 | `intl` | `IntlShape` | — | **Deprecated** — use `valueFormatOptions` |
-| `format` | `string` | — | **Deprecated** — use `valueFormatOptions` |
 
 ### `RawDateRangePicker`
 
-Same API as `DateRangePicker` but renders the picker panel directly (no popover, no input trigger). Use when embedding the panel in a custom container.
+Same API as `DateRangePicker` (`RawDateRangePickerProps`) but renders the picker panel directly (no popover, no input trigger). Use when embedding the panel in a custom container.
 
 ### `DailyDateFilter`
 
@@ -87,14 +87,19 @@ Standalone weekly schedule filter component.
 
 | Prop | Type | Description |
 |------|------|-------------|
-| `value` | `WeeklySchedule` | Controlled value |
+| `value` | `WeeklySchedule` | Controlled value: `{ [guid]: { [dayIndex]?: WeeklyScheduleDayValue } }`, one entry per time range, days 0–6 |
 | `onChange` | `(v: WeeklySchedule) => void` | Change callback |
+| `errorTexts` | `{ [guid]: { [dayIndex]?: FilterErrorType } }` | Errors of one day's time inputs, shown when only that day is selected |
 | `texts` | `Partial<Texts>` | Translations |
 | …and more — see `WeeklyProps` | | |
 
+A day value's `start` / `stop` are `undefined` once the time is cleared in the form. The new monthly scheduler has the same shape, with `DayOfMonthIndex` days: 0–30 by day of the month, 0–34 (week × 7 + weekday) with the WEEK period.
+
 ### `MonthlyDateFilter`
 
-Standalone monthly schedule filter component.
+Standalone monthly schedule filter — the legacy component the picker's filter addon uses, one rule list (`Month[]`). Props: `MonthlyFilterProps`.
+
+The multi-range monthly scheduler (`MonthlySchedule`, props `MonthlyProps`) is not exported from the root yet: it replaces this component under the `MonthlyDateFilter` name when the duplicated schedulers are collapsed. Until then it is imported from `dist/RangeFilter/Filters/new/Monthly/Monthly`; its types come from the root.
 
 ### `TimeWindow`
 
@@ -103,10 +108,16 @@ Visualises a time window range (used inside `RangeFilter`). Exported for standal
 ### `getDisabledTimeOptions`
 
 ```ts
-getDisabledTimeOptions(startDate: Date, endDate: Date): DisabledTimeOptions
+getDisabledTimeOptions(
+  day: string | Date | undefined,
+  granularity: string,
+  lowerLimit?: NullableDateLimit,
+  upperLimit?: NullableDateLimit,
+  is12HoursClock?: boolean,
+): number[]
 ```
 
-Returns disabled hour/minute/second options for Ant Design time pickers when a range is constrained.
+Returns the hours, minutes or seconds (by `granularity`) to disable on `day` when a range is constrained.
 
 ### `fnsFormat`
 
@@ -122,9 +133,18 @@ Namespace export: `normalizeRange`, `toIsoString` (re-exported from `@synerise/d
 
 Namespace export: all constants (`MODES`, `COLUMNS`, `RELATIVE_PRESETS`, `ABSOLUTE_PRESETS`, `TIME_OPTIONS`, mode strings, etc.).
 
+### Other value exports
+
+`isSinceRange` (narrows a `DateRange` to `SinceDateRange`), `DEFAULT_RANGE_START`, `DEFAULT_RANGE_END`, `COUNTED_FROM_ENUM`, `DAYS_OF_PERIOD_ENUM`, `MONTH_DAYS`, `FORM_MODES`, `RANGE_DISPLAY_MODES`, `EU_NOTATION_WEEK_DAYS_INDEXES`, `US_NOTATION_WEEK_DAYS_INDEXES`.
+
 ### Type exports
 
-`AbsoluteDateRange`, `RelativeDateRange`, `DateRange`, `DateRangePreset`, `RelativeDateRangePreset`, `AbsoluteDateRangePreset`, `DateRangePickerProps`, `DateRangePickerTexts`, `WeeklyProps`, `WeeklyScheduleDayValue`, `WeeklySchedule`, `DayOfWeekIndex`, `DEFAULT_RANGE_END`, `DEFAULT_RANGE_START`.
+- Values: `DateRange`, `AbsoluteDateRange`, `RelativeDateRange`, `SinceDateRange` (deprecated), `DateFilter` (deprecated — use `DateRange`), `DateRangePreset`, `RelativeDateRangePreset`, `AbsoluteDateRangePreset`, `Duration`, `NullableDateLimit`, `DateLimit`, `RangeKey`, `RelativeUnit`, `RelativeUnits` (deprecated), `RelativeMode`
+- Props: `DateRangePickerProps`, `RawDateRangePickerProps`, `DateRangePickerTexts`, `FooterProps`, `RangePickerInputProps`
+- Filter payload (`DateRange.filter`): `RangeFilterValue` = `RangeFilterDaily` | `RangeFilterWeekly` | `RangeFilterMonthly`, with `RangeFilterDay`, `RangeFilterMonthRule`, `RangeFilterWeekRule`
+- Schedule filter: `RangeFilterType`, `DateLimitMode`, `RangeDisplayMode`, `SavedFilter`, `DenormalizedFilter`, `Month`, `MonthlyFilterProps`, `DailyProps`, `DailySchedule`, `WeeklyProps`, `WeeklySchedule`, `WeeklyScheduleDayValue`, `DayOfWeekIndex`, `MonthlyProps`, `MonthlySchedule`, `MonthlyScheduleDayValue`, `DayOfMonthIndex`
+
+Everything consumers used to deep-import from `dist/` is on the root; import from there. Two exceptions: the multi-range monthly scheduler component (see `MonthlyDateFilter` above) and the `PickerWrapper` styled component, which stays internal.
 
 ## Core data types
 
@@ -133,14 +153,24 @@ Namespace export: all constants (`MODES`, `COLUMNS`, `RELATIVE_PRESETS`, `ABSOLU
 { type: 'ABSOLUTE', from?: Date | string | null, to?: Date | string | null, key?: RangeKey }
 
 // Relative range (last N units)
-{ type: 'RELATIVE', duration: { type: RelativeUnits, value: number }, offset: { type: RelativeUnits, value: number } }
+{ type: 'RELATIVE', future: false, duration: { type: RelativeUnit, value: number }, offset: { type: RelativeUnit, value: number } }
 
-// Since a timestamp
-{ type: 'SINCE', duration: ..., offset: ... }
+// Since a timestamp (SinceDateRange) — deprecated: SINCE is unscoped and not supported. `type` stays
+// 'RELATIVE' and the anchor Date sits in `offset.value`; narrow it with `isSinceRange`
+{ type: 'RELATIVE', future: boolean, duration: { type: RelativeUnit, value: number }, offset: { type: 'SINCE', value: Date } }
 
-type RelativeUnits = 'SECONDS' | 'MINUTES' | 'HOURS' | 'DAYS' | 'WEEKS' | 'MONTHS' | 'YEARS' | 'SINCE' | …
+type RelativeUnit = 'SECONDS' | 'MINUTES' | 'HOURS' | 'DAYS' | 'WEEKS' | 'MONTHS' | 'YEARS'
 
 type RangeKey = 'TODAY' | 'YESTERDAY' | 'LAST_7_DAYS' | 'ALL_TIME' | … (17 presets)
+
+// `filter` — set by the filter addon (`showFilter`), the stored schedule (RangeFilterValue).
+// Days are 1-based; `inverted` on a monthly rule means counted from the end of the month.
+{ type: 'DAILY', nestingType: 'IN_PLACE', from: 'HH:mm:ss.SSS', to: 'HH:mm:ss.SSS', inverted?: boolean, mode?: DateLimitMode }
+{ type: 'WEEKLY', nestingType: 'IN_PLACE', days: { day: 1–7, from, to, inverted?, mode? }[] }
+{ type: 'MONTHLY', nestingType: 'IN_PLACE', rules: (
+  | { type: 'MONTH', inverted: boolean, days: { day: 1–31, from, to, inverted?, mode? }[] }
+  | { type: 'WEEK', inverted: boolean, weeks: { week: 1–5, days: { day: 1–7, from, to, type: 'MONTHLY', … }[] }[] }
+)[] }
 ```
 
 ## Usage patterns
@@ -150,21 +180,20 @@ import DateRangePicker from '@synerise/ds-date-range-picker';
 import type { DateRange } from '@synerise/ds-date-range-picker';
 
 // Minimal absolute
-const [value, setValue] = useState<DateRange>({ type: 'ABSOLUTE' });
+const [value, setValue] = useState<DateRange>();
 
 <DateRangePicker
   value={value}
-  onApply={(v) => setValue(v as DateRange)}
+  onApply={setValue}
 />
 
-// With relative picker and time
+// With relative picker and time — the relative picker renders only with a non-empty relativeModes
 <DateRangePicker
   value={value}
-  onApply={(v) => setValue(v as DateRange)}
+  onApply={setValue}
   showTime
   showRelativePicker
-  relativePast
-  relativeFuture
+  relativeModes={['PAST']}
 />
 
 // Embed panel directly (no popover)
@@ -218,12 +247,12 @@ Addons (relative picker, filter) appear below the calendar and are toggled via `
 - `RangePicker` (absolute calendar) is a class-based `PureComponent` — avoid passing new function references on every render to prevent unnecessary re-renders.
 - `getModifiers()` in `RangePicker/utils.ts` returns react-day-picker `Matcher`s keyed by modifier name; each key becomes a `DayPicker-Day--<key>` class. It normalises the `Date | string | null` range bounds to `Date`, which the v7 code did with casts.
 - `RelativeRangePicker` is also a class-based `PureComponent`.
-- The `SINCE` mode is a variant of relative dating anchored to a specific timestamp rather than "now".
+- The `SINCE` mode is a variant of relative dating anchored to a specific timestamp rather than "now". It and `FUTURE` are deprecated — unscoped, not supported, and reachable only through `relativeModes`.
 - **`timeZone` prop — the only switch for timezone behaviour.** Set it and the panel decodes incoming bounds by their own offset, works in the resolved zone, and emits `from` / `to` as **`TZDate`**s carrying that zone instead of offset-carrying ISO strings. `true` uses the provider's `timeZone`; a string names an IANA zone directly. Same contract as `ds-date-picker` and `ds-time-picker`. `TZDate.toISOString()` gives the offset form; use `new Date(bound.getTime()).toISOString()` for a `Z` instant.
 - **Without the prop nothing is timezone-aware, including a `timeZone` on the provider.** A zone on the `IntlProvider` must not switch any of this on: every unmigrated consumer already has one, so reading it re-bases all of them at once. Opted out, bounds are decoded by `rmvTZOffset` (strip `±hh:mm`, read the rest as a browser wall clock — the offset is *discarded*, which is the bug the prop fixes), the panel renders on the browser clock, and `onApply` emits ISO strings whose offset comes from the provider zone. That last half was always zone-aware; `encodeTimeZone` in `RawDateRangePicker` is what keeps it so, and dropping its `?? intl.timeZone` would emit `+00:00` and move every saved instant.
 - **The resolved zone is passed down as a prop, never read from `useIntl` in a child.** `Footer`, `RangePickerInput`, `RangePicker`, `RelativeRangePicker`, `CustomRangeForm` and `TimestampRange` all take `timeZone?: string`, which is `undefined` when the prop is absent. `dateUtils/getNow` takes the same value rather than an `IntlShape`. A `useIntl().timeZone` read in any of them silently re-introduces the ungated behaviour, and the `without the timeZone prop` block in `DateRangePicker.timezones.spec.tsx` is what catches it.
 - **Internal date convention:** inside the panel a `Date` holds the *wall clock of the provider timezone* in its local fields — `toIsoString` (ds-core) is the encoder of that convention, `getValueAsLocalDate` / `getLocalDateInTimeZone` the decoders. Conversion happens only at the boundaries: values coming in (`normalizeRange(value, timeZone)`, and the time panel's ISO strings in `handleRangeChange`) and values going out (`toEmittedLimit` in `handleApply` / `onValueChange`). Display sites re-anchor to a real instant via `getDateToDisplay` and force `applyTimeZoneOffset: true` through `getFormatOptionsToDisplay` (`dateUtils/displayDate.ts`), because `formatValue` only projects an instant into the provider timezone when that flag is set and it defaults to `false` in `DataFormatConfig`. Mixing the two representations shifts values by the browser-to-provider timezone delta.
 - **`value` accepts a `Date` as a true instant**, an ISO string as offset-carrying. A day selected in the calendar is `00:00:00`–`23:59:59` in the *provider* timezone, so consumers must read the calendar day back in that timezone rather than from browser-local fields.
-- **Everything that means "now" goes through `dateUtils/getNow.ts`** — `getNow(intl)` returns the provider's clock as a wall-clock date. It backs the relative presets (`TODAY`/`YESTERDAY`/`LAST_MONTH` resolve on the provider's day, which across the date line is not the browser's), the circled `today` calendar modifier, the month the calendars open on, the "Now" button and the SINCE anchor. Nothing in the package may capture `new Date()` at module load — the one remaining case, `RangeFilter/Shared/TimeWindow/utils.tsx`, is a deliberate date carrier for time-of-day strings and is commented as such.
+- **Everything that means "now" goes through `dateUtils/getNow.ts`** — `getNow(timeZone)` returns the zone's clock as a wall-clock date (the browser clock when `timeZone` is `undefined`). It backs the relative presets (`TODAY`/`YESTERDAY`/`LAST_MONTH` resolve on the provider's day, which across the date line is not the browser's), the circled `today` calendar modifier, the month the calendars open on, the "Now" button and the SINCE anchor. Nothing in the package may capture `new Date()` at module load — the one remaining case, `RangeFilter/Shared/TimeWindow/utils.tsx`, is a deliberate date carrier for time-of-day strings and is commented as such.
 - `normalizeRange(range, timeZone?)` from `utils` converts relative ranges to absolute `Date` objects and optionally adjusts for timezone — used internally and safe to call from consuming code. The `timeZone` argument means two different things by branch: for a **relative** range it is the clock "now" is read from; for an **absolute** one it decodes incoming bounds (a `Date` there is read as a real instant). Internal call sites therefore use `normalizeLocalRange(range, timeZone)`, which passes the timezone only on the relative branch — handing it to the absolute branch would re-decode bounds that are already wall clock and shift them by the timezone delta.
 - **`utils.toIsoString` is a re-export of ds-core's**, not a local implementation. Do not reintroduce a copy here: the one that used to live in `src/utils.ts` dropped the minutes of every non-whole-hour offset and read the offset off the wrong clock.

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { type ReactNode } from 'react';
 import { injectIntl, type WrappedComponentProps } from 'react-intl';
 
 import * as CONST from '../constants';
@@ -33,27 +33,24 @@ class RelativeRangePicker extends React.PureComponent<
     relativeModes: ['PAST', 'FUTURE'],
     rangeUnits: CONST.RELATIVE_UNITS,
     showCustomRange: true,
-    valueTransformer: (
-      e: RelativeDateRange | object,
-    ): RelativeDateRange | object => e,
+    valueTransformer: (range: DateRange): DateRange => range,
   };
 
   constructor(props: Props) {
     super(props);
-    // @ts-expect-error - types mismatch
     this.state = {
       currentGroup: getCurrentGroupFromProps(props),
       future: props.future || false,
       past: props.past || true,
+      currentRange: getRelativePresetForRange(props.value) as RelativeDateRange,
       sinceTimestamp: getNow(props.timeZone),
     };
   }
 
   static getDerivedStateFromProps(nextProps: Props, prevState: State): State {
     const { ranges, value, future, past, relativeModes } = nextProps;
-    const state = prevState;
-    const currentRange = getRelativePresetForRange(value);
-    state.currentRange = currentRange as RelativeDateRange;
+    const state = { ...prevState };
+    state.currentRange = getRelativePresetForRange(value) as RelativeDateRange;
     state.groupedRanges = ranges;
     if (state.groupedRanges) {
       if (!relativeModes?.includes('PAST')) {
@@ -146,24 +143,23 @@ class RelativeRangePicker extends React.PureComponent<
     onChange(resultRange);
   };
 
-  renderRanges = (ranges: DateRange[]): React.ReactNode => {
+  renderRanges = (ranges: DateRange[]): ReactNode => {
     if (!ranges || ranges.length === 0) {
       return null;
     }
     const { currentRange } = this.state;
-    const { onChange, texts, value } = this.props;
+    const { onChange, texts } = this.props;
     return (
       <RangeButtons
         ranges={ranges}
         currentRange={currentRange}
-        value={value}
         texts={texts}
         onChange={onChange}
       />
     );
   };
 
-  renderRangesDropdown = (ranges: DateRange[]): React.ReactNode => {
+  renderRangesDropdown = (ranges: DateRange[]): ReactNode => {
     const { currentRange } = this.state;
     const { onChange, texts, valueTransformer } = this.props;
     return (
@@ -193,13 +189,12 @@ class RelativeRangePicker extends React.PureComponent<
     }
   };
 
-  renderCustomRangeForm = (): React.ReactNode => {
+  renderCustomRangeForm = (): ReactNode => {
     const { currentRange, currentGroup, sinceTimestamp } = this.state;
-    const { ranges, texts, relativeModes, rangeUnits, timeZone } = this.props;
+    const { texts, relativeModes, rangeUnits, timeZone } = this.props;
     return (
       <CustomRangeForm
         handleModeChange={this.onModeChange}
-        ranges={ranges}
         currentRange={currentRange}
         currentGroup={currentGroup}
         handleChange={this.onChange}
@@ -215,7 +210,7 @@ class RelativeRangePicker extends React.PureComponent<
     );
   };
 
-  render(): React.ReactNode {
+  render(): ReactNode {
     const { texts, showCustomRange } = this.props;
     const { groupedRanges, currentGroup, currentRange } = this.state;
 

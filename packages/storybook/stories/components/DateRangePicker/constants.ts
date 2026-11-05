@@ -1,6 +1,6 @@
 import type {
   AbsoluteDateRange,
-  DateRangePickerProps,
+  DateLimitMode,
   RelativeDateRange,
 } from '@synerise/ds-date-range-picker';
 import {
@@ -8,9 +8,6 @@ import {
   DEFAULT_RANGE_START,
 } from '@synerise/ds-date-range-picker';
 import { TimePickerProps } from '@synerise/ds-time-picker';
-
-type DateLimitMode =
-  Required<DateRangePickerProps>['filterValueSelectionModes'][number];
 
 export const TEXTS = {
   after: 'after',

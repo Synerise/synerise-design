@@ -1,17 +1,17 @@
-import React from 'react';
+import React, { type ReactElement, type ReactNode } from 'react';
 
 import * as S from './Header.styles';
 
 export type Action = {
-  label: JSX.Element;
+  label: ReactElement;
   key: string;
   onClick: () => void;
 };
 
 type HeaderProps = {
-  title: string | React.ReactNode;
+  title: ReactNode;
   actions?: Action[];
-  suffix?: React.ReactNode;
+  suffix?: ReactNode;
 };
 
 const HeaderBase = ({ title, actions, suffix }: HeaderProps) => (

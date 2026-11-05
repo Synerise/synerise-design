@@ -1,19 +1,31 @@
+import cloneDeep from 'lodash.clonedeep';
 import groupBy from 'lodash.groupby';
 import omit from 'lodash.omit';
 import range from 'lodash.range';
 
-import { COUNTED_FROM_ENUM, DAYS_OF_PERIOD_ENUM, TYPES } from './constants';
+import {
+  COUNTED_FROM_ENUM,
+  DAYS_OF_PERIOD_ENUM,
+  type RangeFilterType,
+  TYPES,
+  TYPES_DATA,
+} from './constants';
 import type {
+  DailyFilterValue,
   DenormalizedFilter,
-  FilterDefinition,
+  FilterDay,
   FilterValue,
-  MonthlyFilterDefinition,
-  NormalizedFilter,
-  NormalizedFilterBase,
-  WeekFilter,
-  WeeklyFilterDefinition,
+  MonthlyDayRange,
+  MonthlyFilterValue,
+  RangeFilterDay,
+  RangeFilterMonthRule,
+  RangeFilterValue,
+  RangeFilterWeekRule,
+  WeeklyFilterValue,
 } from './RangeFilter.types';
 import type { SavedFilter } from './Shared/FilterDropdown/FilterDropdown.types';
+
+type NormalizedTimes = { from: string; to: string; day?: string | number };
 
 /*
  * Map field from components to datefilter schema
@@ -22,7 +34,7 @@ import type { SavedFilter } from './Shared/FilterDropdown/FilterDropdown.types';
  * 0-based => 1-based indexed days
  * */
 
-export const mapTimeSchema = (item: DenormalizedFilter): NormalizedFilter => {
+export const mapTimeSchema = <T extends DenormalizedFilter>(item: T) => {
   const { start, stop, day, ...rest } = item;
   return {
     from: start,
@@ -41,9 +53,7 @@ export const mapTimeSchema = (item: DenormalizedFilter): NormalizedFilter => {
  * to => stop
  * 1-based => 0-based indexed days
  * */
-export const denormMapTimeSchema = (
-  item: NormalizedFilter,
-): DenormalizedFilter => {
+export const denormMapTimeSchema = <T extends NormalizedTimes>(item: T) => {
   const { from, to, day, ...rest } = item;
   return {
     start: from,
@@ -55,78 +65,65 @@ export const denormMapTimeSchema = (
         ? undefined
         : +day - 1,
     ...rest,
-  } as DenormalizedFilter;
+  };
 };
 
-export const normalizeValue = ({
-  type,
-  definition,
-  // biome-ignore lint/suspicious/noExplicitAny: upstream type is not expressible here
-}: FilterValue): NormalizedFilterBase | { rules: any } => {
-  const result = { type, nestingType: 'IN_PLACE' };
-  let days: unknown[];
-  let rules: unknown[] = [];
-  switch (type) {
+// The weekly and monthly editors always set `day` through their day template.
+const toRangeFilterDay = ({ restricted, display, ...rest }: FilterDay) =>
+  mapTimeSchema(rest) as RangeFilterDay & Pick<FilterDay, 'week'>;
+
+const NESTING_TYPE = 'IN_PLACE';
+
+export const normalizeValue = (value: FilterValue): RangeFilterValue => {
+  switch (value.type) {
     case TYPES.DAILY:
-      return { ...mapTimeSchema(definition as DenormalizedFilter), ...result };
+      return {
+        ...mapTimeSchema(value.definition),
+        type: value.type,
+        nestingType: NESTING_TYPE,
+      };
     case TYPES.WEEKLY:
-      days = Object.values(definition as WeeklyFilterDefinition)
-        .filter((day) => day.restricted)
-        .map((item) => mapTimeSchema(item as DenormalizedFilter));
-      break;
-    case TYPES.MONTHLY:
-      rules = [];
-      (definition as MonthlyFilterDefinition[]).map((def) => {
-        days = Object.values(def.definition)
+      return {
+        type: value.type,
+        nestingType: NESTING_TYPE,
+        days: Object.values(value.definition)
           .filter((day) => day.restricted)
-          .map(({ restricted, display, ...rest }) =>
-            mapTimeSchema(rest as DenormalizedFilter),
-          );
+          .map(toRangeFilterDay),
+      };
+    case TYPES.MONTHLY:
+      return {
+        type: value.type,
+        nestingType: NESTING_TYPE,
+        rules: value.definition.map((def) => {
+          const days = Object.values(def.definition)
+            .filter((day) => day.restricted)
+            .map(toRangeFilterDay);
+          const inverted = def.periodType !== COUNTED_FROM_ENUM.BEGINNING;
 
-        if (def.period === DAYS_OF_PERIOD_ENUM.DAY_OF_WEEK) {
-          rules.push({
-            weeks: Object.entries(groupBy(days, 'week')).map(
-              ([week, daysArray]) => ({
-                week: +week + 1,
-                // biome-ignore lint/suspicious/noExplicitAny: upstream type is not expressible here
-                days: daysArray.map((day: any) => {
-                  const dayOfWeek = ((day.day - 1) % 7) + 1;
-                  return {
-                    ...omit(day as object, ['week']),
-                    type,
-                    day: dayOfWeek,
-                  };
+          if (def.period === DAYS_OF_PERIOD_ENUM.DAY_OF_WEEK) {
+            return {
+              weeks: Object.entries(groupBy(days, 'week')).map(
+                ([week, daysArray]) => ({
+                  week: +week + 1,
+                  days: daysArray.map((day) => ({
+                    ...omit(day, ['week']),
+                    type: value.type,
+                    day: ((day.day - 1) % 7) + 1,
+                  })),
                 }),
-              }),
-            ),
-            type: def.period,
-            inverted: def.periodType !== COUNTED_FROM_ENUM.BEGINNING,
-          });
-        } else {
-          rules.push({
-            days,
-            type: def.period,
-            inverted: def.periodType !== COUNTED_FROM_ENUM.BEGINNING,
-          });
-        }
-        return rules;
-      });
-      return { ...result, rules };
-    default:
-      days = [];
-      break;
+              ),
+              type: def.period,
+              inverted,
+            };
+          }
+          return { days, type: def.period, inverted };
+        }),
+      };
   }
-
-  // @ts-expect-error days doesnt exist in type
-  result.days = days.map(
-    // @ts-expect-error types mismatch
-    ({ restricted, display, ...rest }) => rest,
-  ) as Partial<FilterDefinition>[];
-  return result;
 };
 
-export const createWeeklyRange = (days: NormalizedFilter[]) =>
-  range(0, 8).reduce((acc, i) => {
+export const createWeeklyRange = (days: RangeFilterDay[]) =>
+  range(0, 8).reduce<WeeklyFilterValue['definition']>((acc, i) => {
     const day = days.find((d) => d.day === i);
     return day
       ? {
@@ -140,45 +137,35 @@ export const createWeeklyRange = (days: NormalizedFilter[]) =>
       : acc;
   }, {});
 
-export const createMonthlyWeekDayRange = (rules: {
-  weeks?: (NormalizedFilter & WeekFilter)[];
-}): MonthlyDayRange =>
-  // biome-ignore lint/complexity/noBannedTypes: intentional empty shape
-  range(0, 7 * 5 + 1).reduce((acc: {}, i: number) => {
+export const createMonthlyWeekDayRange = (
+  rule: RangeFilterWeekRule,
+): MonthlyDayRange =>
+  range(0, 7 * 5 + 1).reduce<MonthlyDayRange>((acc, i) => {
     const weekStartIndex = Math.floor(i / 7);
     const week = weekStartIndex;
     const dayOfWeek = i - weekStartIndex * 7;
 
-    // @ts-expect-error: FIXME: Type 'undefined' is not assignable to type 'NormalizedFilter[]'.ts(2322)
-    const days: NormalizedFilter[] =
-      rules.weeks &&
-      rules.weeks.reduce(
-        // @ts-expect-error: FIXME: Type 'undefined' is not assignable to type 'NormalizedFilter[]'.ts(2322)
-        (prev, item) => [
-          ...prev,
-          // @ts-expect-error: days doesn't exist in type
-          ...item.days.map((day) => ({
-            ...denormMapTimeSchema(day),
-            week: item.week - 1,
-          })),
-        ],
-        [],
-      );
+    const days = rule.weeks.reduce<FilterDay[]>(
+      (prev, item) => [
+        ...prev,
+        ...item.days.map((day) => ({
+          ...denormMapTimeSchema(day),
+          week: item.week - 1,
+        })),
+      ],
+      [],
+    );
     const day = days.find((d) => d.week === week && d.day === dayOfWeek);
     return day
       ? { ...acc, [i]: { ...day, restricted: true, display: true } }
       : acc;
   }, {});
 
-export type MonthlyDayRange = {
-  [key: string]: DenormalizedFilter & { restricted: boolean; display: boolean };
-};
-export const createMonthlyDayRange = (rules: {
-  days?: NormalizedFilter[];
-}): MonthlyDayRange =>
-  // biome-ignore lint/complexity/noBannedTypes: intentional empty shape
-  range(0, 32).reduce((acc: {}, i: number) => {
-    const day = rules.days && rules.days.find((d) => d.day === i);
+export const createMonthlyDayRange = (
+  rule: RangeFilterMonthRule,
+): MonthlyDayRange =>
+  range(0, 32).reduce<MonthlyDayRange>((acc, i) => {
+    const day = rule.days && rule.days.find((d) => d.day === i);
     return day
       ? {
           ...acc,
@@ -191,56 +178,65 @@ export const createMonthlyDayRange = (rules: {
       : acc;
   }, {});
 
-export const denormalizers: { [key: string]: Function } = {
-  [TYPES.DAILY]: (values: NormalizedFilter) => denormMapTimeSchema(values),
-  [TYPES.WEEKLY]: (values: { days: [] }) => createWeeklyRange(values.days),
-  [TYPES.MONTHLY]: (values: { rules: FilterDefinition[] }) => {
-    const monthlyDenormalizers = {
-      [DAYS_OF_PERIOD_ENUM.DAY_OF_MONTH]: createMonthlyDayRange,
-      [DAYS_OF_PERIOD_ENUM.DAY_OF_WEEK]: createMonthlyWeekDayRange,
-    };
-    return values.rules.map((value) => ({
-      period: value.type,
-      id: Math.random(),
-      periodType: value.inverted
-        ? COUNTED_FROM_ENUM.ENDING
-        : COUNTED_FROM_ENUM.BEGINNING,
-
-      // @ts-expect-error
-      definition: monthlyDenormalizers[value.type](value),
-    }));
-  },
+export const denormalizeValue = (value: RangeFilterValue): FilterValue => {
+  switch (value.type) {
+    case TYPES.DAILY:
+      return { type: value.type, definition: denormMapTimeSchema(value) };
+    case TYPES.WEEKLY:
+      return { type: value.type, definition: createWeeklyRange(value.days) };
+    case TYPES.MONTHLY:
+      return {
+        type: value.type,
+        definition: value.rules.map((rule) => ({
+          period: rule.type,
+          id: Math.random(),
+          periodType: rule.inverted
+            ? COUNTED_FROM_ENUM.ENDING
+            : COUNTED_FROM_ENUM.BEGINNING,
+          definition:
+            rule.type === DAYS_OF_PERIOD_ENUM.DAY_OF_WEEK
+              ? createMonthlyWeekDayRange(rule)
+              : createMonthlyDayRange(rule),
+        })),
+      };
+  }
 };
 
-// biome-ignore lint/suspicious/noExplicitAny: upstream type is not expressible here
-export const validators: { [key: string]: (values: any) => boolean } = {
-  [TYPES.DAILY]: (values: FilterValue) =>
-    Boolean(!!values?.definition?.start && !!values?.definition?.stop),
-  [TYPES.WEEKLY]: (values: WeeklyFilterDefinition) =>
-    Boolean(values?.definition && !!Object.keys(values.definition).length),
-  [TYPES.MONTHLY]: (values: FilterValue<MonthlyFilterDefinition>) =>
+export const defaultFilterValue = (type: RangeFilterType): FilterValue => {
+  switch (type) {
+    case TYPES.DAILY:
+      return { type, definition: cloneDeep(TYPES_DATA.DAILY.definition) };
+    case TYPES.WEEKLY:
+      return { type, definition: cloneDeep(TYPES_DATA.WEEKLY.definition) };
+    case TYPES.MONTHLY:
+      return { type, definition: cloneDeep(TYPES_DATA.MONTHLY.definition) };
+  }
+};
+
+export const validators = {
+  [TYPES.DAILY]: (value: DailyFilterValue) =>
+    Boolean(!!value?.definition?.start && !!value?.definition?.stop),
+  [TYPES.WEEKLY]: (value: WeeklyFilterValue) =>
+    Boolean(value?.definition && !!Object.keys(value.definition).length),
+  [TYPES.MONTHLY]: (value: MonthlyFilterValue) =>
     Boolean(
-      values?.definition &&
-        !!Object.keys(values.definition) &&
-        // @ts-expect-error requires type refactor
-        Object.keys(values.definition[0].definition).length > 0,
+      value?.definition &&
+        !!Object.keys(value.definition) &&
+        Object.keys(value.definition[0].definition).length > 0,
     ),
 };
 
-export const denormalizeValue = (
-  values: FilterValue<FilterDefinition>,
-): Partial<FilterValue<FilterDefinition>> => ({
-  type: values.type,
-  definition: denormalizers[values.type](values),
-});
-
-const alwaysValid = (): true => true;
-export const isValidValue = (value: FilterValue<FilterDefinition>): boolean => {
-  const validator =
-    typeof validators[value?.type] === 'function'
-      ? validators[value.type]
-      : alwaysValid;
-  return validator(value);
+export const isValidValue = (value?: FilterValue): boolean => {
+  switch (value?.type) {
+    case TYPES.DAILY:
+      return validators[value.type](value);
+    case TYPES.WEEKLY:
+      return validators[value.type](value);
+    case TYPES.MONTHLY:
+      return validators[value.type](value);
+    default:
+      return true;
+  }
 };
 
 export const isDuplicate = (

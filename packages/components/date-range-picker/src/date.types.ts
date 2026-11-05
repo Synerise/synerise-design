@@ -1,19 +1,19 @@
-import type React from 'react';
+import type { RangeFilterValue } from './RangeFilter/RangeFilter.types';
 
-import type endOf from './dateUtils/endOf';
-import type startOf from './dateUtils/startOf';
-
-export type RelativeUnits =
+export type RelativeUnit =
   | 'SECONDS'
   | 'MINUTES'
   | 'HOURS'
   | 'DAYS'
   | 'WEEKS'
   | 'MONTHS'
-  | 'YEARS'
-  | 'SINCE'
-  | keyof typeof startOf
-  | keyof typeof endOf;
+  | 'YEARS';
+
+/**
+ * @deprecated use `RelativeUnit`. `'SINCE'` is not a unit: it marks the offset of a SINCE range,
+ * whose `value` is the anchor `Date`. SINCE is unscoped and not supported.
+ */
+export type RelativeUnits = RelativeUnit | 'SINCE';
 
 export type RangeKey =
   | 'TODAY'
@@ -38,7 +38,11 @@ export type RangeKey =
 export type NullableDateLimit = null | string | Date;
 export type DateLimit = string | Date;
 
-export interface DateFilter {
+/**
+ * @deprecated use `DateRange`, which `onApply` and `onValueChange` emit. `DateRange.filter` is a
+ * `RangeFilterValue`.
+ */
+export type DateFilter = {
   key?: string;
   type: 'ABSOLUTE' | 'RELATIVE' | 'SINCE';
   from?: NullableDateLimit;
@@ -51,38 +55,60 @@ export interface DateFilter {
     type: RelativeUnits;
     value: number;
   };
-}
+};
 
-export interface DateRangeBase {
+export type DateRangeBase = {
   key?: RangeKey | string;
+  /**
+   * `true` only for FUTURE presets and the FUTURE / SINCE modes, which are unscoped and not
+   * supported. PAST presets and `ALL_TIME` carry `false`.
+   */
   future?: boolean;
-  filter?: DateFilter;
+  /** The schedule set by the filter addon (`showFilter`). */
+  filter?: RangeFilterValue;
   translationKey?: string;
-  id?: React.ReactText;
+  id?: string | number;
   timestamp?: Date;
-}
+};
 
-export interface AbsoluteDateRange extends DateRangeBase {
+/**
+ * `from` / `to` arrive as offset-carrying ISO strings, or as `TZDate`s with the `timeZone` prop.
+ * A `Date` passed in is read as a real instant.
+ */
+export type AbsoluteDateRange = DateRangeBase & {
+  type: 'ABSOLUTE';
   from?: NullableDateLimit;
   to?: NullableDateLimit;
-  type: 'ABSOLUTE';
-}
+};
 
-export interface Duration {
-  type: RelativeUnits;
+export type Duration = {
+  type: RelativeUnit;
   value: number;
-}
+};
 
-export interface RelativeDateRange extends DateRangeBase {
-  type: 'RELATIVE' | 'SINCE';
-  offset: {
-    type: RelativeUnits;
-    value: number;
-  };
+/** The last (or, unsupported, next) `duration`, shifted back by `offset`. */
+export type RelativeDateRange = DateRangeBase & {
+  type: 'RELATIVE';
+  offset: Duration;
   duration: Duration;
   from?: NullableDateLimit;
   to?: NullableDateLimit;
-}
+};
+
+/**
+ * What the SINCE mode emits: `type` stays `'RELATIVE'`, and the anchor `Date` sits in
+ * `offset.value`. Tell it from a `RelativeDateRange` with `isSinceRange`.
+ *
+ * @deprecated SINCE is unscoped and not supported.
+ */
+export type SinceDateRange = DateRangeBase & {
+  type: 'RELATIVE';
+  offset: { type: 'SINCE'; value: Date };
+  duration: Duration;
+  from?: NullableDateLimit;
+  to?: NullableDateLimit;
+};
+
 type PresetType = {
   key: string;
   translationKey?: string;
@@ -91,6 +117,4 @@ export type RelativeDateRangePreset = RelativeDateRange & PresetType;
 export type AbsoluteDateRangePreset = AbsoluteDateRange & PresetType;
 export type DateRangePreset = RelativeDateRangePreset | AbsoluteDateRangePreset;
 
-export type Days = { [key: string]: object };
-
-export type DateRange = AbsoluteDateRange | RelativeDateRange;
+export type DateRange = AbsoluteDateRange | RelativeDateRange | SinceDateRange;

@@ -8,6 +8,8 @@ import {
   addYears as fnsAddYears,
 } from 'date-fns';
 
+import type { RelativeUnit } from '../date.types';
+
 export default {
   HOURS: fnsAddHours,
   MINUTES: fnsAddMinutes,
@@ -16,4 +18,4 @@ export default {
   WEEKS: fnsAddWeeks,
   MONTHS: fnsAddMonths,
   YEARS: fnsAddYears,
-};
+} satisfies Record<RelativeUnit, unknown>;

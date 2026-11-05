@@ -1,7 +1,4 @@
-import type {
-  DayKey,
-  DayOptions,
-} from '../../../Shared/TimeWindow/TimeWindow.types';
+import type { DayKey } from '../../../Shared/TimeWindow/TimeWindow.types';
 import { DEFAULT_MAX_ENTRIES } from '../constants';
 import type {
   DayOfMonthIndex,
@@ -17,10 +14,10 @@ export const range = (start: number, stop: number): number[] => {
   return result;
 };
 export const haveActiveDaysCommonRange = (
-  days: Record<DayOfMonthIndex, MonthlyScheduleDayValue>,
+  days: Partial<Record<DayOfMonthIndex, MonthlyScheduleDayValue>>,
   activeDaysArray: DayKey[],
 ): boolean => {
-  let previousDay: DayOptions | undefined;
+  let previousDay: MonthlyScheduleDayValue | undefined;
   const activeDaysHaveDifferentRanges = activeDaysArray.some(
     (dayIndex): boolean => {
       const currentDay = days[dayIndex as DayOfMonthIndex];

@@ -23,8 +23,11 @@ import Day from '../../../Shared/TimeWindow/Day/Day';
 import Grid from '../../../Shared/TimeWindow/Grid/Grid';
 import type { DateLimitMode } from '../../../Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
 import RangeFormContainer from '../../../Shared/TimeWindow/RangeFormContainer/RangeFormContainer';
-import type { DateValue } from '../../../Shared/TimeWindow/RangeFormContainer/RangeFormContainer.types';
-import type { DayKey } from '../../WeeklyFilter/WeeklyFilter.types';
+import type {
+  DateValue,
+  FilterErrorType,
+} from '../../../Shared/TimeWindow/RangeFormContainer/RangeFormContainer.types';
+import type { DayKey } from '../../../Shared/TimeWindow/TimeWindow.types';
 import {
   DEFAULT_MAX_ENTRIES,
   DEFAULT_RANGE_END,
@@ -34,6 +37,7 @@ import {
   NOOP,
   RENDER_EMPTY_NODE_FN,
 } from '../constants';
+import type { ScheduleRows } from '../Filters.types';
 import { useShiftAndControlKeys } from '../hooks/useShiftAndControlKeys';
 import {
   canAddAnotherRange,
@@ -41,7 +45,11 @@ import {
   range,
   removeEmptyEntries,
 } from './utils';
-import type { WeeklyProps, WeeklySchedule } from './Weekly.types';
+import type {
+  WeeklyProps,
+  WeeklySchedule,
+  WeeklyScheduleDayValue,
+} from './Weekly.types';
 
 const Weekly = ({
   maxEntries = DEFAULT_MAX_ENTRIES,
@@ -49,12 +57,16 @@ const Weekly = ({
   onChange = NOOP,
   timeFormat,
   valueFormatOptions,
-  value,
+  value: schedule,
   texts,
   timePickerProps,
   disabled,
-  errorTexts,
+  errorTexts: scheduleErrors,
 }: WeeklyProps) => {
+  const value = schedule as ScheduleRows<WeeklyScheduleDayValue>;
+  const errorTexts = scheduleErrors as
+    | ScheduleRows<FilterErrorType>
+    | undefined;
   const intl = useIntl();
   const allTexts = useMemo(
     () => getDefaultTexts(intl, false, texts),
@@ -94,7 +106,6 @@ const Weekly = ({
       ? Object.keys(value).filter((id) =>
           activeDays.every(
             (day) =>
-              // @ts-expect-error - requires type refactor
               !!value[id][day] &&
               haveActiveDaysCommonRange(value[id], activeDays),
           ),
@@ -110,9 +121,7 @@ const Weekly = ({
       if (dayKey instanceof Array) {
         dayKey.forEach((day) => {
           if (guid in updatedSchedule) {
-            // @ts-expect-error - requires type refactor
             updatedSchedule[guid][day] = {
-              // @ts-expect-error - requires type refactor
               ...value[guid][day],
               restricted: true,
               start: start
@@ -124,9 +133,7 @@ const Weekly = ({
           }
         });
       } else if (guid in updatedSchedule) {
-        // @ts-expect-error - requires type refactor
         updatedSchedule[guid][dayKey] = {
-          // @ts-expect-error - requires type refactor
           ...value[guid][dayKey],
           restricted: true,
           start: start ? dayjs(start).format(DEFAULT_TIME_FORMAT) : undefined,
@@ -140,9 +147,7 @@ const Weekly = ({
   );
   const getDayValue = useCallback(
     (dayKey: DayKey, guid: string) => {
-      // @ts-expect-error - requires type refactor
       if (typeof dayKey === 'number' && value[guid] && value[guid][dayKey]) {
-        // @ts-expect-error - requires type refactor
         return value[guid][dayKey];
       }
       return defaultDayValue;
@@ -153,9 +158,7 @@ const Weekly = ({
     (selectedMode: DateLimitMode, dayKeys: DayKey[], guid: string) => {
       const updatedSchedule = value;
       dayKeys.forEach((day) => {
-        // @ts-expect-error - requires type refactor
         updatedSchedule[guid][day] = {
-          // @ts-expect-error - requires type refactor
           ...value[guid][day],
           mode: selectedMode,
         };
@@ -168,7 +171,6 @@ const Weekly = ({
     (guid: string, activeDaysArray: DayKey[]) => {
       const updatedSchedule = value;
       activeDaysArray.forEach((activeDay: DayKey) => {
-        // @ts-expect-error - requires type refactor
         delete updatedSchedule[guid][activeDay];
       });
       onChange({ ...updatedSchedule });
@@ -204,7 +206,6 @@ const Weekly = ({
 
   const isDayRestricted = useCallback(
     (dayKey: DayKey) => {
-      // @ts-expect-error - requires type refactor
       return Object.keys(value).some((key: string) => !!value[key][dayKey]);
     },
     [value],
@@ -214,7 +215,6 @@ const Weekly = ({
     (dayKey: DayKey) => {
       const updatedSchedule = value;
       Object.keys(value).forEach((key) => {
-        // @ts-expect-error - requires type refactor
         delete updatedSchedule[key][dayKey];
       });
       excludeDayFromActive(dayKey);
@@ -314,13 +314,11 @@ const Weekly = ({
   );
 
   const handleRangeAdd = useCallback(() => {
-    const updatedDay = {};
+    const updatedDay: Record<DayKey, WeeklyScheduleDayValue> = {};
     const guid = Object.keys(value).find((key) =>
-      // @ts-expect-error - requires type refactor
       activeDays.every((day) => value[key][day] === undefined),
     );
     activeDays.forEach((day) => {
-      // @ts-expect-error - requires type refactor
       updatedDay[day] = defaultDayValue;
     });
     const restOfScheduleObject = guid ? value[guid] : EMPTY_OBJECT;
@@ -347,15 +345,8 @@ const Weekly = ({
     filteredSchedule.length < maxEntries &&
     canAddRange &&
     !disabled;
-  const getErrorTextsForFormRow = (guid: string) => {
-    return (
-      activeDays.length === 1 &&
-      errorTexts &&
-      errorTexts[guid] &&
-      // @ts-expect-error - requires type refactor
-      errorTexts[guid][activeDays[0]]
-    );
-  };
+  const getErrorTextsForFormRow = (guid: string) =>
+    activeDays.length === 1 ? errorTexts?.[guid]?.[activeDays[0]] : undefined;
   return (
     <S.NewFilterContainer ref={ref as RefObject<HTMLDivElement>}>
       <Grid
@@ -387,8 +378,7 @@ const Weekly = ({
               handleDayTimeChange(dates, activeDays, guid)
             }
             dayKeys={activeDays}
-            // biome-ignore lint/suspicious/noExplicitAny: upstream type is not expressible here
-            getDayLabel={getDayLabel as any}
+            getDayLabel={getDayLabel}
             activeDays={activeDays}
             getDayValue={(dayKey: DayKey) => getDayValue(dayKey, guid)}
             onRangeDelete={

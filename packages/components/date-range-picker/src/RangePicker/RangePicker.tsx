@@ -3,6 +3,7 @@ import React, {
   type FC,
   type MouseEvent,
   PureComponent,
+  type ReactElement,
   type ReactNode,
   type UIEvent,
 } from 'react';
@@ -31,7 +32,7 @@ import Icon, { CalendarM, ClockM } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 
 import { ABSOLUTE, COLUMNS, MODES } from '../constants';
-import type { AbsoluteDateRange, RelativeDateRange } from '../date.types';
+import type { AbsoluteDateRange, DateRange } from '../date.types';
 import ADD from '../dateUtils/add';
 import {
   getDateToDisplay,
@@ -66,7 +67,7 @@ const NOOP = (): void => {};
 const TOOLTIP_FORMAT = 'MMM d, yyyy, HH:mm';
 
 function replaceRange(
-  value: AbsoluteDateRange | RelativeDateRange,
+  value: DateRange,
   day: Date,
 ): Omit<AbsoluteDateRange, 'type'> {
   let { from, to } = value;
@@ -330,9 +331,7 @@ class RangePicker extends PureComponent<Props & WithDataFormatProps, State> {
 
   renderMonthPicker = (side: SideType): ReactNode => {
     const opposite: SideType =
-      side === COLUMNS.LEFT
-        ? (COLUMNS.RIGHT as SideType)
-        : (COLUMNS.LEFT as SideType);
+      side === COLUMNS.LEFT ? COLUMNS.RIGHT : COLUMNS.LEFT;
     const { [side]: currentSide, [opposite]: oppositeSide } = this.state;
     const oppositeMonth = toDateValue(oppositeSide.month);
     return (
@@ -518,7 +517,7 @@ class RangePicker extends PureComponent<Props & WithDataFormatProps, State> {
     }
   };
 
-  render(): JSX.Element {
+  render(): ReactElement {
     const {
       mode,
       onChange,
@@ -537,13 +536,13 @@ class RangePicker extends PureComponent<Props & WithDataFormatProps, State> {
             mode={mode}
             data-testid={`date-range-picker-side-${COLUMNS.LEFT}`}
           >
-            {this.renderSide(COLUMNS.LEFT as SideType)}
+            {this.renderSide(COLUMNS.LEFT)}
           </S.Side>
           <S.Side
             mode={mode}
             data-testid={`date-range-picker-side-${COLUMNS.RIGHT}`}
           >
-            {this.renderSide(COLUMNS.RIGHT as SideType)}
+            {this.renderSide(COLUMNS.RIGHT)}
           </S.Side>
         </S.Sides>
         <S.PickerFooter>

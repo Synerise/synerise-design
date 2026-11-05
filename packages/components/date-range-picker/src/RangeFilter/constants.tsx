@@ -5,33 +5,40 @@ import { generateUuid } from '@synerise/ds-utils';
 import { fnsAddDays, fnsFormat } from '../fns';
 import DailyFilter from './Filters/DailyFilter/DailyFilter';
 import MonthlyFilter from './Filters/MonthlyFilter/MonthlyFilter';
+import {
+  DEFAULT_RANGE_END,
+  DEFAULT_RANGE_START,
+} from './Filters/new/constants';
 import WeeklyFilter from './Filters/WeeklyFilter/WeeklyFilter';
 import type { MonthlySelectValue } from './RangeFilter.types';
 
 const LONG_MONTH = new Date(0, 0, 1);
 
 export const TIME_FORMAT = 'HH:mm:ss.SSS';
-export const DEFAULT_RANGE_START = '00:00:00.000';
-export const DEFAULT_RANGE_END = '23:59:59.999';
 
 export const MONTH_DAYS = (locale: string): string[] =>
   range(0, 31).map((i: number) =>
     locale === 'pl' ? `${i + 1}.` : fnsFormat(fnsAddDays(LONG_MONTH, i), 'Do'),
   );
 
-export enum DAYS_OF_PERIOD_ENUM {
-  DAY_OF_MONTH = 'MONTH',
-  DAY_OF_WEEK = 'WEEK',
-}
-export enum COUNTED_FROM_ENUM {
-  BEGINNING = 'BEGINNING',
-  ENDING = 'ENDING',
-}
+export const DAYS_OF_PERIOD_ENUM = {
+  DAY_OF_MONTH: 'MONTH',
+  DAY_OF_WEEK: 'WEEK',
+} as const;
+export type DAYS_OF_PERIOD_ENUM =
+  (typeof DAYS_OF_PERIOD_ENUM)[keyof typeof DAYS_OF_PERIOD_ENUM];
+
+export const COUNTED_FROM_ENUM = {
+  BEGINNING: 'BEGINNING',
+  ENDING: 'ENDING',
+} as const;
+export type COUNTED_FROM_ENUM =
+  (typeof COUNTED_FROM_ENUM)[keyof typeof COUNTED_FROM_ENUM];
 export const TYPES = {
   DAILY: 'DAILY',
   WEEKLY: 'WEEKLY',
   MONTHLY: 'MONTHLY',
-};
+} as const;
 
 export type RangeFilterType = keyof typeof TYPES;
 
@@ -91,6 +98,8 @@ export const TYPES_DATA = {
     },
   },
 };
+
+export { DEFAULT_RANGE_END, DEFAULT_RANGE_START };
 
 export const SPACE_UNICODE = '\u00A0';
 

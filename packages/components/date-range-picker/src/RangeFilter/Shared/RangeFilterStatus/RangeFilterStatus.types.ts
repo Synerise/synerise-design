@@ -1,10 +1,10 @@
 import type { ReactNode } from 'react';
 
 import type { Texts } from '../../../DateRangePicker.types';
-import type { DateFilter } from '../../../date.types';
+import type { RangeFilterValue } from '../../RangeFilter.types';
 
 export type RangeFilterStatusProps = {
-  filter: DateFilter | undefined;
+  filter: RangeFilterValue | undefined;
   disabled: boolean;
   label: ReactNode;
   texts: Texts;

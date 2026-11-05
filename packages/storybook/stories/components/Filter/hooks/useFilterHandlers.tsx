@@ -3,8 +3,10 @@ import React, { createRef, useState } from 'react';
 import Button from '@synerise/ds-button';
 import CompletedWithin, { PeriodValue } from '@synerise/ds-completed-within';
 import { ContextGroup, ContextItem } from '@synerise/ds-context-selector';
-import DateRangePicker, { DateRange } from '@synerise/ds-date-range-picker';
-import { SavedFilter } from '@synerise/ds-date-range-picker/dist/RangeFilter/Shared/FilterDropdown/FilterDropdown.types';
+import DateRangePicker, {
+  DateRange,
+  SavedFilter,
+} from '@synerise/ds-date-range-picker';
 import { Expression } from '@synerise/ds-filter';
 import Icon, { CalendarM } from '@synerise/ds-icon';
 import Tag, { TagShape } from '@synerise/ds-tag';
@@ -49,7 +51,7 @@ export const useFilterHandlers = ({
       );
     };
 
-    const handleDateRange = (dateRange: DateRange) => {
+    const handleDateRange = (dateRange: DateRange | undefined) => {
       setExpressions(
         expressions.map((exp) => {
           if (exp.id === expression.id) {
@@ -102,7 +104,6 @@ export const useFilterHandlers = ({
         )}
         {expression?.footer?.dateRange && (
           <DateRangePicker
-            // @ts-ignore
             onApply={handleDateRange}
             value={expression.footer.dateRange}
             popoverTrigger={dateRangePickerTrigger}

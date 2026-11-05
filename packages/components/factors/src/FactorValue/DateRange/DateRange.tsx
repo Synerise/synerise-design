@@ -1,7 +1,6 @@
 import React, { useCallback } from 'react';
 
 import DateRangePicker, {
-  type DateFilter,
   type DateRange,
 } from '@synerise/ds-date-range-picker';
 import { getPopupContainer } from '@synerise/ds-utils';
@@ -20,7 +19,7 @@ const DateRangeInput = ({
   timeZone,
 }: FactorValueComponentProps) => {
   const changeHandler = useCallback(
-    (date: Partial<DateFilter> | undefined) => {
+    (date: DateRange | undefined) => {
       onChange(date);
     },
     [onChange],
@@ -43,7 +42,6 @@ const DateRangeInput = ({
       showFilter
       value={value as DateRange}
       texts={texts.dateRangePicker}
-      relativeFuture={false}
       relativeModes={['PAST']}
       showRelativePicker
       placement="bottomLeft"

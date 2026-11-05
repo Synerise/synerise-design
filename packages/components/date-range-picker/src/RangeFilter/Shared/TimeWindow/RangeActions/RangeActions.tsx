@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { type ReactNode } from 'react';
 
 import Button from '@synerise/ds-button';
 import Dropdown from '@synerise/ds-dropdown';
@@ -53,7 +53,7 @@ const RangeActions: React.FC<RangeActionsProps> = ({
       </S.ActionsMenu>
     );
   }, [texts, onRangePaste, onRangeCopy, onRangeClear]);
-  const trigger = React.useMemo((): React.ReactNode => {
+  const trigger = React.useMemo((): ReactNode => {
     return (
       <Button mode="single-icon" type="ghost">
         <Icon component={<OptionHorizontalM />} />

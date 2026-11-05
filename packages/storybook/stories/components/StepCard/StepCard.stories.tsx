@@ -106,9 +106,7 @@ export default {
                   placeholder="Completed within"
                 />
                 <DateRangePicker
-                  // @ts-expect-error
                   onApply={setRangeValue}
-                  // @ts-expect-error
                   value={rangeValue}
                   popoverTrigger={dateRangePickerTrigger}
                   readOnly={args.readOnly}

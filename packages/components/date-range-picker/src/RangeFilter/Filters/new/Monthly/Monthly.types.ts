@@ -9,12 +9,16 @@ import type { FilterErrorType } from '../../../Shared/TimeWindow/RangeFormContai
 import type { DayOptions } from '../../../Shared/TimeWindow/TimeWindow.types';
 import type { FilterBaseProps } from '../Filters.types';
 
-export type MonthlyScheduleDayValue = DayOptions & {
+export type MonthlyScheduleDayValue = Omit<DayOptions, 'start' | 'stop'> & {
+  /** `undefined` once the time is cleared in the form */
+  start?: string;
+  stop?: string;
   mode: DateLimitMode;
 };
 export type MonthlySchedule = {
-  [guid: string]: Record<DayOfMonthIndex, MonthlyScheduleDayValue>;
+  [guid: string]: Partial<Record<DayOfMonthIndex, MonthlyScheduleDayValue>>;
 };
+/** 0–30 by day of the month; with the WEEK period, 0–34 (week × 7 + weekday) */
 export type DayOfMonthIndex =
   | 0
   | 1
@@ -47,11 +51,15 @@ export type DayOfMonthIndex =
   | 28
   | 29
   | 30
-  | 31;
+  | 31
+  | 32
+  | 33
+  | 34;
 export type MonthlyProps = {
   value: MonthlySchedule;
+  /** Per range (`guid`), the errors of each day's time inputs */
   errorTexts?: {
-    [guid: string]: FilterErrorType[];
+    [guid: string]: Partial<Record<DayOfMonthIndex, FilterErrorType>>;
   };
   periodType: DAYS_OF_PERIOD_ENUM;
   countedFrom: COUNTED_FROM_ENUM;

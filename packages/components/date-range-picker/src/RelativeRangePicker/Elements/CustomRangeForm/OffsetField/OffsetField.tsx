@@ -9,7 +9,6 @@ import {
   RELATIVE_UNITS,
 } from '../../../../constants';
 import type { Texts } from '../../../../DateRangePicker.types';
-import type { RelativeUnits } from '../../../../date.types';
 import * as S from '../../../RelativeRangePicker.styles';
 import { setOffsetType } from '../CustomRangeForm';
 import type { Props } from './OffsetField.types';
@@ -55,7 +54,7 @@ const OffsetField = ({
             node.parentElement !== null ? node.parentElement : document.body
           }
         >
-          {((rangeUnits || RELATIVE_UNITS) as RelativeUnits[]).map((type) => (
+          {(rangeUnits || RELATIVE_UNITS).map((type) => (
             <Select.Option key={type} value={type}>
               {texts[type.toLowerCase() as keyof Texts]}
             </Select.Option>

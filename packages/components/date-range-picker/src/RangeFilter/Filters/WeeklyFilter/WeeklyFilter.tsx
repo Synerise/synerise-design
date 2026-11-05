@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { type ReactElement, type ReactNode } from 'react';
 
 import * as S from '../../RangeFilter.styles';
 import TimeWindow from '../../Shared/TimeWindow/TimeWindow';
-import type { DayKey, WeeklyFilterProps } from './WeeklyFilter.types';
+import type { DayKey } from '../../Shared/TimeWindow/TimeWindow.types';
+import type { WeeklyFilterProps } from './WeeklyFilter.types';
 
 const WeeklyFilter = ({
   value,
@@ -15,9 +16,9 @@ const WeeklyFilter = ({
   valueSelectionModes,
   rangeDisplayMode,
   texts,
-}: WeeklyFilterProps): JSX.Element => {
+}: WeeklyFilterProps): ReactElement => {
   const handleDayFormatter = React.useCallback(
-    (dayKey: DayKey): React.ReactNode =>
+    (dayKey: DayKey): ReactNode =>
       intl.formatMessage({
         id: `DS.DATE-RANGE-PICKER.WEEKDAYS-SHORT-${dayKey}`,
       }),
@@ -25,7 +26,7 @@ const WeeklyFilter = ({
   );
 
   const handleDayTemplate = React.useCallback(
-    (dayOfWeek: React.ReactText): { day: React.ReactText } => ({
+    (dayOfWeek: string | number): { day: string | number } => ({
       day: dayOfWeek,
     }),
     [],

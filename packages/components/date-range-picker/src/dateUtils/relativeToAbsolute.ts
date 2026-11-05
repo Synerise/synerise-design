@@ -1,4 +1,8 @@
-import type { DateFilter, RelativeDateRange } from '../date.types';
+import type {
+  AbsoluteDateRange,
+  RelativeDateRange,
+  SinceDateRange,
+} from '../date.types';
 import { normalizeRange } from '../utils';
 
 /**
@@ -7,9 +11,9 @@ import { normalizeRange } from '../utils';
  * clock "now" is read from, as in `normalizeRange`'s relative branch.
  */
 const relativeToAbsolute = (
-  range: RelativeDateRange,
+  range: RelativeDateRange | SinceDateRange,
   timeZone?: string,
-): DateFilter => {
+): AbsoluteDateRange => {
   const { from, to } = normalizeRange(range, timeZone);
 
   return {

@@ -1,5 +1,5 @@
-import type React from 'react';
+import type { ReactNode } from 'react';
 
 import type { ButtonProps } from '@synerise/ds-button';
 
-export type AddButtonProps = ButtonProps & { label?: React.ReactNode | string };
+export type AddButtonProps = ButtonProps & { label?: ReactNode };

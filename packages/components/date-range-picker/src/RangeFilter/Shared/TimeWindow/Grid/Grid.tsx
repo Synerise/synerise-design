@@ -1,6 +1,6 @@
 import range from 'lodash.range';
 import rangeRight from 'lodash.rangeright';
-import React from 'react';
+import React, { type ReactNode } from 'react';
 
 import { type Action, Header } from '../Header/Header';
 import * as S from '../TimeWindow.styles';
@@ -59,7 +59,7 @@ const Grid: React.FC<GridProps> = ({
       <S.Wrapper>
         <S.Labels>
           {rangeMethod(numberOfRows).map(
-            (rowIndex: number): React.ReactNode => (
+            (rowIndex: number): ReactNode => (
               <span key={rowIndex}>{rowLabelFormatter(rowIndex)}</span>
             ),
           )}

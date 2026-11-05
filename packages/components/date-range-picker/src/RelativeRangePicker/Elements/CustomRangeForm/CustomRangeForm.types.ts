@@ -10,7 +10,6 @@ import type {
 } from '../../../date.types';
 
 export type Props = {
-  ranges?: DateRange[];
   currentRange: RelativeDateRange;
   currentGroup: RelativeMode | null;
   handleChange: (value: DateRange) => void;

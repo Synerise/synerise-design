@@ -2,15 +2,18 @@ import React from 'react';
 import { injectIntl, type WrappedComponentProps } from 'react-intl';
 
 import type { WithTranslations } from '../../../DateRangePicker.types';
-import type { Days } from '../../../date.types';
-import type {
-  ValueSelectionModes,
-  WithDisabledProp,
-} from '../../RangeFilter.types';
+import type { WithDisabledProp } from '../../RangeFilter.types';
 import { RANGE_DISPLAY_MODES } from '../../Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.constants';
-import type { RangeDisplayMode } from '../../Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
+import type {
+  DateLimitMode,
+  RangeDisplayMode,
+} from '../../Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
 import TimeWindow from '../../Shared/TimeWindow/TimeWindow';
-import type { RangeActions as RangeActionsMethods } from '../../Shared/TimeWindow/TimeWindow.types';
+import type {
+  DayOptions,
+  Days,
+  RangeActions as RangeActionsMethods,
+} from '../../Shared/TimeWindow/TimeWindow.types';
 import * as S from './DailyFilter.styles';
 
 export interface Props
@@ -19,15 +22,15 @@ export interface Props
     WithTranslations,
     WithDisabledProp {
   value: string;
-  onChange: (v: Days) => void;
+  onChange: (v: DayOptions) => void;
   rangeDisplayMode?: RangeDisplayMode;
-  valueSelectionModes: ValueSelectionModes;
+  valueSelectionModes: DateLimitMode[];
 }
 
 const DailyFilter = (props: Props) => {
   const handleChange = (value: Days): void => {
     const { onChange } = props;
-    onChange && onChange(value[0] as Days);
+    onChange && onChange(value[0]);
   };
   const {
     value,
