@@ -21,8 +21,3 @@ export type CheckboxButtonProps = ButtonPropsOmitted & {
   onChange?: (checked: boolean) => void;
   className?: string;
 };
-
-export type ButtonCheckboxIconProps = {
-  checked?: boolean;
-  indeterminate?: boolean;
-};

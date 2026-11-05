@@ -114,6 +114,7 @@ Special type of Button, with two states: default and activated (selected). Inher
 
 This is special checkbox built on Button and inheriting its appereance.
 It behaves like checkbox input due to `role="checkbox"` and `aria-checked` attributes.
+The box itself is `CheckboxIndicator` from `@synerise/ds-checkbox`, so it looks the same as `Checkbox` in every state and theme.
 
 ### Props
 

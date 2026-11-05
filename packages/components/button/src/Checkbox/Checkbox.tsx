@@ -1,36 +1,8 @@
 import React from 'react';
 
-import Icon, {
-  CheckboxIndeterminateM,
-  CheckboxSelectedFillM,
-} from '@synerise/ds-icon';
-
 import Button from '../Button';
 import * as S from './Checkbox.styles';
-import type {
-  ButtonCheckboxIconProps,
-  CheckboxButtonProps,
-} from './Checkbox.types';
-
-const CheckboxButtonIcon = ({
-  checked,
-  indeterminate,
-}: ButtonCheckboxIconProps): React.ReactElement => {
-  if (indeterminate) {
-    return <CheckboxIndeterminateM />;
-  }
-
-  if (checked) {
-    return <CheckboxSelectedFillM />;
-  }
-
-  return (
-    <>
-      <S.DefaultIcon />
-      <S.HoverIcon />
-    </>
-  );
-};
+import type { CheckboxButtonProps } from './Checkbox.types';
 
 const getNextCheckedState = (
   prevState: boolean,
@@ -90,14 +62,11 @@ const CheckboxButton = (props: CheckboxButtonProps): React.ReactElement => {
       onClick={handleButtonClick}
       {...restProps}
     >
-      <S.IconWrapper active={indeterminate || isChecked} error={hasError}>
-        <Icon
-          component={
-            <CheckboxButtonIcon
-              checked={isChecked}
-              indeterminate={indeterminate}
-            />
-          }
+      <S.IconWrapper>
+        <S.Indicator
+          checked={isChecked}
+          indeterminate={indeterminate}
+          hasError={hasError}
         />
       </S.IconWrapper>
     </Button>

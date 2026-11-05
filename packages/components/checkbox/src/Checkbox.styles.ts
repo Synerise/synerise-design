@@ -120,11 +120,15 @@ export const CheckboxInner = styled.span<{
       border-color: var(--ds-form-control-border-error);
       border-width: 2px;
     `}
+  /* the 2px border would shrink the tick, so pin it to the 1px-border box */
   ${(props) =>
     props.$error &&
-    props.$checked &&
     css`
-      border-color: var(--ds-form-control-bg-selected);
+      ${CheckIcon} {
+        inset: -1px;
+        width: calc(100% + 2px);
+        height: calc(100% + 2px);
+      }
     `}
 
   ${(props) =>

@@ -39,6 +39,7 @@
   "sideEffects": false,
   "types": "dist/index.d.ts",
   "dependencies": {
+    "@synerise/ds-checkbox": "workspace:^",
     "@synerise/ds-icon": "workspace:^",
     "@synerise/ds-tag": "workspace:^",
     "@synerise/ds-tooltip": "workspace:^",

@@ -1,10 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import { action } from 'storybook/actions';
 import { useArgs } from 'storybook/preview-api';
+import styled from 'styled-components';
 
 import type { CheckboxButtonProps } from '@synerise/ds-button';
-import Button from '@synerise/ds-button';
+import Button, { Checkbox as CheckboxButton } from '@synerise/ds-button';
+import FormCheckbox from '@synerise/ds-checkbox';
 
 import { BOOLEAN_CONTROL, CLASSNAME_ARG_CONTROL } from '../../utils';
 import { NO_SNAPSHOT } from '../../utils/chromatic';
@@ -51,6 +53,7 @@ export const Checkbox: StoryObj<CheckboxButtonProps> = {
 };
 
 export const CheckboxDisabled: StoryObj<CheckboxButtonProps> = {
+  parameters: { ...NO_SNAPSHOT },
   render: () => (
     <div style={{ display: 'flex', gap: 8 }}>
       <Button.Checkbox disabled />
@@ -81,6 +84,7 @@ const createStateUpdateMap =
 
 export const CheckboxControlled: StoryObj<CheckboxButtonProps> = {
   parameters: {
+    ...NO_SNAPSHOT,
     docs: {
       source: {
         code: `<>
@@ -150,4 +154,62 @@ export const CheckboxControlled: StoryObj<CheckboxButtonProps> = {
       },
     },
   },
+};
+
+const MATRIX_STATES = [
+  { title: 'unchecked', props: {} },
+  { title: 'checked', props: { checked: true } },
+  { title: 'indeterminate', props: { indeterminate: true } },
+  { title: 'error', props: { hasError: true } },
+  { title: 'error checked', props: { hasError: true, checked: true } },
+  {
+    title: 'error indeterminate',
+    props: { hasError: true, indeterminate: true },
+  },
+  { title: 'disabled', props: { disabled: true } },
+  { title: 'disabled checked', props: { disabled: true, checked: true } },
+  {
+    title: 'disabled indeterminate',
+    props: { disabled: true, indeterminate: true },
+  },
+];
+
+const Matrix = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, max-content);
+  align-items: center;
+  gap: 8px 24px;
+  padding: 16px;
+  color: var(--ds-color-text-base-default);
+  background-color: var(--ds-color-background-base-default);
+`;
+
+/**
+ * Button.Checkbox renders the ds-checkbox box, so each state must look the same in both columns.
+ */
+export const CheckboxMatrix: StoryObj<CheckboxButtonProps> = {
+  render: () => (
+    <Matrix>
+      <span />
+      <span>Checkbox</span>
+      <span>Button.Checkbox</span>
+      {MATRIX_STATES.map(({ title, props }) => (
+        <Fragment key={title}>
+          <span>{title}</span>
+          <FormCheckbox {...props} />
+          <CheckboxButton {...props} />
+        </Fragment>
+      ))}
+    </Matrix>
+  ),
+};
+
+export const CheckboxMatrixHover: StoryObj<CheckboxButtonProps> = {
+  ...CheckboxMatrix,
+  parameters: { pseudo: { hover: true } },
+};
+
+export const CheckboxMatrixDark: StoryObj<CheckboxButtonProps> = {
+  ...CheckboxMatrix,
+  globals: { dsTheme: 'dark' },
 };
