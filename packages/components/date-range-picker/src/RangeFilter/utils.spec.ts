@@ -259,7 +259,13 @@ describe('DateRangePicker utils (snrs-components refactor)', () => {
       );
     });
     it('should denormalize monthly filter values', () => {
-      expect(denormalizeValue(normalizedDailyFilter)).toStrictEqual(denormalizedDailyFilter);
+      expect(denormalizeValue(normalizedMonthlyFilterBeginningOfMonth)).toMatchObject({
+        ...denormalizedMonthlyFilterBeginningOfMonth,
+        definition: denormalizedMonthlyFilterBeginningOfMonth.definition.map((rule) => ({
+          ...rule,
+          id: expect.any(Number),
+        })),
+      });
     });
     it('should normalize monthly filter values counted as days of week', () => {
       expect(normalizeValue(denormalizedMonthlyFilterWithWeekPeriod as FilterValue)).toStrictEqual(
