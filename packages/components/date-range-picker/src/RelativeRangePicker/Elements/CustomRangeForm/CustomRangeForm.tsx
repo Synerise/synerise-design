@@ -1,9 +1,8 @@
 import lensPath from 'ramda/src/lensPath.js';
 import set from 'ramda/src/set.js';
-import React from 'react';
+import React, { type ReactNode } from 'react';
 
 import { RANGES_MODE } from '../../../constants';
-import type { RelativeUnits } from '../../../date.types';
 import * as S from '../../RelativeRangePicker.styles';
 import ModeDropdown from '../ModeDropdown/ModeDropdown';
 import TimestampRange from '../TimestampRange/TimestampRange';
@@ -14,7 +13,6 @@ import OffsetField from './OffsetField/OffsetField';
 export const setOffsetType = set(lensPath(['offset', 'type']));
 
 const CustomRangeForm = ({
-  ranges,
   rangeUnits,
   currentRange,
   currentGroup,
@@ -29,7 +27,7 @@ const CustomRangeForm = ({
   timeZone,
 }: Props) => {
   const isSinceModeEnable = currentGroup === RANGES_MODE.SINCE;
-  const renderOffsetColumn = (): React.ReactNode => {
+  const renderOffsetColumn = (): ReactNode => {
     return (
       <S.RangeFormColumn>
         <OffsetField
@@ -38,12 +36,12 @@ const CustomRangeForm = ({
           handleChange={handleChange}
           handleOffsetValueChange={handleOffsetValueChange}
           texts={texts}
-          rangeUnits={rangeUnits as RelativeUnits[]}
+          rangeUnits={rangeUnits}
         />
       </S.RangeFormColumn>
     );
   };
-  const renderDurationColumn = (): React.ReactNode => {
+  const renderDurationColumn = (): ReactNode => {
     return (
       <S.RangeFormColumn>
         <DurationField
@@ -52,13 +50,13 @@ const CustomRangeForm = ({
           handleChange={handleChange}
           handleDurationValueChange={handleDurationValueChange}
           texts={texts}
-          rangeUnits={rangeUnits as RelativeUnits[]}
+          rangeUnits={rangeUnits}
         />
       </S.RangeFormColumn>
     );
   };
 
-  const renderTimestampRange = (): React.ReactNode => {
+  const renderTimestampRange = (): ReactNode => {
     return (
       <S.RangeFormColumn>
         <TimestampRange
@@ -77,9 +75,7 @@ const CustomRangeForm = ({
     <S.CustomForm>
       <S.RangeFormColumn>
         <ModeDropdown
-          ranges={ranges}
           currentGroup={currentGroup}
-          currentRange={currentRange}
           onModeChange={handleModeChange}
           texts={texts}
           modes={relativeModes}

@@ -11,7 +11,6 @@ import {
   RELATIVE_UNITS,
 } from '../../../../constants';
 import type { Texts } from '../../../../DateRangePicker.types';
-import type { RelativeUnits } from '../../../../date.types';
 import * as S from '../../../RelativeRangePicker.styles';
 import type { Props } from './DurationField.types';
 
@@ -57,7 +56,7 @@ const DurationField = ({
             node.parentElement !== null ? node.parentElement : document.body
           }
         >
-          {((rangeUnits || RELATIVE_UNITS) as RelativeUnits[]).map((type) => (
+          {(rangeUnits || RELATIVE_UNITS).map((type) => (
             <Select.Option key={type} value={type}>
               {texts[type.toLowerCase() as keyof Texts]}
             </Select.Option>

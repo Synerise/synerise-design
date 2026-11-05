@@ -1,3 +1,5 @@
+import type { ReactNode } from 'react';
+
 import type { DateToFormatOptions } from '@synerise/ds-core';
 
 import type { Texts } from '../DateRangePicker.types';
@@ -15,9 +17,9 @@ export type Props = {
   value?: DateRange;
   canApply?: boolean;
   canSwitchMode?: boolean;
-  onApply?: (date?: Date | DateRange | undefined) => void;
+  onApply?: (value?: DateRange) => void;
   onSwitchMode?: () => void;
-  message?: React.ReactNode | string;
+  message?: ReactNode;
   texts: Texts;
   valueFormatOptions?: DateToFormatOptions;
   showTime?: boolean;

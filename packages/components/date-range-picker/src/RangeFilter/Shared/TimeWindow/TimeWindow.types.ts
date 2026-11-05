@@ -1,4 +1,4 @@
-import type React from 'react';
+import type { ComponentType, ReactNode } from 'react';
 import type { WrappedComponentProps } from 'react-intl';
 
 import type { WithDataFormatProps } from '@synerise/ds-core';
@@ -31,7 +31,7 @@ export type Days = {
 };
 
 export type CustomDayConfig = {
-  component?: React.ComponentType<DayProps>;
+  component?: ComponentType<DayProps>;
   template?: object;
   tooltip?: string;
   label?: string;
@@ -65,7 +65,7 @@ export type TimeWindowProps = {
   numberOfDaysPerRow?: number;
   rowLabelFormatter?: (rowIndex: number) => string;
   dayTemplate: (day: DayKey) => object;
-  dayFormatter: (day: DayKey, long?: boolean) => string | React.ReactNode;
+  dayFormatter: (day: DayKey, long?: boolean) => ReactNode;
   hideHeader?: boolean;
   headerOptions?: {
     includeSummary?: boolean;
@@ -83,7 +83,7 @@ export type TimeWindowProps = {
   valueSelectionModes: DateLimitMode[];
   rangeDisplayMode?: RangeDisplayMode;
   texts: TimeWindowTexts & GridTexts;
-  renderRangeFormSuffix?: () => React.ReactNode;
+  renderRangeFormSuffix?: () => ReactNode;
   timePickerProps?: Partial<TimePickerProps>;
 } & Partial<RangeActions> &
   WithDataFormatProps &

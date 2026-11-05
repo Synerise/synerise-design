@@ -6,7 +6,7 @@ import { currentTimeInTimezone, getValueAsLocalDate } from '@synerise/ds-core';
 
 import { ABSOLUTE, CUSTOM_RANGE_KEY, RELATIVE } from './constants';
 import type { Texts } from './DateRangePicker.types';
-import type { DateRange } from './date.types';
+import type { DateRange, RelativeUnit } from './date.types';
 import ADD from './dateUtils/add';
 import END_OF from './dateUtils/endOf';
 import START_OF from './dateUtils/startOf';
@@ -55,7 +55,7 @@ const decodeLimit = (limit: string | Date, timeZone?: string): Date =>
     : new Date(rmvTZOffset(limit));
 
 export const normalizeRange = (
-  range: DateRange,
+  range: DateRange | undefined,
   timeZone?: string,
 ): DateRange => {
   if (!range || !range.type) {
@@ -74,15 +74,9 @@ export const normalizeRange = (
     if (offset?.type === 'SINCE') {
       if (future) {
         left = offset.value;
-        right = ADD[duration.type as keyof typeof ADD](
-          offset.value,
-          duration.value,
-        );
+        right = ADD[duration.type](offset.value, duration.value);
       } else {
-        left = ADD[duration.type as keyof typeof ADD](
-          offset.value,
-          -duration.value,
-        );
+        left = ADD[duration.type](offset.value, -duration.value);
         right = offset.value;
       }
     } else {
@@ -106,15 +100,15 @@ export const normalizeRange = (
       }
       if (future) {
         left = ADD[offset.type](START_OF[offset.type](now), offset.value);
-        right = END_OF[duration.type as keyof typeof END_OF](
-          ADD[duration.type as keyof typeof ADD](left, duration.value - 1),
+        right = END_OF[duration.type](
+          ADD[duration.type](left, duration.value - 1),
         );
       } else {
-        right = END_OF[rightBoundaryRoundingUnit as keyof typeof END_OF](
+        right = END_OF[rightBoundaryRoundingUnit as RelativeUnit](
           ADD[offset.type](now, -offset.value),
         );
-        left = ADD[duration.type as keyof typeof ADD](
-          START_OF[duration.type as keyof typeof START_OF](right),
+        left = ADD[duration.type](
+          START_OF[duration.type](right),
           1 - duration.value,
         );
       }

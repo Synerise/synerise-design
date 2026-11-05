@@ -12,9 +12,9 @@ A full-featured date range selector supporting absolute ranges, relative presets
 - Default import: `DateRangePicker` — popover-wrapped picker with trigger input
 - Named export: `RawDateRangePicker` — panel without popover, for embedding in custom containers
 - Three panel modes: **DATE** (absolute dual-month calendar), **TIME** (time-of-day picker), **FILTER** (recurring schedule)
-- Relative picker addon supports `PAST`, `FUTURE`, and `SINCE` modes
+- Relative picker addon renders only when `relativeModes` is non-empty; pass `['PAST']` — `FUTURE` and `SINCE` are deprecated (unscoped, not supported)
 - Requires a `react-intl` `IntlProvider` ancestor (translations loaded automatically; pass `texts` for overrides)
-- **Timezone support:** When `DSProvider` / `IntlProvider` has a `timeZone` configured, the picker automatically converts and displays values in that timezone — no extra props needed
+- **Timezone support** is opt-in through the `timeZone` prop: `true` uses the provider's zone, a string names an IANA zone. A `timeZone` on the provider alone switches nothing on
 - `utils.toIsoString` is re-exported from `@synerise/ds-core` — same name and signature, corrected offset arithmetic for zones that are not a whole number of hours ahead of UTC
 
 ## Default
@@ -63,11 +63,13 @@ Same API as `DateRangePicker` but renders the picker panel directly without the 
 
 ## Timezone support
 
-When a `timeZone` is configured on the `react-intl` provider (via `DSProvider`), the picker automatically converts ISO string values with timezone offsets to the provider's timezone for display, and emits values with the correct timezone offset in `onApply`. This is transparent — no extra props are needed on the component itself.
+Pass the `timeZone` prop to opt in: `true` uses the `react-intl` provider's `timeZone`, a string names an IANA zone directly. The panel then decodes incoming bounds by their own offset, works in that zone, and `onApply` emits `from` / `to` as `TZDate`s carrying it.
+
+Without the prop nothing is timezone-aware — including a `timeZone` on the provider. Bounds are read on the browser clock and `onApply` emits ISO strings, whose offset comes from the provider zone.
 
 ## Notes
 
 - `disabled` and `readOnly` both suppress the popover entirely — only the trigger element renders.
 - `valueTransformer` is applied before calling `onApply` — the default transformer strips `ALL_TIME`-specific props.
 - `forceAbsolute` converts relative values to absolute bounds before emitting — useful when downstream systems do not understand relative types.
-- The `SINCE` mode is a variant of relative dating anchored to a specific timestamp rather than "now".
+- The `SINCE` mode is a variant of relative dating anchored to a specific timestamp rather than "now". It is deprecated (unscoped, not supported): its value keeps `type: 'RELATIVE'` and carries the anchor `Date` in `offset.value`.

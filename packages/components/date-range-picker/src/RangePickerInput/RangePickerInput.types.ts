@@ -9,7 +9,7 @@ import type { DateToFormatOptions } from '@synerise/ds-core';
 import type { FormFieldCommonProps } from '@synerise/ds-form-field';
 
 import type { Texts } from '../DateRangePicker.types';
-import type { DateFilter, DateRange } from '../date.types';
+import type { DateRange } from '../date.types';
 
 export type RangePickerInputProps = {
   /**
@@ -23,7 +23,8 @@ export type RangePickerInputProps = {
   showTime?: boolean;
   allowClear?: boolean;
   value?: Pick<DateRange, 'from'> & Pick<DateRange, 'to'>;
-  onChange?: (value: Partial<DateFilter> | undefined) => void;
+  /** Fires with `undefined` when the value is cleared. */
+  onChange?: (value: DateRange | undefined) => void;
   style?: CSSProperties;
   placeholder?: string;
   disabled?: boolean;

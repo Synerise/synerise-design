@@ -29,7 +29,10 @@ import Grid from '../../../Shared/TimeWindow/Grid/Grid';
 import type { GridProps } from '../../../Shared/TimeWindow/Grid/Grid.types';
 import type { DateLimitMode } from '../../../Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
 import RangeFormContainer from '../../../Shared/TimeWindow/RangeFormContainer/RangeFormContainer';
-import type { DateValue } from '../../../Shared/TimeWindow/RangeFormContainer/RangeFormContainer.types';
+import type {
+  DateValue,
+  FilterErrorType,
+} from '../../../Shared/TimeWindow/RangeFormContainer/RangeFormContainer.types';
 import type { DayKey } from '../../../Shared/TimeWindow/TimeWindow.types';
 import {
   DEFAULT_MAX_ENTRIES,
@@ -40,8 +43,13 @@ import {
   NOOP,
   RENDER_EMPTY_NODE_FN,
 } from '../constants';
+import type { ScheduleRows } from '../Filters.types';
 import { useShiftAndControlKeys } from '../hooks/useShiftAndControlKeys';
-import type { MonthlyProps, MonthlySchedule } from './Monthly.types';
+import type {
+  MonthlyProps,
+  MonthlySchedule,
+  MonthlyScheduleDayValue,
+} from './Monthly.types';
 import { canAddAnotherRange, haveActiveDaysCommonRange, range } from './utils';
 
 const Monthly = ({
@@ -50,14 +58,18 @@ const Monthly = ({
   onChange = NOOP,
   timeFormat,
   valueFormatOptions,
-  value,
+  value: schedule,
   timePickerProps,
   disabled,
   texts,
   periodType = DAYS_OF_PERIOD_ENUM.DAY_OF_MONTH,
   countedFrom = COUNTED_FROM_ENUM.BEGINNING,
-  errorTexts,
+  errorTexts: scheduleErrors,
 }: MonthlyProps) => {
+  const value = schedule as ScheduleRows<MonthlyScheduleDayValue>;
+  const errorTexts = scheduleErrors as
+    | ScheduleRows<FilterErrorType>
+    | undefined;
   const intl = useIntl();
   const allTexts = useMemo(
     () => getDefaultTexts(intl, false, texts),
@@ -142,7 +154,6 @@ const Monthly = ({
       ? Object.keys(value).filter((id) =>
           activeDays.every(
             (day) =>
-              // @ts-expect-error - requires type refactor
               !!value[id][day] &&
               haveActiveDaysCommonRange(value[id], activeDays),
           ),
@@ -159,9 +170,7 @@ const Monthly = ({
 
       if (dayKey instanceof Array) {
         dayKey.forEach((day) => {
-          // @ts-expect-error - requires type refactor
           updatedSchedule[guid][day] = {
-            // @ts-expect-error - requires type refactor
             ...value[guid][day],
             restricted: true,
             start: start ? dayjs(start).format(DEFAULT_TIME_FORMAT) : undefined,
@@ -170,9 +179,7 @@ const Monthly = ({
           };
         });
       } else {
-        // @ts-expect-error - requires type refactor
         updatedSchedule[guid][dayKey] = {
-          // @ts-expect-error - requires type refactor
           ...value[guid][dayKey],
           restricted: true,
           start: start ? dayjs(start).format(DEFAULT_TIME_FORMAT) : undefined,
@@ -187,9 +194,7 @@ const Monthly = ({
   );
   const getDayValue = useCallback(
     (dayKey: DayKey, guid: string) => {
-      // @ts-expect-error - requires type refactor
       if (typeof dayKey === 'number' && value[guid] && value[guid][dayKey]) {
-        // @ts-expect-error - requires type refactor
         return value[guid][dayKey];
       }
       return defaultDayValue;
@@ -201,9 +206,7 @@ const Monthly = ({
     (selectedMode: DateLimitMode, dayKeys: DayKey[], guid: string) => {
       const updatedSchedule = value;
       dayKeys.forEach((day) => {
-        // @ts-expect-error - requires type refactor
         updatedSchedule[guid][day] = {
-          // @ts-expect-error - requires type refactor
           ...value[guid][day],
           mode: selectedMode,
         };
@@ -217,7 +220,6 @@ const Monthly = ({
     (guid: string, activeDaysArray: DayKey[]) => {
       const updatedSchedule = value;
       activeDaysArray.forEach((activeDay: DayKey) => {
-        // @ts-expect-error - requires type refactor
         delete updatedSchedule[guid][activeDay];
       });
       onChange({ ...updatedSchedule });
@@ -247,8 +249,7 @@ const Monthly = ({
   const dayMonthFormatter = useCallback(
     (dayKey: DayKey) => {
       const locale = intl.locale.substring(0, 2);
-      // @ts-expect-error - requires type refactor
-      return MONTH_DAYS(locale)[dayKey];
+      return MONTH_DAYS(locale)[dayKey as number];
     },
     [intl],
   );
@@ -283,7 +284,6 @@ const Monthly = ({
 
   const isDayRestricted = useCallback(
     (dayKey: DayKey) => {
-      // @ts-expect-error - requires type refactor
       return Object.keys(value).some((key: string) => !!value[key][dayKey]);
     },
     [value],
@@ -293,7 +293,6 @@ const Monthly = ({
     (dayKey: DayKey) => {
       const updatedSchedule = value;
       Object.keys(value).forEach((key) => {
-        // @ts-expect-error - requires type refactor
         delete updatedSchedule[key][dayKey];
       });
       excludeDayFromActive(dayKey);
@@ -394,13 +393,11 @@ const Monthly = ({
   );
 
   const handleRangeAdd = useCallback(() => {
-    const updatedDay = {};
+    const updatedDay: Record<DayKey, MonthlyScheduleDayValue> = {};
     const guid = Object.keys(value).find((key) =>
-      // @ts-expect-error - requires type refactor
       activeDays.every((day) => value[key][day] === undefined),
     );
     activeDays.forEach((day) => {
-      // @ts-expect-error - requires type refactor
       updatedDay[day] = defaultDayValue;
     });
     const restOfScheduleObject = guid ? value[guid] : EMPTY_OBJECT;
@@ -427,15 +424,8 @@ const Monthly = ({
     filteredSchedule.length < maxEntries &&
     canAddRange &&
     !disabled;
-  const getErrorTextsForFormRow = (guid: string) => {
-    return (
-      activeDays.length === 1 &&
-      errorTexts &&
-      errorTexts[guid] &&
-      // @ts-expect-error - requires type refactor
-      errorTexts[guid][activeDays[0]]
-    );
-  };
+  const getErrorTextsForFormRow = (guid: string) =>
+    activeDays.length === 1 ? errorTexts?.[guid]?.[activeDays[0]] : undefined;
   return (
     <S.NewFilterContainer ref={ref as RefObject<HTMLDivElement>}>
       <Grid
@@ -469,8 +459,7 @@ const Monthly = ({
               handleDayTimeChange(dates, activeDays, guid)
             }
             dayKeys={activeDays}
-            // biome-ignore lint/suspicious/noExplicitAny: upstream type is not expressible here
-            getDayLabel={getDayLabel as any}
+            getDayLabel={getDayLabel}
             activeDays={activeDays}
             getDayValue={(dayKey: DayKey) => getDayValue(dayKey, guid)}
             onRangeDelete={

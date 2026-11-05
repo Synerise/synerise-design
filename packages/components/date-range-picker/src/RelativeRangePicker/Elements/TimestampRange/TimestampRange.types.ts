@@ -1,9 +1,9 @@
 import type { RelativeMode, Texts } from '../../../DateRangePicker.types';
-import type { RelativeDateRange } from '../../../date.types';
+import type { DateRange, RelativeDateRange } from '../../../date.types';
 
 export type TimestampRangeProps = {
   currentRange: RelativeDateRange;
-  handleChange: (value: RelativeDateRange) => void;
+  handleChange: (value: DateRange) => void;
   handleModeChange: (mode: RelativeMode | null) => void;
   onTimestampChange?: (timestamp: Date | undefined) => void;
   timestamp?: Date | undefined;

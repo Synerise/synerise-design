@@ -51,7 +51,7 @@ const RangeFilterStatus = ({
           }
           item={{
             id: 'filter-trigger',
-            // @ts-expect-error requires DRP types refactor
+            // @ts-expect-error ds-manageable-list types `name` as a string, texts are ReactNode
             name:
               texts[filter.type.toLocaleLowerCase() as keyof Texts] ||
               intl.formatMessage({

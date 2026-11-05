@@ -1,26 +1,111 @@
-import type React from 'react';
 import type { IntlShape } from 'react-intl';
 
-import type { DateRangePickerProps, Texts } from '../DateRangePicker.types';
+import type { Texts } from '../DateRangePicker.types';
 import type {
   COUNTED_FROM_ENUM,
   DAYS_OF_PERIOD_ENUM,
   RangeFilterType,
 } from './constants';
+import type { Month } from './Filters/MonthlyFilter/MonthlyFilter.types';
 import type { SavedFilter } from './Shared/FilterDropdown/FilterDropdown.types';
 import type {
   DateLimitMode,
   RangeDisplayMode,
 } from './Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
 
-export type FilterValue<T = FilterDefinition> = {
-  definition?: Partial<T>;
-  type: string;
+/** One day of a stored schedule. `day` is 1-based. */
+export type RangeFilterDay = {
+  day: number;
+  from: string;
+  to: string;
+  inverted?: boolean;
+  mode?: DateLimitMode;
 };
+
+export type RangeFilterDaily = {
+  type: 'DAILY';
+  nestingType: 'IN_PLACE';
+  from: string;
+  to: string;
+  day?: number;
+  inverted?: boolean;
+  mode?: DateLimitMode;
+  restricted?: boolean;
+  display?: boolean;
+};
+
+export type RangeFilterWeekly = {
+  type: 'WEEKLY';
+  nestingType: 'IN_PLACE';
+  days: RangeFilterDay[];
+};
+
+/** A monthly rule by day of the month (`day` 1–31). */
+export type RangeFilterMonthRule = {
+  type: 'MONTH';
+  days: RangeFilterDay[];
+  inverted: boolean;
+};
+
+/** A monthly rule by weekday (`day` 1–7) in a week of the month (`week` 1–5). */
+export type RangeFilterWeekRule = {
+  type: 'WEEK';
+  weeks: {
+    week: number;
+    days: (RangeFilterDay & { type: 'MONTHLY' })[];
+  }[];
+  inverted: boolean;
+};
+
+export type RangeFilterMonthly = {
+  type: 'MONTHLY';
+  nestingType: 'IN_PLACE';
+  rules: (RangeFilterMonthRule | RangeFilterWeekRule)[];
+};
+
+/** The schedule the filter addon emits and stores in `DateRange.filter`. */
+export type RangeFilterValue =
+  | RangeFilterDaily
+  | RangeFilterWeekly
+  | RangeFilterMonthly;
+
+/** A day as the filter editors hold it: 0-based `day`, `start`/`stop` times. */
+export type DenormalizedFilter = {
+  start: string;
+  stop: string;
+  day?: string | number;
+  restricted?: boolean;
+};
+
+export type FilterDay = DenormalizedFilter & {
+  display?: boolean;
+  inverted?: boolean;
+  mode?: DateLimitMode;
+  week?: number;
+};
+
+export type DailyFilterValue = {
+  type: 'DAILY';
+  definition: FilterDay;
+};
+export type WeeklyFilterValue = {
+  type: 'WEEKLY';
+  definition: Record<string, FilterDay>;
+};
+export type MonthlyFilterValue = {
+  type: 'MONTHLY';
+  definition: Month<FilterDay>[];
+};
+
+/** The editor state of one filter type; saved filters store this shape. */
+export type FilterValue =
+  | DailyFilterValue
+  | WeeklyFilterValue
+  | MonthlyFilterValue;
+
 export type RangeFilterProps = {
-  value: FilterValue | undefined;
-  onApply?: (filter: FilterValue) => void;
-  onChange?: (filter: FilterValue) => void;
+  value?: RangeFilterValue;
+  onApply?: (filter: RangeFilterValue) => void;
   hideFooter?: boolean;
   onCancel: () => void;
   intl: IntlShape;
@@ -30,19 +115,16 @@ export type RangeFilterProps = {
   allowedFilterTypes?: RangeFilterType[];
   valueSelectionModes?: DateLimitMode[];
   rangeDisplayMode?: RangeDisplayMode;
-  rangeUnits?: Pick<DateRangePickerProps, 'rangeUnits'>;
 };
 
 export type RangeFilterState = {
-  previousFilter?: FilterValue;
-  [filterType: string]:
-    | FilterValue
-    | Partial<FilterDefinition>
-    | string
-    | undefined;
   activeType: RangeFilterType;
   rangeClipboard?: Partial<FilterDefinition>;
+  DAILY?: DailyFilterValue;
+  WEEKLY?: WeeklyFilterValue;
+  MONTHLY?: MonthlyFilterValue;
 };
+
 export type FilterDefinition = {
   start?: string;
   stop?: string;
@@ -60,39 +142,8 @@ export type MonthlySelectValue<T> = {
   value: T;
 };
 
-export type DenormalizedFilter = {
-  start: string;
-  stop: string;
-  day?: React.ReactText;
-  restricted?: boolean;
-};
-export type NormalizedFilter = NormalizedFilterBase & {
-  from: string;
-  to: string;
-  day?: React.ReactText;
-  week?: React.ReactText;
-};
-export type NormalizedFilterBase = {
-  type?: string;
-  nestingType?: string;
-};
-export type WeekFilter = {
-  week: number;
-};
 export type WithDisabledProp = {
   disabled?: boolean;
 };
-export type WeeklyFilterDefinition = {
-  [key: string]: FilterDefinition;
-};
 
-export type MonthlyFilterDefinition = {
-  definition: {
-    [key: string]: FilterDefinition;
-  };
-  id: number;
-  period: DAYS_OF_PERIOD_ENUM;
-  periodType: COUNTED_FROM_ENUM;
-};
-
-export type ValueSelectionModes = ['Range', 'Hour'];
+export type MonthlyDayRange = Month<FilterDay>['definition'];

@@ -50,6 +50,11 @@ screen.getByTestId('ds-date-range-picker-input');
 - `utils` - empty object
 - `CONST` - empty object
 - `fnsFormat` - mock function returning `String(date)`
+- `getDisabledTimeOptions` - mock function returning `[]`
+- `isSinceRange` - mock function with the real check (`type: 'RELATIVE'` and a `SINCE` offset)
+- `MONTH_DAYS` - mock function returning `[]`
+- `DEFAULT_RANGE_START`, `DEFAULT_RANGE_END`, `DAYS_OF_PERIOD_ENUM`, `COUNTED_FROM_ENUM`, `FORM_MODES`,
+  `RANGE_DISPLAY_MODES`, `EU_NOTATION_WEEK_DAYS_INDEXES`, `US_NOTATION_WEEK_DAYS_INDEXES` - the real values
 
 ## Available Test IDs
 

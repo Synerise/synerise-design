@@ -49,7 +49,7 @@ const RangeDropdown = ({
   currentRange,
   texts,
   onChange,
-  valueTransformer = (e: DateRange | object): DateRange | object => e,
+  valueTransformer = (range: DateRange): DateRange => range,
 }: RangeDropdownProps) => {
   const [dropVisible, setDropVisible] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -73,7 +73,7 @@ const RangeDropdown = ({
   const mappedRanges = ranges.map(valueTransformer);
   const transformedCurrentRange = valueTransformer(currentRange);
   const anyOfTransformedRangesMatchesCurrentRange = isLifetime(
-    transformedCurrentRange as DateRange,
+    transformedCurrentRange,
   )
     ? false
     : find((r) => isEqual(transformedCurrentRange, r), mappedRanges);

@@ -31,6 +31,7 @@ const value = {
   onApply={console.log}
   showFilter={false}
   showRelativePicker
+  relativeModes={['PAST']}
   value={value}
   forceAbsolute={false}
 />
@@ -46,27 +47,28 @@ const value = {
 | Property                  | Description                                                                      | Type                       | Default                                                       |
 | ------------------------- | -------------------------------------------------------------------------------- | -------------------------- | ------------------------------------------------------------- |
 | disabledDate              | Function to specify if particular dates are disabled or not                      | (date:Date)=>boolean       | -                                                             |
-| disabledDefaultTexts      | Disables the default texts translations provided by `react-intl`                 | boolean                    | `false`                                                       |
 | forceAbsolute             | Force the outcome to be converted to an absolute date                            | boolean                    | `false`                                                       |
-| onApply                   | Callback executed after applying changes                                         | (value: Partial<DateFilter> \| undefined) => void | -                                              |
-| ranges                    | An array containing custom ranges which may be used as a short-hand              | DateRangePreset[]          | []                                                            |
+| onApply                   | Callback executed after applying changes, and with `undefined` (or `defaultValue`) when the input is cleared | (value: DateRange \| undefined) => void | -                          |
+| ranges                    | An array containing custom ranges which may be used as a short-hand              | DateRangePreset[]          | relative and absolute presets                                 |
 | popoverProps              | Object representing props applied to the ds-popover component                    | Partial<PopoverProps>      | {}                                                            |
-| rangeUnits                | Units available in relative range picker                                         | RelativeUnits[]            | ['SECONDS','MINUTES','HOURS','DAYS','WEEKS','MONTHS','YEARS'] |
+| rangeUnits                | Units available in relative range picker                                         | RelativeUnit[]             | ['SECONDS','MINUTES','HOURS','DAYS','WEEKS','MONTHS','YEARS'] |
 | readOnly                  | Makes picker readonly                                                            | boolean                    | `false`                                                       |
 | disabled                  | Makes picker disabled                                                            | boolean                    | `false`                                                       |
-| relativePast              | Enable relative filter for past ranges                                           | boolean                    | `false`                                                       |
-| relativeFuture            | Enable relative filter for future ranges                                         | boolean                    | `false`                                                       |
+| relativePast              | **Deprecated** — no effect on the modes offered; use `relativeModes`             | boolean                    | `true`                                                        |
+| relativeFuture            | **Deprecated** — no effect on the modes offered; use `relativeModes`             | boolean                    | -                                                             |
 | showTime                  | Enable user to choose particular hour                                            | boolean                    | `false`                                                       |
 | showNowButton             | Include "now" button to select current time (last minue)                         | boolean                    | `true`                                                        |
 | showFilter                | Enable range filtering                                                           | boolean                    | `false`                                                       |
 | showCustomRange           | Enable custom range form in relative range picker                                | boolean                    | `true`                                                        |
 | validate                  | Function to specify if particular date ranges are correct                        | (value: DateRange) => { valid: boolean; message?: string } | -                                  |
-| value                     | Value of the picker                                                              | DateRange                  |                                                               |
+| value                     | Value of the picker                                                              | DateRange \| undefined     |                                                               |
 | defaultValue              | Default value of the picker (when value is undefined and when user clears input) | DateRange                  |                                                               |
-| showRelativePicker        | Show collapsible relative range picker addon                                     | boolean                    | `false`                                                       |
-| relativeModes             | Explicitly set available relative modes                                          | RelativeMode[]             | -                                                             |
+| showRelativePicker        | Show collapsible relative range picker addon (needs a non-empty `relativeModes`) | boolean                    | `true`                                                        |
+| relativeModes             | Relative modes; the addon renders only when non-empty. Use `['PAST']` — `FUTURE` and `SINCE` are unscoped and not supported | RelativeMode[] | -                                    |
+| timeZone                  | Opt into timezone-aware values: `true` uses the provider zone, a string names an IANA zone | boolean \| string | -                                                   |
+| isTruncateMs              | Truncate milliseconds from times                                                 | boolean                    | `true`                                                        |
 | valueFormatOptions        | Format options for the displayed value                                           | DateToFormatOptions        | -                                                             |
-| onValueChange             | Callback executed on every value change (before Apply)                           | (value: Partial<DateFilter> \| undefined) => void | -                                              |
+| onValueChange             | Callback executed on every value change (before Apply)                           | (value: DateRange) => void | -                                                             |
 | onVisibleChange           | Callback executed when popover with dateRangePicker changes its visibility       | (visible: boolean) => void | -                                                             |
 | filterValueSelectionModes | Allowed modes to display in filter                                               | DateLimitMode[]            | ["Range", "Hour"]                                             |
 | getPopupContainer         | Function used to set the container of the date range picker.                     | Function(triggerNode)      | `() => document.body`                                         |
@@ -79,11 +81,15 @@ const value = {
 | -------- | ---------------------------------------------- | ------------------------------------- | ------- |
 | from     | Start date                                     | Date / string                         | -       |
 | to       | End date                                       | Date / string                         | -       |
-| type     | String key for identifying the range type      | 'ABSOLUTE' / 'RELATIVE' / 'SINCE'     | -       |
-| duration | Duration of the relative range                 | {type: RelativeUnit, duration:number} | -       |
-| offset   | Offset of the relative range from today's date | {type: RelativeUnit, duration:number} | -       |
+| type     | String key for identifying the range type      | 'ABSOLUTE' / 'RELATIVE'               | -       |
+| duration | Duration of the relative range                 | {type: RelativeUnit, value: number}   | -       |
+| offset   | Offset of the relative range from today's date | {type: RelativeUnit, value: number}   | -       |
 
 `RelativeUnit = 'SECONDS' | 'MINUTES' | 'HOURS' | 'DAYS' | 'WEEKS' | 'MONTHS' | 'YEARS'`
+
+A SINCE range (`SinceDateRange`, deprecated — unscoped, not supported) keeps `type: 'RELATIVE'` and carries its anchor `Date` in `offset: { type: 'SINCE', value }`. `type` cannot tell it from a relative range; `isSinceRange(range)` does.
+
+`DateRange` is `AbsoluteDateRange | RelativeDateRange | SinceDateRange`. `DateFilter` is deprecated: `onApply` and `onValueChange` emit a `DateRange`, and `DateRange.filter` is a `RangeFilterValue`.
 
 ### Texts
 
@@ -180,6 +186,13 @@ const value = {
 ### Undocumented props
 
 - min in `MonthlyFilter` - controls minimal amount of entires in monthly filter, disable with `undefined`, default is `1`
+
+### Filter payload
+
+With `showFilter`, the applied schedule is stored in `value.filter` as a `RangeFilterValue` (exported from the
+package root): `RangeFilterDaily`, `RangeFilterWeekly` (`days`) or `RangeFilterMonthly` (`rules`, each a
+`RangeFilterMonthRule` by day of the month or a `RangeFilterWeekRule` by weekday of a week). Days are 1-based and
+times are `HH:mm:ss.SSS` strings.
 
 ## Timezone support
 

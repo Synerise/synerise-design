@@ -18,7 +18,7 @@ import {
 } from './constants';
 import * as S from './DateRangePicker.styles';
 import type { DateRangePickerProps } from './DateRangePicker.types';
-import type { DateFilter, DateRange } from './date.types';
+import type { DateRange } from './date.types';
 import RangePickerInput from './RangePickerInput/RangePickerInput';
 import { RawDateRangePicker } from './RawDateRangePicker';
 import { getDefaultTexts } from './utils';
@@ -67,13 +67,13 @@ const DateRangePicker = forwardRef<HTMLDivElement, DateRangePickerProps>(
     }, [selectedRange]);
 
     const onApplyCallback = useCallback(
-      (range: Partial<DateFilter> | undefined) => {
+      (range: DateRange | undefined) => {
         const finalDateRange =
           range === undefined && defaultValue !== undefined
             ? defaultValue
             : range;
         onApply && onApply(finalDateRange);
-        setSelectedDate(finalDateRange as DateRange);
+        setSelectedDate(finalDateRange);
         setPopupVisible(false);
       },
       [defaultValue, onApply],

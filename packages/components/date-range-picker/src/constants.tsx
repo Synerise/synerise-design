@@ -12,13 +12,13 @@ import type {
   AbsoluteDateRangePreset,
   RangeKey,
   RelativeDateRangePreset,
-  RelativeUnits,
+  RelativeUnit,
 } from './date.types';
 
 export const SECONDS = 'SECONDS';
 export const MINUTES = 'MINUTES';
 export const HOURS = 'HOURS';
-export const DAYS = 'DAYS' as RelativeUnits;
+export const DAYS = 'DAYS';
 export const WEEKS = 'WEEKS';
 export const MONTHS = 'MONTHS';
 export const YEARS = 'YEARS';
@@ -26,7 +26,7 @@ export const ABSOLUTE = 'ABSOLUTE';
 export const RELATIVE = 'RELATIVE';
 export const RELATIVE_OFFSET_MAX = 999999;
 export const RELATIVE_DURATION_MAX = 999999;
-export const RELATIVE_UNITS: RelativeUnits[] = [
+export const RELATIVE_UNITS: RelativeUnit[] = [
   SECONDS,
   MINUTES,
   HOURS,
@@ -41,7 +41,7 @@ export const RANGES_MODE = {
   PAST: 'PAST',
   FUTURE: 'FUTURE',
   SINCE: 'SINCE',
-};
+} as const;
 
 export const RANGES_ICON = {
   PAST: <ArrowLeftM />,
@@ -263,19 +263,17 @@ export const TIME_OPTIONS = {
   HOURS: range(0, 24),
   MINUTES: range(0, 60),
   SECONDS: range(0, 60),
-};
+} as const;
 
 export const MODES = {
   DATE: 'date',
   TIME: 'time',
   FILTER: 'filter',
-};
-const LEFT = 'left' as const;
-const RIGHT = 'right' as const;
+} as const;
 export const COLUMNS = {
-  LEFT,
-  RIGHT,
-};
+  LEFT: 'left',
+  RIGHT: 'right',
+} as const;
 
 export const POPOVER_OFFSET_CONFIG: OffsetConfig = {
   mainAxis: 8,

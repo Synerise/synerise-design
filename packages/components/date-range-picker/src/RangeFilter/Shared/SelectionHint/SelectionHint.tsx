@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { type ReactElement, type ReactNode } from 'react';
 
 import Icon, { InfoM } from '@synerise/ds-icon';
 
 import * as S from '../TimeWindow/TimeWindow.styles';
 
 export type SelectionHintProps = {
-  message: React.ReactNode | string;
+  message: ReactNode;
 };
 
-const SelectionHint = ({ message }: SelectionHintProps): JSX.Element => {
+const SelectionHint = ({ message }: SelectionHintProps): ReactElement => {
   return (
     <S.SelectionHint>
       <Icon component={<InfoM />} color="var(--ds-color-icon-base-default)" />{' '}

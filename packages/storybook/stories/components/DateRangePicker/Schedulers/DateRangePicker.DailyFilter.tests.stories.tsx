@@ -2,8 +2,8 @@ import { Meta, StoryObj } from '@storybook/react-vite';
 import React, { useState } from 'react';
 import { expect, fn, userEvent, within } from 'storybook/test';
 
+import type { DailySchedule } from '@synerise/ds-date-range-picker';
 import { DailyDateFilter } from '@synerise/ds-date-range-picker';
-import { DailySchedule } from '@synerise/ds-date-range-picker/dist/RangeFilter/Filters/new/Daily/Daily.types';
 
 import { fixedWrapper588 } from '../../../utils';
 import { schedulerCommonArgTypes } from '../argTypes';

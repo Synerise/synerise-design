@@ -26,6 +26,6 @@ export type RangeFormProps = {
     'timePickerProps' | 'valueFormatOptions' | 'errorTexts'
   >;
 export type RangeFormTexts = {
-  range: ReactNode | string;
-  hour: ReactNode | string;
+  range: ReactNode;
+  hour: ReactNode;
 };

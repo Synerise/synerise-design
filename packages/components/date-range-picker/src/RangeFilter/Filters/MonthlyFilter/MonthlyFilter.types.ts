@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import type { IntlShape } from 'react-intl';
 
 import type { TimePickerProps } from '@synerise/ds-time-picker';
@@ -21,7 +22,7 @@ export type MonthlyFilterProps = {
   value: Month[];
   onChange: (definition: Month[]) => void;
   intl: IntlShape;
-  renderRangeFormSuffix?: () => React.ReactNode;
+  renderRangeFormSuffix?: () => ReactNode;
   daysOfPeriods?: MonthlySelectValue<DAYS_OF_PERIOD_ENUM>[];
   countedFromPeriods?: MonthlySelectValue<COUNTED_FROM_ENUM>[];
   timePickerProps?: Partial<TimePickerProps>;
@@ -34,7 +35,7 @@ export type MonthlyFilterProps = {
 
 export type Month<T = DenormalizedFilter> = {
   id: string | number;
-  period: DAYS_OF_PERIOD_ENUM.DAY_OF_MONTH | DAYS_OF_PERIOD_ENUM.DAY_OF_WEEK;
+  period: DAYS_OF_PERIOD_ENUM;
   periodType?: string;
   definition: {
     [day: number]: T;

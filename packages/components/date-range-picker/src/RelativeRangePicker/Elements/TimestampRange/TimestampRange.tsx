@@ -1,5 +1,4 @@
-// biome-ignore-start lint/suspicious/noExplicitAny: upstream picker types are not expressible here
-import React from 'react';
+import React, { type ReactNode } from 'react';
 import { useIntl } from 'react-intl';
 
 import { DatePicker, getDefaultTexts } from '@synerise/ds-date-picker';
@@ -7,13 +6,14 @@ import { DatePicker, getDefaultTexts } from '@synerise/ds-date-picker';
 import { CUSTOM_RANGE_KEY, DURATION_MODIFIERS } from '../../../constants';
 import type {
   Duration,
-  RelativeDateRange,
-  RelativeUnits,
+  RelativeUnit,
+  SinceDateRange,
 } from '../../../date.types';
 import { getNow } from '../../../dateUtils/getNow';
 import { DEFAULT_RANGE } from '../../../utils';
 import * as S from '../../RelativeRangePicker.styles';
 import TimestampDuration from './TimestampDuration/TimestampDuration';
+import type { DurationModifier } from './TimestampDuration/TimestampDuration.types';
 import type { TimestampRangeProps as Props } from './TimestampRange.types';
 
 const TimestampRange: React.FC<Props> = ({
@@ -25,32 +25,31 @@ const TimestampRange: React.FC<Props> = ({
   timestamp,
   timeZone,
 }: Props) => {
-  const [durationModifier, setDurationModifier] = React.useState<
-    typeof DURATION_MODIFIERS.LAST | typeof DURATION_MODIFIERS.NEXT
-  >(currentRange?.future ? DURATION_MODIFIERS.NEXT : DURATION_MODIFIERS.LAST);
+  const [durationModifier, setDurationModifier] =
+    React.useState<DurationModifier>(
+      currentRange?.future ? DURATION_MODIFIERS.NEXT : DURATION_MODIFIERS.LAST,
+    );
   const [durationValue, setDurationValue] = React.useState<number>(
     currentRange?.duration?.value,
   );
-  const [durationUnit, setDurationUnit] = React.useState<string>(
-    currentRange?.duration?.type,
+  const [durationUnit, setDurationUnit] = React.useState<RelativeUnit>(
+    currentRange?.duration?.type as RelativeUnit,
   );
   const [error, setError] = React.useState<boolean>(!timestamp);
   const intl = useIntl();
   const allTexts = getDefaultTexts(intl, texts);
   // The SINCE anchor defaults to "now" on the provider's clock, so clearing the timestamp
   // lands on the provider's day rather than the browser's.
-  const getResetValue = React.useCallback(
-    () =>
-      getValueOnReset?.() ??
-      ({
-        ...DEFAULT_RANGE,
-        type: 'RELATIVE',
-        offset: { type: 'SINCE', value: getNow(timeZone) as any as number },
-        duration: { type: 'DAYS', value: 30 },
-        translationKey: CUSTOM_RANGE_KEY,
-      } as RelativeDateRange),
-    [getValueOnReset, timeZone],
-  );
+  const getResetValue = React.useCallback(() => {
+    const sinceNow: SinceDateRange = {
+      ...DEFAULT_RANGE,
+      type: 'RELATIVE',
+      offset: { type: 'SINCE', value: getNow(timeZone) },
+      duration: { type: 'DAYS', value: 30 },
+      translationKey: CUSTOM_RANGE_KEY,
+    };
+    return getValueOnReset?.() ?? sinceNow;
+  }, [getValueOnReset, timeZone]);
   React.useEffect(() => {
     setError(!timestamp);
   }, [timestamp]);
@@ -60,27 +59,28 @@ const TimestampRange: React.FC<Props> = ({
     duration: Duration,
   ): void => {
     if (date) {
-      const offsetToTimestamp = {
+      const offsetToTimestamp: SinceDateRange = {
         future: durationModifier === DURATION_MODIFIERS.NEXT,
         duration: { type: duration.type, value: duration.value },
-        offset: { type: 'SINCE', value: timestamp },
+        offset: { type: 'SINCE', value: date },
         key: undefined,
         translationKey: CUSTOM_RANGE_KEY,
+        type: 'RELATIVE',
       };
-      handleChange(offsetToTimestamp as any); // FIXME
+      handleChange(offsetToTimestamp);
     }
   };
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: dependencies intentionally omitted
   React.useEffect((): void => {
     const duration: Duration = {
-      type: durationUnit as RelativeUnits,
+      type: durationUnit,
       value: durationValue,
     };
     handleRangeChange(timestamp, duration);
   }, [durationValue, durationModifier, durationUnit, timestamp]);
 
-  const renderDatePicker = (): React.ReactNode => {
+  const renderDatePicker = (): ReactNode => {
     return (
       <S.DatePickerWrapper error={error}>
         <DatePicker
@@ -93,7 +93,8 @@ const TimestampRange: React.FC<Props> = ({
             onTimestampChange && onTimestampChange(date as Date);
           }}
           onClear={(): void => {
-            onTimestampChange && onTimestampChange(getResetValue() as any); // FIXME cannot reselect date after clearing
+            // FIXME: hands a range where a Date is expected, so a date cannot be reselected after clearing
+            onTimestampChange?.(getResetValue() as unknown as Date);
           }}
           dropdownProps={{
             getPopupContainer: (node): HTMLElement =>
@@ -123,12 +124,12 @@ const TimestampRange: React.FC<Props> = ({
           val && setDurationValue(Number(val));
         }}
         onDurationUnitChange={(unit): void => {
-          unit && setDurationUnit(unit as RelativeUnits);
+          unit && setDurationUnit(unit);
         }}
         unit={durationUnit}
         durationModifier={durationModifier}
         onDurationModifierChange={(modifier): void => {
-          setDurationModifier(modifier as any); // FIXME
+          setDurationModifier(modifier);
         }}
         texts={texts}
       />
@@ -137,4 +138,3 @@ const TimestampRange: React.FC<Props> = ({
 };
 
 export default TimestampRange;
-// biome-ignore-end lint/suspicious/noExplicitAny: upstream picker types are not expressible here

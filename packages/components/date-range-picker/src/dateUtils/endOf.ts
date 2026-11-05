@@ -8,6 +8,8 @@ import {
   endOfYear as fnsEndOfYear,
 } from 'date-fns';
 
+import type { RelativeUnit } from '../date.types';
+
 export default {
   HOURS: fnsEndOfHour,
   MINUTES: fnsEndOfMinute,
@@ -16,4 +18,4 @@ export default {
   WEEKS: fnsEndOfISOWeek,
   MONTHS: fnsEndOfMonth,
   YEARS: fnsEndOfYear,
-};
+} satisfies Record<RelativeUnit, unknown>;

@@ -7,7 +7,7 @@ import type {
   RangeDisplayMode,
 } from '../../Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
 import type {
-  DayOptions,
+  Days,
   RangeActions,
 } from '../../Shared/TimeWindow/TimeWindow.types';
 
@@ -20,9 +20,3 @@ export type WeeklyFilterProps = {
   rangeDisplayMode?: RangeDisplayMode;
 } & WithTranslations &
   Partial<RangeActions>;
-
-export type DayKey = number | string;
-
-export type Days = {
-  [key in DayKey]: DayOptions;
-};

@@ -37,18 +37,19 @@ import {
 } from './DateRangePicker.styles';
 import type {
   AddonType,
-  DateRangePickerProps,
+  RawDateRangePickerProps,
   Texts,
 } from './DateRangePicker.types';
-import type { DateFilter, DateRange, RelativeDateRange } from './date.types';
+import type {
+  DateRange,
+  RelativeDateRange,
+  SinceDateRange,
+} from './date.types';
 import relativeToAbsolute from './dateUtils/relativeToAbsolute';
 import { toDateValue } from './dateUtils/toDateValue';
 import Footer from './Footer/Footer';
 import RangeFilter from './RangeFilter/RangeFilter';
-import type {
-  FilterDefinition,
-  FilterValue,
-} from './RangeFilter/RangeFilter.types';
+import type { RangeFilterValue } from './RangeFilter/RangeFilter.types';
 import RangeFilterStatus from './RangeFilter/Shared/RangeFilterStatus/RangeFilterStatus';
 import RangePicker from './RangePicker/RangePicker';
 import { isLifetime } from './RelativeRangePicker/Elements/RangeDropdown/RangeDropdown';
@@ -77,6 +78,8 @@ const toEmittedLimit = (
     ? applyTimezoneOffset(limit, timeZone, undefined)
     : toIsoString(limit, timeZone);
 };
+
+type PanelMode = (typeof MODES)[keyof typeof MODES];
 
 const isRelative = (dateRange: DateRange): dateRange is RelativeDateRange => {
   const isLegacyCustom =
@@ -113,6 +116,7 @@ export function defaultValueTransformer(value: DateRange): DateRange {
     };
   }
   if (value.type === 'RELATIVE') {
+    // `offset` tells a relative range from a SINCE one, which `type` cannot narrow
     return {
       ...baseValue,
       type: value.type,
@@ -120,7 +124,7 @@ export function defaultValueTransformer(value: DateRange): DateRange {
       duration: value.duration,
       offset: value.offset,
       future: value.future,
-    };
+    } as RelativeDateRange | SinceDateRange;
   }
   return value;
 }
@@ -156,7 +160,7 @@ export const RawDateRangePicker = ({
   texts,
   value,
   timeZone: timeZoneProp,
-}: Omit<DateRangePickerProps, 'placement'>) => {
+}: RawDateRangePickerProps) => {
   const intl = useIntl();
   // Two zones, because the two halves of this component do not default alike.
   //
@@ -173,7 +177,7 @@ export const RawDateRangePicker = ({
   const timeZone = resolvedTimeZone;
   const encodeTimeZone = resolvedTimeZone ?? intl.timeZone;
   const [localValue, setLocalValue] = useState(normalizeRange(value, timeZone));
-  const [mode, setMode] = useState(MODES.DATE);
+  const [mode, setMode] = useState<PanelMode>(MODES.DATE);
   const [visibleAddonKey, setVisibleAddonKey] = useState<string | undefined>(
     'relative-picker',
   );
@@ -272,9 +276,9 @@ export const RawDateRangePicker = ({
   );
 
   const handleFilterApply = useCallback(
-    (filter?: FilterValue<FilterDefinition>) => {
+    (filter?: RangeFilterValue) => {
       setMode(MODES.DATE);
-      setLocalValue({ ...localValue, filter: filter as DateFilter });
+      setLocalValue({ ...localValue, filter });
     },
     [localValue],
   );
@@ -316,7 +320,7 @@ export const RawDateRangePicker = ({
       return;
     }
     if (localValue.key === ALL_TIME) {
-      onApply && onApply(omitBy(localValue, isUndefined));
+      onApply && onApply(omitBy(localValue, isUndefined) as DateRange);
       return;
     }
 
@@ -473,9 +477,12 @@ export const RawDateRangePicker = ({
     const isValidRelative =
       isRelative(localValue) &&
       Boolean(localValue.offset && localValue.duration);
+    // A legacy stored `type: 'SINCE'` value, which `DateRange` no longer describes
+    const untypedValue: { type: string; offset?: unknown; duration?: unknown } =
+      localValue;
     const isValidSince =
-      localValue.type === 'SINCE' &&
-      Boolean(localValue.offset && localValue.duration);
+      untypedValue.type === 'SINCE' &&
+      Boolean(untypedValue.offset && untypedValue.duration);
     // TODO apply ranges and find mapped lifetime here, this applies only for defaultValueTransformer
     const isValid =
       (isValidAbsolute ||

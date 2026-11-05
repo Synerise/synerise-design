@@ -3,9 +3,9 @@ import type { ComponentType, ReactNode, ReactText } from 'react';
 import type { AutocompleteProps } from '@synerise/ds-autocomplete';
 import type { CollectorValue } from '@synerise/ds-collector';
 import type {
-  DateFilter,
+  DateRange,
   DateRangePickerTexts as DateRangeTexts,
-  RelativeUnits,
+  RelativeUnit,
 } from '@synerise/ds-date-range-picker';
 import type { InformationCardProps } from '@synerise/ds-information-card';
 import type { AutoResizeProp, InputProps } from '@synerise/ds-input';
@@ -29,7 +29,7 @@ export type DefinedFactorTypes = (typeof ALL_FACTOR_TYPES)[number];
 
 export type TupleType = [DefinedFactorTypes, SelectedFactorType];
 
-export type RelativeDateUnit = Exclude<RelativeUnits, 'SINCE'>;
+export type RelativeDateUnit = RelativeUnit;
 export type RelativeTimeRelation = 'BEFORE' | 'AFTER';
 export type RelativeDateValueType = {
   temporalUnit: RelativeDateUnit;
@@ -88,7 +88,7 @@ export type FactorValueType =
   | FormulaValueType
   | ArrayValue
   | ParameterValueType
-  | Partial<DateFilter>;
+  | DateRange;
 
 export type SelectedFactorType = {
   name: string;
