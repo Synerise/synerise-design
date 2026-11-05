@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.6.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@2.5.1...@synerise/ds-core@2.6.0) (2026-11-05)
+
+
+### Features
+
+* **factors:** add a standalone ArrayFactor and export ArrayModal ([15c0443](https://github.com/synerise/synerise-design/commit/15c0443cdf6c91290abb252c56de6541e2c2219d))
+
+
+
+
+
 ## [2.5.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@2.5.0...@synerise/ds-core@2.5.1) (2026-11-03)
 
 **Note:** Version bump only for package @synerise/ds-core

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.69.0](https://github.com/Synerise/synerise-design/compare/storybook@1.68.0...storybook@1.69.0) (2026-11-05)
+
+
+### Bug Fixes
+
+* **button:** render the ds-checkbox box in Button.Checkbox ([3ca18b1](https://github.com/Synerise/synerise-design/commit/3ca18b12a4081f30c3be2ae1f9ff92838b3e9b7b))
+
+
+### Features
+
+* **factors:** add a standalone ArrayFactor and export ArrayModal ([15c0443](https://github.com/Synerise/synerise-design/commit/15c0443cdf6c91290abb252c56de6541e2c2219d))
+
+
+
+
+
 # [1.68.0](https://github.com/Synerise/synerise-design/compare/storybook@1.67.0...storybook@1.68.0) (2026-11-03)
 
 
