@@ -565,9 +565,9 @@ export const APPLIED: Record<AppliedScenario, RangeFilterValue> = {
   },
 };
 
-// Stored values shaped like the analytics-v2 CustomDateFilter, as consumers persist them.
+// Stored values shaped as consumers persist them.
 export const STORED = {
-  dailyStoredByAnalytics: {
+  dailyStoredByConsumer: {
     from: '00:00:00.000',
     to: '23:59:59.999',
     type: 'DAILY',
@@ -760,7 +760,7 @@ export const STORED = {
 
 // What reopening each stored value and applying it unchanged emits.
 const REOPENED_EXPECTED: Record<keyof typeof STORED, RangeFilterValue> = {
-  dailyStoredByAnalytics: {
+  dailyStoredByConsumer: {
     from: '00:00:00.000',
     to: '23:59:59.999',
     day: undefined,
@@ -963,8 +963,7 @@ export const REOPENED = Object.fromEntries(
   { stored: RangeFilterValue; expected: RangeFilterValue }
 >;
 
-// Reopening a payload the picker emitted and applying it unchanged returns the same payload,
-// except where listed.
+// Reopening a payload the picker emitted and applying it unchanged returns the same payload.
 export const REAPPLIED: Record<AppliedScenario, RangeFilterValue> = {
   ...APPLIED,
 };
