@@ -17,8 +17,7 @@ import {
   TEXTS,
 } from './rangeFilterGolden.fixtures';
 
-// The `filter` payload is stored by analytics, dashboards and automations and read back to
-// reopen a value. These fixtures were recorded on master 4547f33b8c; they are the regression
+// The `filter` payload is stored by consumers and read back to reopen a value. These fixtures were recorded on master 4547f33b8c; they are the regression
 // gate of the scheduler consolidation and must not be edited to make a change pass.
 
 const ABSOLUTE = {
@@ -124,11 +123,7 @@ const appliedFilter = async (onApply: ReturnType<typeof vi.fn>) => {
     | undefined;
 };
 
-const expectBytes = (
-  actual: unknown,
-  expected: unknown,
-  key?: [string, string],
-) => {
+const expectBytes = (actual: unknown, expected: unknown) => {
   expect(actual).toStrictEqual(expected);
   expect(JSON.stringify(actual)).toBe(JSON.stringify(expected));
 };
@@ -376,7 +371,7 @@ const SCENARIOS: Record<
       allowedFilterTypes: ['WEEKLY', 'MONTHLY'],
       value: {
         ...ABSOLUTE,
-        filter: REOPENED.dailyStoredByAnalytics.stored,
+        filter: REOPENED.dailyStoredByConsumer.stored,
       } as DateRange,
     },
     steps: openStoredFilter,
