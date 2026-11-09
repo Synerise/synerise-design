@@ -157,6 +157,12 @@ UX for later review".
 | --- | --- | --- | --- | --- |
 | `src/Elements/ModalContent/ModalContent.styles.ts` | `ModalMask` | `--ds-modal-mask-color` + `opacity: --ds-opacity-muted` | `--ds-modal-mask-color` with alpha in the colour (black @ 40% in dark) | dark mask darkens instead of lightening (token request D3) |
 
+## pagination
+
+| File | Selector / property | Before | After | Note |
+| --- | --- | --- | --- | --- |
+| `src/Pagination.styles.ts` | `Item` `:hover a` `color`, `text-decoration` | global link hover: blue-500, underlined | `--ds-pagination-item-text-color-hover` (grey-800), no underline | the module hover token existed but was never applied, so the global `a:hover` rule won |
+
 ## panels-resizer
 
 | File | Selector / property | Before | After | Note |

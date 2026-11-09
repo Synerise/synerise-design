@@ -60,7 +60,8 @@ No CSS import is required (styled-components).
 - All styling lives in `Pagination.styles.ts` (styled-components, `var(--ds-*)` tokens). Classes are hooks only,
   not styling selectors.
 - Page item: 32px, `border-radius: 16px`; active = `var(--ds-pagination-item-bg-active)` background,
-  `var(--ds-pagination-item-text-color-active)` text; hover = `var(--ds-pagination-item-bg-hover)`.
+  `var(--ds-pagination-item-text-color-active)` text; hover = `var(--ds-pagination-item-bg-hover)` background and
+  `var(--ds-pagination-item-text-color-hover)` link text, no underline (overrides the global link hover).
 - prev/next: `var(--ds-pagination-nav-icon-default)` ghost icon buttons (`@synerise/ds-button`); disabled =
   `opacity: var(--ds-pagination-nav-disabled-opacity)`.
 - jump-prev/next: `OptionHorizontalM` by default, swap to `DoubleAngleLeftS`/`DoubleAngleRightS` on hover

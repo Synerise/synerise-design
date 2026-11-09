@@ -48,6 +48,11 @@ export const Item = styled.li<{ $active?: boolean }>`
 
   &:hover {
     background-color: var(--ds-pagination-item-bg-hover);
+
+    a {
+      color: var(--ds-pagination-item-text-color-hover);
+      text-decoration: none;
+    }
   }
 
   ${(props) =>
