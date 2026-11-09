@@ -124,12 +124,16 @@ const Tabs = ({
     [handleTabClick],
   );
 
-  const dropdownMenuItems = hiddenTabs.map((item, index) => ({
-    key: `${item.label}-dropdown-${index}`,
-    onClick: () => handleHiddenTabClick(visibleTabs.length + index),
-    disabled: item.disabled,
-    text: item.label,
-  }));
+  const dropdownMenuItems = hiddenTabs.map((item, index) => {
+    const tabIndex = visibleTabs.length + index;
+    return {
+      key: `${item.label}-dropdown-${index}`,
+      onClick: () => handleHiddenTabClick(tabIndex),
+      disabled: item.disabled,
+      selected: tabIndex === activeTab,
+      text: item.label,
+    };
+  });
 
   const hiddenTabsItems = useMemo(() => {
     const temp: DropdownMenuListItemProps[] =

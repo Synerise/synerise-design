@@ -106,7 +106,7 @@ Also exports type: `HandledEventsType = 'mousedown' | 'touchstart' | 'click' | '
 Listens to `window.resize` and reads `offsetWidth`/`offsetHeight` from `componentRef`. Initial dimensions are read synchronously on mount. The `visible` param is in the dependency array but not used in logic — changing it triggers a re-read.
 
 #### `useResizeObserver(elementRef, resizeHandler?): DOMRect`
-Wraps `ResizeObserver`. Returns the current `DOMRect` as state; also calls the optional `resizeHandler` callback. Batches updates via `requestAnimationFrame` (falls back to `setTimeout`).
+Wraps `ResizeObserver`. Returns the current `DOMRect` as state; also calls the optional `resizeHandler` callback. Batches updates via `requestAnimationFrame` (falls back to `setTimeout`). Re-checks `elementRef.current` after every commit, so an element rendered after the hook mounts (conditional render) or swapped for another is observed too.
 
 #### `useResizeToFit<T>({ onResize, autoObserve? }): { elementRef, observe, disconnect }`
 ResizeObserver with manual control. Calls `onResize(clientWidth)` on size change.
