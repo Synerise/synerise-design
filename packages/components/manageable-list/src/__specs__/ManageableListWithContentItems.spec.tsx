@@ -407,33 +407,29 @@ describe('ManageableList with content items', () => {
         maxToShowItems={5}
         onItemAdd={() => { }}
         onItemEdit={() => { }}
-        onItemSelect={() => { }}
         type="content"
         texts={texts}
       />,
     );
 
     const headers = screen.queryAllByTestId('list-item-name');
-    const content = screen.queryAllByTestId('item-content-wrapper');
+    const firstItemContent = screen.queryAllByTestId('item-content-wrapper')[0]
+      .parentElement;
 
     expect(headers.length).toBe(CONTENT_ITEMS.length);
+    expect(firstItemContent).toHaveStyle({ display: 'none' });
 
     fireEvent.click(headers[0]);
 
-    waitFor(() => { expect(content[0].parentElement).not.toHaveStyle({ display: 'none' }); }, { timeout: 100 });
+    await waitFor(() => {
+      expect(firstItemContent).not.toHaveStyle({ display: 'none' });
+    });
 
     fireEvent.click(headers[0]);
 
-    waitFor(() => { expect(content[0].parentElement).toHaveStyle({ display: 'none' }); }, { timeout: 100 });
-
-    fireEvent.click(headers[0]);
-
-    waitFor(
-      () => {
-        expect(content[0].parentElement).toHaveStyle({ display: 'none' });
-      },
-      { timeout: 100 },
-    );
+    await waitFor(() => {
+      expect(firstItemContent).toHaveStyle({ display: 'none' });
+    });
   });
   it('should render additionalSuffix', () => {
     renderWithProvider(
