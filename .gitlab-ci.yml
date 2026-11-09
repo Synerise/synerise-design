@@ -311,6 +311,7 @@ chromatic_publish:
         compare_to: refs/heads/master
         paths:
           - packages/components/**/*
+          - packages/tokens/**/*
           - packages/storybook/**/*
           - package.json
           - pnpm-lock.yaml
