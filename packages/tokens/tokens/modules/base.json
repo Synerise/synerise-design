@@ -4822,9 +4822,18 @@
           "$description": "Pagination item background - default state"
         },
         "hover": {
+          "$extensions": {
+            "studio.tokens": {
+              "modify": {
+                "type": "alpha",
+                "value": "0.4",
+                "space": "srgb"
+              }
+            }
+          },
           "$type": "color",
-          "$value": "{color.background.brand.subtle}",
-          "$description": "Pagination item background - hover state (blue.50)"
+          "$value": "{color.background.base.strong}",
+          "$description": "Pagination item background - hover state (grey.400 at 40%, as in production code)"
         },
         "active": {
           "$type": "color",
@@ -4841,13 +4850,13 @@
         "color": {
           "default": {
             "$type": "color",
-            "$value": "{color.text.base.muted}",
-            "$description": "Pagination item text color - default state (grey.600)"
+            "$value": "{color.text.base.subtle}",
+            "$description": "Pagination item text color - default state (grey.700, as in production code)"
           },
           "hover": {
             "$type": "color",
-            "$value": "{color.text.base.default}",
-            "$description": "Pagination item text color - hover state (grey.800)"
+            "$value": "{color.text.base.subtle}",
+            "$description": "Pagination item text color - hover state (grey.700, unchanged on hover as in production code)"
           },
           "active": {
             "$type": "color",
@@ -4856,8 +4865,8 @@
           },
           "disabled": {
             "$type": "color",
-            "$value": "{color.text.base.muted}",
-            "$description": "Pagination item text color - disabled state (grey.600, opacity applied separately)"
+            "$value": "{color.text.base.subtle}",
+            "$description": "Pagination item text color - disabled state (grey.700, opacity applied separately)"
           }
         },
         "typography": {
