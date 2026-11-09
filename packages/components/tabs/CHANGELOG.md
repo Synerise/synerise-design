@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-tabs@2.1.2...@synerise/ds-tabs@2.1.3) (2026-11-09)
+
+
+### Bug Fixes
+
+* **utils:** observe elements rendered after useResizeObserver mounts ([b748582](https://github.com/synerise/synerise-design/commit/b74858264f34cb3b15d983c3533daa6dbcf68b57))
+
+
+
+
+
 ## [2.1.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-tabs@2.1.1...@synerise/ds-tabs@2.1.2) (2026-11-05)
 
 **Note:** Version bump only for package @synerise/ds-tabs

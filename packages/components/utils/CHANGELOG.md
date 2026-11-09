@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@2.3.1...@synerise/ds-utils@2.3.2) (2026-11-09)
+
+
+### Bug Fixes
+
+* **utils:** observe elements rendered after useResizeObserver mounts ([b748582](https://github.com/synerise/synerise-design/commit/b74858264f34cb3b15d983c3533daa6dbcf68b57))
+
+
+
+
+
 ## [2.3.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@2.3.0...@synerise/ds-utils@2.3.1) (2026-11-03)
 
 **Note:** Version bump only for package @synerise/ds-utils

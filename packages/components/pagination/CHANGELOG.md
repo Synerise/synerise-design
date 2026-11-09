@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-pagination@2.1.2...@synerise/ds-pagination@2.1.3) (2026-11-09)
+
+
+### Bug Fixes
+
+* **pagination:** colour page links with the item hover token ([117b395](https://github.com/synerise/synerise-design/commit/117b395c837dde69aefaffa0c32116504990f8c1))
+
+
+
+
+
 ## [2.1.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-pagination@2.1.1...@synerise/ds-pagination@2.1.2) (2026-11-05)
 
 **Note:** Version bump only for package @synerise/ds-pagination

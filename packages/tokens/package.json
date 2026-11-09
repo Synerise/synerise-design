@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-tokens",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "Design tokens for Synerise Design System — generated from Token Studio",
   "type": "module",
   "sideEffects": [
