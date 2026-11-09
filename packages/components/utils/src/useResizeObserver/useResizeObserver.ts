@@ -1,10 +1,4 @@
-import {
-  type RefObject,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import { type RefObject, useEffect, useRef, useState } from 'react';
 
 const useResizeObserver = (
   elementRef: RefObject<HTMLElement | undefined>,
@@ -24,29 +18,34 @@ const useResizeObserver = (
       }
     }),
   ).current;
-
-  // biome-ignore lint/correctness/useExhaustiveDependencies: dependencies intentionally omitted
-  const observe = useCallback(() => {
-    elementRef.current && resizeObserver.observe(elementRef.current);
-  }, [resizeObserver]);
-
-  const disconnect = useCallback(() => {
-    resizeObserver.disconnect();
-  }, [resizeObserver]);
+  const observedElement = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     resizeHandler && resizeHandler(dimensions);
   }, [dimensions, resizeHandler]);
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: dependencies intentionally omitted
+  // Runs after every commit: the element may be rendered later than the hook mounts, or swapped.
   useEffect(() => {
-    if (elementRef.current) {
-      observe();
+    const element = elementRef.current ?? null;
+    if (element === observedElement.current) {
+      return;
     }
-    return () => {
+    if (observedElement.current) {
+      resizeObserver.unobserve(observedElement.current);
+    }
+    if (element) {
+      resizeObserver.observe(element);
+    }
+    observedElement.current = element;
+  });
+
+  useEffect(
+    () => () => {
       resizeObserver.disconnect();
-    };
-  }, [resizeObserver, observe, disconnect]);
+      observedElement.current = null;
+    },
+    [resizeObserver],
+  );
 
   return dimensions;
 };

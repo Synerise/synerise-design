@@ -123,7 +123,7 @@ const config: TabsConfiguration = {
 
 ## Implementation notes
 
-- **Overflow mechanism:** On every resize, a hidden clone (`HiddenTabs`) renders all tabs off-screen to measure their natural widths. The visible list is then computed by fitting as many tabs as possible within `containerWidth - DROPDOWN_TRIGGER_SIZE (32 px) - MARGIN_BETWEEN_TABS (24 px)`. Disabled in `block` mode.
+- **Overflow mechanism:** On every resize, a hidden clone (`HiddenTabs`) renders all tabs off-screen to measure their natural widths. The visible list is then computed by fitting as many tabs as possible within `containerWidth - DROPDOWN_TRIGGER_SIZE (32 px) - MARGIN_BETWEEN_TABS (24 px)`. Disabled in `block` mode. When `activeTab` is one of the hidden tabs, its dropdown item is rendered `selected`.
 - **`visible` prop is deprecated** and ignored — it is accepted in the type signature but not destructured in the component body.
 - **`activeTab` accepts `undefined`** (storybook `NoActiveTab` story) even though the TypeScript type declares `number`. No tab receives the `active` class in that case.
 - Tests use Jest (not Vitest) — `jest.config.js` is present at the package root.
