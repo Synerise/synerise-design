@@ -1,6 +1,10 @@
 import React from 'react';
 
-import { declarationsFor, renderWithProvider } from '@synerise/ds-core/testing';
+import {
+  declarationsFor,
+  renderWithProvider,
+  rulesFor,
+} from '@synerise/ds-core/testing';
 import { fireEvent } from '@testing-library/react';
 
 import Pagination from '../index';
@@ -43,6 +47,26 @@ describe('Pagination', () => {
     expect(
       declarationsFor(container.querySelector('.ds-pagination-next')),
     ).not.toContain(disabledOpacity);
+  });
+
+  it('should colour a page link with the item hover token while the item is hovered', () => {
+    const { getByText } = renderWithProvider(
+      <Pagination defaultCurrent={1} total={50} />,
+    );
+    const link = getByText('2');
+
+    const hoverDeclarations = rulesFor(link, {
+      state: 'any',
+      within: link.closest('li'),
+    })
+      .filter(({ selector }) => /:hover\s/.test(selector))
+      .map(({ declarations }) => declarations)
+      .join(';');
+
+    expect(hoverDeclarations).toContain(
+      'color:var(--ds-pagination-item-text-color-hover)',
+    );
+    expect(hoverDeclarations).toContain('text-decoration:none');
   });
 
   it('should render the size changer and quick jumper when enabled', () => {
