@@ -211,8 +211,8 @@ const AxisLabel = () => {
 `theme.tokens` holds the fully-resolved map for the active scheme (it follows `mode`), and
 `theme.colorsOrder` holds the 21 ordered slots resolved for it, ready for Highcharts. The
 `theme` object also exposes `theme.palette` (raw palette by name) and `theme.variables` /
-`theme.variable('@border-radius-base')` — note those two are **Less-name** lookups generated from
-`config.less` (the leading `@` is stripped), not CSS-variable lookups. Outside React you can import a
+`theme.variable('@border-radius-base')` — note those two are legacy **Less-name** lookups (the old
+Less variable names, leading `@` stripped), not CSS-variable lookups. Outside React you can import a
 specific theme's static map:
 
 ```tsx

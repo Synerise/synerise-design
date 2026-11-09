@@ -52,8 +52,7 @@ colour token; listed so they do not hide in the palette count.
 ## 3. Intentional literals
 
 - **`icon` (798 lines) and `flag` (254 lines):** hex values inside SVG artwork. Icons are recoloured through `currentColor` / the `color` prop; flags are fixed national colours. Not tokenised by design.
-- **`core` `js/DSProvider/ThemeProvider/variables.ts` (217) and `style/colors.less` (121):** the primitive palette definitions that feed `theme.palette`, `build/vars.js` and the Less functions. They stay hex until the palette is retired.
-- **`core` Less (`config.less`, `antd-legacy.less`, `reset.less`):** ~15 literal colours and shadows. `antd-legacy.less` is now deletable (menu, alert and table are retired on master); `config.less` shrinks with it. `reset.less` carries `@mark-bg` and the tap-highlight transparent.
+- **`core` `js/DSProvider/ThemeProvider/variables.ts`:** the 121 palette and 73 variable values behind `theme.palette` / `theme.variables`, now committed source rather than generated from Less. They stay hex until the palette is retired.
 - **`color-picker`** `ColorPicker.tsx:32`: `DEFAULT_COLOR = '#ffffff'`, the picker's default **value** (user data), not styling.
 - **`code-area`** `constants.ts:24`: `TRANSPARENT = '#00000000'`, a Monaco theme constant (Monaco cannot take CSS variables).
 

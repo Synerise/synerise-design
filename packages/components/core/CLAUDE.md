@@ -14,9 +14,11 @@ src/js/
  LocaleProvider.types.ts — LocaleProviderProps, IntlMessages, NestedMessages
  ThemeProvider/
  ThemeProvider.tsx — styled-components ThemeProvider wrapper
+ GlobalTokenStyles.tsx — injects the light and dark token CSS
+ GlobalResetStyles.tsx — global element reset (body typography, links, ::selection), all inside :where()
  theme.ts — theme object, useTheme, defaultColorsOrder, themeVariables
  breakpoints.ts — breakpoint definitions (xsmall → xxlarge)
- variables.ts — CSS variables and colour palette values
+ variables.ts — frozen values behind theme.palette and theme.variables (legacy; new code uses tokens)
  data-format/
  providers/DataFormatConfigProvider.tsx — context provider for notation config
  components/ — FormattedDate, FormattedDateTime, FormattedNumber, FormattedTime, FormattedRelativeDateTimeFrom/To
@@ -52,11 +54,8 @@ src/js/
  declarationsFor/declarationsFor.ts — injected CSS declarations targeting one element (spec helper)
  renderWithProvider/renderWithProvider.tsx — RTL render() wrapped in DSProvider
  sleep.ts — Promise-based sleep utility
- style.ts — Less import entry point
 src/i18n/
  en.json, es.json, pl.json, pt.json — bundled translation strings
-src/style/
- core.less, colors.less, variables.less — global styles and CSS custom properties
 ```
 
 ## Public exports
@@ -86,8 +85,8 @@ Root provider. Must wrap the entire application. Composes `LocaleProvider` → `
 The default `ThemePropsVars` object. Passed automatically via `DSProvider`; also importable for use outside styled-components (e.g. inline styles, tests).
 
 ```ts
-theme.palette['blue-600'] // '#0b68ff' — from colors.less
-theme.variables['zindex-tooltip'] // '991060' — from config.less, key WITHOUT the leading @
+theme.palette['blue-600'] // '#0b68ff' — @deprecated, from variables.ts; use a --ds-* token
+theme.variables['zindex-tooltip'] // '991060' — legacy, from variables.ts, key WITHOUT the leading @
 theme.tokens['--ds-color-text-base-default'] // '#384350' — fully-resolved design token
 theme.space // [0, 8, 12, 16, 24, 32, 48, 64]
 theme.breakpoints // ['768px', '960px', '1280px']
@@ -95,8 +94,13 @@ theme.colorsOrder // 21 resolved hex values in display order (design-tokens `ord
 theme.variable('@border-radius-base') // Less-name lookup; strips a leading @
 ```
 
-> `theme.variables` / `theme.variable()` are **Less-name** lookups, not CSS-var lookups — they are
-> generated from `config.less` by `build/vars.js`, which strips the `@`. `theme.variable('--ds-x')`
+> `theme.palette` is `@deprecated`: its values are frozen and ignore dark mode, so colours come from
+> `var(--ds-color-*)` (styles), `theme.tokens[...]` (JS) or `theme.colorsOrder` (charts). `theme.variables` /
+> `theme.variable()` carry a JSDoc note to do the same for any key that resolves to a colour, shadow or
+> opacity; sizes, fonts and z-indexes have no tokens yet and stay there.
+>
+> `theme.variables` / `theme.variable()` are **Less-name** lookups, not CSS-var lookups — the keys are
+> the old Less variable names without the `@`, now plain values in `variables.ts`. `theme.variable('--ds-x')`
 > returns `undefined`. For design tokens use `theme.tokens[...]` or a `var(--ds-...)` string in CSS.
 > Tokenisation removed 217 unused keys and turned 15 (e.g. `text-color`, `border-color-base`,
 > `box-shadow-1/2`) into `var()` references — see `docs/migration-design-tokens.md`.
@@ -112,7 +116,7 @@ Monaco theming) that can't resolve `var()`. It is the resolved map of the active
 
 ### `themeVariables`
 
-`Record<string, string>` — all CSS variable name→value pairs from the design token set.
+`Record<string, string>` — the same legacy map as `theme.variables` (Less names without the `@`); not design tokens.
 
 ### `defaultColorsOrder`
 
@@ -128,7 +132,7 @@ TypeScript helper types for styled-components. Use `ThemeProps` or `WithTheme` i
 
 ```ts
 const Box = styled.div<ThemeProps>`
- color: ${({ theme }) => theme.palette['blue-600']};
+ padding: ${({ theme }) => theme.space[2]}px;
 `;
 ```
 
@@ -337,9 +341,8 @@ The reason is that the popover family uses **flat** tokens, entirely above the m
 every `PopoverContent` (popover, dropdown, select, cascader, date picker) sits at
 `zindex-dropdown` **991050**, `Popconfirm` at **991055**, `Tooltip` / `HoverTooltip` /
 `Tray` / menu-item tooltips at **991060**. A modal that climbed past 991050 would paint over
-its own dropdowns and selects. `zindex-popover` (991030), `zindex-picker`,
-`zindex-notification`, `zindex-message` and `zindex-popper` are declared in the theme but
-unused in DS — 991050 is the real floor. The clamp allows 24 levels of nesting.
+its own dropdowns and selects. `zindex-popper` (991010) is declared in the theme but unused in
+DS — 991050 is the real floor. The clamp allows 24 levels of nesting.
 
 ### Behaviour worth knowing
 
@@ -429,6 +432,7 @@ different element.
 
 - **`toasterProps` must be explicitly set** to enable the `<Toaster>` DOM element inside `DSProvider`; passing `false` (the default) skips rendering `<Toaster>` while still mounting `ToasterProvider`.
 - **`ThemeProvider` merges with defaults**: `{ ..dsTheme, ..theme }` — partial overrides are safe; you cannot remove keys from the theme object.
+- **The global reset has zero specificity.** `GlobalResetStyles` (injected with `GlobalTokenStyles`, outermost provider only) wraps every element selector in `:where()`, so a component's `a { color }` beats the reset's `a:hover` whatever order the stylesheets load in. A component that wants a hover colour on an `<a>` has to set it; it no longer inherits the reset's brand hover by accident of order. Colours are `var(--ds-*)` only; the spec rejects a hex or unwrapped element selector.
 - **Both themes are always injected**: `GlobalTokenStyles` emits light on `:root` and dark on `[data-ds-theme="dark"]` (the same selector as the shipped `css/dark.css`). Theme switching is a single attribute flip on `<html>` — no CSS re-injection.
 - **Only the outermost provider injects and owns the attribute.** A nested `DSProvider`/`ThemeProvider` renders no second copy of the token CSS, ignores its own `mode`, and gives its subtree the outer resolved mode, so `theme.tokens` always matches the CSS in effect. Separate React roots (micro-frontends) each have their own outermost provider.
 - **`mode` sets `data-ds-theme` on `document.documentElement`** (not a wrapper) because DS overlays portal to `document.body` and must resolve the same tokens. `mode="system"` subscribes to a `prefers-color-scheme` media query. The provider removes the attribute it set when it unmounts or `mode` is dropped. When `mode` is omitted the provider leaves the attribute alone (app-owned) and `theme.tokens` follows it through a `MutationObserver`. Applied in a layout effect, so before the first client paint; the first render (and SSR) uses light for `'system'` and the app-owned case to keep server and client markup identical — apps that SSR should still set the attribute early (inline `<head>` script).

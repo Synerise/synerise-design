@@ -12,6 +12,7 @@ import { ThemeProvider as ThemeProviderBase } from 'styled-components';
 import { tokens as darkTokens } from '@synerise/ds-tokens/dark';
 import { tokens as lightTokens } from '@synerise/ds-tokens/light';
 
+import { GlobalResetStyles } from './GlobalResetStyles';
 import { GlobalTokenStyles } from './GlobalTokenStyles';
 import dsTheme, { getColorsOrder, type ThemePropsVars } from './theme';
 
@@ -132,7 +133,12 @@ const ThemeProvider = ({
   return (
     <DocumentModeContext.Provider value={resolvedMode}>
       <ThemeProviderBase theme={mergedTheme}>
-        {isRoot && <GlobalTokenStyles />}
+        {isRoot && (
+          <>
+            <GlobalTokenStyles />
+            <GlobalResetStyles />
+          </>
+        )}
         {children}
       </ThemeProviderBase>
     </DocumentModeContext.Provider>

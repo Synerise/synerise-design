@@ -46,7 +46,7 @@
 - Specs assert behaviour, not token data: never compare against a resolved token value, and never assert that two themes' values differ — stub `@synerise/ds-tokens/light`/`dark` with marker maps instead. A spec that only restates which token a static style uses duplicates Chromatic; keep token assertions for choices (state, type mapping, fallback, override)
 - Specs resolve `@synerise/*` imports from the sibling package's **`src/`**, not its built `dist/`, so a
   cross-package change is visible without rebuilding the dependency (`dsTestSourceRedirectPlugin`)
-- Prerequisite: the generated sources (`pnpm run generate` — core theme variables, icon/flag/avatar SVGR
+- Prerequisite: the generated sources (`pnpm run generate` — the token build, icon/flag/avatar SVGR
   output). The root `postinstall` does this; a fresh **git worktree** or `--ignore-scripts` install does not,
   and the test run fails fast naming the command
 - Stories: read `packages/storybook/README.md` before adding or changing one — it says which stories
