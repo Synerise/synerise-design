@@ -70,6 +70,14 @@ Record a new shift here, in its package's section, instead of leaving an inline 
 | --- | --- | --- | --- | --- |
 | `src/ColorPicker.styles.ts` | `SwatchCreatorButton` (creator "+" glyph) `color` | grey-800 | `--ds-color-icon-base-default` (grey-600) | no icon token at grey-800 |
 
+## core
+
+| File | Selector / property | Before | After | Note |
+| --- | --- | --- | --- | --- |
+| `src/js/DSProvider/ThemeProvider/GlobalResetStyles.tsx` | `a:hover` `color` | blue-500 | `--ds-color-text-brand-defaulthover` (blue-700) | global reset: hovered links take the brand hover token, one step darker, instead of the light-only blue-500 |
+| `src/js/DSProvider/ThemeProvider/GlobalResetStyles.tsx` | `caption` `color` | grey-900 | `--ds-color-text-base-default` (grey-800) | global reset: no semantic text token at grey-900 |
+| `src/js/DSProvider/ThemeProvider/GlobalResetStyles.tsx` | `mark` `background-color` | `#feffe6` (antd default) | `--ds-color-background-warning-subtle` (yellow-50 `#fffcf0`) | global reset: antd literal, not a DS colour |
+
 ## date-picker
 
 | File | Selector / property | Before | After | Note |

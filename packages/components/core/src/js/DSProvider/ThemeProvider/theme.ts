@@ -9,12 +9,33 @@ import { breakpoints } from './breakpoints';
 import vars from './variables';
 
 export type ThemePropsVars = {
+  /**
+   * Legacy variables keyed by name without the `@`, e.g. `variables['zindex-modal']`. The values
+   * are frozen and do not follow dark mode.
+   *
+   * Where a variable resolves to a colour, shadow or opacity, use a design token instead:
+   * `var(--ds-*)` in styles, `theme.tokens['--ds-…']` where JS needs the resolved value.
+   * Sizes, fonts and z-indexes have no tokens yet and stay here.
+   */
   variables: { [key: string]: string };
+  /**
+   * @deprecated Legacy colour palette, e.g. `palette['grey-600']`. The values are frozen and do not
+   * follow dark mode. Use a semantic or module design token instead: `var(--ds-color-*)` in styles,
+   * `theme.tokens['--ds-…']` where JS needs the resolved value, and `theme.colorsOrder` for charts.
+   */
   palette: { [key: string]: string };
   // Fully-resolved design-token map keyed by CSS var name, e.g.
   // theme.tokens['--ds-color-text-base-default'] → '#384350'. Matches the tokens
   // injected by GlobalTokenStyles (currently the light theme).
   tokens: { [key: string]: string };
+  /**
+   * Looks up a legacy variable by its Less name, e.g. `variable('@zindex-modal')`. The values are
+   * frozen and do not follow dark mode.
+   *
+   * Where the variable resolves to a colour, shadow or opacity, use a design token instead:
+   * `var(--ds-*)` in styles, `theme.tokens['--ds-…']` where JS needs the resolved value.
+   * Sizes, fonts and z-indexes have no tokens yet and stay here.
+   */
   variable: (name: string) => string | null;
   space: number[];
   colorsOrder: string[];
@@ -59,7 +80,7 @@ export const defaultColorsOrder = [
 export type DefaultColor = (typeof defaultColorsOrder)[number];
 // Sourced from the design-tokens `ordered` set — 21 slots that match
 // defaultColorsOrder one-for-one (7 hues x 600/700/500), verified value-identical
-// to the legacy colors.less lookup.
+// to the legacy palette lookup.
 //
 // Deliberately the RESOLVED hex from `tokens`, not the `var(--ds-...)` strings from
 // `@synerise/ds-tokens/names`: consumers feed colorsOrder straight into Highcharts,

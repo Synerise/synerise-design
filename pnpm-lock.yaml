@@ -1259,12 +1259,6 @@ importers:
       glob:
         specifier: ^11.0.2
         version: 11.1.0
-      hex-rgb:
-        specifier: ^5.0.0
-        version: 5.0.0
-      less-vars-to-js:
-        specifier: ^1.3.0
-        version: 1.3.0
       moment:
         specifier: ^2.30.1
         version: 2.30.1
@@ -10443,10 +10437,6 @@ packages:
     resolution: {integrity: sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw==}
     hasBin: true
 
-  hex-rgb@5.0.0:
-    resolution: {integrity: sha512-NQO+lgVUCtHxZ792FodgW0zflK+ozS9X9dwGp9XvvmPlH7pyxd588cn24TD3rmPm/N0AIRXF10Otah8yKqGw4w==}
-    engines: {node: '>=12'}
-
   highlight.js@10.7.3:
     resolution: {integrity: sha512-tzcUFauisWKNHaRkN4Wjl/ZA07gENAjFl3J/c480dprkGTg5EQstgaNFqBfUqCq54kZRIEcreTsAgF/m2quD7A==}
 
@@ -11095,10 +11085,6 @@ packages:
   less-plugin-npm-import@2.1.0:
     resolution: {integrity: sha512-f7pVkEooRq2/jge/M/Y+spoPXj5rRIY30q1as+3kZsDG8Rs+loNJUCVQjzXB9Ao/9FeIJULiq2zrXymv+OMTbw==}
     engines: {node: '>=0.4.2'}
-
-  less-vars-to-js@1.3.0:
-    resolution: {integrity: sha512-xeiLLn/IMCGtdyCkYQnW8UuzoW2oYMCKg9boZRaGI58fLz5r90bNJDlqGzmVt/1Uqk75/DxIVtQSNCMkE5fRZQ==}
-    engines: {node: '>=8'}
 
   less@3.11.1:
     resolution: {integrity: sha512-tlWX341RECuTOvoDIvtFqXsKj072hm3+9ymRBe76/mD6O5ZZecnlAOVDlWAleF2+aohFrxNidXhv2773f6kY7g==}
@@ -18702,8 +18688,6 @@ snapshots:
 
   he@1.2.0: {}
 
-  hex-rgb@5.0.0: {}
-
   highlight.js@10.7.3: {}
 
   hoist-non-react-statics@3.3.2:
@@ -19477,10 +19461,6 @@ snapshots:
     dependencies:
       promise: 7.0.4
       resolve: 1.1.7
-
-  less-vars-to-js@1.3.0:
-    dependencies:
-      strip-json-comments: 2.0.1
 
   less@3.11.1:
     dependencies:

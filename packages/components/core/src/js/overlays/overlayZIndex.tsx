@@ -57,8 +57,7 @@ export const useResolvedOverlayZIndex = (zIndex?: number): number => {
       return base;
     }
 
-    // `zindex-dropdown` is the lowest z-index the popover family actually uses
-    // (`zindex-popover` is declared but unused). Stopping one step below it
+    // `zindex-dropdown` is the lowest z-index the popover family uses. Stopping one step below it
     // keeps every overlay opened INSIDE this one painted above it.
     const ceiling =
       Number.parseInt(theme.variables['zindex-dropdown'], 10) -

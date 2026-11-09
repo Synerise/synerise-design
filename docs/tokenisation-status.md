@@ -189,7 +189,7 @@ an upstream definition (see the blocker column). The next move is upstream in th
 | confirmation | semantic | ✅ | — |
 | context-selector | module | ✅ | — |
 | copy-icon | semantic | ✅ | — |
-| core | semantic | 🚧 | `config.less` trimmed 407→190, then split: 69 DS-surface + 121 `antd-legacy.less` (deletable now that menu/alert/table are retired on master). 12 tokenised (10 semantic colours + `box-shadow-1/2`), `colorsOrder` → ordered tokens. `colors.less` must stay hex (feeds `build/vars.js`, `hexToRgba`, antd Less fns). Remaining 59: 22 blocked by antd/DS Less fns or `parseInt`, 18 need dimension/typography tokens (filtered out of the build), 17 match only primitives, 2 feed Highcharts |
+| core | semantic | 🚧 | `config.less` trimmed 407→190, then split into 69 DS-surface keys and `antd-legacy.less`, which is now deleted (73 keys remain, 4 moved over from it). ds-core has no Less left: the values live in `variables.ts`, the reset is `GlobalResetStyles`. 12 tokenised (10 semantic colours + `box-shadow-1/2`), `colorsOrder` → ordered tokens. The palette must stay hex (`hexToRgba`, JS consumers). Remaining 59: 22 blocked by antd/DS Less fns or `parseInt`, 18 need dimension/typography tokens (filtered out of the build), 17 match only primitives, 2 feed Highcharts |
 | cruds | module | ✅ | — |
 | date-picker | module (form+calendar+dropdown) | ✅ | — |
 | date-range-picker | module (form+calendar+dropdown) | ✅ | — |

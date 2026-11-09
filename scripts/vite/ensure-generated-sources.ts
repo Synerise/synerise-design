@@ -19,11 +19,6 @@ const GENERATED_SOURCES: GeneratedSource[] = [
     command: 'pnpm generate:tokens',
   },
   {
-    path: 'packages/components/core/src/js/DSProvider/ThemeProvider/variables.ts',
-    label: '@synerise/ds-core theme variables',
-    command: 'pnpm generate:vars',
-  },
-  {
     path: 'packages/components/icon/src/icons',
     label: '@synerise/ds-icon icon components',
     command: 'pnpm --filter @synerise/ds-icon run build:svgr',

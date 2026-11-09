@@ -8,8 +8,15 @@ these changes ship as minor/patch releases and consumers migrate in lockstep.
 
 ## `theme.variables` / `theme.variable()`
 
-`theme.variables` is generated from `core/src/style/config.less` + `antd-legacy.less` by
-`core/build/vars.js`. Tokenisation shrank it from 403 to 186 keys. `theme.palette` is unchanged.
+`theme.variables` and `theme.palette` are plain values in `core/src/js/DSProvider/ThemeProvider/variables.ts`
+(previously generated from Less by `core/build/vars.js`). Tokenisation shrank `theme.variables` from 403
+to 186 keys, and deleting `antd-legacy.less` to 73. `theme.palette` is unchanged.
+
+Both are frozen and ignore dark mode. `theme.palette` is marked `@deprecated`: read a colour from
+`var(--ds-color-*)` in styles, `useTheme().tokens['--ds-…']` where JS needs the resolved value, or
+`theme.colorsOrder` for charts. `theme.variables` and `theme.variable()` stay, with a JSDoc note to do
+the same for any key that resolves to a colour, shadow or opacity. Sizes, fonts and z-indexes have no
+tokens yet.
 
 ### 217 keys were removed
 
@@ -100,6 +107,46 @@ input-font-size-base input-line-height-base input-background-color-focus
 `--ds-color-<hue>-<shade>` primitives and the semantic `--ds-color-*` tier; the button keys onto the
 `--ds-buttons-*` module tokens.
 
+### 113 antd-only keys were removed with `antd-legacy.less`
+
+`antd-legacy.less` existed only to theme antd's own stylesheets and the retired menu, alert and table
+packages. With those gone it is deleted, and its keys leave `theme.variables`. The four keys a consumer
+app still reads (`border-color-split`, `heading-4-size`, `shadow-1-left`, `shadow-2`) stay in
+`theme.variables` with unchanged values; every other key, and every `theme.palette` entry, resolves exactly
+as before. `border-color-split` is read indirectly, through a map of variable names passed to
+`theme.variable()`, so search for `'@<key>'` strings as well as `theme.variable(` calls before removing
+another key.
+
+```
+background-color-base background-color-light body-background btn-border-radius-base
+btn-border-radius-sm btn-circle-size btn-circle-size-lg btn-circle-size-sm btn-danger-bg
+btn-danger-border btn-danger-color btn-default-border btn-font-size-lg btn-font-size-sm
+btn-font-weight btn-ghost-bg btn-ghost-border btn-ghost-color btn-group-border btn-height-base
+btn-height-lg btn-height-sm btn-primary-bg btn-primary-color btn-primary-shadow
+control-padding-horizontal control-padding-horizontal-sm disabled-bg disabled-color-dark font-size-lg
+font-size-sm form-item-margin-bottom form-item-trailing-colon form-vertical-label-margin
+form-vertical-label-padding green-color-lighter-1 grid-columns heading-1-size heading-2-size
+heading-3-size input-addon-bg input-bg input-border-color input-color input-disabled-bg
+input-height-base input-height-lg input-height-sm input-hover-border-color input-padding-vertical-base
+input-padding-vertical-lg input-padding-vertical-sm input-placeholder-color item-active-bg
+item-hover-bg label-color label-required-color modal-mask-bg outline-blur-size outline-color
+outline-width padding-lg padding-sm padding-xs pagination-item-size-sm primary-color-lighter-5
+radio-button-bg radio-dot-color radio-size secondary-color select-item-selected-bg
+select-item-selected-font-weight shadow-1-down shadow-1-right shadow-1-up
+slider-disabled-background-color slider-disabled-color slider-dot-border-color
+slider-dot-border-color-active slider-handle-color slider-handle-color-focus
+slider-handle-color-focus-shadow slider-handle-color-hover slider-handle-color-tooltip-open
+slider-margin slider-rail-background-color slider-rail-background-color-hover
+slider-track-background-color slider-track-background-color-hover switch-color switch-disabled-opacity
+switch-height switch-sm-height table-padding-horizontal table-padding-vertical table-row-hover-bg
+table-selected-row-bg tag-default-color tag-font-size text-color-secondary-dark tooltip-arrow-color
+tooltip-arrow-width tooltip-bg tooltip-distance typography-title-font-weight zindex-affix
+zindex-back-top zindex-message zindex-modal-mask zindex-notification zindex-picker zindex-popoconfirm
+zindex-popover
+```
+**Replacement:** the matching design token, as for the keys above. `ds-core` no longer ships
+`style/variables.less` or `style/antd-legacy.less`; no consumer imported either directly.
+
 ### 15 keys now hold a `var()` instead of a hex value
 
 | Key | Was | Now |
@@ -145,6 +192,7 @@ The per-property list of smaller colour shifts (old value, new token, rationale)
 | `Avatar` / `selectColorByLetter` colours | 11 hand-ordered families | the 12 `customColorNames` families in alphabetical order, including grey (accepted by UX) — see below |
 | `IconPicker` search with no results | 16px above the icon and text | 6px, so the empty state sits 10px closer to the search input and the dropdown is 10px shorter. The dotted separator between icon groups was also removed, with no visual change: groups render as virtualised rows, so it had nothing left to match |
 | `EditableItemsList` add button | `ghost-primary` button with default spacing | `mode="icon-label"` when `addButtonLabel` is set (4px gap between icon and text), `mode="single-icon"` (32px square) when it is not. `addButtonProps.mode` overrides both |
+| Global element reset (`ds-core`) | `reset.less` at element specificity; hovered links blue-500, `caption` grey-900, `mark` `#feffe6` | a `DSProvider` global style wrapped in `:where()`, so any component or app rule wins regardless of stylesheet order. Hovered links `--ds-color-text-brand-defaulthover` (blue-700), `caption` `--ds-color-text-base-default`, `mark` `--ds-color-background-warning-subtle`; every colour now follows dark mode |
 
 ### Initial-letter colours
 

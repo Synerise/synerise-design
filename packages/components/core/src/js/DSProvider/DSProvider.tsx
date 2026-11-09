@@ -5,7 +5,6 @@ import {
   type DataFormatConfigProviderProps,
 } from '../data-format';
 import PortalRenderer from '../portal/PortalRenderer';
-import '../style';
 import Toaster, {
   TOASTER_DEFAULTS,
   type ToasterProps,
