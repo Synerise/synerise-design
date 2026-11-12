@@ -1,45 +1,34 @@
-import React, { type ComponentType, type ReactElement } from 'react';
-import { type IntlShape, injectIntl } from 'react-intl';
+import React, { type ReactElement } from 'react';
+import { injectIntl } from 'react-intl';
 
 import Button from '@synerise/ds-button';
 import ButtonGroup from '@synerise/ds-button-group';
 import { generateUuid } from '@synerise/ds-utils';
 
 import type {
-  Texts,
   Translations,
   TranslationsPlaceholders,
 } from '../DateRangePicker.types';
 import { getDefaultTexts } from '../utils';
+import { type FilterAdapter, filterAdapter } from './adapters';
 import {
   DEFAULT_RANGE_END,
   DEFAULT_RANGE_START,
   type RangeFilterType,
   TYPES,
-  TYPES_DATA,
 } from './constants';
 import * as S from './RangeFilter.styles';
 import type {
-  FilterDefinition,
   FilterValue,
   RangeFilterDaily,
   RangeFilterProps,
   RangeFilterState,
+  RangeFilterValue,
 } from './RangeFilter.types';
 import FilterDropdown from './Shared/FilterDropdown/FilterDropdown';
 import type { SavedFilter } from './Shared/FilterDropdown/FilterDropdown.types';
 import SaveFilterForm from './Shared/SaveFilterForm/SaveFilterForm';
-import type {
-  DateLimitMode,
-  RangeDisplayMode,
-} from './Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
-import {
-  addSuffixToDuplicate,
-  defaultFilterValue,
-  denormalizeValue,
-  isValidValue,
-  normalizeValue,
-} from './utils';
+import { addSuffixToDuplicate } from './utils';
 
 const DEFAULT_VALUE: RangeFilterDaily = {
   type: TYPES.DAILY,
@@ -49,19 +38,16 @@ const DEFAULT_VALUE: RangeFilterDaily = {
   inverted: false,
 };
 
-type FilterDefinitionOf = FilterValue['definition'];
+const toEditorValue = (value: RangeFilterValue): FilterValue =>
+  filterAdapter(value.type).toEditor(value);
 
-// Each editor receives and returns the definition of its own filter type.
-type FilterEditor = ComponentType<{
-  intl: IntlShape;
-  texts: Texts;
-  rangeDisplayMode?: RangeDisplayMode;
-  value: FilterDefinitionOf;
-  onChange: (definition: FilterDefinitionOf) => void;
-  onRangeCopy: (range?: Partial<FilterDefinition>) => void;
-  rangeClipboard?: Partial<FilterDefinition>;
-  valueSelectionModes?: DateLimitMode[];
-}>;
+const fromEditorValue = (value: FilterValue): RangeFilterValue =>
+  filterAdapter(value.type).fromEditor(value);
+
+const isValidEditorValue = (value?: FilterValue): boolean =>
+  value ? filterAdapter(value.type).isValid(value) : true;
+
+const TYPE_ORDER = Object.values(TYPES);
 
 const filterState = (filter: FilterValue) =>
   ({ [filter.type]: filter }) as Pick<RangeFilterState, RangeFilterType>;
@@ -82,7 +68,7 @@ class RangeFilter extends React.PureComponent<
     // A value of a type that is not allowed is kept under the first allowed type.
     this.state = {
       activeType: valueType,
-      [valueType]: denormalizeValue(value),
+      [valueType]: toEditorValue(value),
     } as RangeFilterState;
   }
 
@@ -103,7 +89,7 @@ class RangeFilter extends React.PureComponent<
     const { onApply } = this.props;
     const { activeType } = state;
     const filter = state[activeType];
-    onApply && filter && onApply(normalizeValue(filter));
+    onApply && filter && onApply(fromEditorValue(filter));
   };
 
   handleCancel = (): void => {
@@ -119,12 +105,12 @@ class RangeFilter extends React.PureComponent<
       ...filterState(
         previousValue
           ? ({ ...previousValue, type } as FilterValue)
-          : defaultFilterValue(type),
+          : filterAdapter(type).defaultValue(),
       ),
     });
   };
 
-  handleRangeCopy = (range?: Partial<FilterDefinition>): void => {
+  handleRangeCopy = (range?: RangeFilterState['rangeClipboard']): void => {
     this.setState({ rangeClipboard: range });
   };
 
@@ -134,12 +120,14 @@ class RangeFilter extends React.PureComponent<
     const { onFilterSave, savedFilters } = this.props;
     const currentFilter = state[activeType];
     const filterList = savedFilters || [];
-    const filter = {
-      ...currentFilter,
-      type: activeType,
+    if (!currentFilter) {
+      return;
+    }
+    const filter: SavedFilter = {
+      ...fromEditorValue(currentFilter),
       name: filterName,
       id: generateUuid(),
-    } as SavedFilter;
+    };
     const filterWithUniqueName = addSuffixToDuplicate(filterList, filter);
     onFilterSave && onFilterSave([...filterList, filterWithUniqueName]);
   };
@@ -152,8 +140,11 @@ class RangeFilter extends React.PureComponent<
     onFilterSave && onFilterSave(listWithoutRemovedId);
   };
 
-  handleSavedFilterSelect = (selected: SavedFilter): void => {
-    this.setState({ activeType: selected.type, ...filterState(selected) });
+  handleSavedFilterSelect = ({ id, name, ...value }: SavedFilter): void => {
+    this.setState({
+      activeType: value.type,
+      ...filterState(toEditorValue(value)),
+    });
   };
 
   render(): ReactElement {
@@ -161,9 +152,10 @@ class RangeFilter extends React.PureComponent<
     const { activeType, rangeClipboard } = state;
     const activeValue = state[activeType];
     const definition = activeValue?.definition;
-    const Component = (activeType &&
-      TYPES_DATA[activeType] &&
-      TYPES_DATA[activeType].component) as FilterEditor | undefined;
+    // The active value can hold another type's definition: a stored value of a type that is not allowed.
+    const { component: Editor, editorProps } = filterAdapter(
+      activeType,
+    ) as FilterAdapter<RangeFilterType>;
     const {
       intl,
       savedFilters,
@@ -177,14 +169,9 @@ class RangeFilter extends React.PureComponent<
 
     const allTexts = getDefaultTexts(intl, false, texts);
 
-    const buttonSource: RangeFilterType[] = allowedFilterTypes?.length
-      ? allowedFilterTypes
-      : (Object.values(TYPES) as RangeFilterType[]);
-    buttonSource.sort((a: RangeFilterType, b: RangeFilterType) => {
-      return Object.values(TYPES).indexOf(a) < Object.values(TYPES).indexOf(b)
-        ? -1
-        : 1;
-    });
+    const buttonSource = [
+      ...(allowedFilterTypes?.length ? allowedFilterTypes : TYPE_ORDER),
+    ].sort((a, b) => (TYPE_ORDER.indexOf(a) < TYPE_ORDER.indexOf(b) ? -1 : 1));
     return (
       <S.Container>
         <S.Header>
@@ -220,11 +207,16 @@ class RangeFilter extends React.PureComponent<
             </ButtonGroup>
           )}
           <S.MainComponentWrapper>
-            {Component && activeValue && definition && (
-              <Component
-                intl={intl}
-                texts={allTexts}
-                rangeDisplayMode={rangeDisplayMode}
+            {activeValue && definition && (
+              <Editor
+                {...editorProps({
+                  intl,
+                  texts: allTexts,
+                  rangeDisplayMode,
+                  valueSelectionModes,
+                  rangeClipboard,
+                  onRangeCopy: this.handleRangeCopy,
+                })}
                 value={definition}
                 onChange={(def) => {
                   this.setState(
@@ -234,9 +226,6 @@ class RangeFilter extends React.PureComponent<
                     } as FilterValue),
                   );
                 }}
-                onRangeCopy={this.handleRangeCopy}
-                rangeClipboard={rangeClipboard}
-                valueSelectionModes={valueSelectionModes}
               />
             )}
           </S.MainComponentWrapper>
@@ -260,7 +249,7 @@ class RangeFilter extends React.PureComponent<
             <Button
               data-testid="range-filter-apply-button"
               type="primary"
-              disabled={!isValidValue(activeValue)}
+              disabled={!isValidEditorValue(activeValue)}
               onClick={this.handleApply}
             >
               {allTexts.apply}

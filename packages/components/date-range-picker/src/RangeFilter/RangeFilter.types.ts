@@ -97,7 +97,7 @@ export type MonthlyFilterValue = {
   definition: Month<FilterDay>[];
 };
 
-/** The editor state of one filter type; saved filters store this shape. */
+/** The editor state of one filter type. */
 export type FilterValue =
   | DailyFilterValue
   | WeeklyFilterValue

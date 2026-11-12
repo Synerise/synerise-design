@@ -1,15 +1,8 @@
-import cloneDeep from 'lodash.clonedeep';
 import groupBy from 'lodash.groupby';
 import omit from 'lodash.omit';
 import range from 'lodash.range';
 
-import {
-  COUNTED_FROM_ENUM,
-  DAYS_OF_PERIOD_ENUM,
-  type RangeFilterType,
-  TYPES,
-  TYPES_DATA,
-} from './constants';
+import { COUNTED_FROM_ENUM, DAYS_OF_PERIOD_ENUM, TYPES } from './constants';
 import type {
   DailyFilterValue,
   DenormalizedFilter,
@@ -17,9 +10,12 @@ import type {
   FilterValue,
   MonthlyDayRange,
   MonthlyFilterValue,
+  RangeFilterDaily,
   RangeFilterDay,
+  RangeFilterMonthly,
   RangeFilterMonthRule,
   RangeFilterValue,
+  RangeFilterWeekly,
   RangeFilterWeekRule,
   WeeklyFilterValue,
 } from './RangeFilter.types';
@@ -178,38 +174,45 @@ export const createMonthlyDayRange = (
       : acc;
   }, {});
 
+export const denormalizeDaily = (
+  value: RangeFilterDaily,
+): DailyFilterValue => ({
+  type: value.type,
+  definition: denormMapTimeSchema(value),
+});
+
+export const denormalizeWeekly = (
+  value: RangeFilterWeekly,
+): WeeklyFilterValue => ({
+  type: value.type,
+  definition: createWeeklyRange(value.days),
+});
+
+export const denormalizeMonthly = (
+  value: RangeFilterMonthly,
+): MonthlyFilterValue => ({
+  type: value.type,
+  definition: value.rules.map((rule) => ({
+    period: rule.type,
+    id: Math.random(),
+    periodType: rule.inverted
+      ? COUNTED_FROM_ENUM.ENDING
+      : COUNTED_FROM_ENUM.BEGINNING,
+    definition:
+      rule.type === DAYS_OF_PERIOD_ENUM.DAY_OF_WEEK
+        ? createMonthlyWeekDayRange(rule)
+        : createMonthlyDayRange(rule),
+  })),
+});
+
 export const denormalizeValue = (value: RangeFilterValue): FilterValue => {
   switch (value.type) {
     case TYPES.DAILY:
-      return { type: value.type, definition: denormMapTimeSchema(value) };
+      return denormalizeDaily(value);
     case TYPES.WEEKLY:
-      return { type: value.type, definition: createWeeklyRange(value.days) };
+      return denormalizeWeekly(value);
     case TYPES.MONTHLY:
-      return {
-        type: value.type,
-        definition: value.rules.map((rule) => ({
-          period: rule.type,
-          id: Math.random(),
-          periodType: rule.inverted
-            ? COUNTED_FROM_ENUM.ENDING
-            : COUNTED_FROM_ENUM.BEGINNING,
-          definition:
-            rule.type === DAYS_OF_PERIOD_ENUM.DAY_OF_WEEK
-              ? createMonthlyWeekDayRange(rule)
-              : createMonthlyDayRange(rule),
-        })),
-      };
-  }
-};
-
-export const defaultFilterValue = (type: RangeFilterType): FilterValue => {
-  switch (type) {
-    case TYPES.DAILY:
-      return { type, definition: cloneDeep(TYPES_DATA.DAILY.definition) };
-    case TYPES.WEEKLY:
-      return { type, definition: cloneDeep(TYPES_DATA.WEEKLY.definition) };
-    case TYPES.MONTHLY:
-      return { type, definition: cloneDeep(TYPES_DATA.MONTHLY.definition) };
+      return denormalizeMonthly(value);
   }
 };
 
