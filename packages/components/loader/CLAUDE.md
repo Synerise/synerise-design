@@ -30,7 +30,7 @@ src/
 | `percent` | `ReactNode` | — | Value passed to `percentFormatter`; not rendered directly |
 | `percentFormatter` | `(percent?: ReactNode) => ReactNode` | — | When provided, its return value is rendered beside `label` inside `PercentWrapper` |
 | `mode` | `'absolute'` | — | Positions the loader absolutely at 50%/50% of its containing block |
-| `className` | `string` | — | Appended to the root element alongside hardcoded `ds-loader` |
+| `className` | `string` | — | Appended to the root element alongside the fixed `ds-loader` class |
 
 ### Enums (not re-exported from index, but available via named import of types file)
 
@@ -79,6 +79,19 @@ import Loader from '@synerise/ds-loader';
 - `mode="absolute"` sets `position: absolute; top: 50%; left: 50%` — **no `transform: translate(-50%, -50%)`**, so the loader is not truly centered unless a transform is added by the consumer.
 - `LoaderWrapper` always has `display: flex; align-items: center; justify-content: center`.
 
+### Class names
+
+Target these from consumer styles instead of importing the styled components from `dist/Loader.styles`:
+
+| Class | Element |
+|-------|---------|
+| `ds-loader` | Root (`LoaderWrapper`), plus any `className` passed in |
+| `ds-loader-spinner-wrapper` | Margin box around the spinner (`Wrapper`) |
+| `ds-loader-spinner` | The spinning circle (`Loader`) |
+| `ds-loader-header` | Header rendered from `text` (`HeaderWrapper`, only when `text` is set) |
+| `ds-loader-label` | Label container (`TextWrapper`), always rendered |
+| `ds-loader-percent` | Percent value inside the label (`PercentWrapper`, only when `percentFormatter` is set) |
+
 ## Key dependencies
 
 - `styled-components` ^5 (peer)
@@ -88,7 +101,6 @@ import Loader from '@synerise/ds-loader';
 
 ## Implementation notes
 
-- `className` is concatenated with a hardcoded string `ds-loader ${className}`. If `className` is `undefined`, the class string becomes `"ds-loader undefined"` — a minor bug.
 - `percentFormatter` is the only way to display percent; `percent` alone does nothing visible.
 - `LoaderSize` and `FontSize` enums are defined in `Loader.types.ts` but not re-exported from `index.ts`. Consumers needing the enum values must import directly from the types file (not recommended for public API).
-- Tests use Jest (not Vitest) via `jest.config.js`; only two smoke tests exist — coverage is minimal.
+- Tests use Vitest; they cover rendering, the label, colour-token resolution and the class names.

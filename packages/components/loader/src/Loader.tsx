@@ -18,17 +18,27 @@ const Loader = ({
   return (
     <S.LoaderWrapper
       mode={mode}
-      className={`ds-loader ${className}`}
+      className={className ? `ds-loader ${className}` : 'ds-loader'}
       labelPosition={labelPosition}
     >
-      <S.Wrapper size={size}>
-        <S.Loader size={size} color={color} />
+      <S.Wrapper className="ds-loader-spinner-wrapper" size={size}>
+        <S.Loader className="ds-loader-spinner" size={size} color={color} />
       </S.Wrapper>
-      {text && <S.HeaderWrapper fontSize={fontSize}>{text}</S.HeaderWrapper>}
-      <S.TextWrapper size={size} labelPosition={labelPosition}>
+      {text && (
+        <S.HeaderWrapper className="ds-loader-header" fontSize={fontSize}>
+          {text}
+        </S.HeaderWrapper>
+      )}
+      <S.TextWrapper
+        className="ds-loader-label"
+        size={size}
+        labelPosition={labelPosition}
+      >
         {label}
         {percentFormatter && (
-          <S.PercentWrapper>{percentFormatter(percent)}</S.PercentWrapper>
+          <S.PercentWrapper className="ds-loader-percent">
+            {percentFormatter(percent)}
+          </S.PercentWrapper>
         )}
       </S.TextWrapper>
     </S.LoaderWrapper>
