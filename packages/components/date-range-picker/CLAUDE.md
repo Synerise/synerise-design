@@ -95,6 +95,8 @@ Standalone weekly schedule filter component.
 
 A day value's `start` / `stop` are `undefined` once the time is cleared in the form. The new monthly scheduler has the same shape, with `DayOfMonthIndex` days: 0–30 by day of the month, 0–34 (week × 7 + weekday) with the WEEK period.
 
+The three schedulers (`DailyDateFilter`, `WeeklyDateFilter`, the multi-range monthly one) never write to `value`: `onChange` fires only on user input, always with a new object, and a range left without days is dropped from it. Changing a range's mode (Range / Hour) resets its times to the mode's default, and Shift-click selects the days in the order the grid displays them.
+
 ### `MonthlyDateFilter`
 
 Standalone monthly schedule filter — the legacy component the picker's filter addon uses, one rule list (`Month[]`). Props: `MonthlyFilterProps`.

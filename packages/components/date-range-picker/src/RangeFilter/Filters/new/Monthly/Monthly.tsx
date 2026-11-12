@@ -2,7 +2,6 @@ import dayjs from 'dayjs';
 import React, {
   type RefObject,
   useCallback,
-  useEffect,
   useMemo,
   useRef,
   useState,
@@ -34,6 +33,7 @@ import type {
   FilterErrorType,
 } from '../../../Shared/TimeWindow/RangeFormContainer/RangeFormContainer.types';
 import type { DayKey } from '../../../Shared/TimeWindow/TimeWindow.types';
+import { getDefaultFilterForLimitMode } from '../../../Shared/TimeWindow/utils';
 import {
   DEFAULT_MAX_ENTRIES,
   DEFAULT_RANGE_END,
@@ -45,6 +45,7 @@ import {
 } from '../constants';
 import type { ScheduleRows } from '../Filters.types';
 import { useShiftAndControlKeys } from '../hooks/useShiftAndControlKeys';
+import { removeDays, selectDisplayedRange, updateDays } from '../scheduleUtils';
 import type {
   MonthlyProps,
   MonthlySchedule,
@@ -85,9 +86,6 @@ const Monthly = ({
       mode: valueSelectionMode[0],
     }),
     [valueSelectionMode],
-  );
-  const [filteredSchedule, setFilteredSchedule] = useState<string[]>(
-    Object.keys(value),
   );
   const [activeDays, setActiveDays] = useState<DayKey[]>([]);
   const ref = useRef<HTMLDivElement>();
@@ -131,64 +129,38 @@ const Monthly = ({
     return settings[periodType] as Partial<GridProps>;
   };
 
-  useEffect(() => {
-    setFilteredSchedule(Object.keys(value));
-  }, [value]);
-
-  const removeEmptyEntries = useCallback(
-    (monthlySchedule: MonthlySchedule) => {
-      const emptyEntries = Object.keys(monthlySchedule).filter(
-        (key) => Object.keys(monthlySchedule[key]).length === 0,
-      );
-      const scheduleToUpdate = monthlySchedule;
-      emptyEntries.forEach((emptyEntry) => {
-        delete scheduleToUpdate[emptyEntry];
-      });
-      onChange(scheduleToUpdate);
-    },
-    [onChange],
+  const filteredSchedule = useMemo(
+    () =>
+      activeDays.length
+        ? Object.keys(value).filter((id) =>
+            activeDays.every(
+              (day) =>
+                !!value[id][day] &&
+                haveActiveDaysCommonRange(value[id], activeDays),
+            ),
+          )
+        : [],
+    [value, activeDays],
   );
-
-  useEffect(() => {
-    const entriesWithActiveDaysValue = activeDays.length
-      ? Object.keys(value).filter((id) =>
-          activeDays.every(
-            (day) =>
-              !!value[id][day] &&
-              haveActiveDaysCommonRange(value[id], activeDays),
-          ),
-        )
-      : [];
-    removeEmptyEntries(value);
-    setFilteredSchedule(entriesWithActiveDaysValue);
-  }, [value, activeDays, removeEmptyEntries]);
 
   const handleDayTimeChange = useCallback(
     (dayValue: DateValue, dayKey: DayKey | DayKey[], guid: string) => {
-      const updatedSchedule = value;
       const [start, end, inverted] = dayValue;
-
-      if (dayKey instanceof Array) {
-        dayKey.forEach((day) => {
-          updatedSchedule[guid][day] = {
-            ...value[guid][day],
-            restricted: true,
-            start: start ? dayjs(start).format(DEFAULT_TIME_FORMAT) : undefined,
-            stop: end ? dayjs(end).format(DEFAULT_TIME_FORMAT) : undefined,
-            inverted: Boolean(inverted),
-          };
-        });
-      } else {
-        updatedSchedule[guid][dayKey] = {
-          ...value[guid][dayKey],
+      const updatedSchedule = updateDays(
+        value,
+        guid,
+        Array.isArray(dayKey) ? dayKey : [dayKey],
+        (day) => ({
+          ...day,
           restricted: true,
           start: start ? dayjs(start).format(DEFAULT_TIME_FORMAT) : undefined,
           stop: end ? dayjs(end).format(DEFAULT_TIME_FORMAT) : undefined,
           inverted: Boolean(inverted),
-        };
+        }),
+      );
+      if (updatedSchedule !== value) {
+        onChange(updatedSchedule);
       }
-
-      onChange(updatedSchedule);
     },
     [value, onChange],
   );
@@ -204,25 +176,21 @@ const Monthly = ({
 
   const handleModeChange = useCallback(
     (selectedMode: DateLimitMode, dayKeys: DayKey[], guid: string) => {
-      const updatedSchedule = value;
-      dayKeys.forEach((day) => {
-        updatedSchedule[guid][day] = {
-          ...value[guid][day],
-          mode: selectedMode,
-        };
-      });
-      onChange(updatedSchedule);
+      const updatedSchedule = updateDays(value, guid, dayKeys, (day) => ({
+        ...day,
+        ...getDefaultFilterForLimitMode(selectedMode),
+        mode: selectedMode,
+      }));
+      if (updatedSchedule !== value) {
+        onChange(updatedSchedule);
+      }
     },
     [value, onChange],
   );
 
   const handleRangeDelete = useCallback(
     (guid: string, activeDaysArray: DayKey[]) => {
-      const updatedSchedule = value;
-      activeDaysArray.forEach((activeDay: DayKey) => {
-        delete updatedSchedule[guid][activeDay];
-      });
-      onChange({ ...updatedSchedule });
+      onChange(removeDays(value, [guid], activeDaysArray));
     },
     [value, onChange],
   );
@@ -264,10 +232,6 @@ const Monthly = ({
     [periodType, dayWeekFormatter, dayMonthFormatter],
   );
 
-  const checkDay = useCallback((dayKey: DayKey) => {
-    setActiveDays([dayKey]);
-  }, []);
-
   const getDayLabel = useCallback(
     (dayKey: DayKey, long?: boolean) => {
       return dayFormatter(dayKey, long || false);
@@ -291,12 +255,8 @@ const Monthly = ({
 
   const removeDaySelection = useCallback(
     (dayKey: DayKey) => {
-      const updatedSchedule = value;
-      Object.keys(value).forEach((key) => {
-        delete updatedSchedule[key][dayKey];
-      });
       excludeDayFromActive(dayKey);
-      onChange(updatedSchedule);
+      onChange(removeDays(value, Object.keys(value), [dayKey]));
     },
     [value, onChange, excludeDayFromActive],
   );
@@ -315,25 +275,19 @@ const Monthly = ({
 
   const checkActiveDay = useCallback(
     (dayKey: DayKey) => {
-      if (!isDayRestricted(dayKey)) {
-        checkDay(dayKey);
-      }
       let updatedActiveDay: DayKey[] = [];
       if (controlKeyPressed) {
         updatedActiveDay = activeDays.includes(dayKey)
           ? activeDays
           : [...activeDays, dayKey];
       } else if (activeDays.length > 0 && shiftKeyPressed) {
-        updatedActiveDay =
-          activeDays[0] < dayKey
-            ? range(+activeDays[0], +dayKey + 1)
-            : range(+dayKey, +activeDays[0] + 1);
+        updatedActiveDay = selectDisplayedRange(allKeys, activeDays[0], dayKey);
       } else {
         updatedActiveDay = [dayKey];
       }
       setActiveDays(updatedActiveDay);
     },
-    [checkDay, isDayRestricted, activeDays, controlKeyPressed, shiftKeyPressed],
+    [allKeys, activeDays, controlKeyPressed, shiftKeyPressed],
   );
 
   const handleToggleDay = useCallback(
