@@ -40,3 +40,16 @@ import Loader from '@synerise/ds-loader'
 | percentFormatter | Renders formatted percent beside label | (percent?: React.ReactNode) => React.ReactNode | -       |
 | mode             | prop to set loader in center | absolute / undefined     | -       |
 | className        | css class name               | string                   | -       |
+
+## Class names
+
+Style the loader's parts through these classes rather than importing its styled components from `dist/Loader.styles`.
+
+| Class                     | Element                                              |
+| ------------------------- | ---------------------------------------------------- |
+| ds-loader                 | Root element, plus any `className` passed in         |
+| ds-loader-spinner-wrapper | Margin box around the spinner                        |
+| ds-loader-spinner         | The spinning circle                                  |
+| ds-loader-header          | Header rendered from `text` (only when set)          |
+| ds-loader-label           | Label container                                      |
+| ds-loader-percent         | Formatted percent (only when `percentFormatter` set) |
