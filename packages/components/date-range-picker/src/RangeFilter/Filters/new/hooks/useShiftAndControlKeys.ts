@@ -13,26 +13,34 @@ export const useShiftAndControlKeys = (
   const [shiftPressed, setShiftPressed] = React.useState(false);
 
   React.useEffect(() => {
-    if (ref?.current) {
-      ref.current.addEventListener<'keydown'>('keydown', (e: KeyboardEvent) => {
-        if (e.key === KEYS.SHIFT) {
-          setShiftPressed(true);
-          setControlPressed(false);
-        }
-        if (e.key === KEYS.CONTROL || e.key === KEYS.COMMAND) {
-          setControlPressed(true);
-          setShiftPressed(false);
-        }
-      });
-      ref.current.addEventListener<'keyup'>('keyup', (e: KeyboardEvent) => {
-        if (e.key === KEYS.SHIFT) {
-          setShiftPressed(false);
-        }
-        if (e.key === KEYS.CONTROL || e.key === KEYS.COMMAND) {
-          setControlPressed(false);
-        }
-      });
+    const element = ref?.current;
+    if (!element) {
+      return undefined;
     }
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === KEYS.SHIFT) {
+        setShiftPressed(true);
+        setControlPressed(false);
+      }
+      if (e.key === KEYS.CONTROL || e.key === KEYS.COMMAND) {
+        setControlPressed(true);
+        setShiftPressed(false);
+      }
+    };
+    const handleKeyUp = (e: KeyboardEvent) => {
+      if (e.key === KEYS.SHIFT) {
+        setShiftPressed(false);
+      }
+      if (e.key === KEYS.CONTROL || e.key === KEYS.COMMAND) {
+        setControlPressed(false);
+      }
+    };
+    element.addEventListener('keydown', handleKeyDown);
+    element.addEventListener('keyup', handleKeyUp);
+    return () => {
+      element.removeEventListener('keydown', handleKeyDown);
+      element.removeEventListener('keyup', handleKeyUp);
+    };
   }, [ref]);
 
   return [controlPressed, shiftPressed] as const;

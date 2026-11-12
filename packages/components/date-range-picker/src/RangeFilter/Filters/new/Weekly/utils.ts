@@ -6,13 +6,6 @@ import type {
   WeeklyScheduleDayValue,
 } from './Weekly.types';
 
-export const range = (start: number, stop: number): number[] => {
-  const result = [];
-  for (let i = start; i < stop; i += 1) {
-    result.push(i);
-  }
-  return result;
-};
 export const haveActiveDaysCommonRange = (
   days: Partial<Record<DayOfWeekIndex, WeeklyScheduleDayValue>>,
   activeDaysArray: DayKey[],
@@ -52,14 +45,4 @@ export const canAddAnotherRange = (
         ) && !haveActiveDaysCommonRange(schedule[key], activeDays),
     )
   );
-};
-
-export const removeEmptyEntries = (weeklySchedule: WeeklySchedule): void => {
-  const emptyEntries = Object.keys(weeklySchedule).filter(
-    (key) => Object.keys(weeklySchedule[key]).length === 0,
-  );
-  const scheduleToUpdate = weeklySchedule;
-  emptyEntries.forEach((emptyEntry) => {
-    delete scheduleToUpdate[emptyEntry];
-  });
 };
