@@ -54,7 +54,7 @@ Popover-wrapped picker. Uses `forwardRef<HTMLDivElement>` — the ref points to 
 | `valueFormatOptions` | `DateToFormatOptions` | `undefined` | Format options for displayed value |
 | `onValueChange` | `(value: DateRange) => void` | `undefined` | Fires on every change (before Apply) |
 | `onVisibleChange` | `(visible: boolean) => void` | `undefined` | Fires when popover opens/closes |
-| `onFilterSave` | `(filters: SavedFilter[]) => void` | `undefined` | Fires when a filter is saved |
+| `onFilterSave` | `(filters: SavedFilter[]) => void` | `undefined` | Fires when a filter is saved, with the whole list. A `SavedFilter` is the payload `onApply` would emit (`RangeFilterValue`) plus `id` and `name` |
 | `disabled` | `boolean` | `false` | Disables picker (no popover, input non-interactive) |
 | `readOnly` | `boolean` | `false` | Read-only (no popover, value displayed) |
 | `popoverTrigger` | `ReactNode` | `undefined` | Replace default `RangePickerInput` trigger |
@@ -66,7 +66,7 @@ Popover-wrapped picker. Uses `forwardRef<HTMLDivElement>` — the ref points to 
 | `allowedFilterTypes` | `RangeFilterType[]` | `undefined` | Restrict schedule filter types (DAILY/WEEKLY/MONTHLY) |
 | `filterValueSelectionModes` | `DateLimitMode[]` | `["Range", "Hour"]` | Allowed modes in filter form |
 | `filterRangeDisplayMode` | `RangeDisplayMode` | `undefined` | How the time window is rendered |
-| `savedFilters` | `SavedFilter[]` | `undefined` | Pre-loaded saved filters |
+| `savedFilters` | `SavedFilter[]` | `undefined` | Pre-loaded saved filters — `RangeFilterValue & { id, name }`; filters saved in the editor shape by earlier versions no longer load |
 | `valueTransformer` | `(value: DateRange) => DateRange` | omits ALL_TIME props | Transform applied to value before emitting |
 | `isTruncateMs` | `boolean` | `true` | Truncate milliseconds from times |
 | `containerClass` | `string` | `'ds-date-range-picker'` | CSS class on the root wrapper |

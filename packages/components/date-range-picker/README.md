@@ -194,6 +194,9 @@ package root): `RangeFilterDaily`, `RangeFilterWeekly` (`days`) or `RangeFilterM
 `RangeFilterMonthRule` by day of the month or a `RangeFilterWeekRule` by weekday of a week). Days are 1-based and
 times are `HH:mm:ss.SSS` strings.
 
+A `SavedFilter` (`savedFilters`, `onFilterSave`) is that same payload plus `id` and `name`. Filters saved by earlier
+versions, which stored the editor's internal value instead, no longer load.
+
 ## Timezone support
 
 Timezone handling is **opt-in, behind the `timeZone` prop**. Set it and the picker:

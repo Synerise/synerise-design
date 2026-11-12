@@ -3,13 +3,10 @@ import range from 'lodash.range';
 import { generateUuid } from '@synerise/ds-utils';
 
 import { fnsAddDays, fnsFormat } from '../fns';
-import DailyFilter from './Filters/DailyFilter/DailyFilter';
-import MonthlyFilter from './Filters/MonthlyFilter/MonthlyFilter';
 import {
   DEFAULT_RANGE_END,
   DEFAULT_RANGE_START,
 } from './Filters/new/constants';
-import WeeklyFilter from './Filters/WeeklyFilter/WeeklyFilter';
 import type { MonthlySelectValue } from './RangeFilter.types';
 
 const LONG_MONTH = new Date(0, 0, 1);
@@ -71,7 +68,6 @@ export const TYPES_DATA = {
   MONTHLY: {
     labelTranslationKey: 'DS.DATE-RANGE-PICKER.MONTHLY',
     defaultLabel: 'Monthly',
-    component: MonthlyFilter,
     definition: [
       {
         period: DAYS_OF_PERIOD_ENUM.DAY_OF_MONTH,
@@ -84,13 +80,11 @@ export const TYPES_DATA = {
   WEEKLY: {
     labelTranslationKey: 'DS.DATE-RANGE-PICKER.WEEKLY',
     defaultLabel: 'Weekly',
-    component: WeeklyFilter,
     definition: {},
   },
   DAILY: {
     labelTranslationKey: 'DS.DATE-RANGE-PICKER.DAILY',
     defaultLabel: 'Daily',
-    component: DailyFilter,
     definition: {
       start: DEFAULT_RANGE_START,
       stop: DEFAULT_RANGE_END,

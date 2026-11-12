@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 
-import type { FilterValue } from '../../RangeFilter.types';
+import type { RangeFilterValue } from '../../RangeFilter.types';
 
 export type FilterDropdownProps = {
   filters: SavedFilter[];
@@ -9,4 +9,5 @@ export type FilterDropdownProps = {
   label: ReactNode;
   removeTooltip: ReactNode;
 };
-export type SavedFilter = FilterValue & { id: string; name: string };
+/** A named filter payload, as `onApply` emits it. */
+export type SavedFilter = RangeFilterValue & { id: string; name: string };
