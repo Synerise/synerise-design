@@ -47,3 +47,5 @@ Lower-level DnD context for custom layouts.
 | items         | Items with `id: string \| number`                        | ItemType[]                     | -       |
 | axis          | Movement axis constraint                                 | 'x' / 'y'                     | -       |
 | onOrderChange | Called after reorder with new order                      | (newOrder: ItemType[]) => void | -       |
+
+With `axis` set, an item takes a neighbour's place once its leading edge (top or left when moving back, bottom or right when moving forward) passes that neighbour's center, so the swap point depends on the neighbour's size, not the dragged item's — a tall item can pass a short one at the edge of the list. Without `axis` the closest item center decides.
