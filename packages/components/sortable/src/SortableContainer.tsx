@@ -23,6 +23,7 @@ import {
 } from '@dnd-kit/sortable';
 import React, { useEffect, useMemo, useState } from 'react';
 
+import { createLeadingEdgeCollisionDetection } from './leadingEdgeCollision';
 import type { RawBaseItem, SortableContainerProps } from './Sortable.types';
 
 export const SortableContainer = <ItemType extends RawBaseItem>({
@@ -83,10 +84,15 @@ export const SortableContainer = <ItemType extends RawBaseItem>({
     return rectSortingStrategy;
   }, [axis]);
 
+  const collisionDetection = useMemo(
+    () => (axis ? createLeadingEdgeCollisionDetection(axis) : closestCenter),
+    [axis],
+  );
+
   return (
     <DndContext
       sensors={sensors}
-      collisionDetection={closestCenter}
+      collisionDetection={collisionDetection}
       modifiers={contextModifiers}
       {...props}
       onDragEnd={handleDragEnd}
