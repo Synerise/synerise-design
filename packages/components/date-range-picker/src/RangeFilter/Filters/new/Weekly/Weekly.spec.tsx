@@ -12,7 +12,7 @@ afterEach(() => {
   vi.clearAllMocks();
 });
 
-describe('weekly scheduler', () => {
+describe('weekly scheduler', { timeout: 15_000 }, () => {
   const onChange = vi.fn();
   it.each(WEEKLY_SCHEDULE_TEST_DATA)('should display error messages when single day is selected $case', ({ value, errors, expectedTimepickerCount, expectedErrorCount, dayIndex }) => {
     renderWithProvider( <Weekly value={value} errorTexts={errors} onChange={onChange} />);

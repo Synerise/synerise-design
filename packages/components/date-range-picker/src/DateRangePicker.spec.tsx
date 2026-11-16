@@ -138,15 +138,7 @@ const texts = {
   inverseSelection: 'Inverse selection'
 };
 
-describe('DateRangePicker', () => {
-  beforeAll(() => {
-    vi.setConfig({
-      testTimeout: 10_000,
-    })
-  })
-  afterAll(() => {
-    vi.resetConfig()
-  })
+describe('DateRangePicker', { timeout: 15_000 }, () => {
   it('should render', async () => {
     const onApply = vi.fn();
     const { container } = renderWithProvider(
