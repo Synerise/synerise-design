@@ -406,14 +406,7 @@ const SAVED_SCENARIOS: AppliedScenario[] = [
   'monthlyTwoRules',
 ];
 
-describe('RangeFilter golden payloads TimezoneTesting', () => {
-  beforeAll(() => {
-    vi.setConfig({ testTimeout: 30_000 });
-  });
-  afterAll(() => {
-    vi.resetConfig();
-  });
-
+describe('RangeFilter golden payloads TimezoneTesting', { timeout: 30_000 }, () => {
   describe('apply', () => {
     it.each(Object.keys(SCENARIOS) as AppliedScenario[])('%s', async (name) => {
       const { props, steps } = SCENARIOS[name];
