@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@2.1.3...@synerise/ds-items-roll@2.1.4) (2026-11-17)
+
+
+### Bug Fixes
+
+* **items-roll:** use ghost-primary for change selection button ([cc1be56](https://github.com/Synerise/synerise-design/commit/cc1be567f9c9dd5bfe0d8baea22e5dde319f0fb1))
+
+
+
+
+
 ## [2.1.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@2.1.2...@synerise/ds-items-roll@2.1.3) (2026-11-09)
 
 **Note:** Version bump only for package @synerise/ds-items-roll

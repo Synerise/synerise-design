@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-loader@2.1.2...@synerise/ds-loader@2.2.0) (2026-11-17)
+
+
+### Features
+
+* **loader:** add class names to inner elements ([4929fb0](https://github.com/Synerise/synerise-design/commit/4929fb070570eba27af90acea826febb7f5665fe))
+
+
+
+
+
 ## [2.1.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-loader@2.1.1...@synerise/ds-loader@2.1.2) (2026-11-09)
 
 **Note:** Version bump only for package @synerise/ds-loader

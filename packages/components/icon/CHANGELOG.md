@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.4.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@2.3.2...@synerise/ds-icon@2.4.0) (2026-11-17)
+
+
+### Features
+
+* **icon:** add apps hub menu icons ([3892c36](https://github.com/Synerise/synerise-design/commit/3892c36838f9432c18a1d43e19540ca9ff7b2d2c))
+
+
+
+
+
 ## [2.3.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@2.3.1...@synerise/ds-icon@2.3.2) (2026-11-09)
 
 **Note:** Version bump only for package @synerise/ds-icon

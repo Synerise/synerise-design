@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sortable@2.1.2...@synerise/ds-sortable@2.1.3) (2026-11-17)
+
+
+### Bug Fixes
+
+* **sortable:** let tall items pass short ones in axis lists ([cbdcdb0](https://github.com/Synerise/synerise-design/commit/cbdcdb01c3dbe3685f4bd78c16cb80793385887b))
+
+
+
+
+
 ## [2.1.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sortable@2.1.1...@synerise/ds-sortable@2.1.2) (2026-11-09)
 
 **Note:** Version bump only for package @synerise/ds-sortable
