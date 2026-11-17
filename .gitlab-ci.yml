@@ -182,6 +182,7 @@ build_packages:
 circular_dependencies:
   stage: test
   needs: ['build_packages']
+  timeout: 4m
   variables:
     KUBERNETES_CPU_REQUEST: 4
     KUBERNETES_MEMORY_REQUEST: 16Gi
