@@ -64,7 +64,15 @@ describe('Information card', () => {
     const { divider } = testCase;
     expect(divider).toBeFalsy();
   });
-  it('renders actionButton even without footerText', () => {
+  it('shows the Close2M icon in the badge when no icon is passed', () => {
+    const { container } = renderWithProvider(
+      <InformationCard title={sampleTitle} subtitle={sampleSubtitle} />,
+    );
+
+    expect(container.querySelector('.ds-avatar .close-2-m')).toBeTruthy();
+  });
+
+    it('renders actionButton even without footerText', () => {
     renderWithProvider(
       <InformationCard
         title={sampleTitle}

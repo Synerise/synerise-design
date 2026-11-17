@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { ObjectAvatar } from '@synerise/ds-avatar';
-import Icon, { AddM, FileM, HashM } from '@synerise/ds-icon';
+import Icon, { AddM, FileM, HashM, ObjectFileM } from '@synerise/ds-icon';
 import type {
   Action,
   BaseItemType,
@@ -106,7 +106,7 @@ const toItem = (node: TreeNode, large: boolean): MixedStoryItem => ({
   prefixel: large ? (
     <ObjectAvatar
       size="medium"
-      iconComponent={<Icon component={<FileM />} />}
+      iconComponent={<Icon component={<ObjectFileM />} />}
     />
   ) : (
     <Icon component={<FileM />} />

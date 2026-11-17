@@ -1,18 +1,17 @@
 import React from 'react';
 
 import Badge from '@synerise/ds-badge';
-import Icon, { MailM } from '@synerise/ds-icon';
+import Icon, { Close2M } from '@synerise/ds-icon';
 import Status from '@synerise/ds-status';
 import { customColors } from '@synerise/ds-tokens/names';
 
 import Avatar from '../Avatar';
 import type { ObjectAvatarProps } from '../Avatar.types';
-import { addIconColor, getColorByText, getObjectName } from '../utils';
+import { addIconColor, getObjectName } from '../utils';
 
 export const DEFAULT_COLOR_HUE = '600';
 
 const ObjectAvatar = ({
-  backgroundColor,
   badgeStatus,
   iconComponent,
   color,
@@ -38,19 +37,11 @@ const ObjectAvatar = ({
     status: objectStatus ? <Status label={objectStatus} type="disabled" /> : '',
   };
   const avatarText = getObjectName(objectName, text);
-  const hasBackgroundColor = !!backgroundColor && backgroundColor !== 'auto';
-  const [avatarBackgroundColor, avatarBackgroundHue] = getColorByText(
-    avatarText,
-    backgroundColor,
-  );
-  // Without a colour on the icon background the icon inherits the avatar colour, so a
-  // container (e.g. a list item prefix) can recolour it per state.
-  let iconColor: string | undefined;
-  if (color) {
-    iconColor = customColors[color]?.[DEFAULT_COLOR_HUE];
-  } else if (hasBackgroundColor) {
-    iconColor = 'var(--ds-avatar-icon-icon)';
-  }
+  // Without `color` the icon inherits the avatar colour, so a container (e.g. a list item
+  // prefix) can recolour it per state.
+  const iconColor = color
+    ? customColors[color]?.[DEFAULT_COLOR_HUE]
+    : undefined;
   const avatarTooltip =
     tooltip === undefined &&
     (defaultTooltip.title || defaultTooltip.description)
@@ -60,17 +51,13 @@ const ObjectAvatar = ({
   const iconElement = addIconColor(iconComponent, iconColor);
 
   const icon = !avatarText
-    ? iconElement || <Icon component={<MailM />} color={iconColor} />
+    ? iconElement || <Icon component={<Close2M />} color={iconColor} />
     : null;
 
   const avatarRender = (
     <Avatar
       iconComponent={icon}
       shape="square"
-      backgroundColor={
-        avatarText || hasBackgroundColor ? avatarBackgroundColor : undefined
-      }
-      backgroundColorHue={avatarBackgroundHue}
       size={size}
       hasStatus={disabled === true ? false : !!badgeStatus}
       src={avatar || src}

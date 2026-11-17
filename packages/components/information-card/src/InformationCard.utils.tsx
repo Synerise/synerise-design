@@ -39,7 +39,7 @@ type InitialsProps = PropsWithChildren<{
 export function Initials({ name, children }: InitialsProps) {
   return (
     <Badge>
-      <Avatar size="medium" shape="circle" backgroundColor="blue">
+      <Avatar size="medium" shape="circle">
         {(name && getInitials(name)) || children}
       </Avatar>
     </Badge>

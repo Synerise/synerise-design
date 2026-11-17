@@ -25,8 +25,7 @@ import { InformationCardTooltip } from '@synerise/ds-information-card';
   informationCardProps={{
     title: 'Title',
     subtitle: 'Subtitle',
-    icon: <SegmentM color="mars" />,
-    iconColor: 'mars',
+    icon: <ObjectSegmentationM />,
     avatarTooltipText: 'Tooltip Text',
   }}
   popoverProps={{

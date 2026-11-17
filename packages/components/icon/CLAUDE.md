@@ -18,6 +18,7 @@ src/
  L/ — large (48px) icons, auto-generated
  XL/ — extra-large icons, auto-generated
  colorIcons/ — multi-colour icons, auto-generated
+ objectIcons/ — object icons (multi-colour, tokenised), auto-generated
  iconSets.ts — name → set index, auto-generated
  additional/ — additional icons, auto-generated
  DynamicIcon/
@@ -30,6 +31,8 @@ src/
  build/
  svgr.js — build script: SVG files → React components
  template.js — SVGR JSX template
+ objectIconColors.js — object icon colours per category → tokens
+ tokeniseFills.js — svgo plugin: hex paint → var(--ds-…) style
  __specs__/
  Icon.spec.tsx — Vitest tests
 ```
@@ -89,7 +92,7 @@ Returns `{ Component, status }` where `status` is `'idle' | 'loading' | 'loaded'
 
 ### `preloadIcons(...names)` / `preloadIconSet(set)`
 
-Warm the cache ahead of render so the first paint has no gap. `set` is one of `'M' | 'L' | 'XL' | 'additional' | 'colorIcons'`.
+Warm the cache ahead of render so the first paint has no gap. `set` is one of `'M' | 'L' | 'XL' | 'additional' | 'colorIcons' | 'objectIcons'`.
 
 ### `registerIcons(icons)`
 
@@ -106,9 +109,10 @@ All icons from all sets are re-exported individually. Naming convention: `{Pasca
 | XL (extra-large) | `XL` | `AddXL` | `add-xl ds-icon-set-xlarge` |
 | colorIcons | varies | `LogoGoogle` | `logo-google ds-icon-set-color` |
 | additional | varies | — | `{name} ds-icon-set-additional` |
+| objectIcons | `M` | `ObjectFunnelM`, `ObjectEmailM` | `object-funnel-m ds-icon-set-object ds-object-icon-analytics` |
 
 Each icon component is `(props: SVGProps<SVGSVGElement>) => JSX.Element`. Every SVG has:
-- `fill="currentColor"` — colour controlled via CSS `color`
+- `fill="currentColor"` — colour controlled via CSS `color` (except the multi-colour sets; object icons use tokens, see [Object icons](#object-icons))
 - `data-testid="ds-icon-{kebab-name}"` — e.g. `data-testid="ds-icon-add-m"`
 - `className="{kebab-name} ds-icon-set-{set}"` — e.g. `className="add-m ds-icon-set-medium"`
 
@@ -174,9 +178,32 @@ const MyButton = styled.button`
 
 ## Adding a new icon
 
-1. Add the `.svg` file to `src/svg/{M|L|XL|colorIcons|additional}/`
+1. Add the `.svg` file to `src/svg/{M|L|XL|colorIcons|additional}/` (object icons go to `src/svg/objectIcons/<category>/`, see [Object icons](#object-icons))
 2. Run `pnpm run build:svgr` — regenerates the `*.tsx` component, the `index.ts` barrel for that set, and the `icons/iconSets.ts` name → set index. It fails if the new name already exists in another set, since `iconSets` is a flat name → set map and could only keep one of them.
 3. Run `pnpm run build`
+
+## Object icons
+
+Full-colour 24px icons for object types (segmentations, campaigns, catalogs…), one colour family per
+product area. Exported as `Object{Name}M` (e.g. `ObjectFunnelM`), so they never clash with the
+single-colour glyph of the same name.
+
+- **Source:** `src/svg/objectIcons/<category>/object-<name>-m.svg`, exactly as design exports them (hex
+  colours). The folder is the category: `analytics`, `campaigns`, `automation`, `ai`, `content`, `data`,
+  `profiles`, `settings`.
+- **Colours are tokens, not hex.** At build time `tokeniseFills` (svgo, after `inlineStyles`) replaces
+  every hex `fill`/`stroke`/`stop-color` with `style="fill:var(--ds-…)"`, using the category's table in
+  `build/objectIconColors.js`. The tokens are `--ds-color-custom-<family>-<shade>`, which flip in dark
+  mode, so every icon has a dark version. An unmapped hex or an unknown category fails the build.
+- **`color` does not recolour them**: the fills are explicit tokens, not `currentColor`.
+- **Category hook:** the svg gets `ds-object-icon-<category>` as well as `ds-icon-set-object`.
+- **Adding one:** drop the SVG into its category folder and run `pnpm run build:svgr`. A colour not in that
+  category's table fails with the file and the hex; add it to `objectIconColors.js` (an exact
+  `--ds-color-custom-*` shade, or the nearest one with a comment).
+- **Moving to module tokens:** once ds-tokens ships `--ds-object-icon-*` (or similar) tokens, replace
+  the shorthands in `objectIconColors.js` with the full token names (`'--ds-object-icon-analytics-…'`;
+  `resolveObjectIconToken` passes them through) and regenerate. `__specs__/objectIcons.spec.ts` checks
+  every token an icon uses exists in both the light and the dark theme. Nothing else changes.
 
 ## Adding a new icon set
 
@@ -190,8 +217,8 @@ const MyButton = styled.button`
 - **`iconName` vs `component` precedence:** `useIconComponent(iconName)` result takes priority — if an `IconComponent` is found by name, `component` is ignored. While a set is still loading the result is `null`, so `component` renders in the meantime — which makes it a natural placeholder for an `iconName` icon.
 - **`DynamicIcon` is deprecated:** Its behaviour (render `fallback` on unknown name) differs slightly from `<Icon iconName>` (which silently renders nothing but doesn't accept a `fallback`). Prefer `<Icon iconName>` for all new code.
 - **`component` is the recommended prop for known icons; `iconName` is for unknown/runtime names only.** Import the icon and pass `component={<X />}` (tree-shakeable); use `iconName` only when the name isn't known at build time (e.g. from a DB/API). The former `@deprecated` mark on `component` has been removed.
-- **Tree-shaking:** `Icon.tsx` has no static import of any icon module — `iconLoader.ts` reaches the five sets only through dynamic `import()`. So `<Icon component={<AddM />} />` retains just the icons you imported (~390 kB gzipped stays out of the bundle), and `iconName` pulls in one set on demand.
-- **`iconName` resolves asynchronously.** The first render of an icon whose set is not yet loaded shows the empty container for one frame — correctly sized, since `IconContainer` always applies `width`/`height`, so there is no layout shift. The cache is read *during render*, so every later render of any icon from that set paints immediately. Resolution is per set, not per icon: five chunks (`M`, `L`, `XL`, `additional`, `colorIcons`), with a small generated `icons/iconSets.ts` index mapping name → set.
+- **Tree-shaking:** `Icon.tsx` has no static import of any icon module — `iconLoader.ts` reaches the six sets only through dynamic `import()`. So `<Icon component={<AddM />} />` retains just the icons you imported (~390 kB gzipped stays out of the bundle), and `iconName` pulls in one set on demand.
+- **`iconName` resolves asynchronously.** The first render of an icon whose set is not yet loaded shows the empty container for one frame — correctly sized, since `IconContainer` always applies `width`/`height`, so there is no layout shift. The cache is read *during render*, so every later render of any icon from that set paints immediately. Resolution is per set, not per icon: six chunks (`M`, `L`, `XL`, `additional`, `colorIcons`, `objectIcons`), with a small generated `icons/iconSets.ts` index mapping name → set.
 - **Opting out:** `import '@synerise/ds-icon/dist/registerAllIcons';` in an application entry file registers every icon eagerly and makes `iconName` fully synchronous, including under SSR. That bundles the whole set — use it only when icons must appear in server-rendered HTML or on the very first paint.
 - **Duplicate XL icons:** `index.ts` contains a comment: "Some of this icons are duplicated in XL folder, consider removing it before uploading new version."
 - **Uses Vitest** for testing.

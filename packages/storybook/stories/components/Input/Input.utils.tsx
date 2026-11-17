@@ -39,9 +39,7 @@ export const renderAddonComponent = (
         </Tooltip>
       );
     case addonType.avatar:
-      return (
-        <S.AvatarWithMargin size="small" text="AK" backgroundColor="green" />
-      );
+      return <S.AvatarWithMargin size="small" text="AK" />;
     case addonType.tag:
       return (
         <S.TagAddon

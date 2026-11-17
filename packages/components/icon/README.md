@@ -43,6 +43,19 @@ entry file. This bundles the whole icon set, so use it only when you need it:
 import '@synerise/ds-icon/dist/registerAllIcons'
 ```
 
+### Object icons
+
+Full-colour icons for object types (segmentations, campaigns, catalogs, keys…), one colour family per
+product area, exported as `Object{Name}M`. Their colours are design tokens, so they switch to their dark
+version with the theme. A `color` prop does not recolour them.
+
+```tsx
+import Icon, { ObjectFunnelM } from '@synerise/ds-icon'
+import { ObjectAvatar } from '@synerise/ds-avatar'
+
+<ObjectAvatar iconComponent={<Icon component={<ObjectFunnelM />} />} />
+```
+
 ## API
 
 | Property  | Description                                                                              | Type             | Default |

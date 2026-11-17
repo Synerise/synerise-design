@@ -85,8 +85,6 @@ export const withAvatar: Story = {
     ...WithInlineAlert.args,
     avatar: (
       <Avatar
-        backgroundColor="grey"
-        backgroundColorHue="100"
         iconComponent={
           <Icon
             component={<NotificationsM />}

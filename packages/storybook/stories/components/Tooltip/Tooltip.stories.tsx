@@ -11,7 +11,7 @@ import Icon, {
   InfoFillS,
   InfoM,
   KeyboardEnterM,
-  SegmentM,
+  ObjectSegmentationM,
 } from '@synerise/ds-icon';
 import InformationCard from '@synerise/ds-information-card';
 import ShortCuts from '@synerise/ds-short-cuts';
@@ -191,12 +191,7 @@ export const AvatarWithTooltip: Story = {
   render: (args) => {
     const user = { firstName, lastName };
     return (
-      <UserAvatar
-        data-testid="tooltip-trigger"
-        backgroundColor="blue"
-        user={user}
-        tooltip={args}
-      />
+      <UserAvatar data-testid="tooltip-trigger" user={user} tooltip={args} />
     );
   },
 };
@@ -219,7 +214,7 @@ export const WithCustomComponent: Story = {
         asTooltip={true}
         title={TOOLTIP_TITLE}
         subtitle={'subtitle'}
-        icon={<SegmentM />}
+        icon={<ObjectSegmentationM />}
         iconColor="red"
       />
     ),

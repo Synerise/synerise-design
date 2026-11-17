@@ -8,6 +8,7 @@ import Icon, {
   ExpressionM,
   FileDownloadM,
   FileTypeTableM,
+  ObjectExpressionM,
   ParamsBadgeM,
 } from '@synerise/ds-icon';
 import InformationCard from '@synerise/ds-information-card';
@@ -43,7 +44,7 @@ export const ITEMS_LARGE = hundredItems.map((key) => ({
   id: crypto.randomUUID(),
   size: LARGE,
   prefixel: (
-    <ObjectAvatar iconComponent={<Icon component={<ExpressionM />} />} />
+    <ObjectAvatar iconComponent={<Icon component={<ObjectExpressionM />} />} />
   ),
   text: `${TEXT}-${key}`,
   renderHoverTooltip: infocard(`${TEXT}-${key}`, 'Large item'),

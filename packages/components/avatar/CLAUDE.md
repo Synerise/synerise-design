@@ -10,7 +10,7 @@ src/
   Avatar.types.ts          — all shared types (AvatarProps, UserAvatarProps, ObjectAvatarProps, …)
   Avatar.styles.tsx        — AvatarBase (DOM) + StyledAvatar (size/shape/bg/font); AvatarString/AvatarImg
   Avatar.spec.tsx          — base component tests
-  utils.ts                 — getUserText, getObjectName, getColorByText, getTooltipProps, …
+  utils.ts                 — getUserText, getObjectName, getTextBackground, getTooltipProps, …
   DefaultAvatarIcon.tsx    — renders one of 100 default SVGs by index
   defaultAvatars/          — auto-generated SVG components (build:svgr) + index.ts
   UserAvatar/
@@ -18,7 +18,7 @@ src/
     UserAvatar.spec.tsx
     index.ts
   ObjectAvatar/
-    ObjectAvatar.tsx       — object/entity avatar, square shape, mail fallback icon
+    ObjectAvatar.tsx       — object/entity avatar, square shape, Close2M fallback icon
     ObjectAvatar.spec.tsx
     index.ts
   index.ts                 — public exports
@@ -30,19 +30,32 @@ src/
 
 Base component. DS-native; props are explicitly declared (no antd inheritance). `data-*` attributes pass through.
 
+**No avatar takes a background colour.** What it shows decides its background:
+
+| Content | Background |
+|---|---|
+| Image (`src`) | the image |
+| Icon (`iconComponent`) | the icon tile (Figma): base background, 1px strong border, shadow 1 |
+| Text (string `children`, e.g. initials) | the custom colour its first letter maps to (`selectColorByLetter`), shade 500 |
+| Anything else (e.g. a `UserAvatar` illustration) | transparent |
+
+The **frame** — the 1px border and shadow 1 — comes with the icon tile. `hasTile` puts that frame on an **image** avatar as well, leaving the photo itself untouched. Text avatars ignore it: they already carry a colour of their own.
+
+`backgroundColor` / `backgroundColorHue` are **deprecated and have no effect** (on `Avatar`, `UserAvatar` and `ObjectAvatar`). They stay in the types until other repos stop passing them, and they never reach the DOM. The DS itself no longer uses them.
+
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `size` | `'small' \| 'medium' \| 'large' \| 'extraLarge'` | `'medium'` | Avatar size |
-| `backgroundColor` | `Color \| string` | `undefined` | Named color or hex string; combined with `backgroundColorHue` for theme token lookup |
-| `backgroundColorHue` | `'050'–'900'` | `'500'` | Hue suffix for the background color token |
 | `iconComponent` | `ReactNode` | `undefined` | Icon to render; auto-scaled per size unless `iconScale={false}` |
 | `iconScale` | `boolean` | `true` | Auto-scales `iconComponent` to the ICON_SIZES map for the active size |
 | `hasStatus` | `boolean` | `false` | Shows a `Badge` dot positioned on the avatar corner (requires a `Badge` wrapper in the parent) |
+| `hasTile` | `boolean` | `false` | Draws the tile border and shadow around an **image** avatar. An icon always has them; text and other content ignore it. Also accepted by `UserAvatar` and `ObjectAvatar` |
 | `disabled` | `boolean` | `false` | Applies `opacity: 0.4; pointer-events: none` |
 | `tooltip` | `TooltipObject \| boolean` | `false` | Tooltip config; `false` disables it; object keys map to ds-tooltip props |
 | `src` | `string` | `undefined` | Image URL; empty string `""` is treated as `undefined` |
 | `children` | `ReactNode` | `undefined` | Text initials or other content |
 | `shape` | `'circle' \| 'square'` | `'circle'` | Avatar shape |
+| `backgroundColor` / `backgroundColorHue` | — | — | **Deprecated**, no effect (see above) |
 
 Sizes in px: `small` = 24, `medium` = 40, `large` = 84, `extraLarge` = 120.
 
@@ -55,7 +68,6 @@ High-level avatar for a user/client. Circle shape, auto-tooltip from user data.
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `user` | `UserAvatar` | `{}` | `{ firstName?, lastName?, email?, avatar?, avatarId? }` |
-| `backgroundColor` | `'auto' \| Color \| string` | `undefined` | `'auto'` picks color from first initial; dash-separated `'grey-800'` sets both color and hue |
 | `badgeStatus` | `BadgeStatus` | `undefined` | Wraps in `<Badge status>` when set; disables when `disabled=true` |
 | `iconComponent` | `ReactNode` | `undefined` | Replaces the default `UserM`/`UserS` fallback icon |
 | `size` | `Size` | `undefined` | Passed through to base Avatar |
@@ -67,21 +79,22 @@ High-level avatar for a user/client. Circle shape, auto-tooltip from user data.
 
 **Render priority:** `avatar`/`src` photo → text initials (name or `text`) → default SVG (when `avatarId` is set) → fallback `UserM`/`UserS` icon.
 
-`user.avatarId` is hashed deterministically to select one of 100 default SVGs. If `avatarId` is set and there are no initials or photo, the SVG is used and background is transparent.
+`user.avatarId` is hashed deterministically to select one of 100 default SVGs. If `avatarId` is set and there are no initials or photo, the SVG is passed as content (not as an icon), so it sits on a transparent background without the icon tile.
+
+Without initials or a photo, the fallback icon renders as the icon tile.
 
 Tooltip is auto-generated from user data when `tooltip` is `undefined` or `true` — no need to pass tooltip props manually.
 
 ### `ObjectAvatar`
 
-High-level avatar for objects/entities (products, campaigns, etc.). Square shape, mail icon fallback.
+High-level avatar for objects/entities (products, campaigns, etc.). Square shape, `Close2M` icon fallback. Pass an object icon (`Object*M` from ds-icon) as `iconComponent`.
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `object` | `ObjectAvatar` | `{}` | `{ name?, description?, status?, avatar? }` |
 | `color` | `Color` | `undefined` | Custom colour (600 shade) for the fallback icon; unset uses `--ds-avatar-icon-icon` |
-| `backgroundColor` | `'auto' \| Color \| string` | `undefined` | Background colour; overrides the auto colour from `object.name`. Icon-only avatars use `--ds-avatar-icon-bg-*` unless this is set (`'auto'` counts as unset) |
 | `badgeStatus` | `BadgeStatus` | `undefined` | Same as `UserAvatar` |
-| `iconComponent` | `ReactNode` | `undefined` | Replaces default `MailM` fallback icon |
+| `iconComponent` | `ReactNode` | `undefined` | Replaces the default `Close2M` fallback icon; use an object icon (`ObjectFunnelM`, `ObjectEmailM`, …) |
 | `tooltip` | `TooltipObject \| boolean` | auto from `object` | `undefined` → auto-builds from `object.name`/`description`/`status`; `false` disables it |
 | `text` | `string` | `undefined` | Override initials (uppercased) |
 | `size` | `Size` | `undefined` | Passed through |
@@ -117,17 +130,17 @@ Exported constant — `100`. The actual number of built-in SVGs in `defaultAvata
 import Avatar, { UserAvatar, ObjectAvatar } from '@synerise/ds-avatar';
 import Icon, { FileM } from '@synerise/ds-icon';
 
-// Basic with initials
-<Avatar backgroundColor="blue" backgroundColorHue="600" size="medium">JD</Avatar>
+// Basic with initials (background from the first letter)
+<Avatar size="medium">JD</Avatar>
 
 // With photo
 <Avatar src="https://example.com/photo.jpg" size="medium" />
 
-// With icon
-<Avatar backgroundColor="fern" size="large" iconComponent={<Icon component={<FileM />} />} />
+// With icon (the icon tile)
+<Avatar size="large" iconComponent={<Icon component={<FileM />} />} />
 
 // With tooltip (backwards-compat name/email keys)
-<Avatar backgroundColor="blue" tooltip={{ name: 'John Doe', email: 'jd@example.com' }}>JD</Avatar>
+<Avatar tooltip={{ name: 'John Doe', email: 'jd@example.com' }}>JD</Avatar>
 
 // UserAvatar — auto-initials and auto-tooltip
 <UserAvatar
@@ -149,7 +162,7 @@ import Badge from '@synerise/ds-badge';
 />
 
 // Disabled
-<Avatar disabled backgroundColor="grey">AB</Avatar>
+<Avatar disabled>AB</Avatar>
 ```
 
 ## Tooltip API
@@ -167,7 +180,9 @@ Tooltip type is auto-determined: if exactly one of `title`, `description`, `stat
 Styles in `Avatar.styles.tsx`. A DS-native `AvatarBase` renders the `ant-avatar` root + `ant-avatar-string`/`<img>` child (with `ds-avatar-*` class hooks added alongside the `ant-*` ones during the antd-removal interim); the `StyledAvatar` styled-component applies all visual styling via props and styled sub-component references (`${AvatarString}`) — no `.ant-*` class selectors, except the cross-component `& ~ .ant-badge-dot` sibling (the dot is owned by ds-badge). Key styles:
 
 - Dimensions per size set directly in CSS: `small` 24, `medium` 40, `large` 84, `extraLarge` 120 px
-- Background resolved through ds-utils `resolveCustomColor(backgroundColor, 'transparent', { defaultShade: backgroundColorHue })` to a flipping semantic `var(--ds-color-custom-<family>-<shade>)` ref, so it adapts to dark mode. The legacy palette hue `'050'` (in `ColorHue` and in `'grey-050'`) maps to the `50` token. A hex or `var()` `backgroundColor` passed to the base `Avatar` is used literally (`passthroughResolved`); `UserAvatar`/`ObjectAvatar` support only hex this way, because `getColorByText` splits any value containing `-` into family/hue, so a `var(--…)` value is mangled to `'var('` and the background declaration is invalid. `'auto'` or an unknown family falls back to `transparent`. An avatar that renders an icon with no `backgroundColor` (or `'auto'`) uses `--ds-avatar-icon-bg-default` (no hover change) instead, and its icon inherits `--ds-avatar-icon-icon` (set without `!important`) in place of the white `--ds-avatar-text-text`, so a container can recolour it (ds-list-item sets `.ds-avatar.ds-avatar { color: inherit }` in its prefix). ObjectAvatar gives the icon an explicit colour only when `color` or `backgroundColor` is set
+- Background follows the content (`$content` on `StyledAvatar`, see the table above). A text avatar's colour comes from `getTextBackground`: `selectColorByLetter` on the first character, resolved with ds-utils `resolveCustomColor` to the flipping `var(--ds-color-custom-<family>-500)` token, so it adapts to dark mode.
+- The **icon tile** (Figma "Object icons", `i6XNJPIUGQHOVQrZ7LZEhE` 252:4297) is `--ds-color-background-base-default` plus the `tileFrame` helper, `1px solid --ds-color-border-base-strong` and `--ds-shadows-shadow-1`. `hasTile` applies that same `tileFrame` to an image avatar. These are semantic tokens because the design binds them directly and the avatar module has no tile border or shadow token. The 1px border sits inside the box (`border-box`), so an icon gets 2px less room.
+- The tile's icon inherits `--ds-avatar-icon-icon` (set without `!important`) in place of the white `--ds-avatar-text-text`, so a container can recolour it (ds-list-item sets `.ds-avatar.ds-avatar { color: inherit }` in its prefix). Neither `UserAvatar` nor `ObjectAvatar` forces a colour on the icon; ObjectAvatar sets one only when its `color` prop is. Object icons (`Object*M`) carry token colours and ignore it either way.
 - Badge dot (`ds-badge-dot`) is hidden by default; shown when `hasStatus=true` with size/shape-specific positioning from `BADGE_POSITION` map
 - Hover/active darken overlay via `::before` pseudo-element (`--ds-avatar-overlay-opacity-hover` / `-pressed`) — only applied when `onClick` or `hasTooltip` is truthy
 - Font sizes per size via `MACRO_MAPPING` (xsAvatar, small, xlAvatar macros from ds-typography)
@@ -183,9 +198,7 @@ Styles in `Avatar.styles.tsx`. A DS-native `AvatarBase` renders the `ant-avatar`
 ## Implementation notes
 
 - `src=""` (empty string) is explicitly converted to `undefined` to prevent showing a broken image.
-- `backgroundColor` is resolved with ds-utils `resolveCustomColor` (default hue `500` with text, `100` when empty; `'050'` → the `50` token; with no text a plain family or hex `backgroundColor` is used, not ignored); a hex value is used literally (a `var()` value only on the base `Avatar` — see Styling), and an unknown family or hue falls back to a `transparent` background.
 - The 100 default SVG components in `defaultAvatars/` are **auto-generated** by `build:svgr` — do not edit them manually; regenerate via `pnpm run build:svgr`.
 - `getDefaultAvatarIndex` uses a simple djb2-style hash on the string form of `avatarId` — the same `avatarId` always maps to the same avatar across all environments.
-- `getColorByText` supports a `'color-hue'` dash-separated string shorthand for `backgroundColor` (e.g. `'grey-800'`) — this bypasses the separate `backgroundColorHue` prop entirely.
 - When `badgeStatus` is used in `UserAvatar`/`ObjectAvatar`, the `style` prop is applied to a wrapping `<span>` instead of the avatar, to avoid breaking the badge positioning.
 - `hasStatus` on the base `Avatar` only controls CSS visibility of the `ds-badge-dot` — the actual `Badge` component must be provided by the parent (UserAvatar/ObjectAvatar handle this internally).

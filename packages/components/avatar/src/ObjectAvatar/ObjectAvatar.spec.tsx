@@ -1,5 +1,6 @@
 import React from 'react';
 import { declarationsFor, renderWithProvider } from '@synerise/ds-core/testing';
+import { selectColorByLetter } from '@synerise/ds-utils';
 import ObjectAvatar from './ObjectAvatar';
 
 const testObject = {
@@ -16,10 +17,10 @@ const testObjectImage = {
 };
 
 describe('ObjectAvatar', () => {
-  test('should render', () => {
-    const { container, debug } = renderWithProvider(<ObjectAvatar />);
-    debug();
-    expect(container.getElementsByClassName('mail-m').length).toBe(1);
+  test('falls back to the Close2M icon without an icon, name or image', () => {
+    const { container } = renderWithProvider(<ObjectAvatar />);
+    expect(container.getElementsByClassName('close-2-m').length).toBe(1);
+    expect(container.getElementsByClassName('mail-m').length).toBe(0);
   });
   test('should render with object data', () => {
     const objectAvatar = renderWithProvider(<ObjectAvatar object={testObject} />);
@@ -42,11 +43,13 @@ describe('ObjectAvatar colour tokens', () => {
     return declarationsFor(icon?.querySelector('svg') ?? null, { within: icon });
   };
 
-  test('uses the avatar icon tokens for an icon avatar without backgroundColor', () => {
+  test('frames an icon avatar without backgroundColor in the bordered icon tile', () => {
     const { container } = renderWithProvider(<ObjectAvatar />);
 
     const avatar = avatarOf(container);
-    expect(avatar).toContain('background:var(--ds-avatar-icon-bg-default)');
+    expect(avatar).toContain('background:var(--ds-color-background-base-default)');
+    expect(avatar).toContain('border:1px solid var(--ds-color-border-base-strong)');
+    expect(avatar).toContain('box-shadow:var(--ds-shadows-shadow-1)');
     expect(avatarOf(container, ':hover')).not.toContain('background:');
     expect(avatarOf(container, 'any')).not.toContain('--ds-color-custom-');
     expect(avatar).toContain('color:var(--ds-avatar-icon-icon)');
@@ -62,31 +65,19 @@ describe('ObjectAvatar colour tokens', () => {
     expect(icon).not.toContain('--ds-color-custom-');
   });
 
-  test('keeps the avatar icon colour on an icon with a custom background', () => {
+  test('stays an icon tile with the deprecated backgroundColor', () => {
     const { container } = renderWithProvider(<ObjectAvatar backgroundColor="green" />);
 
-    expect(iconSvgOf(container)).toContain('--ds-avatar-icon-icon');
+    expect(avatarOf(container)).toContain('background:var(--ds-color-background-base-default)');
+    expect(avatarOf(container, 'any')).not.toContain('--ds-color-custom-green');
   });
 
-  test('treats backgroundColor="auto" on an icon avatar as unset', () => {
-    const { container } = renderWithProvider(<ObjectAvatar backgroundColor="auto" />);
+  test('does not frame an image avatar', () => {
+    const { container } = renderWithProvider(<ObjectAvatar object={testObjectImage} />);
 
-    expect(declarationsFor(container.querySelector('.ds-avatar'))).toContain(
-      'background:var(--ds-avatar-icon-bg-default)',
-    );
-  });
-
-  test('uses the custom colour for an icon avatar with backgroundColor', () => {
-    const { container } = renderWithProvider(<ObjectAvatar backgroundColor="green" />);
-
-    expect(avatarOf(container)).toContain('--ds-color-custom-green-100');
-    expect(avatarOf(container, 'any')).not.toContain('--ds-avatar-icon-bg-');
-  });
-
-  test('uses the custom colour hue from a family-hue backgroundColor', () => {
-    const { container } = renderWithProvider(<ObjectAvatar backgroundColor="green-200" />);
-
-    expect(declarationsFor(container.querySelector('.ds-avatar'))).toContain('--ds-color-custom-green-200');
+    const avatar = avatarOf(container, 'any');
+    expect(avatar).not.toContain('--ds-color-border-base-strong');
+    expect(avatar).not.toContain('--ds-shadows-shadow-1');
   });
 
   test('uses the custom icon colour when color is set', () => {
@@ -97,11 +88,12 @@ describe('ObjectAvatar colour tokens', () => {
     expect(icon).not.toContain('--ds-avatar-icon-icon');
   });
 
-  test('keeps the custom colour for a text avatar', () => {
+  test('colours a text avatar from the first letter of its name', () => {
     const { container } = renderWithProvider(<ObjectAvatar object={testObject} />);
 
-    expect(avatarOf(container)).toContain('--ds-color-custom-');
-    expect(avatarOf(container, 'any')).not.toContain('--ds-avatar-icon-bg-');
+    const family = (selectColorByLetter('S', true) as { color: string }).color;
+    expect(avatarOf(container)).toContain(`background:var(--ds-color-custom-${family}-500)`);
+    expect(avatarOf(container, 'any')).not.toContain('--ds-color-border-base-strong');
   });
 });
 

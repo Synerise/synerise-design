@@ -8,7 +8,7 @@ import Icon, {
   AngleDownS,
   EditM,
   HelpM,
-  MailM,
+  ObjectEmailM,
   OptionHorizontalM,
 } from '@synerise/ds-icon';
 import ListItem, { ListWrapper } from '@synerise/ds-list-item';
@@ -16,7 +16,6 @@ import PageHeader from '@synerise/ds-page-header';
 import Skeleton, { SkeletonAvatar } from '@synerise/ds-skeleton';
 import Stepper from '@synerise/ds-stepper';
 import Tabs from '@synerise/ds-tabs';
-import { customColors } from '@synerise/ds-tokens/names';
 import { useOnClickOutside } from '@synerise/ds-utils';
 
 import {
@@ -215,9 +214,7 @@ export const withDropdown: Story = {
         }
         avatar={
           <ObjectAvatar
-            iconComponent={
-              <Icon component={<MailM />} color={customColors.red['600']} />
-            }
+            iconComponent={<Icon component={<ObjectEmailM />} />}
             badgeStatus="active"
           />
         }
@@ -259,9 +256,7 @@ export const withStepper: Story = {
       <PageHeader
         avatar={
           <ObjectAvatar
-            iconComponent={
-              <Icon component={<MailM />} color={customColors.red['600']} />
-            }
+            iconComponent={<Icon component={<ObjectEmailM />} />}
             badgeStatus="active"
           />
         }

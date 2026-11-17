@@ -6,15 +6,9 @@ import Icon, { UserM, UserS } from '@synerise/ds-icon';
 import Avatar from '../Avatar';
 import type { UserAvatarProps } from '../Avatar.types';
 import DefaultAvatarIcon, { TOTAL_DEFAULT_AVATARS } from '../DefaultAvatarIcon';
-import {
-  addIconColor,
-  getColorByText,
-  getDefaultAvatarIndex,
-  getUserText,
-} from '../utils';
+import { getDefaultAvatarIndex, getUserText } from '../utils';
 
-const UserAvatar: React.FC<UserAvatarProps> = ({
-  backgroundColor,
+const UserAvatar = ({
   size,
   text,
   tooltip,
@@ -26,7 +20,7 @@ const UserAvatar: React.FC<UserAvatarProps> = ({
   disabled,
   style,
   ...restProps
-}) => {
+}: UserAvatarProps) => {
   const {
     firstName = '',
     lastName = '',
@@ -54,48 +48,37 @@ const UserAvatar: React.FC<UserAvatarProps> = ({
       ? defaultTooltip
       : tooltip;
 
-  const iconColor = 'var(--ds-color-icon-base-subtle)';
-  const iconElement = addIconColor(iconComponent, iconColor);
+  // No colour is forced onto the icon: it inherits `--ds-avatar-icon-icon` from the avatar, so a
+  // container can recolour it and an object icon keeps its own token colours. Same as ObjectAvatar.
+  const iconElement = iconComponent as React.ReactElement;
+
+  // The default illustration is content, not an icon, so it sits on a transparent background.
+  const illustration = useDefaultSvg ? (
+    <DefaultAvatarIcon
+      index={getDefaultAvatarIndex(avatarId, TOTAL_DEFAULT_AVATARS)}
+    />
+  ) : null;
 
   let icon: React.ReactNode = null;
-  if (useDefaultSvg) {
-    const avatarIndex = getDefaultAvatarIndex(avatarId, TOTAL_DEFAULT_AVATARS);
-    icon = <DefaultAvatarIcon index={avatarIndex} />;
-  } else if (!avatarText) {
+  if (!useDefaultSvg && !avatarText) {
     icon = iconElement || (
-      <Icon
-        component={size === 'small' ? <UserS /> : <UserM />}
-        color="var(--ds-color-icon-base-subtle)"
-      />
+      <Icon component={size === 'small' ? <UserS /> : <UserM />} />
     );
   }
-
-  const [avatarBackgroundColor, avatarBackgroundHue] = getColorByText(
-    avatarText,
-    useDefaultSvg ? undefined : backgroundColor,
-  );
 
   const avatarRender = (
     <Avatar
       iconComponent={icon}
-      iconScale={!useDefaultSvg}
       shape="circle"
       hasStatus={disabled === true ? false : !!badgeStatus}
-      backgroundColor={useDefaultSvg ? undefined : avatarBackgroundColor}
-      backgroundColorHue={useDefaultSvg ? undefined : avatarBackgroundHue}
       size={size}
       src={avatar || src}
       tooltip={avatarTooltip}
       disabled={disabled}
-      style={{
-        ...(badgeStatus ? {} : style),
-        ...(useDefaultSvg
-          ? { background: 'transparent', overflow: 'hidden' }
-          : {}),
-      }}
+      style={badgeStatus ? {} : style}
       {...restProps}
     >
-      {children || avatarText}
+      {children || illustration || avatarText}
     </Avatar>
   );
 

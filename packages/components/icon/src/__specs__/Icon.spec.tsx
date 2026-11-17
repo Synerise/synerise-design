@@ -3,7 +3,7 @@ import React from 'react';
 import { renderWithProvider } from '@synerise/ds-core/testing';
 import { screen, waitFor } from '@testing-library/react';
 
-import Icon, { Add2M, AddL, AddXl, SearchM } from '../index';
+import Icon, { Add2M, AddL, AddXl, ObjectFunnelM, SearchM } from '../index';
 
 describe('Icon', () => {
   it('should render', () => {
@@ -73,5 +73,17 @@ describe('Icon', () => {
     expect(container.querySelector('svg')).toHaveStyle({
       color: 'var(--ds-color-icon-brand-default)',
     });
+  });
+
+  it('keeps the tokenised fills of an object icon when a color is passed', () => {
+    const { container } = renderWithProvider(
+      <Icon component={<ObjectFunnelM />} color="var(--ds-color-icon-brand-default)" />,
+    );
+
+    const shapes = [...container.querySelectorAll('svg path')];
+    expect(shapes.length).toBeGreaterThan(0);
+    shapes.forEach((shape) =>
+      expect((shape as SVGElement).style.fill).toMatch(/^var\(--ds-/),
+    );
   });
 });

@@ -35,7 +35,7 @@ export const DefaultStory: Story = {
   informationCardProps={{
     title: 'Title',
     subtitle: 'Subtitle',
-    icon: <SegmentM color="mars" />,
+    icon: <ObjectSegmentationM />,
     iconColor: 'mars',
     avatarTooltipText: 'Tooltip Text',
     descriptionConfig: '...',
@@ -71,7 +71,7 @@ export const InformationCardTooltipTopPlacement: Story = {
   informationCardProps={{
     title: 'Title',
     subtitle: 'Subtitle',
-    icon: <SegmentM color="mars" />,
+    icon: <ObjectSegmentationM />,
     iconColor: 'mars',
     avatarTooltipText: 'Tooltip Text',
     descriptionConfig: '...',

@@ -3,6 +3,7 @@ import * as additional from './icons/additional';
 import * as color from './icons/colorIcons';
 import * as large from './icons/L';
 import * as medium from './icons/M';
+import * as object from './icons/objectIcons';
 import * as xlarge from './icons/XL';
 
 /**
@@ -24,3 +25,4 @@ registerIcons(large);
 registerIcons(xlarge);
 registerIcons(additional);
 registerIcons(color);
+registerIcons(object);

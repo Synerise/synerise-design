@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { MailM } from '@synerise/ds-icon';
+import { ObjectEmailM } from '@synerise/ds-icon';
 import { TagShape } from '@synerise/ds-tag';
 
 import { RELATIONS } from './relations';
@@ -5021,7 +5021,7 @@ export const DATA_SOURCE_FULL = [
     inactive: true,
     avatar: {
       initials: 'AN',
-      icon: <MailM />,
+      icon: <ObjectEmailM />,
       title: 'Top 10 product add to cart',
       titleLarg: 'Summer Sale 45% OFF',
       status: 'active',
@@ -5062,7 +5062,7 @@ export const DATA_SOURCE_FULL = [
     status: 'active',
     avatar: {
       initials: 'AN',
-      icon: <MailM />,
+      icon: <ObjectEmailM />,
       title: 'Top 10 product add to cart',
       titleLarg: 'Summer Sale 45% OFF',
       status: 'active',
@@ -5104,7 +5104,7 @@ export const DATA_SOURCE_FULL = [
     inactive: true,
     avatar: {
       initials: 'AN',
-      icon: <MailM />,
+      icon: <ObjectEmailM />,
       title: 'Top 10 product add to cart',
       titleLarg: 'Summer Sale 45% OFF',
       status: 'active',
@@ -5142,7 +5142,7 @@ export const DATA_SOURCE_FULL = [
     status: 'inactive',
     avatar: {
       initials: 'AN',
-      icon: <MailM />,
+      icon: <ObjectEmailM />,
       title: 'Top 10 product add to cart',
       titleLarg: 'Summer Sale 45% OFF',
       status: 'active',
@@ -5177,7 +5177,7 @@ export const DATA_SOURCE_FULL = [
     status: 'active',
     avatar: {
       initials: 'AN',
-      icon: <MailM />,
+      icon: <ObjectEmailM />,
       title: 'Top 10 product add to cart',
       titleLarg: 'Summer Sale 45% OFF',
       status: 'active',
@@ -5208,7 +5208,7 @@ export const DATA_SOURCE_FULL = [
     status: 'inactive',
     avatar: {
       initials: 'AN',
-      icon: <MailM />,
+      icon: <ObjectEmailM />,
       title: 'Top 10 product add to cart',
       titleLarg: 'Summer Sale 45% OFF',
       status: 'active',
@@ -5257,7 +5257,7 @@ export const DATA_SOURCE_FULL = [
     status: 'blocked',
     avatar: {
       initials: 'AN',
-      icon: <MailM />,
+      icon: <ObjectEmailM />,
       title: 'Top 10 product add to cart',
       titleLarg: 'Summer Sale 45% OFF',
       status: 'active',
@@ -5300,7 +5300,7 @@ export const DATA_SOURCE_FULL = [
     status: 'inactive',
     avatar: {
       initials: 'AN',
-      icon: <MailM />,
+      icon: <ObjectEmailM />,
       title: 'Top 10 product add to cart',
       titleLarg: 'Summer Sale 45% OFF',
       status: 'active',
@@ -5335,7 +5335,7 @@ export const DATA_SOURCE_FULL = [
     status: 'active',
     avatar: {
       initials: 'AN',
-      icon: <MailM />,
+      icon: <ObjectEmailM />,
       title: 'Top 10 product add to cart',
       titleLarg: 'Summer Sale 45% OFF',
       status: 'active',
@@ -5367,7 +5367,7 @@ export const DATA_SOURCE_FULL = [
     status: 'active',
     avatar: {
       initials: 'AN',
-      icon: <MailM />,
+      icon: <ObjectEmailM />,
       title: 'Top 10 product add to cart',
       titleLarg: 'Summer Sale 45% OFF',
       status: 'active',
@@ -5398,7 +5398,7 @@ export const DATA_SOURCE_FULL = [
     status: 'active',
     avatar: {
       initials: 'AN',
-      icon: <MailM />,
+      icon: <ObjectEmailM />,
       title: 'Top 10 product add to cart',
       titleLarg: 'Summer Sale 45% OFF',
       status: 'active',
@@ -5428,7 +5428,7 @@ export const DATA_SOURCE_FULL = [
     status: 'inactive',
     avatar: {
       initials: 'AN',
-      icon: <MailM />,
+      icon: <ObjectEmailM />,
       title: 'Top 10 product add to cart',
       titleLarg: 'Summer Sale 45% OFF',
       status: 'active',
@@ -5458,7 +5458,7 @@ export const DATA_SOURCE_FULL = [
     status: 'inactive',
     avatar: {
       initials: 'AN',
-      icon: <MailM />,
+      icon: <ObjectEmailM />,
       title: 'Top 10 product add to cart',
       titleLarg: 'Summer Sale 45% OFF',
       status: 'active',
@@ -5488,7 +5488,7 @@ export const DATA_SOURCE_FULL = [
     status: 'active',
     avatar: {
       initials: 'AN',
-      icon: <MailM />,
+      icon: <ObjectEmailM />,
       title: 'Top 10 product add to cart',
       titleLarg: 'Summer Sale 45% OFF',
       status: 'active',
@@ -5518,7 +5518,7 @@ export const DATA_SOURCE_FULL = [
     status: 'blocked',
     avatar: {
       initials: 'AN',
-      icon: <MailM />,
+      icon: <ObjectEmailM />,
       title: 'Top 10 product add to cart',
       titleLarg: 'Summer Sale 45% OFF',
       status: 'active',
@@ -5548,7 +5548,7 @@ export const DATA_SOURCE_FULL = [
     status: 'inactive',
     avatar: {
       initials: 'AN',
-      icon: <MailM />,
+      icon: <ObjectEmailM />,
       title: 'Top 10 product add to cart',
       titleLarg: 'Summer Sale 45% OFF',
       status: 'active',
@@ -5578,7 +5578,7 @@ export const DATA_SOURCE_FULL = [
     status: 'active',
     avatar: {
       initials: 'AN',
-      icon: <MailM />,
+      icon: <ObjectEmailM />,
       title: 'Top 10 product add to cart',
       titleLarg: 'Summer Sale 45% OFF',
       status: 'active',
@@ -5608,7 +5608,7 @@ export const DATA_SOURCE_FULL = [
     status: 'active',
     avatar: {
       initials: 'AN',
-      icon: <MailM />,
+      icon: <ObjectEmailM />,
       title: 'Top 10 product add to cart',
       titleLarg: 'Summer Sale 45% OFF',
       status: 'active',
@@ -5638,7 +5638,7 @@ export const DATA_SOURCE_FULL = [
     status: 'blocked',
     avatar: {
       initials: 'AN',
-      icon: <MailM />,
+      icon: <ObjectEmailM />,
       title: 'Top 10 product add to cart',
       titleLarg: 'Summer Sale 45% OFF',
       status: 'active',
@@ -5668,7 +5668,7 @@ export const DATA_SOURCE_FULL = [
     status: 'inactive',
     avatar: {
       initials: 'AN',
-      icon: <MailM />,
+      icon: <ObjectEmailM />,
       title: 'Top 10 product add to cart',
       titleLarg: 'Summer Sale 45% OFF',
       status: 'active',
@@ -5698,7 +5698,7 @@ export const DATA_SOURCE_FULL = [
     status: 'blocked',
     avatar: {
       initials: 'AN',
-      icon: <MailM />,
+      icon: <ObjectEmailM />,
       title: 'Top 10 product add to cart',
       titleLarg: 'Summer Sale 45% OFF',
       status: 'active',
@@ -5728,7 +5728,7 @@ export const DATA_SOURCE_FULL = [
     status: 'active',
     avatar: {
       initials: 'AN',
-      icon: <MailM />,
+      icon: <ObjectEmailM />,
       title: 'Top 10 product add to cart',
       titleLarg: 'Summer Sale 45% OFF',
       status: 'active',
@@ -5758,7 +5758,7 @@ export const DATA_SOURCE_FULL = [
     status: 'active',
     avatar: {
       initials: 'AN',
-      icon: <MailM />,
+      icon: <ObjectEmailM />,
       title: 'Top 10 product add to cart',
       titleLarg: 'Summer Sale 45% OFF',
       status: 'active',
@@ -5788,7 +5788,7 @@ export const DATA_SOURCE_FULL = [
     status: 'inactive',
     avatar: {
       initials: 'AN',
-      icon: <MailM />,
+      icon: <ObjectEmailM />,
       title: 'Top 10 product add to cart',
       titleLarg: 'Summer Sale 45% OFF',
       status: 'active',
@@ -5818,7 +5818,7 @@ export const DATA_SOURCE_FULL = [
     status: 'blocked',
     avatar: {
       initials: 'AN',
-      icon: <MailM />,
+      icon: <ObjectEmailM />,
       title: 'Top 10 product add to cart',
       titleLarg: 'Summer Sale 45% OFF',
       status: 'active',
@@ -5848,7 +5848,7 @@ export const DATA_SOURCE_FULL = [
     status: 'active',
     avatar: {
       initials: 'AN',
-      icon: <MailM />,
+      icon: <ObjectEmailM />,
       title: 'Top 10 product add to cart',
       titleLarg: 'Summer Sale 45% OFF',
       status: 'active',
@@ -5879,7 +5879,7 @@ export const DATA_SOURCE_FULL = [
     status: 'blocked',
     avatar: {
       initials: 'AN',
-      icon: <MailM />,
+      icon: <ObjectEmailM />,
       title: 'Top 10 product add to cart',
       titleLarg: 'Summer Sale 45% OFF',
       status: 'active',
@@ -5910,7 +5910,7 @@ export const DATA_SOURCE_FULL = [
     status: 'blocked',
     avatar: {
       initials: 'AN',
-      icon: <MailM />,
+      icon: <ObjectEmailM />,
       title: 'Top 10 product add to cart',
       titleLarg: 'Summer Sale 45% OFF',
       status: 'active',
@@ -5940,7 +5940,7 @@ export const DATA_SOURCE_FULL = [
     status: 'active',
     avatar: {
       initials: 'AN',
-      icon: <MailM />,
+      icon: <ObjectEmailM />,
       title: 'Top 10 product add to cart',
       titleLarg: 'Summer Sale 45% OFF',
       status: 'active',
@@ -5971,7 +5971,7 @@ export const DATA_SOURCE_FULL = [
     status: 'inactive',
     avatar: {
       initials: 'AN',
-      icon: <MailM />,
+      icon: <ObjectEmailM />,
       title: 'Top 10 product add to cart',
       titleLarg: 'Summer Sale 45% OFF',
       status: 'active',
@@ -6002,7 +6002,7 @@ export const DATA_SOURCE_FULL = [
     status: 'inactive',
     avatar: {
       initials: 'AN',
-      icon: <MailM />,
+      icon: <ObjectEmailM />,
       title: 'Top 10 product add to cart',
       titleLarg: 'Summer Sale 45% OFF',
       status: 'active',
@@ -6033,7 +6033,7 @@ export const DATA_SOURCE_FULL = [
     status: 'active',
     avatar: {
       initials: 'AN',
-      icon: <MailM />,
+      icon: <ObjectEmailM />,
       title: 'Top 10 product add to cart',
       titleLarg: 'Summer Sale 45% OFF',
       status: 'active',
@@ -6063,7 +6063,7 @@ export const DATA_SOURCE_FULL = [
     status: 'inactive',
     avatar: {
       initials: 'AN',
-      icon: <MailM />,
+      icon: <ObjectEmailM />,
       title: 'Top 10 product add to cart',
       titleLarg: 'Summer Sale 45% OFF',
       status: 'active',
@@ -6093,7 +6093,7 @@ export const DATA_SOURCE_FULL = [
     status: 'inactive',
     avatar: {
       initials: 'AN',
-      icon: <MailM />,
+      icon: <ObjectEmailM />,
       title: 'Top 10 product add to cart',
       titleLarg: 'Summer Sale 45% OFF',
       status: 'active',
@@ -6123,7 +6123,7 @@ export const DATA_SOURCE_FULL = [
     status: 'inactive',
     avatar: {
       initials: 'AN',
-      icon: <MailM />,
+      icon: <ObjectEmailM />,
       title: 'Top 10 product add to cart',
       titleLarg: 'Summer Sale 45% OFF',
       status: 'active',
@@ -6153,7 +6153,7 @@ export const DATA_SOURCE_FULL = [
     status: 'blocked',
     avatar: {
       initials: 'AN',
-      icon: <MailM />,
+      icon: <ObjectEmailM />,
       title: 'Top 10 product add to cart',
       titleLarg: 'Summer Sale 45% OFF',
       status: 'active',
@@ -6183,7 +6183,7 @@ export const DATA_SOURCE_FULL = [
     status: 'inactive',
     avatar: {
       initials: 'AN',
-      icon: <MailM />,
+      icon: <ObjectEmailM />,
       title: 'Top 10 product add to cart',
       titleLarg: 'Summer Sale 45% OFF',
       status: 'active',
@@ -6214,7 +6214,7 @@ export const DATA_SOURCE_FULL = [
     status: 'blocked',
     avatar: {
       initials: 'AN',
-      icon: <MailM />,
+      icon: <ObjectEmailM />,
       title: 'Top 10 product add to cart',
       titleLarg: 'Summer Sale 45% OFF',
       status: 'active',
@@ -6244,7 +6244,7 @@ export const DATA_SOURCE_FULL = [
     status: 'active',
     avatar: {
       initials: 'AN',
-      icon: <MailM />,
+      icon: <ObjectEmailM />,
       title: 'Top 10 product add to cart',
       titleLarg: 'Summer Sale 45% OFF',
       status: 'active',
@@ -6274,7 +6274,7 @@ export const DATA_SOURCE_FULL = [
     status: 'blocked',
     avatar: {
       initials: 'AN',
-      icon: <MailM />,
+      icon: <ObjectEmailM />,
       title: 'Top 10 product add to cart',
       titleLarg: 'Summer Sale 45% OFF',
       status: 'active',
@@ -6305,7 +6305,7 @@ export const DATA_SOURCE_FULL = [
     status: 'blocked',
     avatar: {
       initials: 'AN',
-      icon: <MailM />,
+      icon: <ObjectEmailM />,
       title: 'Top 10 product add to cart',
       titleLarg: 'Summer Sale 45% OFF',
       status: 'active',
@@ -6335,7 +6335,7 @@ export const DATA_SOURCE_FULL = [
     status: 'blocked',
     avatar: {
       initials: 'AN',
-      icon: <MailM />,
+      icon: <ObjectEmailM />,
       title: 'Top 10 product add to cart',
       titleLarg: 'Summer Sale 45% OFF',
       status: 'active',
@@ -6366,7 +6366,7 @@ export const DATA_SOURCE_FULL = [
     status: 'active',
     avatar: {
       initials: 'AN',
-      icon: <MailM />,
+      icon: <ObjectEmailM />,
       title: 'Top 10 product add to cart',
       titleLarg: 'Summer Sale 45% OFF',
       status: 'active',
@@ -6396,7 +6396,7 @@ export const DATA_SOURCE_FULL = [
     status: 'inactive',
     avatar: {
       initials: 'AN',
-      icon: <MailM />,
+      icon: <ObjectEmailM />,
       title: 'Top 10 product add to cart',
       titleLarg: 'Summer Sale 45% OFF',
       status: 'active',
@@ -6426,7 +6426,7 @@ export const DATA_SOURCE_FULL = [
     status: 'blocked',
     avatar: {
       initials: 'AN',
-      icon: <MailM />,
+      icon: <ObjectEmailM />,
       title: 'Top 10 product add to cart',
       titleLarg: 'Summer Sale 45% OFF',
       status: 'active',
@@ -6457,7 +6457,7 @@ export const DATA_SOURCE_FULL = [
     status: 'active',
     avatar: {
       initials: 'AN',
-      icon: <MailM />,
+      icon: <ObjectEmailM />,
       title: 'Top 10 product add to cart',
       titleLarg: 'Summer Sale 45% OFF',
       status: 'active',
@@ -6488,7 +6488,7 @@ export const DATA_SOURCE_FULL = [
     status: 'blocked',
     avatar: {
       initials: 'AN',
-      icon: <MailM />,
+      icon: <ObjectEmailM />,
       title: 'Top 10 product add to cart',
       titleLarg: 'Summer Sale 45% OFF',
       status: 'active',
@@ -6518,7 +6518,7 @@ export const DATA_SOURCE_FULL = [
     status: 'active',
     avatar: {
       initials: 'AN',
-      icon: <MailM />,
+      icon: <ObjectEmailM />,
       title: 'Top 10 product add to cart',
       titleLarg: 'Summer Sale 45% OFF',
       status: 'active',
@@ -6549,7 +6549,7 @@ export const DATA_SOURCE_FULL = [
     status: 'active',
     avatar: {
       initials: 'AN',
-      icon: <MailM />,
+      icon: <ObjectEmailM />,
       title: 'Top 10 product add to cart',
       titleLarg: 'Summer Sale 45% OFF',
       status: 'active',
@@ -6580,7 +6580,7 @@ export const DATA_SOURCE_FULL = [
     status: 'active',
     avatar: {
       initials: 'AN',
-      icon: <MailM />,
+      icon: <ObjectEmailM />,
       title: 'Top 10 product add to cart',
       titleLarg: 'Summer Sale 45% OFF',
       status: 'active',
@@ -6610,7 +6610,7 @@ export const DATA_SOURCE_FULL = [
     status: 'inactive',
     avatar: {
       initials: 'AN',
-      icon: <MailM />,
+      icon: <ObjectEmailM />,
       title: 'Top 10 product add to cart',
       titleLarg: 'Summer Sale 45% OFF',
       status: 'active',
@@ -6641,7 +6641,7 @@ export const DATA_SOURCE_FULL = [
     status: 'active',
     avatar: {
       initials: 'AN',
-      icon: <MailM />,
+      icon: <ObjectEmailM />,
       title: 'Top 10 product add to cart',
       titleLarg: 'Summer Sale 45% OFF',
       status: 'active',
@@ -6672,7 +6672,7 @@ export const DATA_SOURCE_FULL = [
     status: 'blocked',
     avatar: {
       initials: 'AN',
-      icon: <MailM />,
+      icon: <ObjectEmailM />,
       title: 'Top 10 product add to cart',
       titleLarg: 'Summer Sale 45% OFF',
       status: 'active',
@@ -6703,7 +6703,7 @@ export const DATA_SOURCE_FULL = [
     status: 'inactive',
     avatar: {
       initials: 'AN',
-      icon: <MailM />,
+      icon: <ObjectEmailM />,
       title: 'Top 10 product add to cart',
       titleLarg: 'Summer Sale 45% OFF',
       status: 'active',
@@ -6734,7 +6734,7 @@ export const DATA_SOURCE_FULL = [
     status: 'blocked',
     avatar: {
       initials: 'AN',
-      icon: <MailM />,
+      icon: <ObjectEmailM />,
       title: 'Top 10 product add to cart',
       titleLarg: 'Summer Sale 45% OFF',
       status: 'active',

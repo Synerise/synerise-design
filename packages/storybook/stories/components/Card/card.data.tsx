@@ -6,16 +6,16 @@ import Button from '@synerise/ds-button';
 import type { CardProps } from '@synerise/ds-card';
 import Card, { CardBadge } from '@synerise/ds-card';
 import Icon, {
-  AiSearchGreyM,
-  AnalyticsGreyM,
   BookmarkM,
   CheckS,
-  Close2M,
   ExternalLinkM,
-  FileCodeM,
   FilterM,
+  ObjectDashboardM,
+  ObjectDocumentM,
+  ObjectFileM,
+  ObjectReportM,
+  ObjectSegmentationM,
   SearchM,
-  SegmentM,
   ShowM,
   UserCircleM,
   UserM,
@@ -28,20 +28,12 @@ import Tooltip from '@synerise/ds-tooltip';
 import * as S from './Card.styles';
 
 const objectAvatar = (
-  iconComponent = <FileCodeM />,
+  iconComponent = <ObjectDocumentM />,
   documentTitle = 'Document title with a very long and truncated filename',
 ) => (
   <S.ObjectWithAvatar>
     <ObjectAvatar
-      iconComponent={
-        <Icon
-          color="var(--ds-color-icon-base-default)"
-          size={18}
-          component={iconComponent}
-        />
-      }
-      backgroundColor="grey-300"
-      color="grey"
+      iconComponent={<Icon component={iconComponent} />}
       size="small"
     />
     <Tooltip
@@ -115,8 +107,8 @@ export const CARD_SUMMARY_ITEMS = [
     value: '1234',
     summaryObjects: [
       objectAvatar(),
-      objectAvatar(<AiSearchGreyM />, 'Short filename'),
-      objectAvatar(<AnalyticsGreyM />),
+      objectAvatar(<ObjectFileM />, 'Short filename'),
+      objectAvatar(<ObjectReportM />),
     ],
   },
   {
@@ -226,8 +218,7 @@ export const CUSTOM_BADGES = {
   icon: (
     <div style={{ marginRight: '16px' }}>
       <ObjectAvatar
-        color="mars"
-        iconComponent={<Icon component={<SegmentM />} />}
+        iconComponent={<Icon component={<ObjectSegmentationM />} />}
       />
     </div>
   ),
@@ -246,7 +237,9 @@ export const TYPES_OF_BADGES = [
     icon: <BookmarkM />,
   },
   {
-    avatar: <ObjectAvatar iconComponent={<Icon component={<Close2M />} />} />,
+    avatar: (
+      <ObjectAvatar iconComponent={<Icon component={<ObjectDashboardM />} />} />
+    ),
   },
 ];
 
@@ -422,7 +415,6 @@ export const CARD_HEADER_VARIANTS = [
         text="A"
         size="medium"
         badgeStatus="active"
-        backgroundColor="auto"
         iconComponent={<Icon component={<UserCircleM />} />}
       />
     ),

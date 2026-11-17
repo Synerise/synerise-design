@@ -4,8 +4,6 @@ export const groupAvatars: DataSource[] = [
   {
     avatarProps: {
       tooltip: { name: 'Kamil Kowalski', email: 'k.kowalski@example.com' },
-      backgroundColor: 'blue',
-      backgroundColorHue: '600',
     },
     initials: 'KK',
     status: 'active',
@@ -20,8 +18,6 @@ export const groupAvatars: DataSource[] = [
         name: 'Adam Staszewski',
         email: 'adam.staszewski@example.com',
       },
-      backgroundColor: 'green',
-      backgroundColorHue: '600',
     },
     initials: 'AS',
     status: 'inactive',
@@ -33,8 +29,6 @@ export const groupAvatars: DataSource[] = [
   {
     avatarProps: {
       tooltip: { name: 'Jan Nowak', email: 'jan.nowak@example.com' },
-      backgroundColor: 'orange',
-      backgroundColorHue: '600',
     },
     initials: 'JN',
     status: 'blocked',
@@ -46,8 +40,6 @@ export const groupAvatars: DataSource[] = [
   {
     avatarProps: {
       tooltip: { name: 'Jan Nowak', email: 'jan.nowak@example.com' },
-      backgroundColor: 'red',
-      backgroundColorHue: '600',
     },
     initials: 'JN',
     status: 'active',
@@ -59,8 +51,6 @@ export const groupAvatars: DataSource[] = [
   {
     avatarProps: {
       tooltip: { name: 'Jan Nowak', email: 'jan.nowak@example.com' },
-      backgroundColor: 'violet',
-      backgroundColorHue: '600',
     },
     initials: 'JN',
     status: 'inactive',
@@ -72,8 +62,6 @@ export const groupAvatars: DataSource[] = [
   {
     avatarProps: {
       tooltip: { name: 'Maciej Piotrowski', email: 'mp@test.com.pl' },
-      backgroundColor: 'green',
-      backgroundColorHue: '600',
     },
     initials: 'MP',
     status: 'inactive',
@@ -85,8 +73,6 @@ export const groupAvatars: DataSource[] = [
   {
     avatarProps: {
       tooltip: { name: 'Kamil Kowalski', email: 'k.kowalski@example.com' },
-      backgroundColor: 'blue',
-      backgroundColorHue: '600',
     },
     initials: 'KK',
     status: 'active',
@@ -101,8 +87,6 @@ export const groupAvatars: DataSource[] = [
         name: 'Adam Staszewski',
         email: 'adam.staszewski@example.com',
       },
-      backgroundColor: 'green',
-      backgroundColorHue: '600',
     },
     initials: 'AS',
     status: 'inactive',
@@ -114,8 +98,6 @@ export const groupAvatars: DataSource[] = [
   {
     avatarProps: {
       tooltip: { name: 'Jan Nowak', email: 'jan.nowak@example.com' },
-      backgroundColor: 'orange',
-      backgroundColorHue: '600',
     },
     initials: 'JN',
     status: 'blocked',
@@ -127,8 +109,6 @@ export const groupAvatars: DataSource[] = [
   {
     avatarProps: {
       tooltip: { name: 'Jan Nowak', email: 'jan.nowak@example.com' },
-      backgroundColor: 'red',
-      backgroundColorHue: '600',
     },
     initials: 'JN',
     status: 'active',
@@ -140,8 +120,6 @@ export const groupAvatars: DataSource[] = [
   {
     avatarProps: {
       tooltip: { name: 'Jan Nowak', email: 'jan.nowak@example.com' },
-      backgroundColor: 'violet',
-      backgroundColorHue: '600',
     },
     initials: 'JN',
     status: 'inactive',
@@ -153,8 +131,6 @@ export const groupAvatars: DataSource[] = [
   {
     avatarProps: {
       tooltip: { name: 'Maciej Piotrowski', email: 'mp@test.com.pl' },
-      backgroundColor: 'green',
-      backgroundColorHue: '600',
     },
     initials: 'MP',
     status: 'inactive',

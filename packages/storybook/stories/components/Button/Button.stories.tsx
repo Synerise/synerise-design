@@ -316,7 +316,7 @@ export const AvatarInLabel: Story = {
     docs: {
       source: {
         code: `<Button type="primary">
-  <Avatar size="small" backgroundColor="blue" backgroundColorHue="600">
+  <Avatar size="small">
     JD
   </Avatar>
   Label
@@ -335,8 +335,6 @@ export const AvatarInLabel: Story = {
           <Button key={type} type={type} mode="label-icon">
             <Avatar
               size="small"
-              backgroundColor="blue"
-              backgroundColorHue="600"
               style={{
                 marginRight: '8px',
               }}
@@ -357,8 +355,6 @@ export const AvatarInLabel: Story = {
           >
             <Avatar
               size="small"
-              backgroundColor="blue"
-              backgroundColorHue="600"
               style={{
                 marginRight: '8px',
               }}

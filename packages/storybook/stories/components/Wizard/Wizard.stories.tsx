@@ -5,9 +5,14 @@ import { fn } from 'storybook/test';
 
 import { ObjectAvatar } from '@synerise/ds-avatar';
 import Button from '@synerise/ds-button';
-import Icon, { AcademyM, ChatM, EditM, HelpM, MailM } from '@synerise/ds-icon';
+import Icon, {
+  AcademyM,
+  ChatM,
+  EditM,
+  HelpM,
+  ObjectEmailM,
+} from '@synerise/ds-icon';
 import Stepper from '@synerise/ds-stepper';
-import { customColors } from '@synerise/ds-tokens/names';
 import Wizard, { WizardProps } from '@synerise/ds-wizard';
 
 import { Placeholder } from '../../constants';
@@ -88,9 +93,7 @@ export const EditableTitle: Story = {
   args: {
     headerAvatar: (
       <ObjectAvatar
-        iconComponent={
-          <Icon component={<MailM />} color={customColors.red['600']} />
-        }
+        iconComponent={<Icon component={<ObjectEmailM />} />}
         badgeStatus="active"
       />
     ),
