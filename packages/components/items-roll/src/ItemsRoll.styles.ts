@@ -38,21 +38,6 @@ export const Bold = styled.span`
   margin-left: 2px;
 `;
 
-export const ChangeSelection: StyledButton = styled(Button)`
-  width: 157px;
-  display: flex;
-  align-items: center;
-  padding: 4px 9px;
-  font-weight: 500;
-
-  &&& {
-    color: var(--ds-color-text-brand-default);
-    .ds-icon {
-      margin-right: 4px;
-    }
-  }
-`;
-
 export const SearchWrapper = styled.div`
   margin: 0 8px;
   min-width: 32px;
