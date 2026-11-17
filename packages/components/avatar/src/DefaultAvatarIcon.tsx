@@ -8,7 +8,7 @@ type DefaultAvatarIconProps = {
   index: number;
 };
 
-const DefaultAvatarIcon: React.FC<DefaultAvatarIconProps> = ({ index }) => {
+const DefaultAvatarIcon = ({ index }: DefaultAvatarIconProps) => {
   const total = TOTAL_DEFAULT_AVATARS as number;
   if (total === 0) {
     return null;

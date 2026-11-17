@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { isValidElement, type ReactNode } from 'react';
 
 import type {
   FactorValueType,
@@ -8,10 +8,22 @@ import type {
 import {
   ExpressionM,
   FolderM,
+  ObjectExpressionM,
+  ObjectNumberM,
+  ObjectStringM,
   VarTypeNumberM,
   VarTypeStringM,
 } from '@synerise/ds-icon';
 import InformationCard from '@synerise/ds-information-card';
+
+// The card's badge is an ObjectAvatar, which takes object icons only; the list rows keep their glyphs.
+const OBJECT_ICONS = new Map<unknown, ReactNode>([
+  [VarTypeStringM, <ObjectStringM />],
+  [VarTypeNumberM, <ObjectNumberM />],
+  [ExpressionM, <ObjectExpressionM />],
+]);
+const objectIconFor = (icon: ReactNode) =>
+  isValidElement(icon) ? OBJECT_ICONS.get(icon.type) : undefined;
 
 const generateInfoCard = (item: ParameterValueType) => {
   const randomCount = Math.floor(Math.random() * 100);
@@ -19,7 +31,7 @@ const generateInfoCard = (item: ParameterValueType) => {
     ...item,
     renderHoverTooltip: () => (
       <InformationCard
-        icon={item.icon}
+        icon={objectIconFor(item.icon)}
         title={item.name}
         propertyListItems={[{ label: 'Some property', value: randomCount }]}
         descriptionConfig={

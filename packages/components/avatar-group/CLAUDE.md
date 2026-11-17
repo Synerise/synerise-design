@@ -75,8 +75,6 @@ const data = [
     email: 'k.kowalski@example.com',
     status: 'active',
     avatarProps: {
-      backgroundColor: 'blue',
-      backgroundColorHue: '600',
       tooltip: { name: 'Kamil Kowalski', email: 'k.kowalski@example.com' },
     },
   },

@@ -188,14 +188,7 @@ const COLUMNS_WITH_AVATARS: ColumnDef<RowType, unknown>[] = [
       return (
         <TableCell.AvatarLabelCell
           ellipsis
-          avatar={
-            <Avatar
-              backgroundColor="red"
-              backgroundColorHue="050"
-              src={AVATAR_IMAGE}
-              size="small"
-            ></Avatar>
-          }
+          avatar={<Avatar src={AVATAR_IMAGE} size="small"></Avatar>}
           title="Test"
         />
       );
@@ -216,7 +209,7 @@ const COLUMNS_WITH_AVATARS: ColumnDef<RowType, unknown>[] = [
             <ObjectAvatar
               badgeStatus="active"
               size="medium"
-              iconComponent={<Icon component={avatar.icon} color="red" />}
+              iconComponent={<Icon component={avatar.icon} />}
             />
           }
           title={avatar.title}
@@ -238,7 +231,7 @@ const COLUMNS_WITH_AVATARS: ColumnDef<RowType, unknown>[] = [
             <ObjectAvatar
               badgeStatus="active"
               size="medium"
-              iconComponent={<Icon component={avatar.icon} color="red" />}
+              iconComponent={<Icon component={avatar.icon} />}
             />
           }
           title={avatar.titleLarg}
@@ -267,7 +260,7 @@ const COLUMNS_WITH_AVATARS: ColumnDef<RowType, unknown>[] = [
           avatar={
             <ObjectAvatar
               badgeStatus="active"
-              iconComponent={<Icon component={avatar.icon} color="red" />}
+              iconComponent={<Icon component={avatar.icon} />}
             />
           }
           title={avatar.titleLarg}
@@ -310,7 +303,7 @@ const COLUMNS_WITH_AVATARS: ColumnDef<RowType, unknown>[] = [
             <ObjectAvatar
               badgeStatus="active"
               size="medium"
-              iconComponent={<Icon component={avatar.icon} color="red" />}
+              iconComponent={<Icon component={avatar.icon} />}
             />
           }
           title={avatar.titleLarg}

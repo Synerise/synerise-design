@@ -5,14 +5,13 @@ import { fn } from 'storybook/test';
 import { ObjectAvatar } from '@synerise/ds-avatar';
 import Button from '@synerise/ds-button';
 import Drawer from '@synerise/ds-drawer';
-import Icon, { MailM } from '@synerise/ds-icon';
+import Icon, { ObjectEmailM } from '@synerise/ds-icon';
 import SidebarObject from '@synerise/ds-sidebar-object';
 import { ButtonWrapper } from '@synerise/ds-sidebar-object/dist/Elements/Header/Header.style';
 import {
   ButtonVariant,
   HeaderType,
 } from '@synerise/ds-sidebar-object/dist/Elements/Header/Header.types';
-import { customColors } from '@synerise/ds-tokens/names';
 
 import { controlFromOptionsArray, fixedWrapper300 } from '../../utils';
 import { useSidebarObjectOverview } from './hooks/useSidebarObjectOverview';
@@ -91,10 +90,7 @@ export default {
     onId: fn(),
     avatar: (
       <ObjectAvatar
-        color={'pink'}
-        iconComponent={
-          <Icon color={customColors.pink['600']} component={<MailM />} />
-        }
+        iconComponent={<Icon component={<ObjectEmailM />} />}
         badgeStatus={'inactive'}
       />
     ),

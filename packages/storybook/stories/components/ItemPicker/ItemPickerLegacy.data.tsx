@@ -36,7 +36,7 @@ export const FLAT_DATA_SOURCE: ListItemProps[] = [
   {
     text: 'MacBook Air 13',
     prefixel: (
-      <Avatar size="small" shape="square" backgroundColor="green">
+      <Avatar size="small" shape="square">
         E
       </Avatar>
     ),
@@ -71,7 +71,7 @@ export const FLAT_DATA_SOURCE: ListItemProps[] = [
   {
     text: 'MacBook Air 13 2023',
     prefixel: (
-      <Avatar size="small" shape="square" backgroundColor="green">
+      <Avatar size="small" shape="square">
         E
       </Avatar>
     ),

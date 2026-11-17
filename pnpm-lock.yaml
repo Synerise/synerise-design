@@ -2617,6 +2617,9 @@ importers:
       '@svgr/plugin-svgo':
         specifier: ^8.1.0
         version: 8.1.0(@svgr/core@8.1.0(@typescript/typescript6@6.0.2)(supports-color@8.1.1))(@typescript/typescript6@6.0.2)
+      '@synerise/ds-tokens':
+        specifier: workspace:^
+        version: link:../../tokens
       glob:
         specifier: ^11.0.2
         version: 11.1.0

@@ -30,7 +30,7 @@ const DATA_SOURCE = [
   {
     text: 'MacBook Air 13',
     prefixel: (
-      <Avatar size="small" shape="square" backgroundColor="green">
+      <Avatar size="small" shape="square">
         E
       </Avatar>
     ),

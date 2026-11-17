@@ -320,8 +320,6 @@ export const CONTENT_ITEMS_LARGE: ContentItemType[] = [
       'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur',
     headerPrefix: (
       <Avatar
-        backgroundColor="orange"
-        backgroundColorHue="100"
         shape="square"
         iconComponent={
           <Icon
@@ -364,8 +362,6 @@ export const CONTENT_ITEMS_LARGE: ContentItemType[] = [
     ),
     headerPrefix: (
       <Avatar
-        backgroundColor="orange"
-        backgroundColorHue="100"
         shape="square"
         iconComponent={
           <Icon
@@ -410,8 +406,6 @@ export const CONTENT_ITEMS_LARGE: ContentItemType[] = [
       'Neque porro quisquam est qui dolorem quisquam est qui dolorem ipsum quia dolor sit amet, consectetur qui dolorem ipsum quia dolor sit amet, consectetur',
     headerPrefix: (
       <Avatar
-        backgroundColor="orange"
-        backgroundColorHue="100"
         shape="square"
         iconComponent={
           <Icon

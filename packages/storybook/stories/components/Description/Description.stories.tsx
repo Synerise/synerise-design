@@ -119,8 +119,6 @@ export const moreExamples: Story = {
                   color={customColors.mars['600']}
                 />
               }
-              backgroundColor="mars"
-              backgroundColorHue="100"
               size="small"
               shape="circle"
               hasStatus

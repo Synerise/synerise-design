@@ -37,12 +37,16 @@ Avatars have 4 sizes:
 
 The **S**-sized avatars contain the **S**-sized icons of the **Standard icons set**. The **M**, **L** and **XL** sizes contain the **M**-sized icons.
 
+Avatars take no background colour; what they show decides it. An image fills the avatar. An icon is drawn as an icon tile: the base background, a 1px strong border and the level-1 shadow (this covers the `UserAvatar` and `ObjectAvatar` fallback icons). Text, such as initials, gets the custom colour its first letter maps to. Anything else, such as a default `UserAvatar` illustration (`avatarId`), sits on a transparent background. `backgroundColor` and `backgroundColorHue` are deprecated and have no effect.
+
+Pass `hasTile` to put the tile's border and shadow on an avatar that shows a photo; an icon avatar always has them, and a text avatar ignores it because it already has a colour of its own.
+
 ```
 <div style={{ 'display': 'flex', 'justifyContent': 'space-between' }}>
-    <Avatar size="small" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
-    <Avatar size="medium" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
-    <Avatar size="large" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
-    <Avatar size="extraLarge" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
+    <Avatar size="small">JJ</Avatar>
+    <Avatar size="medium">JJ</Avatar>
+    <Avatar size="large">JJ</Avatar>
+    <Avatar size="extraLarge">JJ</Avatar>
 </div>
 ```
 
@@ -62,10 +66,10 @@ We divide avatars into three types. Every type has its own use case. If a custom
 
 ```
 <div style={{ 'display': 'flex', 'justifyContent': 'space-between' }}>
-    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@example.com'}} shape="square" size="medium" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
-    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@example.com'}} shape="cirlce" size="medium" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
-    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@example.com'}} src="https://www.w3schools.com/howto/img_avatar.png" size="large" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
-    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@example.com'}} src="https://www.w3schools.com/howto/img_avatar.png" shape="square" size="extraLarge" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
+    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@example.com'}} shape="square" size="medium">JJ</Avatar>
+    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@example.com'}} shape="circle" size="medium">JJ</Avatar>
+    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@example.com'}} src="https://www.w3schools.com/howto/img_avatar.png" size="large">JJ</Avatar>
+    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@example.com'}} src="https://www.w3schools.com/howto/img_avatar.png" shape="square" size="extraLarge">JJ</Avatar>
 </div>
 ```
 
@@ -84,10 +88,10 @@ We can present avatars as a single entity or in a group.
 
 ```
 <div style={{ 'display': 'flex', 'justifyContent': 'space-between' }}>
-    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@example.com'}} size="small" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
-    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@example.com'}} size="medium" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
-    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@example.com'}} size="large" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
-    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@example.com'}} size="extraLarge" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
+    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@example.com'}} size="small">JJ</Avatar>
+    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@example.com'}} size="medium">JJ</Avatar>
+    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@example.com'}} size="large">JJ</Avatar>
+    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@example.com'}} size="extraLarge">JJ</Avatar>
 </div>
 ```
 
@@ -96,10 +100,10 @@ We can present avatars as a single entity or in a group.
 ```
 import Icon, { FileM } from "@synerise/ds-icon";
 <div style={{ 'display': 'flex', 'justifyContent': 'space-between' }}>
-    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@example.com'}} shape="square" size="medium" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
-    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@example.com'}} shape="cirlce" size="medium" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
-    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@example.com'}} iconComponent={<Icon component={<FileM />} color={"white"} />} size="large" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
-    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@example.com'}} src="https://www.w3schools.com/howto/img_avatar.png" shape="square" size="extraLarge" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
+    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@example.com'}} shape="square" size="medium">JJ</Avatar>
+    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@example.com'}} shape="circle" size="medium">JJ</Avatar>
+    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@example.com'}} iconComponent={<Icon component={<FileM />} />} size="large">JJ</Avatar>
+    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@example.com'}} src="https://www.w3schools.com/howto/img_avatar.png" shape="square" size="extraLarge">JJ</Avatar>
 </div>
 ```
 
@@ -122,15 +126,13 @@ yarn add @synerise/ds-avatar
 ```jsx static
 import Avatar from '@synerise/ds-avatar';
 
-<Avatar shape={'circle'} backgroundColor={'grey'} size="medium" />;
+<Avatar shape={'circle'} size="medium" />;
 ```
 
 ## API
 
 | Property           | Description                                                                                        | Type                                                                                                 | Default  |
 | ------------------ | -------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | -------- |
-| backgroundColor    | Background color of the avatar                                                                     | `red` / `green` / `grey` / `yellow` / `blue` / `pink`/ `mars`/ `orange`/ `fern`/ `cyan`/ `purple` / `violet` | -        |
-| backgroundColorHue | Background color hue of the avatar                                                                 | `900` / `800` / `700` / `600` / `500` / `400` / `300` / `200` / `100` / `050`                        | `500`    |
 | disabled           | Determines if avatar is disabled                                                                   | boolean                                                                                              | `false`  |
 | hasStatus          | Aligns a badge with the avatar                                                                     | boolean                                                                                              | `false`  |
 | iconComponent      | Provides a custom component as a child. If both are provided, the prop icon has a greater priority | React.ReactNode                                                                                      | -        |
@@ -160,7 +162,6 @@ import { UserAvatar } from '@synerise/ds-avatar';
 | Property        | Description                                    | Type                                                                                                          | Default  |
 | --------------- | ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | -------- |
 | user            | User information                               | { firstName?: string, lastName?: string, email?: string, avatar?: string, avatarId?: string / number } | -        |
-| backgroundColor | Background color of the avatar                 | `auto` / `green` / `grey` / `yellow` / `blue` / `pink`/ `mars`/ `orange`/ `fern`/ `cyan`/ `purple` / `violet` | `auto`   |
 | badgeStatus     | Badge status                                   | `active` / `error` / `warning`                                                                                | -        |
 | disabled        | Determines if avatar is disabled               | boolean                                                                                                       | `false`  |
 | iconComponent   | Replace default user icon                      | React.ReactNode                                                                                               | -        |
@@ -187,9 +188,8 @@ import { ObjectAvatar } from '@synerise/ds-avatar';
 | --------------- | ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | -------- |
 | object          | Object information                             | { name?: string, description?: string, status?: string, avatar?: string }                                     | -        |
 | color           | Color for the fallback icon                    | `green` / `grey` / `yellow` / `blue` / `pink`/ `mars`/ `orange`/ `fern`/ `cyan`/ `purple` / `violet`         | `grey`   |
-| backgroundColor | Background color of the avatar                 | `auto` / `green` / `grey` / `yellow` / `blue` / `pink`/ `mars`/ `orange`/ `fern`/ `cyan`/ `purple` / `violet` | -        |
 | badgeStatus     | Badge status                                   | `active` / `error` / `warning`                                                                                | -        |
 | disabled        | Determines if avatar is disabled               | boolean                                                                                                       | -        |
-| iconComponent   | Replace default mail icon                      | React.ReactNode                                                                                               | -        |
+| iconComponent   | Replace default Close2M icon (use an object icon) | React.ReactNode                                                                                               | -        |
 | size            | Size of the avatar                             | `small` / `medium` / `large` / `extraLarge`                                                                   | -        |
 | tooltip         | Change default tooltip text displayed on hover | `TooltipObject` / `false`                                                                                     | -        |

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { isValidElement, type ReactNode } from 'react';
 
 import type { ContextItem } from '@synerise/ds-context-selector';
 import {
@@ -6,10 +6,24 @@ import {
   FolderM,
   FormM,
   MegaphoneM,
-  SegmentM,
+  ObjectApiM,
+  ObjectIntegrationM,
+  ObjectMobilePushM,
+  ObjectSchemaM,
+  ObjectSegmentationM,
   WebhookM,
 } from '@synerise/ds-icon';
 import InformationCard from '@synerise/ds-information-card';
+
+// The card's badge is an ObjectAvatar, which takes object icons only; the list rows keep their glyphs.
+const OBJECT_ICONS = new Map<unknown, ReactNode>([
+  [ApiM, <ObjectApiM />],
+  [FormM, <ObjectSchemaM />],
+  [WebhookM, <ObjectIntegrationM />],
+  [MegaphoneM, <ObjectMobilePushM />],
+]);
+const objectIconFor = (icon: ReactNode) =>
+  isValidElement(icon) ? OBJECT_ICONS.get(icon.type) : undefined;
 
 export const CONTEXT_TEXTS = {
   buttonLabel: 'Choose',
@@ -50,7 +64,7 @@ export const CONTEXT_GROUPS = [
 const infocardProps = {
   title: 'Title',
   subtitle: 'Subtitle',
-  icon: <SegmentM color="mars" />,
+  icon: <ObjectSegmentationM />,
   iconColor: 'mars',
   avatarTooltipText: 'Tooltip Text',
   descriptionConfig: {},
@@ -64,7 +78,7 @@ const generateInfoCard = (item: ContextItem) => {
     ...item,
     renderHoverTooltip: () => (
       <InformationCard
-        icon={item.icon}
+        icon={objectIconFor(item.icon)}
         title={item.name}
         subtitle={item.subtitle}
         renderAdditionalDescription={item.renderAdditionalDescription}

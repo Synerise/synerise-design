@@ -23,6 +23,8 @@ export type Color =
   | 'purple'
   | 'violet';
 
+export type Size = 'small' | 'medium' | 'large' | 'extraLarge' | undefined;
+
 export type ColorHue =
   | '900'
   | '800'
@@ -34,9 +36,11 @@ export type ColorHue =
   | '200'
   | '100'
   | '050';
-export type Size = 'small' | 'medium' | 'large' | 'extraLarge' | undefined;
 
 export type Shape = 'circle' | 'square';
+
+/** What an avatar shows, which decides its background: an image, the icon tile, a text colour or none. */
+export type AvatarContent = 'image' | 'icon' | 'text' | 'custom';
 
 export type TooltipObject = Omit<TooltipProps, 'children'> & {
   // Backwards compatibility:
@@ -63,6 +67,12 @@ export type AvatarProps = {
    */
   hasStatus?: boolean;
   /**
+   * Draws the tile border and shadow around an image. An icon always has them, and a text avatar
+   * ignores this because it already has a colour of its own.
+   * @default false
+   */
+  hasTile?: boolean;
+  /**
    * The size of the avatar
    */
   size?: Size;
@@ -76,11 +86,12 @@ export type AvatarProps = {
    */
   iconScale?: boolean;
   /**
-   * Background color of the avatar
+   * @deprecated Has no effect: the content decides the background (image, icon tile, or a colour
+   * from the text's first letter). Will be removed once consumers stop passing it.
    */
   backgroundColor?: Color | string;
   /**
-   * Hue of the avatar background color
+   * @deprecated Has no effect; see `backgroundColor`.
    */
   backgroundColorHue?: ColorHue;
   /**
@@ -100,8 +111,12 @@ export type AvatarProps = {
 
 type DefinedAvatarProps = Pick<
   AvatarProps,
-  'style' | 'disabled' | 'iconComponent' | 'size' | 'src'
+  'style' | 'disabled' | 'hasTile' | 'iconComponent' | 'size' | 'src'
 > & {
+  /**
+   * @deprecated Has no effect: the content decides the background. Will be removed once consumers
+   * stop passing it.
+   */
   backgroundColor?: 'auto' | Color | string;
   badgeStatus?: BadgeStatus;
   text?: string;

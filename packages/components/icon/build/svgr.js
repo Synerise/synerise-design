@@ -5,6 +5,8 @@ const fs = require('fs');
 const path = require('path');
 const tpl = require('./template.js');
 const normaliseCanvasRect = require('./normaliseCanvasRect.js');
+const tokeniseFills = require('./tokeniseFills.js');
+const { objectIconFills } = require('./objectIconColors.js');
 
 const ICONS_DIR = 'src/icons';
 const ICON_SETS_FILE = `${ICONS_DIR}/iconSets.ts`;
@@ -19,6 +21,14 @@ const ICON_SETS = [
   { dir: 'L', svg: 'src/svg/L/*.svg', iconSet: 'large' },
   { dir: 'XL', svg: 'src/svg/XL/*.svg', iconSet: 'xlarge' },
   { dir: 'colorIcons', svg: 'src/svg/colorIcons/*.svg', iconSet: 'color' },
+  // One folder per category; each icon's colours become that category's tokens (objectIconColors.js).
+  {
+    dir: 'objectIcons',
+    svg: 'src/svg/objectIcons/*/*.svg',
+    iconSet: 'object',
+    categoryClassPrefix: 'ds-object-icon',
+    fillsFor: objectIconFills,
+  },
 ];
 
 const titlecase = input => input[0].toLocaleUpperCase() + input.slice(1);
@@ -49,56 +59,63 @@ const kebabCaseFilename = filePath => {
   return filename;
 };
 
-const svgoConfigFor = (file, componentClassName, iconSet) => ({
-  plugins: [
-    {
-      name: 'addAttributesToSVGElement',
-      params: {
-        attributes: [`data-testid="ds-icon-${componentClassName}"`],
+const svgoConfigFor = (file, componentClassName, { iconSet, categoryClassPrefix, fillsFor }) => {
+  const category = fillsFor ? path.basename(path.dirname(file)) : undefined;
+  const classNames = [componentClassName, `ds-icon-set-${iconSet}`];
+  if (category) classNames.push(`${categoryClassPrefix}-${category}`);
+
+  return {
+    plugins: [
+      {
+        name: 'addAttributesToSVGElement',
+        params: {
+          attributes: [`data-testid="ds-icon-${componentClassName}"`],
+        },
       },
-    },
-    {
-      name: 'prefixIds',
-      params: {
-        delim: '',
-        prefix: () => `svg-${hash(file)}`,
+      {
+        name: 'prefixIds',
+        params: {
+          delim: '',
+          prefix: () => `svg-${hash(file)}`,
+        },
       },
-    },
-    {
-      name: 'cleanupIds',
-      params: {
-        remove: true,
-        minify: true,
-        preservePrefixes: [`svg-${hash(file)}`],
+      {
+        name: 'cleanupIds',
+        params: {
+          remove: true,
+          minify: true,
+          preservePrefixes: [`svg-${hash(file)}`],
+        },
       },
-    },
-    {
-      name: 'addClassesToSVGElement',
-      params: {
-        className: `${componentClassName} ds-icon-set-${iconSet}`,
+      {
+        name: 'addClassesToSVGElement',
+        params: {
+          className: classNames.join(' '),
+        },
       },
-    },
-    'removeDimensions',
-    'removeTitle',
-    'convertStyleToAttrs',
-    {
-      name: 'removeAttrs',
-      params: {
-        attrs: 'enable-background',
-        elemSeparator: ':',
-        preserveCurrentColor: false,
+      'removeDimensions',
+      'removeTitle',
+      'convertStyleToAttrs',
+      {
+        name: 'removeAttrs',
+        params: {
+          attrs: 'enable-background',
+          elemSeparator: ':',
+          preserveCurrentColor: false,
+        },
       },
-    },
-    {
-      name: 'inlineStyles',
-      params: {
-        onlyMatchedOnce: false,
-        removeMatchedSelectors: true,
+      {
+        name: 'inlineStyles',
+        params: {
+          onlyMatchedOnce: false,
+          removeMatchedSelectors: true,
+        },
       },
-    },
-    normaliseCanvasRect(`svg-${hash(file)}canvas`),
-  ],
-});
+      normaliseCanvasRect(`svg-${hash(file)}canvas`),
+      ...(category ? [tokeniseFills({ colors: fillsFor(category), source: file })] : []),
+    ],
+  };
+};
 
 /**
  * Generates one icon set and returns its sorted component names.
@@ -108,7 +125,8 @@ const svgoConfigFor = (file, componentClassName, iconSet) => ({
  * order followed whichever fs callback happened to land first, which churned the generated
  * output — and iconSets.ts below would churn with it.
  */
-const buildIconsSet = async ({ dir, svg, iconSet }) => {
+const buildIconsSet = async set => {
+  const { dir, svg, iconSet } = set;
   const libDir = `${ICONS_DIR}/${dir}`;
   const files = (await glob(svg, {})).sort();
 
@@ -123,7 +141,7 @@ const buildIconsSet = async ({ dir, svg, iconSet }) => {
           template: tpl,
           typescript: true,
           plugins: ['@svgr/plugin-svgo', '@svgr/plugin-jsx'],
-          svgoConfig: svgoConfigFor(file, componentClassName, iconSet),
+          svgoConfig: svgoConfigFor(file, componentClassName, set),
         },
         { componentName },
       );

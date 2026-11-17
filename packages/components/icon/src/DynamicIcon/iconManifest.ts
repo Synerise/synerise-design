@@ -2,6 +2,7 @@ import type * as additional from '../icons/additional';
 import type * as color from '../icons/colorIcons';
 import type * as large from '../icons/L';
 import type * as medium from '../icons/M';
+import type * as object from '../icons/objectIcons';
 import type * as xlarge from '../icons/XL';
 
 /**
@@ -19,4 +20,5 @@ export type AllIconNames =
   | keyof typeof large
   | keyof typeof xlarge
   | keyof typeof additional
-  | keyof typeof color;
+  | keyof typeof color
+  | keyof typeof object;

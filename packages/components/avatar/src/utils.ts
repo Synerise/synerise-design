@@ -6,15 +6,13 @@ import {
 } from 'react';
 
 import Icon from '@synerise/ds-icon';
-import { type ColorObject, selectColorByLetter } from '@synerise/ds-utils';
+import {
+  type ColorObject,
+  resolveCustomColor,
+  selectColorByLetter,
+} from '@synerise/ds-utils';
 
-import type {
-  AvatarProps,
-  Color,
-  ColorHue,
-  TooltipObject,
-  UserAvatar,
-} from './Avatar.types';
+import type { AvatarProps, TooltipObject, UserAvatar } from './Avatar.types';
 
 function getFirstLetter(from: string | null): string {
   return (from || '').substr(0, 1).toUpperCase();
@@ -80,28 +78,13 @@ export function addIconColor(
   return iconElement;
 }
 
-export function getColorByText(
-  text: string | null,
-  backgroundColor?: 'auto' | Color | string,
-): [Color, ColorHue] {
-  if (backgroundColor && backgroundColor.indexOf('-') !== -1) {
-    return backgroundColor.split('-') as [Color, ColorHue];
-  }
-  if (!text && backgroundColor && backgroundColor !== 'auto') {
-    return [backgroundColor as Color, '100'];
-  }
-  const autoColor =
-    (
-      (typeof text === 'string'
-        ? selectColorByLetter(text.slice(0, 1), true)
-        : {}) as ColorObject
-    )?.color || 'grey';
-  const color =
-    text && backgroundColor && backgroundColor !== 'auto'
-      ? (backgroundColor as Color)
-      : autoColor;
-  const hue = text ? '500' : '100';
-  return [color as Color, hue as ColorHue];
+/** A text avatar's background: the custom colour its first letter maps to, at shade 500. */
+export function getTextBackground(text: string): string {
+  const { color } = selectColorByLetter(
+    text.trim().slice(0, 1),
+    true,
+  ) as ColorObject;
+  return resolveCustomColor(`${color || 'grey'}-500`, 'transparent');
 }
 
 export function getDefaultAvatarIndex(
@@ -151,6 +134,4 @@ export function getTooltipProps(
         };
 
   return finalTooltipProps;
-
-  return tooltipProps;
 }

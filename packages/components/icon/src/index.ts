@@ -19,6 +19,7 @@ export * from './icons/colorIcons';
 export type { IconSet } from './icons/iconSets';
 export * from './icons/L';
 export * from './icons/M';
+export * from './icons/objectIcons';
 export * from './icons/XL';
 export { default as MimeTypeIcon } from './MimeTypeIcon/MimeTypeIcon';
 export type { MimeTypeIconsProps } from './MimeTypeIcon/MimeTypeIcon.types';

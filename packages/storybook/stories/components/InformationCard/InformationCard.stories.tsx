@@ -3,7 +3,7 @@ import React from 'react';
 import { fn } from 'storybook/test';
 
 import Button from '@synerise/ds-button';
-import { SegmentM } from '@synerise/ds-icon';
+import { ObjectSegmentationM } from '@synerise/ds-icon';
 import type { InformationCardProps } from '@synerise/ds-information-card';
 import InformationCard, { buildExtraInfo } from '@synerise/ds-information-card';
 import Result from '@synerise/ds-result';
@@ -54,7 +54,7 @@ const InformationCardMeta = {
   args: {
     title: 'Title',
     subtitle: 'Subtitle',
-    icon: <SegmentM color="mars" />,
+    icon: <ObjectSegmentationM />,
     iconColor: 'mars',
     avatarTooltipText: 'Tooltip Text',
     descriptionConfig: {},
@@ -70,7 +70,7 @@ export const Default: Story = {
         code: `<InformationCard
   title="Title"
   subtitle="Subtitle"
-  icon={<SegmentM color="mars" />}
+  icon={<ObjectSegmentationM />}
   iconColor="mars"
   avatarTooltipText="Tooltip Text"
   descriptionConfig={{}}
@@ -103,7 +103,7 @@ export const WithNotice: Story = {
         code: `<InformationCard
   title="Title"
   subtitle="Subtitle"
-  icon={<SegmentM color="mars" />}
+  icon={<ObjectSegmentationM />}
   iconColor="mars"
   avatarTooltipText="Tooltip Text"
   descriptionConfig={{}}
@@ -124,7 +124,7 @@ export const WithoutDescription: Story = {
         code: `<InformationCard
   title="Title"
   subtitle="Subtitle"
-  icon={<SegmentM color="mars" />}
+  icon={<ObjectSegmentationM />}
   iconColor="mars"
   avatarTooltipText="Tooltip Text"
   descriptionConfig={null}
@@ -145,7 +145,7 @@ export const Minimalistic: Story = {
         code: `<InformationCard
   title="Title"
   subtitle="Subtitle"
-  icon={<SegmentM color="mars" />}
+  icon={<ObjectSegmentationM />}
   iconColor="mars"
   avatarTooltipText="Tooltip Text"
   descriptionConfig={null}
@@ -166,7 +166,7 @@ export const CustomFooter: Story = {
         code: `<InformationCard
   title="Title"
   subtitle="Subtitle"
-  icon={<SegmentM color="mars" />}
+  icon={<ObjectSegmentationM />}
   iconColor="mars"
   avatarTooltipText="Tooltip Text"
   descriptionConfig={{}}
@@ -198,7 +198,7 @@ export const WithErrorState: Story = {
         code: `<InformationCard
   title="Title"
   subtitle="Subtitle"
-  icon={<SegmentM color="mars" />}
+  icon={<ObjectSegmentationM />}
   iconColor="mars"
   avatarTooltipText="Tooltip Text"
   descriptionConfig={null}
@@ -226,7 +226,7 @@ export const FooterText: Story = {
         code: `<InformationCard
   title="Title"
   subtitle="Subtitle"
-  icon={<SegmentM color="mars" />}
+  icon={<ObjectSegmentationM />}
   iconColor="mars"
   avatarTooltipText="Tooltip Text"
   descriptionConfig={{}}
@@ -251,7 +251,7 @@ export const ActionButton: Story = {
         code: `<InformationCard
   title="Title"
   subtitle="Subtitle"
-  icon={<SegmentM color="mars" />}
+  icon={<ObjectSegmentationM />}
   iconColor="mars"
   avatarTooltipText="Tooltip Text"
   descriptionConfig={{}}
@@ -284,7 +284,7 @@ export const CustomActionButton: Story = {
         code: `<InformationCard
   title="Title"
   subtitle="Subtitle"
-  icon={<SegmentM color="mars" />}
+  icon={<ObjectSegmentationM />}
   iconColor="mars"
   avatarTooltipText="Tooltip Text"
   descriptionConfig={{}}
@@ -324,7 +324,7 @@ export const CompleteExample: Story = {
         code: `<InformationCard
   title="Title"
   subtitle="Subtitle"
-  icon={<SegmentM color="mars" />}
+  icon={<ObjectSegmentationM />}
   iconColor="mars"
   avatarTooltipText="Tooltip Text"
   descriptionConfig="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et risus ut lacus pulvinar tristique ac quis mi. Nulla sem ex, finibus ac neque et, ultricies fermentum sapien."
@@ -354,7 +354,7 @@ export const PropertyListOverflow: Story = {
         code: `<InformationCard
   title="Title"
   subtitle="Subtitle"
-  icon={<SegmentM color="mars" />}
+  icon={<ObjectSegmentationM />}
   iconColor="mars"
   avatarTooltipText="Tooltip Text"
   descriptionConfig="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et risus ut lacus pulvinar tristique ac quis mi. Nulla sem ex, finibus ac neque et, ultricies fermentum sapien."

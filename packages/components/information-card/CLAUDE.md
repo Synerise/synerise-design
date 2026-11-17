@@ -31,7 +31,7 @@ src/
 | `title` | `ReactNode` | — | Card title; string values get a copy-on-click button. **Required** unless `isLoading` is `true`. |
 | `isLoading` | `boolean` | `false` | Renders a skeleton placeholder (avatar + 3 bars + empty footer band) instead of the card contents. When `true`, all content props are ignored and `title` is not required. |
 | `subtitle` | `ReactNode` | `undefined` | Second line; string values get a copy-on-click button |
-| `icon` | `ReactNode` | `undefined` | Avatar icon (raw SVG); use with `buildIconBadge` or `buildInitialsBadge` helpers |
+| `icon` | `ReactNode` | `<Close2M />` | Badge icon (raw SVG), rendered in an `ObjectAvatar` by `buildIconBadge`. Pass an object icon (`Object*M` from ds-icon); their colours are tokens, so `iconColor` has no effect on them |
 | `iconColor` | `string` | `undefined` | Color applied to `icon` element |
 | `renderBadge` | `Function \| null` | `undefined` | Custom badge render prop; `null` hides the badge entirely |
 | `avatarTooltipText` | `string` | `undefined` | Tooltip on the avatar badge (requires `renderBadge`) |
@@ -105,9 +105,8 @@ import InformationCard, {
 <InformationCard
  title="Customer segment"
  subtitle="ID: 12345"
- icon={<SegmentM />}
- iconColor="mars"
- renderBadge={() => buildIconBadge({ iconElement: <SegmentM />, iconColor: 'mars' })}
+ icon={<ObjectSegmentationM />}
+ renderBadge={() => buildIconBadge({ iconElement: <ObjectSegmentationM /> })}
  propertyListItems={[
  { label: 'Created', value: '2024-01-01' },
  { type: 'divider' },

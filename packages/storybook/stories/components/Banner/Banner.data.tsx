@@ -74,7 +74,6 @@ export const SLIDES = [
       title: 'Main banner header',
       titlePrefix: (
         <UserAvatar
-          backgroundColor="grey-200"
           size="medium"
           iconComponent={
             <Icon

@@ -1,7 +1,7 @@
 import React, { forwardRef, useEffect, useRef, useState } from 'react';
 
 import Card from '@synerise/ds-card';
-import { SegmentM } from '@synerise/ds-icon';
+import { Close2M } from '@synerise/ds-icon';
 import {
   FloatingDelayGroup,
   HOVER_CLOSE_DELAY,
@@ -36,7 +36,7 @@ const InformationCard = forwardRef<HTMLDivElement, InformationCardProps>(
       title,
       notice,
       footerText,
-      icon: iconElement = <SegmentM />,
+      icon: iconElement = <Close2M />,
       iconColor,
       descriptionConfig,
       className,

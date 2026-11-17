@@ -14,10 +14,7 @@ const dataSource: DataSource[] = [
     lastname: 'Kowalski',
     email: 'k.kowalski@example.com',
     status: 'active',
-    avatarProps: {
-      backgroundColor: 'blue',
-      backgroundColorHue: '600',
-    },
+    avatarProps: {},
   },
   {
     id: 1,
@@ -26,10 +23,7 @@ const dataSource: DataSource[] = [
     lastname: 'Nowak',
     email: 'a.nowak@example.com',
     status: 'active',
-    avatarProps: {
-      backgroundColor: 'fern',
-      backgroundColorHue: '600',
-    },
+    avatarProps: {},
   },
   {
     id: 2,
@@ -38,10 +32,7 @@ const dataSource: DataSource[] = [
     lastname: 'Stamford',
     email: 'j.stamford@example.com',
     status: 'inactive',
-    avatarProps: {
-      backgroundColor: 'pink',
-      backgroundColorHue: '600',
-    },
+    avatarProps: {},
   },
   {
     id: 3,
@@ -50,10 +41,7 @@ const dataSource: DataSource[] = [
     lastname: 'Wiśniewska',
     email: 'm.wisniewska@example.com',
     status: 'active',
-    avatarProps: {
-      backgroundColor: 'mars',
-      backgroundColorHue: '600',
-    },
+    avatarProps: {},
   },
 ];
 

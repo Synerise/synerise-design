@@ -17,6 +17,7 @@ import Icon, {
   EditM,
   EditS,
   FolderM,
+  ObjectEmailM,
   OptionHorizontalM,
   ShowM,
   StarFillM,
@@ -396,7 +397,13 @@ export const LIST_ITEMS: ListItemProps[] = [
   makeItem({ text: 'Avatar', prefixType: 'avatar' }),
   makeItem({
     text: 'Object avatar',
-    prefixel: <ObjectAvatar size="small" tooltip={false} />,
+    prefixel: (
+      <ObjectAvatar
+        size="small"
+        tooltip={false}
+        iconComponent={<Icon component={<ObjectEmailM />} />}
+      />
+    ),
   }),
   makeItem({ text: 'Checkbox', prefixType: 'checkbox' }),
   makeItem({ text: 'Flag', prefixel: <DSFlag country="de" /> }),

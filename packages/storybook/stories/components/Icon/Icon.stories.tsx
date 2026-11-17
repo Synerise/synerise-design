@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react-vite';
-import React, { useMemo, useState } from 'react';
+import React, { type ReactElement, useMemo, useState } from 'react';
 
 import type { BaseIconProps } from '@synerise/ds-icon';
 import Icon from '@synerise/ds-icon';
@@ -7,6 +7,7 @@ import * as additional from '@synerise/ds-icon/dist/icons/additional';
 import * as color from '@synerise/ds-icon/dist/icons/colorIcons';
 import * as large from '@synerise/ds-icon/dist/icons/L';
 import * as medium from '@synerise/ds-icon/dist/icons/M';
+import * as objectIcons from '@synerise/ds-icon/dist/icons/objectIcons';
 import * as xLarge from '@synerise/ds-icon/dist/icons/XL';
 
 import {
@@ -14,6 +15,7 @@ import {
   reactNodeAsSelect,
   STYLE_ARG_CONTROL,
 } from '../../utils';
+import { NO_SNAPSHOT } from '../../utils/chromatic';
 import { IconsWrapper, IconWrapper } from './Icon.stories.styles';
 
 const iconNames = Object.keys(medium);
@@ -89,6 +91,94 @@ export const AdditionalXL: StoryObj<typeof Icon> = {
 
 export const AdditionalColor: StoryObj<typeof Icon> = {
   render: () => <IconList icons={color} color="" size={48} />,
+};
+
+export const ObjectIcon: StoryObj<typeof Icon> = {
+  parameters: { ...NO_SNAPSHOT },
+  render: () => <IconList icons={objectIcons} size={24} />,
+};
+
+type ObjectIconComponent = (
+  props: object,
+) => ReactElement<{ className: string }>;
+
+// Each generated object icon carries its category as `ds-object-icon-<category>` on the svg.
+const categoryOf = (Component: ObjectIconComponent) =>
+  Component({}).props.className.match(/ds-object-icon-(\S+)/)?.[1] ?? 'other';
+
+// Design's order (the numbering of the delivered files), not alphabetical.
+const OBJECT_ICON_CATEGORIES = [
+  'analytics',
+  'campaigns',
+  'automation',
+  'ai',
+  'content',
+  'data',
+  'profiles',
+  'settings',
+];
+
+const OBJECT_ICONS_BY_CATEGORY = Object.entries(
+  objectIcons as Record<string, ObjectIconComponent>,
+).reduce<Record<string, [string, ObjectIconComponent][]>>(
+  (groups, [name, Component]) => {
+    const category = categoryOf(Component);
+    return {
+      ...groups,
+      [category]: [...(groups[category] ?? []), [name, Component]],
+    };
+  },
+  {},
+);
+
+// Light tokens live on :root only, so the first panel follows the page theme and the second is forced dark.
+const ObjectIconPanel = ({ dark = false }: { dark?: boolean }) => (
+  <div
+    data-ds-theme={dark ? 'dark' : undefined}
+    style={{
+      flex: 1,
+      padding: 16,
+      background: 'var(--ds-color-background-base-default)',
+      color: 'var(--ds-color-text-base-subtle)',
+      fontSize: 11,
+    }}
+  >
+    <strong>{dark ? 'dark' : 'page theme'}</strong>
+    {OBJECT_ICON_CATEGORIES.map((category) => (
+      <div key={category} style={{ marginTop: 12 }}>
+        <div style={{ marginBottom: 4 }}>{category}</div>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+          {(OBJECT_ICONS_BY_CATEGORY[category] ?? []).map(
+            ([name, Component]) => (
+              <div
+                key={name}
+                title={name}
+                style={{
+                  width: 112,
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 6,
+                }}
+              >
+                <Icon component={<Component />} />
+                <span>{name.replace(/^Object|M$/g, '')}</span>
+              </div>
+            ),
+          )}
+        </div>
+      </div>
+    ))}
+  </div>
+);
+
+/** Every object icon by category, in the page theme and in the dark theme side by side. */
+export const ObjectIconMatrix: StoryObj<typeof Icon> = {
+  render: () => (
+    <div style={{ display: 'flex', gap: 16 }}>
+      <ObjectIconPanel />
+      <ObjectIconPanel dark />
+    </div>
+  ),
 };
 
 const SEARCH_INPUT_STYLE: React.CSSProperties = {

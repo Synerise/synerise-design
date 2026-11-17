@@ -20,6 +20,7 @@ const SET_LOADERS: Record<IconSet, () => Promise<IconSetModule>> = {
   XL: () => import('./icons/XL'),
   additional: () => import('./icons/additional'),
   colorIcons: () => import('./icons/colorIcons'),
+  objectIcons: () => import('./icons/objectIcons'),
 };
 
 /** Resolved icons, and negatively-cached misses. Read during render so a remount never flashes. */

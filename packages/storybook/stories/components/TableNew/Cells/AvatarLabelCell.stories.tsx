@@ -3,7 +3,7 @@ import React from 'react';
 import { fn } from 'storybook/test';
 
 import Avatar, { ObjectAvatar } from '@synerise/ds-avatar';
-import Icon, { EmailsListM, UserM } from '@synerise/ds-icon';
+import Icon, { EmailsListM, ObjectEmailM } from '@synerise/ds-icon';
 import {
   AvatarLabelCell,
   type BaseAvatarLabelProps,
@@ -75,11 +75,11 @@ export const WithLabels: Story = {
     <ObjectAvatar
       badgeStatus="active"
       size="medium"
-      iconComponent={<Icon component={<UserM />} color="red" />}
+      iconComponent={<Icon component={<ObjectEmailM />} />}
     />
   }
-  title="Charlotte Stiedemann"
-  labels={['Admin', 'charlotte@example.com']}
+  title="Summer sale newsletter"
+  labels={['Email campaign', 'Edited 11 Jun 2019 18:47']}
 />`,
       },
     },
@@ -90,11 +90,11 @@ export const WithLabels: Story = {
       <ObjectAvatar
         badgeStatus="active"
         size="medium"
-        iconComponent={<Icon component={<UserM />} color="red" />}
+        iconComponent={<Icon component={<ObjectEmailM />} />}
       />
     ),
-    title: 'Charlotte Stiedemann',
-    labels: ['Admin', 'charlotte@example.com'],
+    title: 'Summer sale newsletter',
+    labels: ['Email campaign', 'Edited 11 Jun 2019 18:47'],
   },
 };
 

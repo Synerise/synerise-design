@@ -8,10 +8,23 @@ const justifyMap = {
   right: 'flex-end',
 } as const;
 
+/**
+ * How far a child may paint above and below the wrapper. `--ds-shadows-shadow-1`, which the avatar
+ * icon tile uses, reaches 16px down (4px offset + 12px blur).
+ */
+const SHADOW_BLEED = 16;
+
 export const CellWrapper = styled.div<{
   $align?: 'left' | 'center' | 'right';
 }>`
   overflow: hidden;
+  /*
+   * The wrapper hugs its content, so a child's shadow would be clipped right at its edge. The
+   * padding grows the clip box; the equal negative margin cancels it, so the row keeps its height.
+   * Vertical only — horizontal padding would let long content bleed into the next column.
+   */
+  padding: ${SHADOW_BLEED}px 0;
+  margin: -${SHADOW_BLEED}px 0;
 `;
 
 export const Td = styled.td<{

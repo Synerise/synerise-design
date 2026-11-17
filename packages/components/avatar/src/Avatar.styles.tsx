@@ -1,11 +1,9 @@
 import React, { forwardRef } from 'react';
 import styled, { css } from 'styled-components';
 
-import type { ThemeProps } from '@synerise/ds-core';
 import { macro } from '@synerise/ds-typography';
-import { type CustomColorShade, resolveCustomColor } from '@synerise/ds-utils';
 
-import type { AvatarProps } from './Avatar.types';
+import type { AvatarContent, AvatarProps } from './Avatar.types';
 
 export const TooltipGroup = styled.div`
   margin: 13px 8px;
@@ -21,31 +19,26 @@ export const TooltipGroup = styled.div`
   }
 `;
 
-const applyBgColors = (
-  props: ThemeProps & {
-    backgroundColor?: string;
-    backgroundColorHue?: string;
-    $iconTokens?: boolean;
-  },
-) => {
-  const { backgroundColor, backgroundColorHue, $iconTokens } = props;
-  if ($iconTokens) {
+/** The bordered, raised frame of the Figma icon tile, without its background. */
+const tileFrame = css`
+  border: 1px solid var(--ds-color-border-base-strong);
+  box-shadow: var(--ds-shadows-shadow-1);
+`;
+
+const applyContentBackground = ({
+  $content,
+  $textBackground,
+  $hasTile,
+}: ExtraAvatarProps) => {
+  if ($content === 'icon') {
     return css`
-      background: var(--ds-avatar-icon-bg-default);
+      background: var(--ds-color-background-base-default);
+      ${tileFrame};
     `;
   }
-  // Categorical family + hue → flipping custom-colour token via the shared resolver, which also
-  // maps the legacy palette hue '050' to the '50' token key. A raw hex or var() (db-driven prop)
-  // is the `full-custom` escape hatch and is used literally.
-  const bg =
-    backgroundColor && backgroundColor !== 'auto'
-      ? resolveCustomColor(backgroundColor, 'transparent', {
-          defaultShade: (backgroundColorHue || '400') as CustomColorShade,
-          passthroughResolved: true,
-        })
-      : 'transparent';
   return css`
-    background: ${bg};
+    background: ${($content === 'text' && $textBackground) || 'transparent'};
+    ${$hasTile && $content === 'image' && tileFrame};
   `;
 };
 
@@ -92,7 +85,11 @@ const applyFontSize = (props: AvatarProps) => {
 
 type ExtraAvatarProps = {
   hasTooltip?: boolean;
-  $iconTokens?: boolean;
+  $content?: AvatarContent;
+  /** Resolved background of a text avatar, derived from its first letter. */
+  $textBackground?: string;
+  /** Frames an image. An icon is always framed; text carries its own colour and ignores this. */
+  $hasTile?: boolean;
 };
 
 /**
@@ -121,8 +118,6 @@ const AvatarBase = forwardRef<HTMLSpanElement, AvatarProps & ExtraAvatarProps>(
   (
     {
       // DS-only / styling props — consumed here so they do not leak to the DOM
-      backgroundColor,
-      backgroundColorHue,
       hasStatus,
       hasTooltip,
       disabled,
@@ -175,13 +170,13 @@ export const StyledAvatar = styled(AvatarBase)<ExtraAvatarProps>`
     vertical-align: middle;
     border-radius: 50%;
     ${(props) =>
-      props.$iconTokens
+      props.$content === 'icon'
         ? 'color: var(--ds-avatar-icon-icon);'
         : 'color: var(--ds-avatar-text-text) !important;'}
     user-select: none;
     transition: background 0.3s ease;
 
-    ${(props) => applyBgColors(props)};
+    ${(props) => applyContentBackground(props)};
     ${(props) => applyDisabledStyles(props)};
 
     ${(props) =>
@@ -197,7 +192,7 @@ export const StyledAvatar = styled(AvatarBase)<ExtraAvatarProps>`
       height: 100%;
       font-size: 11px;
       ${(props) =>
-        props.$iconTokens
+        props.$content === 'icon'
           ? 'color: inherit;'
           : 'color: var(--ds-avatar-text-text) !important;'}
       user-select: none;

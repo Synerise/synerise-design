@@ -10,6 +10,8 @@ import Icon, {
   AggregateM,
   CopyClipboardM,
   ExpressionM,
+  ObjectAggregateM,
+  ObjectSegmentationM,
   OptionHorizontalM,
   SegmentM,
   ShowM,
@@ -25,80 +27,80 @@ const BATCH_ITEMS_DATA = [
   {
     text: `Aggregate name`,
     id: '1',
-    icon: <AggregateM />,
+    icon: <ObjectAggregateM />,
     iconColor: 'red',
     prefixel: (
-      <ObjectAvatar size="small" iconComponent={<SegmentM />} color="red" />
+      <ObjectAvatar size="small" iconComponent={<ObjectSegmentationM />} />
     ),
     onClick: fn(),
   },
   {
     text: `Aggregate name`,
     id: '1',
-    icon: <AggregateM />,
+    icon: <ObjectAggregateM />,
     iconColor: 'red',
     prefixel: (
-      <ObjectAvatar size="small" iconComponent={<AggregateM />} color="red" />
+      <ObjectAvatar size="small" iconComponent={<ObjectAggregateM />} />
     ),
     onClick: fn(),
   },
   {
     text: `Aggregate name`,
     id: '1',
-    icon: <AggregateM />,
+    icon: <ObjectAggregateM />,
     iconColor: 'red',
     prefixel: (
-      <ObjectAvatar size="small" iconComponent={<AggregateM />} color="red" />
+      <ObjectAvatar size="small" iconComponent={<ObjectAggregateM />} />
     ),
     onClick: fn(),
   },
   {
     text: `Aggregate name`,
     id: '1',
-    icon: <AggregateM />,
+    icon: <ObjectAggregateM />,
     iconColor: 'red',
     prefixel: (
-      <ObjectAvatar size="small" iconComponent={<AggregateM />} color="red" />
+      <ObjectAvatar size="small" iconComponent={<ObjectAggregateM />} />
     ),
     onClick: fn(),
   },
   {
     text: `Aggregate name`,
     id: '1',
-    icon: <AggregateM />,
+    icon: <ObjectAggregateM />,
     iconColor: 'red',
     prefixel: (
-      <ObjectAvatar size="small" iconComponent={<AggregateM />} color="red" />
+      <ObjectAvatar size="small" iconComponent={<ObjectAggregateM />} />
     ),
     onClick: fn(),
   },
   {
     text: `Aggregate name`,
     id: '1',
-    icon: <AggregateM />,
+    icon: <ObjectAggregateM />,
     iconColor: 'red',
     prefixel: (
-      <ObjectAvatar size="small" iconComponent={<AggregateM />} color="red" />
+      <ObjectAvatar size="small" iconComponent={<ObjectAggregateM />} />
     ),
     onClick: fn(),
   },
   {
     text: `Aggregate name`,
     id: '1',
-    icon: <AggregateM />,
+    icon: <ObjectAggregateM />,
     iconColor: 'red',
     prefixel: (
-      <ObjectAvatar size="small" iconComponent={<AggregateM />} color="red" />
+      <ObjectAvatar size="small" iconComponent={<ObjectAggregateM />} />
     ),
     onClick: fn(),
   },
   {
     text: `Aggregate name`,
     id: '1',
-    icon: <AggregateM />,
+    icon: <ObjectAggregateM />,
     iconColor: 'red',
     prefixel: (
-      <ObjectAvatar size="small" iconComponent={<AggregateM />} color="red" />
+      <ObjectAvatar size="small" iconComponent={<ObjectAggregateM />} />
     ),
     onClick: fn(),
   },
