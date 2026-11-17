@@ -290,6 +290,18 @@ describe('ItemsRoll', () => {
     expect(onChangeSelection).toHaveBeenCalledTimes(1);
   });
 
+  it('renders change selection as a ghost-primary button', async () => {
+    const props = propsFactory({ onChangeSelection: vi.fn() });
+
+    renderWithProvider(<ItemsRoll {...props} />);
+
+    const changeSelectionButton = (
+      await screen.findByText('Change selection')
+    ).closest('button');
+
+    expect(changeSelectionButton).toHaveClass('ant-btn-ghost-primary');
+  });
+
   it('renders with No results', async () => {
     const onSearch = vi.fn();
     const onSearchClear = vi.fn();

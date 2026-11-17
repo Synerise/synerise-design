@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 
+import Button from '@synerise/ds-button';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { EditM } from '@synerise/ds-icon';
 import { SearchInput } from '@synerise/ds-search';
@@ -25,14 +26,14 @@ const Header = ({
 }: HeaderProps) => {
   const ChangeSelectionButton = useMemo(
     () => (
-      <S.ChangeSelection
-        type="ghost"
+      <Button
+        type="ghost-primary"
         mode="icon-label"
         onClick={onChangeSelection}
       >
         <Icon component={<ChangeSelectionIcon />} size={24} />
         {allTexts.changeSelectionLabel}
-      </S.ChangeSelection>
+      </Button>
     ),
     [ChangeSelectionIcon, onChangeSelection, allTexts.changeSelectionLabel],
   );
