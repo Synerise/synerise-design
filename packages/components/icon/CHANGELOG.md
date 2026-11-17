@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.5.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@2.4.0...@synerise/ds-icon@2.5.0) (2026-11-17)
+
+
+### Features
+
+* **icon:** add object icons and draw icon avatars as a bordered tile ([d3144c0](https://github.com/Synerise/synerise-design/commit/d3144c0d350dec74c3629b26cfe12e4bcb393442))
+
+
+
+
+
 # [2.4.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@2.3.2...@synerise/ds-icon@2.4.0) (2026-11-17)
 
 

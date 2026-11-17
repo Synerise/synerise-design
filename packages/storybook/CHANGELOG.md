@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.70.0](https://github.com/Synerise/synerise-design/compare/storybook@1.69.2...storybook@1.70.0) (2026-11-17)
+
+
+### Features
+
+* **icon:** add object icons and draw icon avatars as a bordered tile ([d3144c0](https://github.com/Synerise/synerise-design/commit/d3144c0d350dec74c3629b26cfe12e4bcb393442))
+
+
+
+
+
 ## [1.69.2](https://github.com/Synerise/synerise-design/compare/storybook@1.69.1...storybook@1.69.2) (2026-11-17)
 
 **Note:** Version bump only for package storybook

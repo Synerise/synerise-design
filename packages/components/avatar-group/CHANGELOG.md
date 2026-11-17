@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-avatar-group@2.1.5...@synerise/ds-avatar-group@2.2.0) (2026-11-17)
+
+
+### Features
+
+* **icon:** add object icons and draw icon avatars as a bordered tile ([d3144c0](https://github.com/Synerise/synerise-design/commit/d3144c0d350dec74c3629b26cfe12e4bcb393442))
+
+
+
+
+
 ## [2.1.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-avatar-group@2.1.4...@synerise/ds-avatar-group@2.1.5) (2026-11-17)
 
 **Note:** Version bump only for package @synerise/ds-avatar-group
