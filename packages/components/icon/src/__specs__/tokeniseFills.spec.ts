@@ -48,6 +48,22 @@ describe('tokeniseFills', () => {
     expect(jsx).toContain('fill="none"');
   });
 
+  it('tokenises white and black named by keyword, like their hex', async () => {
+    const jsx = await toJsx(
+      '<svg><path d="M0 0" fill="white"/><circle r="1" fill="BLACK"/></svg>',
+      { '#ffffff': '--ds-light', '#000000': '--ds-dark' },
+    );
+
+    expect(jsx).toContain('fill: "var(--ds-light)"');
+    expect(jsx).toContain('fill: "var(--ds-dark)"');
+  });
+
+  it('throws on a named white the table does not map', async () => {
+    await expect(
+      toJsx('<svg><path d="M0 0" fill="white"/></svg>'),
+    ).rejects.toThrow(/test\.svg.*white/);
+  });
+
   it('throws on a colour the table does not map, naming the file and colour', async () => {
     await expect(
       toJsx('<svg><path d="M0 0" fill="#123456"/></svg>'),
