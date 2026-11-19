@@ -194,7 +194,8 @@ single-colour glyph of the same name.
 - **Colours are tokens, not hex.** At build time `tokeniseFills` (svgo, after `inlineStyles`) replaces
   every hex `fill`/`stroke`/`stop-color` with `style="fill:var(--ds-…)"`, using the category's table in
   `build/objectIconColors.js`. The tokens are `--ds-color-custom-<family>-<shade>`, which flip in dark
-  mode, so every icon has a dark version. An unmapped hex or an unknown category fails the build.
+  mode, so every icon has a dark version. `white`/`black` exported by name are looked up as their hex.
+  An unmapped colour or an unknown category fails the build.
 - **`color` does not recolour them**: the fills are explicit tokens, not `currentColor`.
 - **Category hook:** the svg gets `ds-object-icon-<category>` as well as `ds-icon-set-object`.
 - **Adding one:** drop the SVG into its category folder and run `pnpm run build:svgr`. A colour not in that
