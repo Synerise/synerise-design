@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.6.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@2.5.0...@synerise/ds-icon@2.6.0) (2026-11-23)
+
+
+### Features
+
+* **icon:** add the AI doc, AI source, service account and token object icons ([f230cc7](https://github.com/Synerise/synerise-design/commit/f230cc7374d42392917562388e5f098a5601175d))
+
+
+
+
+
 # [2.5.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@2.4.0...@synerise/ds-icon@2.5.0) (2026-11-17)
 
 

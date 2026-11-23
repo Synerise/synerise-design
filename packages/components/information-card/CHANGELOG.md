@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-information-card@2.2.0...@synerise/ds-information-card@2.2.1) (2026-11-23)
+
+
+### Bug Fixes
+
+* **information-card:** keep the tooltip card attached while it resizes ([e3c53e8](https://github.com/Synerise/synerise-design/commit/e3c53e89ba63bfc681d7608cc2a786359c80c2ca))
+
+
+
+
+
 # [2.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-information-card@2.1.4...@synerise/ds-information-card@2.2.0) (2026-11-17)
 
 
