@@ -68,7 +68,7 @@ src/
 | `disabled` | `boolean` | `false` | Keeps the card closed and drops a pending hover-open. Set it while the trigger's own dropdown is open: an open card is a child floating node, and floating-ui will not dismiss the dropdown on Escape while it has an open child |
 | + all `HTMLDivElement` attributes | | | |
 
-Default popover config: hover trigger, 100 ms open delay, 400 ms close delay, 8 px main-axis offset. The open state is owned by the tooltip (so `disabled` can veto it); `popoverProps.open` still overrides it and `popoverProps.onOpenChange` is still called.
+Default popover config: hover trigger, 100 ms open delay, 400 ms close delay, 8 px main-axis offset, `autoUpdate` with `stickyPlacement` — the card stays attached to its trigger while its content resizes (rows that load after it opens) and keeps the side it opened on. The open state is owned by the tooltip (so `disabled` can veto it); `popoverProps.open` still overrides it and `popoverProps.onOpenChange` is still called.
 
 ---
 
