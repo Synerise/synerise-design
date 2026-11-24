@@ -1,9 +1,9 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 
 import Icon, { DragHandleM } from '@synerise/ds-icon';
 import { RawSwitch } from '@synerise/ds-switch';
 import Tooltip from '@synerise/ds-tooltip';
-import { escapeRegEx } from '@synerise/ds-utils';
+import { renderWithHighlight } from '@synerise/ds-utils';
 
 import type { Column } from '../ColumnManager.types';
 import type { ColumnManagerItemProps } from './ColumManagerItem.types';
@@ -31,20 +31,11 @@ export const ColumnManagerItem = <ColumnType extends Column>({
         ? item.type
         : DEFAULT_ITEM_TYPE
     ];
-  const columnName = useMemo(() => {
-    if (searchQuery) {
-      const escapedQuery = escapeRegEx(searchQuery);
-      const startOfQuery = item.name
-        .toLowerCase()
-        .search(escapedQuery.toLowerCase());
-      const result = item.name.substr(startOfQuery, searchQuery.length);
-      return item.name.replace(
-        result,
-        `<span class="search-highlight">${result}</span>`,
-      );
-    }
-    return item.name;
-  }, [item.name, searchQuery]);
+  const columnName = renderWithHighlight(
+    item.name,
+    searchQuery,
+    'search-highlight',
+  );
 
   return (
     <S.ColumnManagerItem
@@ -65,9 +56,7 @@ export const ColumnManagerItem = <ColumnType extends Column>({
           component={iconComponent}
           color="var(--ds-color-icon-base-default)"
         />
-        <S.ColumnManagerItemName
-          dangerouslySetInnerHTML={{ __html: columnName }}
-        />
+        <S.ColumnManagerItemName>{columnName}</S.ColumnManagerItemName>
       </S.ItemPart>
       <S.ItemPart align="right">
         <Tooltip

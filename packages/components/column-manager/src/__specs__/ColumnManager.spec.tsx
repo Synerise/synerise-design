@@ -1,9 +1,11 @@
 import React from 'react';
 
 import { renderWithProvider } from '@synerise/ds-core/testing';
-import { fireEvent, screen, waitFor } from '@testing-library/react';
+import { fireEvent, screen, waitFor, within } from '@testing-library/react';
 
 import ColumnManager from '../ColumnManager';
+import type { Column } from '../ColumnManager.types';
+import { ColumnManagerItem } from '../ColumnManagerItem/ColumnManagerItem';
 
 vi.mock('@synerise/ds-utils', async () => {
   const actual = await vi.importActual('@synerise/ds-utils');
@@ -97,6 +99,37 @@ const COLUMN_MANAGER = (
   />
 );
 
+const MARKUP_NAME = '<img src=x onerror=alert(1)>Name';
+const BOLD_NAME = '<b>bold</b>';
+const SPECIAL_NAME = 'Tom & Jerry <3 🎉';
+
+const renderWithColumns = (columns: Column[]) =>
+  renderWithProvider(
+    <ColumnManager
+      hide={() => {}}
+      visible
+      columns={columns}
+      onApply={() => {}}
+      texts={TEXTS}
+    />,
+  );
+
+const column = (id: string, name: string): Column => ({
+  id,
+  name,
+  visible: true,
+});
+
+const search = (value: string) =>
+  fireEvent.change(screen.getByPlaceholderText('Search'), {
+    target: { value },
+  });
+
+const getRow = () => screen.getByTestId('ds-column-manager-item');
+
+const getHighlights = (row: HTMLElement) =>
+  row.querySelectorAll('.search-highlight');
+
 describe('ColumnManager', () => {
   it('should render', () => {
     renderWithProvider(
@@ -173,5 +206,90 @@ describe('ColumnManager', () => {
     expect(document.querySelector('svg.search-m')).toHaveStyle(
       'color: inherit',
     );
+  });
+
+  describe('column names', () => {
+    it('renders markup in a name as literal text', () => {
+      renderWithColumns([column('0', MARKUP_NAME), column('1', BOLD_NAME)]);
+
+      const [markupRow, boldRow] = screen.getAllByTestId(
+        'ds-column-manager-item',
+      );
+      expect(markupRow).toHaveTextContent(MARKUP_NAME);
+      expect(boldRow).toHaveTextContent(BOLD_NAME);
+      expect(markupRow.querySelector('img')).toBeNull();
+      expect(boldRow.querySelector('b')).toBeNull();
+    });
+
+    it('renders markup in a name as literal text while searching', async () => {
+      renderWithColumns([column('0', MARKUP_NAME)]);
+
+      search('onerror');
+
+      await waitFor(() => {
+        expect(getHighlights(getRow())).toHaveLength(1);
+      });
+      const row = getRow();
+      expect(row).toHaveTextContent(MARKUP_NAME);
+      expect(row.querySelector('img')).toBeNull();
+      expect(getHighlights(row)[0]).toHaveTextContent('onerror');
+    });
+
+    it('wraps a case-insensitive match in .search-highlight', async () => {
+      renderWithProvider(COLUMN_MANAGER());
+
+      search('city');
+
+      await waitFor(() => {
+        expect(getHighlights(getRow())).toHaveLength(1);
+      });
+      expect(getHighlights(getRow())[0].textContent).toBe('City');
+      expect(getRow()).toHaveTextContent('City');
+    });
+
+    it.each([
+      ['start', 'Use'],
+      ['end', 'name'],
+    ])('highlights a match at the %s of the name', async (_, query) => {
+      renderWithProvider(COLUMN_MANAGER());
+
+      search(query);
+
+      await waitFor(() => {
+        expect(getHighlights(getRow())).toHaveLength(1);
+      });
+      expect(getHighlights(getRow())[0].textContent).toBe(query);
+      expect(getRow()).toHaveTextContent('User name');
+    });
+
+    it('renders &, < and emoji unchanged, with and without a query', async () => {
+      renderWithColumns([column('0', SPECIAL_NAME)]);
+
+      expect(getRow()).toHaveTextContent(SPECIAL_NAME);
+
+      search('<3');
+
+      await waitFor(() => {
+        expect(getHighlights(getRow())).toHaveLength(1);
+      });
+      expect(getHighlights(getRow())[0].textContent).toBe('<3');
+      expect(getRow()).toHaveTextContent(SPECIAL_NAME);
+    });
+
+    it('leaves the name as it is when the query does not match', () => {
+      renderWithProvider(
+        <ColumnManagerItem
+          id="0"
+          item={column('0', 'City')}
+          searchQuery="xyz"
+          switchAction={() => {}}
+          texts={{ ...TEXTS, switchOn: 'Show', switchOff: 'Hide' }}
+        />,
+      );
+
+      const row = getRow();
+      expect(within(row).getByText('City')).toBeInTheDocument();
+      expect(getHighlights(row)).toHaveLength(0);
+    });
   });
 });
