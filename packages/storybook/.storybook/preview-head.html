@@ -1,1 +1,19 @@
 <link rel="stylesheet" href="./style/index.css" />
+<script>
+  window.addEventListener(
+    'message',
+    (event) => {
+      if (event.origin === window.location.origin) return;
+      let data = event.data;
+      if (typeof data === 'string') {
+        try {
+          data = JSON.parse(data);
+        } catch {
+          return;
+        }
+      }
+      if (data?.key === 'storybook-channel') event.stopImmediatePropagation();
+    },
+    true,
+  );
+</script>
