@@ -50,9 +50,10 @@ const ColumnManagerList = <ColumnType extends Column>({
       isDragged: activeItem && activeItem?.id === column.id,
       switchAction: toggleColumn,
       draggable: isItemDraggable,
+      searchQuery,
       texts,
     }));
-  }, [columns, toggleColumn, texts, activeItem, isItemDraggable]);
+  }, [columns, toggleColumn, texts, activeItem, isItemDraggable, searchQuery]);
 
   const handleScroll = ({ currentTarget }: UIEvent) => {
     const { scrollTop } = currentTarget;

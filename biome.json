@@ -85,7 +85,7 @@
         "noUnusedVariables": "error"
       },
       "security": {
-        "noDangerouslySetInnerHtml": "warn"
+        "noDangerouslySetInnerHtml": "error"
       },
       "style": {
         "noRestrictedImports": {
