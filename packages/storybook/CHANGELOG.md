@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.70.2](https://github.com/Synerise/synerise-design/compare/storybook@1.70.1...storybook@1.70.2) (2026-11-27)
+
+
+### Bug Fixes
+
+* **storybook:** ignore channel messages from other origins in the preview ([fb26ca7](https://github.com/Synerise/synerise-design/commit/fb26ca7c1d3357a18df48dfd8eecf2cab83321ba))
+
+
+
+
+
 ## [1.70.1](https://github.com/Synerise/synerise-design/compare/storybook@1.70.0...storybook@1.70.1) (2026-11-23)
 
 **Note:** Version bump only for package storybook

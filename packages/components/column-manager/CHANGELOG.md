@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-column-manager@2.1.6...@synerise/ds-column-manager@2.1.7) (2026-11-27)
+
+
+### Bug Fixes
+
+* **column-manager:** render column names as text and highlight search matches ([29e4b3e](https://github.com/Synerise/synerise-design/commit/29e4b3e2cfa02aee6d335f40b72c087caa5e3229))
+
+
+
+
+
 ## [2.1.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-column-manager@2.1.5...@synerise/ds-column-manager@2.1.6) (2026-11-23)
 
 **Note:** Version bump only for package @synerise/ds-column-manager
